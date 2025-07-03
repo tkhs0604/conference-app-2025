@@ -1,0 +1,63 @@
+plugins {
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinxSerialization)
+    id("droidkaigi.primitive.metro")
+}
+
+android {
+    namespace = "io.github.droidkaigi.confsched"
+    compileSdk = 36
+
+    defaultConfig {
+        applicationId = "io.github.droidkaigi.confsched2025"
+        minSdk = 24
+        targetSdk = 36
+    }
+}
+
+kotlin {
+    jvmToolchain(17)
+
+    compilerOptions {
+        freeCompilerArgs.add("-Xcontext-parameters")
+    }
+}
+
+dependencies {
+    implementation(projects.appShared)
+    implementation(projects.core.data)
+    implementation(projects.core.common)
+    implementation(projects.core.droidkaigiui)
+    implementation(projects.core.model)
+    implementation(projects.core.designsystem)
+
+    implementation(projects.feature.sessions)
+    implementation(projects.feature.about)
+    implementation(projects.feature.main)
+    implementation(projects.feature.sponsors)
+    implementation(projects.feature.settings)
+    implementation(projects.feature.staff)
+    implementation(projects.feature.contributors)
+
+    implementation(compose.runtime)
+    implementation(compose.material3)
+    implementation(compose.components.uiToolingPreview)
+    implementation(compose.materialIconsExtended)
+    debugImplementation(compose.uiTooling)
+
+    implementation(libs.androidxActivityCompose)
+
+    implementation(libs.navigation3Ui)
+    implementation(libs.navigation3Runtime)
+    implementation(libs.navigation3Adaptive)
+
+    implementation(libs.kotlinxSerializationJson)
+    implementation(libs.rin)
+
+    implementation(libs.soilQueryCompose)
+    // need this for compile success
+    implementation(libs.androidxDatastorePreferencesCore)
+}

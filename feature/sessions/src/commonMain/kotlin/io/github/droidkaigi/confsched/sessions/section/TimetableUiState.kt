@@ -1,0 +1,17 @@
+package io.github.droidkaigi.confsched.sessions.section
+
+import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
+
+sealed interface TimetableUiState {
+    data object Empty : TimetableUiState
+
+    data class ListTimetable(
+        val timetableListUiStates: Map<DroidKaigi2025Day, TimetableListUiState>,
+        val selectedDay: DroidKaigi2025Day,
+    ) : TimetableUiState
+
+    data class GridTimetable(
+        val timetableGridUiState: Map<DroidKaigi2025Day, TimetableGridUiState>,
+        val selectedDay: DroidKaigi2025Day,
+    ) : TimetableUiState
+}
