@@ -2,7 +2,7 @@ package io.github.droidkaigi.confsched.data.sessions
 
 import dev.zacsweers.metro.Inject
 import io.github.droidkaigi.confsched.model.data.TimetableItemQueryKey
-import io.github.droidkaigi.confsched.model.sessions.TimetableDetail
+import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import soil.query.QueryId
 import soil.query.QueryKey
@@ -12,17 +12,13 @@ import soil.query.buildQueryKey
 public class TimetableItemQueryKeyImpl(
     override val timetableItemId: TimetableItemId,
     private val sessionsApiClient: SessionsApiClient,
-) : TimetableItemQueryKey, QueryKey<TimetableDetail> by buildQueryKey(
+) : TimetableItemQueryKey, QueryKey<TimetableItem> by buildQueryKey(
     id = QueryId(timetableItemId.value),
     fetch = {
         val timetable = sessionsApiClient.sessionsAllResponse().toTimetable()
-        val timetableItem = timetable.timetableItems.first {
+        timetable.timetableItems.first {
             it.id == timetableItemId
         }
-        TimetableDetail(
-            timetableItem = timetableItem,
-            isBookmarked = timetable.bookmarks.contains(timetableItemId)
-        )
     }
 ) {
 

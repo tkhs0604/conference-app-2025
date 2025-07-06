@@ -26,7 +26,7 @@ fun TimetableItemDetailScreenRoot(
 
         val uiState = timetableItemDetailScreenPresenter(
             eventFlow = eventFlow,
-            timetableDetail = timetableItem,
+            timetableItem = timetableItem,
             favoriteTimetableItemIds = favoriteTimetableItemIds,
         )
 
