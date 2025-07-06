@@ -7,6 +7,7 @@ import io.github.droidkaigi.confsched.droidkaigiui.SoilDataBoundary
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import kotlinx.serialization.Serializable
 import soil.query.compose.rememberQuery
+import soil.query.compose.rememberSubscription
 
 @Serializable
 data class TimetableItemDetailNavKey(val id: TimetableItemId) : NavKey
@@ -14,23 +15,24 @@ data class TimetableItemDetailNavKey(val id: TimetableItemId) : NavKey
 context(screenContext: TimetableItemDetailScreenContext)
 @Composable
 fun TimetableItemDetailScreenRoot(
-    timetableItemId: TimetableItemId
+    timetableItemId: TimetableItemId,
 ) {
     SoilDataBoundary(
-        state = rememberQuery(
-            key = screenContext.timetableItemQueryKeyFactory.create(timetableItemId),
-        ),
+        state1 = rememberQuery(screenContext.timetableItemQueryKeyFactory.create(timetableItemId)),
+        state2 = rememberSubscription(screenContext.favoriteTimetableIdsSubscriptionKey),
         errorFallback = {}
-    ) { timetableItem  ->
+    ) { timetableItem, favoriteTimetableItemIds ->
         val eventFlow = rememberEventFlow<TimetableItemDetailScreenEvent>()
 
         val uiState = timetableItemDetailScreenPresenter(
             eventFlow = eventFlow,
-            timetableDetail = timetableItem
+            timetableDetail = timetableItem,
+            favoriteTimetableItemIds = favoriteTimetableItemIds,
         )
 
         TimetableItemDetailScreen(
             uiState = uiState,
+            onBookmarkClick = { isBookmarked -> eventFlow.tryEmit(TimetableItemDetailScreenEvent.Bookmark(isBookmarked)) }
         )
     }
 }
