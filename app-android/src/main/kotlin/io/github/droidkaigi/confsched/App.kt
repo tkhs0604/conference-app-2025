@@ -2,12 +2,12 @@ package io.github.droidkaigi.confsched
 
 import android.app.Application
 import android.content.Context
-import dev.zacsweers.metro.createGraph
+import dev.zacsweers.metro.createGraphFactory
 
 class App : Application() {
     val appGraph: AppGraph by lazy {
-        ContextHelper.currentContext = this
-        createGraph<AppGraph>()
+        createGraphFactory<AndroidAppGraph.Factory>()
+            .createAndroidAppGraph(this)
     }
 }
 

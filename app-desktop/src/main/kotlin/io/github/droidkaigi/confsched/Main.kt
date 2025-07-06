@@ -18,7 +18,7 @@ import dev.zacsweers.metro.createGraph
 import kotlinx.coroutines.delay
 
 fun main() = application {
-    val graph: AppGraph = createGraph()
+    val graph: JvmAppGraph = createGraph()
 
     Window(
         onCloseRequest = ::exitApplication,
