@@ -1,6 +1,9 @@
 package io.github.droidkaigi.confsched.data.sessions
 
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.binding
 import io.github.droidkaigi.confsched.data.sessions.DefaultSessionsApiClient.Companion.filterConferenceDaySessions
 import io.github.droidkaigi.confsched.data.sessions.response.CategoryItemResponse
 import io.github.droidkaigi.confsched.data.sessions.response.CategoryResponse
@@ -23,6 +26,8 @@ import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
+// FIXME: Currently, server API is not available, so we use this fake implementation for the time being.
+@ContributesBinding(AppScope::class, binding<SessionsApiClient>())
 @Inject
 public class FakeSessionsApiClient : SessionsApiClient {
     public sealed class Status : SessionsApiClient {
