@@ -19,7 +19,7 @@ fun TimetableItemDetailScreen(
         Box(
             modifier = Modifier.padding(paddingValues)
         ) {
-            Text("detail")
+            Text(uiState.timetableItem.title.currentLangTitle)
         }
     }
 }

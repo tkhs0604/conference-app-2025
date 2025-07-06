@@ -4,13 +4,13 @@ import androidx.compose.runtime.Composable
 import io.github.droidkaigi.confsched.common.compose.EventEffect
 import io.github.droidkaigi.confsched.common.compose.EventFlow
 import io.github.droidkaigi.confsched.common.compose.providePresenterDefaults
-import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
+import io.github.droidkaigi.confsched.model.sessions.TimetableDetail
 
 context(screenContext: TimetableItemDetailScreenContext)
 @Composable
 fun timetableItemDetailScreenPresenter(
     eventFlow: EventFlow<TimetableItemDetailScreenEvent>,
-    timetableItemId: TimetableItemId,
+    timetableDetail: TimetableDetail,
 ): TimetableItemDetailScreenUiState = providePresenterDefaults {
 
     EventEffect(eventFlow) { event ->
@@ -20,5 +20,8 @@ fun timetableItemDetailScreenPresenter(
         }
     }
 
-    TimetableItemDetailScreenUiState()
+    TimetableItemDetailScreenUiState(
+        timetableItem = timetableDetail.timetableItem,
+        isBookmarked = timetableDetail.isBookmarked,
+    )
 }
