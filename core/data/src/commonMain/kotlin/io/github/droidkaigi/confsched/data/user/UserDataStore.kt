@@ -6,11 +6,11 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringSetPreferencesKey
-import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
 import dev.zacsweers.metro.binding
+import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.UserDataStoreQualifier
 import io.github.droidkaigi.confsched.model.data.UserDataStore
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
@@ -21,8 +21,8 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 
-@ContributesBinding(AppScope::class, binding<UserDataStore>())
-@SingleIn(AppScope::class)
+@ContributesBinding(DataScope::class, binding<UserDataStore>())
+@SingleIn(DataScope::class)
 @Inject
 public class UserDataStoreImpl(
     @UserDataStoreQualifier private val dataStore: DataStore<Preferences>

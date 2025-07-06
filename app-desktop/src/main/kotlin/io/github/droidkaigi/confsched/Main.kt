@@ -15,10 +15,13 @@ import androidx.navigationevent.NavigationEventDispatcher
 import androidx.navigationevent.NavigationEventDispatcherOwner
 import androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner
 import dev.zacsweers.metro.createGraph
+import dev.zacsweers.metro.createGraphFactory
+import io.github.droidkaigi.confsched.data.JvmDataGraph
 import kotlinx.coroutines.delay
 
 fun main() = application {
-    val graph: JvmAppGraph = createGraph()
+    val graph: JvmAppGraph = createGraphFactory<JvmAppGraph.Factory>()
+        .createJvmAppGraph(jvmDataGraph = createGraph())
 
     Window(
         onCloseRequest = ::exitApplication,

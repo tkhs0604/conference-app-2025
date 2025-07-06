@@ -20,6 +20,7 @@ compose.desktop {
 
 dependencies {
     implementation(projects.appShared)
+    implementation(projects.core.data)
     implementation(compose.desktop.currentOs)
     implementation(compose.foundation)
     implementation(compose.runtime)

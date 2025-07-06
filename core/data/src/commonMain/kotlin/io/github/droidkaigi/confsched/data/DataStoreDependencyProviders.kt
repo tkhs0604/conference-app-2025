@@ -21,9 +21,9 @@ public annotation class UserDataStoreQualifier
 @Qualifier
 public annotation class SessionCacheDataStoreQualifier
 
-@ContributesTo(AppScope::class)
+@ContributesTo(DataScope::class)
 public interface DataStoreDependencyProviders {
-    @SingleIn(AppScope::class)
+    @SingleIn(DataScope::class)
     @UserDataStoreQualifier
     @Provides
     public fun provideDataStorePreferences(dataStorePathProducer: DataStorePathProducer): DataStore<Preferences> {
@@ -35,7 +35,7 @@ public interface DataStoreDependencyProviders {
         )
     }
 
-    @SingleIn(AppScope::class)
+    @SingleIn(DataScope::class)
     @SessionCacheDataStoreQualifier
     @Provides
     public fun provideSessionCacheDataStore(dataStorePathProducer: DataStorePathProducer): DataStore<Preferences> {

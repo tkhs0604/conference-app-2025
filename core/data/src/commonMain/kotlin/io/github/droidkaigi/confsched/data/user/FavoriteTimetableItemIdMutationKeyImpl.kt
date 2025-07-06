@@ -4,6 +4,7 @@ import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
+import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableItemIdMutationKey
 import io.github.droidkaigi.confsched.model.data.UserDataStore
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
@@ -11,7 +12,7 @@ import soil.query.MutationId
 import soil.query.MutationKey
 import soil.query.buildMutationKey
 
-@ContributesBinding(AppScope::class, binding<FavoriteTimetableItemIdMutationKey>())
+@ContributesBinding(DataScope::class, binding<FavoriteTimetableItemIdMutationKey>())
 @Inject
 public class FavoriteTimetableItemIdMutationKeyImpl(
     private val userDataStore: UserDataStore
