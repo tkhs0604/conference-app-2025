@@ -52,14 +52,20 @@ fun TimetableScreen(
             when (uiState.timetable) {
                 is TimetableUiState.Empty -> Text("Empty")
                 is TimetableUiState.GridTimetable -> {
-                    TextButton(
-                        onClick = {
-                            onTimetableItemClick(TimetableItemId("TimetableItemId"))
-                        }
-                    ) {
-                        Text("Grid")
+                    Column {
+                        TextButton(
+                            onClick = {
+                                onTimetableItemClick(TimetableItemId("0570556a-8a53-49d6-916c-26ff85635d860"))
+                            }
+                        ) { Text("detail1") }
+                        TextButton(
+                            onClick = {
+                                onTimetableItemClick(TimetableItemId("020"))
+                            }
+                        ) { Text("detail2") }
                     }
                 }
+
                 is TimetableUiState.ListTimetable -> TimetableList(uiState.timetable)
             }
         }
