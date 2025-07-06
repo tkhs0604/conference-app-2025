@@ -2,6 +2,7 @@ package io.github.droidkaigi.confsched
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.DependencyGraph
+import io.github.droidkaigi.confsched.contributors.ContributorsScreenContext
 import io.github.droidkaigi.confsched.sessions.SearchScreenContext
 import io.github.droidkaigi.confsched.sessions.TimetableItemDetailScreenContext
 import io.github.droidkaigi.confsched.sessions.TimetableScreenContext
@@ -11,4 +12,5 @@ interface AppGraph :
     TimetableScreenContext.Factory,
     TimetableItemDetailScreenContext.Factory,
     SearchScreenContext.Factory,
+    ContributorsScreenContext.Factory,
     PlatformAppDependencyProvider
