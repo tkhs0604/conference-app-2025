@@ -9,12 +9,14 @@ import dev.zacsweers.metro.Provides
 import io.github.droidkaigi.confsched.data.core.defaultJson
 import io.github.droidkaigi.confsched.data.sessions.FakeSessionsApiClient
 import io.github.droidkaigi.confsched.data.sessions.SessionsApiClient
+import io.github.droidkaigi.confsched.data.sessions.TimetableItemQueryKeyImpl
 import io.github.droidkaigi.confsched.data.sessions.TimetableSubscriptionKeyImpl
 import io.github.droidkaigi.confsched.data.user.FavoriteTimetableIdsSubscriptionKeyImpl
 import io.github.droidkaigi.confsched.data.user.FavoriteTimetableItemIdMutationKeyImpl
 import io.github.droidkaigi.confsched.data.user.UserDataStoreImpl
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableItemIdMutationKey
+import io.github.droidkaigi.confsched.model.data.TimetableItemQueryKey
 import io.github.droidkaigi.confsched.model.data.TimetableSubscriptionKey
 import io.github.droidkaigi.confsched.model.data.UserDataStore
 import io.ktor.client.HttpClient
@@ -39,6 +41,17 @@ public interface DataDependencyProviders {
 
     @Binds
     public val FavoriteTimetableItemIdMutationKeyImpl.bind: FavoriteTimetableItemIdMutationKey
+
+    @Binds
+    public fun bindTimetableItemQueryKeyFactory(impl: TimetableItemQueryKeyImpl.Factory): TimetableItemQueryKey.Factory
+
+    @Provides
+    public fun provideTimetableItemQueryKeyImplFactory(
+        sessionsApiClient: SessionsApiClient,
+    ): TimetableItemQueryKeyImpl.Factory {
+        return TimetableItemQueryKeyImpl.Factory(sessionsApiClient)
+    }
+
 
     @Named("apiBaseUrl")
     @Provides
