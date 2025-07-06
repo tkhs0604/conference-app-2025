@@ -38,11 +38,14 @@ public class TimetableSubscriptionKeyImpl(
     id = SubscriptionId("timetable"),
     subscribe = {
         flow {
-            emit(
-                sessionsApiClient.sessionsAllResponse().also {
-                    dataStore.save(it)
-                }.toTimetable()
-            )
+            dataStore.getCache()?.let {
+                emit(it.toTimetable())
+            }
+
+            val response = sessionsApiClient.sessionsAllResponse()
+            dataStore.save(response)
+
+            emit(response.toTimetable())
         }
     },
 )
