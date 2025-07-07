@@ -9,16 +9,16 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entry
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.SceneStrategy
-import io.github.droidkaigi.confsched.contributors.ContributorsNavKey
 import io.github.droidkaigi.confsched.contributors.ContributorsScreenRoot
 import io.github.droidkaigi.confsched.contributors.rememberContributorsScreenContextRetained
 import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
 import io.github.droidkaigi.confsched.droidkaigiui.NavDisplayWithSharedAxisX
-import io.github.droidkaigi.confsched.sessions.SearchNavKey
+import io.github.droidkaigi.confsched.navkey.ContributorsNavKey
+import io.github.droidkaigi.confsched.navkey.SearchNavKey
+import io.github.droidkaigi.confsched.navkey.TimetableItemDetailNavKey
+import io.github.droidkaigi.confsched.navkey.TimetableNavKey
 import io.github.droidkaigi.confsched.sessions.SearchScreenRoot
-import io.github.droidkaigi.confsched.sessions.TimetableItemDetailNavKey
 import io.github.droidkaigi.confsched.sessions.TimetableItemDetailScreenRoot
-import io.github.droidkaigi.confsched.sessions.TimetableNavKey
 import io.github.droidkaigi.confsched.sessions.TimetableScreenRoot
 import io.github.droidkaigi.confsched.sessions.rememberSearchScreenContextRetained
 import io.github.droidkaigi.confsched.sessions.rememberTimetableItemDetailScreenContextRetained
@@ -61,7 +61,7 @@ fun KaigiApp() {
                             }
                         }
                         entry<TimetableItemDetailNavKey>(metadata = listDetailSceneStrategyDetailPaneMetaData()) {
-                            with(appGraph.rememberTimetableItemDetailScreenContextRetained(it)) {
+                            with(appGraph.rememberTimetableItemDetailScreenContextRetained(it.id)) {
                                 TimetableItemDetailScreenRoot()
                             }
                         }

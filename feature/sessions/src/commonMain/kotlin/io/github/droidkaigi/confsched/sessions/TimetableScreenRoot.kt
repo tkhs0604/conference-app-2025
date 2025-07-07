@@ -1,15 +1,10 @@
 package io.github.droidkaigi.confsched.sessions
 
 import androidx.compose.runtime.Composable
-import androidx.navigation3.runtime.NavKey
 import io.github.droidkaigi.confsched.common.compose.rememberEventFlow
 import io.github.droidkaigi.confsched.droidkaigiui.SoilDataBoundary
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
-import kotlinx.serialization.Serializable
 import soil.query.compose.rememberSubscription
-
-@Serializable
-data object TimetableNavKey : NavKey
 
 context(screenContext: TimetableScreenContext)
 @Composable
