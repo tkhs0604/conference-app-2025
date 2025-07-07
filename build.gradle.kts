@@ -8,7 +8,6 @@ plugins {
     alias(libs.plugins.androidKotlinMultiplatformLibrary) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.ktorfit) apply false
-    alias(libs.plugins.mokkery) apply false
     alias(libs.plugins.jetbrainsCompose) apply false
     alias(libs.plugins.composeCompiler) apply false
     alias(libs.plugins.roborazzi) apply false

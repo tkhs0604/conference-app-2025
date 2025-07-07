@@ -12,7 +12,6 @@ plugins {
     id("droidkaigi.primitive.kmp.compose")
     id("droidkaigi.primitive.metro")
     id("droidkaigi.primitive.detekt")
-    id("org.jetbrains.kotlin.plugin.serialization")
     id("com.google.devtools.ksp")
 }
 
@@ -28,8 +27,6 @@ kotlin {
 
             implementation(libs.library("soilQueryCompose"))
             implementation(libs.library("soilReacty"))
-
-            implementation(libs.library("kotlinxSerializationJson"))
         }
 
         commonTest.dependencies {

@@ -19,7 +19,6 @@ dependencies {
     commonMainImplementation(compose.components.resources)
     commonMainImplementation(compose.materialIconsExtended)
     commonMainImplementation(libs.library("rin"))
-    commonMainImplementation(libs.library("navigation3Ui"))
 }
 
 compose {

@@ -1,6 +1,9 @@
 package io.github.droidkaigi.confsched.data.sessions
 
+import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.binding
+import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.sessions.response.LocaledResponse
 import io.github.droidkaigi.confsched.data.sessions.response.SessionAssetResponse
 import io.github.droidkaigi.confsched.data.sessions.response.SessionMessageResponse
@@ -26,6 +29,7 @@ import kotlinx.datetime.toInstant
 import soil.query.SubscriptionId
 import soil.query.buildSubscriptionKey
 
+@ContributesBinding(DataScope::class, binding = binding<TimetableSubscriptionKey>())
 @Inject
 public class TimetableSubscriptionKeyImpl(
     private val sessionsApiClient: SessionsApiClient,
@@ -34,11 +38,14 @@ public class TimetableSubscriptionKeyImpl(
     id = SubscriptionId("timetable"),
     subscribe = {
         flow {
-            emit(
-                sessionsApiClient.sessionsAllResponse().also {
-                    dataStore.save(it)
-                }.toTimetable()
-            )
+            dataStore.getCache()?.let {
+                emit(it.toTimetable())
+            }
+
+            val response = sessionsApiClient.sessionsAllResponse()
+            dataStore.save(response)
+
+            emit(response.toTimetable())
         }
     },
 )

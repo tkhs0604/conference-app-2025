@@ -2,9 +2,8 @@ package io.github.droidkaigi.confsched.sessions
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesGraphExtension
+import io.github.droidkaigi.confsched.common.scope.SearchScope
 import io.github.droidkaigi.confsched.context.ScreenContext
-
-abstract class SearchScope private constructor()
 
 @ContributesGraphExtension(SearchScope::class)
 interface SearchScreenContext : ScreenContext {
