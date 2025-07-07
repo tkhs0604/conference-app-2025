@@ -16,10 +16,12 @@ import soil.query.buildQueryKey
 public class TimetableItemQueryKeyImpl(
     override val timetableItemId: TimetableItemId,
     private val sessionsApiClient: SessionsApiClient,
+    private val dataStore: SessionCacheDataStore,
 ) : TimetableItemQueryKey, QueryKey<TimetableItem> by buildQueryKey(
     id = QueryId(timetableItemId.value),
     fetch = {
-        val timetable = sessionsApiClient.sessionsAllResponse().toTimetable()
+        val response = dataStore.getCache() ?: sessionsApiClient.sessionsAllResponse()
+        val timetable = response.toTimetable()
         timetable.timetableItems.first {
             it.id == timetableItemId
         }
