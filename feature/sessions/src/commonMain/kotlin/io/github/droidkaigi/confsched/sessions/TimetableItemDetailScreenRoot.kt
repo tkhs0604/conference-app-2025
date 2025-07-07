@@ -8,7 +8,9 @@ import soil.query.compose.rememberSubscription
 
 context(screenContext: TimetableItemDetailScreenContext)
 @Composable
-fun TimetableItemDetailScreenRoot() {
+fun TimetableItemDetailScreenRoot(
+    onBackClick: () -> Unit,
+) {
     SoilDataBoundary(
         state1 = rememberQuery(screenContext.timetableItemQueryKey),
         state2 = rememberSubscription(screenContext.favoriteTimetableIdsSubscriptionKey),
@@ -24,6 +26,7 @@ fun TimetableItemDetailScreenRoot() {
 
         TimetableItemDetailScreen(
             uiState = uiState,
+            onBackClick = onBackClick,
             onBookmarkClick = { isBookmarked -> eventFlow.tryEmit(TimetableItemDetailScreenEvent.Bookmark(isBookmarked)) }
         )
     }

@@ -7,15 +7,21 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailTopAppBar
 
 @Composable
 fun TimetableItemDetailScreen(
     uiState: TimetableItemDetailScreenUiState,
+    onBackClick: () -> Unit,
     onBookmarkClick: (isBookmarked: Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
-        topBar = {},
+        topBar = {
+            TimetableItemDetailTopAppBar(
+                onBackClick = onBackClick,
+            )
+        },
         modifier = modifier
     ) { paddingValues ->
         Column(

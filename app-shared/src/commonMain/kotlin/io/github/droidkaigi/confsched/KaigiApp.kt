@@ -62,7 +62,9 @@ fun KaigiApp() {
                         }
                         entry<TimetableItemDetailNavKey>(metadata = listDetailSceneStrategyDetailPaneMetaData()) {
                             with(appGraph.rememberTimetableItemDetailScreenContextRetained(it.id)) {
-                                TimetableItemDetailScreenRoot()
+                                TimetableItemDetailScreenRoot(
+                                    onBackClick = { backStack.removeLastOrNull() }
+                                )
                             }
                         }
                         entry<SearchNavKey> {
