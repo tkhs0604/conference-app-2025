@@ -10,8 +10,8 @@ kotlinxSerialization = "1.9.0"
 kotlinxCollectionsImmutable = "0.4.0"
 kotlinxDatetime = "0.6.2"
 
-androidxActivityCompose = "1.12.0-alpha03"
-androidxNavigation3 = "1.0.0-alpha04"
+androidxActivityCompose = "1.12.0-alpha04"
+androidxNavigation3 = "1.0.0-alpha05"
 androidxNavigation3Material = "1.0.0-SNAPSHOT"
 androidxDatastore = "1.1.7"
 androidxAppCompat = "1.7.1"
@@ -20,7 +20,7 @@ androidxTestCore = "1.6.1"
 ktor = "3.2.1"
 ktorfit = "2.6.1"
 
-soil = "1.0.0-alpha10"
+soil = "1.0.0-alpha11"
 
 rin = "0.3.0"
 
@@ -32,11 +32,11 @@ lifecycleViewmodelNavigation3 = "1.0.0-SNAPSHOT"
 robolectric = "4.15.1"
 
 composeBom = "2025.06.01"
-roborazzi = "1.45.1"
+roborazzi = "1.46.1"
 
 detekt = "1.23.8"
 twitterComposeRule = "0.0.26"
-navigationeventDesktop = "1.0.0-alpha03"
+navigationeventDesktop = "1.0.0-alpha04"
 
 composeHotReload = "1.0.0-beta03"
 
