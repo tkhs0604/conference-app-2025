@@ -6,8 +6,4 @@ import soil.query.QueryKey
 
 interface TimetableItemQueryKey : QueryKey<TimetableItem> {
     val timetableItemId: TimetableItemId
-
-    interface Factory {
-        fun create(timetableItemId: TimetableItemId): TimetableItemQueryKey
-    }
 }
