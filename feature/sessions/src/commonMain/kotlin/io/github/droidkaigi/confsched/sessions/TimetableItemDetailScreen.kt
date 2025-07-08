@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.model.core.Lang
+import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailBottomAppBar
 import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailTopAppBar
 import org.jetbrains.compose.resources.stringResource
 
@@ -37,6 +38,12 @@ fun TimetableItemDetailScreen(
                 onBackClick = onBackClick,
             )
         },
+        bottomBar = {
+            TimetableItemDetailBottomAppBar(
+                isBookmarked = uiState.isBookmarked,
+                onBookmarkClick = onBookmarkClick,
+            )
+        },
         modifier = modifier
     ) { paddingValues ->
         Column(
@@ -51,12 +58,6 @@ fun TimetableItemDetailScreen(
                 text = uiState.timetableItem.title.getByLang(uiState.currentLang),
                 style = MaterialTheme.typography.headlineSmall,
             )
-
-            TextButton(
-                onClick = {
-                    onBookmarkClick(!uiState.isBookmarked)
-                }
-            ) { Text("Bookmark ${uiState.isBookmarked}") }
         }
     }
 }
