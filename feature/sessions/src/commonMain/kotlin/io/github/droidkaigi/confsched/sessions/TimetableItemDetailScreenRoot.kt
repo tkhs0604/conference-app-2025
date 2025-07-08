@@ -14,7 +14,12 @@ fun TimetableItemDetailScreenRoot(
     SoilDataBoundary(
         state1 = rememberQuery(screenContext.timetableItemQueryKey),
         state2 = rememberSubscription(screenContext.favoriteTimetableIdsSubscriptionKey),
-        errorFallback = {}
+        errorFallback = {
+            TimetableItemDetailScreenErrorFallback(
+                errorBoundaryContext = it,
+                onBackClick = onBackClick,
+            )
+        }
     ) { timetableItem, favoriteTimetableItemIds ->
         val eventFlow = rememberEventFlow<TimetableItemDetailScreenEvent>()
 
