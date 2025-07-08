@@ -1,6 +1,6 @@
 package io.github.droidkaigi.confsched.data
 
-import dev.zacsweers.metro.DependencyGraph
+import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
 import io.github.droidkaigi.confsched.data.core.DataStorePathProducer
 import io.github.droidkaigi.confsched.data.core.defaultKtorConfig
@@ -9,8 +9,8 @@ import io.ktor.client.engine.okhttp.OkHttp
 import kotlinx.serialization.json.Json
 import java.nio.file.Paths
 
-@DependencyGraph(DataScope::class, isExtendable = true)
-public interface JvmDataGraph : DataGraph {
+@ContributesTo(DataScope::class)
+public interface JvmDataGraph {
     @Provides
     public fun provideDataStorePathProducer(): DataStorePathProducer {
         return object : DataStorePathProducer {

@@ -7,9 +7,8 @@ import io.github.droidkaigi.confsched.data.AndroidDataGraph
 
 class App : Application() {
     val appGraph: AppGraph by lazy {
-        val dataGraph = createGraphFactory<AndroidDataGraph.Factory>().createAndroidDataGraph(applicationContext)
         createGraphFactory<AndroidAppGraph.Factory>()
-            .createAndroidAppGraph(dataGraph)
+            .createAndroidAppGraph(this)
     }
 }
 

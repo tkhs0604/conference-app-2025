@@ -1,6 +1,7 @@
 package io.github.droidkaigi.confsched.data
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Named
 import dev.zacsweers.metro.Provides
 import io.github.droidkaigi.confsched.data.core.defaultJson
@@ -9,6 +10,7 @@ import kotlinx.serialization.json.Json
 
 public abstract class DataScope private constructor()
 
+@ContributesTo(DataScope::class)
 public interface DataGraph {
     @Named("apiBaseUrl")
     public val apiBaseUrl: String

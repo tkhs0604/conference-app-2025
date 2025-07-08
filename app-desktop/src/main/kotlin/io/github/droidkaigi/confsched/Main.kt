@@ -9,11 +9,9 @@ import androidx.navigationevent.NavigationEventDispatcher
 import androidx.navigationevent.NavigationEventDispatcherOwner
 import androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner
 import dev.zacsweers.metro.createGraph
-import dev.zacsweers.metro.createGraphFactory
 
 fun main() = application {
-    val graph: JvmAppGraph = createGraphFactory<JvmAppGraph.Factory>()
-        .createJvmAppGraph(jvmDataGraph = createGraph())
+    val graph: JvmAppGraph = createGraph()
 
     Window(
         onCloseRequest = ::exitApplication,
