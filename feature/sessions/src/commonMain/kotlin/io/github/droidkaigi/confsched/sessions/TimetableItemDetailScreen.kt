@@ -20,9 +20,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.model.core.Lang
+import io.github.droidkaigi.confsched.model.sessions.TimetableItem
+import io.github.droidkaigi.confsched.model.sessions.fake
 import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailBottomAppBar
 import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailTopAppBar
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun TimetableItemDetailScreen(
@@ -114,4 +117,19 @@ private fun LanguageSwitcher(
             }
         }
     }
+}
+
+@Preview
+@Composable
+private fun TimetableItemDetailScreenPreview() {
+    TimetableItemDetailScreen(
+        uiState = TimetableItemDetailScreenUiState(
+            timetableItem = TimetableItem.Session.fake(),
+            isBookmarked = false,
+            currentLang = Lang.JAPANESE,
+        ),
+        onBackClick = {},
+        onBookmarkClick = {},
+        onLanguageSelect = {},
+    )
 }
