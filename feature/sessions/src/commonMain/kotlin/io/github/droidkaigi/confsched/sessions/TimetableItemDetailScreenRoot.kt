@@ -32,7 +32,8 @@ fun TimetableItemDetailScreenRoot(
         TimetableItemDetailScreen(
             uiState = uiState,
             onBackClick = onBackClick,
-            onBookmarkClick = { isBookmarked -> eventFlow.tryEmit(TimetableItemDetailScreenEvent.Bookmark(isBookmarked)) }
+            onBookmarkClick = { isBookmarked -> eventFlow.tryEmit(TimetableItemDetailScreenEvent.Bookmark(isBookmarked)) },
+            onLanguageSelect = { lang -> eventFlow.tryEmit(TimetableItemDetailScreenEvent.LanguageSelect(lang)) },
         )
     }
 }
