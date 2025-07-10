@@ -5,16 +5,23 @@ import dev.zacsweers.metro.ContributesGraphExtension
 import dev.zacsweers.metro.Provides
 import io.github.droidkaigi.confsched.common.scope.TimetableDetailScope
 import io.github.droidkaigi.confsched.context.ScreenContext
+import io.github.droidkaigi.confsched.model.data.FavoriteTimetableIdsSubscriptionKey
+import io.github.droidkaigi.confsched.model.data.FavoriteTimetableItemIdMutationKey
+import io.github.droidkaigi.confsched.model.data.TimetableItemQueryKey
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 
 @ContributesGraphExtension(TimetableDetailScope::class)
 interface TimetableItemDetailScreenContext : ScreenContext {
-    val timetableItemId: TimetableItemId
+    val timetableItemQueryKey: TimetableItemQueryKey
+
+    val favoriteTimetableIdsSubscriptionKey: FavoriteTimetableIdsSubscriptionKey
+
+    val favoriteTimetableItemIdMutationKey: FavoriteTimetableItemIdMutationKey
 
     @ContributesGraphExtension.Factory(AppScope::class)
     fun interface Factory {
         fun createTimetableDetailScreenContext(
-            @Provides timetableItemId: TimetableItemId,
+            @Provides timetableItemId: TimetableItemId
         ): TimetableItemDetailScreenContext
     }
 }
