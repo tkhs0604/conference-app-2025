@@ -21,6 +21,7 @@ dependencies {
     commonMainImplementation(projects.feature.settings)
     commonMainImplementation(projects.feature.staff)
     commonMainImplementation(projects.feature.contributors)
+    commonMainImplementation(projects.feature.favorites)
 
     commonMainImplementation(libs.navigation3Ui)
     commonMainImplementation(libs.navigation3Runtime)

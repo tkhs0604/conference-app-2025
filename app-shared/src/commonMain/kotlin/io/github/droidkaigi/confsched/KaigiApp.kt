@@ -13,7 +13,10 @@ import io.github.droidkaigi.confsched.contributors.ContributorsScreenRoot
 import io.github.droidkaigi.confsched.contributors.rememberContributorsScreenContextRetained
 import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
 import io.github.droidkaigi.confsched.droidkaigiui.NavDisplayWithSharedAxisX
+import io.github.droidkaigi.confsched.favorites.FavoritesScreenRoot
+import io.github.droidkaigi.confsched.favorites.rememberFavoritesScreenContextRetained
 import io.github.droidkaigi.confsched.navkey.ContributorsNavKey
+import io.github.droidkaigi.confsched.navkey.FavoritesNavKey
 import io.github.droidkaigi.confsched.navkey.SearchNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableItemDetailNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableNavKey
@@ -75,6 +78,11 @@ fun KaigiApp() {
                         entry<ContributorsNavKey> {
                             with(appGraph.rememberContributorsScreenContextRetained()) {
                                 ContributorsScreenRoot()
+                            }
+                        }
+                        entry<FavoritesNavKey> {
+                            with(appGraph.rememberFavoritesScreenContextRetained()) {
+                                FavoritesScreenRoot()
                             }
                         }
                     },
