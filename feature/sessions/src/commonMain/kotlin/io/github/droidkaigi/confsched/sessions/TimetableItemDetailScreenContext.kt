@@ -10,7 +10,7 @@ import io.github.droidkaigi.confsched.model.data.FavoriteTimetableItemIdMutation
 import io.github.droidkaigi.confsched.model.data.TimetableItemQueryKey
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 
-@ContributesGraphExtension(TimetableDetailScope::class, isExtendable = true)
+@ContributesGraphExtension(TimetableDetailScope::class)
 interface TimetableItemDetailScreenContext : ScreenContext {
     val timetableItemQueryKey: TimetableItemQueryKey
 
