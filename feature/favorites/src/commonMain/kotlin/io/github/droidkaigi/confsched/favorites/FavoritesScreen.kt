@@ -1,6 +1,5 @@
 package io.github.droidkaigi.confsched.favorites
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -18,8 +17,14 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import io.github.droidkaigi.confsched.favorites.components.FavoriteFilters
+import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
+import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
+import io.github.droidkaigi.confsched.model.sessions.fake
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.persistentMapOf
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,7 +46,6 @@ fun FavoritesScreen(
         },
         modifier = modifier
     ) { innerPadding ->
-
         Column(
             modifier = Modifier
                 .padding(innerPadding)
@@ -86,4 +90,32 @@ fun FavoritesScreen(
             }
         }
     }
+}
+
+@Preview
+@Composable
+private fun FavoritesScreenPreview() {
+    FavoritesScreen(
+        uiState = FavoritesScreenUiState(
+            filterState = FavoritesScreenUiState.FilterState(
+                allFilterSelected = false,
+                currentDayFilter = persistentListOf(DroidKaigi2025Day.ConferenceDay1, DroidKaigi2025Day.ConferenceDay2)
+            ),
+            timetableContentState = FavoritesScreenUiState.TimetableContentState.FavoriteList(
+                timetableItemMap = persistentMapOf(
+                    FavoritesScreenUiState.TimetableContentState.FavoriteList.TimeSlot(
+                        day = DroidKaigi2025Day.ConferenceDay1,
+                        startTimeString = "10:00",
+                        endTimeString = "11:00",
+                    ) to listOf(
+                        TimetableItem.Session.fake(),
+                    )
+                )
+            )
+        ),
+        onBookmarkClick = {},
+        onAllFilterChipClick = {},
+        onDay1FilterChipClick = {},
+        onDay2FilterChipClick = {},
+    )
 }
