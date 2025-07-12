@@ -22,6 +22,10 @@ fun FavoritesScreenRoot() {
 
         FavoritesScreen(
             uiState = uiState,
+            onBookmarkClick = { eventFlow.tryEmit(FavoritesScreenEvent.Bookmark(it)) },
+            onAllFilterChipClick = { eventFlow.tryEmit(FavoritesScreenEvent.FilterAllDays) },
+            onDay1FilterChipClick = { eventFlow.tryEmit(FavoritesScreenEvent.FilterDay1) },
+            onDay2FilterChipClick = { eventFlow.tryEmit(FavoritesScreenEvent.FilterDay2) },
         )
     }
 }
