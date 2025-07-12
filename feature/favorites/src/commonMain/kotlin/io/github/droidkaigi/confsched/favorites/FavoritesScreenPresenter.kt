@@ -14,6 +14,9 @@ import io.github.droidkaigi.confsched.model.sessions.Timetable
 import io.github.takahirom.rin.rememberRetained
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.collections.immutable.toPersistentMap
+import soil.query.compose.rememberMutation
+
+private const val MIN_FILTERS_TO_DESELECT = 2
 
 context(screenContext: FavoritesScreenContext)
 @Composable
@@ -21,11 +24,40 @@ fun favoritesScreenPresenter(
     eventFlow: EventFlow<FavoritesScreenEvent>,
     timetable: Timetable,
 ): FavoritesScreenUiState = providePresenterDefaults {
+    val favoriteTimetableItemIdMutation = rememberMutation(screenContext.favoriteTimetableItemIdMutationKey)
+
     var allFilterSelected by rememberRetained { mutableStateOf(true) }
     var selectedDayFilters by rememberRetained { mutableStateOf(emptySet<DroidKaigi2025Day>()) }
 
     EventEffect(eventFlow) { event ->
+        when (event) {
+            is FavoritesScreenEvent.Bookmark -> {
+                favoriteTimetableItemIdMutation.mutate(event.id)
+            }
 
+            FavoritesScreenEvent.FilterAllDays -> {
+                allFilterSelected = true
+                selectedDayFilters = emptySet()
+            }
+
+            FavoritesScreenEvent.FilterDay1,
+            FavoritesScreenEvent.FilterDay2 -> {
+                allFilterSelected = false
+
+                val dayType = if (event is FavoritesScreenEvent.FilterDay1) {
+                    DroidKaigi2025Day.ConferenceDay1
+                } else {
+                    DroidKaigi2025Day.ConferenceDay2
+                }
+
+                selectedDayFilters =
+                    if (selectedDayFilters.contains(dayType) && selectedDayFilters.size >= MIN_FILTERS_TO_DESELECT) {
+                        selectedDayFilters - dayType
+                    } else {
+                        selectedDayFilters + dayType
+                    }
+            }
+        }
     }
 
     favoritesScreenUiState(
