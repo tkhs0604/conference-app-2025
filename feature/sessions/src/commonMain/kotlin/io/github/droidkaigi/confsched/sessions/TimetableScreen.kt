@@ -3,6 +3,9 @@ package io.github.droidkaigi.confsched.sessions
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
@@ -52,17 +55,22 @@ fun TimetableScreen(
             when (uiState.timetable) {
                 is TimetableUiState.Empty -> Text("Empty")
                 is TimetableUiState.GridTimetable -> {
-                    Column {
-                        TextButton(
-                            onClick = {
-                                onTimetableItemClick(TimetableItemId("0570556a-8a53-49d6-916c-26ff85635d860"))
+                    LazyColumn {
+                        uiState.timetable.timetableGridUiState.forEach { (day, timetableDayData) ->
+                            item {
+                                Text(day.name)
                             }
-                        ) { Text("detail1") }
-                        TextButton(
-                            onClick = {
-                                onTimetableItemClick(TimetableItemId("020"))
+                            items(timetableDayData.timetable.timetableItems) { item ->
+                                TextButton(
+                                    onClick = {
+                                        onTimetableItemClick(item.id)
+                                    }
+                                ) { Text(item.title.jaTitle) }
                             }
-                        ) { Text("detail2") }
+                            item {
+                                HorizontalDivider()
+                            }
+                        }
                     }
                 }
 
