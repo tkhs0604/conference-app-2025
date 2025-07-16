@@ -7,7 +7,6 @@ import dev.zacsweers.metro.DependencyGraph
 import dev.zacsweers.metro.Provides
 import dev.zacsweers.metro.createGraph
 import io.github.droidkaigi.confsched.data.DataScope
-import io.github.droidkaigi.confsched.testing.TestApplication
 
 @DependencyGraph(
     scope = AppScope::class,
@@ -17,7 +16,7 @@ import io.github.droidkaigi.confsched.testing.TestApplication
 interface AndroidTestAppGraph : TestAppGraph {
     @Provides
     fun provideContext(): Context {
-        return ApplicationProvider.getApplicationContext<TestApplication>()
+        return ApplicationProvider.getApplicationContext()
     }
 }
 
