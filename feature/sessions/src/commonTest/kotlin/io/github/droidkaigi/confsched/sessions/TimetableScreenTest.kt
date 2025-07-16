@@ -6,10 +6,10 @@ import io.github.droidkaigi.confsched.testing.annotations.RunWith
 import io.github.droidkaigi.confsched.testing.annotations.UiTestRunner
 
 @RunWith(UiTestRunner::class)
-class TimetableScreenRootTest {
+class TimetableScreenTest {
     @ComposeTest
     fun test() = runComposeUiTest {
-        val robot = TimetableScreenRootRobot()
+        val robot = TimetableScreenRobot()
         robot.setupContent()
         robot.clickFirstSession()
     }

@@ -5,11 +5,11 @@ import io.github.droidkaigi.confsched.testing.TestCompositionLocalProvider
 import io.github.droidkaigi.confsched.testing.di.TestAppGraph
 import io.github.droidkaigi.confsched.testing.di.createTestAppGraph
 
-class TimetableScreenRootRobot private constructor(private val composeUiTest: ComposeUiTest) {
+class TimetableScreenRobot private constructor(private val composeUiTest: ComposeUiTest) {
     companion object {
         context(composeUiTest: ComposeUiTest)
-        operator fun invoke(): TimetableScreenRootRobot {
-            return TimetableScreenRootRobot(composeUiTest)
+        operator fun invoke(): TimetableScreenRobot {
+            return TimetableScreenRobot(composeUiTest)
         }
     }
 
