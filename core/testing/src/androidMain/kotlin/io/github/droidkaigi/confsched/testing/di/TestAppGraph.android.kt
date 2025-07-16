@@ -9,6 +9,7 @@ import dev.zacsweers.metro.createGraph
 import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.contributors.DefaultContributorsApiClient
 import io.github.droidkaigi.confsched.data.sessions.DefaultSessionsApiClient
+import kotlinx.coroutines.CoroutineDispatcher
 
 @DependencyGraph(
     scope = AppScope::class,
@@ -17,6 +18,7 @@ import io.github.droidkaigi.confsched.data.sessions.DefaultSessionsApiClient
     excludes = [
         DefaultSessionsApiClient::class,
         DefaultContributorsApiClient::class,
+        CoroutineDispatcher::class,
     ],
 )
 interface AndroidTestAppGraph : TestAppGraph {
