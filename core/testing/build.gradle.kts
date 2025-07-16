@@ -47,5 +47,9 @@ kotlin {
             implementation(libs.androidxUiTestJunit4)
             implementation(libs.androidxUiTestManifest)
         }
+
+        jvmMain.dependencies {
+            implementation(libs.kotlinTestJunit)
+        }
     }
 }
