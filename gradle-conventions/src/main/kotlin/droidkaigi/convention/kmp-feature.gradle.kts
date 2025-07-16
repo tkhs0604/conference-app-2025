@@ -14,6 +14,7 @@ plugins {
     id("droidkaigi.primitive.metro")
     id("droidkaigi.primitive.detekt")
     id("com.google.devtools.ksp")
+    id("io.github.takahirom.roborazzi")
 }
 
 kotlin {

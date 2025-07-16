@@ -51,6 +51,7 @@ androidKotlinMultiplatformLibrary = { module = "com.android.kotlin.multiplatform
 composeCompilerGradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 metroGradlePlugin = { module = "dev.zacsweers.metro:dev.zacsweers.metro.gradle.plugin", version.ref = "metro" }
 detektGradlePlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+roborazziGradlePlugin = { module = "io.github.takahirom.roborazzi:roborazzi-gradle-plugin", version.ref = "roborazzi" }
 
 # ktor and ktorfit
 ktorClientOkhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
@@ -88,6 +89,9 @@ kspSymbolProcessingApi = { module = "com.google.devtools.ksp:symbol-processing-a
 kotlinPoetKsp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "kotlinPoet" }
 
 rin = { module = "io.github.takahirom.rin:rin", version.ref = "rin" }
+# roborazzi
+roborazzi = { module = "io.github.takahirom.roborazzi:roborazzi", version.ref = "roborazzi" }
+roborazziCompose = { module = "io.github.takahirom.roborazzi:roborazzi-compose", version.ref = "roborazzi" }
 
 # navigation3
 navigation3Ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "androidxNavigation3" }
@@ -132,4 +136,5 @@ plugins = [
     "androidGradlePlugin",
     "metroGradlePlugin",
     "detektGradlePlugin",
+    "roborazziGradlePlugin",
 ]

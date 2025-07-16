@@ -42,6 +42,8 @@ kotlin {
             api(libs.androidxTestCore)
             api(libs.androidxActivityCompose)
             api(libs.rin)
+            implementation(libs.roborazzi)
+            implementation(libs.roborazziCompose)
 
             implementation(project.dependencies.platform(libs.composeBom))
             api(libs.androidxUiTestJunit4)
