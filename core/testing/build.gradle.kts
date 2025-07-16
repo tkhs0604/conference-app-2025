@@ -44,7 +44,7 @@ kotlin {
             api(libs.rin)
 
             implementation(project.dependencies.platform(libs.composeBom))
-            implementation(libs.androidxUiTestJunit4)
+            api(libs.androidxUiTestJunit4)
             implementation(libs.androidxUiTestManifest)
         }
 
