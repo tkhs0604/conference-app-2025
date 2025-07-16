@@ -1,9 +1,9 @@
 package io.github.droidkaigi.confsched.sessions
 
 import androidx.compose.ui.test.ComposeUiTest
-import dev.zacsweers.metro.createGraph
 import io.github.droidkaigi.confsched.testing.TestAppGraph
 import io.github.droidkaigi.confsched.testing.TestCompositionLocalProvider
+import io.github.droidkaigi.confsched.testing.createTestAppGraph
 
 class TimetableScreenRootRobot private constructor(private val composeUiTest: ComposeUiTest) {
     companion object {
@@ -13,7 +13,7 @@ class TimetableScreenRootRobot private constructor(private val composeUiTest: Co
         }
     }
 
-    private val testAppGraph: TestAppGraph = createGraph()
+    private val testAppGraph: TestAppGraph = createTestAppGraph()
 
     fun setupContent() {
         composeUiTest.setContent {
