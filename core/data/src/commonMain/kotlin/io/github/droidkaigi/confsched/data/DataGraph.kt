@@ -18,7 +18,7 @@ public interface DataGraph {
     @Named("apiBaseUrl")
     @Provides
     public fun provideApiBaseUrl(): String {
-        return "TODO: Provide API base URL in a proper way"
+        return "https://ssot-api-staging.an.r.appspot.com/"
     }
 
     @Provides
