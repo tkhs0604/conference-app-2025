@@ -24,7 +24,15 @@ import kotlinx.coroutines.CoroutineDispatcher
 interface AndroidTestAppGraph : TestAppGraph {
     @Provides
     fun provideContext(): Context {
-        return ApplicationProvider.getApplicationContext()
+        val testContext = ApplicationProvider.getApplicationContext<Context>()
+        // Workaround for "Android context is not initialized"
+        // FYI: https://youtrack.jetbrains.com/issue/CMP-6676/Android-context-is-not-initialized-when-removing-AndroidContextProvider
+        val providerClass =
+            Class.forName("org.jetbrains.compose.resources.AndroidContextProvider")
+        val provider = providerClass.getDeclaredConstructor().newInstance()
+        providerClass.getMethod("access\$setANDROID_CONTEXT\$cp", Context::class.java)
+            .invoke(provider, testContext)
+        return testContext
     }
 }
 
