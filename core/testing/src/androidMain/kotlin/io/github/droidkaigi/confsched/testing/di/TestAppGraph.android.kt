@@ -1,4 +1,4 @@
-package io.github.droidkaigi.confsched.testing
+package io.github.droidkaigi.confsched.testing.di
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
@@ -7,6 +7,7 @@ import dev.zacsweers.metro.DependencyGraph
 import dev.zacsweers.metro.Provides
 import dev.zacsweers.metro.createGraph
 import io.github.droidkaigi.confsched.data.DataScope
+import io.github.droidkaigi.confsched.testing.TestApplication
 
 @DependencyGraph(
     scope = AppScope::class,

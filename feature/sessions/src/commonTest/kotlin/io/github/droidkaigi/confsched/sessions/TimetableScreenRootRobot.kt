@@ -1,9 +1,9 @@
 package io.github.droidkaigi.confsched.sessions
 
 import androidx.compose.ui.test.ComposeUiTest
-import io.github.droidkaigi.confsched.testing.TestAppGraph
 import io.github.droidkaigi.confsched.testing.TestCompositionLocalProvider
-import io.github.droidkaigi.confsched.testing.createTestAppGraph
+import io.github.droidkaigi.confsched.testing.di.TestAppGraph
+import io.github.droidkaigi.confsched.testing.di.createTestAppGraph
 
 class TimetableScreenRootRobot private constructor(private val composeUiTest: ComposeUiTest) {
     companion object {

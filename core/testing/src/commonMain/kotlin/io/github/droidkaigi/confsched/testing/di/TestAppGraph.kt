@@ -1,4 +1,4 @@
-package io.github.droidkaigi.confsched.testing
+package io.github.droidkaigi.confsched.testing.di
 
 import io.github.droidkaigi.confsched.sessions.TimetableScreenContext
 
