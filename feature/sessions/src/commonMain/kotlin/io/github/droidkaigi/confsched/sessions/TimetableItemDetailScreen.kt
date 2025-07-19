@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.model.core.Lang
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.fake
-import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailBottomAppBar
+import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailFloatingActionButtonMenu
 import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailTopAppBar
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -32,6 +32,8 @@ fun TimetableItemDetailScreen(
     uiState: TimetableItemDetailScreenUiState,
     onBackClick: () -> Unit,
     onBookmarkClick: (isBookmarked: Boolean) -> Unit,
+    onAddCalendarClick: (TimetableItem) -> Unit,
+    onShareClick: (TimetableItem) -> Unit,
     onLanguageSelect: (Lang) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -41,10 +43,12 @@ fun TimetableItemDetailScreen(
                 onBackClick = onBackClick,
             )
         },
-        bottomBar = {
-            TimetableItemDetailBottomAppBar(
+        floatingActionButton = {
+            TimetableItemDetailFloatingActionButtonMenu(
                 isBookmarked = uiState.isBookmarked,
                 onBookmarkClick = onBookmarkClick,
+                onAddCalendarClick = { onAddCalendarClick(uiState.timetableItem) },
+                onShareClick = { onShareClick(uiState.timetableItem) }
             )
         },
         modifier = modifier
@@ -130,6 +134,8 @@ private fun TimetableItemDetailScreenPreview() {
         ),
         onBackClick = {},
         onBookmarkClick = {},
+        onAddCalendarClick = {},
+        onShareClick = {},
         onLanguageSelect = {},
     )
 }
