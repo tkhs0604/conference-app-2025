@@ -68,7 +68,8 @@ fun KaigiApp() {
                                 TimetableItemDetailScreenRoot(
                                     onBackClick = { backStack.removeLastOrNull() },
                                     onAddCalendarClick = { /* TODO: Implement calendar click action */ },
-                                    onShareClick = { /* TODO: Implement share click action */ }
+                                    onShareClick = { /* TODO: Implement share click action */ },
+                                    onLinkClick = { /* TODO: Implement link click action */ },
                                 )
                             }
                         }

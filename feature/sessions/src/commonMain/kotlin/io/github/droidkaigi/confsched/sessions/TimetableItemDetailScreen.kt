@@ -11,6 +11,7 @@ import io.github.droidkaigi.confsched.model.core.Lang
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.fake
 import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailAnnounceMessage
+import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailContent
 import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailFloatingActionButtonMenu
 import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailHeadline
 import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailSummaryCard
@@ -25,6 +26,7 @@ fun TimetableItemDetailScreen(
     onAddCalendarClick: (TimetableItem) -> Unit,
     onShareClick: (TimetableItem) -> Unit,
     onLanguageSelect: (Lang) -> Unit,
+    onLinkClick: (url: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -85,6 +87,14 @@ fun TimetableItemDetailScreen(
                     )
                 )
             }
+
+            item {
+                TimetableItemDetailContent(
+                    timetableItem = uiState.timetableItem,
+                    currentLang = uiState.currentLang,
+                    onLinkClick = onLinkClick,
+                )
+            }
         }
     }
 }
@@ -104,5 +114,6 @@ private fun TimetableItemDetailScreenPreview() {
         onAddCalendarClick = {},
         onShareClick = {},
         onLanguageSelect = {},
+        onLinkClick = {},
     )
 }
