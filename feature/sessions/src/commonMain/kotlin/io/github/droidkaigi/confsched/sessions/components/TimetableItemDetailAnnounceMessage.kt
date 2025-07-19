@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Icon
@@ -27,12 +26,6 @@ fun TimetableItemDetailAnnounceMessage(
 ) {
     Row(
         modifier = modifier
-            .padding(
-                start = 8.dp,
-                top = 24.dp,
-                end = 8.dp,
-                bottom = 4.dp,
-            )
             .height(IntrinsicSize.Min),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
