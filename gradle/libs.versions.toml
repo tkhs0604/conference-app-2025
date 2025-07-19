@@ -39,6 +39,7 @@ twitterComposeRule = "0.0.26"
 navigationeventDesktop = "1.0.0-alpha04"
 
 composeHotReload = "1.0.0-beta03"
+coil = "3.0.0-alpha10"
 
 [libraries]
 # gradle plugins
@@ -102,6 +103,11 @@ robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectr
 detektFormatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 twitterComposeRule = { module = "com.twitter.compose.rules:detekt", version.ref = "twitterComposeRule" }
 navigationeventDesktop = { group = "androidx.navigationevent", name = "navigationevent-desktop", version.ref = "navigationeventDesktop" }
+
+# coil
+coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coilNetwork = { module = "io.coil-kt.coil3:coil-network-ktor2", version.ref = "coil" }
+coilTest = { module = "io.coil-kt.coil3:coil-test", version.ref = "coil" }
 
 [plugins]
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

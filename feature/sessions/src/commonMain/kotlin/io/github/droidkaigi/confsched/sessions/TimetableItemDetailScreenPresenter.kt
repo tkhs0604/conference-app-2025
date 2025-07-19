@@ -10,6 +10,7 @@ import io.github.droidkaigi.confsched.common.compose.providePresenterDefaults
 import io.github.droidkaigi.confsched.model.core.Lang
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
+import io.github.droidkaigi.confsched.model.sessions.TimetableSessionType
 import io.github.takahirom.rin.rememberRetained
 import kotlinx.collections.immutable.PersistentSet
 import soil.query.compose.rememberMutation
@@ -39,6 +40,7 @@ fun timetableItemDetailScreenPresenter(
     TimetableItemDetailScreenUiState(
         timetableItem = timetableItem,
         isBookmarked = favoriteTimetableItemIds.contains(timetableItem.id),
-        currentLang = selectedLang
+        currentLang = selectedLang,
+        isLangSelectable = timetableItem.sessionType == TimetableSessionType.NORMAL,
     )
 }

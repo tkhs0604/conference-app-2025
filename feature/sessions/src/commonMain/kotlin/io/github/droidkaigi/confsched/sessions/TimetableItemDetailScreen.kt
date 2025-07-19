@@ -1,30 +1,21 @@
 package io.github.droidkaigi.confsched.sessions
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.model.core.Lang
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.fake
-import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailBottomAppBar
+import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailAnnounceMessage
+import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailContent
+import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailFloatingActionButtonMenu
+import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailHeadline
+import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailSummaryCard
 import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailTopAppBar
-import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -32,7 +23,10 @@ fun TimetableItemDetailScreen(
     uiState: TimetableItemDetailScreenUiState,
     onBackClick: () -> Unit,
     onBookmarkClick: (isBookmarked: Boolean) -> Unit,
+    onAddCalendarClick: (TimetableItem) -> Unit,
+    onShareClick: (TimetableItem) -> Unit,
     onLanguageSelect: (Lang) -> Unit,
+    onLinkClick: (url: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -41,78 +35,64 @@ fun TimetableItemDetailScreen(
                 onBackClick = onBackClick,
             )
         },
-        bottomBar = {
-            TimetableItemDetailBottomAppBar(
+        floatingActionButton = {
+            TimetableItemDetailFloatingActionButtonMenu(
                 isBookmarked = uiState.isBookmarked,
                 onBookmarkClick = onBookmarkClick,
+                onAddCalendarClick = { onAddCalendarClick(uiState.timetableItem) },
+                onShareClick = { onShareClick(uiState.timetableItem) }
             )
         },
         modifier = modifier
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier.padding(paddingValues)
+    ) { innerPadding ->
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
         ) {
-            LanguageSwitcher(
-                currentLang = uiState.currentLang,
-                onLanguageSelect = onLanguageSelect
-            )
-
-            Text(
-                text = uiState.timetableItem.title.getByLang(uiState.currentLang),
-                style = MaterialTheme.typography.headlineSmall,
-            )
-        }
-    }
-}
-
-@Composable
-private fun LanguageSwitcher(
-    currentLang: Lang,
-    onLanguageSelect: (Lang) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val normalizedCurrentLang = if (currentLang == Lang.MIXED) {
-        Lang.ENGLISH
-    } else {
-        currentLang
-    }
-    val availableLangs = Lang.entries.filterNot { it == Lang.MIXED }
-    val lastIndex = availableLangs.size - 1
-
-    Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        availableLangs.forEachIndexed { index, lang ->
-            val isSelected = normalizedCurrentLang == lang
-            TextButton(
-                onClick = { onLanguageSelect(lang) },
-                contentPadding = PaddingValues(12.dp),
-            ) {
-                AnimatedVisibility(isSelected) {
-                    Icon(
-                        imageVector = Icons.Default.Check,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .padding(end = 4.dp)
-                            .size(12.dp),
-                    )
-                }
-                Text(
-                    text = stringResource(
-                        when (lang) {
-                            Lang.JAPANESE -> SessionsRes.string.japanese
-                            Lang.ENGLISH,
-                            Lang.MIXED -> SessionsRes.string.english
-                        }
-                    ),
-                    style = MaterialTheme.typography.labelMedium,
+            item {
+                TimetableItemDetailHeadline(
+                    currentLang = uiState.currentLang,
+                    timetableItem = uiState.timetableItem,
+                    isLangSelectable = uiState.isLangSelectable,
+                    onLanguageSelect = onLanguageSelect,
                 )
             }
-            if (index < lastIndex) {
-                VerticalDivider(
-                    modifier = Modifier.height(11.dp),
-                    color = MaterialTheme.colorScheme.outlineVariant,
+
+            when (uiState.timetableItem) {
+                is TimetableItem.Session -> uiState.timetableItem.message
+                is TimetableItem.Special -> uiState.timetableItem.message
+            }?.let {
+                item {
+                    TimetableItemDetailAnnounceMessage(
+                        message = it.currentLangTitle,
+                        modifier = Modifier.padding(
+                            start = 8.dp,
+                            top = 24.dp,
+                            end = 8.dp,
+                            bottom = 4.dp,
+                        )
+                    )
+                }
+            }
+
+            item {
+                TimetableItemDetailSummaryCard(
+                    timetableItem = uiState.timetableItem,
+                    modifier = Modifier.padding(
+                        start = 8.dp,
+                        end = 8.dp,
+                        top = 16.dp,
+                        bottom = 8.dp,
+                    )
+                )
+            }
+
+            item {
+                TimetableItemDetailContent(
+                    timetableItem = uiState.timetableItem,
+                    currentLang = uiState.currentLang,
+                    onLinkClick = onLinkClick,
                 )
             }
         }
@@ -127,9 +107,13 @@ private fun TimetableItemDetailScreenPreview() {
             timetableItem = TimetableItem.Session.fake(),
             isBookmarked = false,
             currentLang = Lang.JAPANESE,
+            isLangSelectable = true,
         ),
         onBackClick = {},
         onBookmarkClick = {},
+        onAddCalendarClick = {},
+        onShareClick = {},
         onLanguageSelect = {},
+        onLinkClick = {},
     )
 }

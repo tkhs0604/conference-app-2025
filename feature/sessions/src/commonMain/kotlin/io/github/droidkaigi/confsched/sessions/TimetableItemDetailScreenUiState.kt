@@ -7,4 +7,5 @@ data class TimetableItemDetailScreenUiState(
     val timetableItem: TimetableItem,
     val isBookmarked: Boolean,
     val currentLang: Lang,
+    val isLangSelectable: Boolean,
 )

@@ -3,6 +3,7 @@ package io.github.droidkaigi.confsched.sessions
 import androidx.compose.runtime.Composable
 import io.github.droidkaigi.confsched.common.compose.rememberEventFlow
 import io.github.droidkaigi.confsched.droidkaigiui.SoilDataBoundary
+import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import soil.query.compose.rememberQuery
 import soil.query.compose.rememberSubscription
 
@@ -10,6 +11,9 @@ context(screenContext: TimetableItemDetailScreenContext)
 @Composable
 fun TimetableItemDetailScreenRoot(
     onBackClick: () -> Unit,
+    onAddCalendarClick: (TimetableItem) -> Unit,
+    onShareClick: (TimetableItem) -> Unit,
+    onLinkClick: (url: String) -> Unit,
 ) {
     SoilDataBoundary(
         state1 = rememberQuery(screenContext.timetableItemQueryKey),
@@ -33,7 +37,10 @@ fun TimetableItemDetailScreenRoot(
             uiState = uiState,
             onBackClick = onBackClick,
             onBookmarkClick = { isBookmarked -> eventFlow.tryEmit(TimetableItemDetailScreenEvent.Bookmark(isBookmarked)) },
+            onAddCalendarClick = onAddCalendarClick,
+            onShareClick = onShareClick,
             onLanguageSelect = { lang -> eventFlow.tryEmit(TimetableItemDetailScreenEvent.LanguageSelect(lang)) },
+            onLinkClick = onLinkClick,
         )
     }
 }

@@ -66,7 +66,10 @@ fun KaigiApp() {
                         entry<TimetableItemDetailNavKey>(metadata = listDetailSceneStrategyDetailPaneMetaData()) {
                             with(appGraph.rememberTimetableItemDetailScreenContextRetained(it.id)) {
                                 TimetableItemDetailScreenRoot(
-                                    onBackClick = { backStack.removeLastOrNull() }
+                                    onBackClick = { backStack.removeLastOrNull() },
+                                    onAddCalendarClick = { /* TODO: Implement calendar click action */ },
+                                    onShareClick = { /* TODO: Implement share click action */ },
+                                    onLinkClick = { /* TODO: Implement link click action */ },
                                 )
                             }
                         }

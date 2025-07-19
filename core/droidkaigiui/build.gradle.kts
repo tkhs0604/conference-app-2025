@@ -11,6 +11,9 @@ kotlin {
             implementation(libs.soilReacty)
             implementation(libs.navigation3Ui)
             implementation(libs.navigation3Runtime)
+
+            api(libs.coil)
+            api(libs.coilNetwork)
         }
 
         androidMain.dependencies {
