@@ -19,7 +19,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,7 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.designsystem.component.ClickableLinkText
-import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.model.core.Lang
 import io.github.droidkaigi.confsched.model.sessions.TimetableAsset
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
@@ -204,41 +203,35 @@ private fun ArchiveSection(
 @Composable
 @Preview
 fun TimetableItemDetailContentPreview() {
-    KaigiTheme {
-        Surface {
-            TimetableItemDetailContent(
-                timetableItem = TimetableItem.Session.fake(),
-                currentLang = Lang.JAPANESE,
-                onLinkClick = {},
-            )
-        }
+    KaigiPreviewContainer {
+        TimetableItemDetailContent(
+            timetableItem = TimetableItem.Session.fake(),
+            currentLang = Lang.JAPANESE,
+            onLinkClick = {},
+        )
     }
 }
 
 @Composable
 @Preview
 fun TimetableItemDetailContentWithEnglishPreview() {
-    KaigiTheme {
-        Surface {
-            TimetableItemDetailContent(
-                timetableItem = TimetableItem.Session.fake(),
-                currentLang = Lang.ENGLISH,
-                onLinkClick = {},
-            )
-        }
+    KaigiPreviewContainer {
+        TimetableItemDetailContent(
+            timetableItem = TimetableItem.Session.fake(),
+            currentLang = Lang.ENGLISH,
+            onLinkClick = {},
+        )
     }
 }
 
 @Composable
 @Preview
 fun TimetableItemDetailContentWithMixedPreview() {
-    KaigiTheme {
-        Surface {
-            TimetableItemDetailContent(
-                timetableItem = TimetableItem.Session.fake(),
-                currentLang = Lang.MIXED,
-                onLinkClick = {},
-            )
-        }
+    KaigiPreviewContainer {
+        TimetableItemDetailContent(
+            timetableItem = TimetableItem.Session.fake(),
+            currentLang = Lang.MIXED,
+            onLinkClick = {},
+        )
     }
 }

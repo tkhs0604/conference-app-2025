@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.favorites.components.FavoriteFilters
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
@@ -95,27 +96,29 @@ fun FavoritesScreen(
 @Preview
 @Composable
 private fun FavoritesScreenPreview() {
-    FavoritesScreen(
-        uiState = FavoritesScreenUiState(
-            filterState = FavoritesScreenUiState.FilterState(
-                allFilterSelected = false,
-                currentDayFilter = persistentListOf(DroidKaigi2025Day.ConferenceDay1, DroidKaigi2025Day.ConferenceDay2)
-            ),
-            timetableContentState = FavoritesScreenUiState.TimetableContentState.FavoriteList(
-                timetableItemMap = persistentMapOf(
-                    FavoritesScreenUiState.TimetableContentState.FavoriteList.TimeSlot(
-                        day = DroidKaigi2025Day.ConferenceDay1,
-                        startTimeString = "10:00",
-                        endTimeString = "11:00",
-                    ) to listOf(
-                        TimetableItem.Session.fake(),
+    KaigiPreviewContainer {
+        FavoritesScreen(
+            uiState = FavoritesScreenUiState(
+                filterState = FavoritesScreenUiState.FilterState(
+                    allFilterSelected = false,
+                    currentDayFilter = persistentListOf(DroidKaigi2025Day.ConferenceDay1, DroidKaigi2025Day.ConferenceDay2)
+                ),
+                timetableContentState = FavoritesScreenUiState.TimetableContentState.FavoriteList(
+                    timetableItemMap = persistentMapOf(
+                        FavoritesScreenUiState.TimetableContentState.FavoriteList.TimeSlot(
+                            day = DroidKaigi2025Day.ConferenceDay1,
+                            startTimeString = "10:00",
+                            endTimeString = "11:00",
+                        ) to listOf(
+                            TimetableItem.Session.fake(),
+                        )
                     )
                 )
-            )
-        ),
-        onBookmarkClick = {},
-        onAllFilterChipClick = {},
-        onDay1FilterChipClick = {},
-        onDay2FilterChipClick = {},
-    )
+            ),
+            onBookmarkClick = {},
+            onAllFilterChipClick = {},
+            onDay1FilterChipClick = {},
+            onDay2FilterChipClick = {},
+        )
+    }
 }

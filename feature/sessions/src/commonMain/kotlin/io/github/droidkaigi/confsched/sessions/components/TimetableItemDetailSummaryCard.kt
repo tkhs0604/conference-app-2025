@@ -19,7 +19,6 @@ import androidx.compose.material.icons.outlined.Schedule
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,7 +33,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.model.core.Locale
 import io.github.droidkaigi.confsched.model.core.getDefaultLocale
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
@@ -229,11 +228,9 @@ private fun createInlineContentsMapForSummaryCardTexts(
 @Composable
 @Preview
 fun TimetableItemDetailSummaryCardPreview() {
-    KaigiTheme {
-        Surface {
-            TimetableItemDetailSummaryCard(
-                timetableItem = TimetableItem.Session.fake(),
-            )
-        }
+    KaigiPreviewContainer {
+        TimetableItemDetailSummaryCard(
+            timetableItem = TimetableItem.Session.fake(),
+        )
     }
 }

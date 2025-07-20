@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.model.sessions.TimetableUiType
 import io.github.droidkaigi.confsched.sessions.SessionsRes
 import io.github.droidkaigi.confsched.sessions.grid_view
@@ -62,19 +63,23 @@ fun TimetableTopAppBar(
 @Preview
 @Composable
 private fun TimetableTopAppBarPreview_List() {
-    TimetableTopAppBar(
-        timetableUiType = TimetableUiType.List,
-        onSearchClick = {},
-        onUiTypeChangeClick = {},
-    )
+    KaigiPreviewContainer {
+        TimetableTopAppBar(
+            timetableUiType = TimetableUiType.List,
+            onSearchClick = {},
+            onUiTypeChangeClick = {},
+        )
+    }
 }
 
 @Preview
 @Composable
 private fun TimetableTopAppBarPreview_Grid() {
-    TimetableTopAppBar(
-        timetableUiType = TimetableUiType.Grid,
-        onSearchClick = {},
-        onUiTypeChangeClick = {},
-    )
+    KaigiPreviewContainer {
+        TimetableTopAppBar(
+            timetableUiType = TimetableUiType.Grid,
+            onSearchClick = {},
+            onUiTypeChangeClick = {},
+        )
+    }
 }

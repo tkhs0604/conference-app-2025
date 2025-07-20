@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.sessions.SessionsRes
 import io.github.droidkaigi.confsched.sessions.add_to_bookmark
 import io.github.droidkaigi.confsched.sessions.add_to_calendar
@@ -122,25 +123,29 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
 @Preview
 @Composable
 private fun TimetableItemDetailFloatingMenuPreview() {
-    TimetableItemDetailFloatingActionButtonMenu(
-        expanded = false,
-        isBookmarked = false,
-        onExpandedChange = {},
-        onBookmarkClick = {},
-        onAddCalendarClick = {},
-        onShareClick = {},
-    )
+    KaigiPreviewContainer {
+        TimetableItemDetailFloatingActionButtonMenu(
+            expanded = false,
+            isBookmarked = false,
+            onExpandedChange = {},
+            onBookmarkClick = {},
+            onAddCalendarClick = {},
+            onShareClick = {},
+        )
+    }
 }
 
 @Preview
 @Composable
 private fun TimetableItemDetailFloatingMenuExpandedPreview() {
-    TimetableItemDetailFloatingActionButtonMenu(
-        expanded = true,
-        isBookmarked = false,
-        onExpandedChange = {},
-        onBookmarkClick = {},
-        onAddCalendarClick = {},
-        onShareClick = {},
-    )
+    KaigiPreviewContainer {
+        TimetableItemDetailFloatingActionButtonMenu(
+            expanded = true,
+            isBookmarked = false,
+            onExpandedChange = {},
+            onBookmarkClick = {},
+            onAddCalendarClick = {},
+            onShareClick = {},
+        )
+    }
 }

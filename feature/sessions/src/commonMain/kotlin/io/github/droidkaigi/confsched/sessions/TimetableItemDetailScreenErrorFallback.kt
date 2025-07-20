@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailTopAppBar
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import soil.plant.compose.reacty.ErrorBoundaryContext
@@ -49,9 +50,11 @@ fun TimetableItemDetailScreenErrorFallback(
 @Preview
 @Composable
 private fun TimetableItemDetailScreenErrorFallbackPreview() {
-    TimetableItemDetailScreenErrorFallback(
-        errorBoundaryContext = ErrorBoundaryContext(Throwable("Error"), {}),
-        onBackClick = {},
-        modifier = Modifier,
-    )
+    KaigiPreviewContainer {
+        TimetableItemDetailScreenErrorFallback(
+            errorBoundaryContext = ErrorBoundaryContext(Throwable("Error"), {}),
+            onBackClick = {},
+            modifier = Modifier,
+        )
+    }
 }
