@@ -7,6 +7,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.model.core.Lang
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.fake
@@ -102,18 +103,20 @@ fun TimetableItemDetailScreen(
 @Preview
 @Composable
 private fun TimetableItemDetailScreenPreview() {
-    TimetableItemDetailScreen(
-        uiState = TimetableItemDetailScreenUiState(
-            timetableItem = TimetableItem.Session.fake(),
-            isBookmarked = false,
-            currentLang = Lang.JAPANESE,
-            isLangSelectable = true,
-        ),
-        onBackClick = {},
-        onBookmarkClick = {},
-        onAddCalendarClick = {},
-        onShareClick = {},
-        onLanguageSelect = {},
-        onLinkClick = {},
-    )
+    KaigiPreviewContainer {
+        TimetableItemDetailScreen(
+            uiState = TimetableItemDetailScreenUiState(
+                timetableItem = TimetableItem.Session.fake(),
+                isBookmarked = false,
+                currentLang = Lang.JAPANESE,
+                isLangSelectable = true,
+            ),
+            onBackClick = {},
+            onBookmarkClick = {},
+            onAddCalendarClick = {},
+            onShareClick = {},
+            onLanguageSelect = {},
+            onLinkClick = {},
+        )
+    }
 }

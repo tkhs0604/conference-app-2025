@@ -20,7 +20,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.VerticalDivider
@@ -29,7 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.component.TimetableItemTag
 import io.github.droidkaigi.confsched.droidkaigiui.rememberAsyncImagePainter
 import io.github.droidkaigi.confsched.model.core.Lang
@@ -173,44 +172,38 @@ private fun LanguageSwitcher(
 @Composable
 @Preview
 fun TimetableItemDetailHeadlinePreview() {
-    KaigiTheme {
-        Surface {
-            TimetableItemDetailHeadline(
-                timetableItem = TimetableItem.Session.fake(),
-                currentLang = Lang.JAPANESE,
-                isLangSelectable = true,
-                onLanguageSelect = {},
-            )
-        }
+    KaigiPreviewContainer {
+        TimetableItemDetailHeadline(
+            timetableItem = TimetableItem.Session.fake(),
+            currentLang = Lang.JAPANESE,
+            isLangSelectable = true,
+            onLanguageSelect = {},
+        )
     }
 }
 
 @Composable
 @Preview
 fun TimetableItemDetailHeadlineWithEnglishPreview() {
-    KaigiTheme {
-        Surface {
-            TimetableItemDetailHeadline(
-                timetableItem = TimetableItem.Session.fake(),
-                currentLang = Lang.ENGLISH,
-                isLangSelectable = true,
-                onLanguageSelect = {},
-            )
-        }
+    KaigiPreviewContainer {
+        TimetableItemDetailHeadline(
+            timetableItem = TimetableItem.Session.fake(),
+            currentLang = Lang.ENGLISH,
+            isLangSelectable = true,
+            onLanguageSelect = {},
+        )
     }
 }
 
 @Composable
 @Preview
 fun TimetableItemDetailHeadlineWithMixedPreview() {
-    KaigiTheme {
-        Surface {
-            TimetableItemDetailHeadline(
-                timetableItem = TimetableItem.Session.fake(),
-                currentLang = Lang.MIXED,
-                isLangSelectable = true,
-                onLanguageSelect = {},
-            )
-        }
+    KaigiPreviewContainer {
+        TimetableItemDetailHeadline(
+            timetableItem = TimetableItem.Session.fake(),
+            currentLang = Lang.MIXED,
+            isLangSelectable = true,
+            onLanguageSelect = {},
+        )
     }
 }

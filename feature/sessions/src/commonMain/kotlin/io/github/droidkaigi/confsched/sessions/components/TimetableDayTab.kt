@@ -23,6 +23,7 @@ import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -118,12 +119,12 @@ private fun FloorText(
 @Preview
 @Composable
 fun TimetableDayTabPreview() {
-//    KaigiTheme {
-    Surface {
-        TimetableDayTab(
-            selectedDay = DroidKaigi2025Day.ConferenceDay1,
-            onDaySelected = {},
-        )
+    KaigiPreviewContainer {
+        Surface {
+            TimetableDayTab(
+                selectedDay = DroidKaigi2025Day.ConferenceDay1,
+                onDaySelected = {},
+            )
+        }
     }
-//    }
 }

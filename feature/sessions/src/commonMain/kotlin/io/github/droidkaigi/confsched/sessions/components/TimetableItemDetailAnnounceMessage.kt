@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.sessions.SessionsRes
 import io.github.droidkaigi.confsched.sessions.image
 import org.jetbrains.compose.resources.stringResource
@@ -46,5 +47,7 @@ fun TimetableItemDetailAnnounceMessage(
 @Preview
 @Composable
 fun TimetableItemDetailAnnounceMessagePreview() {
-    TimetableItemDetailAnnounceMessage(message = "このセッションは事情により中止となりました")
+    KaigiPreviewContainer {
+        TimetableItemDetailAnnounceMessage(message = "このセッションは事情により中止となりました")
+    }
 }

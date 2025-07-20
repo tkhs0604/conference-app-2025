@@ -11,6 +11,7 @@ import util.libs
 plugins {
     id("droidkaigi.primitive.kmp")
     id("droidkaigi.primitive.kmp.compose")
+    id("droidkaigi.primitive.kmp.compose.resources")
     id("droidkaigi.primitive.metro")
     id("droidkaigi.primitive.detekt")
     id("com.google.devtools.ksp")

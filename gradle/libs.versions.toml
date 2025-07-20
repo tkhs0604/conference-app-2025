@@ -39,7 +39,7 @@ twitterComposeRule = "0.0.26"
 navigationeventDesktop = "1.0.0-alpha04"
 
 composeHotReload = "1.0.0-beta03"
-coil = "3.0.0-alpha10"
+coil = "3.2.0"
 
 [libraries]
 # gradle plugins

@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.model.sessions.TimetableUiType
 import io.github.droidkaigi.confsched.sessions.components.TimetableTopAppBar
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -53,7 +53,7 @@ fun TimetableScreenErrorFallback(
 @Preview
 @Composable
 private fun TimetableScreenErrorFallbackPreview() {
-    KaigiTheme {
+    KaigiPreviewContainer {
         TimetableScreenErrorFallback(
             errorBoundaryContext = ErrorBoundaryContext(Throwable("Error"), {}),
             onSearchClick = {},

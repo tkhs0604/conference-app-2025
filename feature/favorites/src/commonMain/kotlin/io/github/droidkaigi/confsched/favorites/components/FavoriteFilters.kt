@@ -13,12 +13,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.favorites.FavoritesRes
 import io.github.droidkaigi.confsched.favorites.filter_all
 import io.github.droidkaigi.confsched.favorites.filter_day1
@@ -90,16 +89,14 @@ private fun FavoriteFilterChip(
 @Composable
 @Preview
 fun FavoriteFiltersPreview() {
-    KaigiTheme {
-        Surface {
-            FavoriteFilters(
-                allFilterSelected = false,
-                day1FilterSelected = true,
-                day2FilterSelected = true,
-                onAllFilterChipClick = {},
-                onDay1FilterChipClick = {},
-                onDay2FilterChipClick = {},
-            )
-        }
+    KaigiPreviewContainer {
+        FavoriteFilters(
+            allFilterSelected = false,
+            day1FilterSelected = true,
+            day2FilterSelected = true,
+            onAllFilterChipClick = {},
+            onDay1FilterChipClick = {},
+            onDay2FilterChipClick = {},
+        )
     }
 }

@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import io.github.droidkaigi.confsched.model.sessions.TimetableUiType
 import io.github.droidkaigi.confsched.sessions.components.TimetableTopAppBar
@@ -83,14 +84,16 @@ fun TimetableScreen(
 @Preview
 @Composable
 private fun TimetableScreenPreview() {
-    TimetableScreen(
-        uiState = TimetableScreenUiState(
-            timetable = TimetableUiState.Empty,
-            uiType = TimetableUiType.List,
-        ),
-        onBookmarkClick = { _, _ -> },
-        onSearchClick = {},
-        onTimetableItemClick = {},
-        onTimetableUiChangeClick = {},
-    )
+    KaigiPreviewContainer {
+        TimetableScreen(
+            uiState = TimetableScreenUiState(
+                timetable = TimetableUiState.Empty,
+                uiType = TimetableUiType.List,
+            ),
+            onBookmarkClick = { _, _ -> },
+            onSearchClick = {},
+            onTimetableItemClick = {},
+            onTimetableUiChangeClick = {},
+        )
+    }
 }
