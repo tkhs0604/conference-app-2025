@@ -2,6 +2,7 @@ package io.github.droidkaigi.confsched
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.ui.SceneStrategy
@@ -23,4 +24,9 @@ actual fun listDetailSceneStrategyListPaneMetaData(): Map<String, Any> {
 
 actual fun listDetailSceneStrategyDetailPaneMetaData(): Map<String, Any> {
     return emptyMap()
+}
+
+@Composable
+actual fun rememberExternalNavController(): ExternalNavController {
+    return remember { JvmExternalNavController() }
 }
