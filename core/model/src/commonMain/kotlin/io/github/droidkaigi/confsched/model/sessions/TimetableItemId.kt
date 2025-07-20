@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TimetableItemId(
-    val value: String
+    val value: String,
 )

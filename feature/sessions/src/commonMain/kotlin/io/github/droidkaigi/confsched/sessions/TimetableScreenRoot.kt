@@ -28,7 +28,9 @@ fun TimetableScreenRoot(
             uiState = uiState,
             onSearchClick = onSearchClick,
             onTimetableItemClick = onTimetableItemClick,
-            onBookmarkClick = { sessionId, isBookmarked -> eventFlow.tryEmit(TimetableScreenEvent.Bookmark(sessionId, isBookmarked)) },
+            onBookmarkClick = { sessionId, isBookmarked ->
+                eventFlow.tryEmit(TimetableScreenEvent.Bookmark(sessionId, isBookmarked))
+            },
             onTimetableUiChangeClick = { eventFlow.tryEmit(TimetableScreenEvent.UiTypeChange) },
         )
     }
