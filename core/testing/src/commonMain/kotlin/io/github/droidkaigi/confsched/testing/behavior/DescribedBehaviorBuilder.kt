@@ -20,7 +20,9 @@ suspend fun <T> DescribedBehavior<T>.execute(robot: T) {
             is TestNode.Run -> step.action(robot)
             is TestNode.ItShould -> {
                 if (step.description == targetCheckDescription) {
-                    step.action(robot)
+                    with(TestCaseDescriptionProvider(description)) {
+                        step.action(robot)
+                    }
                 }
             }
 
@@ -33,7 +35,10 @@ suspend fun <T> DescribedBehavior<T>.execute(robot: T) {
 sealed class TestNode<T> {
     data class Describe<T>(val description: String, val children: List<TestNode<T>>) : TestNode<T>()
     data class Run<T>(val action: suspend context(ComposeUiTest) T.() -> Unit) : TestNode<T>()
-    data class ItShould<T>(val description: String, val action: suspend context(ComposeUiTest) T.() -> Unit) : TestNode<T>()
+    data class ItShould<T>(
+        val description: String,
+        val action: suspend context(ComposeUiTest, TestCaseDescriptionProvider) T.() -> Unit,
+    ) : TestNode<T>()
 }
 
 data class DescribedBehavior<T>(
@@ -69,7 +74,10 @@ class TestCaseTreeBuilder<T> {
         children.add(TestNode.Run(action))
     }
 
-    fun itShould(description: String, action: suspend context(ComposeUiTest) T.() -> Unit) {
+    fun itShould(
+        description: String,
+        action: suspend context(ComposeUiTest, TestCaseDescriptionProvider) T.() -> Unit,
+    ) {
         children.add(TestNode.ItShould(description, action))
     }
 
@@ -150,3 +158,9 @@ private fun <T> createTestCase(checkNode: CheckNode<T>): DescribedBehavior<T> {
 
     return DescribedBehavior(checkNode.fullDescription, steps, checkNode.description)
 }
+
+/**
+ * Provides a description for the test case.
+ * This is used to generate Roborazzi screenshots with a meaningful description.
+ */
+class TestCaseDescriptionProvider(val description: String)

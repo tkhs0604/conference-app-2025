@@ -92,6 +92,7 @@ rin = { module = "io.github.takahirom.rin:rin", version.ref = "rin" }
 # roborazzi
 roborazzi = { module = "io.github.takahirom.roborazzi:roborazzi", version.ref = "roborazzi" }
 roborazziCompose = { module = "io.github.takahirom.roborazzi:roborazzi-compose", version.ref = "roborazzi" }
+roborazziComposeDesktop = { module = "io.github.takahirom.roborazzi:roborazzi-compose-desktop", version.ref = "roborazzi" }
 
 # navigation3
 navigation3Ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "androidxNavigation3" }

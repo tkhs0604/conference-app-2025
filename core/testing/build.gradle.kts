@@ -51,7 +51,10 @@ kotlin {
         }
 
         jvmMain.dependencies {
+            implementation(compose.desktop.currentOs)
             implementation(libs.kotlinTestJunit)
+            // FIXME: If we add the following dependency, compose tests fail. See CaptureScreenRobot.jvm.kt for details.
+//            implementation(libs.roborazziComposeDesktop)
         }
     }
 }
