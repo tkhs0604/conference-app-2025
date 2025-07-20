@@ -1,7 +1,6 @@
 plugins {
     id("droidkaigi.primitive.kmp")
-    alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.jetbrainsCompose)
+    id("droidkaigi.primitive.kmp.compose.resources")
     id("droidkaigi.primitive.detekt")
 }
 
