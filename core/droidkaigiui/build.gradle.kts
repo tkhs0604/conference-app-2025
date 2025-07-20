@@ -1,6 +1,7 @@
 plugins {
     id("droidkaigi.primitive.kmp")
     id("droidkaigi.primitive.kmp.compose")
+    id("droidkaigi.primitive.detekt")
 }
 
 kotlin {
