@@ -1,9 +1,9 @@
 package io.github.droidkaigi.confsched.droidkaigiui.session
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,12 +35,13 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
 import io.github.droidkaigi.confsched.designsystem.theme.LocalRoomTheme
 import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
 import io.github.droidkaigi.confsched.droidkaigiui.DroidkaigiuiRes
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.bookmarked
 import io.github.droidkaigi.confsched.droidkaigiui.not_bookmarked
+import io.github.droidkaigi.confsched.droidkaigiui.rememberAsyncImagePainter
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.TimetableSpeaker
 import io.github.droidkaigi.confsched.model.sessions.fake
@@ -195,7 +196,6 @@ private fun FavoriteButton(
     }
 }
 
-
 @Composable
 fun TimetableItemSpeaker(
     speaker: TimetableSpeaker,
@@ -206,10 +206,10 @@ fun TimetableItemSpeaker(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier,
     ) {
-        // TODO: Replace AsyncImage
-        Box(
-            //  painter = painter,
-            //  contentDescription = null,
+        val painter = rememberAsyncImagePainter(speaker.iconUrl)
+        Image(
+            painter = painter,
+            contentDescription = null,
             modifier = Modifier
                 .width(32.dp)
                 .height(32.dp)
@@ -233,41 +233,35 @@ fun TimetableItemSpeaker(
 @Preview
 @Composable
 fun TimetableItemCardPreview() {
-    KaigiTheme {
-        Surface {
-            TimetableItemCard(
-                timetableItem = TimetableItem.Session.fake(),
-                isBookmarked = false,
-                highlightWord = "",
-                onBookmarkClick = { item, isBookmarked -> },
-                onTimetableItemClick = {},
-            )
-        }
+    KaigiPreviewContainer {
+        TimetableItemCard(
+            timetableItem = TimetableItem.Session.fake(),
+            isBookmarked = false,
+            highlightWord = "",
+            onBookmarkClick = { item, isBookmarked -> },
+            onTimetableItemClick = {},
+        )
     }
 }
 
 @Preview
 @Composable
 fun TimetableItemTitlePreview() {
-    KaigiTheme {
-        Surface {
-            TimetableItemTitle(
-                title = "This is a sample title",
-                highlightWord = "sample",
-            )
-        }
+    KaigiPreviewContainer {
+        TimetableItemTitle(
+            title = "This is a sample title",
+            highlightWord = "sample",
+        )
     }
 }
 
 @Preview
 @Composable
 fun TimetableItemTitlePreview_NoHighlight() {
-    KaigiTheme {
-        Surface {
-            TimetableItemTitle(
-                title = "This is a sample title",
-                highlightWord = "example",
-            )
-        }
+    KaigiPreviewContainer {
+        TimetableItemTitle(
+            title = "This is a sample title",
+            highlightWord = "example",
+        )
     }
 }
