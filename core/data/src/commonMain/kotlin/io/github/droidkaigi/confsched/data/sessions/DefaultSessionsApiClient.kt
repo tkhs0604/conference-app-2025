@@ -3,6 +3,10 @@ package io.github.droidkaigi.confsched.data.sessions
 import androidx.annotation.VisibleForTesting
 import de.jensklingenberg.ktorfit.Ktorfit
 import de.jensklingenberg.ktorfit.http.GET
+import dev.zacsweers.metro.ContributesBinding
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.binding
+import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.core.NetworkExceptionHandler
 import io.github.droidkaigi.confsched.data.sessions.response.SessionsAllResponse
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
@@ -12,6 +16,8 @@ internal interface SessionApi {
     suspend fun getTimetable(): SessionsAllResponse
 }
 
+@ContributesBinding(DataScope::class, binding<SessionsApiClient>())
+@Inject
 public class DefaultSessionsApiClient internal constructor(
     private val networkExceptionHandler: NetworkExceptionHandler,
     ktorfit: Ktorfit,

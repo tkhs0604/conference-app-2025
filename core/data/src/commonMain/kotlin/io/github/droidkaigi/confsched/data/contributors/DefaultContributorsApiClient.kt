@@ -2,7 +2,10 @@ package io.github.droidkaigi.confsched.data.contributors
 
 import de.jensklingenberg.ktorfit.Ktorfit
 import de.jensklingenberg.ktorfit.http.GET
+import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.binding
+import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.contributors.response.ContributorsResponse
 import io.github.droidkaigi.confsched.data.core.NetworkExceptionHandler
 import io.github.droidkaigi.confsched.model.contributors.Contributor
@@ -10,10 +13,11 @@ import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 
 internal interface ContributorApi {
-    @GET("/events/droidkaigi2025/contributors")
+    @GET("/events/droidkaigi2024/contributors")
     suspend fun getContributors(): ContributorsResponse
 }
 
+@ContributesBinding(DataScope::class, binding<ContributorsApiClient>())
 @Inject
 public class DefaultContributorsApiClient(
     private val networkService: NetworkExceptionHandler,

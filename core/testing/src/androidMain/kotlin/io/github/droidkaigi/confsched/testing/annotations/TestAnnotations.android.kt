@@ -1,0 +1,9 @@
+package io.github.droidkaigi.confsched.testing.annotations
+
+actual typealias Runner = org.junit.runner.Runner
+
+actual typealias UiTestRunner = androidx.test.ext.junit.runners.AndroidJUnit4
+
+actual typealias RunWith = org.junit.runner.RunWith
+
+actual typealias ComposeTest = org.junit.Test

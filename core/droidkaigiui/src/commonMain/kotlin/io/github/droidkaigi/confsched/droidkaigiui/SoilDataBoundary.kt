@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import io.github.droidkaigi.confsched.context.ScreenContext
 import soil.plant.compose.reacty.Await
 import soil.plant.compose.reacty.ErrorBoundary
@@ -86,6 +87,7 @@ fun <T1, T2, T3> SoilDataBoundary(
     }
 }
 
+const val DefaultSuspenseFallbackTestTag = "DefaultSuspenseFallbackTestTag"
 
 private val DefaultErrorFallback: @Composable BoxScope.(ErrorBoundaryContext) -> Unit = {
     Box(
@@ -102,6 +104,7 @@ private val DefaultErrorFallback: @Composable BoxScope.(ErrorBoundaryContext) ->
 private val DefaultSuspenseFallback: @Composable BoxScope.() -> Unit = {
     Box(
         modifier = Modifier
+            .testTag(DefaultSuspenseFallbackTestTag)
             .safeDrawingPadding()
             .fillMaxSize(),
         contentAlignment = Alignment.Center,

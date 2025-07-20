@@ -42,10 +42,19 @@ kotlin {
             api(libs.androidxTestCore)
             api(libs.androidxActivityCompose)
             api(libs.rin)
+            implementation(libs.roborazzi)
+            implementation(libs.roborazziCompose)
 
             implementation(project.dependencies.platform(libs.composeBom))
-            implementation(libs.androidxUiTestJunit4)
+            api(libs.androidxUiTestJunit4)
             implementation(libs.androidxUiTestManifest)
+        }
+
+        jvmMain.dependencies {
+            implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinTestJunit)
+            // FIXME: If we add the following dependency, compose tests fail. See CaptureScreenRobot.jvm.kt for details.
+//            implementation(libs.roborazziComposeDesktop)
         }
     }
 }

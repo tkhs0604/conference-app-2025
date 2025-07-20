@@ -1,5 +1,6 @@
-package io.github.droidkaigi.confsched.testing
+package io.github.droidkaigi.confsched.testing.compose
 
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.lifecycle.Lifecycle
@@ -9,18 +10,27 @@ import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
+import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.test.TestDispatcher
 import soil.query.SwrCachePlus
-import soil.query.SwrCacheScope
 import soil.query.compose.SwrClientProvider
 
 @Composable
-fun TestCompositionLocalProvider(content: @Composable () -> Unit) {
-    SwrClientProvider(SwrCachePlus(SwrCacheScope())) {
-        CompositionLocalProvider(
-            LocalLifecycleOwner provides FakeLocalLifecycleOwner(),
-            LocalViewModelStoreOwner provides FakeViewModelStoreOwner(),
-            content = content,
-        )
+fun TestDefaultsProvider(
+    testDispatcher: TestDispatcher,
+    content: @Composable () -> Unit
+) {
+    KaigiTheme {
+        Surface {
+            SwrClientProvider(SwrCachePlus(CoroutineScope(testDispatcher))) {
+                CompositionLocalProvider(
+                    LocalLifecycleOwner provides FakeLocalLifecycleOwner(),
+                    LocalViewModelStoreOwner provides FakeViewModelStoreOwner(),
+                    content = content,
+                )
+            }
+        }
     }
 }
 

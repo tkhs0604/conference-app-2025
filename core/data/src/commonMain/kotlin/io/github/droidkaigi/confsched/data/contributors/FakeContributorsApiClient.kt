@@ -1,10 +1,12 @@
 package io.github.droidkaigi.confsched.data.contributors
 
+import dev.zacsweers.metro.Inject
 import io.github.droidkaigi.confsched.model.contributors.Contributor
 import io.github.droidkaigi.confsched.model.contributors.fakes
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.io.IOException
 
+@Inject
 public class FakeContributorsApiClient : ContributorsApiClient {
     public sealed class Status : ContributorsApiClient {
         public data object Operational : Status() {

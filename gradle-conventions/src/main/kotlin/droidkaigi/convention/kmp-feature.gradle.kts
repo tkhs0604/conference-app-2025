@@ -1,5 +1,6 @@
 package droidkaigi.convention
 
+import com.android.build.gradle.BaseExtension
 import com.google.devtools.ksp.gradle.KspAATask
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -13,6 +14,7 @@ plugins {
     id("droidkaigi.primitive.metro")
     id("droidkaigi.primitive.detekt")
     id("com.google.devtools.ksp")
+    id("io.github.takahirom.roborazzi")
 }
 
 kotlin {
@@ -54,6 +56,10 @@ kotlin {
 dependencies {
     add("kspCommonMainMetadata", project(":tools:ksp-processor"))
     add("debugImplementation", compose.uiTooling)
+}
+
+configure<BaseExtension> {
+    testOptions.unitTests.isIncludeAndroidResources = true
 }
 
 configure<KotlinMultiplatformExtension> {
