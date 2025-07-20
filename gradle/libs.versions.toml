@@ -16,6 +16,7 @@ androidxNavigation3Material = "1.0.0-SNAPSHOT"
 androidxDatastore = "1.1.7"
 androidxAppCompat = "1.7.1"
 androidxTestCore = "1.6.1"
+androidxBrowser = "1.8.0"
 
 ktor = "3.2.1"
 ktorfit = "2.6.1"
@@ -64,7 +65,7 @@ androidxDatastorePreferencesCore = { module = "androidx.datastore:datastore-pref
 androidxActivityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivityCompose" }
 androidxAppCompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppCompat" }
 androidxTestCore = { module = "androidx.test:core", version.ref = "androidxTestCore" }
-
+androidxBrowser = { module = "androidx.browser:browser", version.ref = "androidxBrowser" }
 
 composeBom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 androidxUiTestJunit4 = { module = "androidx.compose.ui:ui-test-junit4" }

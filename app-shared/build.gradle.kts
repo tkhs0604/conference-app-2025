@@ -36,5 +36,5 @@ dependencies {
     debugImplementation(compose.uiTooling)
     androidMainImplementation(libs.androidxActivityCompose)
     androidMainImplementation(libs.navigation3Adaptive)
-
+    androidMainImplementation(libs.androidxBrowser)
 }
