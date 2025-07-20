@@ -14,6 +14,8 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.Serializable
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.minutes
 import kotlin.time.DurationUnit
 
 sealed class TimetableItem {
@@ -150,14 +152,13 @@ private fun Instant.toLocalTime(): LocalTime {
     return localDateTime.time
 }
 
-fun TimetableItem.Session.Companion.fake(): TimetableItem.Session {
+fun TimetableItem.Session.Companion.fake(duration: Duration = 40.minutes): TimetableItem.Session {
+    val startsAt = LocalDateTime.parse("2024-09-12T10:20:00").toInstant(TimeZone.of("UTC+9"))
     return TimetableItem.Session(
         id = TimetableItemId("2"),
         title = MultiLangText("DroidKaigiのアプリのアーキテクチャ", "DroidKaigi App Architecture"),
-        startsAt = LocalDateTime.parse("2024-09-12T10:30:00")
-            .toInstant(TimeZone.of("UTC+9")),
-        endsAt = LocalDateTime.parse("2024-09-12T10:50:00")
-            .toInstant(TimeZone.of("UTC+9")),
+        startsAt = startsAt,
+        endsAt = startsAt + duration,
         category = TimetableCategory(
             id = 28654,
             title = MultiLangText(
