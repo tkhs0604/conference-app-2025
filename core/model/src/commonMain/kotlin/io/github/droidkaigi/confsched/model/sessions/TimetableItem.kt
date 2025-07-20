@@ -14,6 +14,7 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.Serializable
+import kotlin.time.DurationUnit
 
 sealed class TimetableItem {
     abstract val id: TimetableItemId
@@ -95,10 +96,8 @@ sealed class TimetableItem {
         endsAt.toLocalTime()
     }
 
-    private val minutesString: String by lazy {
-        val minutes = (endsAt - startsAt)
-            .toComponents { minutes, _, _ -> minutes }
-        "$minutes" + MultiLangText(jaTitle = "分", enTitle = "min").currentLangTitle
+    val minutes: Int by lazy {
+        (endsAt - startsAt).toInt(DurationUnit.MINUTES)
     }
 
     val formattedTimeString: String by lazy {
@@ -106,7 +105,8 @@ sealed class TimetableItem {
     }
 
     val formattedDateTimeString: String by lazy {
-        "$startsDateString / $formattedTimeString ($minutesString)"
+        val prefix = MultiLangText(jaTitle = "分", enTitle = "min").currentLangTitle
+        "$startsDateString / $formattedTimeString ($minutes$prefix)"
     }
 
     val formattedMonthAndDayString: String by lazy {
