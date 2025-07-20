@@ -28,6 +28,9 @@ sealed class TimetableItem {
     abstract val asset: TimetableAsset
     abstract val levels: PersistentList<String>
     abstract val speakers: PersistentList<TimetableSpeaker>
+    abstract val description: MultiLangText
+    abstract val message: MultiLangText?
+
     val day: DroidKaigi2025Day? get() = DroidKaigi2025Day.ofOrNull(startsAt)
 
     @Serializable
@@ -44,8 +47,8 @@ sealed class TimetableItem {
         override val asset: TimetableAsset,
         override val levels: PersistentList<String>,
         override val speakers: PersistentList<TimetableSpeaker>,
-        val description: MultiLangText,
-        val message: MultiLangText?,
+        override val description: MultiLangText,
+        override val message: MultiLangText?,
     ) : TimetableItem() {
         companion object
     }
@@ -64,8 +67,8 @@ sealed class TimetableItem {
         override val asset: TimetableAsset,
         override val levels: PersistentList<String>,
         override val speakers: PersistentList<TimetableSpeaker>,
-        val description: MultiLangText,
-        val message: MultiLangText?,
+        override val description: MultiLangText,
+        override val message: MultiLangText?,
     ) : TimetableItem()
 
     private val startsDateString: String by lazy {
@@ -114,6 +117,9 @@ sealed class TimetableItem {
         } else {
             "https://2024.droidkaigi.jp/en/timetable/${id.value}"
         }
+
+    val hasError: Boolean
+        get() = message != null
 
     fun getSupportedLangString(isJapaneseLocale: Boolean): String {
         val japanese = if (isJapaneseLocale) "日本語" else "Japanese"
