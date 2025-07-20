@@ -41,11 +41,15 @@ expect fun listDetailSceneStrategyListPaneMetaData(): Map<String, Any>
 
 expect fun listDetailSceneStrategyDetailPaneMetaData(): Map<String, Any>
 
+@Composable
+expect fun rememberExternalNavController(): ExternalNavController
+
 context(appGraph: AppGraph)
 @OptIn(ExperimentalMaterial3ExpressiveApi::class, ExperimentalSoilQueryApi::class)
 @Composable
 fun KaigiApp() {
     val backStack = rememberBackStack(TimetableNavKey)
+    val externalNavController = rememberExternalNavController()
 
     SwrClientProvider(SwrCachePlus(SwrCacheScope())) {
         KaigiTheme {
@@ -67,9 +71,9 @@ fun KaigiApp() {
                             with(appGraph.rememberTimetableItemDetailScreenContextRetained(it.id)) {
                                 TimetableItemDetailScreenRoot(
                                     onBackClick = { backStack.removeLastOrNull() },
-                                    onAddCalendarClick = { /* TODO: Implement calendar click action */ },
-                                    onShareClick = { /* TODO: Implement share click action */ },
-                                    onLinkClick = { /* TODO: Implement link click action */ },
+                                    onAddCalendarClick = externalNavController::navigateToCalendarRegistration,
+                                    onShareClick = externalNavController::onShareClick,
+                                    onLinkClick = externalNavController::navigate,
                                 )
                             }
                         }
