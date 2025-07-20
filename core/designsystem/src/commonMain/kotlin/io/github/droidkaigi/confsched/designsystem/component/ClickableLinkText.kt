@@ -66,7 +66,7 @@ fun ClickableLinkText(
         maxLines = maxLines,
         onTextLayout = { textLayoutResult ->
             isOverflowing = textLayoutResult.hasVisualOverflow
-        }
+        },
     )
 }
 
@@ -90,7 +90,7 @@ private fun buildClickableAnnotatedString(
         pushStyle(
             style = SpanStyle(
                 color = MaterialTheme.colorScheme.inverseSurface,
-            )
+            ),
         )
 
         var currentOffset = 0
@@ -112,7 +112,7 @@ private fun buildClickableAnnotatedString(
                         style = SpanStyle(
                             color = MaterialTheme.colorScheme.primary, // TODO: Use Room color
                             textDecoration = TextDecoration.Underline,
-                        )
+                        ),
                     ),
                     linkInteractionListener = { linkAnnotation ->
                         if (linkAnnotation is LinkAnnotation.Url) {
@@ -122,7 +122,7 @@ private fun buildClickableAnnotatedString(
                 ),
                 block = {
                     append(urlString)
-                }
+                },
             )
 
             currentOffset = matchEnd

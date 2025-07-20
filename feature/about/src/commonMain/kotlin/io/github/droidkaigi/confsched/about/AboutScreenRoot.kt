@@ -8,6 +8,6 @@ fun AboutScreenRoot(
     onAboutItemClick: (AboutItem) -> Unit,
 ) {
     AboutScreen(
-        uiState = TODO()
+        uiState = TODO(),
     )
 }

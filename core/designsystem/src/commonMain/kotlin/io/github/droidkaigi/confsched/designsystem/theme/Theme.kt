@@ -6,7 +6,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 import io.github.droidkaigi.confsched.designsystem.theme.ColorContrast.Default
 import io.github.droidkaigi.confsched.designsystem.theme.ColorContrast.High
@@ -23,7 +22,6 @@ private val fixedAccentColors = FixedAccentColors(
     secondaryFixedDim = Color(0xFF88D893),
     tertiaryFixedDim = Color(0xFFFFACE7),
 )
-
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,

@@ -11,9 +11,7 @@ fun MainScreenRoot(
 ) {
 }
 
-sealed interface MainScreenEvent {
-
-}
+sealed interface MainScreenEvent
 
 data object MainScreenUiState
 

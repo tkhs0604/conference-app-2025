@@ -73,7 +73,7 @@ data class Timetable(
         if (filters.languages.isNotEmpty()) {
             timetableItems = timetableItems.filter { timetableItem ->
                 filters.languages.contains(timetableItem.language.toLang()) ||
-                        timetableItem.language.isInterpretationTarget
+                    timetableItem.language.isInterpretationTarget
             }
         }
         if (filters.filterFavorite) {
@@ -155,9 +155,9 @@ fun Timetable.Companion.fake(): Timetable {
                 ),
                 description = MultiLangText(
                     jaTitle = "これはディスクリプションです。\nこれはディスクリプションです。\nこれはディスクリプションです。\n" +
-                            "これはディスクリプションです。\nこれはディスクリプションです。\nこれはディスクリプションです。\n",
+                        "これはディスクリプションです。\nこれはディスクリプションです。\nこれはディスクリプションです。\n",
                     enTitle = "This is a description\nThis is a description\nThis is a description\n" +
-                            "This is a description\nThis is a description\nThis is a description\n",
+                        "This is a description\nThis is a description\nThis is a description\n",
                 ),
                 message = null,
             ),
@@ -224,9 +224,9 @@ fun Timetable.Companion.fake(): Timetable {
                 ),
                 description = MultiLangText(
                     jaTitle = "これはディスクリプションです。\nこれはディスクリプションです。\nこれはディスクリプションです。\n" +
-                            "これはディスクリプションです。\nこれはディスクリプションです。\nこれはディスクリプションです。\n",
+                        "これはディスクリプションです。\nこれはディスクリプションです。\nこれはディスクリプションです。\n",
                     enTitle = "This is a description\nThis is a description\nThis is a description\n" +
-                            "This is a description\nThis is a description\nThis is a description\n",
+                        "This is a description\nThis is a description\nThis is a description\n",
                 ),
                 message = MultiLangText(
                     jaTitle = "このセッションは事情により中止となりました",
