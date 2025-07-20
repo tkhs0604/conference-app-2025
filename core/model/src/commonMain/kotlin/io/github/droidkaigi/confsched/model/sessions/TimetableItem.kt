@@ -73,7 +73,10 @@ sealed class TimetableItem {
 
     private val startsDateString: String by lazy {
         val localDate = startsAt.toLocalDateTime(TimeZone.currentSystemDefault())
-        "${localDate.year}" + "." + "${localDate.monthNumber}".padStart(2, '0') + "." + "${localDate.dayOfMonth}".padStart(2, '0')
+        val year = localDate.year
+        val month = localDate.monthNumber.toString().padStart(2, '0')
+        val day = localDate.dayOfMonth.toString().padStart(2, '0')
+        "$year.$month.$day"
     }
 
     val startsTimeString: String by lazy {
