@@ -52,7 +52,6 @@ private fun TimetableTimePreview() {
         TimetableTime(
             startTimeText = "11:20",
             endTimeText = "12:00",
-            modifier = Modifier,
         )
     }
 }
