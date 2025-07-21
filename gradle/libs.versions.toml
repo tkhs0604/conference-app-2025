@@ -39,7 +39,7 @@ detekt = "1.23.8"
 twitterComposeRule = "0.0.26"
 navigationeventDesktop = "1.0.0-alpha04"
 
-composeHotReload = "1.0.0-beta03"
+composeHotReload = "1.0.0-beta04"
 coil = "3.2.0"
 
 [libraries]
