@@ -81,6 +81,7 @@ private fun TimetableItemTag(
         }
         Text(
             text = text,
+            style = MaterialTheme.typography.labelMedium,
             color = contentColor,
         )
     }
