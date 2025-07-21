@@ -4,7 +4,7 @@ description: "setup JDK and gradle caching"
 inputs:
   java-version:
     description: "Java version. Just for DRY inside of this file."
-    default: "17"
+    default: "21" # TODO: revert to 17 after https://github.com/Foso/Ktorfit/issues/883 is resolved
 
 runs:
   using: "composite"
