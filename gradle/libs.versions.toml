@@ -32,7 +32,7 @@ lifecycleViewmodelNavigation3 = "1.0.0-SNAPSHOT"
 
 robolectric = "4.15.1"
 
-composeBom = "2025.06.01"
+composeBom = "2025.07.00"
 roborazzi = "1.46.1"
 
 detekt = "1.23.8"
