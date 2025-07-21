@@ -3,6 +3,7 @@
 /app-android/ @DroidKaigi/2025-dev-app-android
 /app-ios/ @DroidKaigi/2025-dev-app-ios
 
+/app-shared/ @DroidKaigi/2025-dev-app-android
 /app-desktop/ @DroidKaigi/2025-dev-app-android
 /core/ @DroidKaigi/2025-dev-app-android
 /feature/ @DroidKaigi/2025-dev-app-android
