@@ -39,7 +39,7 @@ enum class DroidKaigi2025Day(
     }
 
     fun monthAndDay(): String {
-        return "${date.monthNumber}/${date.dayOfMonth}"
+        return "${date.monthNumber}.${date.dayOfMonth}"
     }
 
     companion object Companion {
