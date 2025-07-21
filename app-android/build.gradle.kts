@@ -11,10 +11,36 @@ android {
     namespace = "io.github.droidkaigi.confsched"
     compileSdk = 36
 
+    flavorDimensions += "network"
+
     defaultConfig {
         applicationId = "io.github.droidkaigi.confsched2025"
         minSdk = 24
         targetSdk = 36
+    }
+
+    signingConfigs {
+        create("dev") {
+            storeFile = project.file("dev.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
+    productFlavors {
+        create("dev") {
+            signingConfig = signingConfigs.getByName("dev")
+            isDefault = true
+            applicationIdSuffix = ".dev"
+            dimension = "network"
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig = null
+        }
     }
 }
 
