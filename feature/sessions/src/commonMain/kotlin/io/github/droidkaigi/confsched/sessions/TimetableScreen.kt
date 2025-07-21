@@ -2,8 +2,12 @@ package io.github.droidkaigi.confsched.sessions
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.add
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -112,7 +116,16 @@ fun TimetableScreen(
                     }
                 }
 
-                is TimetableUiState.ListTimetable -> TimetableList(uiState.timetable)
+                is TimetableUiState.ListTimetable -> {
+                    TimetableList(
+                        uiState = requireNotNull(uiState.timetable.timetableListUiStates[uiState.timetable.selectedDay]),
+                        onTimetableItemClick = { onTimetableItemClick(it.id) },
+                        onBookmarkClick = { timetableItem, isBookmarked ->
+                            onBookmarkClick(timetableItem.id.value, isBookmarked)
+                        },
+                        contentPadding = WindowInsets.navigationBars.add(WindowInsets(left = 16.dp, right = 16.dp)).asPaddingValues()
+                    )
+                }
             }
         }
     }
