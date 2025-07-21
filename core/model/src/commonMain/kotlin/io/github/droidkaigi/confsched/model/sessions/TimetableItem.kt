@@ -14,6 +14,9 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.Serializable
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.DurationUnit
 
 sealed class TimetableItem {
     abstract val id: TimetableItemId
@@ -28,6 +31,9 @@ sealed class TimetableItem {
     abstract val asset: TimetableAsset
     abstract val levels: PersistentList<String>
     abstract val speakers: PersistentList<TimetableSpeaker>
+    abstract val description: MultiLangText
+    abstract val message: MultiLangText?
+
     val day: DroidKaigi2025Day? get() = DroidKaigi2025Day.ofOrNull(startsAt)
 
     @Serializable
@@ -44,8 +50,8 @@ sealed class TimetableItem {
         override val asset: TimetableAsset,
         override val levels: PersistentList<String>,
         override val speakers: PersistentList<TimetableSpeaker>,
-        val description: MultiLangText,
-        val message: MultiLangText?,
+        override val description: MultiLangText,
+        override val message: MultiLangText?,
     ) : TimetableItem() {
         companion object
     }
@@ -64,13 +70,16 @@ sealed class TimetableItem {
         override val asset: TimetableAsset,
         override val levels: PersistentList<String>,
         override val speakers: PersistentList<TimetableSpeaker>,
-        val description: MultiLangText,
-        val message: MultiLangText?,
+        override val description: MultiLangText,
+        override val message: MultiLangText?,
     ) : TimetableItem()
 
     private val startsDateString: String by lazy {
         val localDate = startsAt.toLocalDateTime(TimeZone.currentSystemDefault())
-        "${localDate.year}" + "." + "${localDate.monthNumber}".padStart(2, '0') + "." + "${localDate.dayOfMonth}".padStart(2, '0')
+        val year = localDate.year
+        val month = localDate.monthNumber.toString().padStart(2, '0')
+        val day = localDate.dayOfMonth.toString().padStart(2, '0')
+        "$year.$month.$day"
     }
 
     val startsTimeString: String by lazy {
@@ -89,10 +98,8 @@ sealed class TimetableItem {
         endsAt.toLocalTime()
     }
 
-    private val minutesString: String by lazy {
-        val minutes = (endsAt - startsAt)
-            .toComponents { minutes, _, _ -> minutes }
-        "$minutes" + MultiLangText(jaTitle = "分", enTitle = "min").currentLangTitle
+    val minutes: Int by lazy {
+        (endsAt - startsAt).toInt(DurationUnit.MINUTES)
     }
 
     val formattedTimeString: String by lazy {
@@ -100,7 +107,8 @@ sealed class TimetableItem {
     }
 
     val formattedDateTimeString: String by lazy {
-        "$startsDateString / $formattedTimeString ($minutesString)"
+        val prefix = MultiLangText(jaTitle = "分", enTitle = "min").currentLangTitle
+        "$startsDateString / $formattedTimeString ($minutes$prefix)"
     }
 
     val formattedMonthAndDayString: String by lazy {
@@ -114,6 +122,9 @@ sealed class TimetableItem {
         } else {
             "https://2024.droidkaigi.jp/en/timetable/${id.value}"
         }
+
+    val hasError: Boolean
+        get() = message != null
 
     fun getSupportedLangString(isJapaneseLocale: Boolean): String {
         val japanese = if (isJapaneseLocale) "日本語" else "Japanese"
@@ -141,14 +152,13 @@ private fun Instant.toLocalTime(): LocalTime {
     return localDateTime.time
 }
 
-fun TimetableItem.Session.Companion.fake(): TimetableItem.Session {
+fun TimetableItem.Session.Companion.fake(duration: Duration = 40.minutes): TimetableItem.Session {
+    val startsAt = LocalDateTime.parse("2024-09-12T10:20:00").toInstant(TimeZone.of("UTC+9"))
     return TimetableItem.Session(
         id = TimetableItemId("2"),
         title = MultiLangText("DroidKaigiのアプリのアーキテクチャ", "DroidKaigi App Architecture"),
-        startsAt = LocalDateTime.parse("2024-09-12T10:30:00")
-            .toInstant(TimeZone.of("UTC+9")),
-        endsAt = LocalDateTime.parse("2024-09-12T10:50:00")
-            .toInstant(TimeZone.of("UTC+9")),
+        startsAt = startsAt,
+        endsAt = startsAt + duration,
         category = TimetableCategory(
             id = 28654,
             title = MultiLangText(
