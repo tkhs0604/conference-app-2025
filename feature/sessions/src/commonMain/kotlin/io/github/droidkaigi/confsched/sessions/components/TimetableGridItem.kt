@@ -89,7 +89,7 @@ fun TimetableGridItem(
                         speaker = speaker,
                         modifier = Modifier.weight(1f),
                     )
-                    if (timetableItem.hasError) {
+                    if (timetableItem.message != null) {
                         Icon(
                             imageVector = Icons.Default.Error,
                             contentDescription = null,
