@@ -23,6 +23,7 @@ import io.github.droidkaigi.confsched.model.sessions.Timetable
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.fake
 import io.github.droidkaigi.confsched.sessions.components.TimetableTime
+import io.ktor.http.HttpHeaders.If
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.datetime.LocalTime
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -48,9 +49,16 @@ internal fun TimetableList(
             var timetableTimeHeight by remember { mutableIntStateOf(0) }
             val timetableTimeOffsetY by remember {
                 derivedStateOf {
-                    val itemInfo = lazyListState.layoutInfo.visibleItemsInfo.find { it.index == index } ?: return@derivedStateOf 0
+                    val itemInfo = lazyListState.layoutInfo.visibleItemsInfo.find { it.index == index }
+                    // If the item is not visible, keep the TimetableTime in its original position.
+                    if (itemInfo == null) return@derivedStateOf 0
+
                     val itemTopOffset = itemInfo.offset
+                    // A positive offset means the top of the item is within the visible viewport.
                     if (itemTopOffset > 0) return@derivedStateOf 0
+
+                    // Apply a vertical offset to TimetableTime to create a "sticky" effect while scrolling,
+                    // but clamp it to ensure it doesn't overflow beyond the bottom edge of its item.
                     (-itemTopOffset).coerceAtMost(itemInfo.size - timetableTimeHeight)
                 }
             }
