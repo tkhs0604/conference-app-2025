@@ -16,7 +16,7 @@ import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun TimetableTime(
+fun TimetableTimeSlot(
     startTimeText: String,
     endTimeText: String,
     modifier: Modifier = Modifier,
@@ -47,9 +47,9 @@ fun TimetableTime(
 
 @Preview
 @Composable
-private fun TimetableTimePreview() {
+private fun TimetableTimeSlotPreview() {
     KaigiPreviewContainer {
-        TimetableTime(
+        TimetableTimeSlot(
             startTimeText = "11:20",
             endTimeText = "12:00",
         )
