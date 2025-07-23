@@ -31,7 +31,7 @@ import soil.query.buildSubscriptionKey
 
 @ContributesBinding(DataScope::class, binding = binding<TimetableSubscriptionKey>())
 @Inject
-public class TimetableSubscriptionKeyImpl(
+public class DefaultTimetableSubscriptionKey(
     private val sessionsApiClient: SessionsApiClient,
     private val dataStore: SessionCacheDataStore,
 ) : TimetableSubscriptionKey by buildSubscriptionKey(

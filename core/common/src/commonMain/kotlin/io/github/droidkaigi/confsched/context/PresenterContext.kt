@@ -9,7 +9,7 @@ import kotlin.contracts.contract
  */
 interface PresenterContext
 
-class PresenterContextImpl : PresenterContext
+class DefaultPresenterContext : PresenterContext
 
 @OptIn(ExperimentalContracts::class)
 inline fun usePresenterContext(
@@ -18,5 +18,5 @@ inline fun usePresenterContext(
     contract {
         callsInPlace(block, InvocationKind.EXACTLY_ONCE)
     }
-    block(PresenterContextImpl())
+    block(DefaultPresenterContext())
 }

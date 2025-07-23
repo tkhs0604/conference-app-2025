@@ -13,7 +13,7 @@ import soil.query.buildQueryKey
 
 @ContributesBinding(TimetableDetailScope::class, binding<TimetableItemQueryKey>())
 @Inject
-public class TimetableItemQueryKeyImpl(
+public class DefaultTimetableItemQueryKey(
     override val timetableItemId: TimetableItemId,
     private val sessionsApiClient: SessionsApiClient,
     private val dataStore: SessionCacheDataStore,
