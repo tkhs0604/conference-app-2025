@@ -49,7 +49,7 @@ public class UserDataStore(@UserDataStoreQualifier private val dataStore: DataSt
         }
     }
 
-    private companion object Companion {
+    private companion object {
         private val FAVORITE_SESSION_IDS_KEY = stringSetPreferencesKey("FAVORITE_SESSION_IDS_KEY")
     }
 }
