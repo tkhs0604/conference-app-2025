@@ -5,7 +5,6 @@ import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableIdsSubscriptionKey
-import io.github.droidkaigi.confsched.model.data.UserDataStore
 import soil.query.SubscriptionId
 import soil.query.buildSubscriptionKey
 
