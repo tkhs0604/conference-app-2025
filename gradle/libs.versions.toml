@@ -34,6 +34,7 @@ robolectric = "4.15.1"
 
 composeBom = "2025.07.00"
 roborazzi = "1.46.1"
+composablePreviewScanner = "0.6.1"
 
 detekt = "1.23.8"
 twitterComposeRule = "0.0.26"
@@ -95,6 +96,9 @@ rin = { module = "io.github.takahirom.rin:rin", version.ref = "rin" }
 roborazzi = { module = "io.github.takahirom.roborazzi:roborazzi", version.ref = "roborazzi" }
 roborazziCompose = { module = "io.github.takahirom.roborazzi:roborazzi-compose", version.ref = "roborazzi" }
 roborazziComposeDesktop = { module = "io.github.takahirom.roborazzi:roborazzi-compose-desktop", version.ref = "roborazzi" }
+roborazziPreviewScannerSupport = { module = "io.github.takahirom.roborazzi:roborazzi-compose-preview-scanner-support", version.ref = "roborazzi" }
+composablePreviewScannerAndroid = { module = "io.github.sergio-sastre.ComposablePreviewScanner:android", version.ref = "composablePreviewScanner" }
+composablePreviewScannerJvm = { module = "io.github.sergio-sastre.ComposablePreviewScanner:jvm", version.ref = "composablePreviewScanner" }
 
 # navigation3
 navigation3Ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "androidxNavigation3" }

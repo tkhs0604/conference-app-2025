@@ -49,8 +49,11 @@ kotlin {
             implementation(project.dependencies.platform(libs.composeBom))
             api(libs.androidxUiTestJunit4)
             implementation(libs.androidxUiTestManifest)
-        }
 
+            implementation(libs.roborazziPreviewScannerSupport)
+            implementation(libs.composablePreviewScannerAndroid)
+            implementation(libs.composablePreviewScannerJvm)
+        }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinTestJunit)
