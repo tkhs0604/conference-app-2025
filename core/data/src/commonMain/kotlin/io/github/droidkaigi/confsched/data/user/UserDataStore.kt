@@ -24,7 +24,7 @@ import kotlinx.coroutines.flow.map
 @ContributesBinding(DataScope::class, binding<UserDataStore>())
 @SingleIn(DataScope::class)
 @Inject
-public class UserDataStoreImpl(
+public class DefaultUserDataStore(
     @UserDataStoreQualifier private val dataStore: DataStore<Preferences>
 ) : UserDataStore {
     public override fun getStream(): Flow<PersistentSet<TimetableItemId>> {

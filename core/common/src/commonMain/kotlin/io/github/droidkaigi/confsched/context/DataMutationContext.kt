@@ -10,7 +10,7 @@ import kotlin.contracts.contract
  */
 interface DataMutationContext
 
-internal object DataMutationContextImpl : DataMutationContext
+internal object DefaultDataMutationContext : DataMutationContext
 
 @OptIn(ExperimentalContracts::class)
 inline fun useDataMutationContext(
@@ -19,5 +19,5 @@ inline fun useDataMutationContext(
     contract {
         callsInPlace(block, InvocationKind.EXACTLY_ONCE)
     }
-    block(DataMutationContextImpl)
+    block(DefaultDataMutationContext)
 }

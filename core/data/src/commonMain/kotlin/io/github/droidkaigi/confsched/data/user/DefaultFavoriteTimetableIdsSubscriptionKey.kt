@@ -11,7 +11,7 @@ import soil.query.buildSubscriptionKey
 
 @ContributesBinding(DataScope::class, binding<FavoriteTimetableIdsSubscriptionKey>())
 @Inject
-public class FavoriteTimetableIdsSubscriptionKeyImpl(
+public class DefaultFavoriteTimetableIdsSubscriptionKey(
     private val userDataStore: UserDataStore,
 ) : FavoriteTimetableIdsSubscriptionKey by buildSubscriptionKey(
     id = SubscriptionId("favorites"),
