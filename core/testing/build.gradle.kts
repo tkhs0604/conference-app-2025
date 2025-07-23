@@ -30,6 +30,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.material3)
             implementation(compose.components.uiToolingPreview)
+            implementation(compose.components.resources)
 
             implementation(libs.soilQueryCompose)
             implementation(libs.soilQueryCore)
