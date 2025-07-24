@@ -30,6 +30,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.material3)
             implementation(compose.components.uiToolingPreview)
+            implementation(compose.components.resources)
 
             implementation(libs.soilQueryCompose)
             implementation(libs.soilQueryCore)
@@ -49,8 +50,11 @@ kotlin {
             implementation(project.dependencies.platform(libs.composeBom))
             api(libs.androidxUiTestJunit4)
             implementation(libs.androidxUiTestManifest)
-        }
 
+            implementation(libs.roborazziPreviewScannerSupport)
+            implementation(libs.composablePreviewScannerAndroid)
+            implementation(libs.composablePreviewScannerJvm)
+        }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinTestJunit)
