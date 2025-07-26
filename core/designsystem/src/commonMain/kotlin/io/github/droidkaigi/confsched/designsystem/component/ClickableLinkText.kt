@@ -12,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
@@ -21,9 +22,9 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withLink
-import io.github.droidkaigi.confsched.designsystem.theme.RoomTheme
 
 private const val ClickableTextExpandAnimateDurationMillis = 300
+private val LightBlue = Color(0xFF44ADE7)
 
 /**
  * Provides ClickableText with underline for the specified regex.
@@ -111,7 +112,7 @@ private fun buildClickableAnnotatedString(
                     url = urlString,
                     styles = TextLinkStyles(
                         style = SpanStyle(
-                            color = RoomTheme.Jellyfish.primaryColor,
+                            color = LightBlue,
                             textDecoration = TextDecoration.Underline,
                         ),
                     ),
