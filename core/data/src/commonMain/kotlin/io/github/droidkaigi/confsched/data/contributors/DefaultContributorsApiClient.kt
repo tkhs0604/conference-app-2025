@@ -13,7 +13,7 @@ import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 
 internal interface ContributorApi {
-    @GET("/events/droidkaigi2024/contributors")
+    @GET("/events/droidkaigi2025/contributors")
     suspend fun getContributors(): ContributorsResponse
 }
 

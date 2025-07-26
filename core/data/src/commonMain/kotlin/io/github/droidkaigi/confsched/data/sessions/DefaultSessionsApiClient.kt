@@ -12,7 +12,7 @@ import io.github.droidkaigi.confsched.data.sessions.response.SessionsAllResponse
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
 
 internal interface SessionApi {
-    @GET("events/droidkaigi2024/timetable")
+    @GET("events/droidkaigi2025/timetable")
     suspend fun getTimetable(): SessionsAllResponse
 }
 
