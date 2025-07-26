@@ -21,6 +21,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withLink
+import io.github.droidkaigi.confsched.designsystem.theme.RoomTheme
 
 private const val ClickableTextExpandAnimateDurationMillis = 300
 
@@ -110,7 +111,7 @@ private fun buildClickableAnnotatedString(
                     url = urlString,
                     styles = TextLinkStyles(
                         style = SpanStyle(
-                            color = MaterialTheme.colorScheme.primary, // TODO: Use Room color
+                            color = RoomTheme.Jellyfish.primaryColor,
                             textDecoration = TextDecoration.Underline,
                         ),
                     ),

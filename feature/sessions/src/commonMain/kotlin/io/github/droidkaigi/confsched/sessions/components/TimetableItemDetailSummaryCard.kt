@@ -33,7 +33,10 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.github.droidkaigi.confsched.designsystem.theme.LocalRoomTheme
+import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.session.roomTheme
 import io.github.droidkaigi.confsched.model.core.Locale
 import io.github.droidkaigi.confsched.model.core.getDefaultLocale
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
@@ -59,7 +62,7 @@ fun TimetableItemDetailSummaryCard(
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme.surfaceContainerHighest) // TODO: Use Room color
+            .background(LocalRoomTheme.current.dimColor)
             .padding(horizontal = 12.dp, vertical = 16.dp),
     ) {
         SummaryCardText(
@@ -154,7 +157,7 @@ private fun createSummaryCardTextAnnotatedString(
         appendInlineContent(id = spacer8dpInlineContentId, alternateText = " ")
         withStyle(
             style = SpanStyle(
-                color = MaterialTheme.colorScheme.primary, // TODO: Use RoomTheme primaryColor
+                color = LocalRoomTheme.current.primaryColor,
                 fontFamily = MaterialTheme.typography.titleSmall.fontFamily,
                 fontStyle = MaterialTheme.typography.titleSmall.fontStyle,
                 fontSize = MaterialTheme.typography.titleSmall.fontSize,
@@ -198,7 +201,7 @@ private fun createInlineContentsMapForSummaryCardTexts(
                 Icon(
                     imageVector = imageVector,
                     contentDescription = contentDescription,
-                    tint = MaterialTheme.colorScheme.primary, // TODO: Use RoomTheme primaryColor
+                    tint = LocalRoomTheme.current.primaryColor,
                 )
             },
         ),
@@ -228,9 +231,12 @@ private fun createInlineContentsMapForSummaryCardTexts(
 @Composable
 @Preview
 fun TimetableItemDetailSummaryCardPreview() {
+    val session = TimetableItem.Session.fake()
     KaigiPreviewContainer {
-        TimetableItemDetailSummaryCard(
-            timetableItem = TimetableItem.Session.fake(),
-        )
+        ProvideRoomTheme(session.room.roomTheme) {
+            TimetableItemDetailSummaryCard(
+                timetableItem = session,
+            )
+        }
     }
 }

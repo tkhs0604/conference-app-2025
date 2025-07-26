@@ -19,7 +19,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import io.github.droidkaigi.confsched.designsystem.theme.LocalRoomTheme
+import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.session.roomTheme
+import io.github.droidkaigi.confsched.model.sessions.TimetableItem
+import io.github.droidkaigi.confsched.model.sessions.fake
 import io.github.droidkaigi.confsched.sessions.SessionsRes
 import io.github.droidkaigi.confsched.sessions.add_to_bookmark
 import io.github.droidkaigi.confsched.sessions.add_to_calendar
@@ -60,15 +65,21 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
     onShareClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val roomTheme = LocalRoomTheme.current
+    val menuItemContainerColor = roomTheme.primaryColor // TODO: use room containerColor
     FloatingActionButtonMenu(
         expanded = expanded,
         button = {
             ToggleFloatingActionButton(
                 checked = expanded,
                 onCheckedChange = onExpandedChange,
+                containerColor = { _ -> roomTheme.primaryColor },  // TODO: use room containerColor
             ) {
                 if (expanded) {
-                    Icon(imageVector = Icons.Default.Close, contentDescription = null)
+                    Icon(
+                        imageVector = Icons.Default.Close,
+                        contentDescription = null
+                    )
                 } else {
                     Icon(
                         imageVector = if (isBookmarked) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
@@ -99,7 +110,8 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
                     if (isBookmarked) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
                     contentDescription = null
                 )
-            }
+            },
+            containerColor = menuItemContainerColor,
         )
         FloatingActionButtonMenuItem(
             onClick = {
@@ -107,7 +119,8 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
                 onExpandedChange(false)
             },
             text = { Text(stringResource(SessionsRes.string.add_to_calendar)) },
-            icon = { Icon(Icons.Default.CalendarMonth, contentDescription = null) }
+            icon = { Icon(Icons.Default.CalendarMonth, contentDescription = null) },
+            containerColor = menuItemContainerColor,
         )
         FloatingActionButtonMenuItem(
             onClick = {
@@ -115,7 +128,8 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
                 onExpandedChange(false)
             },
             text = { Text(stringResource(SessionsRes.string.share_link)) },
-            icon = { Icon(Icons.Default.Share, contentDescription = null) }
+            icon = { Icon(Icons.Default.Share, contentDescription = null) },
+            containerColor = menuItemContainerColor,
         )
     }
 }
@@ -124,14 +138,16 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
 @Composable
 private fun TimetableItemDetailFloatingMenuPreview() {
     KaigiPreviewContainer {
-        TimetableItemDetailFloatingActionButtonMenu(
-            expanded = false,
-            isBookmarked = false,
-            onExpandedChange = {},
-            onBookmarkClick = {},
-            onAddCalendarClick = {},
-            onShareClick = {},
-        )
+        ProvideRoomTheme(TimetableItem.Session.fake().room.roomTheme) {
+            TimetableItemDetailFloatingActionButtonMenu(
+                expanded = false,
+                isBookmarked = false,
+                onExpandedChange = {},
+                onBookmarkClick = {},
+                onAddCalendarClick = {},
+                onShareClick = {},
+            )
+        }
     }
 }
 
@@ -139,13 +155,15 @@ private fun TimetableItemDetailFloatingMenuPreview() {
 @Composable
 private fun TimetableItemDetailFloatingMenuExpandedPreview() {
     KaigiPreviewContainer {
-        TimetableItemDetailFloatingActionButtonMenu(
-            expanded = true,
-            isBookmarked = false,
-            onExpandedChange = {},
-            onBookmarkClick = {},
-            onAddCalendarClick = {},
-            onShareClick = {},
-        )
+        ProvideRoomTheme(TimetableItem.Session.fake().room.roomTheme) {
+            TimetableItemDetailFloatingActionButtonMenu(
+                expanded = true,
+                isBookmarked = false,
+                onExpandedChange = {},
+                onBookmarkClick = {},
+                onAddCalendarClick = {},
+                onShareClick = {},
+            )
+        }
     }
 }

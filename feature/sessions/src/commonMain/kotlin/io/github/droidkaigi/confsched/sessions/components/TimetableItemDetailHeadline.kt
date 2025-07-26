@@ -28,9 +28,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import io.github.droidkaigi.confsched.designsystem.theme.LocalRoomTheme
+import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.component.TimetableItemTag
 import io.github.droidkaigi.confsched.droidkaigiui.rememberAsyncImagePainter
+import io.github.droidkaigi.confsched.droidkaigiui.session.icon
+import io.github.droidkaigi.confsched.droidkaigiui.session.roomTheme
 import io.github.droidkaigi.confsched.model.core.Lang
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.fake
@@ -48,9 +52,10 @@ fun TimetableItemDetailHeadline(
     onLanguageSelect: (Lang) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val roomTheme = LocalRoomTheme.current
     Column(
         modifier = Modifier
-            .background(MaterialTheme.colorScheme.surface) // TODO: Use room color
+            .background(roomTheme.dimColor)
             .padding(horizontal = 8.dp)
             .fillMaxWidth()
             .then(modifier),
@@ -59,8 +64,8 @@ fun TimetableItemDetailHeadline(
             TimetableItemTag(
                 modifier = Modifier.align(Alignment.CenterVertically),
                 tagText = timetableItem.room.name.currentLangTitle,
-                tagColor = MaterialTheme.colorScheme.onSurfaceVariant, // TODO: Use room color
-                icon = null, // TODO: Use room icon
+                tagColor = roomTheme.primaryColor,
+                icon = timetableItem.room.icon,
             )
             timetableItem.language.labels.forEach { label ->
                 Spacer(modifier = Modifier.padding(4.dp))
@@ -139,6 +144,11 @@ private fun LanguageSwitcher(
                 onClick = { onLanguageSelect(lang) },
                 contentPadding = PaddingValues(12.dp),
             ) {
+                val contentColor = if (isSelected) {
+                    LocalRoomTheme.current.primaryColor
+                } else {
+                    MaterialTheme.colorScheme.onSurfaceVariant
+                }
                 AnimatedVisibility(isSelected) {
                     Icon(
                         imageVector = Icons.Default.Check,
@@ -146,6 +156,7 @@ private fun LanguageSwitcher(
                         modifier = Modifier
                             .padding(end = 4.dp)
                             .size(12.dp),
+                        tint = contentColor,
                     )
                 }
                 Text(
@@ -156,6 +167,7 @@ private fun LanguageSwitcher(
                             Lang.MIXED -> SessionsRes.string.english
                         }
                     ),
+                    color = contentColor,
                     style = MaterialTheme.typography.labelMedium,
                 )
             }
@@ -172,38 +184,47 @@ private fun LanguageSwitcher(
 @Composable
 @Preview
 fun TimetableItemDetailHeadlinePreview() {
+    val session = TimetableItem.Session.fake()
     KaigiPreviewContainer {
-        TimetableItemDetailHeadline(
-            timetableItem = TimetableItem.Session.fake(),
-            currentLang = Lang.JAPANESE,
-            isLangSelectable = true,
-            onLanguageSelect = {},
-        )
+        ProvideRoomTheme(session.room.roomTheme) {
+            TimetableItemDetailHeadline(
+                timetableItem = session,
+                currentLang = Lang.JAPANESE,
+                isLangSelectable = true,
+                onLanguageSelect = {},
+            )
+        }
     }
 }
 
 @Composable
 @Preview
 fun TimetableItemDetailHeadlineWithEnglishPreview() {
+    val session = TimetableItem.Session.fake()
     KaigiPreviewContainer {
-        TimetableItemDetailHeadline(
-            timetableItem = TimetableItem.Session.fake(),
-            currentLang = Lang.ENGLISH,
-            isLangSelectable = true,
-            onLanguageSelect = {},
-        )
+        ProvideRoomTheme(session.room.roomTheme) {
+            TimetableItemDetailHeadline(
+                timetableItem = session,
+                currentLang = Lang.ENGLISH,
+                isLangSelectable = true,
+                onLanguageSelect = {},
+            )
+        }
     }
 }
 
 @Composable
 @Preview
 fun TimetableItemDetailHeadlineWithMixedPreview() {
+    val session = TimetableItem.Session.fake()
     KaigiPreviewContainer {
-        TimetableItemDetailHeadline(
-            timetableItem = TimetableItem.Session.fake(),
-            currentLang = Lang.MIXED,
-            isLangSelectable = true,
-            onLanguageSelect = {},
-        )
+        ProvideRoomTheme(session.room.roomTheme) {
+            TimetableItemDetailHeadline(
+                timetableItem = session,
+                currentLang = Lang.MIXED,
+                isLangSelectable = true,
+                onLanguageSelect = {},
+            )
+        }
     }
 }
