@@ -32,27 +32,23 @@ fun TimetableItemDetailScreen(
     onLinkClick: (url: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Scaffold(
-        topBar = {
-            ProvideRoomTheme(uiState.timetableItem.room.roomTheme) {
+    ProvideRoomTheme(uiState.timetableItem.room.roomTheme) {
+        Scaffold(
+            topBar = {
                 TimetableItemDetailTopAppBar(
                     onBackClick = onBackClick,
                 )
-            }
-        },
-        floatingActionButton = {
-            ProvideRoomTheme(uiState.timetableItem.room.roomTheme) {
+            },
+            floatingActionButton = {
                 TimetableItemDetailFloatingActionButtonMenu(
                     isBookmarked = uiState.isBookmarked,
                     onBookmarkClick = onBookmarkClick,
                     onAddCalendarClick = { onAddCalendarClick(uiState.timetableItem) },
                     onShareClick = { onShareClick(uiState.timetableItem) }
                 )
-            }
-        },
-        modifier = modifier
-    ) { innerPadding ->
-        ProvideRoomTheme(uiState.timetableItem.room.roomTheme) {
+            },
+            modifier = modifier
+        ) { innerPadding ->
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
