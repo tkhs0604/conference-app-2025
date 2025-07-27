@@ -33,25 +33,44 @@ public struct RootScreen: View {
     public init() {}
 
     public var body: some View {
-        TabView(selection: $selectedTab) {
-            Tab("Timeline", image: TabType.timetable.tabImageName(selectedTab), value: .timetable) {
-                HomeScreen()
-            }
-            Tab("Map", image: TabType.map.tabImageName(selectedTab), value: .map) {
-                // TODO: Replace correct screen
-                HomeScreen()
-            }
-            Tab("Favorite", image: TabType.favorite.tabImageName(selectedTab), value: .favorite) {
-                // TODO: Replace correct screen
-                HomeScreen()
-            }
-            Tab("Info", image: TabType.info.tabImageName(selectedTab), value: .info) {
-                // TODO: Replace correct screen
-                HomeScreen()
-            }
-            Tab("Profile Card", image: TabType.profileCard.tabImageName(selectedTab), value: .info) {
-                // TODO: Replace correct screen
-                HomeScreen()
+        Group {
+            if #available(iOS 26, *) {
+                TabView(selection: $selectedTab) {
+                    Tab("Timeline", image: TabType.timetable.tabImageName(selectedTab), value: .timetable) {
+                        HomeScreen()
+                    }
+                    Tab("Map", image: TabType.map.tabImageName(selectedTab), value: .map) {
+                        // TODO: Replace correct screen
+                        HomeScreen()
+                    }
+                    Tab("Favorite", image: TabType.favorite.tabImageName(selectedTab), value: .favorite) {
+                        // TODO: Replace correct screen
+                        HomeScreen()
+                    }
+                    Tab("Info", image: TabType.info.tabImageName(selectedTab), value: .info) {
+                        // TODO: Replace correct screen
+                        HomeScreen()
+                    }
+                    Tab("Profile Card", image: TabType.profileCard.tabImageName(selectedTab), value: .info) {
+                        // TODO: Replace correct screen
+                        HomeScreen()
+                    }
+                }
+            } else {
+                ZStack(alignment: .bottom) {
+                    switch selectedTab {
+                    case .timetable:
+                        HomeScreen()
+                    case .map:
+                        HomeScreen()
+                    case .favorite:
+                        HomeScreen()
+                    case .info:
+                        HomeScreen()
+                    case .profileCard:
+                        HomeScreen()
+                    }
+                }
             }
         }
         .onAppear {
