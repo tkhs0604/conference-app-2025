@@ -5,6 +5,7 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -91,11 +92,17 @@ fun GlassLikeBottomNavigationBar(
                 shape = CircleShape,
             )
             .clip(CircleShape)
-            .hazeEffect(
-                state = hazeState,
-                style = HazeDefaults.style(
-                    backgroundColor = MaterialTheme.colorScheme.background,
-                )
+            .then(
+                if (isBlurSupported()) {
+                    Modifier.hazeEffect(
+                        state = hazeState,
+                        style = HazeDefaults.style(
+                            backgroundColor = MaterialTheme.colorScheme.background,
+                        )
+                    )
+                } else {
+                    Modifier.background(MaterialTheme.colorScheme.background.copy(alpha = .95f))
+                }
             ),
         contentAlignment = Alignment.Center,
     ) {
@@ -197,7 +204,14 @@ private fun SelectedTabCircleBlurredBackground(
     modifier: Modifier = Modifier,
 ) {
     Canvas(
-        modifier = modifier.blur(50.dp, BlurredEdgeTreatment.Unbounded)
+        modifier = modifier
+            .then(
+                if (isBlurSupported()) {
+                    Modifier.blur(50.dp, BlurredEdgeTreatment.Unbounded)
+                } else {
+                    Modifier
+                }
+            ),
     ) {
         // draw background for current tab
         val tabWidth = size.width / MainScreenTab.entries.size
