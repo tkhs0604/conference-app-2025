@@ -44,7 +44,10 @@ internal fun TimetableList(
         contentPadding = contentPadding,
         modifier = modifier,
     ) {
-        itemsIndexed(items = uiState.timetableItemMap.toList()) { index, (timeSlot, timetableItems) ->
+        itemsIndexed(
+            items = uiState.timetableItemMap.toList(),
+            key = { _, (timeSlot, _) -> timeSlot.key },
+        ) { index, (timeSlot, timetableItems) ->
             var timetableTimeSlotHeight by remember { mutableIntStateOf(0) }
             val timetableTimeSlotOffsetY by remember {
                 derivedStateOf {
