@@ -43,6 +43,7 @@ let package = Package(
                 .product(name: "UseCase", package: "Core"),
                 .product(name: "Model", package: "Core"),
                 .product(name: "Dependencies", package: "swift-dependencies"),
+                .target(name: "Extension"),
             ]
         ),
 
