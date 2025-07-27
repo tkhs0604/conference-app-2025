@@ -1,12 +1,13 @@
 package io.github.droidkaigi.confsched.model.core
 
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.atTime
+import kotlinx.datetime.number
 import kotlinx.datetime.toInstant
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 enum class DroidKaigi2025Day(
     private val visibleForUsers: Boolean,
@@ -27,7 +28,7 @@ enum class DroidKaigi2025Day(
     ),
     ;
 
-    val dayOfMonth: Int = date.dayOfMonth
+    val dayOfMonth: Int = date.day
     val start: Instant = date.atStartOfDayIn(tz)
     val end: Instant = date.atTime(23, 59, 59, 999_999_999).toInstant(tz)
 
@@ -39,7 +40,7 @@ enum class DroidKaigi2025Day(
     }
 
     fun monthAndDay(): String {
-        return "${date.monthNumber}.${date.dayOfMonth}"
+        return "${date.month.number}.${date.day}"
     }
 
     companion object Companion {
