@@ -30,10 +30,6 @@ configure<BaseExtension> {
 kotlin {
     sourceSets {
         androidUnitTest {
-            // This explicit dependency is required to avoid unresolved references when referencing other module types.
-            // This might be due to some modules using 'com.android.kotlin.multiplatform.library' instead of 'com.android.library'.
-            // FIXME: This inconsistency could potentially cause issues, so it's probably better to use the same plugin in all modules.
-            dependsOn(androidMain.get())
             dependencies {
                 implementation(libs.library("roborazziPreviewScannerSupport"))
                 implementation(libs.library("composablePreviewScannerAndroid"))
