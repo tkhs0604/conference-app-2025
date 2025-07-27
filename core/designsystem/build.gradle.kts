@@ -5,5 +5,5 @@ plugins {
 }
 
 dependencies {
-    commonMainImplementation(compose.material3)
+    commonMainImplementation(libs.material3)
 }
