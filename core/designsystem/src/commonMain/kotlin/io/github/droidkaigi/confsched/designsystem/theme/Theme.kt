@@ -1,26 +1,25 @@
-@file:Suppress("UnusedPrivateProperty")
-
 package io.github.droidkaigi.confsched.designsystem.theme
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import io.github.droidkaigi.confsched.designsystem.theme.ColorContrast.Default
-import io.github.droidkaigi.confsched.designsystem.theme.ColorContrast.High
-import io.github.droidkaigi.confsched.designsystem.theme.ColorContrast.Medium
 
 private val fixedAccentColors = FixedAccentColors(
-    primaryFixed = Color(0xFF67FF8D),
-    onPrimaryFixed = Color(0xFF002109),
-    secondaryFixed = Color(0xFFA3F5AD),
-    onSecondaryFixed = Color(0xFF002109),
-    tertiaryFixed = Color(0xFFFFD7F0),
-    onTertiaryFixed = Color(0xFF3A0032),
-    primaryFixedDim = Color(0xFF1CE46B),
-    secondaryFixedDim = Color(0xFF88D893),
-    tertiaryFixedDim = Color(0xFFFFACE7),
+    primaryFixed = Color(0xFFD8E2FF),
+    onPrimaryFixed = Color(0xFF001A43),
+    onPrimaryFixedVariant = Color(0xFF2D4678),
+    secondaryFixed = Color(0xFFE8DEFF),
+    onSecondaryFixed = Color(0xFF1F1048),
+    onSecondaryFixedVariant = Color(0xFF4B3E76),
+    tertiaryFixed = Color(0xFFDBE1FF),
+    onTertiaryFixed = Color(0xFF00174B),
+    onTertiaryFixedVariant = Color(0xFF334478),
+    primaryFixedDim = Color(0xFFAEC6FF),
+    secondaryFixedDim = Color(0xFFCDBDFF),
+    tertiaryFixedDim = Color(0xFFB4C5FF),
 )
 
 private val lightScheme = lightColorScheme(
@@ -46,7 +45,6 @@ private val lightScheme = lightColorScheme(
     onSurface = onSurfaceLight,
     surfaceVariant = surfaceVariantLight,
     onSurfaceVariant = onSurfaceVariantLight,
-    surfaceTint = surfaceTintLight,
     outline = outlineLight,
     outlineVariant = outlineVariantLight,
     scrim = scrimLight,
@@ -62,16 +60,19 @@ private val lightScheme = lightColorScheme(
     surfaceContainerHighest = surfaceContainerHighestLight,
     primaryFixed = fixedAccentColors.primaryFixed,
     onPrimaryFixed = fixedAccentColors.onPrimaryFixed,
+    onPrimaryFixedVariant = fixedAccentColors.onPrimaryFixedVariant,
     secondaryFixed = fixedAccentColors.secondaryFixed,
     onSecondaryFixed = fixedAccentColors.onSecondaryFixed,
+    onSecondaryFixedVariant = fixedAccentColors.onSecondaryFixedVariant,
     tertiaryFixed = fixedAccentColors.tertiaryFixed,
     onTertiaryFixed = fixedAccentColors.onTertiaryFixed,
+    onTertiaryFixedVariant = fixedAccentColors.onTertiaryFixedVariant,
     primaryFixedDim = fixedAccentColors.primaryFixedDim,
     secondaryFixedDim = fixedAccentColors.secondaryFixedDim,
     tertiaryFixedDim = fixedAccentColors.tertiaryFixedDim,
 )
 
-internal val darkScheme = darkColorScheme(
+private val darkScheme = darkColorScheme(
     primary = primaryDark,
     onPrimary = onPrimaryDark,
     primaryContainer = primaryContainerDark,
@@ -94,7 +95,6 @@ internal val darkScheme = darkColorScheme(
     onSurface = onSurfaceDark,
     surfaceVariant = surfaceVariantDark,
     onSurfaceVariant = onSurfaceVariantDark,
-    surfaceTint = surfaceTintDark,
     outline = outlineDark,
     outlineVariant = outlineVariantDark,
     scrim = scrimDark,
@@ -110,10 +110,13 @@ internal val darkScheme = darkColorScheme(
     surfaceContainerHighest = surfaceContainerHighestDark,
     primaryFixed = fixedAccentColors.primaryFixed,
     onPrimaryFixed = fixedAccentColors.onPrimaryFixed,
+    onPrimaryFixedVariant = fixedAccentColors.onPrimaryFixedVariant,
     secondaryFixed = fixedAccentColors.secondaryFixed,
     onSecondaryFixed = fixedAccentColors.onSecondaryFixed,
+    onSecondaryFixedVariant = fixedAccentColors.onSecondaryFixedVariant,
     tertiaryFixed = fixedAccentColors.tertiaryFixed,
     onTertiaryFixed = fixedAccentColors.onTertiaryFixed,
+    onTertiaryFixedVariant = fixedAccentColors.onTertiaryFixedVariant,
     primaryFixedDim = fixedAccentColors.primaryFixedDim,
     secondaryFixedDim = fixedAccentColors.secondaryFixedDim,
     tertiaryFixedDim = fixedAccentColors.tertiaryFixedDim,
@@ -157,10 +160,13 @@ private val mediumContrastLightColorScheme = lightColorScheme(
     surfaceContainerHighest = surfaceContainerHighestLightMediumContrast,
     primaryFixed = fixedAccentColors.primaryFixed,
     onPrimaryFixed = fixedAccentColors.onPrimaryFixed,
+    onPrimaryFixedVariant = fixedAccentColors.onPrimaryFixedVariant,
     secondaryFixed = fixedAccentColors.secondaryFixed,
     onSecondaryFixed = fixedAccentColors.onSecondaryFixed,
+    onSecondaryFixedVariant = fixedAccentColors.onSecondaryFixedVariant,
     tertiaryFixed = fixedAccentColors.tertiaryFixed,
     onTertiaryFixed = fixedAccentColors.onTertiaryFixed,
+    onTertiaryFixedVariant = fixedAccentColors.onTertiaryFixedVariant,
     primaryFixedDim = fixedAccentColors.primaryFixedDim,
     secondaryFixedDim = fixedAccentColors.secondaryFixedDim,
     tertiaryFixedDim = fixedAccentColors.tertiaryFixedDim,
@@ -204,10 +210,13 @@ private val highContrastLightColorScheme = lightColorScheme(
     surfaceContainerHighest = surfaceContainerHighestLightHighContrast,
     primaryFixed = fixedAccentColors.primaryFixed,
     onPrimaryFixed = fixedAccentColors.onPrimaryFixed,
+    onPrimaryFixedVariant = fixedAccentColors.onPrimaryFixedVariant,
     secondaryFixed = fixedAccentColors.secondaryFixed,
     onSecondaryFixed = fixedAccentColors.onSecondaryFixed,
+    onSecondaryFixedVariant = fixedAccentColors.onSecondaryFixedVariant,
     tertiaryFixed = fixedAccentColors.tertiaryFixed,
     onTertiaryFixed = fixedAccentColors.onTertiaryFixed,
+    onTertiaryFixedVariant = fixedAccentColors.onTertiaryFixedVariant,
     primaryFixedDim = fixedAccentColors.primaryFixedDim,
     secondaryFixedDim = fixedAccentColors.secondaryFixedDim,
     tertiaryFixedDim = fixedAccentColors.tertiaryFixedDim,
@@ -236,7 +245,6 @@ private val mediumContrastDarkColorScheme = darkColorScheme(
     onSurface = onSurfaceDarkMediumContrast,
     surfaceVariant = surfaceVariantDarkMediumContrast,
     onSurfaceVariant = onSurfaceVariantDarkMediumContrast,
-    surfaceTint = surfaceTintDark,
     outline = outlineDarkMediumContrast,
     outlineVariant = outlineVariantDarkMediumContrast,
     scrim = scrimDarkMediumContrast,
@@ -252,10 +260,13 @@ private val mediumContrastDarkColorScheme = darkColorScheme(
     surfaceContainerHighest = surfaceContainerHighestDarkMediumContrast,
     primaryFixed = fixedAccentColors.primaryFixed,
     onPrimaryFixed = fixedAccentColors.onPrimaryFixed,
+    onPrimaryFixedVariant = fixedAccentColors.onPrimaryFixedVariant,
     secondaryFixed = fixedAccentColors.secondaryFixed,
     onSecondaryFixed = fixedAccentColors.onSecondaryFixed,
+    onSecondaryFixedVariant = fixedAccentColors.onSecondaryFixedVariant,
     tertiaryFixed = fixedAccentColors.tertiaryFixed,
     onTertiaryFixed = fixedAccentColors.onTertiaryFixed,
+    onTertiaryFixedVariant = fixedAccentColors.onTertiaryFixedVariant,
     primaryFixedDim = fixedAccentColors.primaryFixedDim,
     secondaryFixedDim = fixedAccentColors.secondaryFixedDim,
     tertiaryFixedDim = fixedAccentColors.tertiaryFixedDim,
@@ -284,7 +295,6 @@ private val highContrastDarkColorScheme = darkColorScheme(
     onSurface = onSurfaceDarkHighContrast,
     surfaceVariant = surfaceVariantDarkHighContrast,
     onSurfaceVariant = onSurfaceVariantDarkHighContrast,
-    surfaceTint = surfaceTintDark,
     outline = outlineDarkHighContrast,
     outlineVariant = outlineVariantDarkHighContrast,
     scrim = scrimDarkHighContrast,
@@ -300,10 +310,13 @@ private val highContrastDarkColorScheme = darkColorScheme(
     surfaceContainerHighest = surfaceContainerHighestDarkHighContrast,
     primaryFixed = fixedAccentColors.primaryFixed,
     onPrimaryFixed = fixedAccentColors.onPrimaryFixed,
+    onPrimaryFixedVariant = fixedAccentColors.onPrimaryFixedVariant,
     secondaryFixed = fixedAccentColors.secondaryFixed,
     onSecondaryFixed = fixedAccentColors.onSecondaryFixed,
+    onSecondaryFixedVariant = fixedAccentColors.onSecondaryFixedVariant,
     tertiaryFixed = fixedAccentColors.tertiaryFixed,
     onTertiaryFixed = fixedAccentColors.onTertiaryFixed,
+    onTertiaryFixedVariant = fixedAccentColors.onTertiaryFixedVariant,
     primaryFixedDim = fixedAccentColors.primaryFixedDim,
     secondaryFixedDim = fixedAccentColors.secondaryFixedDim,
     tertiaryFixedDim = fixedAccentColors.tertiaryFixedDim,
@@ -312,10 +325,13 @@ private val highContrastDarkColorScheme = darkColorScheme(
 data class FixedAccentColors(
     val primaryFixed: Color,
     val onPrimaryFixed: Color,
+    val onPrimaryFixedVariant: Color,
     val secondaryFixed: Color,
     val onSecondaryFixed: Color,
+    val onSecondaryFixedVariant: Color,
     val tertiaryFixed: Color,
     val onTertiaryFixed: Color,
+    val onTertiaryFixedVariant: Color,
     val primaryFixedDim: Color,
     val secondaryFixedDim: Color,
     val tertiaryFixedDim: Color,
@@ -323,19 +339,22 @@ data class FixedAccentColors(
 
 @Composable
 fun KaigiTheme(
-    colorContrast: ColorContrast = Default,
-//    fontFamily: FontFamily? = dotGothic16FontFamily(),
+    colorContrast: ColorContrast = ColorContrast.Default,
+    darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
-    val colorScheme = when (colorContrast) {
-        Default -> darkScheme
-        Medium -> mediumContrastDarkColorScheme
-        High -> highContrastDarkColorScheme
+    val colorScheme = when {
+        darkTheme && colorContrast == ColorContrast.Default -> darkScheme
+        darkTheme && colorContrast == ColorContrast.Medium -> mediumContrastDarkColorScheme
+        darkTheme && colorContrast == ColorContrast.High -> highContrastDarkColorScheme
+        !darkTheme && colorContrast == ColorContrast.Default -> lightScheme
+        !darkTheme && colorContrast == ColorContrast.Medium -> mediumContrastLightColorScheme
+        !darkTheme && colorContrast == ColorContrast.High -> highContrastLightColorScheme
+        else -> darkScheme
     }
 
     MaterialTheme(
         colorScheme = colorScheme,
-//        typography = appTypography(fontFamily),
         content = content,
     )
 }

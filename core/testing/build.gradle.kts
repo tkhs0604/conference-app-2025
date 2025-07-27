@@ -17,7 +17,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.core.droidkaigiui)
-            implementation(projects.core.model)
+            api(projects.core.model)
             implementation(projects.core.common)
             implementation(projects.core.droidkaigiui)
             implementation(projects.core.designsystem)
@@ -28,7 +28,6 @@ kotlin {
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.uiTest)
             implementation(compose.runtime)
-            implementation(compose.material3)
             implementation(compose.components.uiToolingPreview)
             implementation(compose.components.resources)
 
@@ -37,6 +36,7 @@ kotlin {
             implementation(libs.lifecycleViewmodelCompose)
             implementation(libs.lifecycleRuntimeCompose)
             implementation(libs.androidxDatastorePreferencesCore)
+            implementation(libs.material3)
         }
 
         androidMain.dependencies {

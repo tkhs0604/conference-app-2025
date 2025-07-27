@@ -34,7 +34,7 @@ kotlin {
     }
     compilerOptions {
         freeCompilerArgs.addAll(
-            "-opt-in=soil.query.annotation.ExperimentalSoilQueryApi"
+            "-opt-in=soil.query.annotation.ExperimentalSoilQueryApi",
         )
     }
 }

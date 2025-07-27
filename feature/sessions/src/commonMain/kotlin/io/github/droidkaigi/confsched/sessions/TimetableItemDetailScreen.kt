@@ -7,7 +7,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.session.roomTheme
 import io.github.droidkaigi.confsched.model.core.Lang
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.fake
@@ -30,71 +32,73 @@ fun TimetableItemDetailScreen(
     onLinkClick: (url: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Scaffold(
-        topBar = {
-            TimetableItemDetailTopAppBar(
-                onBackClick = onBackClick,
-            )
-        },
-        floatingActionButton = {
-            TimetableItemDetailFloatingActionButtonMenu(
-                isBookmarked = uiState.isBookmarked,
-                onBookmarkClick = onBookmarkClick,
-                onAddCalendarClick = { onAddCalendarClick(uiState.timetableItem) },
-                onShareClick = { onShareClick(uiState.timetableItem) }
-            )
-        },
-        modifier = modifier
-    ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        ) {
-            item {
-                TimetableItemDetailHeadline(
-                    currentLang = uiState.currentLang,
-                    timetableItem = uiState.timetableItem,
-                    isLangSelectable = uiState.isLangSelectable,
-                    onLanguageSelect = onLanguageSelect,
+    ProvideRoomTheme(uiState.timetableItem.room.roomTheme) {
+        Scaffold(
+            topBar = {
+                TimetableItemDetailTopAppBar(
+                    onBackClick = onBackClick,
                 )
-            }
-
-            when (uiState.timetableItem) {
-                is TimetableItem.Session -> uiState.timetableItem.message
-                is TimetableItem.Special -> uiState.timetableItem.message
-            }?.let {
+            },
+            floatingActionButton = {
+                TimetableItemDetailFloatingActionButtonMenu(
+                    isBookmarked = uiState.isBookmarked,
+                    onBookmarkClick = onBookmarkClick,
+                    onAddCalendarClick = { onAddCalendarClick(uiState.timetableItem) },
+                    onShareClick = { onShareClick(uiState.timetableItem) }
+                )
+            },
+            modifier = modifier
+        ) { innerPadding ->
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+            ) {
                 item {
-                    TimetableItemDetailAnnounceMessage(
-                        message = it.currentLangTitle,
+                    TimetableItemDetailHeadline(
+                        currentLang = uiState.currentLang,
+                        timetableItem = uiState.timetableItem,
+                        isLangSelectable = uiState.isLangSelectable,
+                        onLanguageSelect = onLanguageSelect,
+                    )
+                }
+
+                when (uiState.timetableItem) {
+                    is TimetableItem.Session -> uiState.timetableItem.message
+                    is TimetableItem.Special -> uiState.timetableItem.message
+                }?.let {
+                    item {
+                        TimetableItemDetailAnnounceMessage(
+                            message = it.currentLangTitle,
+                            modifier = Modifier.padding(
+                                start = 8.dp,
+                                top = 24.dp,
+                                end = 8.dp,
+                                bottom = 4.dp,
+                            )
+                        )
+                    }
+                }
+
+                item {
+                    TimetableItemDetailSummaryCard(
+                        timetableItem = uiState.timetableItem,
                         modifier = Modifier.padding(
                             start = 8.dp,
-                            top = 24.dp,
                             end = 8.dp,
-                            bottom = 4.dp,
+                            top = 16.dp,
+                            bottom = 8.dp,
                         )
                     )
                 }
-            }
 
-            item {
-                TimetableItemDetailSummaryCard(
-                    timetableItem = uiState.timetableItem,
-                    modifier = Modifier.padding(
-                        start = 8.dp,
-                        end = 8.dp,
-                        top = 16.dp,
-                        bottom = 8.dp,
+                item {
+                    TimetableItemDetailContent(
+                        timetableItem = uiState.timetableItem,
+                        currentLang = uiState.currentLang,
+                        onLinkClick = onLinkClick,
                     )
-                )
-            }
-
-            item {
-                TimetableItemDetailContent(
-                    timetableItem = uiState.timetableItem,
-                    currentLang = uiState.currentLang,
-                    onLinkClick = onLinkClick,
-                )
+                }
             }
         }
     }

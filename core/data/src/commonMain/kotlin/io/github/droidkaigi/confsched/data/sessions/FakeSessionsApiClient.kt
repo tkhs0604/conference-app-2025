@@ -13,7 +13,6 @@ import io.github.droidkaigi.confsched.data.sessions.response.SessionsAllResponse
 import io.github.droidkaigi.confsched.data.sessions.response.SpeakerResponse
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
 import io.github.droidkaigi.confsched.model.core.Lang
-import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.offsetAt
 import kotlinx.datetime.toLocalDateTime
@@ -22,6 +21,7 @@ import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
+import kotlin.time.Instant
 
 @Inject
 public class FakeSessionsApiClient : SessionsApiClient {

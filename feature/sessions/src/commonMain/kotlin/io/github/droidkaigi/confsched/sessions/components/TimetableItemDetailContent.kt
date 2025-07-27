@@ -3,6 +3,7 @@ package io.github.droidkaigi.confsched.sessions.components
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.PlayCircle
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -31,7 +33,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.designsystem.component.ClickableLinkText
+import io.github.droidkaigi.confsched.designsystem.theme.LocalRoomTheme
+import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.session.roomTheme
 import io.github.droidkaigi.confsched.model.core.Lang
 import io.github.droidkaigi.confsched.model.sessions.TimetableAsset
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
@@ -101,12 +106,16 @@ private fun DescriptionSection(
         ) {
             OutlinedButton(
                 modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = LocalRoomTheme.current.dimColor
+                ),
+                border = null,
                 onClick = { isExpand = true },
             ) {
                 Text(
                     text = stringResource(SessionsRes.string.read_more),
                     style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.primary, // TODO: Use Room color
+                    color = LocalRoomTheme.current.primaryColor,
                 )
             }
         }
@@ -126,7 +135,7 @@ private fun TargetAudienceSection(
         Text(
             text = stringResource(SessionsRes.string.target_audience),
             style = MaterialTheme.typography.titleLarge,
-            color = MaterialTheme.colorScheme.primary, // TODO: Use Room color
+            color = LocalRoomTheme.current.primaryColor,
         )
         Spacer(Modifier.height(8.dp))
         Text(
@@ -151,7 +160,7 @@ private fun ArchiveSection(
         Text(
             text = stringResource(SessionsRes.string.archive),
             style = MaterialTheme.typography.titleLarge,
-            color = MaterialTheme.colorScheme.primary, // TODO: Use Room color
+            color = LocalRoomTheme.current.primaryColor,
         )
         Spacer(Modifier.height(8.dp))
         Row(
@@ -163,7 +172,7 @@ private fun ArchiveSection(
                         .weight(1f),
                     onClick = { onViewSlideClick(slideUrl) },
                     colors = ButtonDefaults.buttonColors().copy(
-                        containerColor = MaterialTheme.colorScheme.primary, // TODO: Use Room color
+                        containerColor = LocalRoomTheme.current.primaryColor,
                     ),
                 ) {
                     Icon(
@@ -183,7 +192,7 @@ private fun ArchiveSection(
                         .weight(1f),
                     onClick = { onWatchVideoClick(videoUrl) },
                     colors = ButtonDefaults.buttonColors().copy(
-                        containerColor = MaterialTheme.colorScheme.primary, // TODO: Use Room color
+                        containerColor = LocalRoomTheme.current.primaryColor,
                     ),
                 ) {
                     Icon(
@@ -203,35 +212,44 @@ private fun ArchiveSection(
 @Composable
 @Preview
 fun TimetableItemDetailContentPreview() {
+    val session = TimetableItem.Session.fake()
     KaigiPreviewContainer {
-        TimetableItemDetailContent(
-            timetableItem = TimetableItem.Session.fake(),
-            currentLang = Lang.JAPANESE,
-            onLinkClick = {},
-        )
+        ProvideRoomTheme(session.room.roomTheme) {
+            TimetableItemDetailContent(
+                timetableItem = session,
+                currentLang = Lang.JAPANESE,
+                onLinkClick = {},
+            )
+        }
     }
 }
 
 @Composable
 @Preview
 fun TimetableItemDetailContentWithEnglishPreview() {
+    val session = TimetableItem.Session.fake()
     KaigiPreviewContainer {
-        TimetableItemDetailContent(
-            timetableItem = TimetableItem.Session.fake(),
-            currentLang = Lang.ENGLISH,
-            onLinkClick = {},
-        )
+        ProvideRoomTheme(session.room.roomTheme) {
+            TimetableItemDetailContent(
+                timetableItem = session,
+                currentLang = Lang.ENGLISH,
+                onLinkClick = {},
+            )
+        }
     }
 }
 
 @Composable
 @Preview
 fun TimetableItemDetailContentWithMixedPreview() {
+    val session = TimetableItem.Session.fake()
     KaigiPreviewContainer {
-        TimetableItemDetailContent(
-            timetableItem = TimetableItem.Session.fake(),
-            currentLang = Lang.MIXED,
-            onLinkClick = {},
-        )
+        ProvideRoomTheme(session.room.roomTheme) {
+            TimetableItemDetailContent(
+                timetableItem = session,
+                currentLang = Lang.MIXED,
+                onLinkClick = {},
+            )
+        }
     }
 }

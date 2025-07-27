@@ -7,16 +7,18 @@ import io.github.droidkaigi.confsched.model.core.RoomType.RoomF
 import io.github.droidkaigi.confsched.model.core.defaultLang
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
-import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.number
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.DurationUnit
+import kotlin.time.Instant
 
 sealed class TimetableItem {
     abstract val id: TimetableItemId
@@ -40,8 +42,8 @@ sealed class TimetableItem {
     data class Session(
         override val id: TimetableItemId,
         override val title: MultiLangText,
-        override val startsAt: Instant,
-        override val endsAt: Instant,
+        @Contextual override val startsAt: Instant,
+        @Contextual override val endsAt: Instant,
         override val category: TimetableCategory,
         override val sessionType: TimetableSessionType,
         override val room: TimetableRoom,
@@ -60,8 +62,8 @@ sealed class TimetableItem {
     data class Special(
         override val id: TimetableItemId,
         override val title: MultiLangText,
-        override val startsAt: Instant,
-        override val endsAt: Instant,
+        @Contextual override val startsAt: Instant,
+        @Contextual override val endsAt: Instant,
         override val category: TimetableCategory,
         override val sessionType: TimetableSessionType,
         override val room: TimetableRoom,
@@ -77,8 +79,8 @@ sealed class TimetableItem {
     private val startsDateString: String by lazy {
         val localDate = startsAt.toLocalDateTime(TimeZone.currentSystemDefault())
         val year = localDate.year
-        val month = localDate.monthNumber.toString().padStart(2, '0')
-        val day = localDate.dayOfMonth.toString().padStart(2, '0')
+        val month = localDate.month.number.toString().padStart(2, '0')
+        val day = localDate.day.toString().padStart(2, '0')
         "$year.$month.$day"
     }
 
@@ -113,7 +115,7 @@ sealed class TimetableItem {
 
     val formattedMonthAndDayString: String by lazy {
         val localDate = startsAt.toLocalDateTime(TimeZone.currentSystemDefault())
-        "${localDate.monthNumber}".padStart(2, '0') + "/" + "${localDate.dayOfMonth}".padStart(2, '0')
+        "${localDate.month.number}".padStart(2, '0') + "/" + "${localDate.day}".padStart(2, '0')
     }
 
     val url: String
