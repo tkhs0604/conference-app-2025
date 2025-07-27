@@ -30,7 +30,9 @@ public struct RootScreen: View {
     @State private var selectedTab: TabType = .timetable
     private let presenter = RootPresenter()
     
-    public init() {}
+    public init() {
+        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "tab_inactive")
+    }
     
     public var body: some View {
         Group {
@@ -95,6 +97,7 @@ public struct RootScreen: View {
         .onChange(of: scenePhase) {
             ScenePhaseHandler.handle(scenePhase)
         }
+        .preferredColorScheme(.dark)
     }
 
     @ViewBuilder
@@ -108,7 +111,7 @@ public struct RootScreen: View {
                     } label: {
                         Image(item.tabImageName(selectedTab))
                             .renderingMode(.template)
-                            .tint(isSelected ? .accentColor : .white)
+                            .tint(isSelected ? .accentColor : Color("tab_inactive"))
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                             .contentShape(Rectangle())
                     }
