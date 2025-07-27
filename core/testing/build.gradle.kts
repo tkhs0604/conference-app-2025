@@ -17,7 +17,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.core.droidkaigiui)
-            implementation(projects.core.model)
+            api(projects.core.model)
             implementation(projects.core.common)
             implementation(projects.core.droidkaigiui)
             implementation(projects.core.designsystem)
