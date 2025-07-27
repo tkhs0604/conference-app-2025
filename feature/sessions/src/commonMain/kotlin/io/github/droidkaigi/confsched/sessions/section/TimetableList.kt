@@ -1,9 +1,14 @@
 package io.github.droidkaigi.confsched.sessions.section
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -18,6 +23,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiWindowSizeClassConstants
 import io.github.droidkaigi.confsched.droidkaigiui.session.TimetableItemCard
 import io.github.droidkaigi.confsched.model.sessions.Timetable
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
@@ -38,54 +44,74 @@ internal fun TimetableList(
 ) {
     val lazyListState = rememberLazyListState()
 
-    LazyColumn(
-        state = lazyListState,
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        contentPadding = contentPadding,
-        modifier = modifier,
-    ) {
-        itemsIndexed(
-            items = uiState.timetableItemMap.toList(),
-            key = { _, (timeSlot, _) -> timeSlot.key },
-        ) { index, (timeSlot, timetableItems) ->
-            var timetableTimeSlotHeight by remember { mutableIntStateOf(0) }
-            val timetableTimeSlotOffsetY by remember {
-                derivedStateOf {
-                    val itemInfo = lazyListState.layoutInfo.visibleItemsInfo.find { it.index == index }
-                    // If the item is not visible, keep the TimetableTimeSlot in its original position.
-                    if (itemInfo == null) return@derivedStateOf 0
+    BoxWithConstraints {
+        val isWideScreen = maxWidth >= KaigiWindowSizeClassConstants.WindowWidthSizeClassMediumMinWidth
+        val columnCount = if (isWideScreen) 2 else 1
 
-                    val itemTopOffset = itemInfo.offset
-                    // A positive offset means the top of the item is within the visible viewport.
-                    if (itemTopOffset > 0) return@derivedStateOf 0
+        LazyColumn(
+            state = lazyListState,
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            contentPadding = contentPadding,
+            modifier = modifier,
+        ) {
+            itemsIndexed(
+                items = uiState.timetableItemMap.toList(),
+                key = { _, (timeSlot, _) -> timeSlot.key },
+            ) { index, (timeSlot, timetableItems) ->
+                var timetableTimeSlotHeight by remember { mutableIntStateOf(0) }
+                val timetableTimeSlotOffsetY by remember {
+                    derivedStateOf {
+                        val itemInfo = lazyListState.layoutInfo.visibleItemsInfo.find { it.index == index }
+                        // If the item is not visible, keep the TimetableTimeSlot in its original position.
+                        if (itemInfo == null) return@derivedStateOf 0
 
-                    // Apply a vertical offset to TimetableTimeSlot to create a "sticky" effect while scrolling,
-                    // but clamp it to ensure it doesn't overflow beyond the bottom edge of its item.
-                    (-itemTopOffset).coerceAtMost(itemInfo.size - timetableTimeSlotHeight)
+                        val itemTopOffset = itemInfo.offset
+                        // A positive offset means the top of the item is within the visible viewport.
+                        if (itemTopOffset > 0) return@derivedStateOf 0
+
+                        // Apply a vertical offset to TimetableTimeSlot to create a "sticky" effect while scrolling,
+                        // but clamp it to ensure it doesn't overflow beyond the bottom edge of its item.
+                        (-itemTopOffset).coerceAtMost(itemInfo.size - timetableTimeSlotHeight)
+                    }
                 }
-            }
 
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-            ) {
-                TimetableTimeSlot(
-                    startTimeText = timeSlot.startTimeString,
-                    endTimeText = timeSlot.endTimeString,
-                    modifier = Modifier
-                        .onSizeChanged { timetableTimeSlotHeight = it.height }
-                        .graphicsLayer { translationY = timetableTimeSlotOffsetY.toFloat() }
-                )
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
                 ) {
-                    timetableItems.forEach { item ->
-                        TimetableItemCard(
-                            timetableItem = item,
-                            isBookmarked = uiState.timetable.bookmarks.contains(item.id),
-                            highlightWord = highlightWord,
-                            onBookmarkClick = onBookmarkClick,
-                            onTimetableItemClick = onTimetableItemClick,
-                        )
+                    TimetableTimeSlot(
+                        startTimeText = timeSlot.startTimeString,
+                        endTimeText = timeSlot.endTimeString,
+                        modifier = Modifier
+                            .onSizeChanged { timetableTimeSlotHeight = it.height }
+                            .graphicsLayer { translationY = timetableTimeSlotOffsetY.toFloat() }
+                    )
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        timetableItems.windowed(columnCount, columnCount, true).forEach { windowedItems ->
+                            Row(
+                                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                                modifier = Modifier.height(IntrinsicSize.Max),
+                            ) {
+                                windowedItems.forEach { item ->
+                                    TimetableItemCard(
+                                        timetableItem = item,
+                                        isBookmarked = uiState.timetable.bookmarks.contains(item.id),
+                                        highlightWord = highlightWord,
+                                        onBookmarkClick = onBookmarkClick,
+                                        onTimetableItemClick = onTimetableItemClick,
+                                        modifier = Modifier
+                                            .weight(1f)
+                                            .fillMaxHeight()
+                                    )
+                                }
+                                if (windowedItems.size < columnCount) {
+                                    repeat(columnCount - windowedItems.size) {
+                                        Spacer(Modifier.weight(1f))
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
