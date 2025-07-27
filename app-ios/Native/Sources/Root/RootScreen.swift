@@ -38,7 +38,7 @@ public struct RootScreen: View {
         Group {
             if #available(iOS 26, *) {
                 TabView(selection: $selectedTab) {
-                    Tab("Timeline",
+                    Tab("Timetable",
                         image: TabType.timetable.tabImageName(selectedTab),
                         value: .timetable
                     ) {
