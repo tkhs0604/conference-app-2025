@@ -6,8 +6,8 @@
         "components" : {
           "alpha" : "1.000",
           "blue" : "0xFF",
-          "green" : "0xC6",
-          "red" : "0xAE"
+          "green" : "0xE2",
+          "red" : "0xD8"
         }
       },
       "idiom" : "universal"
@@ -24,8 +24,8 @@
         "components" : {
           "alpha" : "1.000",
           "blue" : "0xFF",
-          "green" : "0xC6",
-          "red" : "0xAE"
+          "green" : "0xE2",
+          "red" : "0xD8"
         }
       },
       "idiom" : "universal"
@@ -42,8 +42,8 @@
         "components" : {
           "alpha" : "1.000",
           "blue" : "0xFF",
-          "green" : "0xC6",
-          "red" : "0xAE"
+          "green" : "0xE2",
+          "red" : "0xD8"
         }
       },
       "idiom" : "universal"

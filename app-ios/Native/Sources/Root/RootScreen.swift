@@ -2,7 +2,7 @@ import Dependencies
 import SwiftUI
 import HomeFeature
 
-private enum TabType {
+private enum TabType: CaseIterable, Hashable {
     case timetable
     case map
     case favorite
@@ -29,29 +29,44 @@ public struct RootScreen: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var selectedTab: TabType = .timetable
     private let presenter = RootPresenter()
-
+    
     public init() {}
-
+    
     public var body: some View {
         Group {
             if #available(iOS 26, *) {
                 TabView(selection: $selectedTab) {
-                    Tab("Timeline", image: TabType.timetable.tabImageName(selectedTab), value: .timetable) {
+                    Tab("Timeline",
+                        image: TabType.timetable.tabImageName(selectedTab),
+                        value: .timetable
+                    ) {
                         HomeScreen()
                     }
-                    Tab("Map", image: TabType.map.tabImageName(selectedTab), value: .map) {
+                    Tab("Map",
+                        image: TabType.map.tabImageName(selectedTab),
+                        value: .map
+                    ) {
                         // TODO: Replace correct screen
                         HomeScreen()
                     }
-                    Tab("Favorite", image: TabType.favorite.tabImageName(selectedTab), value: .favorite) {
+                    Tab("Favorite",
+                        image: TabType.favorite.tabImageName(selectedTab),
+                        value: .favorite
+                    ) {
                         // TODO: Replace correct screen
                         HomeScreen()
                     }
-                    Tab("Info", image: TabType.info.tabImageName(selectedTab), value: .info) {
+                    Tab("Info",
+                        image: TabType.info.tabImageName(selectedTab),
+                        value: .info
+                    ) {
                         // TODO: Replace correct screen
                         HomeScreen()
                     }
-                    Tab("Profile Card", image: TabType.profileCard.tabImageName(selectedTab), value: .info) {
+                    Tab("Profile Card",
+                        image: TabType.profileCard.tabImageName(selectedTab),
+                        value: .info
+                    ) {
                         // TODO: Replace correct screen
                         HomeScreen()
                     }
@@ -70,6 +85,7 @@ public struct RootScreen: View {
                     case .profileCard:
                         HomeScreen()
                     }
+                    tabBar
                 }
             }
         }
@@ -79,6 +95,39 @@ public struct RootScreen: View {
         .onChange(of: scenePhase) {
             ScenePhaseHandler.handle(scenePhase)
         }
+    }
+
+    @ViewBuilder
+    private var tabBar: some View {
+        GeometryReader { geometry in
+            HStack(spacing: 0) {
+                ForEach(TabType.allCases, id: \.self) { item in
+                    let isSelected = selectedTab == item
+                    Button {
+                        selectedTab = item
+                    } label: {
+                        Image(item.tabImageName(selectedTab))
+                            .renderingMode(.template)
+                            .tint(isSelected ? .accentColor : .white)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                            .contentShape(Rectangle())
+                    }
+                    .frame(
+                        maxWidth: geometry.size.width / CGFloat(TabType.allCases.count),
+                        maxHeight: .infinity,
+                        alignment: .center
+                    )
+                }
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height)
+        }
+        .frame(height: 64)
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, 12)
+        .background(.ultraThinMaterial, in: Capsule())
+        .overlay(Capsule().stroke(.gray, lineWidth: 1))
+        .environment(\.colorScheme, .dark)
+        .padding(.horizontal, 48)
     }
 }
 
