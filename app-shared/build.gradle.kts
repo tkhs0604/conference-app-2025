@@ -38,5 +38,3 @@ dependencies {
     androidMainImplementation(libs.navigation3Adaptive)
     androidMainImplementation(libs.androidxBrowser)
 }
-
-kotlin.compilerOptions.freeCompilerArgs.add("-opt-in=kotlin.time.ExperimentalTime")
