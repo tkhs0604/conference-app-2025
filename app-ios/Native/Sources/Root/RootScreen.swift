@@ -65,7 +65,7 @@ public struct RootScreen: View {
                     }
                     Tab("Profile Card",
                         image: TabType.profileCard.tabImageName(selectedTab),
-                        value: .info
+                        value: .profileCard
                     ) {
                         // TODO: Replace correct screen
                         HomeScreen()
