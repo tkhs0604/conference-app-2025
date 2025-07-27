@@ -50,9 +50,6 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-// TODO: change this value depending on platform
-const val isBlurSupported = true
-
 expect fun isBlurSupported(): Boolean
 
 @Composable
@@ -210,7 +207,7 @@ private fun SelectedTabCircleBlurredBackground(
         )
         val radius = size.height / 2
 
-        if (isBlurSupported) {
+        if (isBlurSupported()) {
             drawCircle(
                 color = color.copy(alpha = .6f),
                 radius = radius,
