@@ -128,18 +128,6 @@ fun GlassLikeBottomNavigationBar(
     }
 }
 
-@Preview
-@Composable
-private fun GlassLikeBottomNavigationBarPreview() {
-    KaigiPreviewContainer {
-        GlassLikeBottomNavigationBar(
-            hazeState = rememberHazeState(),
-            currentTab = MainScreenTab.Timetable,
-            onTabSelected = {},
-        )
-    }
-}
-
 @Composable
 private fun BottomNavigationBarItems(
     currentTab: MainScreenTab,
@@ -182,18 +170,6 @@ private fun BottomNavigationBarItems(
                 )
             }
         }
-    }
-}
-
-@Preview
-@Composable
-private fun BottomNavigationBarItemsPreview() {
-    KaigiPreviewContainer {
-        BottomNavigationBarItems(
-            currentTab = MainScreenTab.Timetable,
-            onTabSelected = {},
-            modifier = Modifier.padding(horizontal = 12.dp),
-        )
     }
 }
 
@@ -244,18 +220,6 @@ private fun SelectedTabCircleBlurredBackground(
     }
 }
 
-@Preview
-@Composable
-private fun SelectedTabCircleBlurredBackgroundPreview() {
-    KaigiPreviewContainer {
-        SelectedTabCircleBlurredBackground(
-            animatedSelectedTabIndex = 0f,
-            color = MaterialTheme.colorScheme.primaryFixed,
-            modifier = Modifier.fillMaxWidth().height(64.dp),
-        )
-    }
-}
-
 @Composable
 private fun SelectedTabBottomLineIndicator(
     color: Color,
@@ -288,6 +252,42 @@ private fun SelectedTabBottomLineIndicator(
                     intervals = floatArrayOf(length / 2, length),
                 ),
             ),
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun GlassLikeBottomNavigationBarPreview() {
+    KaigiPreviewContainer {
+        GlassLikeBottomNavigationBar(
+            hazeState = rememberHazeState(),
+            currentTab = MainScreenTab.Timetable,
+            onTabSelected = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun BottomNavigationBarItemsPreview() {
+    KaigiPreviewContainer {
+        BottomNavigationBarItems(
+            currentTab = MainScreenTab.Timetable,
+            onTabSelected = {},
+            modifier = Modifier.padding(horizontal = 12.dp),
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun SelectedTabCircleBlurredBackgroundPreview() {
+    KaigiPreviewContainer {
+        SelectedTabCircleBlurredBackground(
+            animatedSelectedTabIndex = 0f,
+            color = MaterialTheme.colorScheme.primaryFixed,
+            modifier = Modifier.fillMaxWidth().height(64.dp),
         )
     }
 }
