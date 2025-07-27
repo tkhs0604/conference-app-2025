@@ -44,6 +44,7 @@ navigationeventDesktop = "1.0.0-alpha04"
 composeHotReload = "1.0.0-beta04"
 coil = "3.2.0"
 
+haze = "1.6.9"
 [libraries]
 # gradle plugins
 androidGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
@@ -122,6 +123,7 @@ coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coilNetwork = { module = "io.coil-kt.coil3:coil-network-ktor2", version.ref = "coil" }
 coilTest = { module = "io.coil-kt.coil3:coil-test", version.ref = "coil" }
 
+haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
 [plugins]
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
