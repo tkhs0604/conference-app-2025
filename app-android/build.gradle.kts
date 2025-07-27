@@ -69,9 +69,9 @@ dependencies {
     implementation(projects.feature.contributors)
 
     implementation(compose.runtime)
-    implementation(compose.material3)
     implementation(compose.components.uiToolingPreview)
     implementation(compose.materialIconsExtended)
+    implementation(libs.material3)
     debugImplementation(compose.uiTooling)
 
     implementation(libs.androidxActivityCompose)

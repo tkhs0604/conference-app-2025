@@ -11,10 +11,10 @@ plugins {
 
 dependencies {
     commonMainImplementation(compose.ui)
-    commonMainImplementation(compose.material3)
     commonMainImplementation(compose.components.uiToolingPreview)
     commonMainImplementation(compose.materialIconsExtended)
     commonMainImplementation(libs.library("rin"))
+    commonMainImplementation(libs.library("material3"))
 }
 
 dependencies {
