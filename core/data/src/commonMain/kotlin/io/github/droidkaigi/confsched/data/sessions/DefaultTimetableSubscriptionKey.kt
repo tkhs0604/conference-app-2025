@@ -22,12 +22,12 @@ import io.github.droidkaigi.confsched.model.sessions.TimetableSessionType
 import io.github.droidkaigi.confsched.model.sessions.TimetableSpeaker
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.flow
-import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import soil.query.SubscriptionId
 import soil.query.buildSubscriptionKey
+import kotlin.time.Instant
 
 @ContributesBinding(DataScope::class, binding = binding<TimetableSubscriptionKey>())
 @Inject
