@@ -23,14 +23,14 @@ jobs:
 
     steps:
       - name: Checkout for getting base branch HEAD commit
-        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: ${{ github.base_ref }}
       - name: Get base branch HEAD commit for comparison
         id: get_base_branch_head
         run: echo "sha=$(git rev-parse origin/${{ github.base_ref }})" >> "$GITHUB_OUTPUT"
       - name: Checkout merged commit with base and pull-request branch
-        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - uses: ./.github/actions/setup-java
       - name: Wait for base unit-test to succeed before downloading base branch screenshot artifact
         uses: lewagon/wait-on-check-action@ccfb013c15c8afb7bf2b7c028fb74dc5a068cccc # v1.3.4
