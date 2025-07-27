@@ -32,4 +32,6 @@ kotlin {
             implementation(libs.androidxAppCompat)
         }
     }
+
+    compilerOptions.freeCompilerArgs.add("-opt-in=kotlin.time.ExperimentalTime")
 }
