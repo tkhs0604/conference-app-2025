@@ -130,10 +130,6 @@ extension Model.DroidKaigi2024Day {
 // MARK: - TimetableItem Extension
 
 extension Model.TimetableItem {
-    public var day: Model.DroidKaigi2024Day? {
-        Model.DroidKaigi2024Day.ofOrNull(time: startsAt)
-    }
-
     public var startsLocalTime: Date {
         startsAt
     }
