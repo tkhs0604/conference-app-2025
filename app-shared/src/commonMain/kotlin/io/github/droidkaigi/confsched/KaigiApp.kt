@@ -5,14 +5,16 @@ import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entry
 import androidx.navigation3.runtime.entryProvider
-import androidx.navigation3.ui.SceneStrategy
 import io.github.droidkaigi.confsched.contributors.ContributorsScreenRoot
 import io.github.droidkaigi.confsched.contributors.rememberContributorsScreenContextRetained
 import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
 import io.github.droidkaigi.confsched.droidkaigiui.NavDisplayWithSharedAxisX
+import io.github.droidkaigi.confsched.droidkaigiui.navigation.listDetailSceneStrategyDetailPaneMetaData
+import io.github.droidkaigi.confsched.droidkaigiui.navigation.listDetailSceneStrategyListPaneMetaData
+import io.github.droidkaigi.confsched.droidkaigiui.navigation.rememberNavBackStack
+import io.github.droidkaigi.confsched.droidkaigiui.navigation.sceneStrategy
 import io.github.droidkaigi.confsched.favorites.FavoritesScreenRoot
 import io.github.droidkaigi.confsched.favorites.rememberFavoritesScreenContextRetained
 import io.github.droidkaigi.confsched.navkey.ContributorsNavKey
@@ -32,23 +34,13 @@ import soil.query.annotation.ExperimentalSoilQueryApi
 import soil.query.compose.SwrClientProvider
 
 @Composable
-expect fun rememberBackStack(elements: NavKey): MutableList<NavKey>
-
-@Composable
-expect fun sceneStrategy(): SceneStrategy<NavKey>
-
-expect fun listDetailSceneStrategyListPaneMetaData(): Map<String, Any>
-
-expect fun listDetailSceneStrategyDetailPaneMetaData(): Map<String, Any>
-
-@Composable
 expect fun rememberExternalNavController(): ExternalNavController
 
 context(appGraph: AppGraph)
 @OptIn(ExperimentalMaterial3ExpressiveApi::class, ExperimentalSoilQueryApi::class)
 @Composable
 fun KaigiApp() {
-    val backStack = rememberBackStack(TimetableNavKey)
+    val backStack = rememberNavBackStack(TimetableNavKey)
     val externalNavController = rememberExternalNavController()
 
     SwrClientProvider(SwrCachePlus(SwrCacheScope())) {

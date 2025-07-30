@@ -19,12 +19,9 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation3.runtime.NavEntry
-import androidx.navigation3.runtime.NavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.navigation3.ui.SceneStrategy
-
-@Composable
-expect fun platformEntryDecorators(): List<NavEntryDecorator<*>>
+import io.github.droidkaigi.confsched.droidkaigiui.navigation.platformEntryDecorators
 
 @Composable
 fun <T : Any> NavDisplayWithSharedAxisX(

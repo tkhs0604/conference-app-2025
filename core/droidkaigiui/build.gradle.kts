@@ -22,6 +22,7 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.lifecycleViewmodelNavigation3)
+            implementation(libs.navigation3Adaptive)
         }
     }
 }

@@ -7,29 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation3.runtime.NavKey
-import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.SceneStrategy
-
-@Composable
-actual fun rememberBackStack(elements: NavKey): MutableList<NavKey> {
-    return rememberNavBackStack(elements)
-}
-
-@OptIn(ExperimentalMaterial3AdaptiveApi::class)
-@Composable
-actual fun sceneStrategy(): SceneStrategy<NavKey> {
-    return rememberListDetailSceneStrategy()
-}
-
-@OptIn(ExperimentalMaterial3AdaptiveApi::class)
-actual fun listDetailSceneStrategyListPaneMetaData(): Map<String, Any> {
-    return ListDetailSceneStrategy.listPane()
-}
-
-@OptIn(ExperimentalMaterial3AdaptiveApi::class)
-actual fun listDetailSceneStrategyDetailPaneMetaData(): Map<String, Any> {
-    return ListDetailSceneStrategy.detailPane()
-}
 
 @Composable
 actual fun rememberExternalNavController(): ExternalNavController {
