@@ -1,0 +1,84 @@
+package io.github.droidkaigi.confsched.naventry
+
+import androidx.navigation3.runtime.EntryProviderBuilder
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.runtime.entry
+import io.github.droidkaigi.confsched.AppGraph
+import io.github.droidkaigi.confsched.droidkaigiui.navigation.listDetailSceneStrategyDetailPaneMetaData
+import io.github.droidkaigi.confsched.droidkaigiui.navigation.listDetailSceneStrategyListPaneMetaData
+import io.github.droidkaigi.confsched.model.sessions.TimetableItem
+import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
+import io.github.droidkaigi.confsched.navkey.SearchNavKey
+import io.github.droidkaigi.confsched.navkey.TimetableItemDetailNavKey
+import io.github.droidkaigi.confsched.navkey.TimetableNavKey
+import io.github.droidkaigi.confsched.sessions.SearchScreenRoot
+import io.github.droidkaigi.confsched.sessions.TimetableItemDetailScreenRoot
+import io.github.droidkaigi.confsched.sessions.TimetableScreenRoot
+import io.github.droidkaigi.confsched.sessions.rememberSearchScreenContextRetained
+import io.github.droidkaigi.confsched.sessions.rememberTimetableItemDetailScreenContextRetained
+import io.github.droidkaigi.confsched.sessions.rememberTimetableScreenContextRetained
+
+context(appGraph: AppGraph)
+fun EntryProviderBuilder<NavKey>.sessionEntries(
+    onBackClick: () -> Unit,
+    onAddCalendarClick: (TimetableItem) -> Unit,
+    onShareClick: (TimetableItem) -> Unit,
+    onLinkClick: (String) -> Unit,
+    onSearchClick: () -> Unit,
+    onTimetableItemClick: (TimetableItemId) -> Unit
+) {
+    timetableEntry(
+        onSearchClick = onSearchClick,
+        onTimetableItemClick = onTimetableItemClick
+    )
+    timetableItemDetailEntry(
+        onBackClick = onBackClick,
+        onAddCalendarClick = onAddCalendarClick,
+        onShareClick = onShareClick,
+        onLinkClick = onLinkClick
+    )
+    searchEntry()
+}
+
+context(appGraph: AppGraph)
+fun EntryProviderBuilder<NavKey>.timetableEntry(
+    onSearchClick: () -> Unit,
+    onTimetableItemClick: (TimetableItemId) -> Unit
+) {
+    entry<TimetableNavKey>(metadata = listDetailSceneStrategyListPaneMetaData()) {
+        with(appGraph.rememberTimetableScreenContextRetained()) {
+            TimetableScreenRoot(
+                onSearchClick = onSearchClick,
+                onTimetableItemClick = onTimetableItemClick,
+            )
+        }
+    }
+}
+
+context(appGraph: AppGraph)
+fun EntryProviderBuilder<NavKey>.timetableItemDetailEntry(
+    onBackClick: () -> Unit,
+    onAddCalendarClick: (TimetableItem) -> Unit,
+    onShareClick: (TimetableItem) -> Unit,
+    onLinkClick: (String) -> Unit
+) {
+    entry<TimetableItemDetailNavKey>(metadata = listDetailSceneStrategyDetailPaneMetaData()) {
+        with(appGraph.rememberTimetableItemDetailScreenContextRetained(it.id)) {
+            TimetableItemDetailScreenRoot(
+                onBackClick = onBackClick,
+                onAddCalendarClick = onAddCalendarClick,
+                onShareClick = onShareClick,
+                onLinkClick = onLinkClick
+            )
+        }
+    }
+}
+
+context(appGraph: AppGraph)
+fun EntryProviderBuilder<NavKey>.searchEntry() {
+    entry<SearchNavKey> {
+        with(appGraph.rememberSearchScreenContextRetained()) {
+            SearchScreenRoot()
+        }
+    }
+}
