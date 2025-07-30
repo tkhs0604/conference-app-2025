@@ -39,6 +39,7 @@ public struct HomeScreen: View {
                         case .grid:
                             TimetableGridView(
                                 timetableItems: timetableItems,
+                                rooms: presenter.timetable.rooms,
                                 onItemTap: { item in
                                     presenter.timetableItemTapped(item)
                                 },
@@ -49,12 +50,6 @@ public struct HomeScreen: View {
                         }
                     }
                 }
-
-//                FavoriteAnimationView(
-//                    targetTimetableItemId: targetTimetableItemId,
-//                    targetLocationPoint: targetLocationPoint,
-//                    animationProgress: animationProgress
-//                )
             }
             .background(
                 Image("background_night", bundle: .module)
