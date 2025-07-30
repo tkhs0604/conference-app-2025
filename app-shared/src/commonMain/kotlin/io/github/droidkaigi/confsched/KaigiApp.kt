@@ -10,8 +10,11 @@ import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
 import io.github.droidkaigi.confsched.droidkaigiui.navigation.NavDisplayWithSharedAxisX
 import io.github.droidkaigi.confsched.droidkaigiui.navigation.rememberNavBackStack
 import io.github.droidkaigi.confsched.droidkaigiui.navigation.sceneStrategy
+import io.github.droidkaigi.confsched.naventry.aboutEntry
 import io.github.droidkaigi.confsched.naventry.contributorsEntry
+import io.github.droidkaigi.confsched.naventry.eventMapEntry
 import io.github.droidkaigi.confsched.naventry.favoritesEntry
+import io.github.droidkaigi.confsched.naventry.profileCardNavEntry
 import io.github.droidkaigi.confsched.naventry.sessionEntries
 import io.github.droidkaigi.confsched.navkey.SearchNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableItemDetailNavKey
@@ -49,6 +52,9 @@ fun KaigiApp() {
                         )
                         contributorsEntry()
                         favoritesEntry()
+                        eventMapEntry()
+                        aboutEntry()
+                        profileCardNavEntry()
                     },
                     modifier = Modifier.fillMaxSize()
                 )
