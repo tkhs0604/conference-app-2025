@@ -14,11 +14,12 @@ import io.github.droidkaigi.confsched.naventry.aboutEntry
 import io.github.droidkaigi.confsched.naventry.contributorsEntry
 import io.github.droidkaigi.confsched.naventry.eventMapEntry
 import io.github.droidkaigi.confsched.naventry.favoritesEntry
+import io.github.droidkaigi.confsched.naventry.mainNestedEntry
 import io.github.droidkaigi.confsched.naventry.profileCardNavEntry
 import io.github.droidkaigi.confsched.naventry.sessionEntries
+import io.github.droidkaigi.confsched.navkey.MainNavKey
 import io.github.droidkaigi.confsched.navkey.SearchNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableItemDetailNavKey
-import io.github.droidkaigi.confsched.navkey.TimetableNavKey
 import soil.query.SwrCachePlus
 import soil.query.SwrCacheScope
 import soil.query.annotation.ExperimentalSoilQueryApi
@@ -31,7 +32,7 @@ context(appGraph: AppGraph)
 @OptIn(ExperimentalMaterial3ExpressiveApi::class, ExperimentalSoilQueryApi::class)
 @Composable
 fun KaigiApp() {
-    val backStack = rememberNavBackStack(TimetableNavKey)
+    val backStack = rememberNavBackStack(MainNavKey)
     val externalNavController = rememberExternalNavController()
 
     SwrClientProvider(SwrCachePlus(SwrCacheScope())) {
@@ -55,6 +56,7 @@ fun KaigiApp() {
                         eventMapEntry()
                         aboutEntry()
                         profileCardNavEntry()
+                        mainNestedEntry(externalNavController = externalNavController)
                     },
                     modifier = Modifier.fillMaxSize()
                 )
