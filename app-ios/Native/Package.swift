@@ -22,7 +22,11 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Component"
+            name: "Component",
+            dependencies: [
+                .target(name: "Extension"),
+                .product(name: "Model", package: "Core"),
+            ]
         ),
         .testTarget(
             name: "ComponentTests",
@@ -48,7 +52,10 @@ let package = Package(
             ]
         ),
 
-        .featureTarget(name: "Home"),
+        .featureTarget(name: "Home", dependencies: [
+            .target(name: "TimetableDetailFeature"),
+        ]),
+        .featureTarget(name: "TimetableDetail"),
 
         .target(
             name: "Theme",

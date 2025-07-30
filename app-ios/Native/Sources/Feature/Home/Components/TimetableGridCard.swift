@@ -5,9 +5,9 @@ import Presentation
 import Theme
 
 struct TimetableGridCard: View {
-    let timetableItem: TimetableItem
+    let timetableItem: any TimetableItem
     let cellCount: Int
-    let onTap: (TimetableItem) -> Void
+    let onTap: (any TimetableItem) -> Void
     
     var body: some View {
         Button(action: {

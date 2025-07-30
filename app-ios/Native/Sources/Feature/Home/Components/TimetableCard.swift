@@ -2,6 +2,7 @@ import Model
 import SwiftUI
 import Theme
 import Presentation
+import Component
 
 struct TimetableCard: View {
     let timetableItem: any TimetableItem
@@ -82,7 +83,7 @@ struct TimetableCard: View {
     
     private var speakersList: some View {
         VStack(alignment: .leading, spacing: 4) {
-            ForEach(timetableItem.speakers) { speaker in
+            ForEach(timetableItem.speakers, id: \.id) { speaker in
                 HStack(spacing: 8) {
                     CircularUserIcon(imageUrl: speaker.imageUrl)
                         .frame(width: 32, height: 32)

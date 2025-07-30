@@ -22,7 +22,6 @@ struct TimeGroupList: View {
                 Text(timeGroup.endsTimeString)
                     .font(.system(size: 16, weight: .medium))
                     .foregroundStyle(AssetColors.onSurface.swiftUIColor)
-
                 Spacer()
             }
             .frame(width: 50)

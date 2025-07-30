@@ -8,7 +8,6 @@ struct DashedDivider: View {
         let shape = LineShape(axis: axis)
             .stroke(style: StrokeStyle(dash: [2]))
             .foregroundStyle(AssetColors.outlineVariant.swiftUIColor)
-
         if axis == .horizontal {
             shape.frame(height: 1)
         } else {
