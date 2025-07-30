@@ -1,3 +1,4 @@
+import Dependencies
 import Model
 import Observation
 import SwiftUI
@@ -18,45 +19,50 @@ public struct HomeScreen: View {
         let timetableItems = presenter.timetable.dayTimetable[selectedDay.model] ?? []
 
         NavigationStack {
-            ZStack {
-                VStack(spacing: 0) {
-                    dayTabBar
-                    
-                    if timetableMode == .list {
-                        TimetableListView(
-                            timetableItems: timetableItems,
-                            onItemTap: { item in
-                                presenter.timetableItemTapped(item)
-                            },
-                            onFavoriteTap: { item, _ in
-                                presenter.timetable.toggleFavorite(item)
-                            },
-                            animationTrigger: { timetableItem, location in
-                                toggleFavorite(timetableItem: timetableItem, adjustedLocationPoint: location)
-                            }
-                        )
-                    } else {
-                        TimetableGridView(
-                            timetableItems: timetableItems,
-                            onItemTap: { item in
-                                presenter.timetableItemTapped(item)
-                            },
-                            isFavorite: { itemId in
-                                presenter.timetable.isFavorite(itemId)
-                            }
-                        )
+            ScrollView {
+                LazyVStack(pinnedViews: [.sectionHeaders]) {
+                    Section(header: dayTabBar) {
+                        switch timetableMode {
+                        case .list:
+                            TimetableListView(
+                                timetableItems: timetableItems,
+                                onItemTap: { item in
+                                    presenter.timetableItemTapped(item)
+                                },
+                                onFavoriteTap: { item, _ in
+                                    presenter.timetable.toggleFavorite(item)
+                                },
+                                animationTrigger: { timetableItem, location in
+                                    toggleFavorite(timetableItem: timetableItem, adjustedLocationPoint: location)
+                                }
+                            )
+                        case .grid:
+                            TimetableGridView(
+                                timetableItems: timetableItems,
+                                onItemTap: { item in
+                                    presenter.timetableItemTapped(item)
+                                },
+                                isFavorite: { itemId in
+                                    presenter.timetable.isFavorite(itemId)
+                                }
+                            )
+                        }
                     }
                 }
-                .background(Color(.systemBackground))
-                
-                FavoriteAnimationView(
-                    targetTimetableItemId: targetTimetableItemId,
-                    targetLocationPoint: targetLocationPoint,
-                    animationProgress: animationProgress
-                )
+
+//                FavoriteAnimationView(
+//                    targetTimetableItemId: targetTimetableItemId,
+//                    targetLocationPoint: targetLocationPoint,
+//                    animationProgress: animationProgress
+//                )
             }
+            .background(
+                Image("background_night", bundle: .module)
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+            )
             .navigationTitle("Timetable")
-            .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack {
@@ -64,7 +70,7 @@ public struct HomeScreen: View {
                             presenter.searchTapped()
                         }) {
                             Image(systemName: "magnifyingglass")
-                                .foregroundColor(Color(.label))
+                                .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                                 .frame(width: 40, height: 40)
                         }
                         
@@ -72,53 +78,31 @@ public struct HomeScreen: View {
                             timetableMode = timetableMode == .list ? .grid : .list
                         }) {
                             Image(systemName: timetableMode == .list ? "square.grid.2x2" : "list.bullet")
-                                .foregroundColor(Color(.label))
+                                .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                                 .frame(width: 40, height: 40)
                         }
                     }
                 }
             }
         }
+        .toolbarBackground(.hidden, for: .navigationBar)
         .task {
             await presenter.loadInitial()
         }
     }
     
     private var dayTabBar: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 20) {
-                ForEach(DayTab.allCases) { day in
-                    Button(action: {
-                        selectedDay = day
-                    }) {
-                        VStack(spacing: 4) {
-                            Text(day.rawValue)
-                                .font(.system(size: 16, weight: .medium))
-                                .foregroundColor(selectedDay == day ? Color.blue : Color(.label))
-                            
-                            if selectedDay == day {
-                                Rectangle()
-                                    .fill(Color.blue)
-                                    .frame(height: 2)
-                            } else {
-                                Rectangle()
-                                    .fill(Color.clear)
-                                    .frame(height: 2)
-                            }
-                        }
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                }
-                
-                Spacer()
+        Picker("Day", selection: $selectedDay) {
+            ForEach(DayTab.allCases) { day in
+                Text(day.rawValue).tag(day)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 8)
         }
-        .background(Color(.secondarySystemBackground))
+        .pickerStyle(SegmentedPickerStyle())
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
     }
     
-    private func toggleFavorite(timetableItem: TimetableItem, adjustedLocationPoint: CGPoint?) {
+    private func toggleFavorite(timetableItem: any TimetableItem, adjustedLocationPoint: CGPoint?) {
         targetLocationPoint = adjustedLocationPoint
         targetTimetableItemId = timetableItem.id.value
 

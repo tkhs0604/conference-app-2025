@@ -6,7 +6,7 @@ struct TimetableListView: View {
     let timetableItems: [TimetableTimeGroupItems]
     let onItemTap: (TimetableItemWithFavorite) -> Void
     let onFavoriteTap: (TimetableItemWithFavorite, CGPoint?) -> Void
-    let animationTrigger: (TimetableItem, CGPoint?) -> Void
+    let animationTrigger: (any TimetableItem, CGPoint?) -> Void
     
     var body: some View {
         ScrollView {
@@ -25,11 +25,6 @@ struct TimetableListView: View {
                             }
                         }
                     )
-                    
-                    if timeGroup != timetableItems.last {
-                        Divider()
-                            .padding(.horizontal, 16)
-                    }
                 }
             }
             .padding(.bottom, 60)

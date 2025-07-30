@@ -13,16 +13,16 @@ struct TimeGroupList: View {
             VStack {
                 Text(timeGroup.startsTimeString)
                     .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(Color(.label))
-                
+                    .foregroundStyle(AssetColors.onSurface.swiftUIColor)
+
                 Text("|")
                     .font(.system(size: 8))
-                    .foregroundColor(Color(.secondaryLabel))
-                
+                    .foregroundStyle(AssetColors.outline.swiftUIColor)
+
                 Text(timeGroup.endsTimeString)
                     .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(Color(.label))
-                
+                    .foregroundStyle(AssetColors.onSurface.swiftUIColor)
+
                 Spacer()
             }
             .frame(width: 50)

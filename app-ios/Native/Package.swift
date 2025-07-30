@@ -18,6 +18,7 @@ let package = Package(
     dependencies: [
         .package(path: "../Core"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies.git", exact: "1.9.2"),
+        .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", from: "6.6.2"),
     ],
     targets: [
         .target(
@@ -49,7 +50,14 @@ let package = Package(
 
         .featureTarget(name: "Home"),
 
-        .target(name: "Theme"),
+        .target(
+            name: "Theme",
+            resources: [
+                .process("Resources"),
+                .process("swiftgen.yml"),
+            ],
+            plugins: [.plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")]
+        ),
         .binaryTarget(name: "KMPFramework", path: "Sources/KMPFramework/shared.xcframework"),
     ],
     swiftLanguageModes: [.v6]
@@ -69,7 +77,10 @@ extension Target {
                 .target(name: "Extension"),
                 .target(name: "Theme"),
             ],
-            path: "Sources/Feature/\(name)"
+            path: "Sources/Feature/\(name)",
+            resources: [
+                .process("Resources")
+            ]
         )
     }
 }

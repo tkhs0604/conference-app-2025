@@ -20,7 +20,7 @@ struct TimetableCard: View {
                 
                 Text(timetableItem.title.currentLangTitle)
                     .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(Color(.label))
+                    .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
                 
@@ -30,10 +30,9 @@ struct TimetableCard: View {
             }
             .padding(12)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color(.systemBackground))
             .overlay(
                 RoundedRectangle(cornerRadius: 4)
-                    .stroke(Color(.separator).opacity(0.5), lineWidth: 1)
+                    .stroke(AssetColors.outlineVariant.swiftUIColor, lineWidth: 1)
             )
             .cornerRadius(4)
         }
@@ -86,7 +85,7 @@ struct TimetableCard: View {
                     
                     Text(speaker.name)
                         .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(Color(.label))
+                        .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                 }
             }
         }
@@ -99,11 +98,13 @@ struct RoomTag: View {
     var body: some View {
         Text(room.displayName)
             .font(.system(size: 12, weight: .medium))
-            .foregroundColor(.white)
+            .foregroundStyle(room.color)
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
-            .background(room.color)
-            .cornerRadius(4)
+            .overlay(
+                RoundedRectangle(cornerRadius: 4)
+                    .stroke(room.color, lineWidth: 1)
+            )
     }
 }
 
@@ -113,12 +114,12 @@ struct LanguageTag: View {
     var body: some View {
         Text(language.displayLanguage)
             .font(.system(size: 12, weight: .medium))
-            .foregroundColor(Color(.secondaryLabel))
+            .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
             .overlay(
                 RoundedRectangle(cornerRadius: 4)
-                    .stroke(Color(.separator), lineWidth: 1)
+                    .stroke(AssetColors.outline.swiftUIColor, lineWidth: 1)
             )
     }
 }
@@ -134,13 +135,13 @@ struct CircularUserIcon: View {
                     .aspectRatio(contentMode: .fill)
             } placeholder: {
                 Image(systemName: "person.circle.fill")
-                    .foregroundColor(Color(.secondaryLabel))
+                    .foregroundStyle(AssetColors.outline.swiftUIColor)
             }
             .clipShape(Circle())
         } else {
             Image(systemName: "person.circle.fill")
                 .resizable()
-                .foregroundColor(Color(.secondaryLabel))
+                .foregroundStyle(AssetColors.outline.swiftUIColor)
         }
     }
 }
