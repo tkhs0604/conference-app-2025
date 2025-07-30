@@ -2,6 +2,7 @@ import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
     id("droidkaigi.primitive.kmp")
+    id("droidkaigi.primitive.kmp.ios")
     id("droidkaigi.primitive.metro")
     id("droidkaigi.primitive.detekt")
     alias(libs.plugins.jetbrainsCompose)
