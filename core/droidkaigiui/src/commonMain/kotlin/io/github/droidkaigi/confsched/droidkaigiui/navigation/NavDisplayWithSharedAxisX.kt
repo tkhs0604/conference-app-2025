@@ -51,7 +51,6 @@ fun <T : Any> NavDisplayWithSharedAxisX(
             )
         },
         predictivePopTransitionSpec = {
-            // FIXME: Seems like this is not working as expected.
             ContentTransform(
                 targetContentEnter = materialSharedAxisXIn(forward = false, slideDistance),
                 initialContentExit = materialSharedAxisXOut(forward = false, slideDistance),
