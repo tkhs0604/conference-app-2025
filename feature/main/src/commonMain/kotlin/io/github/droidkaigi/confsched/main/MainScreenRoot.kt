@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
-import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
 import dev.chrisbanes.haze.rememberHazeState
 import io.github.droidkaigi.confsched.droidkaigiui.navigation.NavDisplayWithSharedAxisX
@@ -41,7 +40,6 @@ fun MainScreenRoot(
                             bottom = 32.dp,
                         )
                         .safeDrawingPadding()
-                        .hazeEffect(hazeState)
                 )
             }
         }
