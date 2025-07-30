@@ -10,7 +10,7 @@ import androidx.navigation3.runtime.entryProvider
 import io.github.droidkaigi.confsched.contributors.ContributorsScreenRoot
 import io.github.droidkaigi.confsched.contributors.rememberContributorsScreenContextRetained
 import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
-import io.github.droidkaigi.confsched.droidkaigiui.NavDisplayWithSharedAxisX
+import io.github.droidkaigi.confsched.droidkaigiui.navigation.NavDisplayWithSharedAxisX
 import io.github.droidkaigi.confsched.droidkaigiui.navigation.listDetailSceneStrategyDetailPaneMetaData
 import io.github.droidkaigi.confsched.droidkaigiui.navigation.listDetailSceneStrategyListPaneMetaData
 import io.github.droidkaigi.confsched.droidkaigiui.navigation.rememberNavBackStack

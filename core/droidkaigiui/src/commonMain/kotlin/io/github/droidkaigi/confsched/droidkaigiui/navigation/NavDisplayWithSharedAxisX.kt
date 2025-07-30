@@ -1,4 +1,4 @@
-package io.github.droidkaigi.confsched.droidkaigiui
+package io.github.droidkaigi.confsched.droidkaigiui.navigation
 
 import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.EnterTransition
@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import androidx.navigation3.ui.SceneStrategy
-import io.github.droidkaigi.confsched.droidkaigiui.navigation.platformEntryDecorators
 
 @Composable
 fun <T : Any> NavDisplayWithSharedAxisX(
