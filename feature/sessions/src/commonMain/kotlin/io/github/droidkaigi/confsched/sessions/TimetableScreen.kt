@@ -1,17 +1,22 @@
 package io.github.droidkaigi.confsched.sessions
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -21,6 +26,7 @@ import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,6 +38,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.layout.CollapsingHeaderLayout
+import io.github.droidkaigi.confsched.droidkaigiui.layout.CollapsingHeaderState
+import io.github.droidkaigi.confsched.droidkaigiui.layout.rememberCollapsingHeaderEnterAlwaysState
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
 import io.github.droidkaigi.confsched.model.sessions.Timetable
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
@@ -55,76 +64,111 @@ fun TimetableScreen(
     onTimetableUiChangeClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val collapsingState = rememberCollapsingHeaderEnterAlwaysState()
+    val lazyListState = rememberLazyListState()
+
+    val completelyScrolledToTop by remember {
+        derivedStateOf {
+            lazyListState.firstVisibleItemIndex == 0 &&
+                    lazyListState.firstVisibleItemScrollOffset == 0 &&
+                    collapsingState.collapsingOffsetY == 0f
+        }
+    }
+
+    val headerBackgroundColor by animateColorAsState(
+        targetValue = if (completelyScrolledToTop) Color.Transparent else MaterialTheme.colorScheme.surface,
+    )
+
     Scaffold(
         topBar = {
             TimetableTopAppBar(
                 timetableUiType = uiState.uiType,
                 onSearchClick = onSearchClick,
                 onUiTypeChangeClick = onTimetableUiChangeClick,
+                modifier = Modifier.background(headerBackgroundColor),
             )
         },
         containerColor = Color.Transparent,
         modifier = modifier.fillMaxSize(),
     ) { paddingValues ->
         Background()
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxSize().padding(paddingValues)
-        ) {
-            var selectedDay by remember { mutableStateOf(DroidKaigi2025Day.ConferenceDay1) }
-            val conferenceDays = listOf(DroidKaigi2025Day.ConferenceDay1, DroidKaigi2025Day.ConferenceDay2)
+        CollapsingHeaderLayout(
+            state = collapsingState,
+            headerContent = {
+                var selectedDay by remember { mutableStateOf(DroidKaigi2025Day.ConferenceDay1) }
+                val conferenceDays = listOf(DroidKaigi2025Day.ConferenceDay1, DroidKaigi2025Day.ConferenceDay2)
 
-            SingleChoiceSegmentedButtonRow {
-                conferenceDays.forEachIndexed { index, droidKaigi2025Day ->
-                    SegmentedButton(
-                        shape = SegmentedButtonDefaults.itemShape(
-                            index = index,
-                            count = conferenceDays.size,
-                        ),
-                        onClick = { selectedDay = droidKaigi2025Day },
-                        colors = SegmentedButtonDefaults.colors(
-                            inactiveContainerColor = MaterialTheme.colorScheme.surface,
-                        ),
-                        selected = selectedDay == droidKaigi2025Day,
-                        modifier = Modifier
-                            .height(TimetableDefaults.dayTabHeight)
-                            .width(TimetableDefaults.dayTabWidth)
-                    ) {
-                        Text(droidKaigi2025Day.monthAndDay())
-                    }
-                }
-            }
-            when (uiState.timetable) {
-                is TimetableUiState.Empty -> Text("Empty")
-                is TimetableUiState.GridTimetable -> {
-                    LazyColumn(Modifier.fillMaxSize()) {
-                        uiState.timetable.timetableGridUiState.forEach { (day, timetableDayData) ->
-                            item {
-                                Text(day.name)
-                            }
-                            items(timetableDayData.timetable.timetableItems) { item ->
-                                TextButton(
-                                    onClick = {
-                                        onTimetableItemClick(item.id)
-                                    }
-                                ) { Text(item.title.jaTitle) }
-                            }
-                            item {
-                                HorizontalDivider()
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(headerBackgroundColor)
+                        .padding(vertical = 16.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    SingleChoiceSegmentedButtonRow {
+                        conferenceDays.forEachIndexed { index, droidKaigi2025Day ->
+                            SegmentedButton(
+                                shape = SegmentedButtonDefaults.itemShape(
+                                    index = index,
+                                    count = conferenceDays.size,
+                                ),
+                                onClick = { selectedDay = droidKaigi2025Day },
+                                colors = SegmentedButtonDefaults.colors(
+                                    inactiveContainerColor = MaterialTheme.colorScheme.surface,
+                                ),
+                                selected = selectedDay == droidKaigi2025Day,
+                                modifier = Modifier
+                                    .height(TimetableDefaults.dayTabHeight)
+                                    .width(TimetableDefaults.dayTabWidth)
+                            ) {
+                                Text(droidKaigi2025Day.monthAndDay())
                             }
                         }
                     }
                 }
+            },
+            modifier = Modifier.padding(paddingValues)
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxSize().padding(it)
+            ) {
+                when (uiState.timetable) {
+                    is TimetableUiState.Empty -> Text("Empty")
+                    is TimetableUiState.GridTimetable -> {
+                        LazyColumn(
+                            state = lazyListState,
+                            modifier = Modifier.fillMaxSize(),
+                        ) {
+                            uiState.timetable.timetableGridUiState.forEach { (day, timetableDayData) ->
+                                item {
+                                    Text(day.name)
+                                }
+                                items(timetableDayData.timetable.timetableItems) { item ->
+                                    TextButton(
+                                        onClick = {
+                                            onTimetableItemClick(item.id)
+                                        }
+                                    ) { Text(item.title.jaTitle) }
+                                }
+                                item {
+                                    HorizontalDivider()
+                                }
+                            }
+                        }
+                    }
 
-                is TimetableUiState.ListTimetable -> {
-                    TimetableList(
-                        uiState = requireNotNull(uiState.timetable.timetableListUiStates[uiState.timetable.selectedDay]),
-                        onTimetableItemClick = { onTimetableItemClick(it.id) },
-                        onBookmarkClick = { timetableItem, isBookmarked ->
-                            onBookmarkClick(timetableItem.id.value, isBookmarked)
-                        },
-                        contentPadding = WindowInsets.navigationBars.add(WindowInsets(left = 16.dp, right = 16.dp)).asPaddingValues()
-                    )
+                    is TimetableUiState.ListTimetable -> {
+                        TimetableList(
+                            lazyListState = lazyListState,
+                            uiState = requireNotNull(uiState.timetable.timetableListUiStates[uiState.timetable.selectedDay]),
+                            onTimetableItemClick = { onTimetableItemClick(it.id) },
+                            onBookmarkClick = { timetableItem, isBookmarked ->
+                                onBookmarkClick(timetableItem.id.value, isBookmarked)
+                            },
+                            contentPadding = WindowInsets.navigationBars.add(WindowInsets(left = 16.dp, right = 16.dp)).asPaddingValues()
+                        )
+                    }
                 }
             }
         }
