@@ -4,11 +4,11 @@ import Theme
 import Presentation
 
 struct TimetableCard: View {
-    let timetableItem: TimetableItem
+    let timetableItem: any TimetableItem
     let isFavorite: Bool
-    let onTap: (TimetableItem) -> Void
-    let onTapFavorite: (TimetableItem, CGPoint?) -> Void
-    
+    let onTap: (any TimetableItem) -> Void
+    let onTapFavorite: (any TimetableItem, CGPoint?) -> Void
+
     @State private var dragLocation: CGPoint?
     
     var body: some View {
@@ -57,7 +57,11 @@ struct TimetableCard: View {
             onTapFavorite(timetableItem, location)
         }) {
             Image(systemName: isFavorite ? "heart.fill" : "heart")
-                .foregroundColor(isFavorite ? Color.blue.opacity(0.8) : Color(.secondaryLabel))
+                .foregroundStyle(
+                    isFavorite
+                        ? AssetColors.primaryFixed.swiftUIColor
+                        : AssetColors.onSurfaceVariant.swiftUIColor
+                )
                 .frame(width: 24, height: 24)
         }
         .buttonStyle(PlainButtonStyle())

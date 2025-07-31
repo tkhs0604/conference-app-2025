@@ -19,36 +19,34 @@ public struct HomeScreen: View {
         let timetableItems = presenter.timetable.dayTimetable[selectedDay.model] ?? []
 
         NavigationStack {
-            ScrollView {
-                LazyVStack(pinnedViews: [.sectionHeaders]) {
-                    Section(header: dayTabBar) {
-                        switch timetableMode {
-                        case .list:
-                            TimetableListView(
-                                timetableItems: timetableItems,
-                                onItemTap: { item in
-                                    presenter.timetableItemTapped(item)
-                                },
-                                onFavoriteTap: { item, _ in
-                                    presenter.timetable.toggleFavorite(item)
-                                },
-                                animationTrigger: { timetableItem, location in
-                                    toggleFavorite(timetableItem: timetableItem, adjustedLocationPoint: location)
-                                }
-                            )
-                        case .grid:
-                            TimetableGridView(
-                                timetableItems: timetableItems,
-                                rooms: presenter.timetable.rooms,
-                                onItemTap: { item in
-                                    presenter.timetableItemTapped(item)
-                                },
-                                isFavorite: { itemId in
-                                    presenter.timetable.isFavorite(itemId)
-                                }
-                            )
+            Group {
+                switch timetableMode {
+                case .list:
+                    TimetableListView(
+                        selectedDay: $selectedDay,
+                        timetableItems: timetableItems,
+                        onItemTap: { item in
+                            presenter.timetableItemTapped(item)
+                        },
+                        onFavoriteTap: { item, _ in
+                            presenter.timetable.toggleFavorite(item)
+                        },
+                        animationTrigger: { timetableItem, location in
+                            toggleFavorite(timetableItem: timetableItem, adjustedLocationPoint: location)
                         }
-                    }
+                    )
+                case .grid:
+                    TimetableGridView(
+                        selectedDay: $selectedDay,
+                        timetableItems: timetableItems,
+                        rooms: presenter.timetable.rooms,
+                        onItemTap: { item in
+                            presenter.timetableItemTapped(item)
+                        },
+                        isFavorite: { itemId in
+                            presenter.timetable.isFavorite(itemId)
+                        }
+                    )
                 }
             }
             .background(
@@ -84,17 +82,6 @@ public struct HomeScreen: View {
         .task {
             await presenter.loadInitial()
         }
-    }
-    
-    private var dayTabBar: some View {
-        Picker("Day", selection: $selectedDay) {
-            ForEach(DayTab.allCases) { day in
-                Text(day.rawValue).tag(day)
-            }
-        }
-        .pickerStyle(SegmentedPickerStyle())
-        .padding(.horizontal, 16)
-        .padding(.vertical, 8)
     }
     
     private func toggleFavorite(timetableItem: any TimetableItem, adjustedLocationPoint: CGPoint?) {

@@ -3,6 +3,7 @@ import Model
 import Presentation
 
 struct TimetableListView: View {
+    @Binding var selectedDay: DayTab
     let timetableItems: [TimetableTimeGroupItems]
     let onItemTap: (TimetableItemWithFavorite) -> Void
     let onFavoriteTap: (TimetableItemWithFavorite, CGPoint?) -> Void
@@ -11,6 +12,9 @@ struct TimetableListView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 0) {
+                DayTabBar(selectedDay: $selectedDay)
+                    .padding(.horizontal)
+
                 ForEach(timetableItems) { timeGroup in
                     TimeGroupList(
                         timeGroup: timeGroup,
