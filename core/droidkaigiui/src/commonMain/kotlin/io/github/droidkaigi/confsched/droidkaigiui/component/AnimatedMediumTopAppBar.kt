@@ -34,6 +34,8 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -119,4 +121,17 @@ object AnimatedMediumTopAppBarDefaults {
     fun windowInsets() = WindowInsets.displayCutout.union(WindowInsets.systemBars).only(
         WindowInsetsSides.Horizontal + WindowInsetsSides.Top,
     )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview
+@Composable
+private fun AnimatedMediumTopAppBarPreview() {
+    KaigiPreviewContainer {
+        AnimatedMediumTopAppBar(
+            title = "Title",
+            onBackClick = {},
+            navIconContentDescription = "Back",
+        )
+    }
 }
