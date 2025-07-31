@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.union
-import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material.icons.Icons.AutoMirrored.Filled
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -75,7 +74,6 @@ fun AnimatedMediumTopAppBar(
                 exit = ExitTransition.None,
             ) {
                 Text(
-                    autoSize = TextAutoSize.StepBased(),
                     text = title,
                     modifier = Modifier.then(
                         when (isCenterTitle) {
