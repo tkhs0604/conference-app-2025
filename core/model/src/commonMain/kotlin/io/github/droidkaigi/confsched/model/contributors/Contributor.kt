@@ -12,13 +12,15 @@ data class Contributor(
     companion object
 }
 
+fun Contributor.Companion.fake(id: Int = 1): Contributor {
+    return Contributor(
+        id = id,
+        username = "user $id",
+        profileUrl = "https://developer.android.com/",
+        iconUrl = "https://placehold.jp/150x150.png",
+    )
+}
+
 fun Contributor.Companion.fakes(): PersistentList<Contributor> = (1..20)
-    .map {
-        Contributor(
-            id = it,
-            username = "user$it",
-            profileUrl = "https://developer.android.com/",
-            iconUrl = "https://placehold.jp/150x150.png",
-        )
-    }
+    .map { fake(it) }
     .toPersistentList()
