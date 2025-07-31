@@ -13,7 +13,7 @@ import androidx.navigation3.ui.rememberSceneSetupNavEntryDecorator
 
 @Composable
 actual fun rememberNavBackStack(vararg elements: NavKey): SnapshotStateList<NavKey> {
-    return rememberSaveable { mutableStateListOf() }
+    return rememberSaveable { mutableStateListOf(*elements) }
 }
 
 actual fun listDetailSceneStrategyListPaneMetaData(): Map<String, Any> {
