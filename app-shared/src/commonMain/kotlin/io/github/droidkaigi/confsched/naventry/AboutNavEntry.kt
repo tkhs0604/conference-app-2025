@@ -6,13 +6,18 @@ import androidx.navigation3.runtime.entry
 import io.github.droidkaigi.confsched.AppGraph
 import io.github.droidkaigi.confsched.about.AboutScreenRoot
 import io.github.droidkaigi.confsched.about.rememberAboutScreenContextRetained
+import io.github.droidkaigi.confsched.model.about.AboutItem
 import io.github.droidkaigi.confsched.navkey.AboutNavKey
 
 context(appGraph: AppGraph)
-fun EntryProviderBuilder<NavKey>.aboutEntry() {
+fun EntryProviderBuilder<NavKey>.aboutEntry(
+    onAboutItemClick: (AboutItem) -> Unit
+) {
     entry<AboutNavKey> {
         with(appGraph.rememberAboutScreenContextRetained()) {
-            AboutScreenRoot()
+            AboutScreenRoot(
+                onAboutItemClick = onAboutItemClick,
+            )
         }
     }
 }

@@ -10,6 +10,7 @@ import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
 import io.github.droidkaigi.confsched.droidkaigiui.navigation.NavDisplayWithSharedAxisX
 import io.github.droidkaigi.confsched.droidkaigiui.navigation.rememberNavBackStack
 import io.github.droidkaigi.confsched.droidkaigiui.navigation.sceneStrategy
+import io.github.droidkaigi.confsched.model.about.AboutItem
 import io.github.droidkaigi.confsched.naventry.aboutEntry
 import io.github.droidkaigi.confsched.naventry.contributorsEntry
 import io.github.droidkaigi.confsched.naventry.eventMapEntry
@@ -54,7 +55,23 @@ fun KaigiApp() {
                         contributorsEntry()
                         favoritesEntry()
                         eventMapEntry()
-                        aboutEntry()
+                        aboutEntry(
+                            onAboutItemClick = { item ->
+                                when (item) {
+                                    AboutItem.Map -> TODO()
+                                    AboutItem.Contributors -> TODO()
+                                    AboutItem.Staff -> TODO()
+                                    AboutItem.Sponsors -> TODO()
+                                    AboutItem.CodeOfConduct -> TODO()
+                                    AboutItem.License -> TODO()
+                                    AboutItem.PrivacyPolicy -> TODO()
+                                    AboutItem.Settings -> TODO()
+                                    AboutItem.Youtube -> TODO()
+                                    AboutItem.X -> TODO()
+                                    AboutItem.Medium -> TODO()
+                                }
+                            }
+                        )
                         profileCardNavEntry()
                         mainNestedEntry(externalNavController = externalNavController)
                     },

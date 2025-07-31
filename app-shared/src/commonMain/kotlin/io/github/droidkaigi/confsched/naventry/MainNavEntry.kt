@@ -9,6 +9,7 @@ import io.github.droidkaigi.confsched.ExternalNavController
 import io.github.droidkaigi.confsched.droidkaigiui.navigation.rememberNavBackStack
 import io.github.droidkaigi.confsched.main.MainScreenRoot
 import io.github.droidkaigi.confsched.main.MainScreenTab
+import io.github.droidkaigi.confsched.model.about.AboutItem
 import io.github.droidkaigi.confsched.navkey.AboutNavKey
 import io.github.droidkaigi.confsched.navkey.EventMapNavKey
 import io.github.droidkaigi.confsched.navkey.FavoritesNavKey
@@ -57,7 +58,23 @@ fun EntryProviderBuilder<NavKey>.mainNestedEntry(externalNavController: External
                 )
                 contributorsEntry()
                 eventMapEntry()
-                aboutEntry()
+                aboutEntry(
+                    onAboutItemClick = { item ->
+                        when (item) {
+                            AboutItem.Map -> TODO()
+                            AboutItem.Contributors -> TODO()
+                            AboutItem.Staff -> TODO()
+                            AboutItem.Sponsors -> TODO()
+                            AboutItem.CodeOfConduct -> TODO()
+                            AboutItem.License -> TODO()
+                            AboutItem.PrivacyPolicy -> TODO()
+                            AboutItem.Settings -> TODO()
+                            AboutItem.Youtube -> TODO()
+                            AboutItem.X -> TODO()
+                            AboutItem.Medium -> TODO()
+                        }
+                    }
+                )
                 favoritesEntry()
                 profileCardNavEntry()
             }

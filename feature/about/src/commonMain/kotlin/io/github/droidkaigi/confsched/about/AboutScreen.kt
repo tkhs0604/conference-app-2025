@@ -9,12 +9,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import io.github.droidkaigi.confsched.about.section.aboutCredits
 import io.github.droidkaigi.confsched.about.section.aboutOthers
+import io.github.droidkaigi.confsched.model.about.AboutItem
 import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutScreen(
     uiState: AboutScreenUiState,
+    onAboutItemClick: (AboutItem) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -32,27 +34,27 @@ fun AboutScreen(
         ) {
             aboutCredits(
                 onSponsorsItemClick = {
-                    //onAboutItemClick(AboutItem.Sponsors)
+                    onAboutItemClick(AboutItem.Sponsors)
                 },
                 onContributorsItemClick = {
-                    //onAboutItemClick(AboutItem.Contributors)
+                    onAboutItemClick(AboutItem.Contributors)
                 },
                 onStaffItemClick = {
-                    //onAboutItemClick(AboutItem.Staff)
+                    onAboutItemClick(AboutItem.Staff)
                 },
             )
             aboutOthers(
                 onCodeOfConductItemClick = {
-                    //onAboutItemClick(AboutItem.CodeOfConduct)
+                    onAboutItemClick(AboutItem.CodeOfConduct)
                 },
                 onLicenseItemClick = {
-                    //onAboutItemClick(AboutItem.License)
+                    onAboutItemClick(AboutItem.License)
                 },
                 onPrivacyPolicyItemClick = {
-                    //onAboutItemClick(AboutItem.PrivacyPolicy)
+                    onAboutItemClick(AboutItem.PrivacyPolicy)
                 },
                 onSettingsItemClick = {
-                    //onAboutItemClick(AboutItem.Settings)
+                    onAboutItemClick(AboutItem.Settings)
                 },
             )
         }
