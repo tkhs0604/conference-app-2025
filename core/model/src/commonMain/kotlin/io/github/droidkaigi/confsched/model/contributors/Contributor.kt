@@ -6,7 +6,7 @@ import kotlinx.collections.immutable.toPersistentList
 data class Contributor(
     val id: Int,
     val username: String,
-    val profileUrl: String,
+    val profileUrl: String?,
     val iconUrl: String,
 ) {
     companion object
