@@ -75,7 +75,10 @@ actual fun KaigiAppUi() {
                         backStack.add(TimetableItemDetailNavKey(it))
                     }
                 )
-                contributorsEntry()
+                contributorsEntry(
+                    onBackClick = { backStack.removeLastOrNull() },
+                    onContributorClick = externalNavController::navigate,
+                )
                 favoritesEntry()
                 eventMapEntry()
                 aboutEntry(
