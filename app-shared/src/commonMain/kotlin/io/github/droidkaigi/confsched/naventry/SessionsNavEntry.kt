@@ -4,8 +4,8 @@ import androidx.navigation3.runtime.EntryProviderBuilder
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entry
 import io.github.droidkaigi.confsched.AppGraph
-import io.github.droidkaigi.confsched.droidkaigiui.navigation.listDetailSceneStrategyDetailPaneMetaData
-import io.github.droidkaigi.confsched.droidkaigiui.navigation.listDetailSceneStrategyListPaneMetaData
+import io.github.droidkaigi.confsched.navigation.listDetailSceneStrategyDetailPaneMetaData
+import io.github.droidkaigi.confsched.navigation.listDetailSceneStrategyListPaneMetaData
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import io.github.droidkaigi.confsched.navkey.SearchNavKey
