@@ -1,24 +1,17 @@
 import SwiftUI
 import Theme
-import ContributorFeature
-import SponsorFeature
-import StaffFeature
 
 public struct AboutScreen: View {
     @State private var presenter = AboutPresenter()
-    @State private var selectedTab: AboutTab?
-    
-    private enum AboutTab: String, CaseIterable {
-        case contributors = "Contributors"
-        case staffs = "Staffs"
-        case sponsors = "Sponsors"
-    }
+    let onNavigate: (AboutNavigationDestination) -> Void
     
     var version: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
     }
     
-    public init() {}
+    public init(onNavigate: @escaping (AboutNavigationDestination) -> Void = { _ in }) {
+        self.onNavigate = onNavigate
+    }
     
     public var body: some View {
         NavigationStack {
@@ -43,16 +36,6 @@ public struct AboutScreen: View {
             #if os(iOS)
             .navigationBarTitleDisplayMode(.large)
             #endif
-            .navigationDestination(item: $selectedTab) { tab in
-                switch tab {
-                case .contributors:
-                    ContributorScreen()
-                case .staffs:
-                    StaffScreen()
-                case .sponsors:
-                    SponsorScreen()
-                }
-            }
         }
     }
     
@@ -71,7 +54,7 @@ public struct AboutScreen: View {
                     systemImage: "person.3.fill"
                 ) {
                     presenter.contributorsTapped()
-                    selectedTab = .contributors
+                    onNavigate(.contributors)
                 }
                 
                 Divider()
@@ -82,7 +65,7 @@ public struct AboutScreen: View {
                     systemImage: "face.smiling.fill"
                 ) {
                     presenter.staffsTapped()
-                    selectedTab = .staffs
+                    onNavigate(.staff)
                 }
                 
                 Divider()
@@ -93,7 +76,7 @@ public struct AboutScreen: View {
                     systemImage: "building.2.fill"
                 ) {
                     presenter.sponsorsTapped()
-                    selectedTab = .sponsors
+                    onNavigate(.sponsors)
                 }
             }
         }

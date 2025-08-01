@@ -2,15 +2,15 @@ import SwiftUI
 import Theme
 import Model
 import Component
-import HomeFeature
-import TimetableDetailFeature
 
 public struct SearchScreen: View {
     @State private var presenter = SearchPresenter()
-    @State private var selectedTimetableItem: TimetableItemWithFavorite?
     @FocusState private var isSearchFieldFocused: Bool
+    let onNavigate: (SearchNavigationDestination) -> Void
     
-    public init() {}
+    public init(onNavigate: @escaping (SearchNavigationDestination) -> Void = { _ in }) {
+        self.onNavigate = onNavigate
+    }
     
     public var body: some View {
         NavigationStack {
@@ -47,47 +47,14 @@ public struct SearchScreen: View {
                             selection: $presenter.selectedDay
                         )
                         
-                        if let categories = presenter.timetable.timetable?.categories {
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text("Category")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                                    .padding(.horizontal, 16)
-                                
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack(spacing: 8) {
-                                        SearchFilterChip<TimetableCategory>(
-                                            title: "All",
-                                            isSelected: presenter.selectedCategory == nil,
-                                            onTap: {
-                                                presenter.selectedCategory = nil
-                                            }
-                                        )
-                                        
-                                        ForEach(categories, id: \.id) { category in
-                                            SearchFilterChip<TimetableCategory>(
-                                                title: category.title.currentLangTitle,
-                                                isSelected: presenter.selectedCategory?.id == category.id,
-                                                onTap: {
-                                                    presenter.selectedCategory = presenter.selectedCategory?.id == category.id ? nil : category
-                                                }
-                                            )
-                                        }
-                                    }
-                                    .padding(.horizontal, 16)
-                                }
-                            }
-                        }
+                        categorySection
                         
                         SearchFilterSection(
                             title: "Session Type",
                             selection: $presenter.selectedSessionType
                         )
                         
-                        SearchFilterSection(
-                            title: "Language",
-                            selection: $presenter.selectedLanguage
-                        )
+                        languageSection
                     }
                     .padding(.vertical, 8)
                 }
@@ -106,7 +73,7 @@ public struct SearchScreen: View {
                                     timetableItem: item.timetableItem,
                                     isFavorite: presenter.timetable.favoriteIds.contains(item.timetableItem.id.value),
                                     onTap: { _ in
-                                        selectedTimetableItem = item
+                                        onNavigate(.timetableDetail(item))
                                     },
                                     onTapFavorite: { _, _ in
                                         presenter.toggleFavorite(item.timetableItem.id)
@@ -129,8 +96,84 @@ public struct SearchScreen: View {
                 await presenter.loadInitial()
                 isSearchFieldFocused = true
             }
-            .navigationDestination(item: $selectedTimetableItem) { item in
-                TimetableDetailScreen(timetableItem: item)
+        }
+    }
+    
+    @ViewBuilder
+    private var categorySection: some View {
+        if let timetable = presenter.timetable.timetable {
+            let uniqueCategories = Set(timetable.timetableItems.map { $0.category })
+            let categories = Array(uniqueCategories).sorted { $0.id < $1.id }
+            
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Category")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .padding(.horizontal, 16)
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 8) {
+                        SearchFilterChip<TimetableCategory>(
+                            title: "All",
+                            isSelected: presenter.selectedCategory == nil,
+                            onTap: {
+                                presenter.selectedCategory = nil
+                            }
+                        )
+                        
+                        ForEach(categories, id: \.id) { category in
+                            SearchFilterChip<TimetableCategory>(
+                                title: category.title.currentLangTitle,
+                                isSelected: presenter.selectedCategory?.id == category.id,
+                                onTap: {
+                                    presenter.selectedCategory = presenter.selectedCategory?.id == category.id ? nil : category
+                                }
+                            )
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var languageSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Language")
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .padding(.horizontal, 16)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    SearchFilterChip<String>(
+                        title: "All",
+                        isSelected: presenter.selectedLanguage == nil,
+                        onTap: {
+                            presenter.selectedLanguage = nil
+                        }
+                    )
+                    
+                    // Common languages - you can expand this based on actual data
+                    ForEach(["Japanese", "English"], id: \.self) { language in
+                        SearchFilterChip<String>(
+                            title: language,
+                            isSelected: presenter.selectedLanguage?.langOfSpeaker == language,
+                            onTap: {
+                                if presenter.selectedLanguage?.langOfSpeaker == language {
+                                    presenter.selectedLanguage = nil
+                                } else {
+                                    presenter.selectedLanguage = TimetableLanguage(
+                                        langOfSpeaker: language,
+                                        isInterpretationTarget: false
+                                    )
+                                }
+                            }
+                        )
+                    }
+                }
+                .padding(.horizontal, 16)
             }
         }
     }

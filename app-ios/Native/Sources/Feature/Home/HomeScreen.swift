@@ -19,9 +19,9 @@ public struct HomeScreen: View {
     @State private var timetableMode: TimetableMode = .list
     @State private var selectedDay: DayTab = .day1
     
-    public let onNavigate: ((HomeNavigationDestination) -> Void)?
+    let onNavigate: (HomeNavigationDestination) -> Void
     
-    public init(onNavigate: ((HomeNavigationDestination) -> Void)? = nil) {
+    public init(onNavigate: @escaping (HomeNavigationDestination) -> Void = { _ in }) {
         self.onNavigate = onNavigate
     }
 
@@ -36,7 +36,7 @@ public struct HomeScreen: View {
                         selectedDay: $selectedDay,
                         timetableItems: timetableItems,
                         onItemTap: { item in
-                            onNavigate?(.timetableDetail(item))
+                            onNavigate(.timetableDetail(item))
                         },
                         onFavoriteTap: { item, _ in
                             presenter.timetable.toggleFavorite(item)
@@ -51,7 +51,7 @@ public struct HomeScreen: View {
                         timetableItems: timetableItems,
                         rooms: presenter.timetable.rooms,
                         onItemTap: { item in
-                            onNavigate?(.timetableDetail(item))
+                            onNavigate(.timetableDetail(item))
                         },
                         isFavorite: { itemId in
                             presenter.timetable.isFavorite(itemId)
@@ -77,7 +77,7 @@ public struct HomeScreen: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack {
                     Button(action: {
-                        onNavigate?(.search)
+                        onNavigate(.search)
                     }) {
                         Image(systemName: "magnifyingglass")
                             .foregroundStyle(AssetColors.onSurface.swiftUIColor)

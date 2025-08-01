@@ -23,12 +23,20 @@ final class SearchPresenter {
             // Search word filter
             if !searchWord.isEmpty {
                 let searchLower = searchWord.lowercased()
-                let matchesTitle = item.timetableItem.title.ja.lowercased().contains(searchLower) ||
-                                 item.timetableItem.title.en.lowercased().contains(searchLower)
-                let matchesDescription = item.timetableItem.description?.ja.lowercased().contains(searchLower) ?? false ||
-                                       item.timetableItem.description?.en.lowercased().contains(searchLower) ?? false
+                let matchesTitle = item.timetableItem.title.jaTitle.lowercased().contains(searchLower) ||
+                                 item.timetableItem.title.enTitle.lowercased().contains(searchLower)
+                let matchesDescription = if let session = item.timetableItem as? TimetableItemSession {
+                    session.description.jaTitle.lowercased().contains(searchLower) ||
+                    session.description.enTitle.lowercased().contains(searchLower)
+                } else {
+                    false
+                }
                 
-                if !matchesTitle && !matchesDescription {
+                let matchesSpeaker = item.timetableItem.speakers.contains { speaker in
+                    speaker.name.lowercased().contains(searchLower)
+                }
+                
+                if !matchesTitle && !matchesDescription && !matchesSpeaker {
                     return false
                 }
             }
@@ -49,11 +57,7 @@ final class SearchPresenter {
             
             // Session type filter
             if let sessionType = selectedSessionType {
-                if let itemSessionType = item.timetableItem.sessionType {
-                    if itemSessionType != sessionType {
-                        return false
-                    }
-                } else {
+                if item.timetableItem.sessionType != sessionType {
                     return false
                 }
             }

@@ -2,14 +2,14 @@ import SwiftUI
 import Theme
 import Model
 import Component
-import HomeFeature
-import TimetableDetailFeature
 
 public struct FavoriteScreen: View {
     @State private var presenter = FavoritePresenter()
-    @State private var selectedTimetableItem: TimetableItemWithFavorite?
+    let onNavigate: (FavoriteNavigationDestination) -> Void
     
-    public init() {}
+    public init(onNavigate: @escaping (FavoriteNavigationDestination) -> Void = { _ in }) {
+        self.onNavigate = onNavigate
+    }
     
     public var body: some View {
         NavigationStack {
@@ -27,7 +27,7 @@ public struct FavoriteScreen: View {
                                     endsTimeString: timeGroup.endsTimeString,
                                     timetableItemWithFavorites: timeGroup.items,
                                     onItemTap: { item in
-                                        selectedTimetableItem = item
+                                        onNavigate(.timetableDetail(item))
                                     },
                                     onFavoriteTap: { item, _ in
                                         presenter.toggleFavorite(item)
@@ -53,9 +53,6 @@ public struct FavoriteScreen: View {
             #endif
             .task {
                 await presenter.loadInitial()
-            }
-            .navigationDestination(item: $selectedTimetableItem) { item in
-                TimetableDetailScreen(timetableItem: item)
             }
         }
     }

@@ -6,6 +6,11 @@ import ContributorFeature
 import EventMapFeature
 import FavoriteFeature
 import ProfileCardFeature
+import SearchFeature
+import SponsorFeature
+import StaffFeature
+import TimetableDetailFeature
+import Model
 
 private enum TabType: CaseIterable, Hashable {
     case timetable
@@ -33,6 +38,7 @@ private enum TabType: CaseIterable, Hashable {
 public struct RootScreen: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var selectedTab: TabType = .timetable
+    @State private var navigationPath = NavigationPath()
     private let presenter = RootPresenter()
     
     public init() {
@@ -40,56 +46,64 @@ public struct RootScreen: View {
     }
     
     public var body: some View {
-        Group {
-            if #available(iOS 26, *) {
-                TabView(selection: $selectedTab) {
-                    Tab("Timetable",
-                        image: TabType.timetable.tabImageName(selectedTab),
-                        value: .timetable
-                    ) {
-                        HomeScreen()
+        NavigationStack(path: $navigationPath) {
+            Group {
+                if #available(iOS 26, *) {
+                    TabView(selection: $selectedTab) {
+                        Tab("Timetable",
+                            image: TabType.timetable.tabImageName(selectedTab),
+                            value: .timetable
+                        ) {
+                            HomeScreen(onNavigate: handleHomeNavigation)
+                        }
+                        Tab("Map",
+                            image: TabType.map.tabImageName(selectedTab),
+                            value: .map
+                        ) {
+                            EventMapScreen()
+                        }
+                        Tab("Favorite",
+                            image: TabType.favorite.tabImageName(selectedTab),
+                            value: .favorite
+                        ) {
+                            FavoriteScreen(onNavigate: handleFavoriteNavigation)
+                        }
+                        Tab("Info",
+                            image: TabType.info.tabImageName(selectedTab),
+                            value: .info
+                        ) {
+                            AboutScreen(onNavigate: handleAboutNavigation)
+                        }
+                        Tab("Profile Card",
+                            image: TabType.profileCard.tabImageName(selectedTab),
+                            value: .profileCard
+                        ) {
+                            ProfileCardScreen()
+                        }
                     }
-                    Tab("Map",
-                        image: TabType.map.tabImageName(selectedTab),
-                        value: .map
-                    ) {
-                        EventMapScreen()
-                    }
-                    Tab("Favorite",
-                        image: TabType.favorite.tabImageName(selectedTab),
-                        value: .favorite
-                    ) {
-                        FavoriteScreen()
-                    }
-                    Tab("Info",
-                        image: TabType.info.tabImageName(selectedTab),
-                        value: .info
-                    ) {
-                        AboutScreen()
-                    }
-                    Tab("Profile Card",
-                        image: TabType.profileCard.tabImageName(selectedTab),
-                        value: .profileCard
-                    ) {
-                        ProfileCardScreen()
+                } else {
+                    ZStack(alignment: .bottom) {
+                        switch selectedTab {
+                        case .timetable:
+                            HomeScreen(onNavigate: handleHomeNavigation)
+                        case .map:
+                            EventMapScreen()
+                        case .favorite:
+                            FavoriteScreen(onNavigate: handleFavoriteNavigation)
+                        case .info:
+                            AboutScreen(onNavigate: handleAboutNavigation)
+                        case .profileCard:
+                            ProfileCardScreen()
+                        }
+                        tabBar
                     }
                 }
-            } else {
-                ZStack(alignment: .bottom) {
-                    switch selectedTab {
-                    case .timetable:
-                        HomeScreen()
-                    case .map:
-                        EventMapScreen()
-                    case .favorite:
-                        FavoriteScreen()
-                    case .info:
-                        AboutScreen()
-                    case .profileCard:
-                        ProfileCardScreen()
-                    }
-                    tabBar
-                }
+            }
+            .navigationDestination(for: NavigationDestination.self) { destination in
+                let navigationHandler = NavigationHandler(
+                    handleSearchNavigation: handleSearchNavigation
+                )
+                destination.view(with: navigationHandler)
             }
         }
         .onAppear {
@@ -99,6 +113,40 @@ public struct RootScreen: View {
             ScenePhaseHandler.handle(scenePhase)
         }
         .preferredColorScheme(.dark)
+    }
+    
+    private func handleHomeNavigation(_ destination: HomeNavigationDestination) {
+        switch destination {
+        case .timetableDetail(let item):
+            navigationPath.append(NavigationDestination.timetableDetail(item))
+        case .search:
+            navigationPath.append(NavigationDestination.search)
+        }
+    }
+    
+    private func handleAboutNavigation(_ destination: AboutNavigationDestination) {
+        switch destination {
+        case .contributors:
+            navigationPath.append(NavigationDestination.contributors)
+        case .staff:
+            navigationPath.append(NavigationDestination.staff)
+        case .sponsors:
+            navigationPath.append(NavigationDestination.sponsors)
+        }
+    }
+    
+    private func handleFavoriteNavigation(_ destination: FavoriteNavigationDestination) {
+        switch destination {
+        case .timetableDetail(let item):
+            navigationPath.append(NavigationDestination.timetableDetail(item))
+        }
+    }
+    
+    private func handleSearchNavigation(_ destination: SearchNavigationDestination) {
+        switch destination {
+        case .timetableDetail(let item):
+            navigationPath.append(NavigationDestination.timetableDetail(item))
+        }
     }
 
     @ViewBuilder
