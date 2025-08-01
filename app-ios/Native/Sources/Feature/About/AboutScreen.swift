@@ -1,6 +1,7 @@
 import SwiftUI
 import Theme
 import ContributorFeature
+import SponsorFeature
 
 public struct AboutScreen: View {
     @State private var presenter = AboutPresenter()
@@ -48,7 +49,7 @@ public struct AboutScreen: View {
                 case .staffs:
                     Text("Staff Screen") // Will be replaced with actual screen
                 case .sponsors:
-                    Text("Sponsors Screen") // Will be replaced with actual screen
+                    SponsorScreen()
                 }
             }
         }
