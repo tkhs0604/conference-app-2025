@@ -1,6 +1,7 @@
 import SwiftUI
 import Model
 import Presentation
+import Component
 
 struct TimetableGridView: View {
     @Binding var selectedDay: DayTab

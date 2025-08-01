@@ -44,6 +44,7 @@ let package = Package(
             name: "Root",
             dependencies: [
                 .target(name: "HomeFeature"),
+                .target(name: "TimetableDetailFeature"),
                 .target(name: "AboutFeature"),
                 .target(name: "ContributorFeature"),
                 .target(name: "EventMapFeature"),

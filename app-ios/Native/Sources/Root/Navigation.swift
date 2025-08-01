@@ -27,6 +27,7 @@ public struct NavigationHandler {
 // Extension to create views from navigation destinations
 extension NavigationDestination {
     @ViewBuilder
+    @MainActor
     func view(with navigationHandler: NavigationHandler) -> some View {
         switch self {
         case .timetableDetail(let item):

@@ -23,9 +23,7 @@ public struct FavoriteScreen: View {
                                 let timeGroup = presenter.favoriteTimetableItems[index]
                                 
                                 TimeGroupList(
-                                    startsTimeString: timeGroup.startsTimeString,
-                                    endsTimeString: timeGroup.endsTimeString,
-                                    timetableItemWithFavorites: timeGroup.items,
+                                    timeGroup: timeGroup,
                                     onItemTap: { item in
                                         onNavigate(.timetableDetail(item))
                                     },

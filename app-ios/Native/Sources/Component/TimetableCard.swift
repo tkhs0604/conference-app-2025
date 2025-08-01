@@ -1,7 +1,6 @@
 import Model
 import SwiftUI
 import Theme
-import Presentation
 
 public struct TimetableCard: View {
     let timetableItem: any TimetableItem

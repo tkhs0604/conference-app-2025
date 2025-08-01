@@ -51,9 +51,3 @@ extension Speaker {
     }
 }
 
-extension TimetableLanguage {
-    // For backward compatibility - returns the primary language label
-    public var displayLanguage: String {
-        langOfSpeaker
-    }
-}

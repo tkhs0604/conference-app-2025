@@ -4,6 +4,7 @@ import Observation
 import SwiftUI
 import Theme
 import Presentation
+import Component
 
 // Navigation destinations
 public enum HomeNavigationDestination: Hashable {
