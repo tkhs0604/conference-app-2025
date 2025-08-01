@@ -3,6 +3,7 @@ import SwiftUI
 import HomeFeature
 import AboutFeature
 import ContributorFeature
+import EventMapFeature
 
 private enum TabType: CaseIterable, Hashable {
     case timetable
@@ -50,8 +51,7 @@ public struct RootScreen: View {
                         image: TabType.map.tabImageName(selectedTab),
                         value: .map
                     ) {
-                        // TODO: Replace correct screen
-                        HomeScreen()
+                        EventMapScreen()
                     }
                     Tab("Favorite",
                         image: TabType.favorite.tabImageName(selectedTab),
@@ -80,7 +80,7 @@ public struct RootScreen: View {
                     case .timetable:
                         HomeScreen()
                     case .map:
-                        HomeScreen()
+                        EventMapScreen()
                     case .favorite:
                         HomeScreen()
                     case .info:
