@@ -1,5 +1,6 @@
 import SwiftUI
 import Theme
+import ContributorFeature
 
 public struct AboutScreen: View {
     @State private var presenter = AboutPresenter()
@@ -43,7 +44,7 @@ public struct AboutScreen: View {
             .navigationDestination(item: $selectedTab) { tab in
                 switch tab {
                 case .contributors:
-                    Text("Contributors Screen") // Will be replaced with actual screen
+                    ContributorScreen()
                 case .staffs:
                     Text("Staff Screen") // Will be replaced with actual screen
                 case .sponsors:

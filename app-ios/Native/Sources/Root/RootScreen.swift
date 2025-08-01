@@ -2,6 +2,7 @@ import Dependencies
 import SwiftUI
 import HomeFeature
 import AboutFeature
+import ContributorFeature
 
 private enum TabType: CaseIterable, Hashable {
     case timetable
