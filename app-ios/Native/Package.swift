@@ -47,6 +47,7 @@ let package = Package(
                 .target(name: "AboutFeature"),
                 .target(name: "ContributorFeature"),
                 .target(name: "EventMapFeature"),
+                .target(name: "FavoriteFeature"),
                 .target(name: "KMPFramework"),
                 .product(name: "UseCase", package: "Core"),
                 .product(name: "Model", package: "Core"),
@@ -62,6 +63,10 @@ let package = Package(
         .featureTarget(name: "About"),
         .featureTarget(name: "Contributor"),
         .featureTarget(name: "EventMap"),
+        .featureTarget(name: "Favorite", dependencies: [
+            .target(name: "HomeFeature"),
+            .target(name: "TimetableDetailFeature"),
+        ]),
 
         .target(
             name: "Theme",
