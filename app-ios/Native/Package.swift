@@ -51,6 +51,7 @@ let package = Package(
                 .target(name: "SearchFeature"),
                 .target(name: "SponsorFeature"),
                 .target(name: "StaffFeature"),
+                .target(name: "ProfileCardFeature"),
                 .target(name: "KMPFramework"),
                 .product(name: "UseCase", package: "Core"),
                 .product(name: "Model", package: "Core"),
@@ -77,6 +78,7 @@ let package = Package(
         ]),
         .featureTarget(name: "Sponsor"),
         .featureTarget(name: "Staff"),
+        .featureTarget(name: "ProfileCard"),
 
         .target(
             name: "Theme",

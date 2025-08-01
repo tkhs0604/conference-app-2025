@@ -5,6 +5,7 @@ import AboutFeature
 import ContributorFeature
 import EventMapFeature
 import FavoriteFeature
+import ProfileCardFeature
 
 private enum TabType: CaseIterable, Hashable {
     case timetable
@@ -70,8 +71,7 @@ public struct RootScreen: View {
                         image: TabType.profileCard.tabImageName(selectedTab),
                         value: .profileCard
                     ) {
-                        // TODO: Replace correct screen
-                        HomeScreen()
+                        ProfileCardScreen()
                     }
                 }
             } else {
@@ -86,7 +86,7 @@ public struct RootScreen: View {
                     case .info:
                         AboutScreen()
                     case .profileCard:
-                        HomeScreen()
+                        ProfileCardScreen()
                     }
                     tabBar
                 }
