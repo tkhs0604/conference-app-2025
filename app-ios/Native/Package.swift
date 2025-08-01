@@ -50,6 +50,7 @@ let package = Package(
                 .target(name: "FavoriteFeature"),
                 .target(name: "SearchFeature"),
                 .target(name: "SponsorFeature"),
+                .target(name: "StaffFeature"),
                 .target(name: "KMPFramework"),
                 .product(name: "UseCase", package: "Core"),
                 .product(name: "Model", package: "Core"),
@@ -75,6 +76,7 @@ let package = Package(
             .target(name: "TimetableDetailFeature"),
         ]),
         .featureTarget(name: "Sponsor"),
+        .featureTarget(name: "Staff"),
 
         .target(
             name: "Theme",
