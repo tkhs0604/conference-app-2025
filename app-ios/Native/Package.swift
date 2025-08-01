@@ -44,6 +44,7 @@ let package = Package(
             name: "Root",
             dependencies: [
                 .target(name: "HomeFeature"),
+                .target(name: "AboutFeature"),
                 .target(name: "KMPFramework"),
                 .product(name: "UseCase", package: "Core"),
                 .product(name: "Model", package: "Core"),
@@ -56,6 +57,7 @@ let package = Package(
             .target(name: "TimetableDetailFeature"),
         ]),
         .featureTarget(name: "TimetableDetail"),
+        .featureTarget(name: "About"),
 
         .target(
             name: "Theme",

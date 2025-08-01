@@ -1,6 +1,7 @@
 import Dependencies
 import SwiftUI
 import HomeFeature
+import AboutFeature
 
 private enum TabType: CaseIterable, Hashable {
     case timetable
@@ -62,8 +63,7 @@ public struct RootScreen: View {
                         image: TabType.info.tabImageName(selectedTab),
                         value: .info
                     ) {
-                        // TODO: Replace correct screen
-                        HomeScreen()
+                        AboutScreen()
                     }
                     Tab("Profile Card",
                         image: TabType.profileCard.tabImageName(selectedTab),
@@ -83,7 +83,7 @@ public struct RootScreen: View {
                     case .favorite:
                         HomeScreen()
                     case .info:
-                        HomeScreen()
+                        AboutScreen()
                     case .profileCard:
                         HomeScreen()
                     }
