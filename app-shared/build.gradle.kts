@@ -100,6 +100,10 @@ kotlin {
                     // compose for iOS(skiko) needs to be static library
                     isStatic = true
 
+                    binaryOption("bundleId", "io.github.droidkaigi.confsched.shared")
+                    binaryOption("bundleVersion", version.toString())
+                    binaryOption("bundleShortVersionString", version.toString())
+
                     val includeToXCF = when (project.activeArch) {
                         Arch.ARM -> {
                             this.target.name.contains("iosArm64") || this.target.name.contains("iosSimulatorArm64")
