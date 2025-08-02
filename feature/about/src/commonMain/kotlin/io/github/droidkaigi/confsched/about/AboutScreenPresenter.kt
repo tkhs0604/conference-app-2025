@@ -14,5 +14,7 @@ fun aboutScreenPresenter(
 
     }
 
-    AboutScreenUiState
+    AboutScreenUiState(
+        versionName = screenContext.buildConfigProvider.versionName
+    )
 }

@@ -1,3 +1,5 @@
 package io.github.droidkaigi.confsched.about
 
-data object AboutScreenUiState
+data class AboutScreenUiState(
+    val versionName: String
+)
