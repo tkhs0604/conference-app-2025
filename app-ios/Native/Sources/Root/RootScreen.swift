@@ -39,6 +39,8 @@ public struct RootScreen: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var selectedTab: TabType = .timetable
     @State private var navigationPath = NavigationPath()
+    @State private var aboutNavigationPath = NavigationPath()
+    @State private var favoriteNavigationPath = NavigationPath()
     private let presenter = RootPresenter()
     
     public init() {
@@ -69,16 +71,32 @@ public struct RootScreen: View {
             }
             .tag(TabType.map)
             
-            NavigationStack {
+            NavigationStack(path: $favoriteNavigationPath) {
                 FavoriteScreen(onNavigate: handleFavoriteNavigation)
+                    .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
+                        switch destination {
+                        case .timetableDetail(let item):
+                            TimetableDetailScreen(timetableItem: item)
+                        }
+                    }
             }
             .tabItem {
                 Label("Favorite", image: TabType.favorite.tabImageName(selectedTab))
             }
             .tag(TabType.favorite)
             
-            NavigationStack {
+            NavigationStack(path: $aboutNavigationPath) {
                 AboutScreen(onNavigate: handleAboutNavigation)
+                    .navigationDestination(for: AboutNavigationDestination.self) { destination in
+                        switch destination {
+                        case .contributors:
+                            ContributorScreen()
+                        case .staff:
+                            StaffScreen()
+                        case .sponsors:
+                            SponsorScreen()
+                        }
+                    }
             }
             .tabItem {
                 Label("Info", image: TabType.info.tabImageName(selectedTab))
@@ -112,21 +130,11 @@ public struct RootScreen: View {
     }
     
     private func handleAboutNavigation(_ destination: AboutNavigationDestination) {
-        switch destination {
-        case .contributors:
-            navigationPath.append(NavigationDestination.contributors)
-        case .staff:
-            navigationPath.append(NavigationDestination.staff)
-        case .sponsors:
-            navigationPath.append(NavigationDestination.sponsors)
-        }
+        aboutNavigationPath.append(destination)
     }
     
     private func handleFavoriteNavigation(_ destination: FavoriteNavigationDestination) {
-        switch destination {
-        case .timetableDetail(let item):
-            navigationPath.append(NavigationDestination.timetableDetail(item))
-        }
+        favoriteNavigationPath.append(destination)
     }
     
     private func handleSearchNavigation(_ destination: SearchNavigationDestination) {

@@ -2,17 +2,11 @@ import SwiftUI
 import Model
 import TimetableDetailFeature
 import SearchFeature
-import ContributorFeature
-import StaffFeature
-import SponsorFeature
 
 // Navigation destinations for the entire app
 public enum NavigationDestination: Hashable {
     case timetableDetail(TimetableItemWithFavorite)
     case search
-    case contributors
-    case staff
-    case sponsors
 }
 
 // Navigation handler that can be passed down
@@ -34,12 +28,6 @@ extension NavigationDestination {
             TimetableDetailScreen(timetableItem: item)
         case .search:
             SearchScreen(onNavigate: navigationHandler.handleSearchNavigation)
-        case .contributors:
-            ContributorScreen()
-        case .staff:
-            StaffScreen()
-        case .sponsors:
-            SponsorScreen()
         }
     }
 }
