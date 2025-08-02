@@ -13,10 +13,15 @@ android {
 
     flavorDimensions += "network"
 
+    buildFeatures {
+        buildConfig = true
+    }
     defaultConfig {
         applicationId = "io.github.droidkaigi.confsched2025"
         minSdk = 24
         targetSdk = 36
+        versionCode = 1
+        versionName = "1.0.0"
     }
 
     signingConfigs {
