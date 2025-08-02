@@ -40,7 +40,7 @@ struct TimetableGridView: View {
                                 VStack {
                                     Text(timeBlock.startsTimeString)
                                         .font(.system(size: 12, weight: .medium))
-                                        .foregroundColor(Color(.label))
+                                        .foregroundStyle(AssetColors.onSurface)
                                     Spacer()
                                 }
                                 .frame(width: 40, height: 153)

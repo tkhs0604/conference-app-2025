@@ -1,6 +1,7 @@
 import SwiftUI
 import Model
 import Extension
+import Theme
 
 public struct RoomTag: View {
     let room: Room
@@ -12,11 +13,13 @@ public struct RoomTag: View {
     public var body: some View {
         Text(room.displayName)
             .font(.system(size: 12, weight: .medium))
-            .foregroundColor(.white)
+            .foregroundStyle(room.color)
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
-            .background(room.color)
-            .cornerRadius(4)
+            .overlay(
+                RoundedRectangle(cornerRadius: 4)
+                    .stroke(room.color, lineWidth: 1)
+            )
     }
 }
 
@@ -30,12 +33,12 @@ public struct LanguageTag: View {
     public var body: some View {
         Text(language.displayLanguage)
             .font(.system(size: 12, weight: .medium))
-            .foregroundColor(.secondary)
+            .foregroundStyle(AssetColors.onSurfaceVariant)
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
             .overlay(
                 RoundedRectangle(cornerRadius: 4)
-                    .stroke(.gray.opacity(0.3), lineWidth: 1)
+                    .stroke(AssetColors.outline, lineWidth: 1)
             )
     }
 }
@@ -55,13 +58,13 @@ public struct CircularUserIcon: View {
                     .aspectRatio(contentMode: .fill)
             } placeholder: {
                 Image(systemName: "person.circle.fill")
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(AssetColors.outline)
             }
             .clipShape(Circle())
         } else {
             Image(systemName: "person.circle.fill")
                 .resizable()
-                .foregroundColor(.secondary)
+                .foregroundStyle(AssetColors.outline)
         }
     }
 }

@@ -31,7 +31,7 @@ public struct TimetableCard: View {
                 
                 Text(timetableItem.title.currentLangTitle)
                     .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.primary)
+                    .foregroundStyle(AssetColors.onSurface)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
                 
@@ -41,10 +41,9 @@ public struct TimetableCard: View {
             }
             .padding(12)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color.white)
             .overlay(
                 RoundedRectangle(cornerRadius: 4)
-                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                    .stroke(AssetColors.outlineVariant, lineWidth: 1)
             )
             .cornerRadius(4)
         }
@@ -69,7 +68,11 @@ public struct TimetableCard: View {
             onTapFavorite(timetableItem, location)
         }) {
             Image(systemName: isFavorite ? "heart.fill" : "heart")
-                .foregroundColor(isFavorite ? Color.blue.opacity(0.8) : .secondary)
+                .foregroundStyle(
+                    isFavorite
+                        ? AssetColors.primaryFixed
+                        : AssetColors.onSurfaceVariant
+                )
                 .frame(width: 24, height: 24)
         }
         .buttonStyle(PlainButtonStyle())
@@ -97,7 +100,7 @@ public struct TimetableCard: View {
                     
                     Text(speaker.name)
                         .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(.primary)
+                        .foregroundStyle(AssetColors.onSurface)
                 }
             }
         }

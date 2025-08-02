@@ -140,7 +140,7 @@ public struct RootScreen: View {
                     } label: {
                         Image(item.tabImageName(selectedTab))
                             .renderingMode(.template)
-                            .tint(isSelected ? .accentColor : Color("tab_inactive"))
+                            .tint(isSelected ? AssetColors.primary : AssetColors.onSurfaceVariant)
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                             .contentShape(Rectangle())
                     }
@@ -157,7 +157,7 @@ public struct RootScreen: View {
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 12)
         .background(.ultraThinMaterial, in: Capsule())
-        .overlay(Capsule().stroke(.gray, lineWidth: 1))
+        .overlay(Capsule().stroke(AssetColors.outline, lineWidth: 1))
         .environment(\.colorScheme, .dark)
         .padding(.horizontal, 48)
     }

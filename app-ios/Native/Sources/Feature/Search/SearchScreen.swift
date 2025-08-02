@@ -18,7 +18,7 @@ public struct SearchScreen: View {
             // Search bar
             HStack {
                 Image(systemName: "magnifyingglass")
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(AssetColors.onSurfaceVariant)
                 
                 TextField("Search sessions", text: $presenter.searchWord)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -33,13 +33,13 @@ public struct SearchScreen: View {
                         presenter.searchWord = ""
                     }) {
                         Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(AssetColors.onSurfaceVariant)
                     }
                 }
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
-            .background(Color.gray.opacity(0.1))
+            .background(AssetColors.surfaceVariant)
             
             // Filters
             ScrollView {
@@ -86,7 +86,7 @@ public struct SearchScreen: View {
                 }
             }
         }
-        .background(Color.primary.opacity(0.02))
+        .background(AssetColors.surface)
         .navigationTitle("Search")
         #if os(iOS)
         .navigationBarTitleDisplayMode(.large)
@@ -106,7 +106,7 @@ public struct SearchScreen: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Category")
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(AssetColors.onSurfaceVariant)
                     .padding(.horizontal, 16)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -200,7 +200,7 @@ public struct SearchScreen: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Day")
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(AssetColors.onSurfaceVariant)
                     .padding(.horizontal, 16)
                 
                 ScrollView(.horizontal, showsIndicators: false) {

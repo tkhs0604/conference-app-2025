@@ -1,4 +1,5 @@
 import SwiftUI
+import Theme
 
 struct SearchFilterChip<T: Hashable>: View {
     let title: String
@@ -10,18 +11,18 @@ struct SearchFilterChip<T: Hashable>: View {
             HStack(spacing: 4) {
                 Text(title)
                     .font(.caption)
-                    .foregroundColor(isSelected ? .white : .primary)
+                    .foregroundStyle(isSelected ? AssetColors.onPrimary : AssetColors.onSurface)
                 
                 if isSelected {
                     Image(systemName: "xmark.circle.fill")
                         .font(.caption2)
-                        .foregroundColor(.white.opacity(0.8))
+                        .foregroundStyle(AssetColors.onPrimary.opacity(0.8))
                 }
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 6)
             .background(
-                isSelected ? Color.accentColor : Color.primary.opacity(0.1)
+                isSelected ? AssetColors.primary : AssetColors.surfaceVariant
             )
             .cornerRadius(16)
         }
@@ -36,7 +37,7 @@ struct SearchFilterSection<T: Hashable & CaseIterable & RawRepresentable>: View 
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
                 .font(.caption)
-                .foregroundColor(.secondary)
+                .foregroundStyle(AssetColors.onSurfaceVariant)
                 .padding(.horizontal, 16)
             
             ScrollView(.horizontal, showsIndicators: false) {

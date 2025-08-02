@@ -43,7 +43,7 @@ public struct FavoriteScreen: View {
                 }
             }
         }
-        .background(Color.primary.opacity(0.02))
+        .background(AssetColors.surface)
         .navigationTitle("Favorites")
         #if os(iOS)
         .navigationBarTitleDisplayMode(.large)
@@ -61,7 +61,7 @@ public struct FavoriteScreen: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 120, height: 120)
-                .foregroundColor(.secondary.opacity(0.5))
+                .foregroundStyle(AssetColors.onSurfaceVariant.opacity(0.5))
             
             VStack(spacing: 8) {
                 Text("No Favorites Yet")
@@ -70,7 +70,7 @@ public struct FavoriteScreen: View {
                 
                 Text("Tap the heart icon on sessions to add them to your favorites")
                     .font(.body)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(AssetColors.onSurfaceVariant)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 40)
             }
