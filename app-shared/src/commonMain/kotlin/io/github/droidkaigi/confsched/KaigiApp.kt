@@ -9,9 +9,6 @@ import soil.query.SwrCacheScope
 import soil.query.annotation.ExperimentalSoilQueryApi
 import soil.query.compose.SwrClientProvider
 
-@Composable
-expect fun rememberExternalNavController(): ExternalNavController
-
 context(appGraph: AppGraph)
 @OptIn(ExperimentalMaterial3ExpressiveApi::class, ExperimentalSoilQueryApi::class)
 @Composable
