@@ -1,14 +1,23 @@
 import Model
 import SwiftUI
 import Theme
-import Presentation
 
-struct TimeGroupList: View {
+public struct TimeGroupList: View {
     let timeGroup: TimetableTimeGroupItems
     let onItemTap: (TimetableItemWithFavorite) -> Void
     let onFavoriteTap: (TimetableItemWithFavorite, CGPoint?) -> Void
     
-    var body: some View {
+    public init(
+        timeGroup: TimetableTimeGroupItems,
+        onItemTap: @escaping (TimetableItemWithFavorite) -> Void,
+        onFavoriteTap: @escaping (TimetableItemWithFavorite, CGPoint?) -> Void
+    ) {
+        self.timeGroup = timeGroup
+        self.onItemTap = onItemTap
+        self.onFavoriteTap = onFavoriteTap
+    }
+    
+    public var body: some View {
         HStack(alignment: .top, spacing: 16) {
             VStack {
                 Text(timeGroup.startsTimeString)
@@ -22,7 +31,6 @@ struct TimeGroupList: View {
                 Text(timeGroup.endsTimeString)
                     .font(.system(size: 16, weight: .medium))
                     .foregroundStyle(AssetColors.onSurface.swiftUIColor)
-
                 Spacer()
             }
             .frame(width: 50)
@@ -47,16 +55,3 @@ struct TimeGroupList: View {
         .padding(.vertical, 8)
     }
 }
-
-// TODO: Add preview with proper test data
-//#Preview {
-//    TimeGroupList(
-//        timeGroup: TimetableTimeGroupItems(
-//            startsTimeString: "10:00",
-//            endsTimeString: "10:50",
-//            items: []
-//        ),
-//        onItemTap: { _ in },
-//        onFavoriteTap: { _, _ in }
-//    )
-//}

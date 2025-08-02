@@ -4,6 +4,7 @@ import Observation
 import SwiftUI
 import Theme
 import Presentation
+import Component
 
 public struct HomeScreen: View {
     @State private var presenter = HomePresenter()
@@ -12,13 +13,17 @@ public struct HomeScreen: View {
     @State private var targetLocationPoint: CGPoint?
     @State private var timetableMode: TimetableMode = .list
     @State private var selectedDay: DayTab = .day1
-
-    public init() {}
+    
+    let onNavigate: (HomeNavigationDestination) -> Void
+    
+    public init(onNavigate: @escaping (HomeNavigationDestination) -> Void = { _ in }) {
+        self.onNavigate = onNavigate
+    }
 
     public var body: some View {
         let timetableItems = presenter.timetable.dayTimetable[selectedDay.model] ?? []
 
-        NavigationStack {
+        ZStack {
             Group {
                 switch timetableMode {
                 case .list:
@@ -26,7 +31,7 @@ public struct HomeScreen: View {
                         selectedDay: $selectedDay,
                         timetableItems: timetableItems,
                         onItemTap: { item in
-                            presenter.timetableItemTapped(item)
+                            onNavigate(.timetableDetail(item))
                         },
                         onFavoriteTap: { item, _ in
                             presenter.timetable.toggleFavorite(item)
@@ -41,7 +46,7 @@ public struct HomeScreen: View {
                         timetableItems: timetableItems,
                         rooms: presenter.timetable.rooms,
                         onItemTap: { item in
-                            presenter.timetableItemTapped(item)
+                            onNavigate(.timetableDetail(item))
                         },
                         isFavorite: { itemId in
                             presenter.timetable.isFavorite(itemId)
@@ -49,31 +54,37 @@ public struct HomeScreen: View {
                     )
                 }
             }
-            .background(
-                Image("background_night", bundle: .module)
-                    .resizable()
-                    .edgesIgnoringSafeArea(.all)
+            
+            FavoriteAnimationView(
+                targetTimetableItemId: targetTimetableItemId,
+                targetLocationPoint: targetLocationPoint,
+                animationProgress: animationProgress
             )
-            .navigationTitle("Timetable")
-            .navigationBarTitleDisplayMode(.automatic)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    HStack {
-                        Button(action: {
-                            presenter.searchTapped()
-                        }) {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundStyle(AssetColors.onSurface.swiftUIColor)
-                                .frame(width: 40, height: 40)
-                        }
-                        
-                        Button(action: {
-                            timetableMode = timetableMode == .list ? .grid : .list
-                        }) {
-                            Image(systemName: timetableMode == .list ? "square.grid.2x2" : "list.bullet")
-                                .foregroundStyle(AssetColors.onSurface.swiftUIColor)
-                                .frame(width: 40, height: 40)
-                        }
+        }
+        .background(
+            Image("background_night", bundle: .module)
+                .resizable()
+                .edgesIgnoringSafeArea(.all)
+        )
+        .navigationTitle("Timetable")
+        .navigationBarTitleDisplayMode(.automatic)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                HStack {
+                    Button(action: {
+                        onNavigate(.search)
+                    }) {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundStyle(AssetColors.onSurface.swiftUIColor)
+                            .frame(width: 40, height: 40)
+                    }
+                    
+                    Button(action: {
+                        timetableMode = timetableMode == .list ? .grid : .list
+                    }) {
+                        Image(systemName: timetableMode == .list ? "square.grid.2x2" : "list.bullet")
+                            .foregroundStyle(AssetColors.onSurface.swiftUIColor)
+                            .frame(width: 40, height: 40)
                     }
                 }
             }
@@ -96,7 +107,7 @@ public struct HomeScreen: View {
                 try await Task.sleep(nanoseconds: 1_000_000_000)
                 targetTimetableItemId = nil
                 targetLocationPoint = nil
-                animationProgress = 0
+                self.animationProgress = 0
             }
         }
     }

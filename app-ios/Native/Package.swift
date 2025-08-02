@@ -22,7 +22,11 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Component"
+            name: "Component",
+            dependencies: [
+                .target(name: "Extension"),
+                .product(name: "Model", package: "Core"),
+            ]
         ),
         .testTarget(
             name: "ComponentTests",
@@ -40,6 +44,15 @@ let package = Package(
             name: "Root",
             dependencies: [
                 .target(name: "HomeFeature"),
+                .target(name: "TimetableDetailFeature"),
+                .target(name: "AboutFeature"),
+                .target(name: "ContributorFeature"),
+                .target(name: "EventMapFeature"),
+                .target(name: "FavoriteFeature"),
+                .target(name: "SearchFeature"),
+                .target(name: "SponsorFeature"),
+                .target(name: "StaffFeature"),
+                .target(name: "ProfileCardFeature"),
                 .target(name: "KMPFramework"),
                 .product(name: "UseCase", package: "Core"),
                 .product(name: "Model", package: "Core"),
@@ -48,7 +61,130 @@ let package = Package(
             ]
         ),
 
-        .featureTarget(name: "Home"),
+        // Feature targets with resources
+        .target(
+            name: "HomeFeature",
+            dependencies: [
+                .product(name: "Presentation", package: "Core"),
+                .product(name: "Model", package: "Core"),
+                .target(name: "Component"),
+                .target(name: "Extension"),
+                .target(name: "Theme"),
+            ],
+            path: "Sources/Feature/Home",
+            resources: [
+                .process("Resources")
+            ]
+        ),
+        
+        // Feature targets without resources
+        .target(
+            name: "TimetableDetailFeature",
+            dependencies: [
+                .product(name: "Presentation", package: "Core"),
+                .product(name: "Model", package: "Core"),
+                .target(name: "Component"),
+                .target(name: "Extension"),
+                .target(name: "Theme"),
+            ],
+            path: "Sources/Feature/TimetableDetail"
+        ),
+        
+        .target(
+            name: "AboutFeature",
+            dependencies: [
+                .product(name: "Presentation", package: "Core"),
+                .product(name: "Model", package: "Core"),
+                .target(name: "Component"),
+                .target(name: "Extension"),
+                .target(name: "Theme"),
+            ],
+            path: "Sources/Feature/About"
+        ),
+        
+        .target(
+            name: "ContributorFeature",
+            dependencies: [
+                .product(name: "Presentation", package: "Core"),
+                .product(name: "Model", package: "Core"),
+                .target(name: "Component"),
+                .target(name: "Extension"),
+                .target(name: "Theme"),
+            ],
+            path: "Sources/Feature/Contributor"
+        ),
+        
+        .target(
+            name: "EventMapFeature",
+            dependencies: [
+                .product(name: "Presentation", package: "Core"),
+                .product(name: "Model", package: "Core"),
+                .target(name: "Component"),
+                .target(name: "Extension"),
+                .target(name: "Theme"),
+            ],
+            path: "Sources/Feature/EventMap"
+        ),
+        
+        .target(
+            name: "FavoriteFeature",
+            dependencies: [
+                .product(name: "Presentation", package: "Core"),
+                .product(name: "Model", package: "Core"),
+                .target(name: "Component"),
+                .target(name: "Extension"),
+                .target(name: "Theme"),
+            ],
+            path: "Sources/Feature/Favorite"
+        ),
+        
+        .target(
+            name: "SearchFeature",
+            dependencies: [
+                .product(name: "Presentation", package: "Core"),
+                .product(name: "Model", package: "Core"),
+                .target(name: "Component"),
+                .target(name: "Extension"),
+                .target(name: "Theme"),
+            ],
+            path: "Sources/Feature/Search"
+        ),
+        
+        .target(
+            name: "SponsorFeature",
+            dependencies: [
+                .product(name: "Presentation", package: "Core"),
+                .product(name: "Model", package: "Core"),
+                .target(name: "Component"),
+                .target(name: "Extension"),
+                .target(name: "Theme"),
+            ],
+            path: "Sources/Feature/Sponsor"
+        ),
+        
+        .target(
+            name: "StaffFeature",
+            dependencies: [
+                .product(name: "Presentation", package: "Core"),
+                .product(name: "Model", package: "Core"),
+                .target(name: "Component"),
+                .target(name: "Extension"),
+                .target(name: "Theme"),
+            ],
+            path: "Sources/Feature/Staff"
+        ),
+        
+        .target(
+            name: "ProfileCardFeature",
+            dependencies: [
+                .product(name: "Presentation", package: "Core"),
+                .product(name: "Model", package: "Core"),
+                .target(name: "Component"),
+                .target(name: "Extension"),
+                .target(name: "Theme"),
+            ],
+            path: "Sources/Feature/ProfileCard"
+        ),
 
         .target(
             name: "Theme",
@@ -62,25 +198,3 @@ let package = Package(
     ],
     swiftLanguageModes: [.v6]
 )
-
-extension Target {
-    static func featureTarget(
-        name: String,
-        dependencies: [Target.Dependency] = []
-    ) -> Target {
-        .target(
-            name: "\(name)Feature",
-            dependencies: dependencies + [
-                .product(name: "Presentation", package: "Core"),
-                .product(name: "Model", package: "Core"),
-                .target(name: "Component"),
-                .target(name: "Extension"),
-                .target(name: "Theme"),
-            ],
-            path: "Sources/Feature/\(name)",
-            resources: [
-                .process("Resources")
-            ]
-        )
-    }
-}

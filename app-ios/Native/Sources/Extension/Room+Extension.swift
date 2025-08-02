@@ -1,6 +1,11 @@
 import SwiftUI
 import Model
 
+public struct RoomTheme {
+    public let primaryColor: Color
+    public let containerColor: Color
+}
+
 extension Room {
     public var color: Color {
         switch type {
@@ -17,6 +22,13 @@ extension Room {
         case .roomIJ:
             return Color.indigo
         }
+    }
+    
+    public var roomTheme: RoomTheme {
+        RoomTheme(
+            primaryColor: color,
+            containerColor: color.opacity(0.1)
+        )
     }
     
     public var displayName: String {
@@ -39,9 +51,3 @@ extension Speaker {
     }
 }
 
-extension TimetableLanguage {
-    // For backward compatibility - returns the primary language label
-    public var displayLanguage: String {
-        langOfSpeaker
-    }
-}

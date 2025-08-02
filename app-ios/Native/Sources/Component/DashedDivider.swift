@@ -1,14 +1,17 @@
 import SwiftUI
 import Theme
 
-struct DashedDivider: View {
+public struct DashedDivider: View {
     let axis: Axis
     
-    var body: some View {
+    public init(axis: Axis = .horizontal) {
+        self.axis = axis
+    }
+    
+    public var body: some View {
         let shape = LineShape(axis: axis)
             .stroke(style: StrokeStyle(dash: [2]))
             .foregroundStyle(AssetColors.outlineVariant.swiftUIColor)
-
         if axis == .horizontal {
             shape.frame(height: 1)
         } else {

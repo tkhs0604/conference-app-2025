@@ -9,6 +9,11 @@ extension Model.MultiLangText {
             return enTitle
         }
     }
+    
+    public var currentLangTitle: String {
+        let isJapanese = Locale.current.language.languageCode == .japanese
+        return isJapanese ? jaTitle : enTitle
+    }
 }
 
 extension Model.TimetableLanguage {

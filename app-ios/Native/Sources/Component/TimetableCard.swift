@@ -1,17 +1,28 @@
 import Model
 import SwiftUI
 import Theme
-import Presentation
 
-struct TimetableCard: View {
+public struct TimetableCard: View {
     let timetableItem: any TimetableItem
     let isFavorite: Bool
     let onTap: (any TimetableItem) -> Void
     let onTapFavorite: (any TimetableItem, CGPoint?) -> Void
-
+    
     @State private var dragLocation: CGPoint?
     
-    var body: some View {
+    public init(
+        timetableItem: any TimetableItem,
+        isFavorite: Bool,
+        onTap: @escaping (any TimetableItem) -> Void,
+        onTapFavorite: @escaping (any TimetableItem, CGPoint?) -> Void
+    ) {
+        self.timetableItem = timetableItem
+        self.isFavorite = isFavorite
+        self.onTap = onTap
+        self.onTapFavorite = onTapFavorite
+    }
+    
+    public var body: some View {
         Button(action: {
             onTap(timetableItem)
         }) {
@@ -82,9 +93,9 @@ struct TimetableCard: View {
     
     private var speakersList: some View {
         VStack(alignment: .leading, spacing: 4) {
-            ForEach(timetableItem.speakers) { speaker in
+            ForEach(timetableItem.speakers, id: \.id) { speaker in
                 HStack(spacing: 8) {
-                    CircularUserIcon(imageUrl: speaker.imageUrl)
+                    CircularUserIcon(imageUrl: speaker.iconUrl)
                         .frame(width: 32, height: 32)
                     
                     Text(speaker.name)
@@ -95,68 +106,3 @@ struct TimetableCard: View {
         }
     }
 }
-
-struct RoomTag: View {
-    let room: Room
-    
-    var body: some View {
-        Text(room.displayName)
-            .font(.system(size: 12, weight: .medium))
-            .foregroundStyle(room.color)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .overlay(
-                RoundedRectangle(cornerRadius: 4)
-                    .stroke(room.color, lineWidth: 1)
-            )
-    }
-}
-
-struct LanguageTag: View {
-    let language: TimetableLanguage
-    
-    var body: some View {
-        Text(language.displayLanguage)
-            .font(.system(size: 12, weight: .medium))
-            .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .overlay(
-                RoundedRectangle(cornerRadius: 4)
-                    .stroke(AssetColors.outline.swiftUIColor, lineWidth: 1)
-            )
-    }
-}
-
-struct CircularUserIcon: View {
-    let imageUrl: String?
-    
-    var body: some View {
-        if let imageUrl = imageUrl, let url = URL(string: imageUrl) {
-            AsyncImage(url: url) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            } placeholder: {
-                Image(systemName: "person.circle.fill")
-                    .foregroundStyle(AssetColors.outline.swiftUIColor)
-            }
-            .clipShape(Circle())
-        } else {
-            Image(systemName: "person.circle.fill")
-                .resizable()
-                .foregroundStyle(AssetColors.outline.swiftUIColor)
-        }
-    }
-}
-
-// TODO: Add preview with proper test data
-//#Preview {
-//    TimetableCard(
-//        timetableItem: ...,
-//        isFavorite: false,
-//        onTap: { _ in },
-//        onTapFavorite: { _, _ in }
-//    )
-//    .padding()
-//}
