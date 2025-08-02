@@ -18,7 +18,7 @@ public struct SearchScreen: View {
             // Search bar
             HStack {
                 Image(systemName: "magnifyingglass")
-                    .foregroundStyle(AssetColors.onSurfaceVariant)
+                    .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
                 
                 TextField("Search sessions", text: $presenter.searchWord)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -33,13 +33,13 @@ public struct SearchScreen: View {
                         presenter.searchWord = ""
                     }) {
                         Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(AssetColors.onSurfaceVariant)
+                            .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
                     }
                 }
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
-            .background(AssetColors.surfaceVariant)
+            .background(AssetColors.surfaceVariant.swiftUIColor)
             
             // Filters
             ScrollView {
@@ -86,7 +86,7 @@ public struct SearchScreen: View {
                 }
             }
         }
-        .background(AssetColors.surface)
+        .background(AssetColors.surface.swiftUIColor)
         .navigationTitle("Search")
         #if os(iOS)
         .navigationBarTitleDisplayMode(.large)
@@ -106,7 +106,7 @@ public struct SearchScreen: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Category")
                     .font(.caption)
-                    .foregroundStyle(AssetColors.onSurfaceVariant)
+                    .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
                     .padding(.horizontal, 16)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -200,7 +200,7 @@ public struct SearchScreen: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Day")
                     .font(.caption)
-                    .foregroundStyle(AssetColors.onSurfaceVariant)
+                    .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
                     .padding(.horizontal, 16)
                 
                 ScrollView(.horizontal, showsIndicators: false) {

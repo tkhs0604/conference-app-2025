@@ -11,18 +11,18 @@ struct SearchFilterChip<T: Hashable>: View {
             HStack(spacing: 4) {
                 Text(title)
                     .font(.caption)
-                    .foregroundStyle(isSelected ? AssetColors.onPrimary : AssetColors.onSurface)
+                    .foregroundStyle(isSelected ? AssetColors.onPrimary.swiftUIColor : AssetColors.onSurface.swiftUIColor)
                 
                 if isSelected {
                     Image(systemName: "xmark.circle.fill")
                         .font(.caption2)
-                        .foregroundStyle(AssetColors.onPrimary.opacity(0.8))
+                        .foregroundStyle(AssetColors.onPrimary.swiftUIColor.opacity(0.8))
                 }
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 6)
             .background(
-                isSelected ? AssetColors.primary : AssetColors.surfaceVariant
+                isSelected ? AssetColors.primary.swiftUIColor : AssetColors.surfaceVariant.swiftUIColor
             )
             .cornerRadius(16)
         }
@@ -37,7 +37,7 @@ struct SearchFilterSection<T: Hashable & CaseIterable & RawRepresentable>: View 
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
                 .font(.caption)
-                .foregroundStyle(AssetColors.onSurfaceVariant)
+                .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
                 .padding(.horizontal, 16)
             
             ScrollView(.horizontal, showsIndicators: false) {

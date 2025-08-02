@@ -33,12 +33,12 @@ public struct LanguageTag: View {
     public var body: some View {
         Text(language.displayLanguage)
             .font(.system(size: 12, weight: .medium))
-            .foregroundStyle(AssetColors.onSurfaceVariant)
+            .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
             .overlay(
                 RoundedRectangle(cornerRadius: 4)
-                    .stroke(AssetColors.outline, lineWidth: 1)
+                    .stroke(AssetColors.outline.swiftUIColor, lineWidth: 1)
             )
     }
 }
@@ -58,13 +58,13 @@ public struct CircularUserIcon: View {
                     .aspectRatio(contentMode: .fill)
             } placeholder: {
                 Image(systemName: "person.circle.fill")
-                    .foregroundStyle(AssetColors.outline)
+                    .foregroundStyle(AssetColors.outline.swiftUIColor)
             }
             .clipShape(Circle())
         } else {
             Image(systemName: "person.circle.fill")
                 .resizable()
-                .foregroundStyle(AssetColors.outline)
+                .foregroundStyle(AssetColors.outline.swiftUIColor)
         }
     }
 }

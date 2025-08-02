@@ -2,6 +2,7 @@ import SwiftUI
 import Model
 import Presentation
 import Component
+import Theme
 
 struct TimetableGridView: View {
     @Binding var selectedDay: DayTab
@@ -40,7 +41,7 @@ struct TimetableGridView: View {
                                 VStack {
                                     Text(timeBlock.startsTimeString)
                                         .font(.system(size: 12, weight: .medium))
-                                        .foregroundStyle(AssetColors.onSurface)
+                                        .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                                     Spacer()
                                 }
                                 .frame(width: 40, height: 153)

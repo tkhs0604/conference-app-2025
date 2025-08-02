@@ -81,7 +81,7 @@ public struct HomeScreen: View {
                         onNavigate(.search)
                     }) {
                         Image(systemName: "magnifyingglass")
-                            .foregroundStyle(AssetColors.onSurface)
+                            .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                             .frame(width: 40, height: 40)
                     }
                     
@@ -89,7 +89,7 @@ public struct HomeScreen: View {
                         timetableMode = timetableMode == .list ? .grid : .list
                     }) {
                         Image(systemName: timetableMode == .list ? "square.grid.2x2" : "list.bullet")
-                            .foregroundStyle(AssetColors.onSurface)
+                            .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                             .frame(width: 40, height: 40)
                     }
                 }

@@ -31,7 +31,7 @@ public struct TimetableCard: View {
                 
                 Text(timetableItem.title.currentLangTitle)
                     .font(.system(size: 16, weight: .medium))
-                    .foregroundStyle(AssetColors.onSurface)
+                    .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
                 
@@ -43,7 +43,7 @@ public struct TimetableCard: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .overlay(
                 RoundedRectangle(cornerRadius: 4)
-                    .stroke(AssetColors.outlineVariant, lineWidth: 1)
+                    .stroke(AssetColors.outlineVariant.swiftUIColor, lineWidth: 1)
             )
             .cornerRadius(4)
         }
@@ -70,8 +70,8 @@ public struct TimetableCard: View {
             Image(systemName: isFavorite ? "heart.fill" : "heart")
                 .foregroundStyle(
                     isFavorite
-                        ? AssetColors.primaryFixed
-                        : AssetColors.onSurfaceVariant
+                        ? AssetColors.primaryFixed.swiftUIColor
+                        : AssetColors.onSurfaceVariant.swiftUIColor
                 )
                 .frame(width: 24, height: 24)
         }
@@ -100,7 +100,7 @@ public struct TimetableCard: View {
                     
                     Text(speaker.name)
                         .font(.system(size: 14, weight: .medium))
-                        .foregroundStyle(AssetColors.onSurface)
+                        .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                 }
             }
         }

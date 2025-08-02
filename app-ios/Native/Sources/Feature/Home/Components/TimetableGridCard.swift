@@ -34,7 +34,7 @@ struct TimetableGridCard: View {
 
                         Text(timetableItem.speakers.map(\.name).joined(separator: ", "))
                             .font(.system(size: 12))
-                            .foregroundStyle(AssetColors.onSurface)
+                            .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                             .lineLimit(1)
 
                         Spacer()

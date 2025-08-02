@@ -11,7 +11,7 @@ struct FavoriteAnimationView: View {
         GeometryReader { geometry in
             if targetTimetableItemId != nil {
                 Image(systemName: "heart.fill")
-                    .foregroundStyle(AssetColors.primaryFixed)
+                    .foregroundStyle(AssetColors.primaryFixed.swiftUIColor)
                     .frame(width: 24, height: 24)
                     .position(animationPosition(geometry: geometry))
                     .opacity(1 - animationProgress)
