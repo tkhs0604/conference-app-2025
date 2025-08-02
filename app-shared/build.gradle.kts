@@ -1,3 +1,8 @@
+import org.jetbrains.compose.ComposePlugin.CommonComponentsDependencies
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+import util.Arch
+import util.activeArch
 import util.androidJvmMain
 
 plugins {
@@ -66,18 +71,64 @@ kotlin {
         // Therefore, we need to manually set up iosMain and link each iOS target to it.
         val iosMain by creating {
             dependsOn(commonMain.get())
+            dependencies {
+                api(projects.feature.sessions)
+                api(projects.feature.contributors)
+                api(projects.core.model)
+                api(projects.core.data)
+            }
         }
 
         listOf(
-            "iosArm64",
-            "iosX64",
-            "iosSimulatorArm64",
+            iosArm64Main.get(),
+            iosX64Main.get(),
+            iosSimulatorArm64Main.get(),
         ).forEach { it ->
-            getByName("${it}Main") {
-                dependsOn(iosMain)
-            }
+            it.dependsOn(iosMain)
         }
     }
+
+    val frameworkName = "shared"
+    val xcf = XCFramework(frameworkName)
+    targets.filterIsInstance<KotlinNativeTarget>()
+        .forEach {
+            it.binaries {
+                framework {
+                    baseName = frameworkName
+                    // compose for iOS(skiko) needs to be static library
+                    isStatic = true
+
+                    val includeToXCF = when (project.activeArch) {
+                        Arch.ARM -> {
+                            this.target.name.contains("iosArm64") || this.target.name.contains("iosSimulatorArm64")
+                        }
+
+                        Arch.ARM_SIMULATOR_DEBUG -> {
+                            this.target.name.contains("iosSimulatorArm64") && this.debuggable && !this.optimized
+                        }
+
+                        Arch.X86 -> {
+                            this.target.name.contains("iosX64")
+                        }
+
+                        Arch.ALL -> {
+                            true
+                        }
+                    }
+
+                    if (includeToXCF) {
+                        xcf.add(this)
+                        logger.lifecycle("framework '${this.name} ${this.target}' will be in XCFramework")
+                    }
+
+                    export(projects.feature.sessions)
+                    export(projects.feature.contributors)
+                    export(projects.core.model)
+                    export(projects.core.data)
+                    export(CommonComponentsDependencies.resources)
+                }
+            }
+        }
 }
 
 dependencies {
