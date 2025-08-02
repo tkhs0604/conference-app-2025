@@ -141,7 +141,7 @@ public struct RootScreen: View {
                     } label: {
                         Image(item.tabImageName(selectedTab))
                             .renderingMode(.template)
-                            .tint(isSelected ? AssetColors.primary.swiftUIColor : AssetColors.onSurfaceVariant.swiftUIColor)
+                            .tint(isSelected ? AssetColors.primary40.swiftUIColor : AssetColors.onSurfaceVariant.swiftUIColor)
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                             .contentShape(Rectangle())
                     }

@@ -2,7 +2,6 @@ import SwiftUI
 import Theme
 import Model
 import Component
-import HomeFeature
 
 public struct SearchScreen: View {
     @State private var presenter = SearchPresenter()

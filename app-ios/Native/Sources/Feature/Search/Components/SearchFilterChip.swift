@@ -22,7 +22,7 @@ struct SearchFilterChip<T: Hashable>: View {
             .padding(.horizontal, 12)
             .padding(.vertical, 6)
             .background(
-                isSelected ? AssetColors.primary.swiftUIColor : AssetColors.surfaceVariant.swiftUIColor
+                isSelected ? AssetColors.primary40.swiftUIColor : AssetColors.surfaceVariant.swiftUIColor
             )
             .cornerRadius(16)
         }
