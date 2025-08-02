@@ -73,6 +73,7 @@ kotlin {
         val iosMain by creating {
             dependsOn(commonMain.get())
             dependencies {
+                implementation(libs.ktorClientDarwin)
                 api(projects.feature.sessions)
                 api(projects.feature.contributors)
                 api(projects.core.model)
