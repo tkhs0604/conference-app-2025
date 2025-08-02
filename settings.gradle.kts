@@ -38,7 +38,6 @@ include(
 )
 include(
     ":feature:sessions",
-    ":feature:main",
     ":feature:contributors",
     ":feature:sponsors",
     ":feature:about",
