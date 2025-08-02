@@ -114,6 +114,8 @@ fun TimetableScreen(
                                 ),
                                 onClick = { selectedDay = droidKaigi2025Day },
                                 colors = SegmentedButtonDefaults.colors(
+                                    activeContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                                    activeContentColor = MaterialTheme.colorScheme.onSecondaryContainer,
                                     inactiveContainerColor = MaterialTheme.colorScheme.surface,
                                 ),
                                 selected = selectedDay == droidKaigi2025Day,
