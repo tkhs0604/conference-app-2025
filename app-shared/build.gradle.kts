@@ -60,6 +60,23 @@ kotlin {
             }
             implementation(libs.navigation3Runtime)
         }
+
+        // Since we manually configured `dependsOn` for androidJvmMain,
+        // the default source set hierarchy is disabled.
+        // Therefore, we need to manually set up iosMain and link each iOS target to it.
+        val iosMain by creating {
+            dependsOn(commonMain.get())
+        }
+
+        listOf(
+            "iosArm64",
+            "iosX64",
+            "iosSimulatorArm64",
+        ).forEach { it ->
+            getByName("${it}Main") {
+                dependsOn(iosMain)
+            }
+        }
     }
 }
 
