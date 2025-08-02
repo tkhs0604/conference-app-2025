@@ -1,3 +1,5 @@
+import util.androidJvmMain
+
 plugins {
     id("droidkaigi.primitive.kmp")
     id("droidkaigi.primitive.metro")
@@ -35,15 +37,13 @@ kotlin {
         }
 
         androidMain.dependencies {
-            implementation(libs.navigation3Ui)
-            implementation(libs.navigation3Runtime)
             implementation(libs.lifecycleViewmodelNavigation3)
             implementation(libs.androidxActivityCompose)
             implementation(libs.navigation3Adaptive)
             implementation(libs.androidxBrowser)
         }
 
-        jvmMain.dependencies {
+        androidJvmMain.dependencies {
             implementation(libs.navigation3Ui.get().toString()) {
                 /**
                  * Exclude androidx.compose.ui to avoid runtime crash on JVM:
