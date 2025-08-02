@@ -28,4 +28,5 @@ dependencies {
     implementation(libs.lifecycleRuntimeCompose)
     implementation(compose.ui)
     implementation(compose.uiUtil)
+    implementation(projects.core.model)
 }

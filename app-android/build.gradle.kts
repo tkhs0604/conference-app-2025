@@ -70,6 +70,7 @@ dependencies {
     implementation(projects.feature.sponsors)
     implementation(projects.feature.settings)
     implementation(projects.feature.staff)
+    implementation(projects.feature.favorites)
     implementation(projects.feature.contributors)
 
     implementation(compose.runtime)
