@@ -261,7 +261,7 @@ extension Model.Filters {
 
 // MARK: - Helper Extensions
 
-extension shared.Kotlinx_datetimeInstant {
+extension shared.KotlinInstant {
     var date: Date {
         Date(timeIntervalSince1970: TimeInterval(epochSeconds))
     }
