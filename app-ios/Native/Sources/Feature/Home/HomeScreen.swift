@@ -6,12 +6,6 @@ import Theme
 import Presentation
 import Component
 
-// Navigation destinations
-public enum HomeNavigationDestination: Hashable {
-    case timetableDetail(TimetableItemWithFavorite)
-    case search
-}
-
 public struct HomeScreen: View {
     @State private var presenter = HomePresenter()
     @State private var animationProgress: CGFloat = 0
