@@ -14,29 +14,27 @@ public struct AboutScreen: View {
     }
     
     public var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: 32) {
-                    KeyVisual()
-                        .padding(.top, 28)
-                    
-                    creditsSection
-                    
-                    othersSection
-                    
-                    socialMediaSection
-                    
-                    versionSection
-                }
-                .padding(.horizontal, 16)
-                .padding(.bottom, 80) // Tab bar padding
+        ScrollView {
+            VStack(spacing: 32) {
+                KeyVisual()
+                    .padding(.top, 28)
+                
+                creditsSection
+                
+                othersSection
+                
+                socialMediaSection
+                
+                versionSection
             }
-            .background(Color.primary.opacity(0.05))
-            .navigationTitle("About")
-            #if os(iOS)
-            .navigationBarTitleDisplayMode(.large)
-            #endif
+            .padding(.horizontal, 16)
+            .padding(.bottom, 80) // Tab bar padding
         }
+        .background(Color.primary.opacity(0.05))
+        .navigationTitle("About")
+        #if os(iOS)
+        .navigationBarTitleDisplayMode(.large)
+        #endif
     }
     
     @ViewBuilder

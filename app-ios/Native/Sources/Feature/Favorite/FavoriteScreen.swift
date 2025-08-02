@@ -12,46 +12,44 @@ public struct FavoriteScreen: View {
     }
     
     public var body: some View {
-        NavigationStack {
-            Group {
-                if presenter.favoriteTimetableItems.isEmpty {
-                    emptyView
-                } else {
-                    ScrollView {
-                        LazyVStack(spacing: 0) {
-                            ForEach(presenter.favoriteTimetableItems.indices, id: \.self) { index in
-                                let timeGroup = presenter.favoriteTimetableItems[index]
-                                
-                                TimeGroupList(
-                                    timeGroup: timeGroup,
-                                    onItemTap: { item in
-                                        onNavigate(.timetableDetail(item))
-                                    },
-                                    onFavoriteTap: { item, _ in
-                                        presenter.toggleFavorite(item)
-                                    }
-                                )
-                                
-                                if index < presenter.favoriteTimetableItems.count - 1 {
-                                    DashedDivider()
-                                        .padding(.vertical, 16)
+        Group {
+            if presenter.favoriteTimetableItems.isEmpty {
+                emptyView
+            } else {
+                ScrollView {
+                    LazyVStack(spacing: 0) {
+                        ForEach(presenter.favoriteTimetableItems.indices, id: \.self) { index in
+                            let timeGroup = presenter.favoriteTimetableItems[index]
+                            
+                            TimeGroupList(
+                                timeGroup: timeGroup,
+                                onItemTap: { item in
+                                    onNavigate(.timetableDetail(item))
+                                },
+                                onFavoriteTap: { item, _ in
+                                    presenter.toggleFavorite(item)
                                 }
+                            )
+                            
+                            if index < presenter.favoriteTimetableItems.count - 1 {
+                                DashedDivider()
+                                    .padding(.vertical, 16)
                             }
                         }
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 20)
-                        .padding(.bottom, 80) // Tab bar padding
                     }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 20)
+                    .padding(.bottom, 80) // Tab bar padding
                 }
             }
-            .background(Color.primary.opacity(0.02))
-            .navigationTitle("Favorites")
-            #if os(iOS)
-            .navigationBarTitleDisplayMode(.large)
-            #endif
-            .task {
-                await presenter.loadInitial()
-            }
+        }
+        .background(Color.primary.opacity(0.02))
+        .navigationTitle("Favorites")
+        #if os(iOS)
+        .navigationBarTitleDisplayMode(.large)
+        #endif
+        .task {
+            await presenter.loadInitial()
         }
     }
     

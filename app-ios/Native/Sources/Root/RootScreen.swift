@@ -46,65 +46,52 @@ public struct RootScreen: View {
     }
     
     public var body: some View {
-        NavigationStack(path: $navigationPath) {
-            Group {
-                if #available(iOS 26, *) {
-                    TabView(selection: $selectedTab) {
-                        Tab("Timetable",
-                            image: TabType.timetable.tabImageName(selectedTab),
-                            value: .timetable
-                        ) {
-                            HomeScreen(onNavigate: handleHomeNavigation)
-                        }
-                        Tab("Map",
-                            image: TabType.map.tabImageName(selectedTab),
-                            value: .map
-                        ) {
-                            EventMapScreen()
-                        }
-                        Tab("Favorite",
-                            image: TabType.favorite.tabImageName(selectedTab),
-                            value: .favorite
-                        ) {
-                            FavoriteScreen(onNavigate: handleFavoriteNavigation)
-                        }
-                        Tab("Info",
-                            image: TabType.info.tabImageName(selectedTab),
-                            value: .info
-                        ) {
-                            AboutScreen(onNavigate: handleAboutNavigation)
-                        }
-                        Tab("Profile Card",
-                            image: TabType.profileCard.tabImageName(selectedTab),
-                            value: .profileCard
-                        ) {
-                            ProfileCardScreen()
-                        }
+        TabView(selection: $selectedTab) {
+            NavigationStack(path: $navigationPath) {
+                HomeScreen(onNavigate: handleHomeNavigation)
+                    .navigationDestination(for: NavigationDestination.self) { destination in
+                        let navigationHandler = NavigationHandler(
+                            handleSearchNavigation: handleSearchNavigation
+                        )
+                        destination.view(with: navigationHandler)
                     }
-                } else {
-                    ZStack(alignment: .bottom) {
-                        switch selectedTab {
-                        case .timetable:
-                            HomeScreen(onNavigate: handleHomeNavigation)
-                        case .map:
-                            EventMapScreen()
-                        case .favorite:
-                            FavoriteScreen(onNavigate: handleFavoriteNavigation)
-                        case .info:
-                            AboutScreen(onNavigate: handleAboutNavigation)
-                        case .profileCard:
-                            ProfileCardScreen()
-                        }
-                        tabBar
-                    }
-                }
             }
-            .navigationDestination(for: NavigationDestination.self) { destination in
-                let navigationHandler = NavigationHandler(
-                    handleSearchNavigation: handleSearchNavigation
-                )
-                destination.view(with: navigationHandler)
+            .tabItem {
+                Label("Timetable", image: TabType.timetable.tabImageName(selectedTab))
             }
+            .tag(TabType.timetable)
+            
+            NavigationStack {
+                EventMapScreen()
+            }
+            .tabItem {
+                Label("Map", image: TabType.map.tabImageName(selectedTab))
+            }
+            .tag(TabType.map)
+            
+            NavigationStack {
+                FavoriteScreen(onNavigate: handleFavoriteNavigation)
+            }
+            .tabItem {
+                Label("Favorite", image: TabType.favorite.tabImageName(selectedTab))
+            }
+            .tag(TabType.favorite)
+            
+            NavigationStack {
+                AboutScreen(onNavigate: handleAboutNavigation)
+            }
+            .tabItem {
+                Label("Info", image: TabType.info.tabImageName(selectedTab))
+            }
+            .tag(TabType.info)
+            
+            NavigationStack {
+                ProfileCardScreen()
+            }
+            .tabItem {
+                Label("Profile", image: TabType.profileCard.tabImageName(selectedTab))
+            }
+            .tag(TabType.profileCard)
         }
         .onAppear {
             presenter.prepareWindow()
@@ -147,39 +134,6 @@ public struct RootScreen: View {
         case .timetableDetail(let item):
             navigationPath.append(NavigationDestination.timetableDetail(item))
         }
-    }
-
-    @ViewBuilder
-    private var tabBar: some View {
-        GeometryReader { geometry in
-            HStack(spacing: 0) {
-                ForEach(TabType.allCases, id: \.self) { item in
-                    let isSelected = selectedTab == item
-                    Button {
-                        selectedTab = item
-                    } label: {
-                        Image(item.tabImageName(selectedTab))
-                            .renderingMode(.template)
-                            .tint(isSelected ? .accentColor : Color("tab_inactive"))
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                            .contentShape(Rectangle())
-                    }
-                    .frame(
-                        maxWidth: geometry.size.width / CGFloat(TabType.allCases.count),
-                        maxHeight: .infinity,
-                        alignment: .center
-                    )
-                }
-            }
-            .frame(width: geometry.size.width, height: geometry.size.height)
-        }
-        .frame(height: 64)
-        .frame(maxWidth: .infinity)
-        .padding(.horizontal, 12)
-        .background(.ultraThinMaterial, in: Capsule())
-        .overlay(Capsule().stroke(.gray, lineWidth: 1))
-        .environment(\.colorScheme, .dark)
-        .padding(.horizontal, 48)
     }
 }
 

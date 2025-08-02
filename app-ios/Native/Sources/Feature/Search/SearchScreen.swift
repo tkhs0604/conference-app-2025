@@ -2,6 +2,7 @@ import SwiftUI
 import Theme
 import Model
 import Component
+import HomeFeature
 
 public struct SearchScreen: View {
     @State private var presenter = SearchPresenter()
@@ -13,65 +14,62 @@ public struct SearchScreen: View {
     }
     
     public var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                // Search bar
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.secondary)
-                    
-                    TextField("Search sessions...", text: $presenter.searchWord)
-                        .textFieldStyle(PlainTextFieldStyle())
-                        .focused($isSearchFieldFocused)
-                    
-                    if !presenter.searchWord.isEmpty {
-                        Button(action: {
-                            presenter.searchWord = ""
-                        }) {
-                            Image(systemName: "xmark.circle.fill")
-                                .foregroundColor(.secondary)
-                        }
+        VStack(spacing: 0) {
+            // Search bar
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.secondary)
+                
+                TextField("Search sessions", text: $presenter.searchWord)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .focused($isSearchFieldFocused)
+                    .submitLabel(.search)
+                    .onSubmit {
+                        // Search is automatic with binding
+                    }
+                
+                if !presenter.searchWord.isEmpty {
+                    Button(action: {
+                        presenter.searchWord = ""
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.secondary)
                     }
                 }
-                .padding(12)
-                .background(Color.primary.opacity(0.1))
-                .cornerRadius(10)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                
-                // Filters
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: 16) {
-                        SearchFilterSection(
-                            title: "Day",
-                            selection: $presenter.selectedDay
-                        )
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
+            .background(Color.gray.opacity(0.1))
+            
+            // Filters
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    // Category filter
+                    categorySection
+                    
+                    // Language filter
+                    languageSection
+                    
+                    // Day filter (if applicable)
+                    daySection
+                    
+                    // Room filter (if applicable)
+                    roomSection
+                    
+                    // Search results
+                    if !presenter.searchWord.isEmpty || presenter.selectedDay != nil || presenter.selectedCategory != nil || presenter.selectedLanguage != nil {
+                        Divider()
+                            .padding(.vertical, 8)
                         
-                        categorySection
+                        Text("Results")
+                            .font(.headline)
+                            .padding(.horizontal, 16)
                         
-                        SearchFilterSection(
-                            title: "Session Type",
-                            selection: $presenter.selectedSessionType
-                        )
-                        
-                        languageSection
-                    }
-                    .padding(.vertical, 8)
-                }
-                .frame(height: 200)
-                
-                Divider()
-                
-                // Results
-                if presenter.filteredTimetableItems.isEmpty {
-                    emptyView
-                } else {
-                    ScrollView {
-                        LazyVStack(spacing: 16) {
-                            ForEach(presenter.filteredTimetableItems, id: \.timetableItem.id) { item in
+                        LazyVStack(spacing: 12) {
+                            ForEach(presenter.filteredTimetableItems) { item in
                                 TimetableCard(
                                     timetableItem: item.timetableItem,
-                                    isFavorite: presenter.timetable.favoriteIds.contains(item.timetableItem.id.value),
+                                    isFavorite: item.isFavorited,
                                     onTap: { _ in
                                         onNavigate(.timetableDetail(item))
                                     },
@@ -87,15 +85,15 @@ public struct SearchScreen: View {
                     }
                 }
             }
-            .background(Color.primary.opacity(0.02))
-            .navigationTitle("Search")
-            #if os(iOS)
-            .navigationBarTitleDisplayMode(.large)
-            #endif
-            .task {
-                await presenter.loadInitial()
-                isSearchFieldFocused = true
-            }
+        }
+        .background(Color.primary.opacity(0.02))
+        .navigationTitle("Search")
+        #if os(iOS)
+        .navigationBarTitleDisplayMode(.large)
+        #endif
+        .task {
+            await presenter.loadInitial()
+            isSearchFieldFocused = true
         }
     }
     
@@ -121,12 +119,12 @@ public struct SearchScreen: View {
                             }
                         )
                         
-                        ForEach(categories, id: \.id) { category in
+                        ForEach(categories) { category in
                             SearchFilterChip<TimetableCategory>(
-                                title: category.title.currentLangTitle,
-                                isSelected: presenter.selectedCategory?.id == category.id,
+                                title: category.title.jaTitle,
+                                isSelected: presenter.selectedCategory == category,
                                 onTap: {
-                                    presenter.selectedCategory = presenter.selectedCategory?.id == category.id ? nil : category
+                                    presenter.selectedCategory = presenter.selectedCategory == category ? nil : category
                                 }
                             )
                         }
@@ -147,7 +145,7 @@ public struct SearchScreen: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    SearchFilterChip<String>(
+                    SearchFilterChip<TimetableLanguage>(
                         title: "All",
                         isSelected: presenter.selectedLanguage == nil,
                         onTap: {
@@ -155,23 +153,41 @@ public struct SearchScreen: View {
                         }
                     )
                     
-                    // Common languages - you can expand this based on actual data
-                    ForEach(["Japanese", "English"], id: \.self) { language in
-                        SearchFilterChip<String>(
-                            title: language,
-                            isSelected: presenter.selectedLanguage?.langOfSpeaker == language,
-                            onTap: {
-                                if presenter.selectedLanguage?.langOfSpeaker == language {
-                                    presenter.selectedLanguage = nil
-                                } else {
-                                    presenter.selectedLanguage = TimetableLanguage(
-                                        langOfSpeaker: language,
-                                        isInterpretationTarget: false
-                                    )
-                                }
+                    SearchFilterChip<TimetableLanguage>(
+                        title: "Japanese",
+                        isSelected: presenter.selectedLanguage?.langOfSpeaker == "JA",
+                        onTap: {
+                            if presenter.selectedLanguage?.langOfSpeaker == "JA" {
+                                presenter.selectedLanguage = nil
+                            } else {
+                                presenter.selectedLanguage = TimetableLanguage(langOfSpeaker: "JA", isInterpretationTarget: false)
                             }
-                        )
-                    }
+                        }
+                    )
+                    
+                    SearchFilterChip<TimetableLanguage>(
+                        title: "English",
+                        isSelected: presenter.selectedLanguage?.langOfSpeaker == "EN",
+                        onTap: {
+                            if presenter.selectedLanguage?.langOfSpeaker == "EN" {
+                                presenter.selectedLanguage = nil
+                            } else {
+                                presenter.selectedLanguage = TimetableLanguage(langOfSpeaker: "EN", isInterpretationTarget: false)
+                            }
+                        }
+                    )
+                    
+                    SearchFilterChip<TimetableLanguage>(
+                        title: "Mixed",
+                        isSelected: presenter.selectedLanguage?.langOfSpeaker == "MIXED",
+                        onTap: {
+                            if presenter.selectedLanguage?.langOfSpeaker == "MIXED" {
+                                presenter.selectedLanguage = nil
+                            } else {
+                                presenter.selectedLanguage = TimetableLanguage(langOfSpeaker: "MIXED", isInterpretationTarget: false)
+                            }
+                        }
+                    )
                 }
                 .padding(.horizontal, 16)
             }
@@ -179,38 +195,43 @@ public struct SearchScreen: View {
     }
     
     @ViewBuilder
-    private var emptyView: some View {
-        VStack(spacing: 24) {
-            // TODO: Replace with actual empty state illustration
-            Image(systemName: "magnifyingglass")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 80, height: 80)
-                .foregroundColor(.secondary.opacity(0.5))
-            
-            VStack(spacing: 8) {
-                if !presenter.searchWord.isEmpty {
-                    Text("No results for \"\(presenter.searchWord)\"")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                    
-                    Text("Try adjusting your search or filters")
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                } else {
-                    Text("Search for sessions")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                    
-                    Text("Enter keywords or use filters to find sessions")
-                        .font(.body)
-                        .foregroundColor(.secondary)
+    private var daySection: some View {
+        if let _ = presenter.timetable.timetable {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Day")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .padding(.horizontal, 16)
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 8) {
+                        SearchFilterChip<DroidKaigi2024Day>(
+                            title: "All",
+                            isSelected: presenter.selectedDay == nil,
+                            onTap: {
+                                presenter.selectedDay = nil
+                            }
+                        )
+                        
+                        ForEach([DroidKaigi2024Day.conferenceDay1, .conferenceDay2], id: \.self) { day in
+                            SearchFilterChip<DroidKaigi2024Day>(
+                                title: day == .conferenceDay1 ? "Day 1" : "Day 2",
+                                isSelected: presenter.selectedDay == day,
+                                onTap: {
+                                    presenter.selectedDay = presenter.selectedDay == day ? nil : day
+                                }
+                            )
+                        }
+                    }
+                    .padding(.horizontal, 16)
                 }
             }
-            .multilineTextAlignment(.center)
-            .padding(.horizontal, 40)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
+    @ViewBuilder
+    private var roomSection: some View {
+        EmptyView() // TODO: Implement room filter when room data is available
     }
 }
 
