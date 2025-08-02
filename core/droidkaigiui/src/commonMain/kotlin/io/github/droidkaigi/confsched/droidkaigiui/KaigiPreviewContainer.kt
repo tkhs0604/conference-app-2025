@@ -3,6 +3,7 @@ package io.github.droidkaigi.confsched.droidkaigiui
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import coil3.ColorImage
@@ -14,10 +15,11 @@ import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
 @OptIn(ExperimentalCoilApi::class)
 @Composable
 fun KaigiPreviewContainer(
+    modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
     KaigiTheme {
-        Surface {
+        Surface(modifier = modifier) {
             val previewHandler = AsyncImagePreviewHandler {
                 ColorImage(Color.Red.toArgb())
             }
