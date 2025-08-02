@@ -47,6 +47,9 @@ coil = "3.2.0"
 buildkonfig = "0.17.1"
 
 haze = "1.6.9"
+
+skie = "0.10.4"
+
 [libraries]
 # gradle plugins
 androidGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
@@ -60,6 +63,7 @@ metroGradlePlugin = { module = "dev.zacsweers.metro:dev.zacsweers.metro.gradle.p
 detektGradlePlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 roborazziGradlePlugin = { module = "io.github.takahirom.roborazzi:roborazzi-gradle-plugin", version.ref = "roborazzi" }
 buildkonfigGradlePlugin = { module = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin", version.ref = "buildkonfig" }
+skieGradlePlugin = { module = "co.touchlab.skie:co.touchlab.skie.gradle.plugin", version.ref = "skie" }
 
 # ktor and ktorfit
 ktorClientOkhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
@@ -161,4 +165,5 @@ plugins = [
     "detektGradlePlugin",
     "roborazziGradlePlugin",
     "buildkonfigGradlePlugin",
+    "skieGradlePlugin",
 ]
