@@ -13,6 +13,7 @@ import dev.zacsweers.metro.DependencyGraph
 import dev.zacsweers.metro.Named
 import dev.zacsweers.metro.Provides
 import dev.zacsweers.metro.SingleIn
+import dev.zacsweers.metro.createGraph
 import io.github.droidkaigi.confsched.common.scope.TimetableDetailScope
 import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.SessionCacheDataStoreQualifier
@@ -55,6 +56,8 @@ import platform.Foundation.NSUserDomainMask
     isExtendable = true,
 )
 interface IosAppGraph : AppGraph {
+    val sessionsApiClient: SessionsApiClient
+
     @Named("apiBaseUrl")
     @Provides
     fun provideApiBaseUrl(): String {
@@ -155,6 +158,10 @@ interface IosAppGraph : AppGraph {
 interface IosTimetableItemDetailGraph {
     @Binds
     val DefaultTimetableItemQueryKey.bind: TimetableItemQueryKey
+}
+
+fun createIosAppGraph(): IosAppGraph {
+    return createGraph()
 }
 
 // These constants are duplicated with those in DataStoreDependencyProviders.kt
