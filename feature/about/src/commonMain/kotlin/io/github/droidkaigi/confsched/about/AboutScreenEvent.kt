@@ -1,3 +1,5 @@
 package io.github.droidkaigi.confsched.about
 
-data object AboutScreenUiState
+sealed interface AboutScreenEvent {
+
+}

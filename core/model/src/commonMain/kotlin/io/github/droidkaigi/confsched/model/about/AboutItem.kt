@@ -1,13 +1,17 @@
 package io.github.droidkaigi.confsched.model.about
 
-public enum class AboutItem {
+enum class AboutItem {
     Map,
-    Sponsors,
+
     Contributors,
     Staff,
+    Sponsors,
+
     CodeOfConduct,
+    License,
     PrivacyPolicy,
     Settings,
+
     Youtube,
     X,
     Medium,
