@@ -14,36 +14,41 @@ struct TimetableGridCard: View {
             onTap(timetableItem)
         }) {
             VStack(alignment: .leading, spacing: 4) {
+                Text("10:00 ~ 11:00")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundStyle(timetableItem.room.color)
+                    .multilineTextAlignment(.leading)
+
                 Text(timetableItem.title.currentLangTitle)
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(Color(.label))
+                    .foregroundStyle(timetableItem.room.color)
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
-                
-                if !timetableItem.speakers.isEmpty {
-                    Text(timetableItem.speakers.map(\.name).joined(separator: ", "))
-                        .font(.system(size: 12))
-                        .foregroundColor(Color(.secondaryLabel))
-                        .lineLimit(1)
-                }
-                
+
                 Spacer()
-                
-                HStack {
-                    Text(timetableItem.language.displayLanguage)
-                        .font(.system(size: 10, weight: .medium))
-                        .foregroundColor(Color(.secondaryLabel))
-                    Spacer()
+
+                if !timetableItem.speakers.isEmpty {
+                    HStack {
+                        CircularUserIcon(imageUrl: timetableItem.speakers.first?.iconUrl)
+                            .frame(width: 32, height: 32)
+
+                        Text(timetableItem.speakers.map(\.name).joined(separator: ", "))
+                            .font(.system(size: 12))
+                            .foregroundStyle(AssetColors.onSurface.swiftUIColor)
+                            .lineLimit(1)
+
+                        Spacer()
+                    }
                 }
             }
             .padding(8)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(timetableItem.room.color.opacity(0.1))
             .overlay(
-                RoundedRectangle(cornerRadius: 4)
+                RoundedRectangle(cornerRadius: 8)
                     .stroke(timetableItem.room.color, lineWidth: 1)
             )
-            .cornerRadius(4)
+            .cornerRadius(8)
         }
         .buttonStyle(PlainButtonStyle())
         .frame(width: CGFloat(192 * cellCount + 4 * (cellCount - 1)), height: 153)
