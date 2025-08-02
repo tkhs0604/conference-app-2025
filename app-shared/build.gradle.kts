@@ -25,7 +25,19 @@ dependencies {
     commonMainImplementation(projects.feature.contributors)
     commonMainImplementation(projects.feature.favorites)
 
-    commonMainImplementation(libs.navigation3Ui)
+    commonMainImplementation(libs.navigation3Ui) {
+        /**
+         * Exclude androidx.compose.ui to avoid runtime crash on JVM:
+         * ```
+         * kotlin.NotImplementedError: Implemented only in JetBrains fork.
+         * Please use `org.jetbrains.compose.ui:ui-util` package instead.
+         * ```
+         *
+         * navigation3Ui includes non-multiplatform code and is not officially supported on JVM.
+         * This exclusion is a workaround to prevent the crash.
+         */
+        exclude(group = "androidx.compose.ui")
+    }
     commonMainImplementation(libs.navigation3Runtime)
     androidMainImplementation(libs.lifecycleViewmodelNavigation3)
 
