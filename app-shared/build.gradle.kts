@@ -11,47 +11,57 @@ android.namespace = "io.github.droidkaigi.confsched"
 
 compose.resources.nameOfResClass = "AppSharedRes"
 
-dependencies {
-    commonMainImplementation(projects.core.data)
-    commonMainImplementation(projects.core.common)
-    commonMainImplementation(projects.core.droidkaigiui)
-    commonMainImplementation(projects.core.model)
-    commonMainImplementation(projects.core.designsystem)
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            implementation(projects.core.data)
+            implementation(projects.core.common)
+            implementation(projects.core.droidkaigiui)
+            implementation(projects.core.model)
+            implementation(projects.core.designsystem)
+            implementation(projects.feature.sessions)
+            implementation(projects.feature.about)
+            implementation(projects.feature.sponsors)
+            implementation(projects.feature.settings)
+            implementation(projects.feature.staff)
+            implementation(projects.feature.contributors)
+            implementation(projects.feature.favorites)
 
-    commonMainImplementation(projects.feature.sessions)
-    commonMainImplementation(projects.feature.about)
-    commonMainImplementation(projects.feature.sponsors)
-    commonMainImplementation(projects.feature.settings)
-    commonMainImplementation(projects.feature.staff)
-    commonMainImplementation(projects.feature.contributors)
-    commonMainImplementation(projects.feature.favorites)
+            implementation(libs.kotlinxSerializationJson)
+            implementation(libs.rin)
+            implementation(libs.soilQueryCompose)
+            implementation(libs.androidxDatastorePreferencesCore)
+            implementation(libs.haze)
+        }
 
-    commonMainImplementation(libs.navigation3Ui) {
-        /**
-         * Exclude androidx.compose.ui to avoid runtime crash on JVM:
-         * ```
-         * kotlin.NotImplementedError: Implemented only in JetBrains fork.
-         * Please use `org.jetbrains.compose.ui:ui-util` package instead.
-         * ```
-         *
-         * navigation3Ui includes non-multiplatform code and is not officially supported on JVM.
-         * This exclusion is a workaround to prevent the crash.
-         */
-        exclude(group = "androidx.compose.ui")
+        androidMain.dependencies {
+            implementation(libs.navigation3Ui)
+            implementation(libs.navigation3Runtime)
+            implementation(libs.lifecycleViewmodelNavigation3)
+            implementation(libs.androidxActivityCompose)
+            implementation(libs.navigation3Adaptive)
+            implementation(libs.androidxBrowser)
+        }
+
+        jvmMain.dependencies {
+            implementation(libs.navigation3Ui.get().toString()) {
+                /**
+                 * Exclude androidx.compose.ui to avoid runtime crash on JVM:
+                 * ```
+                 * kotlin.NotImplementedError: Implemented only in JetBrains fork.
+                 * Please use `org.jetbrains.compose.ui:ui-util` package instead.
+                 * ```
+                 *
+                 * navigation3Ui includes non-multiplatform code and is not officially supported on JVM.
+                 * This exclusion is a workaround to prevent the crash.
+                 */
+                exclude(group = "androidx.compose.ui")
+            }
+            implementation(libs.navigation3Runtime)
+        }
     }
-    commonMainImplementation(libs.navigation3Runtime)
-    androidMainImplementation(libs.lifecycleViewmodelNavigation3)
+}
 
-    commonMainImplementation(libs.kotlinxSerializationJson)
-    commonMainImplementation(libs.rin)
-
-    commonMainImplementation(libs.soilQueryCompose)
-    // need this for compile success
-    commonMainImplementation(libs.androidxDatastorePreferencesCore)
-    commonMainImplementation(libs.haze)
-
+dependencies {
     debugImplementation(compose.uiTooling)
-    androidMainImplementation(libs.androidxActivityCompose)
-    androidMainImplementation(libs.navigation3Adaptive)
-    androidMainImplementation(libs.androidxBrowser)
 }
