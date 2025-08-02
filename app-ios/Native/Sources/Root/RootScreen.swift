@@ -48,68 +48,53 @@ public struct RootScreen: View {
     }
     
     public var body: some View {
-        TabView(selection: $selectedTab) {
-            NavigationStack(path: $navigationPath) {
-                HomeScreen(onNavigate: handleHomeNavigation)
-                    .navigationDestination(for: NavigationDestination.self) { destination in
-                        let navigationHandler = NavigationHandler(
-                            handleSearchNavigation: handleSearchNavigation
-                        )
-                        destination.view(with: navigationHandler)
-                    }
-            }
-            .tabItem {
-                Label("Timetable", image: TabType.timetable.tabImageName(selectedTab))
-            }
-            .tag(TabType.timetable)
-            
-            NavigationStack {
-                EventMapScreen()
-            }
-            .tabItem {
-                Label("Map", image: TabType.map.tabImageName(selectedTab))
-            }
-            .tag(TabType.map)
-            
-            NavigationStack(path: $favoriteNavigationPath) {
-                FavoriteScreen(onNavigate: handleFavoriteNavigation)
-                    .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
-                        switch destination {
-                        case .timetableDetail(let item):
-                            TimetableDetailScreen(timetableItem: item)
+        ZStack(alignment: .bottom) {
+            switch selectedTab {
+            case .timetable:
+                NavigationStack(path: $navigationPath) {
+                    HomeScreen(onNavigate: handleHomeNavigation)
+                        .navigationDestination(for: NavigationDestination.self) { destination in
+                            let navigationHandler = NavigationHandler(
+                                handleSearchNavigation: handleSearchNavigation
+                            )
+                            destination.view(with: navigationHandler)
                         }
-                    }
-            }
-            .tabItem {
-                Label("Favorite", image: TabType.favorite.tabImageName(selectedTab))
-            }
-            .tag(TabType.favorite)
-            
-            NavigationStack(path: $aboutNavigationPath) {
-                AboutScreen(onNavigate: handleAboutNavigation)
-                    .navigationDestination(for: AboutNavigationDestination.self) { destination in
-                        switch destination {
-                        case .contributors:
-                            ContributorScreen()
-                        case .staff:
-                            StaffScreen()
-                        case .sponsors:
-                            SponsorScreen()
+                }
+            case .map:
+                NavigationStack {
+                    EventMapScreen()
+                }
+            case .favorite:
+                NavigationStack(path: $favoriteNavigationPath) {
+                    FavoriteScreen(onNavigate: handleFavoriteNavigation)
+                        .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
+                            switch destination {
+                            case .timetableDetail(let item):
+                                TimetableDetailScreen(timetableItem: item)
+                            }
                         }
-                    }
+                }
+            case .info:
+                NavigationStack(path: $aboutNavigationPath) {
+                    AboutScreen(onNavigate: handleAboutNavigation)
+                        .navigationDestination(for: AboutNavigationDestination.self) { destination in
+                            switch destination {
+                            case .contributors:
+                                ContributorScreen()
+                            case .staff:
+                                StaffScreen()
+                            case .sponsors:
+                                SponsorScreen()
+                            }
+                        }
+                }
+            case .profileCard:
+                NavigationStack {
+                    ProfileCardScreen()
+                }
             }
-            .tabItem {
-                Label("Info", image: TabType.info.tabImageName(selectedTab))
-            }
-            .tag(TabType.info)
             
-            NavigationStack {
-                ProfileCardScreen()
-            }
-            .tabItem {
-                Label("Profile", image: TabType.profileCard.tabImageName(selectedTab))
-            }
-            .tag(TabType.profileCard)
+            tabBar
         }
         .onAppear {
             presenter.prepareWindow()
@@ -142,6 +127,39 @@ public struct RootScreen: View {
         case .timetableDetail(let item):
             navigationPath.append(NavigationDestination.timetableDetail(item))
         }
+    }
+    
+    @ViewBuilder
+    private var tabBar: some View {
+        GeometryReader { geometry in
+            HStack(spacing: 0) {
+                ForEach(TabType.allCases, id: \.self) { item in
+                    let isSelected = selectedTab == item
+                    Button {
+                        selectedTab = item
+                    } label: {
+                        Image(item.tabImageName(selectedTab))
+                            .renderingMode(.template)
+                            .tint(isSelected ? .accentColor : Color("tab_inactive"))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                            .contentShape(Rectangle())
+                    }
+                    .frame(
+                        maxWidth: geometry.size.width / CGFloat(TabType.allCases.count),
+                        maxHeight: .infinity,
+                        alignment: .center
+                    )
+                }
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height)
+        }
+        .frame(height: 64)
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, 12)
+        .background(.ultraThinMaterial, in: Capsule())
+        .overlay(Capsule().stroke(.gray, lineWidth: 1))
+        .environment(\.colorScheme, .dark)
+        .padding(.horizontal, 48)
     }
 }
 
