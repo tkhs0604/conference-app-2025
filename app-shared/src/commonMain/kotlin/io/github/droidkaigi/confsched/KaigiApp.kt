@@ -81,7 +81,12 @@ fun KaigiApp() {
                                 onShareClick = externalNavController::onShareClick,
                                 onLinkClick = externalNavController::navigate,
                                 onSearchClick = { backStack.add(SearchNavKey) },
-                                onTimetableItemClick = { backStack.add(TimetableItemDetailNavKey(it)) }
+                                onTimetableItemClick = {
+                                    if (backStack.lastOrNull() is TimetableItemDetailNavKey) {
+                                        backStack.removeLastOrNull()
+                                    }
+                                    backStack.add(TimetableItemDetailNavKey(it))
+                                }
                             )
                             contributorsEntry()
                             favoritesEntry()
