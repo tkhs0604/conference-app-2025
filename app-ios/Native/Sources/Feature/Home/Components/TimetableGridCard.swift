@@ -3,6 +3,7 @@ import SwiftUI
 import Model
 import Presentation
 import Theme
+import Component
 
 struct TimetableGridCard: View {
     let timetableItem: any TimetableItem
