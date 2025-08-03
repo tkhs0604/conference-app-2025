@@ -132,17 +132,15 @@ interface IosAppGraph : AppGraph {
     @OptIn(ExperimentalForeignApi::class)
     @Provides
     fun providesDataStorePathProducer(): DataStorePathProducer {
-        return object : DataStorePathProducer {
-            override fun producePath(fileName: String): String {
-                val documentDirectory: NSURL? = NSFileManager.defaultManager.URLForDirectory(
-                    directory = NSDocumentDirectory,
-                    inDomain = NSUserDomainMask,
-                    appropriateForURL = null,
-                    create = false,
-                    error = null,
-                )
-                return requireNotNull(documentDirectory).path + "/$fileName"
-            }
+        return DataStorePathProducer { fileName ->
+            val documentDirectory: NSURL? = NSFileManager.defaultManager.URLForDirectory(
+                directory = NSDocumentDirectory,
+                inDomain = NSUserDomainMask,
+                appropriateForURL = null,
+                create = false,
+                error = null,
+            )
+            requireNotNull(documentDirectory).path + "/$fileName"
         }
     }
 
