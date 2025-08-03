@@ -33,16 +33,15 @@ struct TimetableUseCaseTests {
             bookmarks: expectedBookmarks
         )
         
-        let useCase = withDependencies {
+        // Act
+        let result = try await withDependencies {
             $0.timetableUseCase.load = {
                 return expectedTimetable
             }
         } operation: {
-            TimetableUseCase()
+            @Dependency(\.timetableUseCase) var useCase
+            return try await useCase.load()
         }
-        
-        // Act
-        let result = try await useCase.load()
         
         // Assert
         #expect(result.timetableItems.count == 1)
@@ -59,16 +58,15 @@ struct TimetableUseCaseTests {
             bookmarks: Set<TimetableItemId>()
         )
         
-        let useCase = withDependencies {
+        // Act
+        let result = try await withDependencies {
             $0.timetableUseCase.load = {
                 return emptyTimetable
             }
         } operation: {
-            TimetableUseCase()
+            @Dependency(\.timetableUseCase) var useCase
+            return try await useCase.load()
         }
-        
-        // Act
-        let result = try await useCase.load()
         
         // Assert
         #expect(result.timetableItems.isEmpty)
@@ -137,16 +135,15 @@ struct TimetableUseCaseTests {
         let bookmarks = Set<TimetableItemId>([TimetableItemId(value: "session-1")])
         let timetable = Timetable(timetableItems: mixedItems, bookmarks: bookmarks)
         
-        let useCase = withDependencies {
+        // Act
+        let result = try await withDependencies {
             $0.timetableUseCase.load = {
                 return timetable
             }
         } operation: {
-            TimetableUseCase()
+            @Dependency(\.timetableUseCase) var useCase
+            return try await useCase.load()
         }
-        
-        // Act
-        let result = try await useCase.load()
         
         // Assert
         #expect(result.timetableItems.count == 2)
@@ -200,16 +197,15 @@ struct TimetableUseCaseTests {
             bookmarks: bookmarks
         )
         
-        let useCase = withDependencies {
+        // Act
+        let result = try await withDependencies {
             $0.timetableUseCase.load = {
                 return timetable
             }
         } operation: {
-            TimetableUseCase()
+            @Dependency(\.timetableUseCase) var useCase
+            return try await useCase.load()
         }
-        
-        // Act
-        let result = try await useCase.load()
         
         // Assert
         #expect(result.bookmarks.count == 5)

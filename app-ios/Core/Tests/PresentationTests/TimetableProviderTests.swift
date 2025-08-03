@@ -149,19 +149,31 @@ struct TimetableProviderTest {
     func fetchTimetableError() async throws {
         // Since typed throws cannot be mocked directly in the current Swift version,
         // we test that the provider handles the absence of data correctly
-        let provider = TimetableProvider()
+        let provider = withDependencies {
+            // Return an empty timetable to simulate error recovery
+            $0.timetableUseCase.load = {
+                return Timetable(timetableItems: [], bookmarks: Set())
+            }
+        } operation: {
+            TimetableProvider()
+        }
         
         // Initially, timetable should be nil
         #expect(provider.timetable == nil)
         #expect(provider.dayTimetable.isEmpty)
         
-        // Even after attempting to fetch (which would use default implementation returning empty),
-        // if no data is set, the provider should handle it gracefully
+        // Fetch will return empty data (simulating error recovery)
         await provider.fetchTimetable()
         
-        // The default implementation returns an empty timetable
+        // The provider should handle empty data gracefully
         #expect(provider.timetable != nil)
         #expect(provider.timetable?.timetableItems.isEmpty == true)
+        #expect(provider.dayTimetable.count == DroidKaigi2024Day.allCases.count)
+        
+        // All day timetables should be empty
+        for day in DroidKaigi2024Day.allCases {
+            #expect(provider.dayTimetable[day]?.isEmpty == true)
+        }
     }
     
     @Test("roomsプロパティが重複を排除して正しく返されることを確認")
@@ -379,7 +391,8 @@ enum TestData {
             levels: ["Beginner"],
             speakers: [createSpeaker()],
             description: MultiLangText(jaTitle: "説明", enTitle: "Description"),
-            message: nil
+            message: nil,
+            day: day
         )
     }
     
@@ -404,7 +417,8 @@ enum TestData {
             levels: [],
             speakers: [],
             description: MultiLangText(jaTitle: "ランチタイム", enTitle: "Lunch Time"),
-            message: nil
+            message: nil,
+            day: day
         )
     }
     
