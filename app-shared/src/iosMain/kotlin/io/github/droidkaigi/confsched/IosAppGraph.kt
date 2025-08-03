@@ -39,6 +39,7 @@ import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.serialization.json.Json
 import okio.Path.Companion.toPath
 import platform.Foundation.NSDocumentDirectory
@@ -110,7 +111,7 @@ interface IosAppGraph : AppGraph {
         return PreferenceDataStoreFactory.createWithPath(
             corruptionHandler = ReplaceFileCorruptionHandler({ emptyPreferences() }),
             migrations = emptyList(),
-            scope = CoroutineScope(ioDispatcher),
+            scope = CoroutineScope(ioDispatcher + SupervisorJob()),
             produceFile = { dataStorePathProducer.producePath(DataStoreDependencyProviders.DATA_STORE_PREFERENCE_FILE_NAME).toPath() },
         )
     }
@@ -125,7 +126,7 @@ interface IosAppGraph : AppGraph {
         return PreferenceDataStoreFactory.createWithPath(
             corruptionHandler = ReplaceFileCorruptionHandler({ emptyPreferences() }),
             migrations = emptyList(),
-            scope = CoroutineScope(ioDispatcher),
+            scope = CoroutineScope(ioDispatcher + SupervisorJob()),
             produceFile = { dataStorePathProducer.producePath(DataStoreDependencyProviders.DATA_STORE_CACHE_PREFERENCE_FILE_NAME).toPath() },
         )
     }
