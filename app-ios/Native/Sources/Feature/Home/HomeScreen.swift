@@ -67,6 +67,7 @@ public struct HomeScreen: View {
                 .edgesIgnoringSafeArea(.all)
         )
         .navigationTitle("Timetable")
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitleDisplayMode(.automatic)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

@@ -20,30 +20,22 @@ public enum Typography {
     public static let titleLarge = Font.system(size: 22, weight: .regular)
     
     public static let titleMedium = Font.system(size: 16, weight: .regular)
-        .tracking(0.15)
     
     public static let titleSmall = Font.system(size: 14, weight: .regular)
-        .tracking(0.1)
     
     // MARK: - Label
     public static let labelLarge = Font.system(size: 14, weight: .medium)
-        .tracking(0.1)
     
     public static let labelMedium = Font.system(size: 12, weight: .medium)
-        .tracking(0.5)
     
     public static let labelSmall = Font.system(size: 11, weight: .medium)
-        .tracking(0.5)
     
     // MARK: - Body
     public static let bodyLarge = Font.system(size: 16, weight: .regular)
-        .tracking(0.5)
     
     public static let bodyMedium = Font.system(size: 14, weight: .regular)
-        .tracking(0.25)
     
     public static let bodySmall = Font.system(size: 12, weight: .regular)
-        .tracking(0.4)
 }
 
 // MARK: - View Extension for Typography
@@ -54,7 +46,7 @@ public extension View {
 }
 
 // MARK: - Text Style Definitions with Line Height
-public struct TypographyStyle {
+public struct TypographyStyle: Sendable {
     public let font: Font
     public let lineHeight: CGFloat
     public let letterSpacing: CGFloat

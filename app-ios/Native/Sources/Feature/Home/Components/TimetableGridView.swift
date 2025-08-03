@@ -26,7 +26,7 @@ struct TimetableGridView: View {
 
                             ForEach(rooms, id: \.id) { room in
                                 Text(room.displayName)
-                                    .font(.system(size: 16, weight: .medium))
+                                    .font(Typography.titleMedium)
                                     .foregroundStyle(room.type.color)
                                     .frame(width: 192)
                             }
@@ -40,7 +40,7 @@ struct TimetableGridView: View {
                                 // Time column
                                 VStack {
                                     Text(timeBlock.startsTimeString)
-                                        .font(.system(size: 12, weight: .medium))
+                                        .font(Typography.labelMedium)
                                         .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                                     Spacer()
                                 }
