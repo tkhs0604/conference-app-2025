@@ -18,8 +18,8 @@ import kotlinx.coroutines.CoroutineDispatcher
         CoroutineDispatcher::class,
     ],
 )
-interface NativeTestAppGraph : TestAppGraph
+interface IosTestAppGraph : TestAppGraph
 
 actual fun createTestAppGraph(): TestAppGraph {
-    return createGraph<NativeTestAppGraph>()
+    return createGraph<IosTestAppGraph>()
 }
