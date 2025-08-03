@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import io.github.droidkaigi.confsched.about.section.AboutDroidKaigiHeader
 import io.github.droidkaigi.confsched.about.section.aboutCredits
 import io.github.droidkaigi.confsched.about.section.aboutOthers
 import io.github.droidkaigi.confsched.model.about.AboutItem
@@ -33,6 +34,13 @@ fun AboutScreen(
         LazyColumn(
             contentPadding = contentPadding,
         ) {
+            item {
+                AboutDroidKaigiHeader(
+                    onViewMapClick = {
+                        onAboutItemClick(AboutItem.Map)
+                    }
+                )
+            }
             aboutCredits(
                 onSponsorsItemClick = {
                     onAboutItemClick(AboutItem.Sponsors)
