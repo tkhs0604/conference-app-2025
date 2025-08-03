@@ -62,5 +62,9 @@ kotlin {
             // FIXME: If we add the following dependency, compose tests fail. See CaptureScreenRobot.jvm.kt for details.
 //            implementation(libs.roborazziComposeDesktop)
         }
+
+        iosMain.dependencies {
+            implementation(libs.roborazziComposeIos)
+        }
     }
 }
