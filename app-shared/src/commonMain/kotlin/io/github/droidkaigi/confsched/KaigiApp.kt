@@ -9,10 +9,12 @@ import androidx.navigation3.runtime.entryProvider
 import dev.chrisbanes.haze.hazeSource
 import dev.chrisbanes.haze.rememberHazeState
 import io.github.droidkaigi.confsched.component.KaigiNavigationScaffold
-import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
-import io.github.droidkaigi.confsched.component.NavDisplayWithSharedAxisX
 import io.github.droidkaigi.confsched.component.MainScreenTab
+import io.github.droidkaigi.confsched.component.NavDisplayWithSharedAxisX
+import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
 import io.github.droidkaigi.confsched.model.about.AboutItem
+import io.github.droidkaigi.confsched.model.core.Lang
+import io.github.droidkaigi.confsched.model.core.defaultLang
 import io.github.droidkaigi.confsched.naventry.aboutEntry
 import io.github.droidkaigi.confsched.naventry.contributorsEntry
 import io.github.droidkaigi.confsched.naventry.eventMapEntry
@@ -94,18 +96,52 @@ fun KaigiApp() {
                             eventMapEntry()
                             aboutEntry(
                                 onAboutItemClick = { item ->
+                                    val portalBaseUrl = if (defaultLang() == Lang.JAPANESE) {
+                                        "https://portal.droidkaigi.jp"
+                                    } else {
+                                        "https://portal.droidkaigi.jp/en"
+                                    }
                                     when (item) {
-                                        AboutItem.Map -> TODO()
+                                        AboutItem.Map -> {
+                                            externalNavController.navigate(
+                                                url = "https://goo.gl/maps/vv9sE19JvRjYKtSP9",
+                                            )
+                                        }
+
                                         AboutItem.Contributors -> TODO()
                                         AboutItem.Staff -> TODO()
                                         AboutItem.Sponsors -> TODO()
-                                        AboutItem.CodeOfConduct -> TODO()
+                                        AboutItem.CodeOfConduct -> {
+                                            externalNavController.navigate(
+                                                url = "$portalBaseUrl/about/code-of-conduct",
+                                            )
+                                        }
+
                                         AboutItem.License -> TODO()
-                                        AboutItem.PrivacyPolicy -> TODO()
+                                        AboutItem.PrivacyPolicy -> {
+                                            externalNavController.navigate(
+                                                url = "$portalBaseUrl/about/privacy",
+                                            )
+                                        }
+
                                         AboutItem.Settings -> TODO()
-                                        AboutItem.Youtube -> TODO()
-                                        AboutItem.X -> TODO()
-                                        AboutItem.Medium -> TODO()
+                                        AboutItem.Youtube -> {
+                                            externalNavController.navigate(
+                                                url = "https://www.youtube.com/c/DroidKaigi",
+                                            )
+                                        }
+
+                                        AboutItem.X -> {
+                                            externalNavController.navigate(
+                                                url = "https://twitter.com/DroidKaigi",
+                                            )
+                                        }
+
+                                        AboutItem.Medium -> {
+                                            externalNavController.navigate(
+                                                url = "https://medium.com/droidkaigi",
+                                            )
+                                        }
                                     }
                                 }
                             )
