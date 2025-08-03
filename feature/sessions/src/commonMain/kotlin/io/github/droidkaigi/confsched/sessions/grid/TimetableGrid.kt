@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.layout.LazyLayout
 import androidx.compose.foundation.lazy.layout.LazyLayoutItemProvider
 import androidx.compose.material3.MaterialTheme
@@ -53,7 +54,9 @@ import io.github.droidkaigi.confsched.model.sessions.Timetable
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.fake
 import io.github.droidkaigi.confsched.sessions.ScrolledToCurrentTimeState
+import io.github.droidkaigi.confsched.sessions.TimetableScrollState
 import io.github.droidkaigi.confsched.sessions.components.TimetableGridItem
+import io.github.droidkaigi.confsched.sessions.rememberTimetableState
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.launch
@@ -78,16 +81,29 @@ fun TimetableGrid(
     contentPadding: PaddingValues = PaddingValues(),
     scrolledToCurrentTimeState: ScrolledToCurrentTimeState = remember { ScrolledToCurrentTimeState() },
 ) {
+    val timetableState = rememberTimetableState()
+    val scrollState = timetableState.timetableScrollState
     Row {
         TimetableGridHours()
         Column {
-            TimetableGridRooms()
+            TimetableGridRooms(
+                roomCount = { timetable.rooms.size },
+                scrollState = scrollState,
+            ) {
+                items(timetable.rooms) { room ->
+                    RoomItem(
+                        room = room,
+                        modifier = Modifier.height(RoomsDefaults.headerHeight),
+                    )
+                }
+            }
             TimetableGrid(
                 timetable = timetable,
                 timeLine = timeLine,
                 selectedDay = selectedDay,
                 contentPadding = contentPadding,
                 scrolledToCurrentTimeState = scrolledToCurrentTimeState,
+                scrollState = scrollState,
                 modifier = modifier,
             ) {
                 items(timetable.timetableItems) { timetableItem ->
@@ -107,11 +123,6 @@ private fun TimetableGridHours() {
     Text("TimetableGridHours")
 }
 
-// TODO: Implement TimetableGridRooms
-@Composable
-private fun TimetableGridRooms() {
-    Text("TimetableGridRooms")
-}
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -121,6 +132,7 @@ private fun TimetableGrid(
     selectedDay: DroidKaigi2025Day,
     contentPadding: PaddingValues,
     scrolledToCurrentTimeState: ScrolledToCurrentTimeState,
+    scrollState: TimetableScrollState,
     modifier: Modifier = Modifier,
     content: TimetableGridScope.() -> Unit,
 ) {
@@ -131,6 +143,7 @@ private fun TimetableGrid(
         timetable = timetable,
         timeLine = timeLine,
         selectedDay = selectedDay,
+        scrollState = scrollState,
         density = density,
     )
 
@@ -429,4 +442,3 @@ private fun TimetableGridPreview() {
         }
     }
 }
-
