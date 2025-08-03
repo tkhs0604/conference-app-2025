@@ -13,3 +13,5 @@ interface TimetableScreenTestGraph : TimetableScreenContext.Factory {
         return createTimetableScreenContext()
     }
 }
+
+fun createTimetableScreenTestGraph(): TimetableScreenTestGraph = createTestAppGraph()

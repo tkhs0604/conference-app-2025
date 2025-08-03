@@ -15,5 +15,3 @@ internal interface TestAppGraph : TimetableScreenTestGraph {
 }
 
 internal expect fun createTestAppGraph(): TestAppGraph
-
-fun createTimetableScreenTestGraph(): TimetableScreenTestGraph = createTestAppGraph()
