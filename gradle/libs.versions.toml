@@ -44,6 +44,7 @@ navigationeventDesktop = "1.0.0-alpha04"
 
 composeHotReload = "1.0.0-beta04"
 coil = "3.2.0"
+buildkonfig = "0.17.1"
 
 haze = "1.6.9"
 [libraries]
@@ -58,6 +59,7 @@ composeCompilerGradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-
 metroGradlePlugin = { module = "dev.zacsweers.metro:dev.zacsweers.metro.gradle.plugin", version.ref = "metro" }
 detektGradlePlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 roborazziGradlePlugin = { module = "io.github.takahirom.roborazzi:roborazzi-gradle-plugin", version.ref = "roborazzi" }
+buildkonfigGradlePlugin = { module = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin", version.ref = "buildkonfig" }
 
 # ktor and ktorfit
 ktorClientOkhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
@@ -127,6 +129,8 @@ coilTest = { module = "io.coil-kt.coil3:coil-test", version.ref = "coil" }
 haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
 material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "material3" }
 
+buildkonfigCompiler = { module = "com.codingfeline.buildkonfig:buildkonfig-compiler", version.ref = "buildkonfig" }
+
 [plugins]
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -156,4 +160,5 @@ plugins = [
     "metroGradlePlugin",
     "detektGradlePlugin",
     "roborazziGradlePlugin",
+    "buildkonfigGradlePlugin",
 ]
