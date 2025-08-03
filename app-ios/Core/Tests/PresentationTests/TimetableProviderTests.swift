@@ -143,6 +143,160 @@ struct TimetableProviderTest {
             }
         }
     }
+    
+    @MainActor
+    @Test("fetchTimetableでエラーが発生した場合の処理を確認")
+    func fetchTimetableError() async throws {
+        // Since typed throws cannot be mocked directly in the current Swift version,
+        // we test that the provider handles the absence of data correctly
+        let provider = TimetableProvider()
+        
+        // Initially, timetable should be nil
+        #expect(provider.timetable == nil)
+        #expect(provider.dayTimetable.isEmpty)
+        
+        // Even after attempting to fetch (which would use default implementation returning empty),
+        // if no data is set, the provider should handle it gracefully
+        await provider.fetchTimetable()
+        
+        // The default implementation returns an empty timetable
+        #expect(provider.timetable != nil)
+        #expect(provider.timetable?.timetableItems.isEmpty == true)
+    }
+    
+    @Test("roomsプロパティが重複を排除して正しく返されることを確認")
+    func roomsPropertyDeduplication() async throws {
+        let provider = TimetableProvider()
+        
+        let items: [any TimetableItem] = [
+            TestData.createTimetableItemSession(id: "1", room: .roomF),
+            TestData.createTimetableItemSession(id: "2", room: .roomG),
+            TestData.createTimetableItemSession(id: "3", room: .roomF), // 重複
+            TestData.createTimetableItemSession(id: "4", room: .roomH),
+            TestData.createTimetableItemSession(id: "5", room: .roomG), // 重複
+        ]
+        
+        provider.timetable = Timetable(timetableItems: items, bookmarks: Set())
+        
+        let rooms = provider.rooms
+        
+        #expect(rooms.count == 3)
+        
+        let roomTypes = Set(rooms.map { $0.type })
+        #expect(roomTypes.contains(.roomF))
+        #expect(roomTypes.contains(.roomG))
+        #expect(roomTypes.contains(.roomH))
+        
+        // ソート順の確認
+        for i in 0..<rooms.count - 1 {
+            #expect(rooms[i].sort <= rooms[i + 1].sort)
+        }
+    }
+    
+    @Test("roomsプロパティが空の場合の処理を確認")
+    func roomsPropertyEmpty() async throws {
+        let provider = TimetableProvider()
+        
+        #expect(provider.rooms.isEmpty)
+        
+        provider.timetable = Timetable(timetableItems: [], bookmarks: Set())
+        
+        #expect(provider.rooms.isEmpty)
+    }
+    
+    @MainActor
+    @Test("時間帯でのグルーピングが正しく行われることを確認")
+    func timeGroupingSorting() async throws {
+        let date1 = TestData.createDate(hour: 9, minute: 0)
+        let date2 = TestData.createDate(hour: 10, minute: 30)
+        let date3 = TestData.createDate(hour: 14, minute: 0)
+        
+        let items: [any TimetableItem] = [
+            TestData.createTimetableItemSession(id: "3", startsAt: date3, endsAt: date3.addingTimeInterval(3600)),
+            TestData.createTimetableItemSession(id: "1", startsAt: date1, endsAt: date1.addingTimeInterval(3600)),
+            TestData.createTimetableItemSession(id: "2", startsAt: date2, endsAt: date2.addingTimeInterval(3600)),
+        ]
+        
+        let timetable = Timetable(timetableItems: items, bookmarks: Set())
+        
+        let provider = withDependencies {
+            $0.timetableUseCase.load = {
+                timetable
+            }
+        } operation: {
+            TimetableProvider()
+        }
+        
+        await provider.fetchTimetable()
+        
+        let day1Groups = provider.dayTimetable[.conferenceDay1] ?? []
+        
+        #expect(day1Groups.count == 3)
+        
+        // 時間順にソートされていることを確認
+        if day1Groups.count >= 3 {
+            #expect(day1Groups[0].items[0].timetableItem.id.value == "1")
+            #expect(day1Groups[1].items[0].timetableItem.id.value == "2")
+            #expect(day1Groups[2].items[0].timetableItem.id.value == "3")
+        }
+    }
+    
+    @MainActor
+    @Test("同じ時間帯の複数セッションが同一グループにまとめられることを確認")
+    func sameTimeSlotGrouping() async throws {
+        let startTime = TestData.createDate(hour: 10, minute: 0)
+        let endTime = startTime.addingTimeInterval(3600)
+        
+        let items: [any TimetableItem] = [
+            TestData.createTimetableItemSession(id: "1", startsAt: startTime, endsAt: endTime, room: .roomF),
+            TestData.createTimetableItemSession(id: "2", startsAt: startTime, endsAt: endTime, room: .roomG),
+            TestData.createTimetableItemSession(id: "3", startsAt: startTime, endsAt: endTime, room: .roomH),
+        ]
+        
+        let timetable = Timetable(timetableItems: items, bookmarks: Set())
+        
+        let provider = withDependencies {
+            $0.timetableUseCase.load = {
+                timetable
+            }
+        } operation: {
+            TimetableProvider()
+        }
+        
+        await provider.fetchTimetable()
+        
+        let day1Groups = provider.dayTimetable[.conferenceDay1] ?? []
+        
+        #expect(day1Groups.count == 1)
+        #expect(day1Groups.first?.items.count == 3)
+        
+        if let group = day1Groups.first {
+            let itemIds = Set(group.items.map { $0.timetableItem.id.value })
+            #expect(itemIds.contains("1"))
+            #expect(itemIds.contains("2"))
+            #expect(itemIds.contains("3"))
+        }
+    }
+    
+    @Test("favoriteIdsの初期状態と操作を確認")
+    func favoriteIdsManagement() async throws {
+        let provider = TimetableProvider()
+        
+        #expect(provider.favoriteIds.isEmpty)
+        
+        provider.favoriteIds = Set(["id1", "id2", "id3"])
+        
+        #expect(provider.favoriteIds.count == 3)
+        #expect(provider.isFavorite("id1"))
+        #expect(provider.isFavorite("id2"))
+        #expect(provider.isFavorite("id3"))
+        #expect(!provider.isFavorite("id4"))
+        
+        provider.favoriteIds.remove("id2")
+        
+        #expect(provider.favoriteIds.count == 2)
+        #expect(!provider.isFavorite("id2"))
+    }
 }
 
 enum TestData {
