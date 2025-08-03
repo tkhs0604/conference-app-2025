@@ -16,6 +16,7 @@ import dev.zacsweers.metro.SingleIn
 import dev.zacsweers.metro.createGraph
 import io.github.droidkaigi.confsched.common.scope.TimetableDetailScope
 import io.github.droidkaigi.confsched.data.DataScope
+import io.github.droidkaigi.confsched.data.DataStoreDependencyProviders
 import io.github.droidkaigi.confsched.data.SessionCacheDataStoreQualifier
 import io.github.droidkaigi.confsched.data.UserDataStoreQualifier
 import io.github.droidkaigi.confsched.data.annotations.IoDispatcher
@@ -110,7 +111,7 @@ interface IosAppGraph : AppGraph {
             corruptionHandler = ReplaceFileCorruptionHandler({ emptyPreferences() }),
             migrations = emptyList(),
             scope = CoroutineScope(ioDispatcher),
-            produceFile = { dataStorePathProducer.producePath(DATA_STORE_PREFERENCE_FILE_NAME).toPath() },
+            produceFile = { dataStorePathProducer.producePath(DataStoreDependencyProviders.DATA_STORE_PREFERENCE_FILE_NAME).toPath() },
         )
     }
 
@@ -125,7 +126,7 @@ interface IosAppGraph : AppGraph {
             corruptionHandler = ReplaceFileCorruptionHandler({ emptyPreferences() }),
             migrations = emptyList(),
             scope = CoroutineScope(ioDispatcher),
-            produceFile = { dataStorePathProducer.producePath(DATA_STORE_CACHE_PREFERENCE_FILE_NAME).toPath() },
+            produceFile = { dataStorePathProducer.producePath(DataStoreDependencyProviders.DATA_STORE_CACHE_PREFERENCE_FILE_NAME).toPath() },
         )
     }
 
@@ -161,7 +162,3 @@ interface IosTimetableItemDetailGraph {
 fun createIosAppGraph(): IosAppGraph {
     return createGraph()
 }
-
-// These constants are duplicated with those in DataStoreDependencyProviders.kt
-private const val DATA_STORE_PREFERENCE_FILE_NAME = "confsched2025.preferences_pb"
-private const val DATA_STORE_CACHE_PREFERENCE_FILE_NAME = "confsched2025.cache.preferences_pb"
