@@ -45,7 +45,7 @@ import platform.Foundation.NSUserDomainMask
         CoroutineDispatcher::class,
     ],
 )
-interface IosTestAppGraph : TestAppGraph {
+internal interface IosTestAppGraph : TestAppGraph {
     @Binds
     val DefaultTimetableSubscriptionKey.bind: TimetableSubscriptionKey
 
@@ -106,7 +106,7 @@ interface IosTestAppGraph : TestAppGraph {
     }
 }
 
-actual fun createTestAppGraph(): TestAppGraph {
+internal actual fun createTestAppGraph(): TestAppGraph {
     return createGraph<IosTestAppGraph>()
 }
 

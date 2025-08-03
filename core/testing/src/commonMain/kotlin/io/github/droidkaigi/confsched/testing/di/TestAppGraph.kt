@@ -6,7 +6,7 @@ import io.github.droidkaigi.confsched.data.contributors.FakeContributorsApiClien
 import io.github.droidkaigi.confsched.data.sessions.FakeSessionsApiClient
 import io.github.droidkaigi.confsched.data.sessions.SessionsApiClient
 
-interface TestAppGraph : TimetableScreenTestGraph {
+internal interface TestAppGraph : TimetableScreenTestGraph {
     @Binds
     val FakeSessionsApiClient.binds: SessionsApiClient
 
@@ -14,6 +14,6 @@ interface TestAppGraph : TimetableScreenTestGraph {
     val FakeContributorsApiClient.binds: ContributorsApiClient
 }
 
-expect fun createTestAppGraph(): TestAppGraph
+internal expect fun createTestAppGraph(): TestAppGraph
 
 fun createTimetableScreenTestGraph(): TimetableScreenTestGraph = createTestAppGraph()
