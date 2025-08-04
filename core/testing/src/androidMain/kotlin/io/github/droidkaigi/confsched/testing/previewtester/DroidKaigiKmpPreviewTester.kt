@@ -33,6 +33,7 @@ class DroidKaigiKmpPreviewTester : ComposePreviewTester<ComposePreviewTester.Tes
         val options = options()
         return CommonComposablePreviewScanner()
             .scanPackageTrees(*options.scanOptions.packages.toTypedArray())
+            .includePrivatePreviews()
             .getPreviews()
             .map {
                 ComposePreviewTester.TestParameter.JUnit4TestParameter(
