@@ -10,7 +10,7 @@ import io.github.droidkaigi.confsched.data.sessions.response.SessionMessageRespo
 import io.github.droidkaigi.confsched.data.sessions.response.SessionsAllResponse
 import io.github.droidkaigi.confsched.model.core.MultiLangText
 import io.github.droidkaigi.confsched.model.core.RoomType
-import io.github.droidkaigi.confsched.model.data.TimetableSubscriptionKey
+import io.github.droidkaigi.confsched.model.data.TimetableQueryKey
 import io.github.droidkaigi.confsched.model.sessions.Timetable
 import io.github.droidkaigi.confsched.model.sessions.TimetableAsset
 import io.github.droidkaigi.confsched.model.sessions.TimetableCategory
@@ -21,34 +21,31 @@ import io.github.droidkaigi.confsched.model.sessions.TimetableRoom
 import io.github.droidkaigi.confsched.model.sessions.TimetableSessionType
 import io.github.droidkaigi.confsched.model.sessions.TimetableSpeaker
 import kotlinx.collections.immutable.toPersistentList
-import kotlinx.coroutines.flow.flow
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
-import soil.query.SubscriptionId
-import soil.query.buildSubscriptionKey
+import soil.query.QueryId
+import soil.query.QueryPreloadData
+import soil.query.buildQueryKey
 import kotlin.time.Instant
 
-@ContributesBinding(DataScope::class, binding = binding<TimetableSubscriptionKey>())
+@ContributesBinding(DataScope::class, binding = binding<TimetableQueryKey>())
 @Inject
-public class DefaultTimetableSubscriptionKey(
+public class DefaultTimetableQueryKey(
     private val sessionsApiClient: SessionsApiClient,
     private val dataStore: SessionCacheDataStore,
-) : TimetableSubscriptionKey by buildSubscriptionKey(
-    id = SubscriptionId("timetable"),
-    subscribe = {
-        flow {
-            dataStore.getCache()?.let {
-                emit(it.toTimetable())
-            }
-
-            val response = sessionsApiClient.sessionsAllResponse()
-            dataStore.save(response)
-
-            emit(response.toTimetable())
-        }
+) : TimetableQueryKey by buildQueryKey(
+    id = QueryId("timetable"),
+    fetch = {
+        val response = sessionsApiClient.sessionsAllResponse()
+        dataStore.save(response)
+        response.toTimetable()
     },
-)
+) {
+    override fun onPreloadData(): QueryPreloadData<Timetable>? {
+        return { dataStore.getCache()?.toTimetable() }
+    }
+}
 
 public fun SessionsAllResponse.toTimetable(): Timetable {
     val timetableContents = this

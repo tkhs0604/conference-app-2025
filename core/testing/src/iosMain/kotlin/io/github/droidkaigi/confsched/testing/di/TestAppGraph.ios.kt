@@ -20,12 +20,12 @@ import io.github.droidkaigi.confsched.data.contributors.DefaultContributorsApiCl
 import io.github.droidkaigi.confsched.data.core.DataStorePathProducer
 import io.github.droidkaigi.confsched.data.core.defaultJson
 import io.github.droidkaigi.confsched.data.sessions.DefaultSessionsApiClient
-import io.github.droidkaigi.confsched.data.sessions.DefaultTimetableSubscriptionKey
+import io.github.droidkaigi.confsched.data.sessions.DefaultTimetableQueryKey
 import io.github.droidkaigi.confsched.data.user.DefaultFavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.data.user.DefaultFavoriteTimetableItemIdMutationKey
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableItemIdMutationKey
-import io.github.droidkaigi.confsched.model.data.TimetableSubscriptionKey
+import io.github.droidkaigi.confsched.model.data.TimetableQueryKey
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -48,7 +48,7 @@ import platform.Foundation.NSUserDomainMask
 )
 internal interface IosTestAppGraph : TestAppGraph {
     @Binds
-    val DefaultTimetableSubscriptionKey.bind: TimetableSubscriptionKey
+    val DefaultTimetableQueryKey.bind: TimetableQueryKey
 
     @Binds
     val DefaultFavoriteTimetableIdsSubscriptionKey.bind: FavoriteTimetableIdsSubscriptionKey

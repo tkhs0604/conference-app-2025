@@ -25,14 +25,14 @@ import io.github.droidkaigi.confsched.data.core.defaultJson
 import io.github.droidkaigi.confsched.data.core.defaultKtorConfig
 import io.github.droidkaigi.confsched.data.sessions.DefaultSessionsApiClient
 import io.github.droidkaigi.confsched.data.sessions.DefaultTimetableItemQueryKey
-import io.github.droidkaigi.confsched.data.sessions.DefaultTimetableSubscriptionKey
+import io.github.droidkaigi.confsched.data.sessions.DefaultTimetableQueryKey
 import io.github.droidkaigi.confsched.data.sessions.SessionsApiClient
 import io.github.droidkaigi.confsched.data.user.DefaultFavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.data.user.DefaultFavoriteTimetableItemIdMutationKey
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableItemIdMutationKey
 import io.github.droidkaigi.confsched.model.data.TimetableItemQueryKey
-import io.github.droidkaigi.confsched.model.data.TimetableSubscriptionKey
+import io.github.droidkaigi.confsched.model.data.TimetableQueryKey
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.darwin.Darwin
 import kotlinx.cinterop.ExperimentalForeignApi
@@ -67,7 +67,7 @@ interface IosAppGraph : AppGraph {
     }
 
     @Binds
-    val DefaultTimetableSubscriptionKey.bind: TimetableSubscriptionKey
+    val DefaultTimetableQueryKey.bind: TimetableQueryKey
 
     @Binds
     val DefaultFavoriteTimetableIdsSubscriptionKey.bind: FavoriteTimetableIdsSubscriptionKey
