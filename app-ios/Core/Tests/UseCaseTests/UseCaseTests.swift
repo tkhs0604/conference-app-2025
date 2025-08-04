@@ -6,16 +6,16 @@ import Foundation
 
 struct TimetableUseCaseTests {
     
-    @Test("正常にタイムテーブルを取得できることを確認")
+    @Test("Verify successful timetable loading")
     func loadTimetableSuccess() async throws {
         // Arrange
         let expectedItems: [any TimetableItem] = [
             TimetableItemSession(
                 id: TimetableItemId(value: "session-1"),
-                title: MultiLangText(jaTitle: "セッション1", enTitle: "Session 1"),
+                title: MultiLangText(jaTitle: "Session 1", enTitle: "Session 1"),
                 startsAt: Date(),
                 endsAt: Date().addingTimeInterval(3600),
-                category: TimetableCategory(id: 1, title: MultiLangText(jaTitle: "開発", enTitle: "Development")),
+                category: TimetableCategory(id: 1, title: MultiLangText(jaTitle: "Development", enTitle: "Development")),
                 sessionType: .regular,
                 room: Room(id: 1, name: MultiLangText(jaTitle: "Room A", enTitle: "Room A"), type: .roomF, sort: 1),
                 targetAudience: "All",
@@ -23,7 +23,7 @@ struct TimetableUseCaseTests {
                 asset: TimetableAsset(videoUrl: nil, slideUrl: nil),
                 levels: ["Beginner"],
                 speakers: [],
-                description: MultiLangText(jaTitle: "説明", enTitle: "Description"),
+                description: MultiLangText(jaTitle: "Description", enTitle: "Description"),
                 message: nil
             )
         ]
@@ -50,7 +50,7 @@ struct TimetableUseCaseTests {
         #expect(result.timetableItems.first?.id.value == "session-1")
     }
     
-    @Test("空のタイムテーブルを取得できることを確認")
+    @Test("Verify empty timetable loading")
     func loadEmptyTimetable() async throws {
         // Arrange
         let emptyTimetable = Timetable(
@@ -73,7 +73,7 @@ struct TimetableUseCaseTests {
         #expect(result.bookmarks.isEmpty)
     }
     
-    @Test("ネットワークエラーが発生した場合にエラーをスローすることを確認")
+    @Test("Verify network error handling")
     func loadTimetableNetworkError() async throws {
         // Arrange
         var errorThrown: LoadTimetableError?
@@ -92,16 +92,16 @@ struct TimetableUseCaseTests {
         #expect(errorThrown != nil)
     }
     
-    @Test("複数のアイテムタイプが混在するタイムテーブルを取得できることを確認")
+    @Test("Verify loading timetable with mixed item types")
     func loadMixedTimetableItems() async throws {
         // Arrange
         let mixedItems: [any TimetableItem] = [
             TimetableItemSession(
                 id: TimetableItemId(value: "session-1"),
-                title: MultiLangText(jaTitle: "通常セッション", enTitle: "Regular Session"),
+                title: MultiLangText(jaTitle: "Regular Session", enTitle: "Regular Session"),
                 startsAt: Date(),
                 endsAt: Date().addingTimeInterval(3600),
-                category: TimetableCategory(id: 1, title: MultiLangText(jaTitle: "開発", enTitle: "Development")),
+                category: TimetableCategory(id: 1, title: MultiLangText(jaTitle: "Development", enTitle: "Development")),
                 sessionType: .regular,
                 room: Room(id: 1, name: MultiLangText(jaTitle: "Room A", enTitle: "Room A"), type: .roomF, sort: 1),
                 targetAudience: "All",
@@ -109,17 +109,17 @@ struct TimetableUseCaseTests {
                 asset: TimetableAsset(videoUrl: "https://example.com/video", slideUrl: "https://example.com/slide"),
                 levels: ["Intermediate"],
                 speakers: [
-                    Speaker(id: "speaker-1", name: "山田太郎", iconUrl: "https://example.com/icon", bio: "Bio", tagLine: "Engineer")
+                    Speaker(id: "speaker-1", name: "Test Speaker", iconUrl: "https://example.com/icon", bio: "Bio", tagLine: "Engineer")
                 ],
-                description: MultiLangText(jaTitle: "説明", enTitle: "Description"),
+                description: MultiLangText(jaTitle: "Description", enTitle: "Description"),
                 message: nil
             ),
             TimetableItemSpecial(
                 id: TimetableItemId(value: "lunch-1"),
-                title: MultiLangText(jaTitle: "ランチ", enTitle: "Lunch"),
+                title: MultiLangText(jaTitle: "Lunch", enTitle: "Lunch"),
                 startsAt: Date().addingTimeInterval(7200),
                 endsAt: Date().addingTimeInterval(10800),
-                category: TimetableCategory(id: 99, title: MultiLangText(jaTitle: "その他", enTitle: "Other")),
+                category: TimetableCategory(id: 99, title: MultiLangText(jaTitle: "Other", enTitle: "Other")),
                 sessionType: .lunch,
                 room: Room(id: 6, name: MultiLangText(jaTitle: "Lunch Room", enTitle: "Lunch Room"), type: .roomIJ, sort: 6),
                 targetAudience: "All",
@@ -127,7 +127,7 @@ struct TimetableUseCaseTests {
                 asset: TimetableAsset(videoUrl: nil, slideUrl: nil),
                 levels: [],
                 speakers: [],
-                description: MultiLangText(jaTitle: "ランチタイム", enTitle: "Lunch Time"),
+                description: MultiLangText(jaTitle: "Lunch Time", enTitle: "Lunch Time"),
                 message: nil
             )
         ]
@@ -158,7 +158,7 @@ struct TimetableUseCaseTests {
         #expect(specialItem?.sessionType == .lunch)
     }
     
-    @Test("DependencyValuesから正しくUseCaseを取得できることを確認")
+    @Test("Verify UseCase retrieval from DependencyValues")
     func dependencyValuesIntegration() async throws {
         // Arrange
         let expectedTimetable = Timetable(
@@ -182,7 +182,7 @@ struct TimetableUseCaseTests {
         #expect(timetable.bookmarks.isEmpty)
     }
     
-    @Test("複数のブックマークが正しく保持されることを確認")
+    @Test("Verify multiple bookmarks are correctly preserved")
     func loadTimetableWithMultipleBookmarks() async throws {
         // Arrange
         let bookmarks = Set<TimetableItemId>([

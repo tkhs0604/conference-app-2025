@@ -145,7 +145,7 @@ struct TimetableProviderTest {
     }
     
     @MainActor
-    @Test("fetchTimetableでエラーが発生した場合の処理を確認")
+    @Test("Verify error handling in fetchTimetable")
     func fetchTimetableError() async throws {
         // Since typed throws cannot be mocked directly in the current Swift version,
         // we test that the provider handles the absence of data correctly
@@ -176,16 +176,16 @@ struct TimetableProviderTest {
         }
     }
     
-    @Test("roomsプロパティが重複を排除して正しく返されることを確認")
+    @Test("Verify rooms property deduplication")
     func roomsPropertyDeduplication() async throws {
         let provider = TimetableProvider()
         
         let items: [any TimetableItem] = [
             TestData.createTimetableItemSession(id: "1", room: .roomF),
             TestData.createTimetableItemSession(id: "2", room: .roomG),
-            TestData.createTimetableItemSession(id: "3", room: .roomF), // 重複
+            TestData.createTimetableItemSession(id: "3", room: .roomF), // duplicate
             TestData.createTimetableItemSession(id: "4", room: .roomH),
-            TestData.createTimetableItemSession(id: "5", room: .roomG), // 重複
+            TestData.createTimetableItemSession(id: "5", room: .roomG), // duplicate
         ]
         
         provider.timetable = Timetable(timetableItems: items, bookmarks: Set())
@@ -199,13 +199,13 @@ struct TimetableProviderTest {
         #expect(roomTypes.contains(.roomG))
         #expect(roomTypes.contains(.roomH))
         
-        // ソート順の確認
+        // Verify sort order
         for i in 0..<rooms.count - 1 {
             #expect(rooms[i].sort <= rooms[i + 1].sort)
         }
     }
     
-    @Test("roomsプロパティが空の場合の処理を確認")
+    @Test("Verify rooms property when empty")
     func roomsPropertyEmpty() async throws {
         let provider = TimetableProvider()
         
@@ -217,7 +217,7 @@ struct TimetableProviderTest {
     }
     
     @MainActor
-    @Test("時間帯でのグルーピングが正しく行われることを確認")
+    @Test("Verify time-based grouping and sorting")
     func timeGroupingSorting() async throws {
         let date1 = TestData.createDate(hour: 9, minute: 0)
         let date2 = TestData.createDate(hour: 10, minute: 30)
@@ -245,7 +245,7 @@ struct TimetableProviderTest {
         
         #expect(day1Groups.count == 3)
         
-        // 時間順にソートされていることを確認
+        // Verify sorted by time
         if day1Groups.count >= 3 {
             #expect(day1Groups[0].items[0].timetableItem.id.value == "1")
             #expect(day1Groups[1].items[0].timetableItem.id.value == "2")
@@ -254,7 +254,7 @@ struct TimetableProviderTest {
     }
     
     @MainActor
-    @Test("同じ時間帯の複数セッションが同一グループにまとめられることを確認")
+    @Test("Verify multiple sessions in same time slot are grouped together")
     func sameTimeSlotGrouping() async throws {
         let startTime = TestData.createDate(hour: 10, minute: 0)
         let endTime = startTime.addingTimeInterval(3600)
@@ -290,7 +290,7 @@ struct TimetableProviderTest {
         }
     }
     
-    @Test("favoriteIdsの初期状態と操作を確認")
+    @Test("Verify favoriteIds initial state and operations")
     func favoriteIdsManagement() async throws {
         let provider = TimetableProvider()
         
@@ -379,10 +379,10 @@ enum TestData {
     ) -> TimetableItemSession {
         TimetableItemSession(
             id: TimetableItemId(value: id),
-            title: MultiLangText(jaTitle: "テストセッション", enTitle: "Test Session"),
+            title: MultiLangText(jaTitle: "Test Session", enTitle: "Test Session"),
             startsAt: startsAt,
             endsAt: endsAt,
-            category: TimetableCategory(id: 1, title: MultiLangText(jaTitle: "開発", enTitle: "Development")),
+            category: TimetableCategory(id: 1, title: MultiLangText(jaTitle: "Development", enTitle: "Development")),
             sessionType: .regular,
             room: createRoom(type: room),
             targetAudience: "All levels",
@@ -390,7 +390,7 @@ enum TestData {
             asset: TimetableAsset(videoUrl: nil, slideUrl: nil),
             levels: ["Beginner"],
             speakers: [createSpeaker()],
-            description: MultiLangText(jaTitle: "説明", enTitle: "Description"),
+            description: MultiLangText(jaTitle: "Description", enTitle: "Description"),
             message: nil,
             day: day
         )
@@ -405,10 +405,10 @@ enum TestData {
     ) -> TimetableItemSpecial {
         TimetableItemSpecial(
             id: TimetableItemId(value: id),
-            title: MultiLangText(jaTitle: "ランチ", enTitle: "Lunch"),
+            title: MultiLangText(jaTitle: "Lunch", enTitle: "Lunch"),
             startsAt: startsAt,
             endsAt: endsAt,
-            category: TimetableCategory(id: 99, title: MultiLangText(jaTitle: "その他", enTitle: "Other")),
+            category: TimetableCategory(id: 99, title: MultiLangText(jaTitle: "Other", enTitle: "Other")),
             sessionType: sessionType,
             room: createRoom(type: .roomIJ),
             targetAudience: "All",
@@ -416,7 +416,7 @@ enum TestData {
             asset: TimetableAsset(videoUrl: nil, slideUrl: nil),
             levels: [],
             speakers: [],
-            description: MultiLangText(jaTitle: "ランチタイム", enTitle: "Lunch Time"),
+            description: MultiLangText(jaTitle: "Lunch Time", enTitle: "Lunch Time"),
             message: nil,
             day: day
         )
