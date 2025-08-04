@@ -45,7 +45,7 @@ fun TimetableItemDetailTopAppBar(
 
 @Preview
 @Composable
-fun TimetableItemDetailTopAppBarPreview() {
+private fun TimetableItemDetailTopAppBarPreview() {
     KaigiPreviewContainer {
         ProvideRoomTheme(TimetableItem.Session.fake().room.roomTheme) {
             TimetableItemDetailTopAppBar(
