@@ -11,11 +11,11 @@ public struct EventMapScreen: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 // Description
-                Text("Navigate the venue with our interactive floor maps")
+                Text("DroidKaigiでは、セッション以外にも参加者が楽しめるイベントを開催。コミュニケーションや技術交流を通じてカンファレンスを満喫しましょう！")
                     .font(.body)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(AssetColors.surfaceVariant.swiftUIColor)
                     .padding(.horizontal, 16)
-                    .padding(.top, 8)
+                    .padding(.top, 10)
                 
                 // Floor selector
                 FloorMapSelector(selected: $selectedFloorMap)
@@ -57,7 +57,7 @@ public struct EventMapScreen: View {
             }
         }
         .background(Color.primary.opacity(0.02))
-        .navigationTitle("Event Map")
+        .navigationTitle("イベントマップ")
         #if os(iOS)
         .navigationBarTitleDisplayMode(.large)
         #endif

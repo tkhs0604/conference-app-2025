@@ -6,7 +6,7 @@ import Foundation
 @MainActor
 @Observable
 final class EventMapPresenter {
-    var selectedFloorMap: FloorMap = .b1f
+    var selectedFloorMap: FloorMap = .first
     var events: [Event] = []
     
     init() {}
@@ -28,8 +28,8 @@ final class EventMapPresenter {
 
 // Mock models - TODO: Replace with actual models from shared module
 enum FloorMap: String, CaseIterable {
-    case b1f = "B1F"
     case first = "1F"
+    case b1f = "B1F"
     
     var image: String {
         switch self {
