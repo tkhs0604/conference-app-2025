@@ -74,6 +74,7 @@ kotlin {
             dependsOn(commonMain.get())
             dependencies {
                 implementation(libs.ktorClientDarwin)
+                implementation(libs.molecule)
                 api(projects.feature.sessions)
                 api(projects.feature.contributors)
                 api(projects.core.model)

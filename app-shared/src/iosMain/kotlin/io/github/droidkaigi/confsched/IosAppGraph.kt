@@ -35,7 +35,9 @@ import io.github.droidkaigi.confsched.model.data.TimetableItemQueryKey
 import io.github.droidkaigi.confsched.model.data.TimetableQueryKey
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.darwin.Darwin
+import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.cinterop.ExportObjCClass
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -46,19 +48,26 @@ import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
+import soil.query.SwrCachePlus
+import soil.query.SwrCacheScope
+import soil.query.SwrClientPlus
+import soil.query.annotation.ExperimentalSoilQueryApi
+import soil.query.annotation.InternalSoilQueryApi
 
 /**
  * The iOS dependency graph cannot currently be resolved by the compiler plugin.
  * Therefore, we need to define the iOS dependency graph manually.
  * For more details, see: https://github.com/ZacSweers/metro/issues/460
  */
+@OptIn(BetaInteropApi::class)
+@ExportObjCClass
 @DependencyGraph(
     scope = AppScope::class,
     additionalScopes = [DataScope::class],
     isExtendable = true,
 )
 interface IosAppGraph : AppGraph {
-    val sessionsApiClient: SessionsApiClient
+    val sessionsRepository: SessionsRepository
 
     @Named("apiBaseUrl")
     @Provides
@@ -151,6 +160,18 @@ interface IosAppGraph : AppGraph {
     fun provideIoDispatcher(): CoroutineDispatcher {
         // Since Kotlin/Native doesn't support Dispatchers.IO, we use Dispatchers.Default instead.
         return Dispatchers.Default
+    }
+
+    @OptIn(ExperimentalSoilQueryApi::class, InternalSoilQueryApi::class)
+    @SingleIn(AppScope::class)
+    @Provides
+    fun provideSwrClientPlus(swrCacheScope: SwrCacheScope): SwrClientPlus {
+        return SwrCachePlus(swrCacheScope)
+    }
+
+    @Provides
+    fun provideSwrCacheScope(): SwrCacheScope {
+        return SwrCacheScope()
     }
 }
 

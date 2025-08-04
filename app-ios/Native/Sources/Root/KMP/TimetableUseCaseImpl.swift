@@ -1,15 +1,16 @@
 import UseCase
-import Foundation
 import Model
 import shared
 
 struct TimetableUseCaseImpl {
     func load() async throws(LoadTimetableError) -> Model.Timetable {
-        do {
-            let response = try await KMPDependencyProvider.shared.appGraph.sessionsApiClient.sessionsAllResponse()
-            let kmpTimetable = response.toTimetable()
+        let iterator = KMPDependencyProvider.shared.appGraph.sessionsRepository
+            .timetableFlow()
+            .makeAsyncIterator()
+        
+        if let kmpTimetable = await iterator.next() {
             return Model.Timetable(from: kmpTimetable)
-        } catch {
+        } else {
             throw LoadTimetableError.networkError
         }
     }

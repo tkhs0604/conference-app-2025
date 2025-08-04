@@ -50,6 +50,8 @@ haze = "1.6.9"
 
 skie = "0.10.4"
 
+molecule = "2.1.0"
+
 [libraries]
 # gradle plugins
 androidGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
@@ -136,6 +138,8 @@ haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
 material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "material3" }
 
 buildkonfigCompiler = { module = "com.codingfeline.buildkonfig:buildkonfig-compiler", version.ref = "buildkonfig" }
+
+molecule = { module = "app.cash.molecule:molecule-runtime", version.ref = "molecule" }
 
 [plugins]
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
