@@ -6,8 +6,8 @@ import Foundation
 
 struct TimetableUseCaseTests {
     
-    @Test("Verify successful timetable loading")
-    func loadTimetableSuccess() async throws {
+    @Test("Should successfully load timetable with items and bookmarks")
+    func testLoadTimetableReturnsExpectedItemsAndBookmarks() async throws {
         // Arrange
         let expectedItems: [any TimetableItem] = [
             TimetableItemSession(
@@ -50,8 +50,8 @@ struct TimetableUseCaseTests {
         #expect(result.timetableItems.first?.id.value == "session-1")
     }
     
-    @Test("Verify empty timetable loading")
-    func loadEmptyTimetable() async throws {
+    @Test("Should handle empty timetable with no items or bookmarks")
+    func testLoadEmptyTimetableReturnsEmptyCollections() async throws {
         // Arrange
         let emptyTimetable = Timetable(
             timetableItems: [],
@@ -73,8 +73,8 @@ struct TimetableUseCaseTests {
         #expect(result.bookmarks.isEmpty)
     }
     
-    @Test("Verify network error handling")
-    func loadTimetableNetworkError() async throws {
+    @Test("Should verify LoadTimetableError.networkError exists and is testable")
+    func testNetworkErrorTypeExistsAndCanBeInstantiated() async throws {
         // Arrange
         var errorThrown: LoadTimetableError?
         _ = withDependencies {
@@ -92,8 +92,8 @@ struct TimetableUseCaseTests {
         #expect(errorThrown != nil)
     }
     
-    @Test("Verify loading timetable with mixed item types")
-    func loadMixedTimetableItems() async throws {
+    @Test("Should correctly load timetable containing both session and special items")
+    func testLoadTimetableWithMixedSessionAndSpecialItems() async throws {
         // Arrange
         let mixedItems: [any TimetableItem] = [
             TimetableItemSession(
@@ -158,8 +158,8 @@ struct TimetableUseCaseTests {
         #expect(specialItem?.sessionType == .lunch)
     }
     
-    @Test("Verify UseCase retrieval from DependencyValues")
-    func dependencyValuesIntegration() async throws {
+    @Test("Should retrieve TimetableUseCase from DependencyValues correctly")
+    func testTimetableUseCaseAccessibleViaDependencyValues() async throws {
         // Arrange
         let expectedTimetable = Timetable(
             timetableItems: [],
@@ -182,8 +182,8 @@ struct TimetableUseCaseTests {
         #expect(timetable.bookmarks.isEmpty)
     }
     
-    @Test("Verify multiple bookmarks are correctly preserved")
-    func loadTimetableWithMultipleBookmarks() async throws {
+    @Test("Should preserve all bookmarks when loading timetable with multiple bookmarked items")
+    func testLoadTimetablePreservesMultipleBookmarks() async throws {
         // Arrange
         let bookmarks = Set<TimetableItemId>([
             TimetableItemId(value: "item-1"),
