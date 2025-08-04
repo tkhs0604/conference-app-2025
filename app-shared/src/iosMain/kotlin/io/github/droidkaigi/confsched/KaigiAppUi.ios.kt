@@ -10,12 +10,13 @@ import dev.chrisbanes.haze.rememberHazeState
 import io.github.droidkaigi.confsched.component.KaigiNavigationScaffold
 import io.github.droidkaigi.confsched.component.MainScreenTab
 import io.github.droidkaigi.confsched.navigation.TimetableTabRoute
-import io.github.droidkaigi.confsched.navigation.timetableNavGraph
+import io.github.droidkaigi.confsched.navigation.timetableTabNavGraph
 
 context(appGraph: AppGraph)
 @Composable
 actual fun KaigiAppUi() {
     val navController = rememberNavController()
+    val externalNavController = rememberExternalNavController()
     val hazeState = rememberHazeState()
 
     KaigiNavigationScaffold(
@@ -30,7 +31,16 @@ actual fun KaigiAppUi() {
                 .fillMaxSize()
                 .hazeSource(hazeState),
         ) {
-            timetableNavGraph()
+            timetableTabNavGraph(
+                onSearchClick = { navController.navigate(TimetableTabRoute.SearchRoute) },
+                onTimetableItemClick = { timetableItemId ->
+                    navController.navigate(TimetableTabRoute.TimetableItemDetailRoute(timetableItemId.value))
+                },
+                onBackClick = { navController.popBackStack() },
+                onLinkClick = externalNavController::navigate,
+                onShareClick = externalNavController::onShareClick,
+                onAddCalendarClick = externalNavController::navigateToCalendarRegistration,
+            )
         }
     }
 }

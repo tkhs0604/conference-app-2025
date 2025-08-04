@@ -4,13 +4,13 @@ import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import kotlinx.serialization.Serializable
 
 @Serializable
-data object TimetableTabRoute
+data object TimetableTabRoute {
+    @Serializable
+    data object TimetableRoute
 
-@Serializable
-data object TimetableRoute
+    @Serializable
+    data class TimetableItemDetailRoute(val id: String)
 
-@Serializable
-data class TimetableItemDetailRoute(val id: TimetableItemId)
-
-@Serializable
-data object SearchRoute
+    @Serializable
+    data object SearchRoute
+}
