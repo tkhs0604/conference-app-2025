@@ -40,4 +40,8 @@ final class AboutPresenter {
     func mediumTapped() {
         print("Medium tapped")
     }
+    
+    func switchToComposeMultiplatformTapped() {
+        print("Switch to Compose Multiplatform tapped")
+    }
 }

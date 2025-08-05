@@ -42,6 +42,7 @@ public struct RootScreen: View {
     @State private var navigationPath = NavigationPath()
     @State private var aboutNavigationPath = NavigationPath()
     @State private var favoriteNavigationPath = NavigationPath()
+    @State private var composeMultiplatformEnabled: Bool = false
     private let presenter = RootPresenter()
     
     public init() {
@@ -49,61 +50,71 @@ public struct RootScreen: View {
     }
     
     public var body: some View {
-        ZStack(alignment: .bottom) {
-            switch selectedTab {
-            case .timetable:
-                NavigationStack(path: $navigationPath) {
-                    HomeScreen(onNavigate: handleHomeNavigation)
-                        .navigationDestination(for: NavigationDestination.self) { destination in
-                            let navigationHandler = NavigationHandler(
-                                handleSearchNavigation: handleSearchNavigation
-                            )
-                            destination.view(with: navigationHandler)
-                        }
-                }
-            case .map:
-                NavigationStack {
-                    EventMapScreen()
-                }
-            case .favorite:
-                NavigationStack(path: $favoriteNavigationPath) {
-                    FavoriteScreen(onNavigate: handleFavoriteNavigation)
-                        .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
-                            switch destination {
-                            case .timetableDetail(let item):
-                                TimetableDetailScreen(timetableItem: item)
+        if (composeMultiplatformEnabled) {
+            KmpAppComposeViewControllerWrapper()
+        } else {
+            ZStack(alignment: .bottom) {
+                switch selectedTab {
+                case .timetable:
+                    NavigationStack(path: $navigationPath) {
+                        HomeScreen(onNavigate: handleHomeNavigation)
+                            .navigationDestination(for: NavigationDestination.self) { destination in
+                                let navigationHandler = NavigationHandler(
+                                    handleSearchNavigation: handleSearchNavigation
+                                )
+                                destination.view(with: navigationHandler)
                             }
-                        }
-                }
-            case .info:
-                NavigationStack(path: $aboutNavigationPath) {
-                    AboutScreen(onNavigate: handleAboutNavigation)
-                        .navigationDestination(for: AboutNavigationDestination.self) { destination in
-                            switch destination {
-                            case .contributors:
-                                ContributorScreen()
-                            case .staff:
-                                StaffScreen()
-                            case .sponsors:
-                                SponsorScreen()
+                    }
+                case .map:
+                    NavigationStack {
+                        EventMapScreen()
+                    }
+                case .favorite:
+                    NavigationStack(path: $favoriteNavigationPath) {
+                        FavoriteScreen(onNavigate: handleFavoriteNavigation)
+                            .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
+                                switch destination {
+                                case .timetableDetail(let item):
+                                    TimetableDetailScreen(timetableItem: item)
+                                }
                             }
-                        }
+                    }
+                case .info:
+                    NavigationStack(path: $aboutNavigationPath) {
+                        AboutScreen(onNavigate: handleAboutNavigation)
+                            .navigationDestination(for: AboutNavigationDestination.self) { destination in
+                                switch destination {
+                                case .contributors:
+                                    ContributorScreen()
+                                case .staff:
+                                    StaffScreen()
+                                case .sponsors:
+                                    SponsorScreen()
+                                case .composeMultiplatform:
+                                    // This destination is not meant to be displayed as a screen.
+                                    // It's only used to dispatch an event to the parent view.
+                                    // Normally, the navigation should not reach here.
+                                    // Rendering an EmptyView as a fallback.
+                                    EmptyView()
+                                }
+                            }
+                    }
+                case .profileCard:
+                    NavigationStack {
+                        ProfileCardScreen()
+                    }
                 }
-            case .profileCard:
-                NavigationStack {
-                    ProfileCardScreen()
-                }
+                
+                tabBar
             }
-            
-            tabBar
+            .onAppear {
+                presenter.prepareWindow()
+            }
+            .onChange(of: scenePhase) {
+                ScenePhaseHandler.handle(scenePhase)
+            }
+            .preferredColorScheme(.dark)
         }
-        .onAppear {
-            presenter.prepareWindow()
-        }
-        .onChange(of: scenePhase) {
-            ScenePhaseHandler.handle(scenePhase)
-        }
-        .preferredColorScheme(.dark)
     }
     
     private func handleHomeNavigation(_ destination: HomeNavigationDestination) {
@@ -116,6 +127,10 @@ public struct RootScreen: View {
     }
     
     private func handleAboutNavigation(_ destination: AboutNavigationDestination) {
+        if (destination == .composeMultiplatform) {
+            composeMultiplatformEnabled = true
+            return
+        }
         aboutNavigationPath.append(destination)
     }
     

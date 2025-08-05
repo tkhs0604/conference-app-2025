@@ -5,6 +5,8 @@ public struct AboutScreen: View {
     @State private var presenter = AboutPresenter()
     let onNavigate: (AboutNavigationDestination) -> Void
     
+    @State private var showSwitchToComposeMultiplatformAlert: Bool = false
+    
     var version: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
     }
@@ -107,6 +109,24 @@ public struct AboutScreen: View {
                 ) {
                     presenter.privacyPolicyTapped()
                     // TODO: Open in Safari when implemented
+                }
+                
+                Divider()
+                
+                AboutButton(
+                    title: "Switch to Compose Multiplatform",
+                    // TODO: Replace icon with a correct one
+                    systemImage: "building.2.fill",
+                ) {
+                    showSwitchToComposeMultiplatformAlert = true
+                    presenter.switchToComposeMultiplatformTapped()
+                }.alert("Switch UI", isPresented: $showSwitchToComposeMultiplatformAlert) {
+                    Button("Cancel", role: .cancel) {}
+                    Button("Switch") {
+                        onNavigate(.composeMultiplatform)
+                    }
+                } message: {
+                    Text("Switch UI from SwiftUI to Compose Multiplatform. Are you sure you want to do?")
                 }
             }
         }
