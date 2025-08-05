@@ -23,13 +23,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.dp
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiWindowSizeClassConstants
 import io.github.droidkaigi.confsched.droidkaigiui.component.TimetableTimeSlot
 import io.github.droidkaigi.confsched.droidkaigiui.session.TimetableItemCard
 import io.github.droidkaigi.confsched.favorites.FavoritesScreenUiState.TimetableContentState.FavoriteList.TimeSlot
+import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
+import io.github.droidkaigi.confsched.model.sessions.fake
 import kotlinx.collections.immutable.PersistentMap
+import kotlinx.collections.immutable.persistentMapOf
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun FavoriteTimetableList(
@@ -98,7 +103,7 @@ fun FavoriteTimetableList(
                                             timetableItem = item,
                                             isBookmarked = true,
                                             highlightWord = highlightWord,
-                                            onBookmarkClick = { _ , _ -> onBookmarkClick(item.id) },
+                                            onBookmarkClick = { _, _ -> onBookmarkClick(item.id) },
                                             onTimetableItemClick = { onTimetableItemClick(item.id) },
                                             modifier = Modifier
                                                 .weight(1f)
@@ -116,5 +121,25 @@ fun FavoriteTimetableList(
                 }
             }
         }
+    }
+}
+
+@Preview
+@Composable
+private fun FavoriteTimetableListPreview() {
+    KaigiPreviewContainer {
+        FavoriteTimetableList(
+            timetableItemMap = persistentMapOf(
+                TimeSlot(
+                    day = DroidKaigi2025Day.ConferenceDay1,
+                    startTimeString = "10:00",
+                    endTimeString = "11:00",
+                ) to listOf(
+                    TimetableItem.Session.fake(),
+                )
+            ),
+            onTimetableItemClick = {},
+            onBookmarkClick = {},
+        )
     }
 }
