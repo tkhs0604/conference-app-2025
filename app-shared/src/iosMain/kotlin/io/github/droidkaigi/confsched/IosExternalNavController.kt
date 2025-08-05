@@ -2,10 +2,18 @@ package io.github.droidkaigi.confsched
 
 import androidx.compose.runtime.Composable
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
+import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.cinterop.ObjCObjectVar
+import kotlinx.cinterop.alloc
+import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.objcPtr
+import kotlinx.cinterop.ptr
 import kotlinx.datetime.toNSDate
 import platform.EventKit.EKEntityType
 import platform.EventKit.EKEvent
 import platform.EventKit.EKEventStore
+import platform.EventKit.EKSpan
+import platform.Foundation.NSError
 import platform.Foundation.NSURL
 import platform.UIKit.UIApplication
 
@@ -24,6 +32,7 @@ internal class IosExternalNavController : ExternalNavController {
         }
     }
 
+    @OptIn(ExperimentalForeignApi::class)
     override fun navigateToCalendarRegistration(timetableItem: TimetableItem) {
         val eventStore = EKEventStore()
 
@@ -35,6 +44,17 @@ internal class IosExternalNavController : ExternalNavController {
                 event.title = timetableItem.title.currentLangTitle
                 event.notes = timetableItem.url
                 event.location = timetableItem.room.name.currentLangTitle
+                event.calendar = eventStore.defaultCalendarForNewEvents
+
+                memScoped {
+                    val errorPtr = alloc<ObjCObjectVar<NSError?>>()
+                    val success = eventStore.saveEvent(event, span = EKSpan.EKSpanThisEvent, error = errorPtr.ptr)
+                    if (success) {
+                        println("Event added to calendar: ${event.title}")
+                    } else {
+                        println("Failed to add event to calendar: ${error?.localizedDescription ?: "Unknown error"}")
+                    }
+                }
             } else {
                 println("Access to calendar not granted: $error")
             }
