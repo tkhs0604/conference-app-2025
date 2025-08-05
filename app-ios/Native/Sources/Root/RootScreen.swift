@@ -52,6 +52,8 @@ public struct RootScreen: View {
     public var body: some View {
         if (composeMultiplatformEnabled) {
             KmpAppComposeViewControllerWrapper()
+                .environment(\.colorScheme, .dark)
+                .ignoresSafeArea(.all)
         } else {
             ZStack(alignment: .bottom) {
                 switch selectedTab {
