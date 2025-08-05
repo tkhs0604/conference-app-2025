@@ -7,13 +7,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavDestination.Companion.hasRoute
-import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.chrisbanes.haze.hazeSource
 import dev.chrisbanes.haze.rememberHazeState
 import io.github.droidkaigi.confsched.component.KaigiNavigationScaffold
 import io.github.droidkaigi.confsched.component.MainScreenTab
+import io.github.droidkaigi.confsched.navigation.component.NavHostWithSharedAxisX
 import io.github.droidkaigi.confsched.navigation.extension.navigateToAboutTab
 import io.github.droidkaigi.confsched.navigation.extension.navigateToEventMapTab
 import io.github.droidkaigi.confsched.navigation.extension.navigateToFavoritesTab
@@ -69,7 +69,7 @@ actual fun KaigiAppUi() {
             }
         },
     ) {
-        NavHost(
+        NavHostWithSharedAxisX(
             navController = navController,
             startDestination = TimetableTabRoute,
             modifier = Modifier
