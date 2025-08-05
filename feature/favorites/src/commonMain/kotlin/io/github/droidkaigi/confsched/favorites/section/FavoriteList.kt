@@ -103,7 +103,7 @@ fun FavoriteTimetableList(
                                             timetableItem = item,
                                             isBookmarked = true,
                                             highlightWord = highlightWord,
-                                            onBookmarkClick = { _, _ -> onBookmarkClick(item.id) },
+                                            onBookmarkClick = { onBookmarkClick(item.id) },
                                             onTimetableItemClick = { onTimetableItemClick(item.id) },
                                             modifier = Modifier
                                                 .weight(1f)

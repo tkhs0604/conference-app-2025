@@ -60,7 +60,7 @@ fun TimetableScreen(
     uiState: TimetableScreenUiState,
     onSearchClick: () -> Unit,
     onTimetableItemClick: (TimetableItemId) -> Unit,
-    onBookmarkClick: (sessionId: String, isBookmarked: Boolean) -> Unit,
+    onBookmarkClick: (sessionId: String) -> Unit,
     onTimetableUiChangeClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -165,9 +165,7 @@ fun TimetableScreen(
                             lazyListState = lazyListState,
                             uiState = requireNotNull(uiState.timetable.timetableListUiStates[uiState.timetable.selectedDay]),
                             onTimetableItemClick = { onTimetableItemClick(it.id) },
-                            onBookmarkClick = { timetableItem, isBookmarked ->
-                                onBookmarkClick(timetableItem.id.value, isBookmarked)
-                            },
+                            onBookmarkClick = { onBookmarkClick(it.id.value) },
                             contentPadding = WindowInsets.navigationBars.add(WindowInsets(left = 16.dp, right = 16.dp)).asPaddingValues()
                         )
                     }
@@ -202,7 +200,7 @@ private fun TimetableScreenPreview() {
                 timetable = TimetableUiState.Empty,
                 uiType = TimetableUiType.List,
             ),
-            onBookmarkClick = { _, _ -> },
+            onBookmarkClick = {},
             onSearchClick = {},
             onTimetableItemClick = {},
             onTimetableUiChangeClick = {},
@@ -231,7 +229,7 @@ private fun TimetableScreenPreview_List() {
                 ),
                 uiType = TimetableUiType.List,
             ),
-            onBookmarkClick = { _, _ -> },
+            onBookmarkClick = {},
             onSearchClick = {},
             onTimetableItemClick = {},
             onTimetableUiChangeClick = {},
@@ -258,7 +256,7 @@ private fun TimetableScreenPreview_Grid() {
                 ),
                 uiType = TimetableUiType.Grid,
             ),
-            onBookmarkClick = { _, _ -> },
+            onBookmarkClick = {},
             onSearchClick = {},
             onTimetableItemClick = {},
             onTimetableUiChangeClick = {},

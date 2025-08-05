@@ -38,7 +38,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 internal fun TimetableList(
     uiState: TimetableListUiState,
     onTimetableItemClick: (TimetableItem) -> Unit,
-    onBookmarkClick: (TimetableItem, Boolean) -> Unit,
+    onBookmarkClick: (TimetableItem) -> Unit,
     modifier: Modifier = Modifier,
     lazyListState: LazyListState = rememberLazyListState(),
     contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp),
@@ -98,8 +98,8 @@ internal fun TimetableList(
                                         timetableItem = item,
                                         isBookmarked = uiState.timetable.bookmarks.contains(item.id),
                                         highlightWord = highlightWord,
-                                        onBookmarkClick = onBookmarkClick,
-                                        onTimetableItemClick = onTimetableItemClick,
+                                        onBookmarkClick = { onBookmarkClick(item) },
+                                        onTimetableItemClick = { onTimetableItemClick(item) },
                                         modifier = Modifier
                                             .weight(1f)
                                             .fillMaxHeight()
@@ -142,7 +142,7 @@ private fun TimetableListPreview() {
                 ),
             ),
             onTimetableItemClick = {},
-            onBookmarkClick = { _, _ -> },
+            onBookmarkClick = {},
         )
     }
 }
