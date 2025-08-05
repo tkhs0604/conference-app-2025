@@ -83,23 +83,20 @@ public struct RootScreen: View {
                     }
                 case .info:
                     NavigationStack(path: $aboutNavigationPath) {
-                        AboutScreen(onNavigate: handleAboutNavigation)
-                            .navigationDestination(for: AboutNavigationDestination.self) { destination in
-                                switch destination {
-                                case .contributors:
-                                    ContributorScreen()
-                                case .staff:
-                                    StaffScreen()
-                                case .sponsors:
-                                    SponsorScreen()
-                                case .composeMultiplatform:
-                                    // This destination is not meant to be displayed as a screen.
-                                    // It's only used to dispatch an event to the parent view.
-                                    // Normally, the navigation should not reach here.
-                                    // Rendering an EmptyView as a fallback.
-                                    EmptyView()
-                                }
+                        AboutScreen(
+                            onNavigate: handleAboutNavigation,
+                            onEnableComposeMultiplatform: handleEnableComposeMultiplatform,
+                        )
+                        .navigationDestination(for: AboutNavigationDestination.self) { destination in
+                            switch destination {
+                            case .contributors:
+                                ContributorScreen()
+                            case .staff:
+                                StaffScreen()
+                            case .sponsors:
+                                SponsorScreen()
                             }
+                        }
                     }
                 case .profileCard:
                     NavigationStack {
@@ -129,10 +126,6 @@ public struct RootScreen: View {
     }
     
     private func handleAboutNavigation(_ destination: AboutNavigationDestination) {
-        if (destination == .composeMultiplatform) {
-            composeMultiplatformEnabled = true
-            return
-        }
         aboutNavigationPath.append(destination)
     }
     
@@ -145,6 +138,10 @@ public struct RootScreen: View {
         case .timetableDetail(let item):
             navigationPath.append(NavigationDestination.timetableDetail(item))
         }
+    }
+
+    private func handleEnableComposeMultiplatform() {
+        composeMultiplatformEnabled = true
     }
     
     @ViewBuilder
