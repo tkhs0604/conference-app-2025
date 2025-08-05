@@ -1,4 +1,4 @@
-package io.github.droidkaigi.confsched.navigation
+package io.github.droidkaigi.confsched.navigation.graph
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -7,6 +7,10 @@ import androidx.navigation.toRoute
 import io.github.droidkaigi.confsched.AppGraph
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
+import io.github.droidkaigi.confsched.navigation.route.SearchRoute
+import io.github.droidkaigi.confsched.navigation.route.TimetableItemDetailRoute
+import io.github.droidkaigi.confsched.navigation.route.TimetableRoute
+import io.github.droidkaigi.confsched.navigation.route.TimetableTabRoute
 import io.github.droidkaigi.confsched.sessions.SearchScreenRoot
 import io.github.droidkaigi.confsched.sessions.TimetableItemDetailScreenRoot
 import io.github.droidkaigi.confsched.sessions.TimetableScreenRoot
@@ -24,7 +28,7 @@ fun NavGraphBuilder.timetableTabNavGraph(
     onAddCalendarClick: (TimetableItem) -> Unit,
 ) {
     navigation<TimetableTabRoute>(
-        startDestination = TimetableTabRoute.TimetableRoute,
+        startDestination = TimetableRoute,
     ) {
         timetableNavGraph(
             onSearchClick = onSearchClick,
@@ -41,11 +45,11 @@ fun NavGraphBuilder.timetableTabNavGraph(
 }
 
 context(appGraph: AppGraph)
-fun NavGraphBuilder.timetableNavGraph(
+private fun NavGraphBuilder.timetableNavGraph(
     onSearchClick: () -> Unit,
     onTimetableItemClick: (TimetableItemId) -> Unit,
 ) {
-    composable<TimetableTabRoute.TimetableRoute> {
+    composable<TimetableRoute> {
         with(appGraph.rememberTimetableScreenContextRetained()) {
             TimetableScreenRoot(
                 onSearchClick = onSearchClick,
@@ -62,9 +66,9 @@ fun NavGraphBuilder.timetableItemDetailNavGraph(
     onShareClick: (TimetableItem) -> Unit,
     onAddCalendarClick: (TimetableItem) -> Unit,
 ) {
-    composable<TimetableTabRoute.TimetableItemDetailRoute> {
+    composable<TimetableItemDetailRoute> {
         val timetableItemId =
-            TimetableItemId(it.toRoute<TimetableTabRoute.TimetableItemDetailRoute>().id)
+            TimetableItemId(it.toRoute<TimetableItemDetailRoute>().id)
         with(appGraph.rememberTimetableItemDetailScreenContextRetained(timetableItemId)) {
             TimetableItemDetailScreenRoot(
                 onBackClick = onBackClick,
@@ -77,8 +81,8 @@ fun NavGraphBuilder.timetableItemDetailNavGraph(
 }
 
 context(appGraph: AppGraph)
-fun NavGraphBuilder.searchNavGraph() {
-    composable<TimetableTabRoute.SearchRoute> {
+private fun NavGraphBuilder.searchNavGraph() {
+    composable<SearchRoute> {
         with(appGraph.rememberSearchScreenContextRetained()) {
             SearchScreenRoot()
         }
