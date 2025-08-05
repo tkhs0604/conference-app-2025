@@ -97,6 +97,7 @@ internal fun TimetableList(
                                     TimetableItemCard(
                                         timetableItem = item,
                                         isBookmarked = uiState.timetable.bookmarks.contains(item.id),
+                                        isDateTagVisible = false,
                                         highlightWord = highlightWord,
                                         onBookmarkClick = { onBookmarkClick(item) },
                                         onTimetableItemClick = { onTimetableItemClick(item) },

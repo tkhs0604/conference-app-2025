@@ -102,6 +102,7 @@ fun FavoriteTimetableList(
                                         TimetableItemCard(
                                             timetableItem = item,
                                             isBookmarked = true,
+                                            isDateTagVisible = true,
                                             highlightWord = highlightWord,
                                             onBookmarkClick = { onBookmarkClick(item.id) },
                                             onTimetableItemClick = { onTimetableItemClick(item.id) },

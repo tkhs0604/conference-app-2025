@@ -53,6 +53,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun TimetableItemCard(
     timetableItem: TimetableItem,
     isBookmarked: Boolean,
+    isDateTagVisible: Boolean,
     highlightWord: String,
     onBookmarkClick: () -> Unit,
     onTimetableItemClick: () -> Unit,
@@ -91,6 +92,11 @@ fun TimetableItemCard(
                     )
                     timetableItem.language.labels.forEach { label ->
                         TimetableItemLangTag(label)
+                    }
+                    if (isDateTagVisible) {
+                        timetableItem.day?.let {
+                            TimetableItemDateTag("${it.month}/${it.dayOfMonth}")
+                        }
                     }
                 }
                 TimetableItemTitle(timetableItem.title.currentLangTitle, highlightWord)
@@ -268,6 +274,7 @@ private fun TimetableItemCardPreview() {
                 message = null,
             ),
             isBookmarked = false,
+            isDateTagVisible = false,
             highlightWord = "",
             onBookmarkClick = {},
             onTimetableItemClick = {},
@@ -282,6 +289,7 @@ private fun TimetableItemCardPreview_WithError() {
         TimetableItemCard(
             timetableItem = TimetableItem.Session.fake(),
             isBookmarked = false,
+            isDateTagVisible = false,
             highlightWord = "",
             onBookmarkClick = {},
             onTimetableItemClick = {},

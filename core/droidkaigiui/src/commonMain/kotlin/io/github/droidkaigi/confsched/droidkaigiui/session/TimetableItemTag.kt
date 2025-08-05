@@ -53,6 +53,21 @@ internal fun TimetableItemRoomTag(
 }
 
 @Composable
+fun TimetableItemDateTag(
+    dateText: String,
+    modifier: Modifier = Modifier,
+) {
+    TimetableItemTag(
+        icon = null,
+        text = dateText,
+        contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        borderColor = MaterialTheme.colorScheme.outline,
+        contentPadding = PaddingValues(vertical = 2.dp, horizontal = 6.dp),
+        modifier = modifier,
+    )
+}
+
+@Composable
 private fun TimetableItemTag(
     text: String,
     contentColor: Color,
@@ -104,5 +119,13 @@ private fun TimetableItemRoomTagPreview() {
             text = "HEDGEHOG",
             color = Color(0xFFFF974B),
         )
+    }
+}
+
+@Preview
+@Composable
+private fun TimetableItemDateTagPreview() {
+    KaigiPreviewContainer {
+        TimetableItemDateTag(dateText = "9/11")
     }
 }
