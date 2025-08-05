@@ -1,4 +1,4 @@
-package io.github.droidkaigi.confsched.sessions.section
+package io.github.droidkaigi.confsched.favorites.section
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -23,29 +23,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.dp
-import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiWindowSizeClassConstants
-import io.github.droidkaigi.confsched.droidkaigiui.session.TimetableItemCard
-import io.github.droidkaigi.confsched.model.sessions.Timetable
-import io.github.droidkaigi.confsched.model.sessions.TimetableItem
-import io.github.droidkaigi.confsched.model.sessions.fake
 import io.github.droidkaigi.confsched.droidkaigiui.component.TimetableTimeSlot
-import kotlinx.collections.immutable.persistentMapOf
-import kotlinx.datetime.LocalTime
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import io.github.droidkaigi.confsched.droidkaigiui.session.TimetableItemCard
+import io.github.droidkaigi.confsched.favorites.FavoritesScreenUiState.TimetableContentState.FavoriteList.TimeSlot
+import io.github.droidkaigi.confsched.model.sessions.TimetableItem
+import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
+import kotlinx.collections.immutable.PersistentMap
 
 @Composable
-internal fun TimetableList(
-    uiState: TimetableListUiState,
-    onTimetableItemClick: (TimetableItem) -> Unit,
-    onBookmarkClick: (TimetableItem, Boolean) -> Unit,
+fun FavoriteTimetableList(
     modifier: Modifier = Modifier,
+    timetableItemMap: PersistentMap<TimeSlot, List<TimetableItem>>,
+    onTimetableItemClick: (TimetableItemId) -> Unit,
+    onBookmarkClick: (TimetableItemId) -> Unit,
     lazyListState: LazyListState = rememberLazyListState(),
     contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp),
     highlightWord: String = "",
 ) {
     BoxWithConstraints {
-        val isWideScreen = maxWidth >= KaigiWindowSizeClassConstants.WindowWidthSizeClassMediumMinWidth
+        val isWideScreen =
+            maxWidth >= KaigiWindowSizeClassConstants.WindowWidthSizeClassMediumMinWidth
         val columnCount = if (isWideScreen) 2 else 1
 
         LazyColumn(
@@ -55,13 +53,14 @@ internal fun TimetableList(
             modifier = modifier,
         ) {
             itemsIndexed(
-                items = uiState.timetableItemMap.toList(),
+                items = timetableItemMap.toList(),
                 key = { _, (timeSlot, _) -> timeSlot.key },
             ) { index, (timeSlot, timetableItems) ->
                 var timetableTimeSlotHeight by remember { mutableIntStateOf(0) }
                 val timetableTimeSlotOffsetY by remember {
                     derivedStateOf {
-                        val itemInfo = lazyListState.layoutInfo.visibleItemsInfo.find { it.index == index }
+                        val itemInfo =
+                            lazyListState.layoutInfo.visibleItemsInfo.find { it.index == index }
                         // If the item is not visible, keep the TimetableTimeSlot in its original position.
                         if (itemInfo == null) return@derivedStateOf 0
 
@@ -88,61 +87,34 @@ internal fun TimetableList(
                     Column(
                         verticalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
-                        timetableItems.windowed(columnCount, columnCount, true).forEach { windowedItems ->
-                            Row(
-                                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                                modifier = Modifier.height(IntrinsicSize.Max),
-                            ) {
-                                windowedItems.forEach { item ->
-                                    TimetableItemCard(
-                                        timetableItem = item,
-                                        isBookmarked = uiState.timetable.bookmarks.contains(item.id),
-                                        highlightWord = highlightWord,
-                                        onBookmarkClick = onBookmarkClick,
-                                        onTimetableItemClick = onTimetableItemClick,
-                                        modifier = Modifier
-                                            .weight(1f)
-                                            .fillMaxHeight()
-                                    )
-                                }
-                                if (windowedItems.size < columnCount) {
-                                    repeat(columnCount - windowedItems.size) {
-                                        Spacer(Modifier.weight(1f))
+                        timetableItems.windowed(columnCount, columnCount, true)
+                            .forEach { windowedItems ->
+                                Row(
+                                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                                    modifier = Modifier.height(IntrinsicSize.Max),
+                                ) {
+                                    windowedItems.forEach { item ->
+                                        TimetableItemCard(
+                                            timetableItem = item,
+                                            isBookmarked = true,
+                                            highlightWord = highlightWord,
+                                            onBookmarkClick = { _ , _ -> onBookmarkClick(item.id) },
+                                            onTimetableItemClick = { onTimetableItemClick(item.id) },
+                                            modifier = Modifier
+                                                .weight(1f)
+                                                .fillMaxHeight()
+                                        )
+                                    }
+                                    if (windowedItems.size < columnCount) {
+                                        repeat(columnCount - windowedItems.size) {
+                                            Spacer(Modifier.weight(1f))
+                                        }
                                     }
                                 }
                             }
-                        }
                     }
                 }
             }
         }
-    }
-}
-
-@Preview
-@Composable
-private fun TimetableListPreview() {
-    KaigiPreviewContainer {
-        TimetableList(
-            uiState = TimetableListUiState(
-                timetable = Timetable.fake(),
-                timetableItemMap = persistentMapOf(
-                    TimetableListUiState.TimeSlot(
-                        LocalTime(11, 20, 0, 0), endTime = LocalTime(12, 0, 0, 0)
-                    ) to List(2) { TimetableItem.Session.fake() },
-                    TimetableListUiState.TimeSlot(
-                        LocalTime(12, 0, 0, 0), endTime = LocalTime(13, 0, 0, 0)
-                    ) to List(3) { TimetableItem.Session.fake() },
-                    TimetableListUiState.TimeSlot(
-                        LocalTime(13, 0, 0, 0), endTime = LocalTime(14, 0, 0, 0)
-                    ) to List(5) { TimetableItem.Session.fake() },
-                    TimetableListUiState.TimeSlot(
-                        LocalTime(14, 0, 0, 0), endTime = LocalTime(15, 0, 0, 0)
-                    ) to List(5) { TimetableItem.Session.fake() },
-                ),
-            ),
-            onTimetableItemClick = {},
-            onBookmarkClick = { _, _ -> },
-        )
     }
 }
