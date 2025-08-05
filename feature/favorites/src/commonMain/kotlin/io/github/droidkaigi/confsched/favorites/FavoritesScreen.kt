@@ -1,6 +1,7 @@
 package io.github.droidkaigi.confsched.favorites
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -11,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.favorites.components.FavoriteFilters
+import io.github.droidkaigi.confsched.favorites.section.FavoriteEmpty
 import io.github.droidkaigi.confsched.favorites.section.FavoriteTimetableList
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
@@ -56,7 +58,11 @@ fun FavoritesScreen(
                 modifier = Modifier.fillMaxWidth()
             )
             when (uiState.timetableContentState) {
-                FavoritesScreenUiState.TimetableContentState.Empty -> Text("Empty Favorites")
+                FavoritesScreenUiState.TimetableContentState.Empty -> {
+                    FavoriteEmpty(
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
                 is FavoritesScreenUiState.TimetableContentState.FavoriteList -> {
                     FavoriteTimetableList(
                         timetableItemMap = uiState.timetableContentState.timetableItemMap,
