@@ -90,7 +90,14 @@ fun KaigiApp() {
                                 }
                             )
                             contributorsEntry()
-                            favoritesEntry()
+                            favoritesEntry(
+                                onTimetableItemClick = {
+                                    if (backStack.lastOrNull() is TimetableItemDetailNavKey) {
+                                        backStack.removeLastOrNull()
+                                    }
+                                    backStack.add(TimetableItemDetailNavKey(it))
+                                }
+                            )
                             eventMapEntry()
                             aboutEntry(
                                 onAboutItemClick = { item ->
