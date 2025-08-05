@@ -2,11 +2,11 @@ package io.github.droidkaigi.confsched
 
 import androidx.compose.runtime.Composable
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
+import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.ObjCObjectVar
 import kotlinx.cinterop.alloc
 import kotlinx.cinterop.memScoped
-import kotlinx.cinterop.objcPtr
 import kotlinx.cinterop.ptr
 import kotlinx.datetime.toNSDate
 import platform.EventKit.EKEntityType
@@ -14,7 +14,10 @@ import platform.EventKit.EKEvent
 import platform.EventKit.EKEventStore
 import platform.EventKit.EKSpan
 import platform.Foundation.NSError
+import platform.Foundation.NSString
 import platform.Foundation.NSURL
+import platform.Foundation.create
+import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication
 
 @Composable
@@ -61,7 +64,24 @@ internal class IosExternalNavController : ExternalNavController {
         }
     }
 
+    @OptIn(BetaInteropApi::class)
     override fun onShareClick(timetableItem: TimetableItem) {
-        TODO("Not yet implemented")
+        val text = "[${timetableItem.room.name.currentLangTitle}] ${timetableItem.formattedMonthAndDayString} " +
+                "${timetableItem.startsTimeString} - ${timetableItem.endsTimeString}\n" +
+                "${timetableItem.title.currentLangTitle}\n" +
+                timetableItem.url
+
+        val activityItems = listOf(NSString.create(text))
+        val activityViewController = UIActivityViewController(
+            activityItems = activityItems,
+            applicationActivities = null,
+        )
+
+        val rootViewController = UIApplication.sharedApplication.keyWindow?.rootViewController
+        rootViewController?.presentViewController(
+            viewControllerToPresent = activityViewController,
+            animated = true,
+            completion = null,
+        )
     }
 }
