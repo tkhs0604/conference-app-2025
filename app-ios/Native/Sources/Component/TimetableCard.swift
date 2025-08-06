@@ -30,7 +30,7 @@ public struct TimetableCard: View {
                 headerRow
                 
                 Text(timetableItem.title.currentLangTitle)
-                    .font(.system(size: 16, weight: .medium))
+                    .font(Typography.titleMedium)
                     .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
@@ -99,7 +99,7 @@ public struct TimetableCard: View {
                         .frame(width: 32, height: 32)
                     
                     Text(speaker.name)
-                        .font(.system(size: 14, weight: .medium))
+                        .font(Typography.labelLarge)
                         .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                 }
             }

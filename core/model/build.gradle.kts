@@ -1,5 +1,6 @@
 plugins {
     id("droidkaigi.primitive.kmp")
+    id("droidkaigi.primitive.kmp.ios")
     id("droidkaigi.primitive.detekt")
     alias(libs.plugins.kotlinxSerialization)
     alias(libs.plugins.jetbrainsCompose)
@@ -7,8 +8,6 @@ plugins {
 }
 
 kotlin {
-    iosArm64()
-
     sourceSets {
         commonMain.dependencies {
             implementation(compose.runtime)

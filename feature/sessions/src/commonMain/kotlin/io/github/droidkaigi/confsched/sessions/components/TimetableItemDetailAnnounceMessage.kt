@@ -46,7 +46,7 @@ fun TimetableItemDetailAnnounceMessage(
 
 @Preview
 @Composable
-fun TimetableItemDetailAnnounceMessagePreview() {
+private fun TimetableItemDetailAnnounceMessagePreview() {
     KaigiPreviewContainer {
         TimetableItemDetailAnnounceMessage(message = "このセッションは事情により中止となりました")
     }

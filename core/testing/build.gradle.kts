@@ -2,6 +2,7 @@ import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
     id("droidkaigi.primitive.kmp")
+    id("droidkaigi.primitive.kmp.ios")
     id("droidkaigi.primitive.metro")
     id("droidkaigi.primitive.detekt")
     alias(libs.plugins.jetbrainsCompose)
@@ -60,6 +61,10 @@ kotlin {
             implementation(libs.kotlinTestJunit)
             // FIXME: If we add the following dependency, compose tests fail. See CaptureScreenRobot.jvm.kt for details.
 //            implementation(libs.roborazziComposeDesktop)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.roborazziComposeIos)
         }
     }
 }

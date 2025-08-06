@@ -183,7 +183,7 @@ private fun LanguageSwitcher(
 
 @Composable
 @Preview
-fun TimetableItemDetailHeadlinePreview() {
+private fun TimetableItemDetailHeadlinePreview() {
     val session = TimetableItem.Session.fake()
     KaigiPreviewContainer {
         ProvideRoomTheme(session.room.roomTheme) {
@@ -199,7 +199,7 @@ fun TimetableItemDetailHeadlinePreview() {
 
 @Composable
 @Preview
-fun TimetableItemDetailHeadlineWithEnglishPreview() {
+private fun TimetableItemDetailHeadlineWithEnglishPreview() {
     val session = TimetableItem.Session.fake()
     KaigiPreviewContainer {
         ProvideRoomTheme(session.room.roomTheme) {
@@ -215,7 +215,7 @@ fun TimetableItemDetailHeadlineWithEnglishPreview() {
 
 @Composable
 @Preview
-fun TimetableItemDetailHeadlineWithMixedPreview() {
+private fun TimetableItemDetailHeadlineWithMixedPreview() {
     val session = TimetableItem.Session.fake()
     KaigiPreviewContainer {
         ProvideRoomTheme(session.room.roomTheme) {

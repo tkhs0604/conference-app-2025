@@ -21,7 +21,7 @@ public struct TimeGroupList: View {
         HStack(alignment: .top, spacing: 16) {
             VStack {
                 Text(timeGroup.startsTimeString)
-                    .font(.system(size: 16, weight: .medium))
+                    .font(Typography.labelMedium)
                     .foregroundStyle(AssetColors.onSurface.swiftUIColor)
 
                 Text("|")
@@ -29,7 +29,7 @@ public struct TimeGroupList: View {
                     .foregroundStyle(AssetColors.outline.swiftUIColor)
 
                 Text(timeGroup.endsTimeString)
-                    .font(.system(size: 16, weight: .medium))
+                    .font(Typography.labelMedium)
                     .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                 Spacer()
             }

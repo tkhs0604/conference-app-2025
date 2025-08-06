@@ -11,7 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.session.roomTheme
+import io.github.droidkaigi.confsched.model.sessions.TimetableItem
+import io.github.droidkaigi.confsched.model.sessions.fake
 import io.github.droidkaigi.confsched.sessions.components.TimetableItemDetailTopAppBar
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import soil.plant.compose.reacty.ErrorBoundaryContext
@@ -24,9 +28,13 @@ fun TimetableItemDetailScreenErrorFallback(
 ) {
     Scaffold(
         topBar = {
-            TimetableItemDetailTopAppBar(
-                onBackClick = { onBackClick() },
-            )
+            // FIXME: This is a temporary fix for missing LocalRoomTheme
+            //   Consider adding TimetableItemDetailTopAppBar with no roomTheme dependency
+            ProvideRoomTheme(TimetableItem.Session.fake().room.roomTheme) {
+                TimetableItemDetailTopAppBar(
+                    onBackClick = { onBackClick() },
+                )
+            }
         },
         modifier = modifier,
     ) {

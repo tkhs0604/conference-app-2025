@@ -17,11 +17,11 @@ data class Timetable(
     val timetableItems: PersistentList<TimetableItem> = persistentListOf(),
     val bookmarks: PersistentSet<TimetableItemId> = persistentSetOf(),
 ) {
-//    val contents: List<TimetableItemWithFavorite> by lazy {
-//        timetableItems.map {
-//            TimetableItemWithFavorite(it, bookmarks.contains(it.id))
-//        }
-//    }
+    val contents: List<TimetableItemWithFavorite> by lazy {
+        timetableItems.map {
+            TimetableItemWithFavorite(it, bookmarks.contains(it.id))
+        }
+    }
 
     val rooms: List<TimetableRoom> by lazy {
         timetableItems.map { it.room }.toSet().sorted()
