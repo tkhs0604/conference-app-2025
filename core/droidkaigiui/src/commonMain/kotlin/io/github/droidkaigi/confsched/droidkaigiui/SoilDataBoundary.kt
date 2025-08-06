@@ -7,15 +7,19 @@ import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.CircularWavyProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import io.github.droidkaigi.confsched.context.ScreenContext
 import io.github.droidkaigi.confsched.droidkaigiui.component.DefaultErrorFallbackContent
+import kotlinx.coroutines.launch
 import soil.plant.compose.reacty.Await
 import soil.plant.compose.reacty.ErrorBoundary
 import soil.plant.compose.reacty.ErrorBoundaryContext
 import soil.plant.compose.reacty.Suspense
+import soil.query.compose.QueryObject
+import soil.query.compose.SubscriptionObject
 import soil.query.core.DataModel
 
 context(_: ScreenContext)
@@ -29,8 +33,15 @@ fun <T> SoilDataBoundary(
     suspenseFallback: @Composable BoxScope.() -> Unit = DefaultSuspenseFallback,
     content: @Composable (T) -> Unit,
 ) {
+    val coroutineScope = rememberCoroutineScope()
+
     ErrorBoundary(
         fallback = errorFallback,
+        onReset = {
+            coroutineScope.launch {
+                state.performResetIfNeeded()
+            }
+        },
         modifier = modifier,
     ) {
         Suspense(fallback = suspenseFallback) {
@@ -51,8 +62,16 @@ fun <T1, T2> SoilDataBoundary(
     suspenseFallback: @Composable BoxScope.() -> Unit = DefaultSuspenseFallback,
     content: @Composable (T1, T2) -> Unit,
 ) {
+    val coroutineScope = rememberCoroutineScope()
+
     ErrorBoundary(
         fallback = errorFallback,
+        onReset = {
+            coroutineScope.launch {
+                state1.performResetIfNeeded()
+                state2.performResetIfNeeded()
+            }
+        },
         modifier = modifier,
     ) {
         Suspense(fallback = suspenseFallback) {
@@ -78,8 +97,17 @@ fun <T1, T2, T3> SoilDataBoundary(
     suspenseFallback: @Composable BoxScope.() -> Unit = DefaultSuspenseFallback,
     content: @Composable (T1, T2, T3) -> Unit,
 ) {
+    val coroutineScope = rememberCoroutineScope()
+
     ErrorBoundary(
         fallback = errorFallback,
+        onReset = {
+            coroutineScope.launch {
+                state1.performResetIfNeeded()
+                state2.performResetIfNeeded()
+                state3.performResetIfNeeded()
+            }
+        },
         modifier = modifier,
     ) {
         Suspense(fallback = suspenseFallback) {
@@ -105,5 +133,12 @@ private val DefaultSuspenseFallback: @Composable BoxScope.() -> Unit = {
         contentAlignment = Alignment.Center,
     ) {
         CircularWavyProgressIndicator()
+    }
+}
+
+private suspend fun <T> DataModel<T>.performResetIfNeeded() {
+    when (this) {
+        is QueryObject<T> -> this.error?.let { this.refresh() }
+        is SubscriptionObject<T> -> this.error?.let { this.reset() }
     }
 }
