@@ -49,11 +49,6 @@ fun HoursItem(
     )
 }
 
-@Composable
-fun TimetableGridHours() {
-    Text("TimetableGridHours")
-}
-
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TimetableGridHours(
