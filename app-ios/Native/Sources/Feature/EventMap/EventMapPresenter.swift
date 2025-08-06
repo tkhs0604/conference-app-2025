@@ -43,29 +43,27 @@ enum FloorMap: String, CaseIterable {
     }
 }
 
-struct Event: Identifiable, Hashable {
-    let id: String
-    let title: String
-    let description: String
-    let moreDetailUrl: URL?
-    
-    static let mockEvents: [Event] = [
+extension Event {
+    @MainActor static let mockEvents: [Event] = [
         Event(
             id: "1",
             title: "Welcome Talk",
             description: "Opening ceremony and keynote presentation",
+            room: Room(id: 1, name: .init(jaTitle: "", enTitle: ""), type: .roomF, sort: 0),
             moreDetailUrl: URL(string: "https://droidkaigi.jp/2025/welcome-talk")
         ),
         Event(
             id: "2",
             title: "Party",
             description: "Networking party with food and drinks",
+            room: Room(id: 1, name: .init(jaTitle: "", enTitle: ""), type: .roomG, sort: 0),
             moreDetailUrl: URL(string: "https://droidkaigi.jp/2025/party")
         ),
         Event(
             id: "3",
             title: "Ask the Speaker",
             description: "Q&A session with conference speakers",
+            room: Room(id: 1, name: .init(jaTitle: "", enTitle: ""), type: .roomH, sort: 0),
             moreDetailUrl: URL(string: "https://droidkaigi.jp/2025/ask-speaker")
         ),
     ]

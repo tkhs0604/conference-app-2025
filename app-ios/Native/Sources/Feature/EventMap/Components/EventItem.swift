@@ -1,38 +1,40 @@
 import SwiftUI
+import Model
+import Theme
 
 struct EventItem: View {
     let event: Event
     let onMoreDetailTapped: (URL) -> Void
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 8) {
             Text(event.title)
                 .font(.headline)
-                .foregroundColor(.primary)
+                .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
             
             Text(event.description)
                 .font(.body)
-                .foregroundColor(.secondary)
+                .foregroundColor(AssetColors.onSurfaceVariant.swiftUIColor)
                 .fixedSize(horizontal: false, vertical: true)
             
             if let url = event.moreDetailUrl {
                 Button(action: {
                     onMoreDetailTapped(url)
                 }) {
-                    HStack {
-                        Text("More Details")
-                            .font(.subheadline)
-                        Image(systemName: "arrow.up.right.square")
-                            .font(.caption)
-                    }
-                    .foregroundColor(.accentColor)
+                    Text("詳しく見る")
+                        .font(.subheadline)
+                        .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 100)
+                        .stroke(style: StrokeStyle(lineWidth: 1))
+                        .fill(AssetColors.outline.swiftUIColor)
                 }
             }
         }
-        .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.primary.opacity(0.05))
-        .cornerRadius(12)
-        .padding(.horizontal, 16)
+        .padding(.all, 16)
     }
 }
