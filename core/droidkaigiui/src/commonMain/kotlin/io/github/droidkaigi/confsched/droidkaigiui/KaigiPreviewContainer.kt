@@ -10,13 +10,14 @@ import coil3.ColorImage
 import coil3.annotation.ExperimentalCoilApi
 import coil3.compose.AsyncImagePreviewHandler
 import coil3.compose.LocalAsyncImagePreviewHandler
+import io.github.droidkaigi.confsched.context.ScreenContext
 import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
 fun KaigiPreviewContainer(
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit,
+    content: @Composable context(ScreenContext) () -> Unit,
 ) {
     KaigiTheme {
         Surface(modifier = modifier) {
@@ -25,8 +26,12 @@ fun KaigiPreviewContainer(
             }
 
             CompositionLocalProvider(LocalAsyncImagePreviewHandler provides previewHandler) {
-                content()
+                with(FakeScreenContext()) {
+                    content()
+                }
             }
         }
     }
 }
+
+private class FakeScreenContext : ScreenContext
