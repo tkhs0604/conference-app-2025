@@ -34,7 +34,7 @@ private struct FloorMapButton: View {
                 Text(floor.rawValue)
             }
         }
-        .font(.subheadline)
+//        .font(Typography.labelLarge)
         .fontWeight(isSelected ? .semibold : .regular)
         .foregroundColor(isSelected ? AssetColors.onSecondaryContainer.swiftUIColor : AssetColors.onSurface.swiftUIColor)
         .padding(.vertical, 6)

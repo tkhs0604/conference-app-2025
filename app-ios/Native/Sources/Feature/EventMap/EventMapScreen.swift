@@ -12,7 +12,7 @@ public struct EventMapScreen: View {
             VStack(alignment: .leading, spacing: 0) {
                 // Description
                 Text("DroidKaigiでは、セッション以外にも参加者が楽しめるイベントを開催。コミュニケーションや技術交流を通じてカンファレンスを満喫しましょう！")
-                    .font(.body)
+//                    .font(Typography.bodyMedium)
                     .foregroundColor(AssetColors.onSurfaceVariant.swiftUIColor)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 10)
@@ -61,7 +61,7 @@ public struct EventMapScreen: View {
         .task {
             await presenter.loadInitial()
             if selectedFloorMap == nil {
-                selectedFloorMap = .b1f
+                selectedFloorMap = .first
             }
         }
     }

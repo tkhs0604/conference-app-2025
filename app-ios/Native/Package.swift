@@ -26,6 +26,7 @@ let package = Package(
             dependencies: [
                 .target(name: "Extension"),
                 .product(name: "Model", package: "Core"),
+                .target(name: "Theme"),
             ]
         ),
         .testTarget(
