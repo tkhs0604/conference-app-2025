@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import io.github.droidkaigi.confsched.context.ScreenContext
-import io.github.droidkaigi.confsched.droidkaigiui.component.DefaultErrorFallBack
+import io.github.droidkaigi.confsched.droidkaigiui.component.DefaultErrorFallBackContent
 import soil.plant.compose.reacty.Await
 import soil.plant.compose.reacty.ErrorBoundary
 import soil.plant.compose.reacty.ErrorBoundaryContext
@@ -24,7 +24,7 @@ fun <T> SoilDataBoundary(
     state: DataModel<T>,
     modifier: Modifier = Modifier,
     errorFallback: @Composable BoxScope.(ErrorBoundaryContext) -> Unit = {
-        DefaultErrorFallBack(errorBoundaryContext = it)
+        DefaultErrorFallBackContent(errorBoundaryContext = it)
     },
     suspenseFallback: @Composable BoxScope.() -> Unit = DefaultSuspenseFallback,
     content: @Composable (T) -> Unit,
@@ -46,7 +46,7 @@ fun <T1, T2> SoilDataBoundary(
     state2: DataModel<T2>,
     modifier: Modifier = Modifier,
     errorFallback: @Composable BoxScope.(ErrorBoundaryContext) -> Unit = {
-        DefaultErrorFallBack(errorBoundaryContext = it)
+        DefaultErrorFallBackContent(errorBoundaryContext = it)
     },
     suspenseFallback: @Composable BoxScope.() -> Unit = DefaultSuspenseFallback,
     content: @Composable (T1, T2) -> Unit,
@@ -73,7 +73,7 @@ fun <T1, T2, T3> SoilDataBoundary(
     state3: DataModel<T3>,
     modifier: Modifier = Modifier,
     errorFallback: @Composable BoxScope.(ErrorBoundaryContext) -> Unit = {
-        DefaultErrorFallBack(errorBoundaryContext = it)
+        DefaultErrorFallBackContent(errorBoundaryContext = it)
     },
     suspenseFallback: @Composable BoxScope.() -> Unit = DefaultSuspenseFallback,
     content: @Composable (T1, T2, T3) -> Unit,
