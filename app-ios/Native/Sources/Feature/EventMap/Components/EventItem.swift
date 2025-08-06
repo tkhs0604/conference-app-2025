@@ -1,6 +1,7 @@
 import SwiftUI
 import Model
 import Theme
+import Component
 
 struct EventItem: View {
     let event: Event
@@ -8,9 +9,12 @@ struct EventItem: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(event.title)
-                .font(.headline)
-                .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
+            HStack(spacing: 12) {
+                RoomTag(room: event.room)
+                Text(event.title)
+                    .font(.headline)
+                    .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
+            }
             
             Text(event.description)
                 .font(.body)
