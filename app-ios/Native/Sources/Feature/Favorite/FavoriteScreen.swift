@@ -83,12 +83,12 @@ public struct FavoriteScreen: View {
             
             VStack(spacing: 8) {
                 Text("登録されたセッションが\nありません")
-                    .font(.system(size: 20, weight: .semibold))
+                    .font(Typography.titleLarge)
                     .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                     .multilineTextAlignment(.center)
                 
                 Text("気になるセッションをお気に入り登録しましょう")
-                    .font(.system(size: 14))
+                    .font(Typography.bodyMedium)
                     .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 40)
@@ -107,10 +107,10 @@ public struct FavoriteScreen: View {
                     HStack(spacing: 4) {
                         if selectedDate == filter {
                             Image(systemName: "checkmark")
-                                .font(.system(size: 12, weight: .medium))
+                                .font(Typography.labelSmall)
                         }
                         Text(filter.rawValue)
-                            .font(.system(size: 14, weight: .medium))
+                            .font(Typography.labelLarge)
                     }
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)

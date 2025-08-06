@@ -12,7 +12,7 @@ public struct RoomTag: View {
     
     public var body: some View {
         Text(room.displayName)
-            .font(.system(size: 11, weight: .semibold))
+            .font(Typography.labelSmall.weight(.semibold))
             .foregroundStyle(.white)
             .padding(.horizontal, 6)
             .padding(.vertical, 3)
@@ -30,7 +30,7 @@ public struct LanguageTag: View {
     
     public var body: some View {
         Text(language.displayLanguage)
-            .font(.system(size: 11, weight: .medium))
+            .font(Typography.labelSmall)
             .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
             .padding(.horizontal, 6)
             .padding(.vertical, 3)
