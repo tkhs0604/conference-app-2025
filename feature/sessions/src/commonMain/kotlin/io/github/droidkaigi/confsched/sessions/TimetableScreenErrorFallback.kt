@@ -30,6 +30,7 @@ fun TimetableScreenErrorFallback(
         },
         modifier = modifier,
     ) {
+        TimetableBackground()
         DefaultErrorFallbackContent(
             errorBoundaryContext = errorBoundaryContext,
             modifier = Modifier
