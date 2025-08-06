@@ -58,8 +58,8 @@ public struct EventMapScreen: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.large)
         #endif
-        .onAppear {
-            presenter.loadInitial()
+        .task {
+            await presenter.loadInitial()
             if selectedFloorMap == nil {
                 selectedFloorMap = .b1f
             }

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Event: Identifiable, Hashable {
+public struct EventMapEvent: Identifiable, Hashable, Sendable {
     public let id: String
     public let title: String
     public let description: String

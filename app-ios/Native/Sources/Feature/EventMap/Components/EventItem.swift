@@ -4,7 +4,7 @@ import Theme
 import Component
 
 struct EventItem: View {
-    let event: Event
+    let event: EventMapEvent
     let onMoreDetailTapped: (URL) -> Void
     
     var body: some View {
