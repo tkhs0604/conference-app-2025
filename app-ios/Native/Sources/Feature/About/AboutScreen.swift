@@ -120,8 +120,7 @@ public struct AboutScreen: View {
                 
                 AboutButton(
                     title: "Switch to Compose Multiplatform",
-                    // TODO: Replace icon with a correct one
-                    systemImage: "building.2.fill",
+                    systemImage: "switch.2",
                 ) {
                     showSwitchToComposeMultiplatformAlert = true
                     presenter.switchToComposeMultiplatformTapped()
