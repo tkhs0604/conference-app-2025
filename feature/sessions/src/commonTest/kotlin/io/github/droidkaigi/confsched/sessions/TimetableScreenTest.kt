@@ -7,13 +7,13 @@ import io.github.droidkaigi.confsched.testing.annotations.RunWith
 import io.github.droidkaigi.confsched.testing.annotations.UiTestRunner
 import io.github.droidkaigi.confsched.testing.behavior.describeBehaviors
 import io.github.droidkaigi.confsched.testing.behavior.execute
-import io.github.droidkaigi.confsched.testing.di.createTestAppGraph
+import io.github.droidkaigi.confsched.testing.di.createTimetableScreenTestGraph
 import io.github.droidkaigi.confsched.testing.robot.sessions.TimetableScreenRobot
 import io.github.droidkaigi.confsched.testing.robot.sessions.TimetableServerRobot.ServerStatus
 
 @RunWith(UiTestRunner::class)
 class TimetableScreenTest {
-    val testAppGraph = createTestAppGraph()
+    val testAppGraph = createTimetableScreenTestGraph()
 
     @ComposeTest
     fun runTest() {

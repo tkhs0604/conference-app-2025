@@ -6,11 +6,11 @@ import io.github.droidkaigi.confsched.common.scope.TimetableScope
 import io.github.droidkaigi.confsched.context.ScreenContext
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableItemIdMutationKey
-import io.github.droidkaigi.confsched.model.data.TimetableSubscriptionKey
+import io.github.droidkaigi.confsched.model.data.TimetableQueryKey
 
 @ContributesGraphExtension(TimetableScope::class)
 interface TimetableScreenContext : ScreenContext {
-    val timetableSubscriptionKey: TimetableSubscriptionKey
+    val timetableQueryKey: TimetableQueryKey
     val favoriteTimetableIdsSubscriptionKey: FavoriteTimetableIdsSubscriptionKey
     val favoriteTimetableItemIdMutationKey: FavoriteTimetableItemIdMutationKey
 

@@ -142,7 +142,7 @@ extension Model.TimetableSessionType {
 // MARK: - DroidKaigi2024Day Converters
 
 extension Model.DroidKaigi2024Day {
-    init?(from shared: shared.DroidKaigi2024Day) {
+    init?(from shared: shared.DroidKaigi2025Day) {
         switch shared {
         case .workday:
             self = .workday
@@ -261,7 +261,7 @@ extension Model.Filters {
 
 // MARK: - Helper Extensions
 
-extension shared.Kotlinx_datetimeInstant {
+extension shared.KotlinInstant {
     var date: Date {
         Date(timeIntervalSince1970: TimeInterval(epochSeconds))
     }

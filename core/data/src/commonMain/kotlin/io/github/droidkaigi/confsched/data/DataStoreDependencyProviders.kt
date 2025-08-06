@@ -53,8 +53,8 @@ public interface DataStoreDependencyProviders {
         )
     }
 
-    private companion object Companion {
-        private const val DATA_STORE_PREFERENCE_FILE_NAME = "confsched2025.preferences_pb"
-        private const val DATA_STORE_CACHE_PREFERENCE_FILE_NAME = "confsched2025.cache.preferences_pb"
+    public companion object {
+        public const val DATA_STORE_PREFERENCE_FILE_NAME: String = "confsched2025.preferences_pb"
+        public const val DATA_STORE_CACHE_PREFERENCE_FILE_NAME: String = "confsched2025.cache.preferences_pb"
     }
 }

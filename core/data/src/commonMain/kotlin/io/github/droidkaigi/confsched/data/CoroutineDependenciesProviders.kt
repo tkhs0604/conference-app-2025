@@ -5,6 +5,7 @@ import dev.zacsweers.metro.Provides
 import io.github.droidkaigi.confsched.data.annotations.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 
 @ContributesTo(DataScope::class)
 public interface CoroutineDependenciesProviders {
