@@ -1,11 +1,14 @@
 package io.github.droidkaigi.confsched.data.contributors
 
 import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.SingleIn
+import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.model.contributors.Contributor
 import io.github.droidkaigi.confsched.model.contributors.fakes
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.io.IOException
 
+@SingleIn(DataScope::class)
 @Inject
 public class FakeContributorsApiClient : ContributorsApiClient {
     public sealed class Status : ContributorsApiClient {
