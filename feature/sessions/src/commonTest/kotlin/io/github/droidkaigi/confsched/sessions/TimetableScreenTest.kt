@@ -55,5 +55,43 @@ class TimetableScreenTest {
                 }
             }
         }
+        describe("when server is error") {
+            doIt {
+                setupTimetableServer(ServerStatus.Error)
+                setupTimetableScreenContent()
+            }
+            itShould("show loading indicator") {
+                captureScreenWithChecks {
+                    checkLoadingIndicatorDisplayed()
+                }
+            }
+            describe("after loading") {
+                doIt {
+                    waitFor5Seconds()
+                }
+                itShould("show error message") {
+                    captureScreenWithChecks {
+                        checkErrorFallbackDisplayed()
+                    }
+                }
+                describe("click retry after server gets operational") {
+                    doIt {
+                        setupTimetableServer(ServerStatus.Operational)
+                        clickRetryButton()
+                    }
+                    describe("after waiting for 5 seconds") {
+                        doIt {
+                            waitFor5Seconds()
+                        }
+                        itShould("show timetable items") {
+                            captureScreenWithChecks {
+                                checkLoadingIndicatorNotDisplayed()
+                                checkTimetableListDisplayed()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

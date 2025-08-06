@@ -22,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiWindowSizeClassConstants
@@ -34,6 +35,8 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.datetime.LocalTime
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+const val TimetableListTestTag = "TimetableList"
+
 @Composable
 internal fun TimetableList(
     uiState: TimetableListUiState,
@@ -44,7 +47,9 @@ internal fun TimetableList(
     contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp),
     highlightWord: String = "",
 ) {
-    BoxWithConstraints {
+    BoxWithConstraints(
+        modifier = Modifier.testTag(TimetableListTestTag),
+    ) {
         val isWideScreen = maxWidth >= KaigiWindowSizeClassConstants.WindowWidthSizeClassMediumMinWidth
         val columnCount = if (isWideScreen) 2 else 1
 

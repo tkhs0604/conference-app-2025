@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import io.github.droidkaigi.confsched.context.ScreenContext
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.component.DefaultErrorFallbackContent
@@ -12,6 +13,8 @@ import io.github.droidkaigi.confsched.model.sessions.TimetableUiType
 import io.github.droidkaigi.confsched.sessions.components.TimetableTopAppBar
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import soil.plant.compose.reacty.ErrorBoundaryContext
+
+const val TimetableScreenErrorFallbackTestTag = "TimetableScreenErrorFallback"
 
 context(_: ScreenContext)
 @Composable
@@ -28,7 +31,7 @@ fun TimetableScreenErrorFallback(
                 onUiTypeChangeClick = { /* Noop */ },
             )
         },
-        modifier = modifier,
+        modifier = modifier.testTag(TimetableScreenErrorFallbackTestTag),
     ) {
         TimetableBackground()
         DefaultErrorFallbackContent(

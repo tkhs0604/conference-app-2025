@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.context.ScreenContext
 import io.github.droidkaigi.confsched.droidkaigiui.DroidkaigiuiRes
@@ -22,6 +23,8 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import soil.plant.compose.reacty.ErrorBoundaryContext
+
+const val DefaultErrorFallbackContentRetryTestTag = "DefaultErrorFallbackContentRetry"
 
 context(_: ScreenContext)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -44,7 +47,10 @@ fun DefaultErrorFallbackContent(
             style = MaterialTheme.typography.headlineMedium,
             color = MaterialTheme.colorScheme.onSurface,
         )
-        Button(onClick = { errorBoundaryContext.reset?.invoke() }) {
+        Button(
+            onClick = { errorBoundaryContext.reset?.invoke() },
+            modifier = Modifier.testTag(DefaultErrorFallbackContentRetryTestTag),
+        ) {
             Text(
                 text = stringResource(DroidkaigiuiRes.string.retry),
                 style = MaterialTheme.typography.bodyLarge,
