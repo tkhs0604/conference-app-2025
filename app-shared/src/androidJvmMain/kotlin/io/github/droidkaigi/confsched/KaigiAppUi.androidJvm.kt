@@ -19,6 +19,7 @@ import io.github.droidkaigi.confsched.naventry.sessionEntries
 import io.github.droidkaigi.confsched.navigation.rememberNavBackStack
 import io.github.droidkaigi.confsched.navigation.sceneStrategy
 import io.github.droidkaigi.confsched.navkey.AboutNavKey
+import io.github.droidkaigi.confsched.navkey.ContributorsNavKey
 import io.github.droidkaigi.confsched.navkey.EventMapNavKey
 import io.github.droidkaigi.confsched.navkey.FavoritesNavKey
 import io.github.droidkaigi.confsched.navkey.ProfileCardNavKey
@@ -85,7 +86,7 @@ actual fun KaigiAppUi() {
                     onAboutItemClick = { item ->
                         when (item) {
                             AboutItem.Map -> TODO()
-                            AboutItem.Contributors -> TODO()
+                            AboutItem.Contributors -> backStack.add(ContributorsNavKey)
                             AboutItem.Staff -> TODO()
                             AboutItem.Sponsors -> TODO()
                             AboutItem.CodeOfConduct -> TODO()
