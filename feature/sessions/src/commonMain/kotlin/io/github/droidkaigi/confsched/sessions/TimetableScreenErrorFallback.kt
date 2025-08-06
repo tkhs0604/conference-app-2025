@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import io.github.droidkaigi.confsched.context.ScreenContext
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
-import io.github.droidkaigi.confsched.droidkaigiui.component.DefaultErrorFallBackContent
+import io.github.droidkaigi.confsched.droidkaigiui.component.DefaultErrorFallbackContent
 import io.github.droidkaigi.confsched.model.sessions.TimetableUiType
 import io.github.droidkaigi.confsched.sessions.components.TimetableTopAppBar
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -30,7 +30,7 @@ fun TimetableScreenErrorFallback(
         },
         modifier = modifier,
     ) {
-        DefaultErrorFallBackContent(
+        DefaultErrorFallbackContent(
             errorBoundaryContext = errorBoundaryContext,
             modifier = Modifier
                 .fillMaxSize()

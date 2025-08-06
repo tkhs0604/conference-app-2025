@@ -26,7 +26,7 @@ import soil.plant.compose.reacty.ErrorBoundaryContext
 context(_: ScreenContext)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DefaultErrorFallBackContent(
+fun DefaultErrorFallbackContent(
     errorBoundaryContext: ErrorBoundaryContext,
     modifier: Modifier = Modifier,
 ) {
@@ -56,9 +56,9 @@ fun DefaultErrorFallBackContent(
 
 @Preview
 @Composable
-private fun DefaultErrorFallBackContentPreview() {
+private fun DefaultErrorFallbackContentPreview() {
     KaigiPreviewContainer {
-        DefaultErrorFallBackContent(
+        DefaultErrorFallbackContent(
             errorBoundaryContext = ErrorBoundaryContext(
                 err = Throwable("An error occurred"),
                 reset = {},
