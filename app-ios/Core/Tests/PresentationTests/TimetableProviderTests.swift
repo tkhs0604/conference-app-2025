@@ -12,17 +12,14 @@ struct TimetableProviderTest {
         let expectedTimetable = TestData.createSampleTimetable()
         let provider = withDependencies {
             $0.timetableUseCase.load = {
-                AsyncStream { continuation in
-                    continuation.yield(expectedTimetable)
-                    continuation.finish()
-                }
+                expectedTimetable
             }
         } operation: {
             TimetableProvider()
         }
 
         provider.subscribeTimetableIfNeeded()
-        // Give some time for the async stream to process
+        // Give some time for the async task to process
         try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
         #expect(provider.timetable != nil)
@@ -35,17 +32,14 @@ struct TimetableProviderTest {
         let emptyTimetable = Timetable(timetableItems: [], bookmarks: Set())
         let provider = withDependencies {
             $0.timetableUseCase.load = {
-                AsyncStream { continuation in
-                    continuation.yield(emptyTimetable)
-                    continuation.finish()
-                }
+                emptyTimetable
             }
         } operation: {
             TimetableProvider()
         }
 
         provider.subscribeTimetableIfNeeded()
-        // Give some time for the async stream to process
+        // Give some time for the async task to process
         try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
         #expect(provider.timetable != nil)
@@ -124,17 +118,14 @@ struct TimetableProviderTest {
         let timetable = TestData.createTimetableWithMultipleTimeSlots()
         let provider = withDependencies {
             $0.timetableUseCase.load = {
-                AsyncStream { continuation in
-                    continuation.yield(timetable)
-                    continuation.finish()
-                }
+                timetable
             }
         } operation: {
             TimetableProvider()
         }
 
         provider.subscribeTimetableIfNeeded()
-        // Give some time for the async stream to process
+        // Give some time for the async task to process
         try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
         for day in DroidKaigi2024Day.allCases {

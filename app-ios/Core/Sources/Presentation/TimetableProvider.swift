@@ -58,7 +58,8 @@ public final class TimetableProvider {
         }
 
         self.fetchTask = Task {
-            for await timetable in timeteableUseCase.load() {
+            do {
+                let timetable = try await timeteableUseCase.load()
                 self.timetable = timetable
 
                 for day in DroidKaigi2024Day.allCases {
@@ -66,6 +67,9 @@ public final class TimetableProvider {
                         timetableItems: timetable.dayTimetable(droidKaigi2024Day: day).contents
                     )
                 }
+            } catch {
+                // TODO: Handle error
+                print("Failed to load timetable: \(error)")
             }
         }
     }
