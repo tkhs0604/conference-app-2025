@@ -2,7 +2,6 @@ import Dependencies
 import Foundation
 import Model
 import Observation
-import SwiftUI
 import UseCase
 
 // Enums for UI state
