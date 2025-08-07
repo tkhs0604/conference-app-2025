@@ -1,6 +1,5 @@
 package io.github.droidkaigi.confsched.data.sessions
 
-import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.SingleIn
 import io.github.droidkaigi.confsched.data.DataScope
