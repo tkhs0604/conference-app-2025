@@ -41,12 +41,28 @@ build: ## Build the iOS app with prebuilt SwiftSyntax
 	@echo "Build complete!"
 
 .PHONY: test
-test: ## Run all tests with prebuilt SwiftSyntax
+test: ## Run Core tests (Linux-compatible)
 	@echo "Running Core tests..."
+	@cd Core && swift test --enable-experimental-prebuilts
+	# Native module tests are run separately on macOS environments
+	# as they require platform-specific dependencies (UIKit, SwiftUI)
+	# @echo "Running Native tests..."
+	# @cd Native && swift test --enable-experimental-prebuilts
+	@echo "Tests complete!"
+
+.PHONY: test-native
+test-native: ## Run Native module tests (macOS only)
+	@echo "Running Native tests (macOS only)..."
+	@cd Native && swift test --enable-experimental-prebuilts
+	@echo "Native tests complete!"
+
+.PHONY: test-all
+test-all: ## Run all tests (Core + Native, macOS only)
+	@echo "Running all tests..."
 	@cd Core && swift test --enable-experimental-prebuilts
 	@echo "Running Native tests..."
 	@cd Native && swift test --enable-experimental-prebuilts
-	@echo "Tests complete!"
+	@echo "All tests complete!"
 
 .PHONY: lint
 lint: ## Run SwiftLint
@@ -106,7 +122,7 @@ reset: clean ## Reset project (clean + resolve dependencies)
 	@echo "Reset complete!"
 
 .PHONY: pre-commit
-pre-commit: format lint test ## Run all checks before committing
+pre-commit: format lint test ## Run all checks before committing (Core tests only)
 	@echo "Pre-commit checks complete!"
 
 .PHONY: install-nest
@@ -159,10 +175,10 @@ ci-format: ## Check formatting for CI with swift-format (fails on warnings)
 	fi
 
 .PHONY: ci
-ci: ## Run CI checks (lint + test)
+ci: ## Run CI checks (lint + Core tests)
 	@echo "Running CI checks..."
 	@make lint
-	@make test
+	@make test  # Core tests only for Linux compatibility
 	@echo "CI checks complete!"
 
 .PHONY: xcode
