@@ -3,9 +3,9 @@ import Theme
 
 public struct ContributorScreen: View {
     @State private var presenter = ContributorPresenter()
-    
+
     public init() {}
-    
+
     public var body: some View {
         Group {
             if presenter.isLoading {
@@ -23,20 +23,20 @@ public struct ContributorScreen: View {
                                         presenter.contributorTapped(contributor)
                                         // TODO: Open GitHub profile
                                     }
-                                
+
                                 Divider()
                                     .padding(.leading, 80)
                             }
                         }
                     }
-                    .padding(.bottom, 80) // Tab bar padding
+                    .padding(.bottom, 80)  // Tab bar padding
                 }
             }
         }
         .background(Color.primary.opacity(0.05))
         .navigationTitle("Contributors")
         #if os(iOS)
-        .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.large)
         #endif
         .task {
             await presenter.loadContributors()

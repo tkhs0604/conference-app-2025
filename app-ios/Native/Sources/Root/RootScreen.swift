@@ -1,17 +1,17 @@
-import Dependencies
-import SwiftUI
-import HomeFeature
 import AboutFeature
 import ContributorFeature
+import Dependencies
 import EventMapFeature
 import FavoriteFeature
+import HomeFeature
+import Model
 import ProfileCardFeature
 import SearchFeature
 import SponsorFeature
 import StaffFeature
-import TimetableDetailFeature
-import Model
+import SwiftUI
 import Theme
+import TimetableDetailFeature
 
 private enum TabType: CaseIterable, Hashable {
     case timetable
@@ -43,11 +43,11 @@ public struct RootScreen: View {
     @State private var aboutNavigationPath = NavigationPath()
     @State private var favoriteNavigationPath = NavigationPath()
     private let presenter = RootPresenter()
-    
+
     public init() {
         UITabBar.appearance().unselectedItemTintColor = UIColor(named: "tab_inactive")
     }
-    
+
     public var body: some View {
         ZStack(alignment: .bottom) {
             switch selectedTab {
@@ -106,7 +106,7 @@ public struct RootScreen: View {
                     ProfileCardScreen()
                 }
             }
-            
+
             tabBar
         }
         .onAppear {
@@ -117,7 +117,7 @@ public struct RootScreen: View {
         }
         .preferredColorScheme(.dark)
     }
-    
+
     private func handleHomeNavigation(_ destination: HomeNavigationDestination) {
         switch destination {
         case .timetableDetail(let item):
@@ -126,22 +126,22 @@ public struct RootScreen: View {
             navigationPath.append(NavigationDestination.search)
         }
     }
-    
+
     private func handleAboutNavigation(_ destination: AboutNavigationDestination) {
         aboutNavigationPath.append(destination)
     }
-    
+
     private func handleFavoriteNavigation(_ destination: FavoriteNavigationDestination) {
         favoriteNavigationPath.append(destination)
     }
-    
+
     private func handleSearchNavigation(_ destination: SearchNavigationDestination) {
         switch destination {
         case .timetableDetail(let item):
             navigationPath.append(NavigationDestination.timetableDetail(item))
         }
     }
-    
+
     @ViewBuilder
     private var tabBar: some View {
         GeometryReader { geometry in
@@ -153,7 +153,10 @@ public struct RootScreen: View {
                     } label: {
                         Image(item.tabImageName(selectedTab))
                             .renderingMode(.template)
-                            .tint(isSelected ? AssetColors.primary40.swiftUIColor : AssetColors.onSurfaceVariant.swiftUIColor)
+                            .tint(
+                                isSelected
+                                    ? AssetColors.primary40.swiftUIColor : AssetColors.onSurfaceVariant.swiftUIColor
+                            )
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                             .contentShape(Rectangle())
                     }

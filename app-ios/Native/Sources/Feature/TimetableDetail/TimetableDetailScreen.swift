@@ -1,17 +1,17 @@
-import SwiftUI
-import Model
-import Theme
 import Component
+import Model
+import SwiftUI
+import Theme
 
 public struct TimetableDetailScreen: View {
     @State private var presenter: TimetableDetailPresenter
     @State private var showingURL: URL?
     @Environment(\.dismiss) private var dismiss
-    
+
     public init(timetableItem: TimetableItemWithFavorite) {
         self._presenter = State(initialValue: TimetableDetailPresenter(timetableItem: timetableItem))
     }
-    
+
     public var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 0) {
@@ -26,13 +26,14 @@ public struct TimetableDetailScreen: View {
                         .padding(.horizontal, 16)
                     targetAudience
                         .padding(16)
-                    if presenter.timetableItem.timetableItem.asset.videoUrl != nil || 
-                       presenter.timetableItem.timetableItem.asset.slideUrl != nil {
+                    if presenter.timetableItem.timetableItem.asset.videoUrl != nil
+                        || presenter.timetableItem.timetableItem.asset.slideUrl != nil
+                    {
                         archive
                             .padding(16)
                     }
                 }
-                
+
                 footer
             }
             .background(Color.white)
@@ -40,10 +41,12 @@ public struct TimetableDetailScreen: View {
             .ignoresSafeArea(edges: [.top])
         }
         .tint(presenter.timetableItem.timetableItem.room.roomTheme.primaryColor)
-        .sheet(isPresented: .init(
-            get: { showingURL != nil },
-            set: { if !$0 { showingURL = nil } }
-        )) {
+        .sheet(
+            isPresented: .init(
+                get: { showingURL != nil },
+                set: { if !$0 { showingURL = nil } }
+            )
+        ) {
             if let url = showingURL {
                 SafariView(url: url)
                     .ignoresSafeArea()
@@ -64,7 +67,7 @@ public struct TimetableDetailScreen: View {
         }
         .animation(.easeInOut, value: presenter.showToast)
     }
-    
+
     @MainActor var footer: some View {
         HStack(spacing: 28) {
             if let url = presenter.shareSession() {
@@ -120,12 +123,12 @@ public struct TimetableDetailScreen: View {
                 .foregroundStyle(.secondary)
                 .padding(.bottom, 20)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            
+
             ForEach(presenter.timetableItem.timetableItem.speakers, id: \.id) { speaker in
                 HStack(spacing: 12) {
                     CircularUserIcon(imageUrl: speaker.imageUrl)
                         .frame(width: 52, height: 52)
-                        
+
                     VStack(alignment: .leading, spacing: 8) {
                         Text(speaker.name)
                             .font(.system(size: 16))
@@ -178,17 +181,17 @@ public struct TimetableDetailScreen: View {
                 in: RoundedRectangle(cornerRadius: 4)
                     .stroke(style: .init(lineWidth: 1, dash: [2, 2]))
             )
-            
+
             if let session = presenter.timetableItem.timetableItem as? TimetableItemSession {
                 SessionDescriptionView(
                     content: session.description.currentLangTitle,
                     themeColor: session.room.roomTheme.primaryColor
                 )
-                    .padding(.bottom, 24)
+                .padding(.bottom, 24)
             }
         }
     }
-    
+
     @MainActor var targetAudience: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("想定参加者")
@@ -201,7 +204,7 @@ public struct TimetableDetailScreen: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
-    
+
     @MainActor var archive: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("アーカイブ")
@@ -210,7 +213,8 @@ public struct TimetableDetailScreen: View {
 
             HStack {
                 if let slideUrlString = presenter.timetableItem.timetableItem.asset.slideUrl,
-                   let slideUrl = URL(string: slideUrlString) {
+                    let slideUrl = URL(string: slideUrlString)
+                {
                     Button {
                         showingURL = slideUrl
                     } label: {
@@ -231,7 +235,8 @@ public struct TimetableDetailScreen: View {
                     }
                 }
                 if let videoUrlString = presenter.timetableItem.timetableItem.asset.videoUrl,
-                   let videoUrl = URL(string: videoUrlString) {
+                    let videoUrl = URL(string: videoUrlString)
+                {
                     Button {
                         showingURL = videoUrl
                     } label: {
@@ -254,21 +259,21 @@ public struct TimetableDetailScreen: View {
             }
         }
     }
-    
+
     private var formattedDateTimeString: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM.dd"
         let date = presenter.timetableItem.timetableItem.startsAt
         let dateString = formatter.string(from: date)
-        
+
         formatter.dateFormat = "HH:mm"
         let startTime = formatter.string(from: date)
         let endDate = presenter.timetableItem.timetableItem.endsAt
         let endTime = formatter.string(from: endDate)
-        
+
         return "\(dateString) / \(startTime) ~ \(endTime)"
     }
-    
+
     private func getSupportedLangString() -> String {
         _ = Locale.current.language.languageCode == .japanese
         return presenter.timetableItem.timetableItem.language.langOfSpeaker
@@ -277,7 +282,7 @@ public struct TimetableDetailScreen: View {
 
 struct ToastView: View {
     let message: String
-    
+
     var body: some View {
         Text(message)
             .font(.system(size: 14))

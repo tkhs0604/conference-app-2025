@@ -1,16 +1,16 @@
+import Foundation
 import Model
 import Observation
 import Presentation
-import Foundation
 
 @MainActor
 @Observable
 final class ContributorPresenter {
     var contributors: [Contributor] = []
     var isLoading = false
-    
+
     init() {}
-    
+
     func loadContributors() async {
         isLoading = true
         // TODO: Load actual contributor data from API or local storage
@@ -22,7 +22,7 @@ final class ContributorPresenter {
         ]
         isLoading = false
     }
-    
+
     func contributorTapped(_ contributor: Contributor) {
         print("Contributor tapped: \(contributor.name)")
         // TODO: Open GitHub profile

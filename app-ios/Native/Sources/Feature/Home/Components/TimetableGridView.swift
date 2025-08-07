@@ -1,7 +1,7 @@
-import SwiftUI
+import Component
 import Model
 import Presentation
-import Component
+import SwiftUI
 import Theme
 
 struct TimetableGridView: View {
@@ -10,13 +10,13 @@ struct TimetableGridView: View {
     let rooms: [Room]
     let onItemTap: (TimetableItemWithFavorite) -> Void
     let isFavorite: (String) -> Bool
-    
+
     var body: some View {
         ScrollView(.vertical) {
             VStack(spacing: 0) {
                 DayTabBar(selectedDay: $selectedDay)
                     .padding(.horizontal)
-                
+
                 ScrollView(.horizontal) {
                     Grid(alignment: .leading, horizontalSpacing: 4, verticalSpacing: 2) {
                         // Header row with room names
@@ -89,7 +89,7 @@ struct TimetableGridView: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.trailing)
                 }
-                
+
                 // Bottom padding for tab bar
                 Color.clear.padding(.bottom, 60)
             }

@@ -1,12 +1,12 @@
-import SwiftUI
 import Model
+import SwiftUI
 import Theme
 
 struct FavoriteAnimationView: View {
     let targetTimetableItemId: String?
     let targetLocationPoint: CGPoint?
     let animationProgress: CGFloat
-    
+
     var body: some View {
         GeometryReader { geometry in
             if targetTimetableItemId != nil {
@@ -19,18 +19,18 @@ struct FavoriteAnimationView: View {
             }
         }
     }
-    
+
     private func animationPosition(geometry: GeometryProxy) -> CGPoint {
         let globalGeometrySize = geometry.frame(in: .global).size
         let defaultGeometrySize = geometry.size
-        
+
         let startPositionY = targetLocationPoint?.y ?? 0
         let endPositionY = defaultGeometrySize.height - 25
         let targetY = startPositionY + (endPositionY - startPositionY) * animationProgress
-        
+
         let adjustedPositionX = animationProgress * (globalGeometrySize.width / 2 - globalGeometrySize.width + 50)
         let targetX = defaultGeometrySize.width - 50 + adjustedPositionX
-        
+
         return CGPoint(x: targetX, y: targetY)
     }
 }

@@ -213,7 +213,7 @@ extension Model.TimetableItemWithFavorite {
             // Fallback - should not happen if KMP model is correct
             fatalError("Unknown TimetableItem type")
         }
-        
+
         self.init(
             timetableItem: timetableItem,
             isFavorited: shared.isFavorited
@@ -234,9 +234,9 @@ extension Model.Timetable {
                 fatalError("Unknown TimetableItem type")
             }
         }
-        
+
         let bookmarks = Set(shared.bookmarks.map { Model.TimetableItemId(from: $0) })
-        
+
         self.init(
             timetableItems: timetableItems,
             bookmarks: bookmarks
@@ -272,7 +272,7 @@ extension shared.KotlinInstant {
 public func defaultLang() -> Model.Lang {
     let locale = Locale.current
     let languageCode = locale.language.languageCode?.identifier ?? ""
-    
+
     if languageCode == "ja" {
         return .japanese
     } else {

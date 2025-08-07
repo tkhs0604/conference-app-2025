@@ -1,15 +1,15 @@
-import SwiftUI
-import Model
 import Extension
+import Model
+import SwiftUI
 import Theme
 
 public struct RoomTag: View {
     let room: Room
-    
+
     public init(room: Room) {
         self.room = room
     }
-    
+
     public var body: some View {
         Text(room.displayName)
             .font(Typography.labelSmall.weight(.semibold))
@@ -23,11 +23,11 @@ public struct RoomTag: View {
 
 public struct LanguageTag: View {
     let language: TimetableLanguage
-    
+
     public init(language: TimetableLanguage) {
         self.language = language
     }
-    
+
     public var body: some View {
         Text(language.displayLanguage)
             .font(Typography.labelSmall)
@@ -43,11 +43,11 @@ public struct LanguageTag: View {
 
 public struct CircularUserIcon: View {
     let imageUrl: String?
-    
+
     public init(imageUrl: String?) {
         self.imageUrl = imageUrl
     }
-    
+
     public var body: some View {
         if let imageUrl = imageUrl, let url = URL(string: imageUrl) {
             AsyncImage(url: url) { image in

@@ -1,23 +1,23 @@
+import Foundation
 import Model
 import Observation
 import Presentation
-import Foundation
 
 @MainActor
 @Observable
 final class SponsorPresenter {
     var sponsors: [SponsorCategory] = []
     var isLoading = false
-    
+
     init() {}
-    
+
     func loadSponsors() async {
         isLoading = true
         // TODO: Load actual sponsor data from API
         sponsors = SponsorCategory.mockCategories
         isLoading = false
     }
-    
+
     func sponsorTapped(_ sponsor: Sponsor) {
         print("Sponsor tapped: \(sponsor.name)")
         // TODO: Open sponsor website
@@ -29,7 +29,7 @@ struct SponsorCategory: Identifiable {
     let id: String
     let name: String
     let sponsors: [Sponsor]
-    
+
     static let mockCategories: [SponsorCategory] = [
         SponsorCategory(
             id: "platinum",

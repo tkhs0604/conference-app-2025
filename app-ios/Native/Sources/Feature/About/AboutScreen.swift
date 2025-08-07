@@ -4,39 +4,39 @@ import Theme
 public struct AboutScreen: View {
     @State private var presenter = AboutPresenter()
     let onNavigate: (AboutNavigationDestination) -> Void
-    
+
     var version: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
     }
-    
+
     public init(onNavigate: @escaping (AboutNavigationDestination) -> Void = { _ in }) {
         self.onNavigate = onNavigate
     }
-    
+
     public var body: some View {
         ScrollView {
             VStack(spacing: 32) {
                 KeyVisual()
                     .padding(.top, 28)
-                
+
                 creditsSection
-                
+
                 othersSection
-                
+
                 socialMediaSection
-                
+
                 versionSection
             }
             .padding(.horizontal, 16)
-            .padding(.bottom, 80) // Tab bar padding
+            .padding(.bottom, 80)  // Tab bar padding
         }
         .background(Color.primary.opacity(0.05))
         .navigationTitle("About")
         #if os(iOS)
-        .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.large)
         #endif
     }
-    
+
     @ViewBuilder
     private var creditsSection: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -44,7 +44,7 @@ public struct AboutScreen: View {
                 .foregroundStyle(.secondary)
                 .font(.subheadline)
                 .padding(.bottom, 8)
-            
+
             VStack(spacing: 0) {
                 AboutButton(
                     title: "Contributors",
@@ -54,9 +54,9 @@ public struct AboutScreen: View {
                     presenter.contributorsTapped()
                     onNavigate(.contributors)
                 }
-                
+
                 Divider()
-                
+
                 AboutButton(
                     title: "Staffs",
                     // TODO: Replace with actual satisfied icon asset when available
@@ -65,9 +65,9 @@ public struct AboutScreen: View {
                     presenter.staffsTapped()
                     onNavigate(.staff)
                 }
-                
+
                 Divider()
-                
+
                 AboutButton(
                     title: "Sponsors",
                     // TODO: Replace with actual apartment icon asset when available
@@ -79,7 +79,7 @@ public struct AboutScreen: View {
             }
         }
     }
-    
+
     @ViewBuilder
     private var othersSection: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -87,7 +87,7 @@ public struct AboutScreen: View {
                 .foregroundStyle(.secondary)
                 .font(.subheadline)
                 .padding(.bottom, 8)
-            
+
             VStack(spacing: 0) {
                 AboutButton(
                     title: "Code of Conduct",
@@ -108,9 +108,9 @@ public struct AboutScreen: View {
                     presenter.licensesTapped()
                     onNavigate(.licenses)
                 }
-                
+
                 Divider()
-                
+
                 AboutButton(
                     title: "Privacy Policy",
                     // TODO: Replace with actual privacy tip icon asset when available
@@ -133,7 +133,7 @@ public struct AboutScreen: View {
             }
         }
     }
-    
+
     @ViewBuilder
     private var socialMediaSection: some View {
         HStack(spacing: 12) {
@@ -145,7 +145,7 @@ public struct AboutScreen: View {
                 presenter.youtubeTapped()
                 // TODO: Open in Safari when implemented
             }
-            
+
             SocialButton(
                 // TODO: Replace with actual X social circle asset when available
                 systemImage: "xmark.circle.fill",
@@ -154,7 +154,7 @@ public struct AboutScreen: View {
                 presenter.xcomTapped()
                 // TODO: Open in Safari when implemented
             }
-            
+
             SocialButton(
                 // TODO: Replace with actual Medium social circle asset when available
                 systemImage: "book.circle.fill",
@@ -165,13 +165,13 @@ public struct AboutScreen: View {
             }
         }
     }
-    
+
     @ViewBuilder
     private var versionSection: some View {
         VStack(spacing: 0) {
             Text("App Version")
                 .font(.caption)
-            
+
             Text(version)
                 .font(.caption)
         }
@@ -184,19 +184,19 @@ struct AboutButton: View {
     let title: String
     let systemImage: String
     let action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             HStack(spacing: 12) {
                 Image(systemName: systemImage)
                     .frame(width: 24, height: 24)
                     .foregroundColor(.accentColor)
-                
+
                 Text(title)
                     .foregroundColor(.primary)
-                
+
                 Spacer()
-                
+
                 Image(systemName: "chevron.right")
                     .foregroundColor(.secondary)
                     .font(.caption)
@@ -213,7 +213,7 @@ struct SocialButton: View {
     let systemImage: String
     let color: Color
     let action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             Image(systemName: systemImage)

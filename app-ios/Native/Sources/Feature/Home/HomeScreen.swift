@@ -1,10 +1,10 @@
+import Component
 import Dependencies
 import Model
 import Observation
+import Presentation
 import SwiftUI
 import Theme
-import Presentation
-import Component
 
 public struct HomeScreen: View {
     @State private var presenter = HomePresenter()
@@ -13,9 +13,9 @@ public struct HomeScreen: View {
     @State private var targetLocationPoint: CGPoint?
     @State private var timetableMode: TimetableMode = .list
     @State private var selectedDay: DayTab = .day1
-    
+
     let onNavigate: (HomeNavigationDestination) -> Void
-    
+
     public init(onNavigate: @escaping (HomeNavigationDestination) -> Void = { _ in }) {
         self.onNavigate = onNavigate
     }
@@ -54,7 +54,7 @@ public struct HomeScreen: View {
                     )
                 }
             }
-            
+
             FavoriteAnimationView(
                 targetTimetableItemId: targetTimetableItemId,
                 targetLocationPoint: targetLocationPoint,
@@ -78,7 +78,7 @@ public struct HomeScreen: View {
                             .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                             .frame(width: 40, height: 40)
                     }
-                    
+
                     Button(action: {
                         timetableMode = timetableMode == .list ? .grid : .list
                     }) {
@@ -94,7 +94,7 @@ public struct HomeScreen: View {
             presenter.loadInitial()
         }
     }
-    
+
     private func toggleFavorite(timetableItem: any TimetableItem, adjustedLocationPoint: CGPoint?) {
         targetLocationPoint = adjustedLocationPoint
         targetTimetableItemId = timetableItem.id.value
@@ -117,8 +117,8 @@ public struct HomeScreen: View {
     HomeScreen()
 }
 
-private extension DayTab {
-    var model: DroidKaigi2024Day {
+extension DayTab {
+    fileprivate var model: DroidKaigi2024Day {
         switch self {
         case .day1:
             .conferenceDay1

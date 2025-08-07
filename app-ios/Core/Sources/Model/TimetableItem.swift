@@ -32,7 +32,7 @@ public struct TimetableItemSession: TimetableItem {
     public let description: MultiLangText
     public let message: MultiLangText?
     public let day: DroidKaigi2024Day?
-    
+
     public init(
         id: TimetableItemId,
         title: MultiLangText,
@@ -84,7 +84,7 @@ public struct TimetableItemSpecial: TimetableItem {
     public let description: MultiLangText
     public let message: MultiLangText?
     public let day: DroidKaigi2024Day?
-    
+
     public init(
         id: TimetableItemId,
         title: MultiLangText,

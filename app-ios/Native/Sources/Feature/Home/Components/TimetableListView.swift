@@ -1,7 +1,7 @@
-import SwiftUI
+import Component
 import Model
 import Presentation
-import Component
+import SwiftUI
 
 struct TimetableListView: View {
     @Binding var selectedDay: DayTab
@@ -9,7 +9,7 @@ struct TimetableListView: View {
     let onItemTap: (TimetableItemWithFavorite) -> Void
     let onFavoriteTap: (TimetableItemWithFavorite, CGPoint?) -> Void
     let animationTrigger: (any TimetableItem, CGPoint?) -> Void
-    
+
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 0) {
@@ -24,7 +24,7 @@ struct TimetableListView: View {
                         },
                         onFavoriteTap: { item, location in
                             onFavoriteTap(item, location)
-                            
+
                             if !item.isFavorited {
                                 animationTrigger(item.timetableItem, location)
                             }

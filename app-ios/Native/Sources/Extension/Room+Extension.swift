@@ -1,5 +1,5 @@
-import SwiftUI
 import Model
+import SwiftUI
 
 public struct RoomTheme {
     public let primaryColor: Color
@@ -23,26 +23,25 @@ extension Room {
             return Color.indigo
         }
     }
-    
+
     public var roomTheme: RoomTheme {
         RoomTheme(
             primaryColor: color,
             containerColor: color.opacity(0.1)
         )
     }
-    
+
     public var displayName: String {
         Locale.current.identifier == "ja-JP"
             ? name.jaTitle
             : name.enTitle
     }
-    
+
     // For backward compatibility with old code
     public var rawValue: String {
         displayName
     }
 }
-
 
 extension Speaker {
     // For backward compatibility
@@ -50,4 +49,3 @@ extension Speaker {
         iconUrl
     }
 }
-

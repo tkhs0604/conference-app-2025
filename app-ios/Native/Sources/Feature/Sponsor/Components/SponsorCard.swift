@@ -3,7 +3,7 @@ import SwiftUI
 struct SponsorCard: View {
     let sponsor: Sponsor
     let cardSize: CGSize
-    
+
     var body: some View {
         VStack {
             // TODO: Replace with actual sponsor logo when available
@@ -12,7 +12,7 @@ struct SponsorCard: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: cardSize.width * 0.6, height: cardSize.height * 0.5)
                 .foregroundColor(.secondary.opacity(0.6))
-            
+
             Text(sponsor.name)
                 .font(.caption)
                 .fontWeight(.medium)
@@ -34,11 +34,11 @@ struct SponsorCard: View {
 struct SponsorSection: View {
     let category: SponsorCategory
     let onSponsorTapped: (Sponsor) -> Void
-    
+
     private let columns = [
         GridItem(.adaptive(minimum: 140, maximum: 180), spacing: 16)
     ]
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(category.name)
@@ -46,7 +46,7 @@ struct SponsorSection: View {
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
                 .padding(.horizontal, 16)
-            
+
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(category.sponsors) { sponsor in
                     Button(action: {

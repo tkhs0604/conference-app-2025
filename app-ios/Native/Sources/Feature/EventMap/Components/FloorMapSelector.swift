@@ -2,7 +2,7 @@ import SwiftUI
 
 struct FloorMapSelector: View {
     @Binding var selected: FloorMap?
-    
+
     var body: some View {
         HStack(spacing: 12) {
             ForEach(FloorMap.allCases, id: \.self) { floor in
