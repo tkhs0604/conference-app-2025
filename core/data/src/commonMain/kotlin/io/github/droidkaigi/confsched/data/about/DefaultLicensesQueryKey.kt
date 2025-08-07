@@ -5,11 +5,9 @@ import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import io.github.droidkaigi.confsched.common.scope.LicensesScope
 import io.github.droidkaigi.confsched.model.about.LicensesQueryKey
-import org.jetbrains.compose.resources.InternalResourceApi
 import soil.query.QueryId
 import soil.query.buildQueryKey
 
-@OptIn(InternalResourceApi::class)
 @ContributesBinding(LicensesScope::class, binding<LicensesQueryKey>())
 @Inject
 public class DefaultLicensesQueryKey(

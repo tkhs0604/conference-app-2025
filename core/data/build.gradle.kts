@@ -2,7 +2,6 @@ plugins {
     id("droidkaigi.primitive.kmp")
     id("droidkaigi.primitive.kmp.ios")
     id("droidkaigi.primitive.metro")
-    id("droidkaigi.primitive.kmp.compose.resources")
     alias(libs.plugins.kotlinxSerialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.ktorfit)
@@ -24,7 +23,6 @@ kotlin {
             implementation(projects.core.common)
             implementation(libs.ktorClientContentNegotiation)
             implementation(libs.ktorKotlinxSerializationJson)
-            implementation(compose.runtime)
         }
 
         androidMain.dependencies {
