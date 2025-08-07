@@ -11,6 +11,7 @@ interface CaptureScreenRobot {
     fun captureScreenWithChecks(checks: () -> Unit)
 }
 
+context(composeUiTest: ComposeUiTest)
 expect fun SemanticsNodeInteraction.captureNodeWithDescription(description: String)
 
 @Inject

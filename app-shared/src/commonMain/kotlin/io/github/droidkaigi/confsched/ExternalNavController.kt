@@ -1,6 +1,10 @@
 package io.github.droidkaigi.confsched
 
+import androidx.compose.runtime.Composable
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
+
+@Composable
+expect fun rememberExternalNavController(): ExternalNavController
 
 interface ExternalNavController {
     fun navigate(url: String)

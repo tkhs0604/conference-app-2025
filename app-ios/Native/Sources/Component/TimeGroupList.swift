@@ -18,23 +18,25 @@ public struct TimeGroupList: View {
     }
     
     public var body: some View {
-        HStack(alignment: .top, spacing: 16) {
-            VStack {
+        HStack(alignment: .top, spacing: 12) {
+            // Time display
+            VStack(spacing: 2) {
                 Text(timeGroup.startsTimeString)
-                    .font(.system(size: 16, weight: .medium))
+                    .font(Typography.labelMedium)
                     .foregroundStyle(AssetColors.onSurface.swiftUIColor)
 
-                Text("|")
-                    .font(.system(size: 8))
-                    .foregroundStyle(AssetColors.outline.swiftUIColor)
+                Rectangle()
+                    .fill(AssetColors.outline.swiftUIColor)
+                    .frame(width: 2, height: 8)
 
                 Text(timeGroup.endsTimeString)
-                    .font(.system(size: 16, weight: .medium))
+                    .font(Typography.labelMedium)
                     .foregroundStyle(AssetColors.onSurface.swiftUIColor)
-                Spacer()
             }
-            .frame(width: 50)
+            .frame(width: 45)
+            .padding(.top, 4)
             
+            // Session cards
             VStack(spacing: 12) {
                 ForEach(timeGroup.items) { item in
                     TimetableCard(

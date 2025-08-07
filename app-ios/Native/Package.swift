@@ -194,7 +194,8 @@ let package = Package(
             ],
             plugins: [.plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")]
         ),
-        .binaryTarget(name: "KMPFramework", path: "Sources/KMPFramework/shared.xcframework"),
+        // Please run ./gradlew app-shared:assembleSharedXCFramework first
+        .binaryTarget(name: "KMPFramework", path: "../../app-shared/build/XCFrameworks/debug/shared.xcframework"),
     ],
     swiftLanguageModes: [.v6]
 )

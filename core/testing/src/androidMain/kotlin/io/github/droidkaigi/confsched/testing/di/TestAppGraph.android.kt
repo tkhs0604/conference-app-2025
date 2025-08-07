@@ -21,7 +21,7 @@ import kotlinx.coroutines.CoroutineDispatcher
         CoroutineDispatcher::class,
     ],
 )
-interface AndroidTestAppGraph : TestAppGraph {
+internal interface AndroidTestAppGraph : TestAppGraph {
     @Provides
     fun provideContext(): Context {
         val testContext = ApplicationProvider.getApplicationContext<Context>()
@@ -35,6 +35,6 @@ interface AndroidTestAppGraph : TestAppGraph {
     }
 }
 
-actual fun createTestAppGraph(): TestAppGraph {
+internal actual fun createTestAppGraph(): TestAppGraph {
     return createGraph<AndroidTestAppGraph>()
 }
