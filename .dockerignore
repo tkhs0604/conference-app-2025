@@ -1,0 +1,18 @@
+# Ignore build directories
+app-ios/.build
+app-ios/*/.build
+app-ios/*/*/.build
+.build
+**/.build
+
+# Ignore DerivedData
+DerivedData
+**/DerivedData
+
+# Ignore user-specific Xcode files
+*.xcuserdata
+*.xcworkspace/xcuserdata
+
+# Ignore .DS_Store files
+.DS_Store
+**/.DS_Store

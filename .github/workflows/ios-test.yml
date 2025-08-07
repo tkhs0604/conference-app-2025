@@ -1,0 +1,45 @@
+name: iOS Test
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'app-ios/**'
+      - '.github/workflows/ios-test.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'app-ios/**'
+      - '.github/workflows/ios-test.yml'
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    container:
+      image: swift:6.1.2-noble
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Install dependencies
+      run: |
+        apt-get update && apt-get install -y \
+          make
+    
+    - name: Cache SPM dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          app-ios/.build
+          app-ios/Core/.build
+          app-ios/Native/.build
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
+          
+    - name: Run Tests
+      working-directory: app-ios
+      run: |
+        make test

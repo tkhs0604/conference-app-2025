@@ -1,0 +1,17 @@
+# act configuration file
+# Use medium runner for Ubuntu (has more tools pre-installed)
+-P ubuntu-latest=catthehacker/ubuntu:act-latest
+-P ubuntu-22.04=catthehacker/ubuntu:act-22.04
+-P ubuntu-20.04=catthehacker/ubuntu:act-20.04
+
+# Default platform
+--platform ubuntu-latest=catthehacker/ubuntu:act-latest
+
+# Reuse containers to speed up subsequent runs
+--reuse
+
+# Enable Docker-in-Docker for actions that use Docker
+--container-daemon-socket /var/run/docker.sock
+
+# Set default event type
+--eventpath .github/workflows/test-event.json
