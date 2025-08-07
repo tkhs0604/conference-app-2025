@@ -51,7 +51,7 @@ class TimetableScreenRobot(
 
     context(composeUiTest: ComposeUiTest)
     fun checkLoadingIndicatorNotDisplayed() {
-        composeUiTest.onNodeWithTag(TimetableScreenErrorFallbackTestTag).assertDoesNotExist()
+        composeUiTest.onNodeWithTag(DefaultSuspenseFallbackTestTag).assertDoesNotExist()
     }
 
     context(composeUiTest: ComposeUiTest)
