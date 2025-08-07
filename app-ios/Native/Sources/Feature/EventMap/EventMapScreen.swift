@@ -39,11 +39,11 @@ public struct EventMapScreen: View {
                 
                 // Events section
                 VStack(alignment: .leading, spacing: 0) {
-                    ForEach(Array(presenter.events.enumerated()), id: \.0) { (index, event) in
-                        EventItem(event: event) { url in
+                    ForEach(presenter.eventMap.events, id: \.0) { eventWithIndex in
+                        EventItem(event: eventWithIndex.1) { url in
                             presenter.moreDetailButtonTapped(url)
                         }
-                        if index != presenter.events.count - 1 {
+                        if eventWithIndex.0 != presenter.eventMap.events.count - 1 {
                             Divider()
                                 .padding(.horizontal, 16)
                                 .foregroundStyle(AssetColors.outlineVariant.swiftUIColor)

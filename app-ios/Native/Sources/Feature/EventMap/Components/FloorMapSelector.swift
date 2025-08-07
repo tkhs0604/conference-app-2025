@@ -49,6 +49,7 @@ private struct FloorMapButton: View {
                     .fill(AssetColors.outline.swiftUIColor)
             }
         }
+        .buttonStyle(.plain)
     }
 }
 
