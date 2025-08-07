@@ -16,7 +16,7 @@ import kotlinx.serialization.json.Json
 
 @Inject
 public class SessionCacheDataStore(
-    @SessionCacheDataStoreQualifier private val dataStore: DataStore<Preferences>,
+    @param:SessionCacheDataStoreQualifier private val dataStore: DataStore<Preferences>,
     private val json: Json,
 ) {
     public suspend fun save(sessionsAllResponse: SessionsAllResponse) {

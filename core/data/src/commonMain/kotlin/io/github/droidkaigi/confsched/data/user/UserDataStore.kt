@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.map
 
 @SingleIn(DataScope::class)
 @Inject
-public class UserDataStore(@UserDataStoreQualifier private val dataStore: DataStore<Preferences>) {
+public class UserDataStore(@param:UserDataStoreQualifier private val dataStore: DataStore<Preferences>) {
     public fun getStream(): Flow<PersistentSet<TimetableItemId>> {
         return dataStore.data
             .catch {
