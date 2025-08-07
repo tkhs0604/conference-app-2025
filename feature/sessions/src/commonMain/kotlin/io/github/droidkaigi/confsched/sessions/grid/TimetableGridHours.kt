@@ -36,7 +36,7 @@ import kotlin.math.roundToInt
 import kotlin.time.Clock
 
 @Composable
-fun HoursItem(
+fun HourItem(
     hour: String,
     modifier: Modifier = Modifier,
 ) {
@@ -134,19 +134,19 @@ fun TimetableGridHours(
                 )
             },
     ) { constraints ->
-        data class ItemData(val placeable: Placeable, val hoursItem: HoursItemLayout)
+        data class ItemData(val placeable: Placeable, val hourItemLayout: HourItemLayout)
         hoursScreen.updateBounds(width = constraints.maxWidth, height = constraints.maxHeight)
 
-        val items = hoursScreen.visibleItemLayouts.map { (index, hoursLayout) ->
+        val items = hoursScreen.visibleItemLayouts.map { (index, hourLayout) ->
             ItemData(
                 placeable = measure(
                     index,
                     Constraints.fixed(
-                        width = hoursLayout.width,
-                        height = hoursLayout.height,
+                        width = hourLayout.width,
+                        height = hourLayout.height,
                     ),
                 )[0],
-                hoursItem = hoursLayout,
+                hourItemLayout = hourLayout,
             )
         }
         layout(constraints.maxWidth, constraints.maxHeight) {
@@ -236,13 +236,13 @@ private data class HoursLayout(
     val height: Int,
     val width: Int,
     val minutePx: Float,
-    val hoursItemLayouts: List<HoursItemLayout>,
+    val hourItemLayouts: List<HourItemLayout>,
 ) {
     fun visibleItemLayouts(
         screenHeight: Int,
         scrollY: Int,
-    ): List<IndexedValue<HoursItemLayout>> {
-        return hoursItemLayouts.withIndex().filter { (_, layout) ->
+    ): List<IndexedValue<HourItemLayout>> {
+        return hourItemLayouts.withIndex().filter { (_, layout) ->
             layout.isVisible(screenHeight, scrollY)
         }
     }
@@ -255,8 +255,8 @@ private fun createHoursLayout(
     val minutePx = with(density) { TimetableGridDefaults.minuteHeight.toPx() }
     var hoursHeight = 0
     var hoursWidth = 0
-    val hoursItemLayouts = List(hoursCount) { index ->
-        HoursItemLayout(
+    val hourItemLayouts = List(hoursCount) { index ->
+        HourItemLayout(
             density = density,
             minutePx = minutePx,
             index = index,
@@ -270,11 +270,11 @@ private fun createHoursLayout(
         height = hoursHeight,
         width = hoursWidth,
         minutePx = minutePx,
-        hoursItemLayouts = hoursItemLayouts,
+        hourItemLayouts = hourItemLayouts,
     )
 }
 
-private class HoursItemLayout(
+private class HourItemLayout(
     density: Density,
     minutePx: Float,
     index: Int,

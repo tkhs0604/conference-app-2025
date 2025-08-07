@@ -91,7 +91,7 @@ fun TimetableGrid(
             selectedDay = selectedDay,
         ) {
             items(hoursList) { hour ->
-                HoursItem(
+                HourItem(
                     hour = hour,
                     modifier = Modifier.padding(end = 8.dp),
                 )
