@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import io.github.droidkaigi.confsched.common.compose.rememberEventFlow
 import io.github.droidkaigi.confsched.droidkaigiui.SoilDataBoundary
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
+import soil.query.compose.rememberQuery
 import soil.query.compose.rememberSubscription
 
 context(screenContext: FavoritesScreenContext)
@@ -12,7 +13,7 @@ fun FavoritesScreenRoot(
     onTimetableItemClick: (TimetableItemId) -> Unit,
 ) {
     SoilDataBoundary(
-        state1 = rememberSubscription(screenContext.timetableSubscriptionKey),
+        state1 = rememberQuery(screenContext.timetableQueryKey),
         state2 = rememberSubscription(screenContext.favoriteTimetableIdsSubscriptionKey),
         errorFallback = { }
     ) { timetable, favoriteTimetableItemIds ->

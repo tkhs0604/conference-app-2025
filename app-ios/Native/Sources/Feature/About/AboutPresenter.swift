@@ -29,6 +29,14 @@ final class AboutPresenter {
         print("Privacy Policy tapped")
     }
     
+    func licensesTapped() {
+        print("Licenses tapped")
+    }
+    
+    func settingsTapped() {
+        print("Settings tapped")
+    }
+    
     func youtubeTapped() {
         print("YouTube tapped")
     }

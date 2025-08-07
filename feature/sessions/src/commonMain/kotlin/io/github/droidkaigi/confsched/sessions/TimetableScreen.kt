@@ -14,17 +14,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -39,7 +35,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.layout.CollapsingHeaderLayout
-import io.github.droidkaigi.confsched.droidkaigiui.layout.CollapsingHeaderState
 import io.github.droidkaigi.confsched.droidkaigiui.layout.rememberCollapsingHeaderEnterAlwaysState
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
 import io.github.droidkaigi.confsched.model.sessions.Timetable
@@ -47,7 +42,8 @@ import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import io.github.droidkaigi.confsched.model.sessions.TimetableUiType
 import io.github.droidkaigi.confsched.model.sessions.fake
 import io.github.droidkaigi.confsched.sessions.components.TimetableTopAppBar
-import io.github.droidkaigi.confsched.sessions.section.TimetableGridUiState
+import io.github.droidkaigi.confsched.sessions.grid.TimetableGrid
+import io.github.droidkaigi.confsched.sessions.grid.TimetableGridUiState
 import io.github.droidkaigi.confsched.sessions.section.TimetableList
 import io.github.droidkaigi.confsched.sessions.section.TimetableListUiState
 import io.github.droidkaigi.confsched.sessions.section.TimetableUiState
@@ -138,26 +134,11 @@ fun TimetableScreen(
                 when (uiState.timetable) {
                     is TimetableUiState.Empty -> Text("Empty")
                     is TimetableUiState.GridTimetable -> {
-                        LazyColumn(
-                            state = lazyListState,
-                            modifier = Modifier.fillMaxSize(),
-                        ) {
-                            uiState.timetable.timetableGridUiState.forEach { (day, timetableDayData) ->
-                                item {
-                                    Text(day.name)
-                                }
-                                items(timetableDayData.timetable.timetableItems) { item ->
-                                    TextButton(
-                                        onClick = {
-                                            onTimetableItemClick(item.id)
-                                        }
-                                    ) { Text(item.title.jaTitle) }
-                                }
-                                item {
-                                    HorizontalDivider()
-                                }
-                            }
-                        }
+                        TimetableGrid(
+                            timetable = requireNotNull(uiState.timetable.timetableGridUiState[uiState.timetable.selectedDay]).timetable,
+                            timeLine = null, // TODO
+                            selectedDay = uiState.timetable.selectedDay,
+                        )
                     }
 
                     is TimetableUiState.ListTimetable -> {

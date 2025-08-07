@@ -18,8 +18,8 @@ import kotlinx.coroutines.CoroutineDispatcher
         CoroutineDispatcher::class,
     ]
 )
-interface JvmTestAppGraph : TestAppGraph
+internal interface JvmTestAppGraph : TestAppGraph
 
-actual fun createTestAppGraph(): TestAppGraph {
+internal actual fun createTestAppGraph(): TestAppGraph {
     return createGraph<JvmTestAppGraph>()
 }

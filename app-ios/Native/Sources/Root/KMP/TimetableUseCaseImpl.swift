@@ -3,9 +3,12 @@ import Model
 import shared
 
 struct TimetableUseCaseImpl {
-    func load() async throws(LoadTimetableError) -> Model.Timetable {
-        // TODO: Call KMP method
-        let kmpTimetable = Timetable.companion.fake()
-        return Model.Timetable(from: kmpTimetable)
+    func load() -> any AsyncSequence<Model.Timetable, Never> {
+        let flow = KMPDependencyProvider.shared.appGraph.sessionsRepository
+            .timetableFlow()
+
+        return flow.map {
+            .init(from: $0)
+        }
     }
 }

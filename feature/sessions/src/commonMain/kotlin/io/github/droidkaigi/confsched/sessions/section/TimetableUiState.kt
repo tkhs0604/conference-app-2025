@@ -1,6 +1,7 @@
 package io.github.droidkaigi.confsched.sessions.section
 
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
+import io.github.droidkaigi.confsched.sessions.grid.TimetableGridUiState
 
 sealed interface TimetableUiState {
     data object Empty : TimetableUiState

@@ -13,10 +13,8 @@ import kotlinx.serialization.json.Json
 public interface AndroidDataGraph {
     @Provides
     public fun provideDataStorePathProducer(context: Context): DataStorePathProducer {
-        return object : DataStorePathProducer {
-            override fun producePath(fileName: String): String {
-                return context.cacheDir.resolve(fileName).path
-            }
+        return DataStorePathProducer { fileName ->
+            context.cacheDir.resolve(fileName).path
         }
     }
 

@@ -12,7 +12,7 @@ import io.github.droidkaigi.confsched.model.core.Filters
 import io.github.droidkaigi.confsched.model.sessions.Timetable
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import io.github.droidkaigi.confsched.model.sessions.TimetableUiType
-import io.github.droidkaigi.confsched.sessions.section.TimetableGridUiState
+import io.github.droidkaigi.confsched.sessions.grid.TimetableGridUiState
 import io.github.droidkaigi.confsched.sessions.section.TimetableListUiState
 import io.github.droidkaigi.confsched.sessions.section.TimetableUiState
 import io.github.takahirom.rin.rememberRetained
@@ -27,7 +27,7 @@ fun timetableScreenPresenter(
 ): TimetableScreenUiState = providePresenterDefaults {
     val favoriteTimetableItemIdMutation = rememberMutation(screenContext.favoriteTimetableItemIdMutationKey)
 
-    var uiType by rememberRetained { mutableStateOf(TimetableUiType.Grid) }
+    var uiType by rememberRetained { mutableStateOf(TimetableUiType.List) }
     var selectedDay by rememberRetained { mutableStateOf(DroidKaigi2025Day.ConferenceDay1) }
 
     EventEffect(eventFlow) { event ->

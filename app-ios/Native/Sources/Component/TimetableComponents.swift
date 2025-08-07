@@ -12,14 +12,12 @@ public struct RoomTag: View {
     
     public var body: some View {
         Text(room.displayName)
-            .font(.system(size: 12, weight: .medium))
-            .foregroundStyle(room.color)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .overlay(
-                RoundedRectangle(cornerRadius: 4)
-                    .stroke(room.color, lineWidth: 1)
-            )
+            .font(Typography.labelSmall.weight(.semibold))
+            .foregroundStyle(.white)
+            .padding(.horizontal, 6)
+            .padding(.vertical, 3)
+            .background(room.color)
+            .cornerRadius(4)
     }
 }
 
@@ -32,10 +30,10 @@ public struct LanguageTag: View {
     
     public var body: some View {
         Text(language.displayLanguage)
-            .font(.system(size: 12, weight: .medium))
+            .font(Typography.labelSmall)
             .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
+            .padding(.horizontal, 6)
+            .padding(.vertical, 3)
             .overlay(
                 RoundedRectangle(cornerRadius: 4)
                     .stroke(AssetColors.outline.swiftUIColor, lineWidth: 1)

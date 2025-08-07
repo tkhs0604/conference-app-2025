@@ -13,13 +13,11 @@ import java.nio.file.Paths
 public interface JvmDataGraph {
     @Provides
     public fun provideDataStorePathProducer(): DataStorePathProducer {
-        return object : DataStorePathProducer {
-            override fun producePath(fileName: String): String {
-                val configDir = Paths.get(System.getProperty("user.home"), ".config", "myapp")
-                val dataStoreFile = configDir.resolve(fileName)
-                dataStoreFile.toFile().parentFile.mkdirs() // Ensure the directory exists
-                return dataStoreFile.toString()
-            }
+        return DataStorePathProducer { fileName ->
+            val configDir = Paths.get(System.getProperty("user.home"), ".config", "myapp")
+            val dataStoreFile = configDir.resolve(fileName)
+            dataStoreFile.toFile().parentFile.mkdirs() // Ensure the directory exists
+            dataStoreFile.toString()
         }
     }
 
