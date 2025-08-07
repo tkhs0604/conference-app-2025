@@ -12,13 +12,19 @@ struct TimetableProviderTest {
         let expectedTimetable = TestData.createSampleTimetable()
         let provider = withDependencies {
             $0.timetableUseCase.load = {
-                expectedTimetable
+                AsyncStream { continuation in
+                    continuation.yield(expectedTimetable)
+                    continuation.finish()
+                }
             }
         } operation: {
             TimetableProvider()
         }
 
-        await provider.fetchTimetable()
+        provider.subscribeTimetableIfNeeded()
+        
+        // Wait for async operation to complete
+        try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
         #expect(provider.timetable != nil)
         #expect(provider.dayTimetable.count == DroidKaigi2024Day.allCases.count)
@@ -30,13 +36,19 @@ struct TimetableProviderTest {
         let emptyTimetable = Timetable(timetableItems: [], bookmarks: Set())
         let provider = withDependencies {
             $0.timetableUseCase.load = {
-                emptyTimetable
+                AsyncStream { continuation in
+                    continuation.yield(emptyTimetable)
+                    continuation.finish()
+                }
             }
         } operation: {
             TimetableProvider()
         }
 
-        await provider.fetchTimetable()
+        provider.subscribeTimetableIfNeeded()
+        
+        // Wait for async operation to complete
+        try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
         #expect(provider.timetable != nil)
         #expect(provider.timetable?.timetableItems.count == 0)
@@ -114,13 +126,19 @@ struct TimetableProviderTest {
         let timetable = TestData.createTimetableWithMultipleTimeSlots()
         let provider = withDependencies {
             $0.timetableUseCase.load = {
-                timetable
+                AsyncStream { continuation in
+                    continuation.yield(timetable)
+                    continuation.finish()
+                }
             }
         } operation: {
             TimetableProvider()
         }
 
-        await provider.fetchTimetable()
+        provider.subscribeTimetableIfNeeded()
+        
+        // Wait for async operation to complete
+        try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
         for day in DroidKaigi2024Day.allCases {
             if let groups = provider.dayTimetable[day], !groups.isEmpty {
@@ -134,11 +152,15 @@ struct TimetableProviderTest {
                 #expect(groups.allSatisfy { !$0.items.isEmpty })
                 
                 #expect(groups.allSatisfy { group in
-                    group.startsTimeString == group.items[0].timetableItem.startsAt.formatted(.dateTime.hour(.twoDigits(amPM: .omitted)).minute())
+                    group.startsTimeString == group.items[0].timetableItem.startsAt.formatted(
+                        Date.FormatStyle.dateTime.hour(.twoDigits(amPM: .omitted)).minute()
+                    )
                 })
                 
                 #expect(groups.allSatisfy { group in
-                    group.endsTimeString == group.items[0].timetableItem.endsAt.formatted(.dateTime.hour(.twoDigits(amPM: .omitted)).minute())
+                    group.endsTimeString == group.items[0].timetableItem.endsAt.formatted(
+                        Date.FormatStyle.dateTime.hour(.twoDigits(amPM: .omitted)).minute()
+                    )
                 })
             }
         }
@@ -152,7 +174,10 @@ struct TimetableProviderTest {
         let provider = withDependencies {
             // Return an empty timetable to simulate error recovery
             $0.timetableUseCase.load = {
-                return Timetable(timetableItems: [], bookmarks: Set())
+                AsyncStream { continuation in
+                    continuation.yield(Timetable(timetableItems: [], bookmarks: Set()))
+                    continuation.finish()
+                }
             }
         } operation: {
             TimetableProvider()
@@ -162,8 +187,11 @@ struct TimetableProviderTest {
         #expect(provider.timetable == nil)
         #expect(provider.dayTimetable.isEmpty)
         
-        // Fetch will return empty data (simulating error recovery)
-        await provider.fetchTimetable()
+        // Subscribe will return empty data (simulating error recovery)
+        provider.subscribeTimetableIfNeeded()
+        
+        // Wait for async operation to complete
+        try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
         // The provider should handle empty data gracefully
         #expect(provider.timetable != nil)
@@ -233,15 +261,21 @@ struct TimetableProviderTest {
         
         let provider = withDependencies {
             $0.timetableUseCase.load = {
-                timetable
+                AsyncStream { continuation in
+                    continuation.yield(timetable)
+                    continuation.finish()
+                }
             }
         } operation: {
             TimetableProvider()
         }
         
-        await provider.fetchTimetable()
+        provider.subscribeTimetableIfNeeded()
         
-        let day1Groups = provider.dayTimetable[.conferenceDay1] ?? []
+        // Wait for async operation to complete
+        try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
+        
+        let day1Groups = provider.dayTimetable[DroidKaigi2024Day.conferenceDay1] ?? []
         
         #expect(day1Groups.count == 3)
         
@@ -269,15 +303,21 @@ struct TimetableProviderTest {
         
         let provider = withDependencies {
             $0.timetableUseCase.load = {
-                timetable
+                AsyncStream { continuation in
+                    continuation.yield(timetable)
+                    continuation.finish()
+                }
             }
         } operation: {
             TimetableProvider()
         }
         
-        await provider.fetchTimetable()
+        provider.subscribeTimetableIfNeeded()
         
-        let day1Groups = provider.dayTimetable[.conferenceDay1] ?? []
+        // Wait for async operation to complete
+        try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
+        
+        let day1Groups = provider.dayTimetable[DroidKaigi2024Day.conferenceDay1] ?? []
         
         #expect(day1Groups.count == 1)
         #expect(day1Groups.first?.items.count == 3)
@@ -472,4 +512,3 @@ enum TestData {
         return calendar.date(from: components) ?? Date()
     }
 }
-

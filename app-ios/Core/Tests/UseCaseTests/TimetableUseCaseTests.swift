@@ -24,7 +24,8 @@ struct TimetableUseCaseTests {
                 levels: ["Beginner"],
                 speakers: [],
                 description: MultiLangText(jaTitle: "Description", enTitle: "Description"),
-                message: nil
+                message: nil,
+                day: .conferenceDay1
             )
         ]
         let expectedBookmarks = Set<TimetableItemId>([TimetableItemId(value: "session-1")])
@@ -36,11 +37,18 @@ struct TimetableUseCaseTests {
         // Act
         let result = try await withDependencies {
             $0.timetableUseCase.load = {
-                return expectedTimetable
+                AsyncStream { continuation in
+                    continuation.yield(expectedTimetable)
+                    continuation.finish()
+                }
             }
         } operation: {
             @Dependency(\.timetableUseCase) var useCase
-            return try await useCase.load()
+            var timetables: [Timetable] = []
+            for await timetable in useCase.load() {
+                timetables.append(timetable)
+            }
+            return timetables.first!
         }
         
         // Assert
@@ -61,11 +69,18 @@ struct TimetableUseCaseTests {
         // Act
         let result = try await withDependencies {
             $0.timetableUseCase.load = {
-                return emptyTimetable
+                AsyncStream { continuation in
+                    continuation.yield(emptyTimetable)
+                    continuation.finish()
+                }
             }
         } operation: {
             @Dependency(\.timetableUseCase) var useCase
-            return try await useCase.load()
+            var timetables: [Timetable] = []
+            for await timetable in useCase.load() {
+                timetables.append(timetable)
+            }
+            return timetables.first!
         }
         
         // Assert
@@ -73,23 +88,40 @@ struct TimetableUseCaseTests {
         #expect(result.bookmarks.isEmpty)
     }
     
-    @Test("Should verify LoadTimetableError.networkError exists and is testable")
-    func testNetworkErrorTypeExistsAndCanBeInstantiated() async throws {
+    @Test("Should handle AsyncSequence with multiple emissions")
+    func testAsyncSequenceWithMultipleEmissions() async throws {
         // Arrange
-        var errorThrown: LoadTimetableError?
-        _ = withDependencies {
-            $0.timetableUseCase = TimetableUseCase()
+        let firstTimetable = Timetable(
+            timetableItems: [],
+            bookmarks: Set<TimetableItemId>([TimetableItemId(value: "item-1")])
+        )
+        let secondTimetable = Timetable(
+            timetableItems: [],
+            bookmarks: Set<TimetableItemId>([TimetableItemId(value: "item-2")])
+        )
+        
+        // Act
+        let results = try await withDependencies {
+            $0.timetableUseCase.load = {
+                AsyncStream { continuation in
+                    continuation.yield(firstTimetable)
+                    continuation.yield(secondTimetable)
+                    continuation.finish()
+                }
+            }
         } operation: {
-            TimetableUseCase()
+            @Dependency(\.timetableUseCase) var useCase
+            var timetables: [Timetable] = []
+            for await timetable in useCase.load() {
+                timetables.append(timetable)
+            }
+            return timetables
         }
         
-        // Since we cannot directly test typed throws in Swift 6.1,
-        // we verify the error type exists and can be used
-        errorThrown = LoadTimetableError.networkError
-        
         // Assert
-        #expect(errorThrown == .networkError)
-        #expect(errorThrown != nil)
+        #expect(results.count == 2)
+        #expect(results[0].bookmarks.contains(TimetableItemId(value: "item-1")))
+        #expect(results[1].bookmarks.contains(TimetableItemId(value: "item-2")))
     }
     
     @Test("Should correctly load timetable containing both session and special items")
@@ -112,7 +144,8 @@ struct TimetableUseCaseTests {
                     Speaker(id: "speaker-1", name: "Test Speaker", iconUrl: "https://example.com/icon", bio: "Bio", tagLine: "Engineer")
                 ],
                 description: MultiLangText(jaTitle: "Description", enTitle: "Description"),
-                message: nil
+                message: nil,
+                day: .conferenceDay1
             ),
             TimetableItemSpecial(
                 id: TimetableItemId(value: "lunch-1"),
@@ -128,7 +161,8 @@ struct TimetableUseCaseTests {
                 levels: [],
                 speakers: [],
                 description: MultiLangText(jaTitle: "Lunch Time", enTitle: "Lunch Time"),
-                message: nil
+                message: nil,
+                day: .conferenceDay1
             )
         ]
         
@@ -138,11 +172,18 @@ struct TimetableUseCaseTests {
         // Act
         let result = try await withDependencies {
             $0.timetableUseCase.load = {
-                return timetable
+                AsyncStream { continuation in
+                    continuation.yield(timetable)
+                    continuation.finish()
+                }
             }
         } operation: {
             @Dependency(\.timetableUseCase) var useCase
-            return try await useCase.load()
+            var timetables: [Timetable] = []
+            for await timetable in useCase.load() {
+                timetables.append(timetable)
+            }
+            return timetables.first!
         }
         
         // Assert
@@ -167,19 +208,25 @@ struct TimetableUseCaseTests {
         )
         
         // Act
-        let result = withDependencies {
+        let result = try await withDependencies {
             $0.timetableUseCase.load = {
-                return expectedTimetable
+                AsyncStream { continuation in
+                    continuation.yield(expectedTimetable)
+                    continuation.finish()
+                }
             }
         } operation: {
             @Dependency(\.timetableUseCase) var useCase
-            return useCase
+            var timetables: [Timetable] = []
+            for await timetable in useCase.load() {
+                timetables.append(timetable)
+            }
+            return timetables.first!
         }
         
         // Assert
-        let timetable = try await result.load()
-        #expect(timetable.timetableItems.isEmpty)
-        #expect(timetable.bookmarks.isEmpty)
+        #expect(result.timetableItems.isEmpty)
+        #expect(result.bookmarks.isEmpty)
     }
     
     @Test("Should preserve all bookmarks when loading timetable with multiple bookmarked items")
@@ -200,11 +247,18 @@ struct TimetableUseCaseTests {
         // Act
         let result = try await withDependencies {
             $0.timetableUseCase.load = {
-                return timetable
+                AsyncStream { continuation in
+                    continuation.yield(timetable)
+                    continuation.finish()
+                }
             }
         } operation: {
             @Dependency(\.timetableUseCase) var useCase
-            return try await useCase.load()
+            var timetables: [Timetable] = []
+            for await timetable in useCase.load() {
+                timetables.append(timetable)
+            }
+            return timetables.first!
         }
         
         // Assert
