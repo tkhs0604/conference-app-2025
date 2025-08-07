@@ -75,8 +75,8 @@ final class SearchPresenter {
     
     init() {}
     
-    func loadInitial() async {
-        await timetable.fetchTimetable()
+    func loadInitial() {
+        timetable.subscribeTimetableIfNeeded()
     }
     
     func toggleFavorite(_ itemId: TimetableItemId) {

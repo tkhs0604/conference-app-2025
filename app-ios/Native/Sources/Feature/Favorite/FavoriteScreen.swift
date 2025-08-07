@@ -48,8 +48,8 @@ public struct FavoriteScreen: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.large)
         #endif
-        .task {
-            await presenter.loadInitial()
+        .onAppear {
+            presenter.loadInitial()
         }
     }
     
