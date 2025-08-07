@@ -33,5 +33,11 @@ extension EventMapEvent {
             room: Room(id: 1, name: .init(jaTitle: "roomH", enTitle: "roomH"), type: .roomH, sort: 0),
             moreDetailUrl: URL(string: "https://droidkaigi.jp/2025/ask-speaker")
         ),
+        EventMapEvent(
+            id: "4",
+            title: "Closing Ceremony",
+            description: "Closing ceremony and awards presentation",
+            room: Room(id: 1, name: .init(jaTitle: "roomI", enTitle: "roomI"), type: .roomI, sort: 0), moreDetailUrl: nil,
+        ),
     ]
 }

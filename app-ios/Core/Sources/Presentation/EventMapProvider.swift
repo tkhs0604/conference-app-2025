@@ -10,6 +10,7 @@ public final class EventMapProvider {
     
     public var eventMap: EventMap?
     
+    // UI State
     public var events: [(Int, EventMapEvent)] = []
     
     public init() {}

@@ -3,7 +3,7 @@ import Theme
 
 public struct EventMapScreen: View {
     @State private var presenter = EventMapPresenter()
-    @State private var selectedFloorMap: FloorMap? = .b1f
+    @State private var selectedFloorMap: FloorMap? = .first
     
     public init() {}
     
@@ -28,12 +28,10 @@ public struct EventMapScreen: View {
                 // Map image
                 if selectedFloorMap != nil {
                     // TODO: Replace with actual floor map images
-                    Image(systemName: presenter.selectedFloorMap.image)
+                    Image(presenter.selectedFloorMap.image, bundle: .module)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 300)
-                        .foregroundColor(.secondary)
                         .padding(.all, 16)
                 }
                 

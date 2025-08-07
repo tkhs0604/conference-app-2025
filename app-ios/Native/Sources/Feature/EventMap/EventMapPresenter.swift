@@ -33,11 +33,9 @@ enum FloorMap: String, CaseIterable {
     var image: String {
         switch self {
         case .b1f:
-            // TODO: Replace with actual B1F map image
-            return "map"
+            return "img_floorMap_light_B1F"
         case .first:
-            // TODO: Replace with actual 1F map image
-            return "map.fill"
+            return "img_floorMap_light_1F"
         }
     }
 }
