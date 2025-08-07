@@ -97,9 +97,9 @@ public struct AboutScreen: View {
                     presenter.codeOfConductTapped()
                     onNavigate(.codeOfConduct)
                 }
-                
+
                 Divider()
-                
+
                 AboutButton(
                     title: "Licenses",
                     // TODO: Replace with actual license icon asset when available
@@ -119,9 +119,9 @@ public struct AboutScreen: View {
                     presenter.privacyPolicyTapped()
                     onNavigate(.privacyPolicy)
                 }
-                
+
                 Divider()
-                
+
                 AboutButton(
                     title: "Settings",
                     // TODO: Replace with actual settings icon asset when available
