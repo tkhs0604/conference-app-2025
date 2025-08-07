@@ -35,7 +35,7 @@ jobs:
           app-ios/.build
           app-ios/Core/.build
           app-ios/Native/.build
-        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        key: ${{ runner.os }}-spm-${{ hashFiles('app-ios/Core/Package.swift', 'app-ios/Native/Package.swift') }}
         restore-keys: |
           ${{ runner.os }}-spm-
           
