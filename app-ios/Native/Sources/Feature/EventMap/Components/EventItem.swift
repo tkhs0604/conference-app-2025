@@ -12,12 +12,12 @@ struct EventItem: View {
             HStack(spacing: 12) {
                 RoomTag(room: event.room)
                 Text(event.title)
-//                    .font(Typography.titleMedium)
+                    .font(Typography.titleMedium)
                     .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
             }
             
             Text(event.description)
-//                .font(Typography.bodyLarge)
+                .font(Typography.bodyLarge)
                 .foregroundColor(AssetColors.onSurfaceVariant.swiftUIColor)
                 .fixedSize(horizontal: false, vertical: true)
             
@@ -26,7 +26,7 @@ struct EventItem: View {
                     onMoreDetailTapped(url)
                 }) {
                     Text("詳しく見る")
-//                        .font(Typography.labelLarge)
+                        .font(Typography.labelLarge)
                         .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
                 }
                 .frame(maxWidth: .infinity)
