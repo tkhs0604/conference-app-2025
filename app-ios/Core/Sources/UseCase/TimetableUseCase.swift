@@ -2,13 +2,9 @@ import Dependencies
 import DependenciesMacros
 import Model
 
-public enum LoadTimetableError: Error {
-    case networkError
-}
-
 @DependencyClient
 public struct TimetableUseCase: Sendable {
-    public var load: @Sendable () async throws(LoadTimetableError) -> Timetable = { .init(timetableItems: [], bookmarks: .init()) }
+    public var load: @Sendable () -> any AsyncSequence<Model.Timetable, Never> = { AsyncStream.never }
 }
 
 public enum TimetableUseCaseKey: TestDependencyKey {
