@@ -16,8 +16,6 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization")
 }
 
-android.namespace = "io.github.droidkaigi.confsched"
-
 compose.resources.nameOfResClass = "AppSharedRes"
 
 kotlin {
