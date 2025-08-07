@@ -24,7 +24,7 @@ public final class TimetableProvider {
     @Dependency(\.timetableUseCase) private var timeteableUseCase
 
     @ObservationIgnored
-    var fetchTask: Task<Void, Never>?
+    private var fetchTask: Task<Void, Never>?
 
     public var timetable: Timetable?
 
