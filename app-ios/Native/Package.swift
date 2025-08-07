@@ -27,7 +27,7 @@ let package = Package(
                 .target(name: "Extension"),
                 .target(name: "Theme"),
                 .product(name: "Model", package: "Core"),
-            ]
+            ],
         ),
         .testTarget(
             name: "ComponentTests",
@@ -38,7 +38,7 @@ let package = Package(
             name: "Extension",
             dependencies: [
                 .product(name: "Model", package: "Core"),
-            ]
+            ],
         ),
 
         .target(
@@ -59,7 +59,7 @@ let package = Package(
                 .product(name: "Model", package: "Core"),
                 .product(name: "Dependencies", package: "swift-dependencies"),
                 .target(name: "Extension"),
-            ]
+            ],
         ),
 
         // Feature targets with resources
@@ -75,7 +75,7 @@ let package = Package(
             path: "Sources/Feature/Home",
             resources: [
                 .process("Resources")
-            ]
+            ],
         ),
         
         // Feature targets without resources
@@ -88,7 +88,7 @@ let package = Package(
                 .target(name: "Extension"),
                 .target(name: "Theme"),
             ],
-            path: "Sources/Feature/TimetableDetail"
+            path: "Sources/Feature/TimetableDetail",
         ),
         
         .target(
@@ -100,7 +100,7 @@ let package = Package(
                 .target(name: "Extension"),
                 .target(name: "Theme"),
             ],
-            path: "Sources/Feature/About"
+            path: "Sources/Feature/About",
         ),
         
         .target(
@@ -112,7 +112,7 @@ let package = Package(
                 .target(name: "Extension"),
                 .target(name: "Theme"),
             ],
-            path: "Sources/Feature/Contributor"
+            path: "Sources/Feature/Contributor",
         ),
         
         .target(
@@ -124,7 +124,7 @@ let package = Package(
                 .target(name: "Extension"),
                 .target(name: "Theme"),
             ],
-            path: "Sources/Feature/EventMap"
+            path: "Sources/Feature/EventMap",
         ),
         
         .target(
@@ -136,7 +136,7 @@ let package = Package(
                 .target(name: "Extension"),
                 .target(name: "Theme"),
             ],
-            path: "Sources/Feature/Favorite"
+            path: "Sources/Feature/Favorite",
         ),
         
         .target(
@@ -148,7 +148,7 @@ let package = Package(
                 .target(name: "Extension"),
                 .target(name: "Theme"),
             ],
-            path: "Sources/Feature/Search"
+            path: "Sources/Feature/Search",
         ),
         
         .target(
@@ -160,7 +160,7 @@ let package = Package(
                 .target(name: "Extension"),
                 .target(name: "Theme"),
             ],
-            path: "Sources/Feature/Sponsor"
+            path: "Sources/Feature/Sponsor",
         ),
         
         .target(
@@ -172,7 +172,7 @@ let package = Package(
                 .target(name: "Extension"),
                 .target(name: "Theme"),
             ],
-            path: "Sources/Feature/Staff"
+            path: "Sources/Feature/Staff",
         ),
         
         .target(
@@ -184,7 +184,7 @@ let package = Package(
                 .target(name: "Extension"),
                 .target(name: "Theme"),
             ],
-            path: "Sources/Feature/ProfileCard"
+            path: "Sources/Feature/ProfileCard",
         ),
 
         .target(
@@ -193,7 +193,9 @@ let package = Package(
                 .process("Resources"),
                 .process("swiftgen.yml"),
             ],
-            plugins: [.plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")]
+            plugins: [
+                .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+            ]
         ),
         // Please run ./gradlew app-shared:assembleSharedXCFramework first
         .binaryTarget(name: "KMPFramework", path: "../../app-shared/build/XCFrameworks/debug/shared.xcframework"),
