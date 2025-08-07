@@ -22,8 +22,7 @@ struct TimetableProviderTest {
         }
 
         provider.subscribeTimetableIfNeeded()
-        
-        // Wait for async operation to complete
+        // Give some time for the async stream to process
         try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
         #expect(provider.timetable != nil)
@@ -46,12 +45,11 @@ struct TimetableProviderTest {
         }
 
         provider.subscribeTimetableIfNeeded()
-        
-        // Wait for async operation to complete
+        // Give some time for the async stream to process
         try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
         #expect(provider.timetable != nil)
-        #expect(provider.timetable?.timetableItems.count == 0)
+        #expect(provider.timetable?.timetableItems.isEmpty == true)
         #expect(provider.dayTimetable.count == DroidKaigi2024Day.allCases.count)
         
         for day in DroidKaigi2024Day.allCases {
@@ -136,14 +134,13 @@ struct TimetableProviderTest {
         }
 
         provider.subscribeTimetableIfNeeded()
-        
-        // Wait for async operation to complete
+        // Give some time for the async stream to process
         try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
         for day in DroidKaigi2024Day.allCases {
             if let groups = provider.dayTimetable[day], !groups.isEmpty {
                 for group in groups {
-                    let firstItem = group.items.first!
+                    guard let firstItem = group.items.first else { continue }
                     for item in group.items {
                         #expect(item.timetableItem.startsAt == firstItem.timetableItem.startsAt)
                     }
@@ -152,15 +149,13 @@ struct TimetableProviderTest {
                 #expect(groups.allSatisfy { !$0.items.isEmpty })
                 
                 #expect(groups.allSatisfy { group in
-                    group.startsTimeString == group.items[0].timetableItem.startsAt.formatted(
-                        Date.FormatStyle.dateTime.hour(.twoDigits(amPM: .omitted)).minute()
-                    )
+                    let formatter = Date.FormatStyle.dateTime.hour(.twoDigits(amPM: .omitted)).minute()
+                    return group.startsTimeString == group.items[0].timetableItem.startsAt.formatted(formatter)
                 })
                 
                 #expect(groups.allSatisfy { group in
-                    group.endsTimeString == group.items[0].timetableItem.endsAt.formatted(
-                        Date.FormatStyle.dateTime.hour(.twoDigits(amPM: .omitted)).minute()
-                    )
+                    let formatter = Date.FormatStyle.dateTime.hour(.twoDigits(amPM: .omitted)).minute()
+                    return group.endsTimeString == group.items[0].timetableItem.endsAt.formatted(formatter)
                 })
             }
         }
@@ -419,10 +414,10 @@ enum TestData {
     ) -> TimetableItemSession {
         TimetableItemSession(
             id: TimetableItemId(value: id),
-            title: MultiLangText(jaTitle: "Test Session", enTitle: "Test Session"),
+            title: MultiLangText(jaTitle: "テストセッション", enTitle: "Test Session"),
             startsAt: startsAt,
             endsAt: endsAt,
-            category: TimetableCategory(id: 1, title: MultiLangText(jaTitle: "Development", enTitle: "Development")),
+            category: TimetableCategory(id: 1, title: MultiLangText(jaTitle: "開発", enTitle: "Development")),
             sessionType: .regular,
             room: createRoom(type: room),
             targetAudience: "All levels",
@@ -430,7 +425,7 @@ enum TestData {
             asset: TimetableAsset(videoUrl: nil, slideUrl: nil),
             levels: ["Beginner"],
             speakers: [createSpeaker()],
-            description: MultiLangText(jaTitle: "Description", enTitle: "Description"),
+            description: MultiLangText(jaTitle: "説明", enTitle: "Description"),
             message: nil,
             day: day
         )
@@ -445,10 +440,10 @@ enum TestData {
     ) -> TimetableItemSpecial {
         TimetableItemSpecial(
             id: TimetableItemId(value: id),
-            title: MultiLangText(jaTitle: "Lunch", enTitle: "Lunch"),
+            title: MultiLangText(jaTitle: "ランチ", enTitle: "Lunch"),
             startsAt: startsAt,
             endsAt: endsAt,
-            category: TimetableCategory(id: 99, title: MultiLangText(jaTitle: "Other", enTitle: "Other")),
+            category: TimetableCategory(id: 99, title: MultiLangText(jaTitle: "その他", enTitle: "Other")),
             sessionType: sessionType,
             room: createRoom(type: .roomIJ),
             targetAudience: "All",
@@ -456,7 +451,7 @@ enum TestData {
             asset: TimetableAsset(videoUrl: nil, slideUrl: nil),
             levels: [],
             speakers: [],
-            description: MultiLangText(jaTitle: "Lunch Time", enTitle: "Lunch Time"),
+            description: MultiLangText(jaTitle: "ランチタイム", enTitle: "Lunch Time"),
             message: nil,
             day: day
         )
@@ -465,12 +460,18 @@ enum TestData {
     static func createRoom(type: RoomType) -> Room {
         let id: Int32
         switch type {
-        case .roomF: id = 1
-        case .roomG: id = 2
-        case .roomH: id = 3
-        case .roomI: id = 4
-        case .roomJ: id = 5
-        case .roomIJ: id = 6
+        case .roomF:
+            id = 1
+        case .roomG:
+            id = 2
+        case .roomH:
+            id = 3
+        case .roomI:
+            id = 4
+        case .roomJ:
+            id = 5
+        case .roomIJ:
+            id = 6
         }
         
         return Room(
@@ -499,7 +500,7 @@ enum TestData {
         minute: Int = 0
     ) -> Date {
         var calendar = Calendar(identifier: .gregorian)
-        calendar.timeZone = TimeZone(identifier: "Asia/Tokyo")!
+        calendar.timeZone = TimeZone(identifier: "Asia/Tokyo") ?? TimeZone.current
         
         var components = DateComponents()
         components.year = year

@@ -25,6 +25,7 @@ let package = Package(
             name: "Component",
             dependencies: [
                 .target(name: "Extension"),
+                .target(name: "Theme"),
                 .product(name: "Model", package: "Core"),
             ]
         ),
