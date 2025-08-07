@@ -41,11 +41,12 @@ public struct TimetableCard: View {
             }
             .padding(12)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .background(AssetColors.surface.swiftUIColor)
             .overlay(
-                RoundedRectangle(cornerRadius: 4)
+                RoundedRectangle(cornerRadius: 8)
                     .stroke(AssetColors.outlineVariant.swiftUIColor, lineWidth: 1)
             )
-            .cornerRadius(4)
+            .cornerRadius(8)
         }
         .buttonStyle(PlainButtonStyle())
     }
@@ -96,7 +97,7 @@ public struct TimetableCard: View {
             ForEach(timetableItem.speakers, id: \.id) { speaker in
                 HStack(spacing: 8) {
                     CircularUserIcon(imageUrl: speaker.iconUrl)
-                        .frame(width: 32, height: 32)
+                        .frame(width: 24, height: 24)
                     
                     Text(speaker.name)
                         .font(Typography.labelLarge)
