@@ -3,7 +3,7 @@ import Theme
 
 struct FloorMapSelector: View {
     @Binding var selected: FloorMap?
-
+    
     var body: some View {
         HStack(spacing: 6) {
             ForEach(FloorMap.allCases, id: \.self) { floor in
@@ -25,12 +25,10 @@ private struct FloorMapButton: View {
     
     var body: some View {
         Button(action: action) {
-            if isSelected {
-                HStack(spacing: 8) {
+            HStack(spacing: 8) {
+                if isSelected {
                     Image(systemName: "checkmark")
-                    Text(floor.rawValue)
                 }
-            } else {
                 Text(floor.rawValue)
             }
         }
@@ -41,14 +39,14 @@ private struct FloorMapButton: View {
         .padding(.trailing, 16)
         .padding(.leading, isSelected ? 8 : 16)
         .background(isSelected ? AssetColors.secondaryContainer.swiftUIColor : .clear)
-        .cornerRadius(8)
         .overlay {
-            if !isSelected {
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(style: StrokeStyle(lineWidth: 1))
-                    .fill(AssetColors.outline.swiftUIColor)
-            }
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(
+                    isSelected ? .clear : AssetColors.outline.swiftUIColor,
+                    lineWidth: 1,
+                )
         }
+        .cornerRadius(8)
         .buttonStyle(.plain)
     }
 }

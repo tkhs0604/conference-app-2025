@@ -15,10 +15,19 @@ struct EventItem: View {
                     .font(Typography.titleMedium)
                     .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
             }
+            
             Text(event.description)
                 .font(Typography.bodyLarge)
                 .foregroundColor(AssetColors.onSurfaceVariant.swiftUIColor)
                 .fixedSize(horizontal: false, vertical: true)
+            
+            if let message = event.message {
+                Text(message)
+                    .font(Typography.bodyMedium)
+                // FIXME: Failed to add color and run swiftgen
+//                    .foregroundColor(AssetColors.tertiayFixedDim.swiftUIColor)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
 
             if let url = event.moreDetailUrl {
                 Button(action: {
