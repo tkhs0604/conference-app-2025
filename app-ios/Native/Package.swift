@@ -33,6 +33,9 @@ let package = Package(
             name: "ComponentTests",
             dependencies: ["Component"]
         ),
+        .target(
+            name: "DependencyExtra",
+        ),
 
         .target(
             name: "Extension",
@@ -123,6 +126,7 @@ let package = Package(
                 .target(name: "Component"),
                 .target(name: "Extension"),
                 .target(name: "Theme"),
+                .target(name: "DependencyExtra"),
             ],
             path: "Sources/Feature/EventMap",
         ),

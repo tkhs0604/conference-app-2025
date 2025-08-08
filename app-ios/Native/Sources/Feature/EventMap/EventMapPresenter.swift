@@ -18,11 +18,6 @@ final class EventMapPresenter {
     func selectFloorMap(_ floorMap: FloorMap) {
         selectedFloorMap = floorMap
     }
-
-    func moreDetailButtonTapped(_ url: URL) {
-        // print("More detail tapped: \(url)")
-        // TODO: Open in Safari
-    }
 }
 
 // Mock models - TODO: Replace with actual models from shared module

@@ -1,9 +1,13 @@
 import SwiftUI
 import Theme
+import Dependencies
+import DependencyExtra
 
 public struct EventMapScreen: View {
     @State private var presenter = EventMapPresenter()
     @State private var selectedFloorMap: FloorMap? = .first
+    
+    @Dependency(\.safari) var safari
     
     public init() {}
 
@@ -38,7 +42,9 @@ public struct EventMapScreen: View {
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(presenter.eventMap.events, id: \.0) { eventWithIndex in
                         EventItem(event: eventWithIndex.1) { url in
-                            presenter.moreDetailButtonTapped(url)
+                            Task {
+                                await safari(url)
+                            }
                         }
                         if eventWithIndex.0 != presenter.eventMap.events.count - 1 {
                             Divider()
