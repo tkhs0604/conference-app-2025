@@ -117,27 +117,27 @@ fun TimetableGridRooms(
                 )
             },
     ) { constraints ->
-        data class ItemData(val placeable: Placeable, val roomItem: RoomItemLayout)
+        data class ItemData(val placeable: Placeable, val roomItemLayout: RoomItemLayout)
         roomsScreen.updateBounds(width = constraints.maxWidth, height = constraints.maxHeight)
 
-        val items = roomsScreen.visibleItemLayouts.map { (index, roomLayout) ->
+        val items = roomsScreen.visibleItemLayouts.map { (index, roomItemLayout) ->
             ItemData(
                 placeable = measure(
                     index = index,
                     constraints = Constraints.fixed(
-                        width = roomLayout.width,
-                        height = roomLayout.height,
+                        width = roomItemLayout.width,
+                        height = roomItemLayout.height,
                     ),
                 )[0],
-                roomItem = roomLayout,
+                roomItemLayout = roomItemLayout,
             )
         }
 
         layout(constraints.maxWidth, constraints.maxHeight) {
-            items.forEach { (placeable, roomLayout) ->
+            items.forEach { (placeable, roomItemLayout) ->
                 placeable.place(
-                    x = roomLayout.left + scrollState.scrollX.toInt(),
-                    y = roomLayout.top,
+                    x = roomItemLayout.left + scrollState.scrollX.toInt(),
+                    y = roomItemLayout.top,
                 )
             }
         }
