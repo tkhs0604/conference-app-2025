@@ -1,4 +1,4 @@
-package io.github.droidkaigi.confsched.sessions.section
+package io.github.droidkaigi.confsched.droidkaigiui.session
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -26,26 +26,27 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiWindowSizeClassConstants
-import io.github.droidkaigi.confsched.droidkaigiui.session.TimetableItemCard
-import io.github.droidkaigi.confsched.model.sessions.Timetable
+import io.github.droidkaigi.confsched.droidkaigiui.component.TimetableTimeSlot
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
+import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import io.github.droidkaigi.confsched.model.sessions.fake
-import io.github.droidkaigi.confsched.sessions.components.TimetableTimeSlot
+import kotlinx.collections.immutable.PersistentMap
 import kotlinx.collections.immutable.persistentMapOf
-import kotlinx.datetime.LocalTime
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 const val TimetableListTestTag = "TimetableList"
 
 @Composable
-internal fun TimetableList(
-    uiState: TimetableListUiState,
-    onTimetableItemClick: (TimetableItem) -> Unit,
-    onBookmarkClick: (TimetableItem, Boolean) -> Unit,
+fun TimetableList(
+    timetableItemMap: PersistentMap<out TimeSlotItem, List<TimetableItem>>,
+    onTimetableItemClick: (TimetableItemId) -> Unit,
+    onBookmarkClick: (TimetableItemId) -> Unit,
+    isBookmarked: (TimetableItemId) -> Boolean,
     modifier: Modifier = Modifier,
     lazyListState: LazyListState = rememberLazyListState(),
     contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp),
     highlightWord: String = "",
+    isDateTagVisible: Boolean = false,
 ) {
     BoxWithConstraints(
         modifier = Modifier.testTag(TimetableListTestTag),
@@ -60,7 +61,7 @@ internal fun TimetableList(
             modifier = modifier,
         ) {
             itemsIndexed(
-                items = uiState.timetableItemMap.toList(),
+                items = timetableItemMap.toList(),
                 key = { _, (timeSlot, _) -> timeSlot.key },
             ) { index, (timeSlot, timetableItems) ->
                 var timetableTimeSlotHeight by remember { mutableIntStateOf(0) }
@@ -101,10 +102,11 @@ internal fun TimetableList(
                                 windowedItems.forEach { item ->
                                     TimetableItemCard(
                                         timetableItem = item,
-                                        isBookmarked = uiState.timetable.bookmarks.contains(item.id),
+                                        isBookmarked = isBookmarked(item.id),
+                                        isDateTagVisible = isDateTagVisible,
                                         highlightWord = highlightWord,
-                                        onBookmarkClick = onBookmarkClick,
-                                        onTimetableItemClick = onTimetableItemClick,
+                                        onBookmarkClick = { onBookmarkClick(item.id) },
+                                        onTimetableItemClick = { onTimetableItemClick(item.id) },
                                         modifier = Modifier
                                             .weight(1f)
                                             .fillMaxHeight()
@@ -124,30 +126,38 @@ internal fun TimetableList(
     }
 }
 
+interface TimeSlotItem {
+    val startTimeString: String
+    val endTimeString: String
+    val key: String
+}
+
 @Preview
 @Composable
 private fun TimetableListPreview() {
+    data class PreviewTimeSlot(
+        override val startTimeString: String,
+        override val endTimeString: String,
+        override val key: String
+    ) : TimeSlotItem
+
     KaigiPreviewContainer {
         TimetableList(
-            uiState = TimetableListUiState(
-                timetable = Timetable.fake(),
-                timetableItemMap = persistentMapOf(
-                    TimetableListUiState.TimeSlot(
-                        LocalTime(11, 20, 0, 0), endTime = LocalTime(12, 0, 0, 0)
-                    ) to List(2) { TimetableItem.Session.fake() },
-                    TimetableListUiState.TimeSlot(
-                        LocalTime(12, 0, 0, 0), endTime = LocalTime(13, 0, 0, 0)
-                    ) to List(3) { TimetableItem.Session.fake() },
-                    TimetableListUiState.TimeSlot(
-                        LocalTime(13, 0, 0, 0), endTime = LocalTime(14, 0, 0, 0)
-                    ) to List(5) { TimetableItem.Session.fake() },
-                    TimetableListUiState.TimeSlot(
-                        LocalTime(14, 0, 0, 0), endTime = LocalTime(15, 0, 0, 0)
-                    ) to List(5) { TimetableItem.Session.fake() },
-                ),
+            timetableItemMap = persistentMapOf(
+                PreviewTimeSlot(
+                    startTimeString = "11:20",
+                    endTimeString = "12:00",
+                    key = "11:20-12:00"
+                ) to List(2) { TimetableItem.Session.fake() },
+                PreviewTimeSlot(
+                    startTimeString = "12:00",
+                    endTimeString = "13:00",
+                    key = "12:00-13:00"
+                ) to List(2) { TimetableItem.Session.fake() },
             ),
             onTimetableItemClick = {},
-            onBookmarkClick = { _, _ -> },
+            onBookmarkClick = {},
+            isBookmarked = { false },
         )
     }
 }

@@ -10,8 +10,8 @@ final class HomePresenter {
 
     init() {}
 
-    func loadInitial() async {
-        await timetable.fetchTimetable()
+    func loadInitial() {
+        timetable.subscribeTimetableIfNeeded()
     }
     
     func timetableItemTapped(_ item: TimetableItemWithFavorite) {

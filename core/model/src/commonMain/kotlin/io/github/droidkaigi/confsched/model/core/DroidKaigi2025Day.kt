@@ -28,6 +28,7 @@ enum class DroidKaigi2025Day(
     ),
     ;
 
+    val month: Int = date.month.number
     val dayOfMonth: Int = date.day
     val start: Instant = date.atStartOfDayIn(tz)
     val end: Instant = date.atTime(23, 59, 59, 999_999_999).toInstant(tz)

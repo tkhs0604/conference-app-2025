@@ -3,15 +3,12 @@ import Model
 import shared
 
 struct TimetableUseCaseImpl {
-    func load() async throws(LoadTimetableError) -> Model.Timetable {
-        let iterator = KMPDependencyProvider.shared.appGraph.sessionsRepository
+    func load() -> any AsyncSequence<Model.Timetable, Never> {
+        let flow = KMPDependencyProvider.shared.appGraph.sessionsRepository
             .timetableFlow()
-            .makeAsyncIterator()
-        
-        if let kmpTimetable = await iterator.next() {
-            return Model.Timetable(from: kmpTimetable)
-        } else {
-            throw LoadTimetableError.networkError
+
+        return flow.map {
+            .init(from: $0)
         }
     }
 }
