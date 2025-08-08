@@ -11,7 +11,7 @@ public final class EventMapProvider {
     public var eventMap: EventMap?
 
     // UI State
-    public var events: [(Int, EventMapEvent)] = []
+    public var events: [EventMapEvent] = []
 
     public init() {}
 
@@ -19,7 +19,7 @@ public final class EventMapProvider {
     public func fetchEvents() async {
         do {
             eventMap = try await eventMapUseCase.load()
-            events = Array((eventMap?.events ?? []).enumerated())
+            events = eventMap?.events ?? []
         } catch {
             print(error)
         }

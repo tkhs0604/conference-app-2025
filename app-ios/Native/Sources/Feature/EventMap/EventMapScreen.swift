@@ -39,13 +39,13 @@ public struct EventMapScreen: View {
 
                 // Events section
                 VStack(alignment: .leading, spacing: 0) {
-                    ForEach(presenter.eventMap.events, id: \.0) { eventWithIndex in
-                        EventItem(event: eventWithIndex.1) { url in
+                    ForEach(presenter.eventMap.events, id: \.id) { event in
+                        EventItem(event: event) { url in
                             Task {
                                 await safari(url)
                             }
                         }
-                        if eventWithIndex.0 != presenter.eventMap.events.count - 1 {
+                        if event.id != presenter.eventMap.events.last?.id {
                             Divider()
                                 .padding(.horizontal, 16)
                                 .foregroundStyle(AssetColors.outlineVariant.swiftUIColor)
