@@ -29,3 +29,6 @@ xcuserdata
 .DS_Store
 
 shared.xcframework
+
+# nest
+.nest/

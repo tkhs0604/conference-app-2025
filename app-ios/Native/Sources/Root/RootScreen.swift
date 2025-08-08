@@ -1,17 +1,17 @@
-import Dependencies
-import SwiftUI
-import HomeFeature
 import AboutFeature
 import ContributorFeature
+import Dependencies
 import EventMapFeature
 import FavoriteFeature
+import HomeFeature
+import Model
 import ProfileCardFeature
 import SearchFeature
 import SponsorFeature
 import StaffFeature
-import TimetableDetailFeature
-import Model
+import SwiftUI
 import Theme
+import TimetableDetailFeature
 
 private enum TabType: CaseIterable, Hashable {
     case timetable
@@ -20,7 +20,7 @@ private enum TabType: CaseIterable, Hashable {
     case info
     case profileCard
 
-    internal func tabImageName(_ selectedTab: TabType) -> String {
+    func tabImageName(_ selectedTab: TabType) -> String {
         switch self {
         case .timetable:
             return selectedTab == self ? "ic_timetable.fill" : "ic_timetable"
@@ -42,92 +42,116 @@ public struct RootScreen: View {
     @State private var navigationPath = NavigationPath()
     @State private var aboutNavigationPath = NavigationPath()
     @State private var favoriteNavigationPath = NavigationPath()
-    @State private var composeMultiplatformEnabled: Bool = false
+    @State private var composeMultiplatformEnabled = false
     private let presenter = RootPresenter()
-    
+
     public init() {
         UITabBar.appearance().unselectedItemTintColor = UIColor(named: "tab_inactive")
     }
-    
+
     public var body: some View {
-        if (composeMultiplatformEnabled) {
-            KmpAppComposeViewControllerWrapper()
-                .environment(\.colorScheme, .dark)
-                .ignoresSafeArea(.all)
-        } else {
-            ZStack(alignment: .bottom) {
-                switch selectedTab {
-                case .timetable:
-                    NavigationStack(path: $navigationPath) {
-                        HomeScreen(onNavigate: handleHomeNavigation)
-                            .navigationDestination(for: NavigationDestination.self) { destination in
-                                let navigationHandler = NavigationHandler(
-                                    handleSearchNavigation: handleSearchNavigation
-                                )
-                                destination.view(with: navigationHandler)
-                            }
-                    }
-                case .map:
-                    NavigationStack {
-                        EventMapScreen()
-                    }
-                case .favorite:
-                    NavigationStack(path: $favoriteNavigationPath) {
-                        FavoriteScreen(onNavigate: handleFavoriteNavigation)
-                            .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
-                                switch destination {
-                                case .timetableDetail(let item):
-                                    TimetableDetailScreen(timetableItem: item)
-                                }
-                            }
-                    }
-                case .info:
-                    NavigationStack(path: $aboutNavigationPath) {
-                        AboutScreen(
-                            onNavigate: handleAboutNavigation,
-                            onEnableComposeMultiplatform: handleEnableComposeMultiplatform,
-                        )
-                        .navigationDestination(for: AboutNavigationDestination.self) { destination in
-                            switch destination {
-                            case .contributors:
-                                ContributorScreen()
-                            case .staff:
-                                StaffScreen()
-                            case .sponsors:
-                                SponsorScreen()
-                            case .codeOfConduct:
-                                Text("Code of Conduct")
-                                    .navigationTitle("Code of Conduct")
-                            case .privacyPolicy:
-                                Text("Privacy Policy")
-                                    .navigationTitle("Privacy Policy")
-                            case .licenses:
-                                Text("Licenses")
-                                    .navigationTitle("Licenses")
-                            case .settings:
-                                Text("Settings")
-                                    .navigationTitle("Settings")
-                            }
-                        }
-                    }
-                case .profileCard:
-                    NavigationStack {
-                        ProfileCardScreen()
-                    }
+        Group {
+            if composeMultiplatformEnabled {
+                KmpAppComposeViewControllerWrapper()
+                    .ignoresSafeArea(.all)
+            } else {
+                ZStack(alignment: .bottom) {
+                    tabContent
+                    tabBar
                 }
-                
-                tabBar
             }
-            .onAppear {
-                presenter.prepareWindow()
-            }
-            .onChange(of: scenePhase) {
-                ScenePhaseHandler.handle(scenePhase)
-            }
-            .preferredColorScheme(.dark)
+        }
+        .environment(\.colorScheme, .dark)
+        .onAppear {
+            presenter.prepareWindow()
         }
     }
-    
+
+    @ViewBuilder
+    private var tabContent: some View {
+        switch selectedTab {
+        case .timetable:
+            timetableTab
+        case .map:
+            mapTab
+        case .favorite:
+            favoriteTab
+        case .info:
+            infoTab
+        case .profileCard:
+            profileCardTab
+        }
+    }
+
+    private var timetableTab: some View {
+        NavigationStack(path: $navigationPath) {
+            HomeScreen(onNavigate: handleHomeNavigation)
+                .navigationDestination(for: NavigationDestination.self) { destination in
+                    let navigationHandler = NavigationHandler(
+                        handleSearchNavigation: handleSearchNavigation
+                    )
+                    destination.view(with: navigationHandler)
+                }
+        }
+    }
+
+    private var mapTab: some View {
+        NavigationStack {
+            EventMapScreen()
+        }
+    }
+
+    private var favoriteTab: some View {
+        NavigationStack(path: $favoriteNavigationPath) {
+            FavoriteScreen(onNavigate: handleFavoriteNavigation)
+                .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
+                    switch destination {
+                    case .timetableDetail(let item):
+                        TimetableDetailScreen(timetableItem: item)
+                    }
+                }
+        }
+    }
+
+    private var infoTab: some View {
+        NavigationStack(path: $aboutNavigationPath) {
+            AboutScreen(onNavigate: handleAboutNavigation)
+                .navigationDestination(for: AboutNavigationDestination.self) { destination in
+                    aboutDestinationView(for: destination)
+                }
+        }
+    }
+
+    @ViewBuilder
+    private func aboutDestinationView(for destination: AboutNavigationDestination) -> some View {
+        switch destination {
+        case .contributors:
+            ContributorScreen()
+        case .staff:
+            StaffScreen()
+        case .sponsors:
+            SponsorScreen()
+        case .codeOfConduct:
+            Text("Code of Conduct")
+                .navigationTitle("Code of Conduct")
+        case .privacyPolicy:
+            Text("Privacy Policy")
+                .navigationTitle("Privacy Policy")
+        case .licenses:
+            Text("Licenses")
+                .navigationTitle("Licenses")
+        case .settings:
+            Text("Settings")
+                .navigationTitle("Settings")
+        }
+    }
+
+    private var profileCardTab: some View {
+        NavigationStack {
+            ProfileCardScreen()
+        }
+    }
+
     private func handleHomeNavigation(_ destination: HomeNavigationDestination) {
         switch destination {
         case .timetableDetail(let item):
@@ -136,15 +160,15 @@ public struct RootScreen: View {
             navigationPath.append(NavigationDestination.search)
         }
     }
-    
+
     private func handleAboutNavigation(_ destination: AboutNavigationDestination) {
         aboutNavigationPath.append(destination)
     }
-    
+
     private func handleFavoriteNavigation(_ destination: FavoriteNavigationDestination) {
         favoriteNavigationPath.append(destination)
     }
-    
+
     private func handleSearchNavigation(_ destination: SearchNavigationDestination) {
         switch destination {
         case .timetableDetail(let item):
@@ -155,7 +179,7 @@ public struct RootScreen: View {
     private func handleEnableComposeMultiplatform() {
         composeMultiplatformEnabled = true
     }
-    
+
     @ViewBuilder
     private var tabBar: some View {
         GeometryReader { geometry in
@@ -167,7 +191,10 @@ public struct RootScreen: View {
                     } label: {
                         Image(item.tabImageName(selectedTab))
                             .renderingMode(.template)
-                            .tint(isSelected ? AssetColors.primary40.swiftUIColor : AssetColors.onSurfaceVariant.swiftUIColor)
+                            .tint(
+                                isSelected
+                                    ? AssetColors.primary40.swiftUIColor : AssetColors.onSurfaceVariant.swiftUIColor
+                            )
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                             .contentShape(Rectangle())
                     }

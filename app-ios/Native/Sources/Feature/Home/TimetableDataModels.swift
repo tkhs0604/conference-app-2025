@@ -4,14 +4,14 @@ import SwiftUI
 
 extension RoomType {
     var color: Color {
-        return .blue
+        .blue
     }
 }
 
 extension MultiLangText {
     var currentLangTitle: String {
         // TODO: Use actual locale logic
-        return enTitle
+        enTitle
     }
 }
 
@@ -33,7 +33,7 @@ extension TimetableTimeGroupItems {
     public func getItem(for room: Room) -> TimetableItemWithFavorite? {
         items.first { $0.timetableItem.room.id == room.id }
     }
-    
+
     public func isLunchTime() -> Bool {
         items.count == 1 && items[0].timetableItem.title.currentLangTitle.lowercased().contains("lunch")
     }

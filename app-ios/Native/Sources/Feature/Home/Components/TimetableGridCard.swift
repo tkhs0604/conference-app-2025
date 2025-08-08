@@ -1,19 +1,19 @@
+import Component
 import Extension
-import SwiftUI
 import Model
 import Presentation
+import SwiftUI
 import Theme
-import Component
 
 struct TimetableGridCard: View {
     let timetableItem: any TimetableItem
     let cellCount: Int
     let onTap: (any TimetableItem) -> Void
-    
+
     var body: some View {
-        Button(action: {
+        Button {
             onTap(timetableItem)
-        }) {
+        } label: {
             VStack(alignment: .leading, spacing: 4) {
                 Text("10:00 ~ 11:00")
                     .font(Typography.labelLarge)
@@ -57,10 +57,10 @@ struct TimetableGridCard: View {
 }
 
 // TODO: Add preview with proper test data
-//#Preview {
+// #Preview {
 //    TimetableGridCard(
 //        timetableItem: ...,
 //        cellCount: 1,
 //        onTap: { _ in }
 //    )
-//}
+// }

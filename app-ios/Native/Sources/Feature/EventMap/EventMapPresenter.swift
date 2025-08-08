@@ -1,27 +1,27 @@
+import Foundation
 import Model
 import Observation
 import Presentation
-import Foundation
 
 @MainActor
 @Observable
 final class EventMapPresenter {
     var selectedFloorMap: FloorMap = .b1f
     var events: [Event] = []
-    
+
     init() {}
-    
+
     func loadInitial() {
         // TODO: Load actual event data
-        events = Event.mockEvents
+        events = Event.mocks
     }
-    
+
     func selectFloorMap(_ floorMap: FloorMap) {
         selectedFloorMap = floorMap
     }
-    
+
     func moreDetailButtonTapped(_ url: URL) {
-        print("More detail tapped: \(url)")
+        // print("More detail tapped: \(url)")
         // TODO: Open in Safari
     }
 }
@@ -30,7 +30,7 @@ final class EventMapPresenter {
 enum FloorMap: String, CaseIterable {
     case b1f = "B1F"
     case first = "1F"
-    
+
     var image: String {
         switch self {
         case .b1f:
@@ -48,8 +48,8 @@ struct Event: Identifiable, Hashable {
     let title: String
     let description: String
     let moreDetailUrl: URL?
-    
-    static let mockEvents: [Event] = [
+
+    static let mocks: [Event] = [
         Event(
             id: "1",
             title: "Welcome Talk",

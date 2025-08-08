@@ -1,5 +1,5 @@
-import UseCase
 import Model
+import UseCase
 import shared
 
 struct TimetableUseCaseImpl {

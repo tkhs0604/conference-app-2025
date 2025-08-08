@@ -6,7 +6,7 @@ public struct TimeGroupList: View {
     let timeGroup: TimetableTimeGroupItems
     let onItemTap: (TimetableItemWithFavorite) -> Void
     let onFavoriteTap: (TimetableItemWithFavorite, CGPoint?) -> Void
-    
+
     public init(
         timeGroup: TimetableTimeGroupItems,
         onItemTap: @escaping (TimetableItemWithFavorite) -> Void,
@@ -16,27 +16,25 @@ public struct TimeGroupList: View {
         self.onItemTap = onItemTap
         self.onFavoriteTap = onFavoriteTap
     }
-    
+
     public var body: some View {
-        HStack(alignment: .top, spacing: 12) {
-            // Time display
-            VStack(spacing: 2) {
+        HStack(alignment: .top, spacing: 16) {
+            VStack {
                 Text(timeGroup.startsTimeString)
-                    .font(Typography.labelMedium)
+                    .font(.system(size: 16, weight: .medium))
                     .foregroundStyle(AssetColors.onSurface.swiftUIColor)
 
-                Rectangle()
-                    .fill(AssetColors.outline.swiftUIColor)
-                    .frame(width: 2, height: 8)
+                Text("|")
+                    .font(.system(size: 8))
+                    .foregroundStyle(AssetColors.outline.swiftUIColor)
 
                 Text(timeGroup.endsTimeString)
-                    .font(Typography.labelMedium)
+                    .font(.system(size: 16, weight: .medium))
                     .foregroundStyle(AssetColors.onSurface.swiftUIColor)
+                Spacer()
             }
-            .frame(width: 45)
-            .padding(.top, 4)
-            
-            // Session cards
+            .frame(width: 50)
+
             VStack(spacing: 12) {
                 ForEach(timeGroup.items) { item in
                     TimetableCard(

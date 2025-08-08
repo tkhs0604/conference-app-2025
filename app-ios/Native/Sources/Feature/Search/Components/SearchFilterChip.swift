@@ -5,14 +5,15 @@ struct SearchFilterChip<T: Hashable>: View {
     let title: String
     let isSelected: Bool
     let onTap: () -> Void
-    
+
     var body: some View {
         Button(action: onTap) {
             HStack(spacing: 4) {
                 Text(title)
                     .font(.caption)
-                    .foregroundStyle(isSelected ? AssetColors.onPrimary.swiftUIColor : AssetColors.onSurface.swiftUIColor)
-                
+                    .foregroundStyle(
+                        isSelected ? AssetColors.onPrimary.swiftUIColor : AssetColors.onSurface.swiftUIColor)
+
                 if isSelected {
                     Image(systemName: "xmark.circle.fill")
                         .font(.caption2)
@@ -32,14 +33,14 @@ struct SearchFilterChip<T: Hashable>: View {
 struct SearchFilterSection<T: Hashable & CaseIterable & RawRepresentable>: View where T.RawValue == String {
     let title: String
     @Binding var selection: T?
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
                 .font(.caption)
                 .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
                 .padding(.horizontal, 16)
-            
+
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
                     SearchFilterChip<T>(
@@ -49,7 +50,7 @@ struct SearchFilterSection<T: Hashable & CaseIterable & RawRepresentable>: View 
                             selection = nil
                         }
                     )
-                    
+
                     ForEach(Array(T.allCases), id: \.self) { item in
                         SearchFilterChip<T>(
                             title: item.rawValue,

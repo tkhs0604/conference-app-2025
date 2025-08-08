@@ -4,43 +4,43 @@ public enum Typography {
     // MARK: - Display
     public static let displayLarge = Font.system(size: 57, weight: .regular)
         .leading(.tight)
-    
+
     public static let displayMedium = Font.system(size: 45, weight: .regular)
-    
+
     public static let displaySmall = Font.system(size: 36, weight: .regular)
-    
+
     // MARK: - Headline
     public static let headlineLarge = Font.system(size: 32, weight: .regular)
-    
+
     public static let headlineMedium = Font.system(size: 28, weight: .regular)
-    
+
     public static let headlineSmall = Font.system(size: 24, weight: .regular)
-    
+
     // MARK: - Title
     public static let titleLarge = Font.system(size: 22, weight: .regular)
-    
+
     public static let titleMedium = Font.system(size: 16, weight: .regular)
-    
+
     public static let titleSmall = Font.system(size: 14, weight: .regular)
-    
+
     // MARK: - Label
     public static let labelLarge = Font.system(size: 14, weight: .medium)
-    
+
     public static let labelMedium = Font.system(size: 12, weight: .medium)
-    
+
     public static let labelSmall = Font.system(size: 11, weight: .medium)
-    
+
     // MARK: - Body
     public static let bodyLarge = Font.system(size: 16, weight: .regular)
-    
+
     public static let bodyMedium = Font.system(size: 14, weight: .regular)
-    
+
     public static let bodySmall = Font.system(size: 12, weight: .regular)
 }
 
 // MARK: - View Extension for Typography
-public extension View {
-    func typography(_ style: Font) -> some View {
+extension View {
+    public func typography(_ style: Font) -> some View {
         self.font(style)
     }
 }
@@ -50,96 +50,96 @@ public struct TypographyStyle: Sendable {
     public let font: Font
     public let lineHeight: CGFloat
     public let letterSpacing: CGFloat
-    
+
     // MARK: - Display Styles
     public static let displayLarge = TypographyStyle(
         font: .system(size: 57, weight: .regular),
         lineHeight: 64,
         letterSpacing: -0.25
     )
-    
+
     public static let displayMedium = TypographyStyle(
         font: .system(size: 45, weight: .regular),
         lineHeight: 52,
         letterSpacing: 0
     )
-    
+
     public static let displaySmall = TypographyStyle(
         font: .system(size: 36, weight: .regular),
         lineHeight: 44,
         letterSpacing: 0
     )
-    
+
     // MARK: - Headline Styles
     public static let headlineLarge = TypographyStyle(
         font: .system(size: 32, weight: .regular),
         lineHeight: 40,
         letterSpacing: 0
     )
-    
+
     public static let headlineMedium = TypographyStyle(
         font: .system(size: 28, weight: .regular),
         lineHeight: 36,
         letterSpacing: 0
     )
-    
+
     public static let headlineSmall = TypographyStyle(
         font: .system(size: 24, weight: .regular),
         lineHeight: 32,
         letterSpacing: 0
     )
-    
+
     // MARK: - Title Styles
     public static let titleLarge = TypographyStyle(
         font: .system(size: 22, weight: .regular),
         lineHeight: 28,
         letterSpacing: 0
     )
-    
+
     public static let titleMedium = TypographyStyle(
         font: .system(size: 16, weight: .regular),
         lineHeight: 24,
         letterSpacing: 0.15
     )
-    
+
     public static let titleSmall = TypographyStyle(
         font: .system(size: 14, weight: .regular),
         lineHeight: 20,
         letterSpacing: 0.1
     )
-    
+
     // MARK: - Label Styles
     public static let labelLarge = TypographyStyle(
         font: .system(size: 14, weight: .medium),
         lineHeight: 20,
         letterSpacing: 0.1
     )
-    
+
     public static let labelMedium = TypographyStyle(
         font: .system(size: 12, weight: .medium),
         lineHeight: 16,
         letterSpacing: 0.5
     )
-    
+
     public static let labelSmall = TypographyStyle(
         font: .system(size: 11, weight: .medium),
         lineHeight: 16,
         letterSpacing: 0.5
     )
-    
+
     // MARK: - Body Styles
     public static let bodyLarge = TypographyStyle(
         font: .system(size: 16, weight: .regular),
         lineHeight: 24,
         letterSpacing: 0.5
     )
-    
+
     public static let bodyMedium = TypographyStyle(
         font: .system(size: 14, weight: .regular),
         lineHeight: 20,
         letterSpacing: 0.25
     )
-    
+
     public static let bodySmall = TypographyStyle(
         font: .system(size: 12, weight: .regular),
         lineHeight: 16,
@@ -150,7 +150,7 @@ public struct TypographyStyle: Sendable {
 // MARK: - View Modifier for Typography Style
 public struct TypographyModifier: ViewModifier {
     let style: TypographyStyle
-    
+
     public func body(content: Content) -> some View {
         content
             .font(style.font)
@@ -159,8 +159,8 @@ public struct TypographyModifier: ViewModifier {
     }
 }
 
-public extension View {
-    func typographyStyle(_ style: TypographyStyle) -> some View {
+extension View {
+    public func typographyStyle(_ style: TypographyStyle) -> some View {
         self.modifier(TypographyModifier(style: style))
     }
 }

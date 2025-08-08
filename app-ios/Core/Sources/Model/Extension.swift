@@ -9,7 +9,7 @@ extension Model.MultiLangText {
             return enTitle
         }
     }
-    
+
     public var currentLangTitle: String {
         let isJapanese = Locale.current.language.languageCode == .japanese
         return isJapanese ? jaTitle : enTitle
@@ -66,22 +66,25 @@ extension Model.DroidKaigi2024Day {
     public var start: Date {
         switch self {
         case .workday:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 11).date!
+            return DateComponents(calendar: .current, year: 2024, month: 9, day: 11).date ?? Date()
         case .conferenceDay1:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 12).date!
+            return DateComponents(calendar: .current, year: 2024, month: 9, day: 12).date ?? Date()
         case .conferenceDay2:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 13).date!
+            return DateComponents(calendar: .current, year: 2024, month: 9, day: 13).date ?? Date()
         }
     }
 
     public var end: Date {
         switch self {
         case .workday:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 11, hour: 23, minute: 59, second: 59).date!
+            return DateComponents(calendar: .current, year: 2024, month: 9, day: 11, hour: 23, minute: 59, second: 59)
+                .date ?? Date()
         case .conferenceDay1:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 12, hour: 23, minute: 59, second: 59).date!
+            return DateComponents(calendar: .current, year: 2024, month: 9, day: 12, hour: 23, minute: 59, second: 59)
+                .date ?? Date()
         case .conferenceDay2:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 13, hour: 23, minute: 59, second: 59).date!
+            return DateComponents(calendar: .current, year: 2024, month: 9, day: 13, hour: 23, minute: 59, second: 59)
+                .date ?? Date()
         }
     }
 
@@ -128,7 +131,7 @@ extension Model.DroidKaigi2024Day {
     }
 
     public static func visibleDays() -> [Model.DroidKaigi2024Day] {
-        return [.conferenceDay1, .conferenceDay2]
+        [.conferenceDay1, .conferenceDay2]
     }
 }
 
@@ -206,15 +209,10 @@ extension Model.Timetable {
 
 extension Model.Filters {
     public func isEmpty() -> Bool {
-        days.isEmpty &&
-        categories.isEmpty &&
-        sessionTypes.isEmpty &&
-        languages.isEmpty &&
-        !filterFavorite &&
-        searchWord.isEmpty
+        days.isEmpty && categories.isEmpty && sessionTypes.isEmpty && languages.isEmpty && !filterFavorite
+            && searchWord.isEmpty
     }
 }
-
 
 extension Model.Lang {
     public var tagName: String {
@@ -231,11 +229,11 @@ extension Model.Lang {
     public var backgroundColor: Int64 {
         switch self {
         case .mixed:
-            return 0xFF4285F4
+            return 0xFF42_85F4
         case .japanese:
-            return 0xFFE91E63
+            return 0xFFE9_1E63
         case .english:
-            return 0xFF00BCD4
+            return 0xFF00_BCD4
         }
     }
 
