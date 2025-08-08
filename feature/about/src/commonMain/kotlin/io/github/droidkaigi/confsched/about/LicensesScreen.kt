@@ -1,10 +1,7 @@
 package io.github.droidkaigi.confsched.about
 
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -41,7 +38,6 @@ fun LicensesScreen(
     ) { innerPadding ->
         LibrariesContainer(
             libraries = libraries,
-            contentPadding = WindowInsets.safeDrawing.asPaddingValues(),
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize(),
