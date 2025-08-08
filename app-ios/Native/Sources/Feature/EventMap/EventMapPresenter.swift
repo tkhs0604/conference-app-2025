@@ -8,9 +8,9 @@ import Presentation
 final class EventMapPresenter {
     let eventMap = EventMapProvider()
     var selectedFloorMap: FloorMap = .first
-    
+
     init() {}
-    
+
     func loadInitial() async {
         await eventMap.fetchEvents()
     }
@@ -24,7 +24,7 @@ final class EventMapPresenter {
 enum FloorMap: String, CaseIterable {
     case first = "1F"
     case b1f = "B1F"
-    
+
     var image: String {
         switch self {
         case .b1f:
@@ -34,4 +34,3 @@ enum FloorMap: String, CaseIterable {
         }
     }
 }
-

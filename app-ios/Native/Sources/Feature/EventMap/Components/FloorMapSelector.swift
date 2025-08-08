@@ -3,7 +3,7 @@ import Theme
 
 struct FloorMapSelector: View {
     @Binding var selected: FloorMap?
-    
+
     var body: some View {
         HStack(spacing: 6) {
             ForEach(FloorMap.allCases, id: \.self) { floor in
@@ -22,7 +22,7 @@ private struct FloorMapButton: View {
     let floor: FloorMap
     let isSelected: Bool
     let action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             HStack(spacing: 8) {
@@ -34,7 +34,9 @@ private struct FloorMapButton: View {
         }
         .font(Typography.labelLarge)
         .fontWeight(isSelected ? .semibold : .regular)
-        .foregroundColor(isSelected ? AssetColors.onSecondaryContainer.swiftUIColor : AssetColors.onSurface.swiftUIColor)
+        .foregroundColor(
+            isSelected ? AssetColors.onSecondaryContainer.swiftUIColor : AssetColors.onSurface.swiftUIColor
+        )
         .padding(.vertical, 6)
         .padding(.trailing, 16)
         .padding(.leading, isSelected ? 8 : 16)

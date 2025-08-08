@@ -1,15 +1,15 @@
-import SwiftUI
-import Theme
 import Dependencies
 import DependencyExtra
+import SwiftUI
+import Theme
 
 public struct EventMapScreen: View {
     @State private var presenter = EventMapPresenter()
     @State private var selectedFloorMap: FloorMap? = .first
     @Dependency(\.safari) var safari
-    
+
     public init() {}
-    
+
     public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -26,7 +26,7 @@ public struct EventMapScreen: View {
                             presenter.selectFloorMap(floor)
                         }
                     }
-                
+
                 // Map image
                 if selectedFloorMap != nil {
                     // TODO: Replace with actual floor map images
@@ -36,7 +36,7 @@ public struct EventMapScreen: View {
                         .frame(maxWidth: .infinity)
                         .padding(.all, 16)
                 }
-                
+
                 // Events section
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(presenter.eventMap.events, id: \.0) { eventWithIndex in
@@ -57,9 +57,9 @@ public struct EventMapScreen: View {
         }
         .background(AssetColors.background.swiftUIColor)
         .navigationTitle("イベントマップ")
-#if os(iOS)
-        .navigationBarTitleDisplayMode(.large)
-#endif
+        #if os(iOS)
+            .navigationBarTitleDisplayMode(.large)
+        #endif
         .task {
             await presenter.loadInitial()
             if selectedFloorMap == nil {

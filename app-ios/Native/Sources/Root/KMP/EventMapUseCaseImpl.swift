@@ -1,7 +1,7 @@
-import UseCase
-import Model
-import shared
 import Foundation
+import Model
+import UseCase
+import shared
 
 struct EventMapUseCaseImpl {
     func load() async throws(LoadEventError) -> Model.EventMap {

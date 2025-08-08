@@ -15,8 +15,8 @@ public enum EventMapUseCaseKey: TestDependencyKey {
     public static let testValue: EventMapUseCase = EventMapUseCase()
 }
 
-public extension DependencyValues {
-    var eventMapUseCase: EventMapUseCase {
+extension DependencyValues {
+    public var eventMapUseCase: EventMapUseCase {
         get { self[EventMapUseCaseKey.self] }
         set { self[EventMapUseCaseKey.self] = newValue }
     }
