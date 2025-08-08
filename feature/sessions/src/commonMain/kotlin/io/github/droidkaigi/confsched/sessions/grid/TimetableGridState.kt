@@ -34,7 +34,7 @@ fun rememberTimetableGridState(
     timetable: Timetable,
     timeLine: TimeLine?,
     selectedDay: DroidKaigi2025Day,
-    scrollState: TimetableScrollState = rememberTimetableScrollState(),
+    scrollState: TimetableScrollState,
     density: Density = LocalDensity.current,
 ) = remember(timetable, timeLine, selectedDay, scrollState, density) {
     TimetableGridState(
