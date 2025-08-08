@@ -20,14 +20,14 @@ public struct SponsorScreen: View {
                             }
                         }
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 24)
+                    .padding(.top, 24)
                     .padding(.bottom, 80)  // Tab bar padding
                 }
             }
         }
-        .background(Color.primary.opacity(0.02))
-        .navigationTitle("Sponsors")
+        // TODO: Use AssetColors.Background when available
+        .background(Color(red: 0.067, green: 0.078, blue: 0.094))  // #111418
+        .navigationTitle("スポンサー")
         #if os(iOS)
             .navigationBarTitleDisplayMode(.large)
         #endif
