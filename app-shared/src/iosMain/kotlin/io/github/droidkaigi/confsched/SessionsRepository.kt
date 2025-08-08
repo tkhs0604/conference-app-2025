@@ -51,6 +51,6 @@ class SessionsRepository(
         .filterNotNull()
         .catch {
             // Errors thrown inside flow can't be caught on iOS side, so we catch it here.
-            it.printStackTrace()
+            emit(Timetable())
         }
 }
