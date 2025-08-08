@@ -36,7 +36,7 @@ fun ContributorItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .clickable(enabled = contributor.profileUrl.isNullOrEmpty()) {
+            .clickable(enabled = !contributor.profileUrl.isNullOrEmpty()) {
                 contributor.profileUrl?.let(onClick)
             }
             .padding(
