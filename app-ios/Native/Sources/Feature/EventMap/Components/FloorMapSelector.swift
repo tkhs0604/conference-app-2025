@@ -3,7 +3,7 @@ import Theme
 
 struct FloorMapSelector: View {
     @Binding var selected: FloorMap?
-    
+
     var body: some View {
         HStack(spacing: 6) {
             ForEach(FloorMap.allCases, id: \.self) { floor in

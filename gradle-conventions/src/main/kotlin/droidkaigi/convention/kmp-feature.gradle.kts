@@ -5,6 +5,7 @@ import com.google.devtools.ksp.gradle.KspAATask
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.tasks.KotlinNativeCompile
 import util.library
 import util.libs
 
@@ -85,6 +86,12 @@ tasks.withType<KspAATask>().all {
 }
 
 tasks.withType<KotlinCompile>().all {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+tasks.withType<KotlinNativeCompile>().all {
     if (name != "kspCommonMainKotlinMetadata") {
         dependsOn("kspCommonMainKotlinMetadata")
     }

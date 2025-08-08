@@ -1,23 +1,19 @@
 package io.github.droidkaigi.confsched.favorites
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.session.TimetableList
 import io.github.droidkaigi.confsched.favorites.components.FavoriteFilters
+import io.github.droidkaigi.confsched.favorites.section.FavoriteEmpty
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
@@ -32,6 +28,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun FavoritesScreen(
     uiState: FavoritesScreenUiState,
     modifier: Modifier = Modifier,
+    onTimetableItemClick: (TimetableItemId) -> Unit,
     onBookmarkClick: (TimetableItemId) -> Unit,
     onAllFilterChipClick: () -> Unit,
     onDay1FilterChipClick: () -> Unit,
@@ -61,32 +58,19 @@ fun FavoritesScreen(
                 modifier = Modifier.fillMaxWidth()
             )
             when (uiState.timetableContentState) {
-                FavoritesScreenUiState.TimetableContentState.Empty -> Text("Empty Favorites")
+                FavoritesScreenUiState.TimetableContentState.Empty -> {
+                    FavoriteEmpty(
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
                 is FavoritesScreenUiState.TimetableContentState.FavoriteList -> {
-                    LazyColumn() {
-                        itemsIndexed(
-                            items = uiState.timetableContentState.timetableItemMap.toList(),
-                            key = { _, item -> item.first.key }
-                        ) { index, (timeSlot, timetableItems) ->
-                            Text(
-                                text = "${timeSlot.startTimeString} - ${timeSlot.endTimeString}",
-                            )
-                            timetableItems.forEach { timetableItem ->
-                                Text(timetableItem.title.jaTitle)
-                                IconButton(
-                                    onClick = { onBookmarkClick(timetableItem.id) },
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Filled.Favorite,
-                                        contentDescription = null
-                                    )
-                                }
-                            }
-                            if (index < uiState.timetableContentState.timetableItemMap.size - 1) {
-                                HorizontalDivider()
-                            }
-                        }
-                    }
+                    TimetableList(
+                        timetableItemMap = uiState.timetableContentState.timetableItemMap,
+                        onTimetableItemClick = onTimetableItemClick,
+                        onBookmarkClick = onBookmarkClick,
+                        isBookmarked = { true },
+                        isDateTagVisible = true,
+                    )
                 }
             }
         }
@@ -115,6 +99,7 @@ private fun FavoritesScreenPreview() {
                     )
                 )
             ),
+            onTimetableItemClick = {},
             onBookmarkClick = {},
             onAllFilterChipClick = {},
             onDay1FilterChipClick = {},

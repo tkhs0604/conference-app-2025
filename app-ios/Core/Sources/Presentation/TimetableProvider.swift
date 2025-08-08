@@ -1,14 +1,12 @@
 import Dependencies
-import UseCase
-import Observation
-import Model
 import Foundation
-import SwiftUI
+import Model
+import Observation
+import UseCase
 
-// Enums for UI state
 public enum DayTab: String, CaseIterable, Identifiable {
     public var id: RawValue { rawValue }
-    
+
     case day1 = "Day 1"
     case day2 = "Day 2"
 }
@@ -23,12 +21,14 @@ public final class TimetableProvider {
     @ObservationIgnored
     @Dependency(\.timetableUseCase) private var timeteableUseCase
 
+    @ObservationIgnored
+    private var fetchTask: Task<Void, Never>?
+
     public var timetable: Timetable?
-    
+
     // UI State
     public var favoriteIds: Set<String> = []
     public var dayTimetable: [DroidKaigi2024Day: [TimetableTimeGroupItems]] = [:]
-
 
     // Extract unique rooms from timetable items
     public var rooms: [Room] {
@@ -50,16 +50,21 @@ public final class TimetableProvider {
     public init() {}
 
     @MainActor
-    public func fetchTimetable() async {
-        do {
-            timetable = try await timeteableUseCase.load()
-            for day in DroidKaigi2024Day.allCases {
-                dayTimetable[day] = sortListIntoTimeGroups(
-                    timetableItems: timetable?.dayTimetable(droidKaigi2024Day: day).contents ?? []
-                )
+    public func subscribeTimetableIfNeeded() {
+        guard fetchTask == nil else {
+            return
+        }
+
+        self.fetchTask = Task {
+            for await timetable in timeteableUseCase.load() {
+                self.timetable = timetable
+
+                for day in DroidKaigi2024Day.allCases {
+                    dayTimetable[day] = sortListIntoTimeGroups(
+                        timetableItems: timetable.dayTimetable(droidKaigi2024Day: day).contents
+                    )
+                }
             }
-        } catch {
-            print(error)
         }
     }
 
@@ -70,7 +75,7 @@ public final class TimetableProvider {
             favoriteIds.insert(item.timetableItem.id.value)
         }
     }
-    
+
     public func isFavorite(_ itemId: String) -> Bool {
         favoriteIds.contains(itemId)
     }
@@ -83,16 +88,17 @@ public final class TimetableProvider {
         let myDict = sortedItems.reduce(into: [Date: TimetableTimeGroupItems]()) {
             if $0[$1.0] == nil {
                 $0[$1.0] = TimetableTimeGroupItems(
-                    startsTimeString:$1.0.formatted(.dateTime.hour(.twoDigits(amPM: .omitted)).minute()),
-                    endsTimeString:$1.1.formatted(.dateTime.hour(.twoDigits(amPM: .omitted)).minute()),
-                    items:[]
+                    startsTimeString: $1.0.formatted(.dateTime.hour(.twoDigits(amPM: .omitted)).minute()),
+                    endsTimeString: $1.1.formatted(.dateTime.hour(.twoDigits(amPM: .omitted)).minute()),
+                    items: []
                 )
             }
             $0[$1.0]?.items.append($1.2)
         }
 
         return myDict.values.sorted {
-            $0.items[0].timetableItem.startsAt.timeIntervalSince1970 < $1.items[0].timetableItem.startsAt.timeIntervalSince1970
+            $0.items[0].timetableItem.startsAt.timeIntervalSince1970
+                < $1.items[0].timetableItem.startsAt.timeIntervalSince1970
         }
     }
 }

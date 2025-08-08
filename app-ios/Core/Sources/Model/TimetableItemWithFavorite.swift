@@ -16,7 +16,7 @@ extension TimetableItemWithFavorite: Equatable {
     public static func == (lhs: TimetableItemWithFavorite, rhs: TimetableItemWithFavorite) -> Bool {
         lhs.id == rhs.id && lhs.isFavorited == rhs.isFavorited
     }
-    
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(isFavorited)

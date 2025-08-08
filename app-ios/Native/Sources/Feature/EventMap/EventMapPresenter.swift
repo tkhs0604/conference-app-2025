@@ -1,7 +1,7 @@
+import Foundation
 import Model
 import Observation
 import Presentation
-import Foundation
 
 @MainActor
 @Observable
@@ -14,13 +14,13 @@ final class EventMapPresenter {
     func loadInitial() async {
         await eventMap.fetchEvents()
     }
-    
+
     func selectFloorMap(_ floorMap: FloorMap) {
         selectedFloorMap = floorMap
     }
-    
+
     func moreDetailButtonTapped(_ url: URL) {
-        print("More detail tapped: \(url)")
+        // print("More detail tapped: \(url)")
         // TODO: Open in Safari
     }
 }
@@ -39,3 +39,4 @@ enum FloorMap: String, CaseIterable {
         }
     }
 }
+

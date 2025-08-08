@@ -9,7 +9,7 @@ struct KeyVisual: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 200, height: 80)
                 .foregroundColor(.accentColor)
-            
+
             VStack(spacing: 4) {
                 HStack(spacing: 4) {
                     // TODO: Replace with actual location icon asset when available
@@ -18,7 +18,7 @@ struct KeyVisual: View {
                     Text("Bellesalle Shibuya Garden")
                         .font(.caption)
                 }
-                
+
                 HStack(spacing: 4) {
                     // TODO: Replace with actual schedule icon asset when available
                     Image(systemName: "calendar")

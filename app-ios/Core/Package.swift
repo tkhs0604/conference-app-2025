@@ -3,6 +3,7 @@
 
 import PackageDescription
 
+
 let package = Package(
     name: "Core",
     platforms: [
@@ -21,7 +22,9 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-dependencies.git", exact: "1.9.2"),
     ],
     targets: [
-        .target(name: "Model"),
+        .target(
+            name: "Model"
+        ),
 
         .target(
             name: "Presentation",

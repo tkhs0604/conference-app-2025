@@ -1,7 +1,7 @@
-import SwiftUI
 import Model
-import TimetableDetailFeature
 import SearchFeature
+import SwiftUI
+import TimetableDetailFeature
 
 // Navigation destinations for the entire app
 public enum NavigationDestination: Hashable {
@@ -12,7 +12,7 @@ public enum NavigationDestination: Hashable {
 // Navigation handler that can be passed down
 public struct NavigationHandler {
     let handleSearchNavigation: (SearchNavigationDestination) -> Void
-    
+
     public init(handleSearchNavigation: @escaping (SearchNavigationDestination) -> Void) {
         self.handleSearchNavigation = handleSearchNavigation
     }

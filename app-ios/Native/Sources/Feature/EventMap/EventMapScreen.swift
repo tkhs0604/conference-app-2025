@@ -6,7 +6,7 @@ public struct EventMapScreen: View {
     @State private var selectedFloorMap: FloorMap? = .first
     
     public init() {}
-    
+
     public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -16,7 +16,6 @@ public struct EventMapScreen: View {
                     .foregroundColor(AssetColors.onSurfaceVariant.swiftUIColor)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 10)
-                
                 // Floor selector
                 FloorMapSelector(selected: $selectedFloorMap)
                     .onChange(of: selectedFloorMap) { _, newValue in
@@ -24,7 +23,7 @@ public struct EventMapScreen: View {
                             presenter.selectFloorMap(floor)
                         }
                     }
-                
+
                 // Map image
                 if selectedFloorMap != nil {
                     // TODO: Replace with actual floor map images
@@ -34,7 +33,7 @@ public struct EventMapScreen: View {
                         .frame(maxWidth: .infinity)
                         .padding(.all, 16)
                 }
-                
+
                 // Events section
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(presenter.eventMap.events, id: \.0) { eventWithIndex in
@@ -48,13 +47,13 @@ public struct EventMapScreen: View {
                         }
                     }
                 }
-                .padding(.bottom, 80) // Tab bar padding
+                .padding(.bottom, 80)  // Tab bar padding
             }
         }
         .background(AssetColors.background.swiftUIColor)
         .navigationTitle("イベントマップ")
         #if os(iOS)
-        .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.large)
         #endif
         .task {
             await presenter.loadInitial()

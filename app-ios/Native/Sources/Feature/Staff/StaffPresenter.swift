@@ -1,25 +1,25 @@
+import Foundation
 import Model
 import Observation
 import Presentation
-import Foundation
 
 @MainActor
 @Observable
 final class StaffPresenter {
     var staffList: [Staff] = []
     var isLoading = false
-    
+
     init() {}
-    
+
     func loadStaff() async {
         isLoading = true
         // TODO: Load actual staff data from API
-        staffList = Staff.mockStaff
+        staffList = Staff.mocks
         isLoading = false
     }
-    
+
     func staffTapped(_ staff: Staff) {
-        print("Staff tapped: \(staff.name)")
+        // print("Staff tapped: \(staff.name)")
         // TODO: Open GitHub profile
     }
 }
@@ -31,12 +31,12 @@ struct Staff: Identifiable {
     let role: String?
     let githubUsername: String
     let iconUrl: String?
-    
+
     var githubUrl: URL? {
         URL(string: "https://github.com/\(githubUsername)")
     }
-    
-    static let mockStaff: [Staff] = [
+
+    static let mocks: [Staff] = [
         Staff(id: "1", name: "Alice Johnson", role: "Organizer", githubUsername: "alice", iconUrl: nil),
         Staff(id: "2", name: "Bob Smith", role: "Speaker Coordinator", githubUsername: "bob_smith", iconUrl: nil),
         Staff(id: "3", name: "Charlie Brown", role: "Venue Manager", githubUsername: "charlie", iconUrl: nil),

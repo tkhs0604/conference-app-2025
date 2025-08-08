@@ -5,14 +5,14 @@ public struct Room: Identifiable, Equatable, Hashable, Sendable, Comparable {
     public let name: MultiLangText
     public let type: RoomType
     public let sort: Int32
-    
+
     public init(id: Int32, name: MultiLangText, type: RoomType, sort: Int32) {
         self.id = id
         self.name = name
         self.type = type
         self.sort = sort
     }
-    
+
     public static func < (lhs: Room, rhs: Room) -> Bool {
         lhs.sort < rhs.sort
     }

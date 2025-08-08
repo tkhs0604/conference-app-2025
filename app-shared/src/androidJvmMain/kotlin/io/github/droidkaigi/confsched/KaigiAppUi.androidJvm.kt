@@ -10,6 +10,8 @@ import io.github.droidkaigi.confsched.component.KaigiNavigationScaffold
 import io.github.droidkaigi.confsched.component.MainScreenTab
 import io.github.droidkaigi.confsched.component.NavDisplayWithSharedAxisX
 import io.github.droidkaigi.confsched.model.about.AboutItem
+import io.github.droidkaigi.confsched.model.core.Lang
+import io.github.droidkaigi.confsched.model.core.defaultLang
 import io.github.droidkaigi.confsched.naventry.aboutEntry
 import io.github.droidkaigi.confsched.naventry.contributorsEntry
 import io.github.droidkaigi.confsched.naventry.eventMapEntry
@@ -19,6 +21,7 @@ import io.github.droidkaigi.confsched.naventry.sessionEntries
 import io.github.droidkaigi.confsched.navigation.rememberNavBackStack
 import io.github.droidkaigi.confsched.navigation.sceneStrategy
 import io.github.droidkaigi.confsched.navkey.AboutNavKey
+import io.github.droidkaigi.confsched.navkey.ContributorsNavKey
 import io.github.droidkaigi.confsched.navkey.EventMapNavKey
 import io.github.droidkaigi.confsched.navkey.FavoritesNavKey
 import io.github.droidkaigi.confsched.navkey.ProfileCardNavKey
@@ -75,23 +78,67 @@ actual fun KaigiAppUi() {
                         backStack.add(TimetableItemDetailNavKey(it))
                     }
                 )
-                contributorsEntry()
-                favoritesEntry()
+                contributorsEntry(
+                    onBackClick = { backStack.removeLastOrNull() },
+                    onContributorClick = externalNavController::navigate,
+                )
+                favoritesEntry(
+                    onTimetableItemClick = {
+                        if (backStack.lastOrNull() is TimetableItemDetailNavKey) {
+                            backStack.removeLastOrNull()
+                        }
+                        backStack.add(TimetableItemDetailNavKey(it))
+                    }
+                )
                 eventMapEntry()
                 aboutEntry(
                     onAboutItemClick = { item ->
+                        val portalBaseUrl = if (defaultLang() == Lang.JAPANESE) {
+                            "https://portal.droidkaigi.jp"
+                        } else {
+                            "https://portal.droidkaigi.jp/en"
+                        }
                         when (item) {
-                            AboutItem.Map -> TODO()
-                            AboutItem.Contributors -> TODO()
+                            AboutItem.Map -> {
+                                externalNavController.navigate(
+                                    url = "https://goo.gl/maps/vv9sE19JvRjYKtSP9",
+                                )
+                            }
+
+                            AboutItem.Contributors -> backStack.add(ContributorsNavKey)
                             AboutItem.Staff -> TODO()
                             AboutItem.Sponsors -> TODO()
-                            AboutItem.CodeOfConduct -> TODO()
+                            AboutItem.CodeOfConduct -> {
+                                externalNavController.navigate(
+                                    url = "$portalBaseUrl/about/code-of-conduct",
+                                )
+                            }
+
                             AboutItem.License -> TODO()
-                            AboutItem.PrivacyPolicy -> TODO()
+                            AboutItem.PrivacyPolicy -> {
+                                externalNavController.navigate(
+                                    url = "$portalBaseUrl/about/privacy",
+                                )
+                            }
+
                             AboutItem.Settings -> TODO()
-                            AboutItem.Youtube -> TODO()
-                            AboutItem.X -> TODO()
-                            AboutItem.Medium -> TODO()
+                            AboutItem.Youtube -> {
+                                externalNavController.navigate(
+                                    url = "https://www.youtube.com/c/DroidKaigi",
+                                )
+                            }
+
+                            AboutItem.X -> {
+                                externalNavController.navigate(
+                                    url = "https://twitter.com/DroidKaigi",
+                                )
+                            }
+
+                            AboutItem.Medium -> {
+                                externalNavController.navigate(
+                                    url = "https://medium.com/droidkaigi",
+                                )
+                            }
                         }
                     }
                 )

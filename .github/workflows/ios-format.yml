@@ -1,0 +1,30 @@
+name: iOS Format
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'app-ios/**'
+      - '.github/workflows/ios-format.yml'
+
+jobs:
+  format:
+    name: swift-format Check
+    runs-on: ubuntu-latest
+    container:
+      image: swift:6.1.2-noble
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Install dependencies
+      run: |
+        apt-get update && apt-get install -y \
+          make \
+          git
+          
+    - name: Check swift-format
+      working-directory: app-ios
+      run: |
+        make ci-format

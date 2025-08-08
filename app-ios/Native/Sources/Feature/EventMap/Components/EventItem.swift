@@ -6,7 +6,7 @@ import Component
 struct EventItem: View {
     let event: EventMapEvent
     let onMoreDetailTapped: (URL) -> Void
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 12) {
@@ -15,12 +15,11 @@ struct EventItem: View {
                     .font(Typography.titleMedium)
                     .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
             }
-            
             Text(event.description)
                 .font(Typography.bodyLarge)
                 .foregroundColor(AssetColors.onSurfaceVariant.swiftUIColor)
                 .fixedSize(horizontal: false, vertical: true)
-            
+
             if let url = event.moreDetailUrl {
                 Button(action: {
                     onMoreDetailTapped(url)
