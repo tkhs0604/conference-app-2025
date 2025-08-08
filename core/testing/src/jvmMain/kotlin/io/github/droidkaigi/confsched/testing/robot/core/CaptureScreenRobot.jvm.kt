@@ -1,7 +1,9 @@
 package io.github.droidkaigi.confsched.testing.robot.core
 
+import androidx.compose.ui.test.ComposeUiTest
 import androidx.compose.ui.test.SemanticsNodeInteraction
 
+context(composeUiTest: ComposeUiTest)
 actual fun SemanticsNodeInteraction.captureNodeWithDescription(description: String) {
     /**
      * No-op for JVM, as we cannot make it work with Roborazzi for now.

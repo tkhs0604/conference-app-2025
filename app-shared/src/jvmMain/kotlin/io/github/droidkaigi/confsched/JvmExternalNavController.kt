@@ -1,8 +1,15 @@
 package io.github.droidkaigi.confsched
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 
-class JvmExternalNavController: ExternalNavController {
+@Composable
+actual fun rememberExternalNavController(): ExternalNavController {
+    return remember { JvmExternalNavController() }
+}
+
+class JvmExternalNavController : ExternalNavController {
     override fun navigate(url: String) {
         TODO("Not yet implemented")
     }

@@ -88,7 +88,7 @@ private fun FavoriteFilterChip(
 
 @Composable
 @Preview
-fun FavoriteFiltersPreview() {
+private fun FavoriteFiltersPreview() {
     KaigiPreviewContainer {
         FavoriteFilters(
             allFilterSelected = false,

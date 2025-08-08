@@ -1,8 +1,10 @@
+import Dependencies
 import Model
 import Observation
 import SwiftUI
 import Theme
 import Presentation
+import Component
 
 public struct HomeScreen: View {
     @State private var presenter = HomePresenter()
@@ -11,114 +13,89 @@ public struct HomeScreen: View {
     @State private var targetLocationPoint: CGPoint?
     @State private var timetableMode: TimetableMode = .list
     @State private var selectedDay: DayTab = .day1
-
-    public init() {}
+    
+    let onNavigate: (HomeNavigationDestination) -> Void
+    
+    public init(onNavigate: @escaping (HomeNavigationDestination) -> Void = { _ in }) {
+        self.onNavigate = onNavigate
+    }
 
     public var body: some View {
         let timetableItems = presenter.timetable.dayTimetable[selectedDay.model] ?? []
 
-        NavigationStack {
-            ZStack {
-                VStack(spacing: 0) {
-                    dayTabBar
-                    
-                    if timetableMode == .list {
-                        TimetableListView(
-                            timetableItems: timetableItems,
-                            onItemTap: { item in
-                                presenter.timetableItemTapped(item)
-                            },
-                            onFavoriteTap: { item, _ in
-                                presenter.timetable.toggleFavorite(item)
-                            },
-                            animationTrigger: { timetableItem, location in
-                                toggleFavorite(timetableItem: timetableItem, adjustedLocationPoint: location)
-                            }
-                        )
-                    } else {
-                        TimetableGridView(
-                            timetableItems: timetableItems,
-                            onItemTap: { item in
-                                presenter.timetableItemTapped(item)
-                            },
-                            isFavorite: { itemId in
-                                presenter.timetable.isFavorite(itemId)
-                            }
-                        )
-                    }
-                }
-                .background(Color(.systemBackground))
-                
-                FavoriteAnimationView(
-                    targetTimetableItemId: targetTimetableItemId,
-                    targetLocationPoint: targetLocationPoint,
-                    animationProgress: animationProgress
-                )
-            }
-            .navigationTitle("Timetable")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    HStack {
-                        Button(action: {
-                            presenter.searchTapped()
-                        }) {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(Color(.label))
-                                .frame(width: 40, height: 40)
+        ZStack {
+            Group {
+                switch timetableMode {
+                case .list:
+                    TimetableListView(
+                        selectedDay: $selectedDay,
+                        timetableItems: timetableItems,
+                        onItemTap: { item in
+                            onNavigate(.timetableDetail(item))
+                        },
+                        onFavoriteTap: { item, _ in
+                            presenter.timetable.toggleFavorite(item)
+                        },
+                        animationTrigger: { timetableItem, location in
+                            toggleFavorite(timetableItem: timetableItem, adjustedLocationPoint: location)
                         }
-                        
-                        Button(action: {
-                            timetableMode = timetableMode == .list ? .grid : .list
-                        }) {
-                            Image(systemName: timetableMode == .list ? "square.grid.2x2" : "list.bullet")
-                                .foregroundColor(Color(.label))
-                                .frame(width: 40, height: 40)
+                    )
+                case .grid:
+                    TimetableGridView(
+                        selectedDay: $selectedDay,
+                        timetableItems: timetableItems,
+                        rooms: presenter.timetable.rooms,
+                        onItemTap: { item in
+                            onNavigate(.timetableDetail(item))
+                        },
+                        isFavorite: { itemId in
+                            presenter.timetable.isFavorite(itemId)
                         }
-                    }
+                    )
                 }
             }
+            
+            FavoriteAnimationView(
+                targetTimetableItemId: targetTimetableItemId,
+                targetLocationPoint: targetLocationPoint,
+                animationProgress: animationProgress
+            )
         }
-        .task {
-            await presenter.loadInitial()
-        }
-    }
-    
-    private var dayTabBar: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 20) {
-                ForEach(DayTab.allCases) { day in
+        .background(
+            Image("background_night", bundle: .module)
+                .resizable()
+                .edgesIgnoringSafeArea(.all)
+        )
+        .navigationTitle("Timetable")
+        .navigationBarTitleDisplayMode(.automatic)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                HStack {
                     Button(action: {
-                        selectedDay = day
+                        onNavigate(.search)
                     }) {
-                        VStack(spacing: 4) {
-                            Text(day.rawValue)
-                                .font(.system(size: 16, weight: .medium))
-                                .foregroundColor(selectedDay == day ? Color.blue : Color(.label))
-                            
-                            if selectedDay == day {
-                                Rectangle()
-                                    .fill(Color.blue)
-                                    .frame(height: 2)
-                            } else {
-                                Rectangle()
-                                    .fill(Color.clear)
-                                    .frame(height: 2)
-                            }
-                        }
+                        Image(systemName: "magnifyingglass")
+                            .foregroundStyle(AssetColors.onSurface.swiftUIColor)
+                            .frame(width: 40, height: 40)
                     }
-                    .buttonStyle(PlainButtonStyle())
+                    
+                    Button(action: {
+                        timetableMode = timetableMode == .list ? .grid : .list
+                    }) {
+                        Image(systemName: timetableMode == .list ? "square.grid.2x2" : "list.bullet")
+                            .foregroundStyle(AssetColors.onSurface.swiftUIColor)
+                            .frame(width: 40, height: 40)
+                    }
                 }
-                
-                Spacer()
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 8)
         }
-        .background(Color(.secondarySystemBackground))
+        .toolbarBackground(.hidden, for: .navigationBar)
+        .onAppear {
+            presenter.loadInitial()
+        }
     }
     
-    private func toggleFavorite(timetableItem: TimetableItem, adjustedLocationPoint: CGPoint?) {
+    private func toggleFavorite(timetableItem: any TimetableItem, adjustedLocationPoint: CGPoint?) {
         targetLocationPoint = adjustedLocationPoint
         targetTimetableItemId = timetableItem.id.value
 
@@ -130,7 +107,7 @@ public struct HomeScreen: View {
                 try await Task.sleep(nanoseconds: 1_000_000_000)
                 targetTimetableItemId = nil
                 targetLocationPoint = nil
-                animationProgress = 0
+                self.animationProgress = 0
             }
         }
     }

@@ -5,11 +5,13 @@ import com.google.devtools.ksp.gradle.KspAATask
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.tasks.KotlinNativeCompile
 import util.library
 import util.libs
 
 plugins {
     id("droidkaigi.primitive.kmp")
+    id("droidkaigi.primitive.kmp.ios")
     id("droidkaigi.primitive.kmp.compose")
     id("droidkaigi.primitive.kmp.compose.resources")
     id("droidkaigi.primitive.kmp.roborazzi")
@@ -39,6 +41,10 @@ kotlin {
             implementation(libs.library("kotlinTest"))
             implementation(libs.library("lifecycleViewmodelCompose"))
             implementation(libs.library("lifecycleRuntimeCompose"))
+        }
+
+        androidMain.dependencies {
+            implementation(libs.library("lifecycleViewmodelNavigation3"))
         }
 
         jvmMain.dependencies {
@@ -80,6 +86,12 @@ tasks.withType<KspAATask>().all {
 }
 
 tasks.withType<KotlinCompile>().all {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+tasks.withType<KotlinNativeCompile>().all {
     if (name != "kspCommonMainKotlinMetadata") {
         dependsOn("kspCommonMainKotlinMetadata")
     }

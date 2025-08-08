@@ -22,6 +22,7 @@ kotlin {
         freeCompilerArgs.addAll(
             "-Xcontext-parameters",
             "-Xwhen-guards",
+            "-Xexpect-actual-classes",
             "-opt-in=kotlin.time.ExperimentalTime",
         )
     }

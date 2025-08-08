@@ -9,6 +9,11 @@ extension Model.MultiLangText {
             return enTitle
         }
     }
+    
+    public var currentLangTitle: String {
+        let isJapanese = Locale.current.language.languageCode == .japanese
+        return isJapanese ? jaTitle : enTitle
+    }
 }
 
 extension Model.TimetableLanguage {
@@ -130,10 +135,6 @@ extension Model.DroidKaigi2024Day {
 // MARK: - TimetableItem Extension
 
 extension Model.TimetableItem {
-    public var day: Model.DroidKaigi2024Day? {
-        Model.DroidKaigi2024Day.ofOrNull(time: startsAt)
-    }
-
     public var startsLocalTime: Date {
         startsAt
     }

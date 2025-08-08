@@ -118,7 +118,7 @@ private fun FloorText(
 
 @Preview
 @Composable
-fun TimetableDayTabPreview() {
+private fun TimetableDayTabPreview() {
     KaigiPreviewContainer {
         Surface {
             TimetableDayTab(

@@ -1,6 +1,6 @@
 package io.github.droidkaigi.confsched.model.data
 
 import io.github.droidkaigi.confsched.model.sessions.Timetable
-import soil.query.SubscriptionKey
+import soil.query.QueryKey
 
-typealias TimetableSubscriptionKey = SubscriptionKey<Timetable>
+typealias TimetableQueryKey = QueryKey<Timetable>

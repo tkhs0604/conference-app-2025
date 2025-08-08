@@ -142,7 +142,7 @@ extension Model.TimetableSessionType {
 // MARK: - DroidKaigi2024Day Converters
 
 extension Model.DroidKaigi2024Day {
-    init?(from shared: shared.DroidKaigi2024Day) {
+    init?(from shared: shared.DroidKaigi2025Day) {
         switch shared {
         case .workday:
             self = .workday
@@ -150,8 +150,6 @@ extension Model.DroidKaigi2024Day {
             self = .conferenceDay1
         case .conferenceDay2:
             self = .conferenceDay2
-        default:
-            return nil
         }
     }
 }
@@ -174,7 +172,8 @@ extension Model.TimetableItemSession {
             levels: shared.levels,
             speakers: shared.speakers.map { Model.Speaker(from: $0) },
             description: Model.MultiLangText(from: shared.description_),
-            message: shared.message.map { Model.MultiLangText(from: $0) }
+            message: shared.message.map { Model.MultiLangText(from: $0) },
+            day: shared.day.map { Model.DroidKaigi2024Day(from: $0)! }
         )
     }
 }
@@ -195,7 +194,8 @@ extension Model.TimetableItemSpecial {
             levels: shared.levels,
             speakers: shared.speakers.map { Model.Speaker(from: $0) },
             description: Model.MultiLangText(from: shared.description_),
-            message: shared.message.map { Model.MultiLangText(from: $0) }
+            message: shared.message.map { Model.MultiLangText(from: $0) },
+            day: shared.day.map { Model.DroidKaigi2024Day(from: $0)! }
         )
     }
 }
@@ -261,7 +261,7 @@ extension Model.Filters {
 
 // MARK: - Helper Extensions
 
-extension shared.Kotlinx_datetimeInstant {
+extension shared.KotlinInstant {
     var date: Date {
         Date(timeIntervalSince1970: TimeInterval(epochSeconds))
     }

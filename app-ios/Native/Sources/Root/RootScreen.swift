@@ -1,6 +1,17 @@
 import Dependencies
 import SwiftUI
 import HomeFeature
+import AboutFeature
+import ContributorFeature
+import EventMapFeature
+import FavoriteFeature
+import ProfileCardFeature
+import SearchFeature
+import SponsorFeature
+import StaffFeature
+import TimetableDetailFeature
+import Model
+import Theme
 
 private enum TabType: CaseIterable, Hashable {
     case timetable
@@ -28,6 +39,10 @@ private enum TabType: CaseIterable, Hashable {
 public struct RootScreen: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var selectedTab: TabType = .timetable
+    @State private var navigationPath = NavigationPath()
+    @State private var aboutNavigationPath = NavigationPath()
+    @State private var favoriteNavigationPath = NavigationPath()
+    @State private var composeMultiplatformEnabled: Bool = false
     private let presenter = RootPresenter()
     
     public init() {
@@ -35,71 +50,112 @@ public struct RootScreen: View {
     }
     
     public var body: some View {
-        Group {
-            if #available(iOS 26, *) {
-                TabView(selection: $selectedTab) {
-                    Tab("Timetable",
-                        image: TabType.timetable.tabImageName(selectedTab),
-                        value: .timetable
-                    ) {
-                        HomeScreen()
+        if (composeMultiplatformEnabled) {
+            KmpAppComposeViewControllerWrapper()
+                .environment(\.colorScheme, .dark)
+                .ignoresSafeArea(.all)
+        } else {
+            ZStack(alignment: .bottom) {
+                switch selectedTab {
+                case .timetable:
+                    NavigationStack(path: $navigationPath) {
+                        HomeScreen(onNavigate: handleHomeNavigation)
+                            .navigationDestination(for: NavigationDestination.self) { destination in
+                                let navigationHandler = NavigationHandler(
+                                    handleSearchNavigation: handleSearchNavigation
+                                )
+                                destination.view(with: navigationHandler)
+                            }
                     }
-                    Tab("Map",
-                        image: TabType.map.tabImageName(selectedTab),
-                        value: .map
-                    ) {
-                        // TODO: Replace correct screen
-                        HomeScreen()
+                case .map:
+                    NavigationStack {
+                        EventMapScreen()
                     }
-                    Tab("Favorite",
-                        image: TabType.favorite.tabImageName(selectedTab),
-                        value: .favorite
-                    ) {
-                        // TODO: Replace correct screen
-                        HomeScreen()
+                case .favorite:
+                    NavigationStack(path: $favoriteNavigationPath) {
+                        FavoriteScreen(onNavigate: handleFavoriteNavigation)
+                            .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
+                                switch destination {
+                                case .timetableDetail(let item):
+                                    TimetableDetailScreen(timetableItem: item)
+                                }
+                            }
                     }
-                    Tab("Info",
-                        image: TabType.info.tabImageName(selectedTab),
-                        value: .info
-                    ) {
-                        // TODO: Replace correct screen
-                        HomeScreen()
+                case .info:
+                    NavigationStack(path: $aboutNavigationPath) {
+                        AboutScreen(
+                            onNavigate: handleAboutNavigation,
+                            onEnableComposeMultiplatform: handleEnableComposeMultiplatform,
+                        )
+                        .navigationDestination(for: AboutNavigationDestination.self) { destination in
+                            switch destination {
+                            case .contributors:
+                                ContributorScreen()
+                            case .staff:
+                                StaffScreen()
+                            case .sponsors:
+                                SponsorScreen()
+                            case .codeOfConduct:
+                                Text("Code of Conduct")
+                                    .navigationTitle("Code of Conduct")
+                            case .privacyPolicy:
+                                Text("Privacy Policy")
+                                    .navigationTitle("Privacy Policy")
+                            case .licenses:
+                                Text("Licenses")
+                                    .navigationTitle("Licenses")
+                            case .settings:
+                                Text("Settings")
+                                    .navigationTitle("Settings")
+                            }
+                        }
                     }
-                    Tab("Profile Card",
-                        image: TabType.profileCard.tabImageName(selectedTab),
-                        value: .profileCard
-                    ) {
-                        // TODO: Replace correct screen
-                        HomeScreen()
+                case .profileCard:
+                    NavigationStack {
+                        ProfileCardScreen()
                     }
                 }
-            } else {
-                ZStack(alignment: .bottom) {
-                    switch selectedTab {
-                    case .timetable:
-                        HomeScreen()
-                    case .map:
-                        HomeScreen()
-                    case .favorite:
-                        HomeScreen()
-                    case .info:
-                        HomeScreen()
-                    case .profileCard:
-                        HomeScreen()
-                    }
-                    tabBar
-                }
+                
+                tabBar
             }
+            .onAppear {
+                presenter.prepareWindow()
+            }
+            .onChange(of: scenePhase) {
+                ScenePhaseHandler.handle(scenePhase)
+            }
+            .preferredColorScheme(.dark)
         }
-        .onAppear {
-            presenter.prepareWindow()
+    }
+    
+    private func handleHomeNavigation(_ destination: HomeNavigationDestination) {
+        switch destination {
+        case .timetableDetail(let item):
+            navigationPath.append(NavigationDestination.timetableDetail(item))
+        case .search:
+            navigationPath.append(NavigationDestination.search)
         }
-        .onChange(of: scenePhase) {
-            ScenePhaseHandler.handle(scenePhase)
+    }
+    
+    private func handleAboutNavigation(_ destination: AboutNavigationDestination) {
+        aboutNavigationPath.append(destination)
+    }
+    
+    private func handleFavoriteNavigation(_ destination: FavoriteNavigationDestination) {
+        favoriteNavigationPath.append(destination)
+    }
+    
+    private func handleSearchNavigation(_ destination: SearchNavigationDestination) {
+        switch destination {
+        case .timetableDetail(let item):
+            navigationPath.append(NavigationDestination.timetableDetail(item))
         }
-        .preferredColorScheme(.dark)
     }
 
+    private func handleEnableComposeMultiplatform() {
+        composeMultiplatformEnabled = true
+    }
+    
     @ViewBuilder
     private var tabBar: some View {
         GeometryReader { geometry in
@@ -111,7 +167,7 @@ public struct RootScreen: View {
                     } label: {
                         Image(item.tabImageName(selectedTab))
                             .renderingMode(.template)
-                            .tint(isSelected ? .accentColor : Color("tab_inactive"))
+                            .tint(isSelected ? AssetColors.primary40.swiftUIColor : AssetColors.onSurfaceVariant.swiftUIColor)
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                             .contentShape(Rectangle())
                     }
@@ -128,7 +184,7 @@ public struct RootScreen: View {
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 12)
         .background(.ultraThinMaterial, in: Capsule())
-        .overlay(Capsule().stroke(.gray, lineWidth: 1))
+        .overlay(Capsule().stroke(AssetColors.outline.swiftUIColor, lineWidth: 1))
         .environment(\.colorScheme, .dark)
         .padding(.horizontal, 48)
     }

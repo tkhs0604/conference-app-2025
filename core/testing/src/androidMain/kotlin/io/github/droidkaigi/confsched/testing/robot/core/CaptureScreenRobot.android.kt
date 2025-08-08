@@ -1,11 +1,13 @@
 package io.github.droidkaigi.confsched.testing.robot.core
 
+import androidx.compose.ui.test.ComposeUiTest
 import androidx.compose.ui.test.SemanticsNodeInteraction
 import com.github.takahirom.roborazzi.DefaultFileNameGenerator
 import com.github.takahirom.roborazzi.InternalRoborazziApi
 import com.github.takahirom.roborazzi.captureRoboImage
 
 @OptIn(InternalRoborazziApi::class)
+context(composeUiTest: ComposeUiTest)
 actual fun SemanticsNodeInteraction.captureNodeWithDescription(description: String) {
     val filePath = DefaultFileNameGenerator.generateFilePath()
         .split(".")

@@ -23,25 +23,51 @@ public final class TimetableProvider {
     @ObservationIgnored
     @Dependency(\.timetableUseCase) private var timeteableUseCase
 
+    @ObservationIgnored
+    private var fetchTask: Task<Void, Never>?
+
     public var timetable: Timetable?
-    
+
     // UI State
     public var favoriteIds: Set<String> = []
     public var dayTimetable: [DroidKaigi2024Day: [TimetableTimeGroupItems]] = [:]
 
+
+    // Extract unique rooms from timetable items
+    public var rooms: [Room] {
+        var uniqueRooms: [Room] = []
+        var seenRoomIds: Set<Int32> = []
+
+        for item in timetable?.timetableItems ?? [] {
+            let room = item.room
+            if !seenRoomIds.contains(room.id) {
+                seenRoomIds.insert(room.id)
+                uniqueRooms.append(room)
+            }
+        }
+
+        // Sort rooms by their sort order
+        return uniqueRooms.sorted()
+    }
+
     public init() {}
 
     @MainActor
-    public func fetchTimetable() async {
-        do {
-            timetable = try await timeteableUseCase.load()
-            for day in DroidKaigi2024Day.allCases {
-                dayTimetable[day] = sortListIntoTimeGroups(
-                    timetableItems: timetable?.dayTimetable(droidKaigi2024Day: day).contents ?? []
-                )
+    public func subscribeTimetableIfNeeded() {
+        guard fetchTask == nil else {
+            return
+        }
+
+        self.fetchTask = Task {
+            for await timetable in timeteableUseCase.load() {
+                self.timetable = timetable
+
+                for day in DroidKaigi2024Day.allCases {
+                    dayTimetable[day] = sortListIntoTimeGroups(
+                        timetableItems: timetable.dayTimetable(droidKaigi2024Day: day).contents
+                    )
+                }
             }
-        } catch {
-            print(error)
         }
     }
 

@@ -62,7 +62,6 @@ dependencies {
 
     implementation(projects.feature.sessions)
     implementation(projects.feature.about)
-    implementation(projects.feature.main)
     implementation(projects.feature.sponsors)
     implementation(projects.feature.settings)
     implementation(projects.feature.staff)
