@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.layout.CollapsingHeaderLayout
 import io.github.droidkaigi.confsched.droidkaigiui.layout.rememberCollapsingHeaderEnterAlwaysState
+import io.github.droidkaigi.confsched.droidkaigiui.session.TimetableList
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
 import io.github.droidkaigi.confsched.model.sessions.Timetable
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
@@ -44,7 +45,6 @@ import io.github.droidkaigi.confsched.model.sessions.fake
 import io.github.droidkaigi.confsched.sessions.components.TimetableTopAppBar
 import io.github.droidkaigi.confsched.sessions.grid.TimetableGrid
 import io.github.droidkaigi.confsched.sessions.grid.TimetableGridUiState
-import io.github.droidkaigi.confsched.sessions.section.TimetableList
 import io.github.droidkaigi.confsched.sessions.section.TimetableListUiState
 import io.github.droidkaigi.confsched.sessions.section.TimetableUiState
 import kotlinx.collections.immutable.persistentMapOf
@@ -56,7 +56,7 @@ fun TimetableScreen(
     uiState: TimetableScreenUiState,
     onSearchClick: () -> Unit,
     onTimetableItemClick: (TimetableItemId) -> Unit,
-    onBookmarkClick: (sessionId: String, isBookmarked: Boolean) -> Unit,
+    onBookmarkClick: (sessionId: String) -> Unit,
     onTimetableUiChangeClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -142,14 +142,15 @@ fun TimetableScreen(
                     }
 
                     is TimetableUiState.ListTimetable -> {
+                        val timetableListUiState = requireNotNull(uiState.timetable.timetableListUiStates[uiState.timetable.selectedDay])
                         TimetableList(
+                            timetableItemMap = timetableListUiState.timetableItemMap,
+                            onTimetableItemClick = onTimetableItemClick,
+                            onBookmarkClick = { id -> onBookmarkClick(id.value) },
+                            isBookmarked =  { id -> timetableListUiState.timetable.bookmarks.contains(id) },
                             lazyListState = lazyListState,
-                            uiState = requireNotNull(uiState.timetable.timetableListUiStates[uiState.timetable.selectedDay]),
-                            onTimetableItemClick = { onTimetableItemClick(it.id) },
-                            onBookmarkClick = { timetableItem, isBookmarked ->
-                                onBookmarkClick(timetableItem.id.value, isBookmarked)
-                            },
-                            contentPadding = WindowInsets.navigationBars.add(WindowInsets(left = 16.dp, right = 16.dp)).asPaddingValues()
+                            contentPadding = WindowInsets.navigationBars.add(WindowInsets(left = 16.dp, right = 16.dp)).asPaddingValues(),
+                            isDateTagVisible = false,
                         )
                     }
                 }
@@ -183,7 +184,7 @@ private fun TimetableScreenPreview() {
                 timetable = TimetableUiState.Empty,
                 uiType = TimetableUiType.List,
             ),
-            onBookmarkClick = { _, _ -> },
+            onBookmarkClick = {},
             onSearchClick = {},
             onTimetableItemClick = {},
             onTimetableUiChangeClick = {},
@@ -212,7 +213,7 @@ private fun TimetableScreenPreview_List() {
                 ),
                 uiType = TimetableUiType.List,
             ),
-            onBookmarkClick = { _, _ -> },
+            onBookmarkClick = {},
             onSearchClick = {},
             onTimetableItemClick = {},
             onTimetableUiChangeClick = {},
@@ -239,7 +240,7 @@ private fun TimetableScreenPreview_Grid() {
                 ),
                 uiType = TimetableUiType.Grid,
             ),
-            onBookmarkClick = { _, _ -> },
+            onBookmarkClick = {},
             onSearchClick = {},
             onTimetableItemClick = {},
             onTimetableUiChangeClick = {},
