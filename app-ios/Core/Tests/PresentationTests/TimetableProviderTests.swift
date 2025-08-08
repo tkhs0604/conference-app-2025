@@ -12,7 +12,10 @@ struct TimetableProviderTest {
         let expectedTimetable = TestData.createSampleTimetable()
         let provider = withDependencies {
             $0.timetableUseCase.load = {
-                expectedTimetable
+                AsyncStream { continuation in
+                    continuation.yield(expectedTimetable)
+                    continuation.finish()
+                }
             }
         } operation: {
             TimetableProvider()
@@ -32,7 +35,10 @@ struct TimetableProviderTest {
         let emptyTimetable = Timetable(timetableItems: [], bookmarks: Set())
         let provider = withDependencies {
             $0.timetableUseCase.load = {
-                emptyTimetable
+                AsyncStream { continuation in
+                    continuation.yield(emptyTimetable)
+                    continuation.finish()
+                }
             }
         } operation: {
             TimetableProvider()
@@ -118,7 +124,10 @@ struct TimetableProviderTest {
         let timetable = TestData.createTimetableWithMultipleTimeSlots()
         let provider = withDependencies {
             $0.timetableUseCase.load = {
-                timetable
+                AsyncStream { continuation in
+                    continuation.yield(timetable)
+                    continuation.finish()
+                }
             }
         } operation: {
             TimetableProvider()
@@ -199,7 +208,7 @@ struct TimetableProviderTest {
             TestData.createTimetableItemSession(id: "2", room: .roomG),
             TestData.createTimetableItemSession(id: "3", room: .roomF), // duplicate
             TestData.createTimetableItemSession(id: "4", room: .roomH),
-            TestData.createTimetableItemSession(id: "5", room: .roomG), // duplicate
+            TestData.createTimetableItemSession(id: "5", room: .roomG) // duplicate
         ]
         
         provider.timetable = Timetable(timetableItems: items, bookmarks: Set())
@@ -240,7 +249,7 @@ struct TimetableProviderTest {
         let items: [any TimetableItem] = [
             TestData.createTimetableItemSession(id: "3", startsAt: date3, endsAt: date3.addingTimeInterval(3600)),
             TestData.createTimetableItemSession(id: "1", startsAt: date1, endsAt: date1.addingTimeInterval(3600)),
-            TestData.createTimetableItemSession(id: "2", startsAt: date2, endsAt: date2.addingTimeInterval(3600)),
+            TestData.createTimetableItemSession(id: "2", startsAt: date2, endsAt: date2.addingTimeInterval(3600))
         ]
         
         let timetable = Timetable(timetableItems: items, bookmarks: Set())
@@ -282,7 +291,7 @@ struct TimetableProviderTest {
         let items: [any TimetableItem] = [
             TestData.createTimetableItemSession(id: "1", startsAt: startTime, endsAt: endTime, room: .roomF),
             TestData.createTimetableItemSession(id: "2", startsAt: startTime, endsAt: endTime, room: .roomG),
-            TestData.createTimetableItemSession(id: "3", startsAt: startTime, endsAt: endTime, room: .roomH),
+            TestData.createTimetableItemSession(id: "3", startsAt: startTime, endsAt: endTime, room: .roomH)
         ]
         
         let timetable = Timetable(timetableItems: items, bookmarks: Set())

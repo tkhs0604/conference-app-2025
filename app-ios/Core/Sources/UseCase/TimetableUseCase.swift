@@ -8,7 +8,7 @@ public struct TimetableUseCase: Sendable {
 }
 
 public enum TimetableUseCaseKey: TestDependencyKey {
-    public static let testValue: TimetableUseCase = TimetableUseCase()
+    public static let testValue = TimetableUseCase()
 }
 
 extension DependencyValues {

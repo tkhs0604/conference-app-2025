@@ -102,9 +102,18 @@ disabled_rules:
   - trailing_whitespace # Can conflict with swift-format
   - line_length # Will be handled by swift-format
   - missing_docs # Too strict for internal code
-  - prefer_self_in_closures # Makes code unnecessarily verbose
   - extension_access_modifier # Not always necessary for internal extensions
   - accessibility_label_for_image # Can be handled case-by-case
+  # Formatting rules handled by swift-format
+  - opening_brace # swift-format handles brace positioning
+  - trailing_comma # swift-format handles trailing commas
+  - sorted_imports # swift-format's OrderedImports handles this
+  - vertical_whitespace # swift-format handles blank lines
+  - colon # swift-format handles colon spacing
+  - comma # swift-format handles comma spacing
+  - statement_position # swift-format handles statement positioning
+  - closure_spacing # swift-format handles closure formatting
+  - return_arrow_whitespace # swift-format handles return arrow spacing
   
 # Rule Configurations
 force_cast: error
