@@ -1,9 +1,9 @@
 import Dependencies
-import Model
-import Testing
 import Foundation
-import UseCase
+import Model
 @testable import Presentation
+import Testing
+import UseCase
 
 struct TimetableProviderTest {
     @MainActor
@@ -382,7 +382,7 @@ enum TestData {
             createTimetableItemSpecial(id: "6", day: .conferenceDay1, startsAt: createDate(hour: 12, minute: 30), endsAt: createDate(hour: 13, minute: 30), sessionType: .lunch),
             
             createTimetableItemSession(id: "7", day: .conferenceDay2, startsAt: createDate(hour: 10, minute: 0), endsAt: createDate(hour: 11, minute: 0), room: .roomF),
-            createTimetableItemSession(id: "8", day: .conferenceDay2, startsAt: createDate(hour: 10, minute: 0), endsAt: createDate(hour: 11, minute: 0), room: .roomG),
+            createTimetableItemSession(id: "8", day: .conferenceDay2, startsAt: createDate(hour: 10, minute: 0), endsAt: createDate(hour: 11, minute: 0), room: .roomG)
         ]
         
         return Timetable(timetableItems: items, bookmarks: Set())
@@ -400,7 +400,7 @@ enum TestData {
         id: String = "1",
         day: DroidKaigi2024Day = .conferenceDay1,
         startsAt: Date = Date(),
-        endsAt: Date = Date().addingTimeInterval(3600),
+        endsAt: Date = Date().addingTimeInterval(3_600),
         room: RoomType = .roomF
     ) -> TimetableItemSession {
         TimetableItemSession(
@@ -426,7 +426,7 @@ enum TestData {
         id: String = "special-1",
         day: DroidKaigi2024Day = .conferenceDay1,
         startsAt: Date = Date(),
-        endsAt: Date = Date().addingTimeInterval(3600),
+        endsAt: Date = Date().addingTimeInterval(3_600),
         sessionType: TimetableSessionType = .lunch
     ) -> TimetableItemSpecial {
         TimetableItemSpecial(

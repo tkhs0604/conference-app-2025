@@ -4,14 +4,14 @@ import SwiftUI
 
 extension RoomType {
     var color: Color {
-        return .blue
+        .blue
     }
 }
 
 extension MultiLangText {
     var currentLangTitle: String {
         // TODO: Use actual locale logic
-        return enTitle
+        enTitle
     }
 }
 

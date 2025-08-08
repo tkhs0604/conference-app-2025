@@ -25,7 +25,7 @@ struct LineShape: Shape {
 
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        path.move(to: CGPoint(x: 0, y: 0))
+        path.move(to: CGPoint.zero)
 
         if axis == .horizontal {
             path.addLine(to: CGPoint(x: rect.width, y: 0))

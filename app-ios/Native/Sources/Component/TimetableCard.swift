@@ -23,9 +23,9 @@ public struct TimetableCard: View {
     }
 
     public var body: some View {
-        Button(action: {
+        Button {
             onTap(timetableItem)
-        }) {
+        } label: {
             VStack(alignment: .leading, spacing: 8) {
                 headerRow
 
@@ -63,10 +63,10 @@ public struct TimetableCard: View {
     }
 
     private var favoriteButton: some View {
-        Button(action: {
+        Button {
             let location = dragLocation
             onTapFavorite(timetableItem, location)
-        }) {
+        } label: {
             Image(systemName: isFavorite ? "heart.fill" : "heart")
                 .foregroundStyle(
                     isFavorite
@@ -74,10 +74,11 @@ public struct TimetableCard: View {
                         : AssetColors.onSurfaceVariant.swiftUIColor
                 )
                 .frame(width: 24, height: 24)
+                .accessibilityLabel(isFavorite ? "Remove from favorites" : "Add to favorites")
         }
         .buttonStyle(PlainButtonStyle())
         .background(
-            GeometryReader { geometry in
+            GeometryReader { _ in
                 Color.clear
                     .onContinuousHover { phase in
                         switch phase {

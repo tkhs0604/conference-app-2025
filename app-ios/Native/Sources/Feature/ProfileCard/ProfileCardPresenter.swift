@@ -14,12 +14,12 @@ final class ProfileCardPresenter {
     init() {}
 
     func shareProfileCard() {
-        print("Share profile card tapped")
+        // print("Share profile card tapped")
         // TODO: Implement sharing functionality
     }
 
     func editProfile() {
-        print("Edit profile tapped")
+        // print("Edit profile tapped")
         // TODO: Implement profile editing
     }
 }

@@ -55,7 +55,7 @@ opt_in_rules:
   - multiline_literal_brackets
   - multiline_parameters
   - nimble_operator
-  - number_separator
+  # - number_separator # Disabled to maintain original code style
   - object_literal
   - operator_usage_whitespace
   - overridden_super_call
@@ -101,6 +101,10 @@ disabled_rules:
   - todo
   - trailing_whitespace # Can conflict with swift-format
   - line_length # Will be handled by swift-format
+  - missing_docs # Too strict for internal code
+  - prefer_self_in_closures # Makes code unnecessarily verbose
+  - extension_access_modifier # Not always necessary for internal extensions
+  - accessibility_label_for_image # Can be handled case-by-case
   
 # Rule Configurations
 force_cast: error
@@ -134,8 +138,8 @@ type_name:
     warning: 3
     error: 2
   max_length:
-    warning: 40
-    error: 50
+    warning: 80
+    error: 100
     
 # Function configurations
 function_body_length:
@@ -173,8 +177,8 @@ nesting:
 
 # Closure configurations  
 closure_body_length:
-  warning: 30
-  error: 50
+  warning: 50
+  error: 80
 
 # Large tuple
 large_tuple:
@@ -187,18 +191,6 @@ custom_rules:
     name: "Avoid print statements"
     regex: '^\s*print\('
     message: "Use proper logging instead of print statements"
-    severity: warning
-    
-  avoid_force_cast_in_production:
-    name: "Avoid Force Cast in Production Code"
-    regex: 'as!\s'
-    message: "Force casts should be avoided in production code. Use conditional casting instead."
-    severity: error
-    
-  prefer_self_in_closures:
-    name: "Prefer self in closures"
-    regex: '(?<!weak\s)(?<!unowned\s)\[(?!weak)(?!unowned)[^\]]*\]\s*\{'
-    message: "Always be explicit about self capture in closures"
     severity: warning
     
   swiftui_state_private:

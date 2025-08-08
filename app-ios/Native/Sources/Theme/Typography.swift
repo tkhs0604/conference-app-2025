@@ -39,8 +39,8 @@ public enum Typography {
 }
 
 // MARK: - View Extension for Typography
-extension View {
-    public func typography(_ style: Font) -> some View {
+public extension View {
+    func typography(_ style: Font) -> some View {
         self.font(style)
     }
 }
@@ -159,8 +159,8 @@ public struct TypographyModifier: ViewModifier {
     }
 }
 
-extension View {
-    public func typographyStyle(_ style: TypographyStyle) -> some View {
+public extension View {
+    func typographyStyle(_ style: TypographyStyle) -> some View {
         self.modifier(TypographyModifier(style: style))
     }
 }

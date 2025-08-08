@@ -173,7 +173,7 @@ extension Model.TimetableItemSession {
             speakers: shared.speakers.map { Model.Speaker(from: $0) },
             description: Model.MultiLangText(from: shared.description_),
             message: shared.message.map { Model.MultiLangText(from: $0) },
-            day: shared.day.map { Model.DroidKaigi2024Day(from: $0)! }
+            day: shared.day.flatMap { Model.DroidKaigi2024Day(from: $0) }
         )
     }
 }
@@ -195,7 +195,7 @@ extension Model.TimetableItemSpecial {
             speakers: shared.speakers.map { Model.Speaker(from: $0) },
             description: Model.MultiLangText(from: shared.description_),
             message: shared.message.map { Model.MultiLangText(from: $0) },
-            day: shared.day.map { Model.DroidKaigi2024Day(from: $0)! }
+            day: shared.day.flatMap { Model.DroidKaigi2024Day(from: $0) }
         )
     }
 }

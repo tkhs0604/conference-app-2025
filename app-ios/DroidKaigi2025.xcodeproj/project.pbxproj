@@ -69,10 +69,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF779E762E0F8D5F000A0710 /* Build configuration list for PBXNativeTarget "DroidKaigi2025" */;
 			buildPhases = (
+				BF770BB22E43BE880000E5E2 /* Build KMP Module */,
 				BF779E662E0F8D5E000A0710 /* Sources */,
+				BF770BC72E450F9D0000E5E2 /* SwiftLint */,
 				BF779E672E0F8D5E000A0710 /* Frameworks */,
 				BF779E682E0F8D5E000A0710 /* Resources */,
-				BF770BB22E43BE880000E5E2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -136,8 +137,9 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BF770BB22E43BE880000E5E2 /* ShellScript */ = {
+		BF770BB22E43BE880000E5E2 /* Build KMP Module */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -145,6 +147,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Build KMP Module";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -152,6 +155,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd $SOURCE_ROOT/../\n./gradlew app-shared:assembleSharedDebugXCFramework -Papp.ios.shared.arch=arm64\n";
+		};
+		BF770BC72E450F9D0000E5E2 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "  if [ -f \"${SRCROOT}/scripts/xcode-lint.sh\" ]; then\n      \"${SRCROOT}/scripts/xcode-lint.sh\"\n  else\n      echo \"warning: Lint script not found at ${SRCROOT}/scripts/xcode-lint.sh\"\n  fi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

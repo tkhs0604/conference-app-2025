@@ -18,13 +18,13 @@ final class ContributorPresenter {
         contributors = [
             Contributor(id: "1", name: "Alice Developer", githubUsername: "alice_dev", iconUrl: nil),
             Contributor(id: "2", name: "Bob Engineer", githubUsername: "bob_eng", iconUrl: nil),
-            Contributor(id: "3", name: "Charlie Designer", githubUsername: "charlie_des", iconUrl: nil),
+            Contributor(id: "3", name: "Charlie Designer", githubUsername: "charlie_des", iconUrl: nil)
         ]
         isLoading = false
     }
 
     func contributorTapped(_ contributor: Contributor) {
-        print("Contributor tapped: \(contributor.name)")
+        // print("Contributor tapped: \(contributor.name)")
         // TODO: Open GitHub profile
     }
 }

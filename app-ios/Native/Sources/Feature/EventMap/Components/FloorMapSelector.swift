@@ -8,7 +8,7 @@ struct FloorMapSelector: View {
             ForEach(FloorMap.allCases, id: \.self) { floor in
                 Button(action: {
                     selected = floor
-                }) {
+                }, label: {
                     Text(floor.rawValue)
                         .font(.subheadline)
                         .fontWeight(selected == floor ? .semibold : .regular)
@@ -19,7 +19,7 @@ struct FloorMapSelector: View {
                             selected == floor ? Color.accentColor : Color.primary.opacity(0.1)
                         )
                         .cornerRadius(20)
-                }
+                })
             }
         }
         .padding(.horizontal, 16)

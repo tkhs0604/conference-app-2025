@@ -3,8 +3,8 @@ import SwiftUI
 import Theme
 
 struct SessionDescriptionView: View {
-    @State private var isDescriptionExpanded: Bool = false
-    @State private var canBeExpanded: Bool = false
+    @State private var isDescriptionExpanded = false
+    @State private var canBeExpanded = false
     let content: String
     let themeColor: Color
 

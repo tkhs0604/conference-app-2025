@@ -18,7 +18,7 @@ struct EventItem: View {
             if let url = event.moreDetailUrl {
                 Button(action: {
                     onMoreDetailTapped(url)
-                }) {
+                }, label: {
                     HStack {
                         Text("More Details")
                             .font(.subheadline)
@@ -26,7 +26,7 @@ struct EventItem: View {
                             .font(.caption)
                     }
                     .foregroundColor(.accentColor)
-                }
+                })
             }
         }
         .padding()

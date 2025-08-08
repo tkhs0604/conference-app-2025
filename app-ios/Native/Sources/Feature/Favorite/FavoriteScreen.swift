@@ -48,8 +48,8 @@ public struct FavoriteScreen: View {
         #if os(iOS)
             .navigationBarTitleDisplayMode(.large)
         #endif
-        .task {
-            await presenter.loadInitial()
+        .onAppear {
+            presenter.loadInitial()
         }
     }
 
@@ -62,6 +62,7 @@ public struct FavoriteScreen: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 120, height: 120)
                 .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor.opacity(0.5))
+                .accessibilityLabel("No favorites")
 
             VStack(spacing: 8) {
                 Text("No Favorites Yet")

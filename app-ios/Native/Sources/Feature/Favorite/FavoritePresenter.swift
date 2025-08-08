@@ -19,12 +19,12 @@ final class FavoritePresenter {
 
     init() {}
 
-    func loadInitial() async {
-        await timetable.fetchTimetable()
+    func loadInitial() {
+        timetable.subscribeTimetableIfNeeded()
     }
 
     func timetableItemTapped(_ item: TimetableItemWithFavorite) {
-        print("Favorite item tapped: \(item.timetableItem.title)")
+        // print("Favorite item tapped: \(item.timetableItem.title)")
     }
 
     func toggleFavorite(_ item: TimetableItemWithFavorite) {

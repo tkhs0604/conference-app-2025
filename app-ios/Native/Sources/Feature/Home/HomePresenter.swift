@@ -15,10 +15,10 @@ final class HomePresenter {
     }
 
     func timetableItemTapped(_ item: TimetableItemWithFavorite) {
-        print("Tapped: \(item.timetableItem.title)")
+        // print("Tapped: \(item.timetableItem.title)")
     }
 
     func searchTapped() {
-        print("Search tapped")
+        // print("Search tapped")
     }
 }

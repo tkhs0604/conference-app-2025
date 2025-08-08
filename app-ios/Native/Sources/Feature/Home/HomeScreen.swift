@@ -65,6 +65,7 @@ public struct HomeScreen: View {
             Image("background_night", bundle: .module)
                 .resizable()
                 .edgesIgnoringSafeArea(.all)
+                .accessibilityLabel("Conference background")
         )
         .navigationTitle("Timetable")
         .navigationBarTitleDisplayMode(.automatic)
@@ -73,19 +74,21 @@ public struct HomeScreen: View {
                 HStack {
                     Button(action: {
                         onNavigate(.search)
-                    }) {
+                    }, label: {
                         Image(systemName: "magnifyingglass")
                             .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                             .frame(width: 40, height: 40)
-                    }
+                            .accessibilityLabel("Search sessions")
+                    })
 
                     Button(action: {
                         timetableMode = timetableMode == .list ? .grid : .list
-                    }) {
+                    }, label: {
                         Image(systemName: timetableMode == .list ? "square.grid.2x2" : "list.bullet")
                             .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                             .frame(width: 40, height: 40)
-                    }
+                            .accessibilityLabel(timetableMode == .list ? "Switch to grid view" : "Switch to list view")
+                    })
                 }
             }
         }

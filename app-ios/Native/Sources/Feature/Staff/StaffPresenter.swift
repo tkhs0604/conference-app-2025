@@ -19,7 +19,7 @@ final class StaffPresenter {
     }
 
     func staffTapped(_ staff: Staff) {
-        print("Staff tapped: \(staff.name)")
+        // print("Staff tapped: \(staff.name)")
         // TODO: Open GitHub profile
     }
 }
@@ -44,6 +44,6 @@ struct Staff: Identifiable {
         Staff(id: "5", name: "Eve Wilson", role: "Tech Lead", githubUsername: "eve_w", iconUrl: nil),
         Staff(id: "6", name: "Frank Miller", role: "Design Lead", githubUsername: "frank_m", iconUrl: nil),
         Staff(id: "7", name: "Grace Lee", role: "Marketing", githubUsername: "grace_lee", iconUrl: nil),
-        Staff(id: "8", name: "Henry Davis", role: "Finance", githubUsername: "henry_d", iconUrl: nil),
+        Staff(id: "8", name: "Henry Davis", role: "Finance", githubUsername: "henry_d", iconUrl: nil)
     ]
 }

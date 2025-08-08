@@ -51,12 +51,12 @@ struct SponsorSection: View {
                 ForEach(category.sponsors) { sponsor in
                     Button(action: {
                         onSponsorTapped(sponsor)
-                    }) {
+                    }, label: {
                         SponsorCard(
                             sponsor: sponsor,
                             cardSize: CGSize(width: 160, height: 120)
                         )
-                    }
+                    })
                     .buttonStyle(PlainButtonStyle())
                 }
             }

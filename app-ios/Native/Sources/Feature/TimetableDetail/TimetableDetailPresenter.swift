@@ -36,7 +36,7 @@ final class TimetableDetailPresenter {
 
         switch status {
         case .notDetermined:
-            eventStore.requestFullAccessToEvents { [weak self] granted, error in
+            eventStore.requestFullAccessToEvents { [weak self] granted, _ in
                 guard let self = self else { return }
                 Task { @MainActor in
                     if granted {

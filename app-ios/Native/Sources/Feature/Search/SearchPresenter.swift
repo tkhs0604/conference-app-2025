@@ -77,8 +77,8 @@ final class SearchPresenter {
 
     init() {}
 
-    func loadInitial() async {
-        await timetable.fetchTimetable()
+    func loadInitial() {
+        timetable.subscribeTimetableIfNeeded()
     }
 
     func toggleFavorite(_ itemId: TimetableItemId) {
@@ -88,6 +88,6 @@ final class SearchPresenter {
     }
 
     func timetableItemTapped(_ item: TimetableItemWithFavorite) {
-        print("Search item tapped: \(item.timetableItem.title)")
+        // print("Search item tapped: \(item.timetableItem.title)")
     }
 }

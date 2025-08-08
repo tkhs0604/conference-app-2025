@@ -8,8 +8,8 @@
 import SwiftUI
 
 #if canImport(UIKit)
-    import UIKit
     import SafariServices
+    import UIKit
 #endif
 
 #if canImport(UIKit)
@@ -21,7 +21,7 @@ import SwiftUI
         }
 
         public func makeUIViewController(context: Context) -> SFSafariViewController {
-            return SFSafariViewController(url: url)
+            SFSafariViewController(url: url)
         }
 
         public func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {}

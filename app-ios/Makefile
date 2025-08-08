@@ -68,9 +68,9 @@ test-all: ## Run all tests (Core + Native, macOS only)
 lint: ## Run SwiftLint
 	@echo "Running SwiftLint..."
 	@if [ -f .nest/bin/swiftlint ]; then \
-		.nest/bin/swiftlint lint --config .swiftlint.yml; \
+		find Core Native App -name "*.swift" -type f ! -path "*/.build/*" ! -path "*/Package.swift" ! -path "*/KMPFramework/*" ! -path "*/DerivedData/*" | xargs .nest/bin/swiftlint lint --config .swiftlint.yml; \
 	elif command -v swiftlint >/dev/null 2>&1; then \
-		swiftlint lint --config .swiftlint.yml; \
+		find Core Native App -name "*.swift" -type f ! -path "*/.build/*" ! -path "*/Package.swift" ! -path "*/KMPFramework/*" ! -path "*/DerivedData/*" | xargs swiftlint lint --config .swiftlint.yml; \
 	else \
 		echo "SwiftLint not installed. Run 'make setup' to install via nest."; \
 		exit 1; \
@@ -80,9 +80,9 @@ lint: ## Run SwiftLint
 lint-fix: ## Run SwiftLint with auto-correction
 	@echo "Running SwiftLint auto-correction..."
 	@if [ -f .nest/bin/swiftlint ]; then \
-		.nest/bin/swiftlint lint --config .swiftlint.yml --fix; \
+		find Core Native App -name "*.swift" -type f ! -path "*/.build/*" ! -path "*/Package.swift" ! -path "*/KMPFramework/*" ! -path "*/DerivedData/*" | xargs .nest/bin/swiftlint lint --config .swiftlint.yml --fix; \
 	elif command -v swiftlint >/dev/null 2>&1; then \
-		swiftlint lint --config .swiftlint.yml --fix; \
+		find Core Native App -name "*.swift" -type f ! -path "*/.build/*" ! -path "*/Package.swift" ! -path "*/KMPFramework/*" ! -path "*/DerivedData/*" | xargs swiftlint lint --config .swiftlint.yml --fix; \
 	else \
 		echo "SwiftLint not installed. Run 'make setup' to install via nest."; \
 		exit 1; \

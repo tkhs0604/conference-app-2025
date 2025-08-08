@@ -23,6 +23,7 @@ public struct ContributorScreen: View {
                                         presenter.contributorTapped(contributor)
                                         // TODO: Open GitHub profile
                                     }
+                                    .accessibilityAddTraits(.isButton)
 
                                 Divider()
                                     .padding(.leading, 80)

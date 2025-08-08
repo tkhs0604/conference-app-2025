@@ -66,11 +66,11 @@ extension Model.DroidKaigi2024Day {
     public var start: Date {
         switch self {
         case .workday:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 11).date!
+            return DateComponents(calendar: .current, year: 2024, month: 9, day: 11).date ?? Date()
         case .conferenceDay1:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 12).date!
+            return DateComponents(calendar: .current, year: 2024, month: 9, day: 12).date ?? Date()
         case .conferenceDay2:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 13).date!
+            return DateComponents(calendar: .current, year: 2024, month: 9, day: 13).date ?? Date()
         }
     }
 
@@ -78,13 +78,13 @@ extension Model.DroidKaigi2024Day {
         switch self {
         case .workday:
             return DateComponents(calendar: .current, year: 2024, month: 9, day: 11, hour: 23, minute: 59, second: 59)
-                .date!
+                .date ?? Date()
         case .conferenceDay1:
             return DateComponents(calendar: .current, year: 2024, month: 9, day: 12, hour: 23, minute: 59, second: 59)
-                .date!
+                .date ?? Date()
         case .conferenceDay2:
             return DateComponents(calendar: .current, year: 2024, month: 9, day: 13, hour: 23, minute: 59, second: 59)
-                .date!
+                .date ?? Date()
         }
     }
 
@@ -131,7 +131,7 @@ extension Model.DroidKaigi2024Day {
     }
 
     public static func visibleDays() -> [Model.DroidKaigi2024Day] {
-        return [.conferenceDay1, .conferenceDay2]
+        [.conferenceDay1, .conferenceDay2]
     }
 }
 

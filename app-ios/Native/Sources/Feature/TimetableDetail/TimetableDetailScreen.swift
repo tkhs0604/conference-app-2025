@@ -27,8 +27,7 @@ public struct TimetableDetailScreen: View {
                     targetAudience
                         .padding(16)
                     if presenter.timetableItem.timetableItem.asset.videoUrl != nil
-                        || presenter.timetableItem.timetableItem.asset.slideUrl != nil
-                    {
+                        || presenter.timetableItem.timetableItem.asset.slideUrl != nil {
                         archive
                             .padding(16)
                     }
@@ -76,6 +75,7 @@ public struct TimetableDetailScreen: View {
                         .resizable()
                         .frame(width: 24, height: 24)
                         .foregroundColor(.primary)
+                        .accessibilityLabel("Share session")
                 }
             }
             Button {
@@ -85,6 +85,7 @@ public struct TimetableDetailScreen: View {
                     .resizable()
                     .frame(width: 24, height: 24)
                     .foregroundColor(.primary)
+                    .accessibilityLabel("Add to calendar")
             }
             Spacer()
             Button {
@@ -97,6 +98,7 @@ public struct TimetableDetailScreen: View {
                         Image(systemName: "heart")
                     }
                 }
+                .accessibilityLabel(presenter.isFavorite ? "Remove from favorites" : "Add to favorites")
                 .frame(width: 56, height: 56)
                 .background(Color.gray.opacity(0.15))
                 .clipShape(RoundedRectangle(cornerRadius: 16))
@@ -213,8 +215,7 @@ public struct TimetableDetailScreen: View {
 
             HStack {
                 if let slideUrlString = presenter.timetableItem.timetableItem.asset.slideUrl,
-                    let slideUrl = URL(string: slideUrlString)
-                {
+                    let slideUrl = URL(string: slideUrlString) {
                     Button {
                         showingURL = slideUrl
                     } label: {
@@ -235,8 +236,7 @@ public struct TimetableDetailScreen: View {
                     }
                 }
                 if let videoUrlString = presenter.timetableItem.timetableItem.asset.videoUrl,
-                    let videoUrl = URL(string: videoUrlString)
-                {
+                    let videoUrl = URL(string: videoUrlString) {
                     Button {
                         showingURL = videoUrl
                     } label: {
@@ -302,7 +302,7 @@ struct ToastView: View {
                 id: TimetableItemId(value: "1"),
                 title: MultiLangText(jaTitle: "サンプルセッション", enTitle: "Sample Session"),
                 startsAt: Date(),
-                endsAt: Date().addingTimeInterval(3600),
+                endsAt: Date().addingTimeInterval(3_600),
                 category: TimetableCategory(id: 1, title: MultiLangText(jaTitle: "開発", enTitle: "Development")),
                 sessionType: .regular,
                 room: Room(id: 1, name: MultiLangText(jaTitle: "ルームA", enTitle: "Room A"), type: .roomF, sort: 1),

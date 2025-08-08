@@ -6,8 +6,8 @@ public struct RoomTheme {
     public let containerColor: Color
 }
 
-extension Room {
-    public var color: Color {
+public extension Room {
+    var color: Color {
         switch type {
         case .roomF:
             return Color.blue
@@ -24,28 +24,28 @@ extension Room {
         }
     }
 
-    public var roomTheme: RoomTheme {
+    var roomTheme: RoomTheme {
         RoomTheme(
             primaryColor: color,
             containerColor: color.opacity(0.1)
         )
     }
 
-    public var displayName: String {
+    var displayName: String {
         Locale.current.identifier == "ja-JP"
             ? name.jaTitle
             : name.enTitle
     }
 
     // For backward compatibility with old code
-    public var rawValue: String {
+    var rawValue: String {
         displayName
     }
 }
 
-extension Speaker {
+public extension Speaker {
     // For backward compatibility
-    public var imageUrl: String? {
+    var imageUrl: String? {
         iconUrl
     }
 }

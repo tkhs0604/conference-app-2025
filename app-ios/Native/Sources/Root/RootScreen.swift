@@ -20,7 +20,7 @@ private enum TabType: CaseIterable, Hashable {
     case info
     case profileCard
 
-    internal func tabImageName(_ selectedTab: TabType) -> String {
+    func tabImageName(_ selectedTab: TabType) -> String {
         switch self {
         case .timetable:
             return selectedTab == self ? "ic_timetable.fill" : "ic_timetable"
@@ -50,63 +50,7 @@ public struct RootScreen: View {
 
     public var body: some View {
         ZStack(alignment: .bottom) {
-            switch selectedTab {
-            case .timetable:
-                NavigationStack(path: $navigationPath) {
-                    HomeScreen(onNavigate: handleHomeNavigation)
-                        .navigationDestination(for: NavigationDestination.self) { destination in
-                            let navigationHandler = NavigationHandler(
-                                handleSearchNavigation: handleSearchNavigation
-                            )
-                            destination.view(with: navigationHandler)
-                        }
-                }
-            case .map:
-                NavigationStack {
-                    EventMapScreen()
-                }
-            case .favorite:
-                NavigationStack(path: $favoriteNavigationPath) {
-                    FavoriteScreen(onNavigate: handleFavoriteNavigation)
-                        .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
-                            switch destination {
-                            case .timetableDetail(let item):
-                                TimetableDetailScreen(timetableItem: item)
-                            }
-                        }
-                }
-            case .info:
-                NavigationStack(path: $aboutNavigationPath) {
-                    AboutScreen(onNavigate: handleAboutNavigation)
-                        .navigationDestination(for: AboutNavigationDestination.self) { destination in
-                            switch destination {
-                            case .contributors:
-                                ContributorScreen()
-                            case .staff:
-                                StaffScreen()
-                            case .sponsors:
-                                SponsorScreen()
-                            case .codeOfConduct:
-                                Text("Code of Conduct")
-                                    .navigationTitle("Code of Conduct")
-                            case .privacyPolicy:
-                                Text("Privacy Policy")
-                                    .navigationTitle("Privacy Policy")
-                            case .licenses:
-                                Text("Licenses")
-                                    .navigationTitle("Licenses")
-                            case .settings:
-                                Text("Settings")
-                                    .navigationTitle("Settings")
-                            }
-                        }
-                }
-            case .profileCard:
-                NavigationStack {
-                    ProfileCardScreen()
-                }
-            }
-
+            tabContent
             tabBar
         }
         .onAppear {
@@ -116,6 +60,91 @@ public struct RootScreen: View {
             ScenePhaseHandler.handle(scenePhase)
         }
         .preferredColorScheme(.dark)
+    }
+    
+    @ViewBuilder
+    private var tabContent: some View {
+        switch selectedTab {
+        case .timetable:
+            timetableTab
+        case .map:
+            mapTab
+        case .favorite:
+            favoriteTab
+        case .info:
+            infoTab
+        case .profileCard:
+            profileCardTab
+        }
+    }
+    
+    private var timetableTab: some View {
+        NavigationStack(path: $navigationPath) {
+            HomeScreen(onNavigate: handleHomeNavigation)
+                .navigationDestination(for: NavigationDestination.self) { destination in
+                    let navigationHandler = NavigationHandler(
+                        handleSearchNavigation: handleSearchNavigation
+                    )
+                    destination.view(with: navigationHandler)
+                }
+        }
+    }
+    
+    private var mapTab: some View {
+        NavigationStack {
+            EventMapScreen()
+        }
+    }
+    
+    private var favoriteTab: some View {
+        NavigationStack(path: $favoriteNavigationPath) {
+            FavoriteScreen(onNavigate: handleFavoriteNavigation)
+                .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
+                    switch destination {
+                    case .timetableDetail(let item):
+                        TimetableDetailScreen(timetableItem: item)
+                    }
+                }
+        }
+    }
+    
+    private var infoTab: some View {
+        NavigationStack(path: $aboutNavigationPath) {
+            AboutScreen(onNavigate: handleAboutNavigation)
+                .navigationDestination(for: AboutNavigationDestination.self) { destination in
+                    aboutDestinationView(for: destination)
+                }
+        }
+    }
+    
+    @ViewBuilder
+    private func aboutDestinationView(for destination: AboutNavigationDestination) -> some View {
+        switch destination {
+        case .contributors:
+            ContributorScreen()
+        case .staff:
+            StaffScreen()
+        case .sponsors:
+            SponsorScreen()
+        case .codeOfConduct:
+            Text("Code of Conduct")
+                .navigationTitle("Code of Conduct")
+        case .privacyPolicy:
+            Text("Privacy Policy")
+                .navigationTitle("Privacy Policy")
+        case .licenses:
+            Text("Licenses")
+                .navigationTitle("Licenses")
+        case .settings:
+            Text("Settings")
+                .navigationTitle("Settings")
+        }
+    }
+    
+    private var profileCardTab: some View {
+        NavigationStack {
+            ProfileCardScreen()
+        }
     }
 
     private func handleHomeNavigation(_ destination: HomeNavigationDestination) {
