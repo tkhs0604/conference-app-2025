@@ -15,10 +15,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.layout.LazyLayout
 import androidx.compose.foundation.lazy.layout.LazyLayoutItemProvider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -84,7 +84,19 @@ fun TimetableGrid(
     val timetableState = rememberTimetableState()
     val scrollState = timetableState.timetableScrollState
     Row {
-        TimetableGridHours()
+        TimetableGridHours(
+            hoursCount = { hoursList.size },
+            scrollState = scrollState,
+            timeLine = timeLine,
+            selectedDay = selectedDay,
+        ) {
+            items(hoursList) { hour ->
+                HourItem(
+                    hour = hour,
+                    modifier = Modifier.padding(end = 8.dp),
+                )
+            }
+        }
         Column {
             TimetableGridRooms(
                 roomCount = { timetable.rooms.size },
@@ -116,13 +128,6 @@ fun TimetableGrid(
         }
     }
 }
-
-// TODO: Implement TimetableGridHours
-@Composable
-private fun TimetableGridHours() {
-    Text("TimetableGridHours")
-}
-
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
