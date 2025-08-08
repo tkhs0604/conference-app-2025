@@ -156,6 +156,9 @@ private fun TimetableGrid(
     val currentTimeDotRadius = with(density) { TimetableGridDefaults.currentTimeDotRadius.toPx() }
 
     val timetableGridScope = TimetableGridScopeImpl().apply(content)
+    val itemProvider = itemProvider({ timetableGridScope.itemList.size }) { index ->
+        timetableGridScope.itemList[index]()
+    }
 
     LaunchedEffect(Unit) {
         if (scrolledToCurrentTimeState.inTimetableGrid.not()) {
@@ -189,20 +192,13 @@ private fun TimetableGrid(
     }
 
     LazyLayout(
-        itemProvider = {
-            itemProvider(
-                itemCount = { timetableGridScope.itemList.size },
-                itemContent = { index ->
-                    timetableGridScope.itemList[index]()
-                }
-            )
-        },
+        itemProvider = { itemProvider },
         modifier = modifier
             .focusGroup()
             .clipToBounds()
             .nestedScroll(nestedScrollConnection, nestedScrollDispatcher)
             .drawBehind {
-                // Draw backgound grid lines
+                // Draw background grid lines
                 timetableGridState.timeHorizontalLines.forEach {
                     drawLine(
                         color = lineColor,
@@ -341,14 +337,14 @@ private fun TimetableGrid(
 @OptIn(ExperimentalFoundationApi::class)
 private fun itemProvider(
     itemCount: () -> Int,
-    itemContent: @Composable (Int) -> Unit,
+    content: @Composable (Int) -> Unit,
 ): LazyLayoutItemProvider {
     return object : LazyLayoutItemProvider {
         override val itemCount: Int get() = itemCount()
 
         @Composable
         override fun Item(index: Int, key: Any) {
-            itemContent(index)
+            content(index)
         }
     }
 }

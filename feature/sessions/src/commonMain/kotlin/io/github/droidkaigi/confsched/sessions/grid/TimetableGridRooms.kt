@@ -72,9 +72,7 @@ fun TimetableGridRooms(
     )
 
     val timetableGridRoomsScope = TimetableGridRoomsScopeImpl().apply(content)
-    val itemProvider = itemProvider(
-        itemCount = { timetableGridRoomsScope.itemList.size },
-    ) { index ->
+    val itemProvider = itemProvider({ timetableGridRoomsScope.itemList.size }) { index ->
         timetableGridRoomsScope.itemList[index]()
     }
 
@@ -267,14 +265,14 @@ private class TimetableGridRoomsScopeImpl : TimetableGridRoomsScope {
 @OptIn(ExperimentalFoundationApi::class)
 private fun itemProvider(
     itemCount: () -> Int,
-    itemContent: @Composable (Int) -> Unit,
+    content: @Composable (Int) -> Unit,
 ): LazyLayoutItemProvider {
     return object : LazyLayoutItemProvider {
         override val itemCount: Int get() = itemCount()
 
         @Composable
         override fun Item(index: Int, key: Any) {
-            itemContent(index)
+            content(index)
         }
     }
 }
