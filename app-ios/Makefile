@@ -125,30 +125,13 @@ reset: clean ## Reset project (clean + resolve dependencies)
 pre-commit: format lint test ## Run all checks before committing (Core tests only)
 	@echo "Pre-commit checks complete!"
 
-.PHONY: install-nest
-install-nest: ## Install nest tool (macOS only)
-	@echo "Installing nest..."
-	@if [ "$$(uname)" = "Linux" ]; then \
-		echo "❌ nest is not available for Linux."; \
-		echo "Use 'make ci-setup' for CI/Linux environments."; \
-		exit 1; \
-	else \
-		if ! command -v nest >/dev/null 2>&1; then \
-			echo "Installing nest for macOS..."; \
-			curl -L https://github.com/mtj0928/nest/releases/latest/download/nest.tar.gz | tar xz; \
-			sudo mv nest /usr/local/bin/ || mv nest /usr/local/bin/; \
-		else \
-			echo "nest already installed"; \
-		fi; \
-	fi
-
 .PHONY: install-swiftlint
 install-swiftlint: ## Install SwiftLint
 	@echo "Installing SwiftLint..."
 	@if [ -f /.dockerenv ] || [ "$$CI" = "true" ]; then \
 		make ci-setup; \
 	else \
-		make install-nest && nest bootstrap nestfile.yml; \
+		nest bootstrap nestfile.yml; \
 	fi
 
 .PHONY: ci-setup

@@ -6,7 +6,7 @@ public struct AboutScreen: View {
     let onNavigate: (AboutNavigationDestination) -> Void
     let onEnableComposeMultiplatform: () -> Void
 
-    @State private var showSwitchToComposeMultiplatformAlert: Bool = false
+    @State private var showSwitchToComposeMultiplatformAlert = false
 
     var version: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
@@ -89,6 +89,7 @@ public struct AboutScreen: View {
 
     @ViewBuilder
     private var othersSection: some View {
+        // swiftlint:disable:next closure_body_length
         VStack(alignment: .leading, spacing: 0) {
             Text("Others")
                 .foregroundStyle(.secondary)
@@ -142,7 +143,7 @@ public struct AboutScreen: View {
 
                 AboutButton(
                     title: "Switch to Compose Multiplatform",
-                    systemImage: "switch.2",
+                    systemImage: "switch.2"
                 ) {
                     showSwitchToComposeMultiplatformAlert = true
                     presenter.switchToComposeMultiplatformTapped()

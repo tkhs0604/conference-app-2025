@@ -4,8 +4,6 @@ import shared
 
 @MainActor
 struct KmpAppComposeViewControllerWrapper: UIViewControllerRepresentable {
-    init() {}
-
     func makeUIViewController(context: Context) -> UIViewController {
         shared.kaigiAppViewController(appGraph: KMPDependencyProvider.shared.appGraph)
     }

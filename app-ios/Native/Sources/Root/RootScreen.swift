@@ -42,7 +42,7 @@ public struct RootScreen: View {
     @State private var navigationPath = NavigationPath()
     @State private var aboutNavigationPath = NavigationPath()
     @State private var favoriteNavigationPath = NavigationPath()
-    @State private var composeMultiplatformEnabled: Bool = false
+    @State private var composeMultiplatformEnabled = false
     private let presenter = RootPresenter()
 
     public init() {

@@ -49,6 +49,6 @@ final class AboutPresenter {
     }
 
     func switchToComposeMultiplatformTapped() {
-        print("Switch to Compose Multiplatform tapped")
+        // print("Switch to Compose Multiplatform tapped")
     }
 }
