@@ -7,6 +7,7 @@ import io.github.droidkaigi.confsched.AppGraph
 import io.github.droidkaigi.confsched.favorites.FavoritesScreenRoot
 import io.github.droidkaigi.confsched.favorites.rememberFavoritesScreenContextRetained
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
+import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import io.github.droidkaigi.confsched.navigation.route.Favorites
 import io.github.droidkaigi.confsched.navigation.route.FavoritesTabRoute
 
@@ -16,11 +17,12 @@ fun NavGraphBuilder.favoritesTabNavGraph(
     onLinkClick: (String) -> Unit,
     onShareClick: (TimetableItem) -> Unit,
     onAddCalendarClick: (TimetableItem) -> Unit,
+    onTimetableItemClick: (TimetableItemId) -> Unit,
 ) {
     navigation<FavoritesTabRoute>(
         startDestination = Favorites,
     ) {
-        favoritesNavGraph()
+        favoritesNavGraph(onTimetableItemClick = onTimetableItemClick)
         timetableItemDetailNavGraph(
             onBackClick = onBackClick,
             onLinkClick = onLinkClick,
@@ -31,10 +33,14 @@ fun NavGraphBuilder.favoritesTabNavGraph(
 }
 
 context(appGraph: AppGraph)
-private fun NavGraphBuilder.favoritesNavGraph() {
+private fun NavGraphBuilder.favoritesNavGraph(
+    onTimetableItemClick: (TimetableItemId) -> Unit,
+) {
     composable<Favorites> {
         with(appGraph.rememberFavoritesScreenContextRetained()) {
-            FavoritesScreenRoot()
+            FavoritesScreenRoot(
+                onTimetableItemClick = onTimetableItemClick,
+            )
         }
     }
 }

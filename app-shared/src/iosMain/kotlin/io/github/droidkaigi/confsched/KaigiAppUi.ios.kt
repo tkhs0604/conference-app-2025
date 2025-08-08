@@ -90,6 +90,7 @@ actual fun KaigiAppUi() {
                 onLinkClick = externalNavController::navigate,
                 onShareClick = externalNavController::onShareClick,
                 onAddCalendarClick = externalNavController::navigateToCalendarRegistration,
+                onTimetableItemClick = navController::navigateToTimetableItemDetail,
             )
             aboutTabNavGraph(
                 onAboutItemClick = {
