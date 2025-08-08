@@ -12,7 +12,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
@@ -65,18 +64,12 @@ fun TimetableGridRooms(
 ) {
     val density = LocalDensity.current
     val coroutineScope = rememberCoroutineScope()
-    val roomCount by rememberUpdatedState(roomCount())
 
-    val roomsScreen = remember {
-        val roomsLayout = createRoomsLayout(
-            roomCount = roomCount,
-            density = density,
-        )
-        RoomScreen(
-            roomsLayout = roomsLayout,
-            scrollState = scrollState,
-        )
-    }
+    val roomsScreen = rememberRoomsLayout(
+        roomCount = roomCount(),
+        density = density,
+        scrollState = scrollState,
+    )
 
     val timetableGridRoomsScope = TimetableGridRoomsScopeImpl().apply(content)
     val itemProvider = itemProvider(
@@ -153,8 +146,37 @@ fun TimetableGridRooms(
     }
 }
 
-private class RoomScreen(
-    roomsLayout: RoomsLayout,
+@Composable
+private fun rememberRoomsLayout(
+    roomCount: Int,
+    density: Density,
+    scrollState: TimetableScrollState,
+): RoomsLayout {
+    var width = 0
+    var height = 0
+    val roomItemLayouts = List(roomCount) { index ->
+        val itemLayout = RoomItemLayout(
+            index = index,
+            density = density,
+        )
+
+        // update width and height based on the item layout
+        height = maxOf(height, itemLayout.height)
+        width = maxOf(width, itemLayout.right)
+
+        itemLayout
+    }
+
+    return remember {
+        RoomsLayout(
+            roomItemLayouts = roomItemLayouts,
+            scrollState = scrollState,
+        )
+    }
+}
+
+private data class RoomsLayout(
+    private val roomItemLayouts: List<RoomItemLayout>,
     private val scrollState: TimetableScrollState,
 ) {
     var width = 0
@@ -163,10 +185,10 @@ private class RoomScreen(
         private set
 
     val visibleItemLayouts by derivedStateOf {
-        roomsLayout.visibleItemLayouts(
-            width,
-            scrollState.scrollX.toInt(),
-        )
+        val scrollX = scrollState.scrollX.toInt()
+        roomItemLayouts
+            .withIndex()
+            .filter { (_, layout) -> layout.isVisible(width, scrollX) }
     }
 
     fun enableHorizontalScroll(dragX: Float): Boolean {
@@ -199,46 +221,6 @@ private class RoomScreen(
         val maxScroll = scrollState.maxX
         return maxOf(minOf(nextValue, 0f), maxScroll)
     }
-}
-
-private data class RoomsLayout(
-    val width: Int,
-    val height: Int,
-    val roomItemLayouts: List<RoomItemLayout>,
-) {
-    fun visibleItemLayouts(
-        screenWidth: Int,
-        scrollX: Int,
-    ): List<IndexedValue<RoomItemLayout>> =
-        roomItemLayouts
-            .withIndex()
-            .filter { (_, layout) -> layout.isVisible(screenWidth, scrollX) }
-}
-
-private fun createRoomsLayout(
-    roomCount: Int,
-    density: Density
-): RoomsLayout {
-    var width = 0
-    var height = 0
-    val roomItemLayouts = List(roomCount) { index ->
-        val itemLayout = RoomItemLayout(
-            index = index,
-            density = density,
-        )
-
-        // update width and height based on the item layout
-        height = maxOf(height, itemLayout.height)
-        width = maxOf(width, itemLayout.right)
-
-        itemLayout
-    }
-
-    return RoomsLayout(
-        width = width,
-        height = height,
-        roomItemLayouts = roomItemLayouts,
-    )
 }
 
 private class RoomItemLayout(
