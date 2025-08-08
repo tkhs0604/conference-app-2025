@@ -4,13 +4,20 @@ import Theme
 public struct AboutScreen: View {
     @State private var presenter = AboutPresenter()
     let onNavigate: (AboutNavigationDestination) -> Void
+    let onEnableComposeMultiplatform: () -> Void
+    
+    @State private var showSwitchToComposeMultiplatformAlert: Bool = false
     
     var version: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
     }
     
-    public init(onNavigate: @escaping (AboutNavigationDestination) -> Void = { _ in }) {
+    public init(
+        onNavigate: @escaping (AboutNavigationDestination) -> Void = { _ in },
+        onEnableComposeMultiplatform: @escaping () -> Void = {}
+    ) {
         self.onNavigate = onNavigate
+        self.onEnableComposeMultiplatform = onEnableComposeMultiplatform
     }
     
     public var body: some View {
@@ -129,6 +136,23 @@ public struct AboutScreen: View {
                 ) {
                     presenter.settingsTapped()
                     onNavigate(.settings)
+                }
+                
+                Divider()
+                
+                AboutButton(
+                    title: "Switch to Compose Multiplatform",
+                    systemImage: "switch.2",
+                ) {
+                    showSwitchToComposeMultiplatformAlert = true
+                    presenter.switchToComposeMultiplatformTapped()
+                }.alert("Switch UI", isPresented: $showSwitchToComposeMultiplatformAlert) {
+                    Button("Cancel", role: .cancel) {}
+                    Button("Switch") {
+                        onEnableComposeMultiplatform()
+                    }
+                } message: {
+                    Text("Switch UI from SwiftUI to Compose Multiplatform. Are you sure you want to do this?")
                 }
             }
         }

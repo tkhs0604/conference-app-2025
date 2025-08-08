@@ -52,6 +52,8 @@ skie = "0.10.4"
 
 molecule = "2.1.0"
 
+navigationCompose = "2.9.0-beta04"
+
 [libraries]
 # gradle plugins
 androidGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
@@ -140,6 +142,8 @@ material3 = { module = "org.jetbrains.compose.material3:material3", version.ref 
 buildkonfigCompiler = { module = "com.codingfeline.buildkonfig:buildkonfig-compiler", version.ref = "buildkonfig" }
 
 molecule = { module = "app.cash.molecule:molecule-runtime", version.ref = "molecule" }
+
+navigationCompose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 
 [plugins]
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
