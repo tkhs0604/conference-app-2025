@@ -323,13 +323,16 @@ object HoursDefaults {
 }
 
 val hoursList by lazy {
-    val now = Clock.System.now().toLocalDateTime(TimeZone.of("UTC+9"))
-    (10..19).map {
+    val conferenceStartHour = 10
+    val conferenceEndHour = 19
+    val tz = TimeZone.of("UTC+9")
+    val now = Clock.System.now().toLocalDateTime(tz)
+    (conferenceStartHour..conferenceEndHour).map {
         val dateTime = LocalDateTime(
             date = now.date,
             time = LocalTime(hour = it, minute = 0),
         )
-            .toInstant(TimeZone.of("UTC+9"))
+            .toInstant(tz)
         val localDate = dateTime.toLocalDateTime(TimeZone.currentSystemDefault())
         "${localDate.hour}".padStart(2, '0') + ":" + "${localDate.minute}".padStart(2, '0')
     }
