@@ -11,9 +11,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.session.TimetableList
 import io.github.droidkaigi.confsched.favorites.components.FavoriteFilters
 import io.github.droidkaigi.confsched.favorites.section.FavoriteEmpty
-import io.github.droidkaigi.confsched.favorites.section.FavoriteTimetableList
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
@@ -64,10 +64,12 @@ fun FavoritesScreen(
                     )
                 }
                 is FavoritesScreenUiState.TimetableContentState.FavoriteList -> {
-                    FavoriteTimetableList(
+                    TimetableList(
                         timetableItemMap = uiState.timetableContentState.timetableItemMap,
                         onTimetableItemClick = onTimetableItemClick,
                         onBookmarkClick = onBookmarkClick,
+                        isBookmarked = { true },
+                        isDateTagVisible = true,
                     )
                 }
             }
