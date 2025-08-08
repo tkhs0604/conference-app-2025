@@ -1,5 +1,5 @@
-import SwiftUI
 import Dependencies
+import SwiftUI
 import shared
 
 @MainActor
