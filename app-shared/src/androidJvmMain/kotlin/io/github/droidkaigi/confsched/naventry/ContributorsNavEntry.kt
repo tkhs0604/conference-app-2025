@@ -6,13 +6,22 @@ import androidx.navigation3.runtime.entry
 import io.github.droidkaigi.confsched.AppGraph
 import io.github.droidkaigi.confsched.contributors.ContributorsScreenRoot
 import io.github.droidkaigi.confsched.contributors.rememberContributorsScreenContextRetained
+import io.github.droidkaigi.confsched.navigation.listDetailSceneStrategyDetailPaneMetaData
 import io.github.droidkaigi.confsched.navkey.ContributorsNavKey
 
 context(appGraph: AppGraph)
-fun EntryProviderBuilder<NavKey>.contributorsEntry() {
-    entry<ContributorsNavKey> {
+fun EntryProviderBuilder<NavKey>.contributorsEntry(
+    onBackClick: () -> Unit,
+    onContributorClick: (profileUrl: String) -> Unit,
+) {
+    entry<ContributorsNavKey>(
+        metadata = listDetailSceneStrategyDetailPaneMetaData(),
+    ) {
         with(appGraph.rememberContributorsScreenContextRetained()) {
-            ContributorsScreenRoot()
+            ContributorsScreenRoot(
+                onBackClick = onBackClick,
+                onContributorClick = onContributorClick,
+            )
         }
     }
 }
