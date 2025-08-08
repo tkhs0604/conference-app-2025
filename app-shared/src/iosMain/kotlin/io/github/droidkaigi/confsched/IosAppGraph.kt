@@ -20,6 +20,9 @@ import io.github.droidkaigi.confsched.data.DataStoreDependencyProviders
 import io.github.droidkaigi.confsched.data.SessionCacheDataStoreQualifier
 import io.github.droidkaigi.confsched.data.UserDataStoreQualifier
 import io.github.droidkaigi.confsched.data.annotations.IoDispatcher
+import io.github.droidkaigi.confsched.data.contributors.ContributorsApiClient
+import io.github.droidkaigi.confsched.data.contributors.DefaultContributorsApiClient
+import io.github.droidkaigi.confsched.data.contributors.DefaultContributorsQueryKey
 import io.github.droidkaigi.confsched.data.core.DataStorePathProducer
 import io.github.droidkaigi.confsched.data.core.defaultJson
 import io.github.droidkaigi.confsched.data.core.defaultKtorConfig
@@ -29,6 +32,7 @@ import io.github.droidkaigi.confsched.data.sessions.DefaultTimetableQueryKey
 import io.github.droidkaigi.confsched.data.sessions.SessionsApiClient
 import io.github.droidkaigi.confsched.data.user.DefaultFavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.data.user.DefaultFavoriteTimetableItemIdMutationKey
+import io.github.droidkaigi.confsched.model.contributors.ContributorsQueryKey
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableItemIdMutationKey
 import io.github.droidkaigi.confsched.model.data.TimetableItemQueryKey
@@ -86,6 +90,12 @@ interface IosAppGraph : AppGraph {
 
     @Binds
     val DefaultFavoriteTimetableItemIdMutationKey.bind: FavoriteTimetableItemIdMutationKey
+
+    @Binds
+    val DefaultContributorsApiClient.bind: ContributorsApiClient
+
+    @Binds
+    val DefaultContributorsQueryKey.bind: ContributorsQueryKey
 
     @Provides
     fun provideJson(): Json {
