@@ -11,14 +11,14 @@ struct KeyVisual: View {
                 .frame(width: 200, height: 80)
                 .foregroundColor(.accentColor)
                 .padding(.bottom, 16)
-            
+
             // Conference description text
             Text("DroidKaigi is a conference for Android developers")
                 .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                 .typographyStyle(.titleMedium)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 20)
-            
+
             // Date and Location info container
             VStack(alignment: .leading, spacing: 12) {
                 // Date row
@@ -27,42 +27,42 @@ struct KeyVisual: View {
                         .resizable()
                         .frame(width: 16, height: 16)
                         .foregroundStyle(AssetColors.onSurface.swiftUIColor)
-                    
+
                     Text("Date:")
                         .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                         .typographyStyle(.titleSmall)
                         .padding(.trailing, 4)
-                    
+
                     Text("2025.09.12(Thu) - 13(Fri)")
                         .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                         .typographyStyle(.titleSmall)
-                    
+
                     Spacer()
                 }
-                
+
                 // Location row
                 HStack(spacing: 8) {
                     Image("ic_location_on", bundle: .module)
                         .resizable()
                         .frame(width: 16, height: 16)
                         .foregroundStyle(AssetColors.onSurface.swiftUIColor)
-                    
+
                     Text("Location:")
                         .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                         .typographyStyle(.titleSmall)
                         .padding(.trailing, 4)
-                    
+
                     Text("Bellesalle Shibuya Garden")
                         .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                         .typographyStyle(.titleSmall)
-                    
+
                     Link(destination: URL(string: "https://goo.gl/maps/vv9sE19JvRjYKtSP9")!) {
                         Text("Check Map")
                             .typographyStyle(.titleSmall)
                             .foregroundStyle(AssetColors.jellyfish.swiftUIColor)
                             .underline()
                     }
-                    
+
                     Spacer()
                 }
             }
