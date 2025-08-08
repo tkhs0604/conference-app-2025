@@ -152,7 +152,7 @@ public struct AboutScreen: View {
                         onEnableComposeMultiplatform()
                     }
                 } message: {
-                    Text("Switch UI from SwiftUI to Compose Multiplatform. Are you sure you want to do?")
+                    Text("Switch UI from SwiftUI to Compose Multiplatform. Are you sure you want to do this?")
                 }
             }
         }
