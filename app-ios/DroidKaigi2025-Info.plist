@@ -4,7 +4,5 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Use for adding events to your calendar</string>
 </dict>
 </plist>
