@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,7 +25,7 @@ fun LicensesScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "OSS Licenses") },
+                title = { Text(text = stringResource(AboutRes.string.oss_licenses)) },
                 navigationIcon = {
                     IconButton(onBackClick) {
                         Icon(
