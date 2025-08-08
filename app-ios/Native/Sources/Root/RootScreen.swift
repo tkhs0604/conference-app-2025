@@ -42,6 +42,7 @@ public struct RootScreen: View {
     @State private var navigationPath = NavigationPath()
     @State private var aboutNavigationPath = NavigationPath()
     @State private var favoriteNavigationPath = NavigationPath()
+    @State private var composeMultiplatformEnabled: Bool = false
     private let presenter = RootPresenter()
 
     public init() {
@@ -49,17 +50,21 @@ public struct RootScreen: View {
     }
 
     public var body: some View {
-        ZStack(alignment: .bottom) {
-            tabContent
-            tabBar
+        Group {
+            if composeMultiplatformEnabled {
+                KmpAppComposeViewControllerWrapper()
+                    .ignoresSafeArea(.all)
+            } else {
+                ZStack(alignment: .bottom) {
+                    tabContent
+                    tabBar
+                }
+            }
         }
+        .environment(\.colorScheme, .dark)
         .onAppear {
             presenter.prepareWindow()
         }
-        .onChange(of: scenePhase) {
-            ScenePhaseHandler.handle(scenePhase)
-        }
-        .preferredColorScheme(.dark)
     }
 
     @ViewBuilder
@@ -169,6 +174,10 @@ public struct RootScreen: View {
         case .timetableDetail(let item):
             navigationPath.append(NavigationDestination.timetableDetail(item))
         }
+    }
+
+    private func handleEnableComposeMultiplatform() {
+        composeMultiplatformEnabled = true
     }
 
     @ViewBuilder

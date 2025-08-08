@@ -1,0 +1,5 @@
+<resources>
+    <string name="contributor_title">コントリビューター</string>
+    <string name="contributor_total">合計</string>
+    <string name="contributor_person">人</string>
+</resources>

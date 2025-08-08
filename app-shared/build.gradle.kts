@@ -73,6 +73,7 @@ kotlin {
         val iosMain by creating {
             dependsOn(commonMain.get())
             dependencies {
+                implementation(libs.navigationCompose)
                 implementation(libs.ktorClientDarwin)
                 implementation(libs.molecule)
                 api(projects.feature.sessions)
