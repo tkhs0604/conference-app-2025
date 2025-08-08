@@ -16,7 +16,7 @@ public struct ProfileCardScreen: View {
                 #endif
         }
     }
-    
+
     private var profileCardScrollView: some View {
         ScrollView {
             VStack(spacing: 24) {
@@ -27,7 +27,7 @@ public struct ProfileCardScreen: View {
             .padding(.bottom, 80)  // Tab bar padding
         }
     }
-    
+
     private var profileCard: some View {
         VStack(spacing: 20) {
             avatarImage
@@ -41,14 +41,14 @@ public struct ProfileCardScreen: View {
         .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
         .padding(.horizontal, 16)
     }
-    
+
     private var avatarImage: some View {
         Image(systemName: "person.circle.fill")
             .resizable()
             .frame(width: 120, height: 120)
             .foregroundColor(.accentColor)
     }
-    
+
     private var userInfoSection: some View {
         VStack(spacing: 8) {
             Text(presenter.userName)
@@ -64,14 +64,14 @@ public struct ProfileCardScreen: View {
                 .foregroundColor(.secondary)
         }
     }
-    
+
     private var bioText: some View {
         Text(presenter.userBio)
             .font(.body)
             .multilineTextAlignment(.center)
             .padding(.horizontal, 20)
     }
-    
+
     private var qrCodeSection: some View {
         VStack(spacing: 8) {
             // TODO: Replace with actual QR code generation
@@ -86,7 +86,7 @@ public struct ProfileCardScreen: View {
         }
         .padding(.top, 8)
     }
-    
+
     private var actionButtons: some View {
         VStack(spacing: 12) {
             shareButton
@@ -94,7 +94,7 @@ public struct ProfileCardScreen: View {
         }
         .padding(.horizontal, 16)
     }
-    
+
     private var shareButton: some View {
         Button {
             presenter.shareProfileCard()
@@ -107,7 +107,7 @@ public struct ProfileCardScreen: View {
                 .cornerRadius(12)
         }
     }
-    
+
     private var editButton: some View {
         Button {
             presenter.editProfile()

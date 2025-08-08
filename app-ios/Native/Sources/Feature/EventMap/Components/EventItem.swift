@@ -16,17 +16,19 @@ struct EventItem: View {
                 .fixedSize(horizontal: false, vertical: true)
 
             if let url = event.moreDetailUrl {
-                Button(action: {
-                    onMoreDetailTapped(url)
-                }, label: {
-                    HStack {
-                        Text("More Details")
-                            .font(.subheadline)
-                        Image(systemName: "arrow.up.right.square")
-                            .font(.caption)
-                    }
-                    .foregroundColor(.accentColor)
-                })
+                Button(
+                    action: {
+                        onMoreDetailTapped(url)
+                    },
+                    label: {
+                        HStack {
+                            Text("More Details")
+                                .font(.subheadline)
+                            Image(systemName: "arrow.up.right.square")
+                                .font(.caption)
+                        }
+                        .foregroundColor(.accentColor)
+                    })
             }
         }
         .padding()

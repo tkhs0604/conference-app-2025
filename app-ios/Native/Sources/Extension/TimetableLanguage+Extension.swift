@@ -1,7 +1,7 @@
 import Model
 
-public extension TimetableLanguage {
-    var displayLanguage: String {
+extension TimetableLanguage {
+    public var displayLanguage: String {
         var components: [String] = []
 
         // Language of speaker

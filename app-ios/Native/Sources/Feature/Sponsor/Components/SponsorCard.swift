@@ -49,14 +49,17 @@ struct SponsorSection: View {
 
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(category.sponsors) { sponsor in
-                    Button(action: {
-                        onSponsorTapped(sponsor)
-                    }, label: {
-                        SponsorCard(
-                            sponsor: sponsor,
-                            cardSize: CGSize(width: 160, height: 120)
-                        )
-                    })
+                    Button(
+                        action: {
+                            onSponsorTapped(sponsor)
+                        },
+                        label: {
+                            SponsorCard(
+                                sponsor: sponsor,
+                                cardSize: CGSize(width: 160, height: 120)
+                            )
+                        }
+                    )
                     .buttonStyle(PlainButtonStyle())
                 }
             }

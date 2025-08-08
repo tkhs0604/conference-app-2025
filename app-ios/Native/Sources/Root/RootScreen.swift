@@ -61,7 +61,7 @@ public struct RootScreen: View {
         }
         .preferredColorScheme(.dark)
     }
-    
+
     @ViewBuilder
     private var tabContent: some View {
         switch selectedTab {
@@ -77,7 +77,7 @@ public struct RootScreen: View {
             profileCardTab
         }
     }
-    
+
     private var timetableTab: some View {
         NavigationStack(path: $navigationPath) {
             HomeScreen(onNavigate: handleHomeNavigation)
@@ -89,13 +89,13 @@ public struct RootScreen: View {
                 }
         }
     }
-    
+
     private var mapTab: some View {
         NavigationStack {
             EventMapScreen()
         }
     }
-    
+
     private var favoriteTab: some View {
         NavigationStack(path: $favoriteNavigationPath) {
             FavoriteScreen(onNavigate: handleFavoriteNavigation)
@@ -107,7 +107,7 @@ public struct RootScreen: View {
                 }
         }
     }
-    
+
     private var infoTab: some View {
         NavigationStack(path: $aboutNavigationPath) {
             AboutScreen(onNavigate: handleAboutNavigation)
@@ -116,7 +116,7 @@ public struct RootScreen: View {
                 }
         }
     }
-    
+
     @ViewBuilder
     private func aboutDestinationView(for destination: AboutNavigationDestination) -> some View {
         switch destination {
@@ -140,7 +140,7 @@ public struct RootScreen: View {
                 .navigationTitle("Settings")
         }
     }
-    
+
     private var profileCardTab: some View {
         NavigationStack {
             ProfileCardScreen()

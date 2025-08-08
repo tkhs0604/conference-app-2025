@@ -67,6 +67,6 @@ struct Event: Identifiable, Hashable {
             title: "Ask the Speaker",
             description: "Q&A session with conference speakers",
             moreDetailUrl: URL(string: "https://droidkaigi.jp/2025/ask-speaker")
-        )
+        ),
     ]
 }

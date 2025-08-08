@@ -27,7 +27,7 @@ public struct SearchScreen: View {
             isSearchFieldFocused = true
         }
     }
-    
+
     private var searchBar: some View {
         HStack {
             Image(systemName: "magnifyingglass")
@@ -50,17 +50,19 @@ public struct SearchScreen: View {
         .padding(.vertical, 8)
         .background(AssetColors.surfaceVariant.swiftUIColor)
     }
-    
+
     private var clearButton: some View {
-        Button(action: {
-            presenter.searchWord = ""
-        }, label: {
-            Image(systemName: "xmark.circle.fill")
-                .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
-                .accessibilityLabel("Clear search")
-        })
+        Button(
+            action: {
+                presenter.searchWord = ""
+            },
+            label: {
+                Image(systemName: "xmark.circle.fill")
+                    .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
+                    .accessibilityLabel("Clear search")
+            })
     }
-    
+
     private var filterAndResultsScrollView: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -72,7 +74,7 @@ public struct SearchScreen: View {
             }
         }
     }
-    
+
     @ViewBuilder
     private var searchResultsSection: some View {
         if shouldShowResults {
@@ -86,12 +88,12 @@ public struct SearchScreen: View {
             searchResultsList
         }
     }
-    
+
     private var shouldShowResults: Bool {
         !presenter.searchWord.isEmpty || presenter.selectedDay != nil
             || presenter.selectedCategory != nil || presenter.selectedLanguage != nil
     }
-    
+
     private var searchResultsList: some View {
         LazyVStack(spacing: 12) {
             ForEach(presenter.filteredTimetableItems) { item in
@@ -161,7 +163,7 @@ public struct SearchScreen: View {
             languageFilterChips
         }
     }
-    
+
     private var languageFilterChips: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
@@ -173,7 +175,7 @@ public struct SearchScreen: View {
             .padding(.horizontal, 16)
         }
     }
-    
+
     private var allLanguagesChip: some View {
         SearchFilterChip<TimetableLanguage>(
             title: "All",
@@ -183,7 +185,7 @@ public struct SearchScreen: View {
             }
         )
     }
-    
+
     private var japaneseChip: some View {
         SearchFilterChip<TimetableLanguage>(
             title: "Japanese",
@@ -193,7 +195,7 @@ public struct SearchScreen: View {
             }
         )
     }
-    
+
     private var englishChip: some View {
         SearchFilterChip<TimetableLanguage>(
             title: "English",
@@ -203,7 +205,7 @@ public struct SearchScreen: View {
             }
         )
     }
-    
+
     private var mixedChip: some View {
         SearchFilterChip<TimetableLanguage>(
             title: "Mixed",
@@ -213,7 +215,7 @@ public struct SearchScreen: View {
             }
         )
     }
-    
+
     private func toggleLanguage(_ lang: String) {
         if presenter.selectedLanguage?.langOfSpeaker == lang {
             presenter.selectedLanguage = nil

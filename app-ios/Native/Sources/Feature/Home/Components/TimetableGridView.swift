@@ -24,7 +24,7 @@ struct TimetableGridView: View {
             }
         }
     }
-    
+
     private var horizontalGridScrollView: some View {
         ScrollView(.horizontal) {
             Grid(alignment: .leading, horizontalSpacing: 4, verticalSpacing: 2) {
@@ -36,7 +36,7 @@ struct TimetableGridView: View {
             .padding(.trailing)
         }
     }
-    
+
     private var roomHeaderRow: some View {
         GridRow {
             Color.clear
@@ -47,14 +47,14 @@ struct TimetableGridView: View {
             }
         }
     }
-    
+
     private func roomHeaderCell(room: Room) -> some View {
         Text(room.displayName)
             .font(Typography.titleMedium)
             .foregroundStyle(room.type.color)
             .frame(width: 192)
     }
-    
+
     @ViewBuilder
     private var timeBlockRows: some View {
         ForEach(timetableItems) { timeBlock in
@@ -62,14 +62,14 @@ struct TimetableGridView: View {
             DashedDivider(axis: .horizontal)
         }
     }
-    
+
     private func timeBlockRow(timeBlock: TimetableTimeGroupItems) -> some View {
         GridRow {
             timeColumnView(timeBlock: timeBlock)
             sessionsForTimeBlock(timeBlock: timeBlock)
         }
     }
-    
+
     private func timeColumnView(timeBlock: TimetableTimeGroupItems) -> some View {
         VStack {
             Text(timeBlock.startsTimeString)
@@ -79,7 +79,7 @@ struct TimetableGridView: View {
         }
         .frame(width: 40, height: 153)
     }
-    
+
     @ViewBuilder
     private func sessionsForTimeBlock(timeBlock: TimetableTimeGroupItems) -> some View {
         if timeBlock.isLunchTime() {
@@ -88,7 +88,7 @@ struct TimetableGridView: View {
             regularSessionsView(timeBlock: timeBlock)
         }
     }
-    
+
     @ViewBuilder
     private func lunchTimeView(timeBlock: TimetableTimeGroupItems) -> some View {
         if let lunchItem = timeBlock.items.first {
@@ -107,14 +107,14 @@ struct TimetableGridView: View {
             .gridCellColumns(rooms.count)
         }
     }
-    
+
     @ViewBuilder
     private func regularSessionsView(timeBlock: TimetableTimeGroupItems) -> some View {
         ForEach(rooms, id: \.self) { room in
             sessionCell(for: room, in: timeBlock)
         }
     }
-    
+
     @ViewBuilder
     private func sessionCell(for room: Room, in timeBlock: TimetableTimeGroupItems) -> some View {
         if let item = timeBlock.getItem(for: room) {
