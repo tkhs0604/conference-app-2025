@@ -95,6 +95,18 @@ public struct RootScreen: View {
                                 StaffScreen()
                             case .sponsors:
                                 SponsorScreen()
+                            case .codeOfConduct:
+                                Text("Code of Conduct")
+                                    .navigationTitle("Code of Conduct")
+                            case .privacyPolicy:
+                                Text("Privacy Policy")
+                                    .navigationTitle("Privacy Policy")
+                            case .licenses:
+                                Text("Licenses")
+                                    .navigationTitle("Licenses")
+                            case .settings:
+                                Text("Settings")
+                                    .navigationTitle("Settings")
                             }
                         }
                     }

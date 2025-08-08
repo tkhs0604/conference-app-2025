@@ -230,7 +230,7 @@ private fun createInlineContentsMapForSummaryCardTexts(
 
 @Composable
 @Preview
-fun TimetableItemDetailSummaryCardPreview() {
+private fun TimetableItemDetailSummaryCardPreview() {
     val session = TimetableItem.Session.fake()
     KaigiPreviewContainer {
         ProvideRoomTheme(session.room.roomTheme) {

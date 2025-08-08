@@ -16,12 +16,12 @@ struct TimetableGridCard: View {
         }) {
             VStack(alignment: .leading, spacing: 4) {
                 Text("10:00 ~ 11:00")
-                    .font(.system(size: 14, weight: .medium))
+                    .font(Typography.labelLarge)
                     .foregroundStyle(timetableItem.room.color)
                     .multilineTextAlignment(.leading)
 
                 Text(timetableItem.title.currentLangTitle)
-                    .font(.system(size: 14, weight: .medium))
+                    .font(Typography.labelLarge)
                     .foregroundStyle(timetableItem.room.color)
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
@@ -34,7 +34,7 @@ struct TimetableGridCard: View {
                             .frame(width: 32, height: 32)
 
                         Text(timetableItem.speakers.map(\.name).joined(separator: ", "))
-                            .font(.system(size: 12))
+                            .font(Typography.bodySmall)
                             .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                             .lineLimit(1)
 

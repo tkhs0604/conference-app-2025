@@ -90,8 +90,8 @@ public struct SearchScreen: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.large)
         #endif
-        .task {
-            await presenter.loadInitial()
+        .onAppear {
+            presenter.loadInitial()
             isSearchFieldFocused = true
         }
     }

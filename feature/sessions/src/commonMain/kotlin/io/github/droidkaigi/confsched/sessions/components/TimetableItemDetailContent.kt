@@ -211,7 +211,7 @@ private fun ArchiveSection(
 
 @Composable
 @Preview
-fun TimetableItemDetailContentPreview() {
+private fun TimetableItemDetailContentPreview() {
     val session = TimetableItem.Session.fake()
     KaigiPreviewContainer {
         ProvideRoomTheme(session.room.roomTheme) {
@@ -226,7 +226,7 @@ fun TimetableItemDetailContentPreview() {
 
 @Composable
 @Preview
-fun TimetableItemDetailContentWithEnglishPreview() {
+private fun TimetableItemDetailContentWithEnglishPreview() {
     val session = TimetableItem.Session.fake()
     KaigiPreviewContainer {
         ProvideRoomTheme(session.room.roomTheme) {
@@ -241,7 +241,7 @@ fun TimetableItemDetailContentWithEnglishPreview() {
 
 @Composable
 @Preview
-fun TimetableItemDetailContentWithMixedPreview() {
+private fun TimetableItemDetailContentWithMixedPreview() {
     val session = TimetableItem.Session.fake()
     KaigiPreviewContainer {
         ProvideRoomTheme(session.room.roomTheme) {

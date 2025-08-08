@@ -1,5 +1,6 @@
 package io.github.droidkaigi.confsched.favorites
 
+import io.github.droidkaigi.confsched.droidkaigiui.session.TimeSlotItem
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import kotlinx.collections.immutable.PersistentList
@@ -27,10 +28,10 @@ data class FavoritesScreenUiState(
         ) : TimetableContentState {
             data class TimeSlot(
                 val day: DroidKaigi2025Day?,
-                val startTimeString: String,
-                val endTimeString: String,
-            ) {
-                val key: String get() = "${day?.ordinal}-$startTimeString-$endTimeString"
+                override val startTimeString: String,
+                override val endTimeString: String,
+            ) : TimeSlotItem {
+                override val key: String get() = "${day?.ordinal}-$startTimeString-$endTimeString"
             }
         }
     }

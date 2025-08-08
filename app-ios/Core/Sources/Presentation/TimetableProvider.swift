@@ -23,8 +23,11 @@ public final class TimetableProvider {
     @ObservationIgnored
     @Dependency(\.timetableUseCase) private var timeteableUseCase
 
+    @ObservationIgnored
+    private var fetchTask: Task<Void, Never>?
+
     public var timetable: Timetable?
-    
+
     // UI State
     public var favoriteIds: Set<String> = []
     public var dayTimetable: [DroidKaigi2024Day: [TimetableTimeGroupItems]] = [:]
@@ -50,16 +53,21 @@ public final class TimetableProvider {
     public init() {}
 
     @MainActor
-    public func fetchTimetable() async {
-        do {
-            timetable = try await timeteableUseCase.load()
-            for day in DroidKaigi2024Day.allCases {
-                dayTimetable[day] = sortListIntoTimeGroups(
-                    timetableItems: timetable?.dayTimetable(droidKaigi2024Day: day).contents ?? []
-                )
+    public func subscribeTimetableIfNeeded() {
+        guard fetchTask == nil else {
+            return
+        }
+
+        self.fetchTask = Task {
+            for await timetable in timeteableUseCase.load() {
+                self.timetable = timetable
+
+                for day in DroidKaigi2024Day.allCases {
+                    dayTimetable[day] = sortListIntoTimeGroups(
+                        timetableItems: timetable.dayTimetable(droidKaigi2024Day: day).contents
+                    )
+                }
             }
-        } catch {
-            print(error)
         }
     }
 

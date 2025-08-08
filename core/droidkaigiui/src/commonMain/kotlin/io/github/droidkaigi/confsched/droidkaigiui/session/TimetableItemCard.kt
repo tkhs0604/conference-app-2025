@@ -53,9 +53,10 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun TimetableItemCard(
     timetableItem: TimetableItem,
     isBookmarked: Boolean,
+    isDateTagVisible: Boolean,
     highlightWord: String,
-    onBookmarkClick: (TimetableItem, Boolean) -> Unit,
-    onTimetableItemClick: (TimetableItem) -> Unit,
+    onBookmarkClick: () -> Unit,
+    onTimetableItemClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val haptic = LocalHapticFeedback.current
@@ -64,7 +65,7 @@ fun TimetableItemCard(
         Row(
             verticalAlignment = Alignment.Top,
             modifier = modifier
-                .clickable { onTimetableItemClick(timetableItem) }
+                .clickable { onTimetableItemClick() }
                 .background(Color.Transparent)
                 .fillMaxWidth()
                 .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(16.dp))
@@ -91,6 +92,11 @@ fun TimetableItemCard(
                     )
                     timetableItem.language.labels.forEach { label ->
                         TimetableItemLangTag(label)
+                    }
+                    if (isDateTagVisible) {
+                        timetableItem.day?.let {
+                            TimetableItemDateTag("${it.month}/${it.dayOfMonth}")
+                        }
                     }
                 }
                 TimetableItemTitle(timetableItem.title.currentLangTitle, highlightWord)
@@ -131,7 +137,7 @@ fun TimetableItemCard(
                         if (!isBookmarked) {
                             haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                         }
-                        onBookmarkClick(timetableItem, true)
+                        onBookmarkClick()
                     },
                 )
             }
@@ -268,8 +274,9 @@ private fun TimetableItemCardPreview() {
                 message = null,
             ),
             isBookmarked = false,
+            isDateTagVisible = false,
             highlightWord = "",
-            onBookmarkClick = { item, isBookmarked -> },
+            onBookmarkClick = {},
             onTimetableItemClick = {},
         )
     }
@@ -282,8 +289,9 @@ private fun TimetableItemCardPreview_WithError() {
         TimetableItemCard(
             timetableItem = TimetableItem.Session.fake(),
             isBookmarked = false,
+            isDateTagVisible = false,
             highlightWord = "",
-            onBookmarkClick = { item, isBookmarked -> },
+            onBookmarkClick = {},
             onTimetableItemClick = {},
         )
     }

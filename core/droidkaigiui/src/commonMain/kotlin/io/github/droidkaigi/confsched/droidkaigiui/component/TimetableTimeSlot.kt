@@ -1,4 +1,4 @@
-package io.github.droidkaigi.confsched.sessions.components
+package io.github.droidkaigi.confsched.droidkaigiui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

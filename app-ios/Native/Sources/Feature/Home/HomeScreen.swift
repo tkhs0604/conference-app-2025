@@ -90,8 +90,8 @@ public struct HomeScreen: View {
             }
         }
         .toolbarBackground(.hidden, for: .navigationBar)
-        .task {
-            await presenter.loadInitial()
+        .onAppear {
+            presenter.loadInitial()
         }
     }
     

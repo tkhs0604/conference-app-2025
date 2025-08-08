@@ -102,7 +102,18 @@ public struct AboutScreen: View {
                     systemImage: "gavel.fill"
                 ) {
                     presenter.codeOfConductTapped()
-                    // TODO: Open in Safari when implemented
+                    onNavigate(.codeOfConduct)
+                }
+                
+                Divider()
+                
+                AboutButton(
+                    title: "Licenses",
+                    // TODO: Replace with actual license icon asset when available
+                    systemImage: "doc.text.fill"
+                ) {
+                    presenter.licensesTapped()
+                    onNavigate(.licenses)
                 }
                 
                 Divider()
@@ -113,7 +124,18 @@ public struct AboutScreen: View {
                     systemImage: "lock.shield.fill"
                 ) {
                     presenter.privacyPolicyTapped()
-                    // TODO: Open in Safari when implemented
+                    onNavigate(.privacyPolicy)
+                }
+                
+                Divider()
+                
+                AboutButton(
+                    title: "Settings",
+                    // TODO: Replace with actual settings icon asset when available
+                    systemImage: "gearshape.fill"
+                ) {
+                    presenter.settingsTapped()
+                    onNavigate(.settings)
                 }
                 
                 Divider()
