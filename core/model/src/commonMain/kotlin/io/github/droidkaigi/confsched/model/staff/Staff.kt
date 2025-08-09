@@ -6,3 +6,4 @@ data class Staff(
     val icon: String,
     val profileUrl: String?,
 )
+
