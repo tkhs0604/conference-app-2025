@@ -1,36 +1,25 @@
 import SwiftUI
 import Theme
 
-struct FrontCard: View {
-    let userRole: String
-    let userName: String
-    
+struct BackCard: View {
     var body: some View {
         ZStack {
-            Image("dark_background", bundle: .module)
+            Color(uiColor: UIColor(red: 40.0/255.0, green: 15.0/255.0, blue: 131.0/255.0, alpha: 1.0))
+            Image("back_base", bundle: .module)
                 .resizable()
                 .scaledToFill()
             VStack(alignment: .center, spacing: 20) {
                 Image("card_title", bundle: .module)
-                VStack(alignment: .center, spacing: 12) {
-                    avatarImage
-                    VStack(alignment: .center, spacing: 0) {
-                        Text(userRole)
-                            .foregroundStyle(AssetColors.onSurface.swiftUIColor)
-                            .typographyStyle(.bodyMedium)
-                        Text(userName)
-                            .foregroundStyle(.white)
-                            .typographyStyle(.headlineSmall)
-                    }
-                }
+                // TODO: Replace with actual QR code generation
+                QrCodeView(data: "sample")
+                    .frame(width: 160, height: 160)
                 Spacer()
             }
             .padding(.horizontal, 30)
             .padding(.vertical, 40)
-            VStack {
-                Spacer()
-                Image("dark_wave", bundle: .module)
-            }
+            Image("back_front", bundle: .module)
+                .resizable()
+                .scaledToFill()
         }
         .frame(width: 300, height: 380)
         .cornerRadius(12)
@@ -47,13 +36,5 @@ struct FrontCard: View {
                 .blendMode(.lighten)
         }
         .clipped(antialiased: true)
-    }
-    
-    // TODO: Replace user image
-    private var avatarImage: some View {
-        Image(systemName: "person.circle.fill")
-            .resizable()
-            .frame(width: 131, height: 131)
-            .foregroundColor(.accentColor)
     }
 }

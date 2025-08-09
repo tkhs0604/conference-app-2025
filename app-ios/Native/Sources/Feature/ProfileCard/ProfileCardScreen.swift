@@ -4,6 +4,8 @@ import Component
 
 public struct ProfileCardScreen: View {
     @State private var presenter = ProfileCardPresenter()
+    @State private var isFront: Bool = true
+    @State private var animatedDegree: Angle = .zero
 
     public init() {}
 
@@ -27,59 +29,32 @@ public struct ProfileCardScreen: View {
             .padding(.vertical, 20)
             .padding(.bottom, 80)  // Tab bar padding
         }
+        .onAppear {
+            withAnimation(.bouncy) {
+                animatedDegree = .degrees(30)
+            } completion: {
+                animatedDegree = .zero
+            }
+        }
     }
 
     private var profileCard: some View {
         ZStack {
-            FrontCard(userRole: presenter.userRole, userName: presenter.userName)
+            if isFront {
+                FrontCard(userRole: presenter.userRole, userName: presenter.userName)
+            } else {
+                BackCard()
+                    .rotation3DEffect(Angle(degrees: 180), axis: (x: 0, y: 1, z: 0))
+            }
         }
         .padding(.horizontal, 56)
         .padding(.vertical, 32)
-    }
-
-    private var avatarImage: some View {
-        Image(systemName: "person.circle.fill")
-            .resizable()
-            .frame(width: 120, height: 120)
-            .foregroundColor(.accentColor)
-    }
-
-    private var userInfoSection: some View {
-        VStack(spacing: 8) {
-            Text(presenter.userName)
-                .font(.title2)
-                .fontWeight(.bold)
-
-            Text(presenter.userRole)
-                .font(.body)
-                .foregroundColor(.secondary)
-
-            Text(presenter.userCompany)
-                .font(.caption)
-                .foregroundColor(.secondary)
+        .onTapGesture {
+            withAnimation {
+                isFront.toggle()
+            }
         }
-    }
-
-    private var bioText: some View {
-        Text(presenter.userBio)
-            .font(.body)
-            .multilineTextAlignment(.center)
-            .padding(.horizontal, 20)
-    }
-
-    private var qrCodeSection: some View {
-        VStack(spacing: 8) {
-            // TODO: Replace with actual QR code generation
-            Image(systemName: "qrcode")
-                .resizable()
-                .frame(width: 150, height: 150)
-                .foregroundColor(.primary.opacity(0.3))
-
-            Text("Scan to connect")
-                .font(.caption)
-                .foregroundColor(.secondary)
-        }
-        .padding(.top, 8)
+        .rotation3DEffect(isFront ? animatedDegree : .degrees(180), axis: (x: 0, y: 1, z: 0))
     }
 
     private var actionButtons: some View {
