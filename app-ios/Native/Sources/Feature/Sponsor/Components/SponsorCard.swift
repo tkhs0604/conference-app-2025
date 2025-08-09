@@ -19,8 +19,7 @@ struct SponsorCard: View {
 
     var body: some View {
         RoundedRectangle(cornerRadius: 8)
-            // TODO: Use AssetColors.Surface when available
-            .fill(Color.white)
+            .fill(AssetColors.surface.swiftUIColor)
             .frame(height: cardHeight)
             .overlay(
                 VStack(spacing: 8) {
@@ -69,8 +68,7 @@ struct SponsorSection: View {
         VStack(alignment: .leading, spacing: 0) {
             Text(category.name)
                 .typographyStyle(.titleMedium)
-                // TODO: Use AssetColors.Primary90 when available
-                .foregroundColor(Color(red: 0.847, green: 0.886, blue: 1.0))  // #D8E2FF
+                .foregroundStyle(AssetColors.primary90.swiftUIColor)
                 .padding(.horizontal, 16)
                 .padding(.top, 12)
                 .padding(.bottom, 16)

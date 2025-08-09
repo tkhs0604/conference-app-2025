@@ -21,12 +21,12 @@ public struct SponsorScreen: View {
                         }
                     }
                     .padding(.top, 24)
-                    .padding(.bottom, 80)  // Tab bar padding
+                    .padding(.bottom, 80)
                 }
             }
         }
         // TODO: Use AssetColors.Background when available
-        .background(Color(red: 0.067, green: 0.078, blue: 0.094))  // #111418
+        .background(AssetColors.background.swiftUIColor)  // #111418
         .navigationTitle("スポンサー")
         #if os(iOS)
             .navigationBarTitleDisplayMode(.large)

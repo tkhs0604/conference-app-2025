@@ -28,14 +28,14 @@ public struct SponsorCategory: Identifiable, Sendable {
 public struct Sponsor: Identifiable, Sendable {
     public let id: String
     public let name: String
-    public let logoUrl: String?
-    public let websiteUrl: URL?
+    public let logoUrl: URL
+    public let websiteUrl: URL
 
     public init(
         id: String,
         name: String,
-        logoUrl: String?,
-        websiteUrl: URL?
+        logoUrl: URL,
+        websiteUrl: URL
     ) {
         self.id = id
         self.name = name

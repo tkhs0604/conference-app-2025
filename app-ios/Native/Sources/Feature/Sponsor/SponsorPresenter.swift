@@ -28,10 +28,8 @@ final class SponsorPresenter {
 
     func sponsorTapped(_ sponsor: Model.Sponsor) {
         // TODO: Open sponsor website
-        if let url = sponsor.websiteUrl {
-            #if os(iOS)
-                UIApplication.shared.open(url)
-            #endif
-        }
+        #if os(iOS)
+        UIApplication.shared.open(sponsor.websiteUrl)
+        #endif
     }
 }
