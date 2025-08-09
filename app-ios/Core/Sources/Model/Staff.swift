@@ -5,7 +5,7 @@ public struct Staff: Sendable, Equatable {
     public let name: String
     public let iconUrl: URL
     public let profileUrl: URL?
-    
+
     public init(
         id: String,
         name: String,

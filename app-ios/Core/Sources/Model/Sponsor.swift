@@ -5,7 +5,7 @@ public struct Sponsor: Sendable, Equatable {
     public let logo: URL
     public let link: URL
     public let plan: SponsorPlan
-    
+
     public init(
         name: String,
         logo: URL,

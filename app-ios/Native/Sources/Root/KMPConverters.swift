@@ -263,10 +263,15 @@ extension Model.Filters {
 
 extension Model.Sponsor {
     init(from shared: shared.Sponsor) {
+        // Use FileManager URL as a safe fallback
+        let fallbackURL = URL(fileURLWithPath: "/")
+        let logoURL = URL(string: shared.logo) ?? fallbackURL
+        let linkURL = URL(string: shared.link) ?? fallbackURL
+        
         self.init(
             name: shared.name,
-            logo: URL(string: shared.logo)!,
-            link: URL(string: shared.link)!,
+            logo: logoURL,
+            link: linkURL,
             plan: Model.SponsorPlan(from: shared.plan)
         )
     }
@@ -293,10 +298,14 @@ extension Model.SponsorPlan {
 
 extension Model.Staff {
     init(from shared: shared.Staff) {
+        // Use FileManager URL as a safe fallback
+        let fallbackURL = URL(fileURLWithPath: "/")
+        let iconURL = URL(string: shared.iconUrl) ?? fallbackURL
+        
         self.init(
             id: shared.id,
             name: shared.name,
-            iconUrl: URL(string: shared.iconUrl)!,
+            iconUrl: iconURL,
             profileUrl: shared.profileUrl.flatMap { URL(string: $0) }
         )
     }
@@ -306,11 +315,16 @@ extension Model.Staff {
 
 extension Model.Contributor {
     init(from shared: shared.Contributor) {
+        // Use FileManager URL as a safe fallback
+        let fallbackURL = URL(fileURLWithPath: "/")
+        let url = URL(string: shared.url) ?? fallbackURL
+        let iconURL = URL(string: shared.iconUrl) ?? fallbackURL
+        
         self.init(
             id: shared.id,
             name: shared.name,
-            url: URL(string: shared.url)!,
-            iconUrl: URL(string: shared.iconUrl)!
+            url: url,
+            iconUrl: iconURL
         )
     }
 }

@@ -5,7 +5,7 @@ public struct Contributor: Sendable, Equatable {
     public let name: String
     public let url: URL
     public let iconUrl: URL
-    
+
     public init(
         id: String,
         name: String,
