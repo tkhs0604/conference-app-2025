@@ -47,14 +47,14 @@ public struct AboutScreen: View {
     @ViewBuilder
     private var creditsSection: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Credits")
+            Text("about.credits", bundle: .module)
                 .foregroundStyle(.secondary)
                 .font(.subheadline)
                 .padding(.bottom, 8)
 
             VStack(spacing: 0) {
                 AboutButton(
-                    title: "Contributors",
+                    title: String(localized: "about.contributors", bundle: .module),
                     // TODO: Replace with actual diversity icon asset when available
                     systemImage: "person.3.fill"
                 ) {
@@ -65,7 +65,7 @@ public struct AboutScreen: View {
                 Divider()
 
                 AboutButton(
-                    title: "Staffs",
+                    title: String(localized: "about.staffs", bundle: .module),
                     // TODO: Replace with actual satisfied icon asset when available
                     systemImage: "face.smiling.fill"
                 ) {
@@ -76,7 +76,7 @@ public struct AboutScreen: View {
                 Divider()
 
                 AboutButton(
-                    title: "Sponsors",
+                    title: String(localized: "about.sponsors", bundle: .module),
                     // TODO: Replace with actual apartment icon asset when available
                     systemImage: "building.2.fill"
                 ) {
@@ -91,14 +91,14 @@ public struct AboutScreen: View {
     private var othersSection: some View {
         // swiftlint:disable:next closure_body_length
         VStack(alignment: .leading, spacing: 0) {
-            Text("Others")
+            Text("about.others", bundle: .module)
                 .foregroundStyle(.secondary)
                 .font(.subheadline)
                 .padding(.bottom, 8)
 
             VStack(spacing: 0) {
                 AboutButton(
-                    title: "Code of Conduct",
+                    title: String(localized: "about.codeOfConduct", bundle: .module),
                     // TODO: Replace with actual gavel icon asset when available
                     systemImage: "gavel.fill"
                 ) {
@@ -109,7 +109,7 @@ public struct AboutScreen: View {
                 Divider()
 
                 AboutButton(
-                    title: "Licenses",
+                    title: String(localized: "about.licenses", bundle: .module),
                     // TODO: Replace with actual license icon asset when available
                     systemImage: "doc.text.fill"
                 ) {
@@ -120,7 +120,7 @@ public struct AboutScreen: View {
                 Divider()
 
                 AboutButton(
-                    title: "Privacy Policy",
+                    title: String(localized: "about.privacyPolicy", bundle: .module),
                     // TODO: Replace with actual privacy tip icon asset when available
                     systemImage: "lock.shield.fill"
                 ) {
@@ -131,7 +131,7 @@ public struct AboutScreen: View {
                 Divider()
 
                 AboutButton(
-                    title: "Settings",
+                    title: String(localized: "about.settings", bundle: .module),
                     // TODO: Replace with actual settings icon asset when available
                     systemImage: "gearshape.fill"
                 ) {
@@ -142,13 +142,13 @@ public struct AboutScreen: View {
                 Divider()
 
                 AboutButton(
-                    title: "Switch to Compose Multiplatform",
+                    title: String(localized: "about.switchToComposeMultiplatform", bundle: .module),
                     systemImage: "switch.2"
                 ) {
                     showSwitchToComposeMultiplatformAlert = true
                     presenter.switchToComposeMultiplatformTapped()
                 }
-                .alert("Switch UI", isPresented: $showSwitchToComposeMultiplatformAlert) {
+                .alert(String(localized: "about.switchUI", bundle: .module), isPresented: $showSwitchToComposeMultiplatformAlert) {
                     Button("Cancel", role: .cancel) {}
                     Button("Switch") {
                         onEnableComposeMultiplatform()

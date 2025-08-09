@@ -35,7 +35,7 @@ public struct ContributorScreen: View {
             }
         }
         .background(Color.primary.opacity(0.05))
-        .navigationTitle("Contributors")
+        .navigationTitle(String(localized: "contributors.title", bundle: .module))
         #if os(iOS)
             .navigationBarTitleDisplayMode(.large)
         #endif
