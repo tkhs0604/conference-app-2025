@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the iOS app for DroidKaigi 2025 conference, part of a multi-platform project that includes Android, iOS, and Desktop applications. The iOS app is built with modern Swift 6 and SwiftUI, using a clean modular architecture.
+This is the iOS app for DroidKaigi 2025 conference. For general project information, architecture diagrams, and getting started guide, see [README.md](./README.md).
 
 ## Build and Development Commands
 
@@ -47,89 +47,23 @@ cd Core && swift test  # Works on Ubuntu/Linux environments
 
 ## Architecture
 
-The iOS app follows a clean architecture with clear separation between layers:
+See [README.md](./README.md#-architecture) for detailed architecture documentation with diagrams.
 
-### Package Structure
-- **Core Package** (`Core/`): Business logic separated from platform-specific code
-  - `Model/`: Data models and domain entities
-  - `Presentation/`: Presenters handling business logic
-  - `UseCase/`: Use cases for specific business operations
-  
-- **Native Package** (`Native/`): iOS-specific implementation
-  - `Component/`: Reusable UI components
-  - `Feature/`: Feature modules (Home, Timetable, etc.)
-  - `KMPFramework/`: Integration with Kotlin Multiplatform shared code
-  - `Root/`: Root navigation and app initialization
-  - `Theme/`: App theming and styling
+## Technical Requirements & Features
 
-### Key Architectural Patterns
-1. **Dependency Injection**: Uses Point-Free's swift-dependencies library
-2. **Presenter Pattern**: Each feature has a presenter handling business logic
-3. **SwiftUI**: Modern declarative UI with iOS 18+ features
-4. **Modular Design**: Features are isolated in separate modules
-5. **KMP Integration**: Shares business logic with Android via Kotlin Multiplatform
-
-### Testing Strategy
-- Uses Apple's new Swift Testing framework (not XCTest)
-- Test doubles via `withDependencies` for dependency injection
-- Separate test targets for different layers
-- **Cross-platform testing**: Core Package tests can run on Ubuntu/Linux environments, enabling CI/CD on non-macOS platforms
-
-## Technical Requirements
-- **Swift Version**: 6.1.2
-- **Minimum iOS**: 18.0
-- **Minimum macOS**: 15.0
-- **Swift Language Mode**: Swift 6 (strict concurrency)
-
-## Key Dependencies
-- swift-dependencies (1.9.2) - Dependency injection
-- KMP shared.xcframework - Shared Kotlin Multiplatform code
-
-## Current Features
-- Timetable display (list and grid views)
-- Favorites functionality
-- Speaker information
-- Room management
-- Home screen with conference information
+See [README.md](./README.md#-getting-started) for technical requirements, dependencies, and feature list.
 
 ## Code Quality Tools
 
-### SwiftLint
-- Integrated as SPM build plugin - runs automatically during build
-- Configuration: `.swiftlint.yml`
-- Manual run: `make lint` or `swiftlint lint --config .swiftlint.yml`
-- Auto-fix: `make lint-fix` or `swiftlint lint --config .swiftlint.yml --fix`
+See [README.md](./README.md#-development) for code quality tools, linting, formatting, and Makefile commands.
 
-### swift-format
-- Integrated as SPM dependency
-- Configuration: `.swift-format`
-- Format code: `make format`
-- Check format: `make format-check`
+## Claude-Specific Development Notes
 
-### Pre-commit Hooks
-Install git hooks: `./Scripts/install-hooks.sh`
-- Automatically runs SwiftLint and swift-format checks on staged files
-
-### Makefile Commands
-- `make help` - Show all available commands
-- `make setup` - Initial project setup
-- `make build` - Build all packages
-- `make test` - Run all tests
-- `make lint` - Run SwiftLint
-- `make lint-fix` - Run SwiftLint with auto-correction
-- `make format` - Format code with swift-format
-- `make format-check` - Check code formatting
-- `make pre-commit` - Run all checks before committing
-- `make clean` - Clean build artifacts
-
-## Development Notes
+### Important Context
 - The project is part of a larger multi-platform repository
 - Android app documentation in root README.md shows architectural decisions that may influence iOS development
-- **Linting and formatting tools are now configured:**
-  - SwiftLint runs automatically during builds via SPM plugin
-  - swift-format available for consistent code formatting
-  - Pre-commit hooks ensure code quality before commits
 - Uses modern Swift 6 features including strict concurrency checking
+- Linting and formatting tools are configured and should be used before completing work
 
 ## Important Build and Debug Notes
 ### Build Issues
