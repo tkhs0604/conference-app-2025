@@ -15,14 +15,14 @@ public struct ContributorScreen: View {
                 ScrollView {
                     LazyVStack(spacing: 0) {
                         // Total count header
-                        VStack(spacing: 0) {
+                        Group {
                             VStack(alignment: .leading, spacing: 4) {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 4) {
                                         Text("Total")
                                             .font(.subheadline)
                                             .foregroundColor(AssetColors.onSurface.swiftUIColor)
-                                        
+
                                         Text("\(presenter.contributors.count) persons")
                                             .font(.largeTitle)
                                             .fontWeight(.bold)
@@ -36,7 +36,7 @@ public struct ContributorScreen: View {
                             Divider()
                         }
                         .background(AssetColors.surface.swiftUIColor)
-                        
+
                         ForEach(presenter.contributors) { contributor in
                             VStack(spacing: 0) {
                                 ContributorListItem(contributor: contributor)
