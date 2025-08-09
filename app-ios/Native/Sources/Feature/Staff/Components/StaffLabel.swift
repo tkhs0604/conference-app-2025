@@ -7,8 +7,8 @@ struct StaffLabel: View {
     var body: some View {
         HStack(spacing: 12) {
             // Avatar with circular shape and border
-            if let iconUrl = staff.iconUrl, let url = URL(string: iconUrl) {
-                AsyncImage(url: url) { image in
+            if let iconUrl = staff.iconUrl {
+                AsyncImage(url: iconUrl) { image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
