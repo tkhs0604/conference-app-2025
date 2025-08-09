@@ -119,11 +119,11 @@ public struct RootScreen: View {
         NavigationStack(path: $aboutNavigationPath) {
             AboutScreen(
                 onNavigate: handleAboutNavigation,
-                onEnableComposeMultiplatform: handleEnableComposeMultiplatform,
+                onEnableComposeMultiplatform: handleEnableComposeMultiplatform
             )
-                .navigationDestination(for: AboutNavigationDestination.self) { destination in
-                    aboutDestinationView(for: destination)
-                }
+            .navigationDestination(for: AboutNavigationDestination.self) { destination in
+                aboutDestinationView(for: destination)
+            }
         }
     }
 
