@@ -14,6 +14,29 @@ public struct ContributorScreen: View {
             } else {
                 ScrollView {
                     LazyVStack(spacing: 0) {
+                        // Total count header
+                        VStack(spacing: 0) {
+                            VStack(alignment: .leading, spacing: 4) {
+                                HStack {
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text("Total")
+                                            .font(.subheadline)
+                                            .foregroundColor(AssetColors.onSurface.swiftUIColor)
+                                        
+                                        Text("\(presenter.contributors.count) persons")
+                                            .font(.largeTitle)
+                                            .fontWeight(.bold)
+                                            .foregroundColor(AssetColors.onSurface.swiftUIColor)
+                                    }
+                                    Spacer()
+                                }
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 20)
+                            }
+                            Divider()
+                        }
+                        .background(AssetColors.surface.swiftUIColor)
+                        
                         ForEach(presenter.contributors) { contributor in
                             VStack(spacing: 0) {
                                 ContributorListItem(contributor: contributor)
@@ -34,7 +57,7 @@ public struct ContributorScreen: View {
                 }
             }
         }
-        .background(Color.primary.opacity(0.05))
+        .background(AssetColors.surface.swiftUIColor)
         .navigationTitle("Contributors")
         #if os(iOS)
             .navigationBarTitleDisplayMode(.large)
