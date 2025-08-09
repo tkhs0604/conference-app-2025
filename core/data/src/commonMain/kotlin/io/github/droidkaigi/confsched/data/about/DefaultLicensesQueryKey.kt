@@ -2,13 +2,12 @@ package io.github.droidkaigi.confsched.data.about
 
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
-import dev.zacsweers.metro.binding
 import io.github.droidkaigi.confsched.common.scope.LicensesScope
 import io.github.droidkaigi.confsched.model.about.LicensesQueryKey
 import soil.query.QueryId
 import soil.query.buildQueryKey
 
-@ContributesBinding(LicensesScope::class, binding<LicensesQueryKey>())
+@ContributesBinding(LicensesScope::class)
 @Inject
 public class DefaultLicensesQueryKey(
     private val licensesJsonReader: LicensesJsonReader,
