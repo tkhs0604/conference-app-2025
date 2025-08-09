@@ -31,7 +31,6 @@ public struct ContributorScreen: View {
                             }
                             .padding(.horizontal, 16)
                             .padding(.vertical, 20)
-                            
                             Divider()
                         }
                         .background(AssetColors.surface.swiftUIColor)
