@@ -8,7 +8,7 @@ public enum LoadEventError: Error {
 
 @DependencyClient
 public struct EventMapUseCase: Sendable {
-    public var load: @Sendable () async throws(LoadEventError) -> EventMap = { .init(events: []) }
+    public var load: @Sendable () async throws(LoadEventError) -> [EventMapEvent] = { [] }
 }
 
 public enum EventMapUseCaseKey: TestDependencyKey {

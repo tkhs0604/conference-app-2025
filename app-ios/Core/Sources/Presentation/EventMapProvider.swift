@@ -16,8 +16,7 @@ public final class EventMapProvider {
     @MainActor
     public func fetchEvents() async {
         do {
-            let eventMap = try await eventMapUseCase.load()
-            events = eventMap.events
+            events = try await eventMapUseCase.load()
         } catch {
             print(error)
         }
