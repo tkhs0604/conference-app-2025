@@ -15,24 +15,23 @@ public struct ContributorScreen: View {
                 ScrollView {
                     LazyVStack(spacing: 0) {
                         // Total count header
-                        Group {
-                            VStack(alignment: .leading, spacing: 4) {
-                                HStack {
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        Text("Total")
-                                            .font(.subheadline)
-                                            .foregroundColor(AssetColors.onSurface.swiftUIColor)
+                        VStack(spacing: 0) {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("Total")
+                                        .font(.subheadline)
+                                        .foregroundColor(AssetColors.onSurface.swiftUIColor)
 
-                                        Text("\(presenter.contributors.count) persons")
-                                            .font(.largeTitle)
-                                            .fontWeight(.bold)
-                                            .foregroundColor(AssetColors.onSurface.swiftUIColor)
-                                    }
-                                    Spacer()
+                                    Text("\(presenter.contributors.count) persons")
+                                        .font(.largeTitle)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(AssetColors.onSurface.swiftUIColor)
                                 }
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 20)
+                                Spacer()
                             }
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 20)
+                            
                             Divider()
                         }
                         .background(AssetColors.surface.swiftUIColor)
