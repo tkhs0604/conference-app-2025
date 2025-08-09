@@ -18,7 +18,7 @@ public struct SearchScreen: View {
             filterAndResultsScrollView
         }
         .background(AssetColors.surface.swiftUIColor)
-        .navigationTitle(String(localized: "search.title", bundle: .module))
+        .navigationTitle(String(localized: "Search", bundle: .module))
         #if os(iOS)
             .navigationBarTitleDisplayMode(.large)
         #endif
@@ -32,9 +32,9 @@ public struct SearchScreen: View {
         HStack {
             Image(systemName: "magnifyingglass")
                 .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
-                .accessibilityLabel(String(localized: "search.icon", bundle: .module))
+                .accessibilityLabel(String(localized: "Search icon", bundle: .module))
 
-            TextField(String(localized: "search.placeholder", bundle: .module), text: $presenter.searchWord)
+            TextField(String(localized: "Search sessions", bundle: .module), text: $presenter.searchWord)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .focused($isSearchFieldFocused)
                 .submitLabel(.search)
@@ -59,7 +59,7 @@ public struct SearchScreen: View {
             label: {
                 Image(systemName: "xmark.circle.fill")
                     .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
-                    .accessibilityLabel(String(localized: "search.clear", bundle: .module))
+                    .accessibilityLabel(String(localized: "Clear search", bundle: .module))
             })
     }
 

@@ -74,8 +74,7 @@ let package = Package(
             ],
             path: "Sources/Feature/Home",
             resources: [
-                .process("Resources"),
-                .process("../Resources")
+                .process("Resources")
             ],
         ),
         
@@ -103,8 +102,7 @@ let package = Package(
             ],
             path: "Sources/Feature/About",
             resources: [
-                .process("Resources"),
-                .process("../Resources")
+                .process("Resources")
             ],
         ),
         
@@ -119,7 +117,7 @@ let package = Package(
             ],
             path: "Sources/Feature/Contributor",
             resources: [
-                .process("../Resources")
+                .process("Resources")
             ],
         ),
         
@@ -146,7 +144,7 @@ let package = Package(
             ],
             path: "Sources/Feature/Favorite",
             resources: [
-                .process("../Resources")
+                .process("Resources")
             ],
         ),
         
@@ -161,7 +159,7 @@ let package = Package(
             ],
             path: "Sources/Feature/Search",
             resources: [
-                .process("../Resources")
+                .process("Resources")
             ],
         ),
         
@@ -188,7 +186,7 @@ let package = Package(
             ],
             path: "Sources/Feature/Staff",
             resources: [
-                .process("../Resources")
+                .process("Resources")
             ],
         ),
         

@@ -65,9 +65,9 @@ public struct HomeScreen: View {
             Image("background_night", bundle: .module)
                 .resizable()
                 .edgesIgnoringSafeArea(.all)
-                .accessibilityLabel(String(localized: "accessibility.conferenceBackground", bundle: .module))
+                .accessibilityLabel(String(localized: "Conference background", bundle: .module))
         )
-        .navigationTitle(String(localized: "timetable.title", bundle: .module))
+        .navigationTitle(String(localized: "Timetable", bundle: .module))
         .navigationBarTitleDisplayMode(.automatic)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -80,7 +80,7 @@ public struct HomeScreen: View {
                             Image(systemName: "magnifyingglass")
                                 .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                                 .frame(width: 40, height: 40)
-                                .accessibilityLabel(String(localized: "search.sessions", bundle: .module))
+                                .accessibilityLabel(String(localized: "Search sessions", bundle: .module))
                         })
 
                     Button(
@@ -92,7 +92,7 @@ public struct HomeScreen: View {
                                 .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                                 .frame(width: 40, height: 40)
                                 .accessibilityLabel(
-                                    timetableMode == .list ? String(localized: "view.switchToGrid", bundle: .module) : String(localized: "view.switchToList", bundle: .module))
+                                    timetableMode == .list ? String(localized: "Switch to grid view", bundle: .module) : String(localized: "Switch to list view", bundle: .module))
                         })
                 }
             }

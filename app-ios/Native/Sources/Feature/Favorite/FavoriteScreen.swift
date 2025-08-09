@@ -59,7 +59,7 @@ public struct FavoriteScreen: View {
             }
         }
         .background(AssetColors.background.swiftUIColor)
-        .navigationTitle(String(localized: "favorites.title", bundle: .module))
+        .navigationTitle(String(localized: "お気に入り", bundle: .module))
         #if os(iOS)
             .navigationBarTitleDisplayMode(.large)
         #endif
@@ -82,12 +82,13 @@ public struct FavoriteScreen: View {
                 )
 
             VStack(spacing: 8) {
-                Text("favorites.empty.title", bundle: .module)
+                Text("登録されたセッションが
+ありません", bundle: .module)
                     .font(Typography.titleLarge)
                     .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                     .multilineTextAlignment(.center)
 
-                Text("favorites.empty.description", bundle: .module)
+                Text("気になるセッションをお気に入り登録しましょう", bundle: .module)
                     .font(Typography.bodyMedium)
                     .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
                     .multilineTextAlignment(.center)
