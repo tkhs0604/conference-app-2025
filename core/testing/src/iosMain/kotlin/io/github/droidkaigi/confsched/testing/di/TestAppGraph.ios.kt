@@ -61,36 +61,6 @@ internal interface IosTestAppGraph : TestAppGraph {
         return defaultJson()
     }
 
-    @SingleIn(DataScope::class)
-    @UserDataStoreQualifier
-    @Provides
-    fun provideDataStorePreferences(
-        dataStorePathProducer: DataStorePathProducer,
-        @IoDispatcher ioDispatcher: CoroutineDispatcher,
-    ): DataStore<Preferences> {
-        return PreferenceDataStoreFactory.createWithPath(
-            corruptionHandler = ReplaceFileCorruptionHandler({ emptyPreferences() }),
-            migrations = emptyList(),
-            scope = CoroutineScope(ioDispatcher),
-            produceFile = { dataStorePathProducer.producePath(DataStoreDependencyProviders.DATA_STORE_PREFERENCE_FILE_NAME).toPath() },
-        )
-    }
-
-    @SingleIn(DataScope::class)
-    @SessionCacheDataStoreQualifier
-    @Provides
-    fun provideSessionCacheDataStore(
-        dataStorePathProducer: DataStorePathProducer,
-        @IoDispatcher ioDispatcher: CoroutineDispatcher,
-    ): DataStore<Preferences> {
-        return PreferenceDataStoreFactory.createWithPath(
-            corruptionHandler = ReplaceFileCorruptionHandler({ emptyPreferences() }),
-            migrations = emptyList(),
-            scope = CoroutineScope(ioDispatcher),
-            produceFile = { dataStorePathProducer.producePath(DataStoreDependencyProviders.DATA_STORE_CACHE_PREFERENCE_FILE_NAME).toPath() },
-        )
-    }
-
     @OptIn(ExperimentalForeignApi::class)
     @Provides
     fun providesDataStorePathProducer(): DataStorePathProducer {

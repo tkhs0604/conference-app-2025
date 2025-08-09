@@ -3,4 +3,6 @@
     <string name="bookmarked">Bookmarked</string>
     <string name="not_bookmarked">Not Bookmarked</string>
     <string name="connection_failed">Connection failed, Check your network settings.</string>
+    <string name="error_occurred">Error...</string>
+    <string name="retry">Retry</string>
 </resources>
