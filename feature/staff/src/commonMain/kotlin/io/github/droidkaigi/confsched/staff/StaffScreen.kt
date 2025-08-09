@@ -8,6 +8,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.component.AnimatedMediumTopAppBar
 import io.github.droidkaigi.confsched.model.staff.Staff
@@ -39,6 +40,7 @@ fun StaffScreen(
         modifier = modifier
     ) { contentPadding ->
         LazyColumn(
+            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             contentPadding = contentPadding,
         ) {
             items(
