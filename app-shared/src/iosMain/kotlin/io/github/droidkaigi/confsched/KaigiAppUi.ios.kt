@@ -96,7 +96,7 @@ actual fun KaigiAppUi() {
             )
             aboutTabNavGraph(
                 onAboutItemClick = {
-                    when(it) {
+                    when (it) {
                         AboutItem.Map -> TODO()
                         AboutItem.Contributors -> TODO()
                         AboutItem.Staff -> TODO()
