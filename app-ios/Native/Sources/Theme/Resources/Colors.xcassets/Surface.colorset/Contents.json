@@ -1,5 +1,5 @@
 {
-  "colors": [
+  "colors" : [
     {
       "color": {
         "color-space": "srgb",
@@ -10,11 +10,11 @@
           "red": "0.066667"
         }
       },
-      "idiom": "universal"
+      "idiom" : "universal"
     }
   ],
-  "info": {
-    "author": "xcode",
-    "version": 1
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
   }
 }
