@@ -130,3 +130,27 @@ Install git hooks: `./Scripts/install-hooks.sh`
   - swift-format available for consistent code formatting
   - Pre-commit hooks ensure code quality before commits
 - Uses modern Swift 6 features including strict concurrency checking
+
+## Important Build and Debug Notes
+### Build Issues
+- **Swift Dependencies Macro Error**: The project may encounter macro validation errors with swift-dependencies package when building. This is a known issue with the package itself, not your code changes.
+  - Try using `-skipMacroValidation` flag when building via xcodebuild
+  - The app binary installed on simulator may still work despite build errors
+
+### Debugging
+- **Use Mobile MCP for debugging**: When testing UI changes and functionality on iOS simulators, use Mobile MCP tools instead of relying solely on build success
+  - `mobile_launch_app`, `mobile_take_screenshot`, `mobile_list_elements_on_screen` etc.
+  - This allows verification of UI changes even when build has macro-related errors
+
+### Code Quality Checks
+- **Always run lint/format/test before completing work**:
+  - `make lint` - Check for linting issues
+  - `make lint-fix` - Auto-fix linting issues
+  - `make format` - Format code with swift-format
+  - `make test` - Run all tests
+  - Ensure all checks pass and fixes are applied before considering work complete
+
+### KMP Integration
+- **Sponsor data integration**: Currently using mock data in `SponsorUseCaseImpl` as KMP doesn't have sponsorsRepository yet
+  - When KMP adds sponsor repository, update `SponsorUseCaseImpl.load()` to use actual data
+  - Follow the pattern used in `TimetableUseCaseImpl` for reference

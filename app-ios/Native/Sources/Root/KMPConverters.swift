@@ -266,12 +266,13 @@ extension Model.Sponsor {
         // Use FileManager URL as a safe fallback
         let fallbackURL = URL(fileURLWithPath: "/")
         let logoURL = URL(string: shared.logo) ?? fallbackURL
-        let linkURL = URL(string: shared.link) ?? fallbackURL
+        let websiteURL = URL(string: shared.link) ?? fallbackURL
         
         self.init(
+            id: shared.id,
             name: shared.name,
-            logo: logoURL,
-            link: linkURL,
+            logoUrl: logoURL,
+            websiteUrl: websiteURL,
             plan: Model.SponsorPlan(from: shared.plan)
         )
     }
@@ -300,7 +301,7 @@ extension Model.Staff {
     init(from shared: shared.Staff) {
         // Use FileManager URL as a safe fallback
         let fallbackURL = URL(fileURLWithPath: "/")
-        let iconURL = URL(string: shared.iconUrl) ?? fallbackURL
+        let iconURL = URL(string: shared.icon) ?? fallbackURL
         
         self.init(
             id: shared.id,
