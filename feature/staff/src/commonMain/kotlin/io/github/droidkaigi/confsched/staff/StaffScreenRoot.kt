@@ -12,7 +12,6 @@ fun StaffScreenRoot(
 ) {
     SoilDataBoundary(
         state = rememberQuery(screenContext.staffQueryKey),
-        errorFallback = { },
     ) {
         StaffScreen(
             staff = it,
