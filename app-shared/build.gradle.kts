@@ -1,4 +1,3 @@
-import com.android.build.gradle.internal.tasks.factory.dependsOn
 import org.jetbrains.compose.ComposePlugin.CommonComponentsDependencies
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
@@ -145,8 +144,8 @@ dependencies {
 }
 
 // generate aboutlibraries.json for iOS
-tasks.named("prepareComposeResourcesTaskForIosMain").dependsOn("exportLibraryDefinitions")
-tasks.named("copyNonXmlValueResourcesForIosMain").dependsOn("exportLibraryDefinitions")
+tasks.named("prepareComposeResourcesTaskForIosMain").get().dependsOn("exportLibraryDefinitions")
+tasks.named("copyNonXmlValueResourcesForIosMain").get().dependsOn("exportLibraryDefinitions")
 aboutLibraries.export {
     outputFile = file("src/iosMain/composeResources/files/aboutlibraries.json")
     exportVariant = "metadataIosMain"
