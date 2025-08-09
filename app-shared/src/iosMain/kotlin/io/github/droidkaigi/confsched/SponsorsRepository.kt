@@ -11,12 +11,10 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.timeout
 import soil.query.SwrClientPlus
 import soil.query.annotation.ExperimentalSoilQueryApi
 import soil.query.compose.QuerySuccessObject
 import soil.query.compose.rememberQuery
-import kotlin.time.Duration.Companion.milliseconds
 
 @Inject
 class SponsorsRepository(
@@ -37,7 +35,6 @@ class SponsorsRepository(
         }
     }
         .filterNotNull()
-        .timeout(5000.milliseconds)
         // Errors thrown inside flow can't be caught on iOS side, so we catch it here.
         .catch { emit(persistentListOf()) }
 }

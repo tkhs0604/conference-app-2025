@@ -41,7 +41,10 @@ private fun SponsorResponse.toSponsor(): Sponsor {
             "SILVER" -> SponsorPlan.SILVER
             "BRONZE" -> SponsorPlan.BRONZE
             "SUPPORTER" -> SponsorPlan.SUPPORTER
-            else -> SponsorPlan.SUPPORTER
+            else -> {
+                println("Warning: Unknown sponsor plan value: '$plan' for sponsor id: $id. Falling back to SUPPORTER.")
+                SponsorPlan.SUPPORTER
+            }
         },
         link = link,
     )
