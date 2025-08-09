@@ -265,8 +265,8 @@ extension Model.Sponsor {
     init(from shared: shared.Sponsor) {
         self.init(
             name: shared.name,
-            logo: shared.logo,
-            link: shared.link,
+            logo: URL(string: shared.logo)!,
+            link: URL(string: shared.link)!,
             plan: Model.SponsorPlan(from: shared.plan)
         )
     }
@@ -296,8 +296,8 @@ extension Model.Staff {
         self.init(
             id: shared.id,
             name: shared.name,
-            iconUrl: shared.iconUrl,
-            profileUrl: shared.profileUrl
+            iconUrl: URL(string: shared.iconUrl)!,
+            profileUrl: shared.profileUrl.flatMap { URL(string: $0) }
         )
     }
 }
@@ -309,8 +309,8 @@ extension Model.Contributor {
         self.init(
             id: shared.id,
             name: shared.name,
-            url: shared.url,
-            iconUrl: shared.iconUrl
+            url: URL(string: shared.url)!,
+            iconUrl: URL(string: shared.iconUrl)!
         )
     }
 }

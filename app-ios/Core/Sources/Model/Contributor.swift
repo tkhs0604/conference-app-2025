@@ -3,14 +3,14 @@ import Foundation
 public struct Contributor: Sendable, Equatable {
     public let id: String
     public let name: String
-    public let url: String
-    public let iconUrl: String
+    public let url: URL
+    public let iconUrl: URL
     
     public init(
         id: String,
         name: String,
-        url: String,
-        iconUrl: String
+        url: URL,
+        iconUrl: URL
     ) {
         self.id = id
         self.name = name

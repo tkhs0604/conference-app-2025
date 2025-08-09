@@ -2,14 +2,14 @@ import Foundation
 
 public struct Sponsor: Sendable, Equatable {
     public let name: String
-    public let logo: String
-    public let link: String
+    public let logo: URL
+    public let link: URL
     public let plan: SponsorPlan
     
     public init(
         name: String,
-        logo: String,
-        link: String,
+        logo: URL,
+        link: URL,
         plan: SponsorPlan
     ) {
         self.name = name
