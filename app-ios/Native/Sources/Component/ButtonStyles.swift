@@ -33,7 +33,7 @@ extension View {
     public func filledButtonStyle() -> some View {
         buttonStyle(FilledButtonStyle())
     }
-    
+
     public func textButtonStyle() -> some View {
         buttonStyle(TextButtonStyle())
     }

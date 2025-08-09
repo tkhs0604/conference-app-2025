@@ -4,7 +4,7 @@ import Theme
 struct FrontCard: View {
     let userRole: String
     let userName: String
-    
+
     var body: some View {
         ZStack {
             Image("dark_background", bundle: .module)
@@ -48,7 +48,7 @@ struct FrontCard: View {
         }
         .clipped(antialiased: true)
     }
-    
+
     // TODO: Replace user image
     private var avatarImage: some View {
         Image(systemName: "person.circle.fill")

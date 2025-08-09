@@ -1,6 +1,6 @@
+import Component
 import SwiftUI
 import Theme
-import Component
 
 public struct ProfileCardScreen: View {
     @State private var presenter = ProfileCardPresenter()

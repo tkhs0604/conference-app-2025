@@ -1,4 +1,4 @@
-import CoreImage.CIFilterBuiltins // ①
+import CoreImage.CIFilterBuiltins  // ①
 import SwiftUI
 
 struct QrCodeView: View {
@@ -10,14 +10,16 @@ struct QrCodeView: View {
             .scaledToFit()
             .accessibilityLabel(Text("QRCode"))
     }
-    
+
     private var qrImage: UIImage {
         let qrCodeGenerator = CIFilter.qrCodeGenerator()
         qrCodeGenerator.message = Data(data.utf8)
         qrCodeGenerator.correctionLevel = "H"
         if let outputimage = qrCodeGenerator.outputImage {
-            if let cgImage = CIContext().createCGImage(
-                outputimage, from: outputimage.extent) {
+            if let cgImage = CIContext()
+                .createCGImage(
+                    outputimage, from: outputimage.extent)
+            {
                 return UIImage(cgImage: cgImage)
             }
         }

@@ -4,7 +4,7 @@ import Theme
 struct BackCard: View {
     var body: some View {
         ZStack {
-            Color(uiColor: UIColor(red: 40.0/255.0, green: 15.0/255.0, blue: 131.0/255.0, alpha: 1.0))
+            Color(uiColor: UIColor(red: 40.0 / 255.0, green: 15.0 / 255.0, blue: 131.0 / 255.0, alpha: 1.0))
             Image("back_base", bundle: .module)
                 .resizable()
                 .scaledToFill()
