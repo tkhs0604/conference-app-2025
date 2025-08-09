@@ -30,16 +30,9 @@ public struct ProfileCardScreen: View {
     }
 
     private var profileCard: some View {
-        VStack(spacing: 20) {
-            avatarImage
-            userInfoSection
-            bioText
-            qrCodeSection
+        ZStack {
+            FrontCard(userRole: presenter.userRole, userName: presenter.userName)
         }
-        .padding(24)
-        .background(Color.primary.opacity(0.05))
-        .cornerRadius(20)
-        .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
         .padding(.horizontal, 56)
         .padding(.vertical, 32)
     }
