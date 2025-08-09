@@ -10,7 +10,7 @@ public struct ProfileCardScreen: View {
     public var body: some View {
         NavigationStack {
             profileCardScrollView
-                .background(Color.primary.opacity(0.02))
+                .background(AssetColors.surface.swiftUIColor)
                 .navigationTitle("Profile Card")
                 #if os(iOS)
                     .navigationBarTitleDisplayMode(.large)
@@ -20,11 +20,11 @@ public struct ProfileCardScreen: View {
 
     private var profileCardScrollView: some View {
         ScrollView {
-            VStack(spacing: 24) {
+            VStack(spacing: 0) {
                 profileCard
                 actionButtons
             }
-            .padding(.vertical, 24)
+            .padding(.vertical, 20)
             .padding(.bottom, 80)  // Tab bar padding
         }
     }
@@ -40,7 +40,8 @@ public struct ProfileCardScreen: View {
         .background(Color.primary.opacity(0.05))
         .cornerRadius(20)
         .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 56)
+        .padding(.vertical, 32)
     }
 
     private var avatarImage: some View {
@@ -89,11 +90,12 @@ public struct ProfileCardScreen: View {
     }
 
     private var actionButtons: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 8) {
             shareButton
             editButton
         }
         .padding(.horizontal, 16)
+        .padding(.vertical, 12)
     }
 
     private var shareButton: some View {
@@ -110,7 +112,7 @@ public struct ProfileCardScreen: View {
         Button {
             presenter.editProfile()
         } label: {
-            Label("Edit Profile", systemImage: "pencil")
+            Text("Edit Profile")
                 .frame(maxWidth: .infinity)
         }
         .textButtonStyle()
