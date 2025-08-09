@@ -1,5 +1,6 @@
 import SwiftUI
 import Theme
+import Component
 
 public struct ProfileCardScreen: View {
     @State private var presenter = ProfileCardPresenter()
@@ -101,11 +102,8 @@ public struct ProfileCardScreen: View {
         } label: {
             Label("Share Profile Card", systemImage: "square.and.arrow.up")
                 .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.accentColor)
-                .foregroundColor(.white)
-                .cornerRadius(12)
         }
+        .filledButtonStyle()
     }
 
     private var editButton: some View {
@@ -114,11 +112,8 @@ public struct ProfileCardScreen: View {
         } label: {
             Label("Edit Profile", systemImage: "pencil")
                 .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.primary.opacity(0.1))
-                .foregroundColor(.primary)
-                .cornerRadius(12)
         }
+        .textButtonStyle()
     }
 }
 
