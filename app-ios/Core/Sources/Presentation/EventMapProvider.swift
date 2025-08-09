@@ -1,6 +1,6 @@
 import Dependencies
 import Model
-import SwiftUI
+import Observation
 import UseCase
 
 @Observable
