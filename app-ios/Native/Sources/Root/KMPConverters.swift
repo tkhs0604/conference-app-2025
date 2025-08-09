@@ -259,6 +259,62 @@ extension Model.Filters {
     }
 }
 
+// MARK: - Sponsor Converters
+
+extension Model.Sponsor {
+    init(from shared: shared.Sponsor) {
+        self.init(
+            name: shared.name,
+            logo: shared.logo,
+            link: shared.link,
+            plan: Model.SponsorPlan(from: shared.plan)
+        )
+    }
+}
+
+extension Model.SponsorPlan {
+    init(from shared: shared.SponsorPlan) {
+        switch shared {
+        case .platinum:
+            self = .platinum
+        case .gold:
+            self = .gold
+        case .silver:
+            self = .silver
+        case .bronze:
+            self = .bronze
+        case .supporter:
+            self = .supporter
+        }
+    }
+}
+
+// MARK: - Staff Converters
+
+extension Model.Staff {
+    init(from shared: shared.Staff) {
+        self.init(
+            id: shared.id,
+            name: shared.name,
+            iconUrl: shared.iconUrl,
+            profileUrl: shared.profileUrl
+        )
+    }
+}
+
+// MARK: - Contributor Converters
+
+extension Model.Contributor {
+    init(from shared: shared.Contributor) {
+        self.init(
+            id: shared.id,
+            name: shared.name,
+            url: shared.url,
+            iconUrl: shared.iconUrl
+        )
+    }
+}
+
 // MARK: - Helper Extensions
 
 extension shared.KotlinInstant {
