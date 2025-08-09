@@ -8,8 +8,6 @@ public final class EventMapProvider {
     @ObservationIgnored
     @Dependency(\.eventMapUseCase) private var eventMapUseCase
 
-    public var eventMap: EventMap?
-
     // UI State
     public var events: [EventMapEvent] = []
 
@@ -18,7 +16,7 @@ public final class EventMapProvider {
     @MainActor
     public func fetchEvents() async {
         do {
-            eventMap = try await eventMapUseCase.load()
+            let eventMap = try await eventMapUseCase.load()
             events = eventMap?.events ?? []
         } catch {
             print(error)
