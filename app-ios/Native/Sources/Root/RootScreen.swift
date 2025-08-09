@@ -117,7 +117,10 @@ public struct RootScreen: View {
 
     private var infoTab: some View {
         NavigationStack(path: $aboutNavigationPath) {
-            AboutScreen(onNavigate: handleAboutNavigation)
+            AboutScreen(
+                onNavigate: handleAboutNavigation,
+                onEnableComposeMultiplatform: handleEnableComposeMultiplatform,
+            )
                 .navigationDestination(for: AboutNavigationDestination.self) { destination in
                     aboutDestinationView(for: destination)
                 }
