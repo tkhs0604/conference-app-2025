@@ -1,12 +1,8 @@
 package io.github.droidkaigi.confsched.model.sessions
 
-import androidx.compose.runtime.Immutable
 import io.github.droidkaigi.confsched.model.core.MultiLangText
 import io.github.droidkaigi.confsched.model.core.RoomType
 import kotlinx.serialization.Serializable
-
-@Immutable
-data class TimetableRooms(val rooms: List<TimetableRoom>)
 
 @Serializable
 data class TimetableRoom(
