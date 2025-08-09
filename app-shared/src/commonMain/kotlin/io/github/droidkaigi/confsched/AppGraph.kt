@@ -6,6 +6,7 @@ import io.github.droidkaigi.confsched.favorites.FavoritesScreenContext
 import io.github.droidkaigi.confsched.sessions.SearchScreenContext
 import io.github.droidkaigi.confsched.sessions.TimetableItemDetailScreenContext
 import io.github.droidkaigi.confsched.sessions.TimetableScreenContext
+import io.github.droidkaigi.confsched.staff.StaffScreenContext
 
 interface AppGraph :
     TimetableScreenContext.Factory,
@@ -13,4 +14,5 @@ interface AppGraph :
     SearchScreenContext.Factory,
     ContributorsScreenContext.Factory,
     FavoritesScreenContext.Factory,
-    AboutScreenContext.Factory
+    AboutScreenContext.Factory,
+    StaffScreenContext.Factory
