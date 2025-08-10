@@ -1,22 +1,24 @@
+import Dependencies
+import DependencyExtra
 import SwiftUI
 import Theme
 
 public struct EventMapScreen: View {
     @State private var presenter = EventMapPresenter()
-    @State private var selectedFloorMap: FloorMap? = .b1f
+    @State private var selectedFloorMap: FloorMap? = .first
+    @Dependency(\.safari) var safari
 
     public init() {}
 
     public var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: 0) {
                 // Description
-                Text("Navigate the venue with our interactive floor maps")
-                    .font(.body)
-                    .foregroundColor(.secondary)
+                Text("DroidKaigiでは、セッション以外にも参加者が楽しめるイベントを開催。コミュニケーションや技術交流を通じてカンファレンスを満喫しましょう！")
+                    .font(Typography.bodyMedium)
+                    .foregroundColor(AssetColors.onSurfaceVariant.swiftUIColor)
                     .padding(.horizontal, 16)
-                    .padding(.top, 8)
-
+                    .padding(.vertical, 10)
                 // Floor selector
                 FloorMapSelector(selected: $selectedFloorMap)
                     .onChange(of: selectedFloorMap) { _, newValue in
@@ -28,43 +30,40 @@ public struct EventMapScreen: View {
                 // Map image
                 if selectedFloorMap != nil {
                     // TODO: Replace with actual floor map images
-                    Image(systemName: presenter.selectedFloorMap.image)
+                    Image(presenter.selectedFloorMap.image, bundle: .module)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 300)
-                        .foregroundColor(.secondary)
-                        .padding(.horizontal, 16)
-                        .background(Color.primary.opacity(0.05))
-                        .cornerRadius(12)
-                        .padding(.horizontal, 16)
+                        .padding(.all, 16)
                 }
 
                 // Events section
-                VStack(alignment: .leading, spacing: 16) {
-                    Text("Events")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .padding(.horizontal, 16)
-
-                    ForEach(presenter.events) { event in
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(presenter.eventMap.events, id: \.id) { event in
                         EventItem(event: event) { url in
-                            presenter.moreDetailButtonTapped(url)
+                            Task {
+                                await safari(url)
+                            }
+                        }
+                        if event.id != presenter.eventMap.events.last?.id {
+                            Divider()
+                                .padding(.horizontal, 16)
+                                .foregroundStyle(AssetColors.outlineVariant.swiftUIColor)
                         }
                     }
                 }
                 .padding(.bottom, 80)  // Tab bar padding
             }
         }
-        .background(Color.primary.opacity(0.02))
-        .navigationTitle("Event Map")
+        .background(AssetColors.background.swiftUIColor)
+        .navigationTitle("イベントマップ")
         #if os(iOS)
             .navigationBarTitleDisplayMode(.large)
         #endif
-        .onAppear {
-            presenter.loadInitial()
+        .task {
+            await presenter.loadInitial()
             if selectedFloorMap == nil {
-                selectedFloorMap = .b1f
+                selectedFloorMap = .first
             }
         }
     }
