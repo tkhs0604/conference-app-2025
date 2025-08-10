@@ -9,7 +9,6 @@ import io.github.droidkaigi.confsched.data.core.NetworkExceptionHandler
 import io.github.droidkaigi.confsched.data.core.toMultiLangText
 import io.github.droidkaigi.confsched.data.eventmap.response.EventMapResponse
 import io.github.droidkaigi.confsched.data.sessions.toRoomType
-import io.github.droidkaigi.confsched.model.core.MultiLangText
 import io.github.droidkaigi.confsched.model.core.Room
 import io.github.droidkaigi.confsched.model.eventmap.EventMapEvent
 import kotlinx.collections.immutable.PersistentList
@@ -52,15 +51,9 @@ public fun EventMapResponse.toEventMapList(): PersistentList<EventMapEvent> {
         .mapNotNull { project ->
             roomIdToRoom[project.roomId]?.let { room ->
                 EventMapEvent(
-                    name = MultiLangText(
-                        jaTitle = project.title.ja,
-                        enTitle = project.title.en,
-                    ),
+                    name = project.title.toMultiLangText(),
                     room = room,
-                    description = MultiLangText(
-                        jaTitle = project.i18nDesc.ja,
-                        enTitle = project.i18nDesc.en,
-                    ),
+                    description = project.i18nDesc.toMultiLangText(),
                     moreDetailsUrl = project.moreDetailsUrl,
                     message = project.message?.toMultiLangText(),
                 )
