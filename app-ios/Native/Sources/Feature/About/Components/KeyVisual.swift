@@ -4,12 +4,11 @@ import Theme
 struct KeyVisual: View {
     var body: some View {
         VStack(spacing: 0) {
-            // Header Logo - using system image as placeholder
-            Image(systemName: "swift")
+            // Header Logo
+            Image("X_Header", bundle: .module)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 200, height: 80)
-                .foregroundColor(.accentColor)
+                .frame(maxWidth: .infinity)
                 .padding(.bottom, 16)
 
             // Conference description text
@@ -17,6 +16,7 @@ struct KeyVisual: View {
                 .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                 .typographyStyle(.titleMedium)
                 .multilineTextAlignment(.center)
+                .padding(.horizontal, 16)
                 .padding(.bottom, 20)
 
             // Date and Location info container
@@ -36,9 +36,8 @@ struct KeyVisual: View {
                     Text("2025.09.12(Thu) - 13(Fri)")
                         .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                         .typographyStyle(.titleSmall)
-
-                    Spacer()
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
 
                 // Location row
                 HStack(spacing: 8) {
@@ -54,7 +53,8 @@ struct KeyVisual: View {
 
                     Text("Bellesalle Shibuya Garden")
                         .foregroundStyle(AssetColors.onSurface.swiftUIColor)
-                        .typographyStyle(.titleSmall)
+                        .font(.system(size: 14, weight: .regular))
+                        .lineSpacing(-6)
 
                     if let mapURL = URL(string: "https://goo.gl/maps/vv9sE19JvRjYKtSP9") {
                         Link(destination: mapURL) {
@@ -64,9 +64,8 @@ struct KeyVisual: View {
                                 .underline()
                         }
                     }
-
-                    Spacer()
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 20)
@@ -77,6 +76,12 @@ struct KeyVisual: View {
                     .stroke(style: StrokeStyle(lineWidth: 1, dash: [2, 2]))
                     .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
             )
+            .padding(.horizontal, 16)
         }
     }
+}
+
+#Preview {
+    KeyVisual()
+        .background(AssetColors.surface.swiftUIColor)
 }

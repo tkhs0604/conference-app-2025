@@ -1,4 +1,5 @@
 import SwiftUI
+import Theme
 
 struct ContributorListItem: View {
     let contributor: Contributor
@@ -8,25 +9,15 @@ struct ContributorListItem: View {
             // TODO: Replace with actual contributor avatar when available
             Image(systemName: "person.circle.fill")
                 .resizable()
-                .frame(width: 48, height: 48)
-                .foregroundColor(.secondary)
+                .frame(width: 56, height: 56)
+                .foregroundColor(AssetColors.onSurface.swiftUIColor.opacity(0.6))
 
-            VStack(alignment: .leading, spacing: 4) {
-                Text(contributor.name)
-                    .font(.body)
-                    .foregroundColor(.primary)
-
-                Text("@\(contributor.githubUsername)")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
+            Text(contributor.name)
+                .font(.body)
+                .foregroundColor(AssetColors.onSurface.swiftUIColor)
 
             Spacer()
-
-            Image(systemName: "chevron.right")
-                .font(.caption)
-                .foregroundColor(.secondary)
         }
-        .padding(.vertical, 8)
+        .padding(.vertical, 12)
     }
 }

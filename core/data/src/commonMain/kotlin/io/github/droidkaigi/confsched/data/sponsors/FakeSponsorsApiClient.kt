@@ -1,34 +1,32 @@
 package io.github.droidkaigi.confsched.data.sponsors
 
 import io.github.droidkaigi.confsched.model.sponsors.Sponsor
-import io.github.droidkaigi.confsched.model.sponsors.SponsorPlan
+import io.github.droidkaigi.confsched.model.sponsors.fakes
 import kotlinx.collections.immutable.PersistentList
-import kotlinx.collections.immutable.persistentListOf
+import kotlinx.io.IOException
 
 public class FakeSponsorsApiClient : SponsorsApiClient {
+    public sealed class Status : SponsorsApiClient {
+        public data object Operational : Status() {
+            override suspend fun sponsors(): PersistentList<Sponsor> {
+                return Sponsor.fakes()
+            }
+        }
+
+        public data object Error : Status() {
+            override suspend fun sponsors(): PersistentList<Sponsor> {
+                throw IOException("Fake IO Exception")
+            }
+        }
+    }
+
+    private var status: Status = Status.Operational
+
+    public fun setup(status: Status) {
+        this.status = status
+    }
+
     override suspend fun sponsors(): PersistentList<Sponsor> {
-        return persistentListOf(
-            Sponsor(
-                id = "1",
-                name = "Platinum Sponsor",
-                logo = "https://example.com/logo1.png",
-                plan = SponsorPlan.PLATINUM,
-                link = "https://example.com",
-            ),
-            Sponsor(
-                id = "2",
-                name = "Gold Sponsor",
-                logo = "https://example.com/logo2.png",
-                plan = SponsorPlan.GOLD,
-                link = "https://example.com",
-            ),
-            Sponsor(
-                id = "3",
-                name = "Silver Sponsor",
-                logo = "https://example.com/logo3.png",
-                plan = SponsorPlan.SILVER,
-                link = "https://example.com",
-            ),
-        )
+        return status.sponsors()
     }
 }
