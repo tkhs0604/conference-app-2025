@@ -1,7 +1,6 @@
 package io.github.droidkaigi.confsched.sessions
 
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,9 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.layout.CollapsingHeaderLayout
@@ -48,7 +45,6 @@ import io.github.droidkaigi.confsched.sessions.grid.TimetableGridUiState
 import io.github.droidkaigi.confsched.sessions.section.TimetableListUiState
 import io.github.droidkaigi.confsched.sessions.section.TimetableUiState
 import kotlinx.collections.immutable.persistentMapOf
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -87,7 +83,7 @@ fun TimetableScreen(
         containerColor = Color.Transparent,
         modifier = modifier.fillMaxSize(),
     ) { paddingValues ->
-        Background()
+        TimetableBackground()
         CollapsingHeaderLayout(
             state = collapsingState,
             headerContent = {
@@ -157,17 +153,6 @@ fun TimetableScreen(
             }
         }
     }
-}
-
-@Composable
-private fun Background() {
-    Image(
-        painter = painterResource(SessionsRes.drawable.background),
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-        alignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize().alpha(0.18f),
-    )
 }
 
 private object TimetableDefaults {
