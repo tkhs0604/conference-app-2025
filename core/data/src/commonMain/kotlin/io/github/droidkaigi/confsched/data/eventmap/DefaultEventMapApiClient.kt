@@ -7,8 +7,8 @@ import dev.zacsweers.metro.Inject
 import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.core.NetworkExceptionHandler
 import io.github.droidkaigi.confsched.data.core.toMultiLangText
+import io.github.droidkaigi.confsched.data.core.toRoom
 import io.github.droidkaigi.confsched.data.eventmap.response.EventMapResponse
-import io.github.droidkaigi.confsched.data.sessions.toRoomType
 import io.github.droidkaigi.confsched.model.core.Room
 import io.github.droidkaigi.confsched.model.eventmap.EventMapEvent
 import kotlinx.collections.immutable.PersistentList
@@ -29,22 +29,15 @@ public class DefaultEventMapApiClient(
 
     public override suspend fun eventMapEvents(): PersistentList<EventMapEvent> {
         return networkExceptionHandler {
-            eventMapApi.getEventMap()
-        }.toEventMapList()
+            eventMapApi.getEventMap().toEventMapList()
+        }
     }
 }
 
 public fun EventMapResponse.toEventMapList(): PersistentList<EventMapEvent> {
     val roomIdToRoom: Map<Int, Room> = this.rooms.associateBy(
-        keySelector = { room -> room.id },
-        valueTransform = { room ->
-            Room(
-                id = room.id,
-                name = room.name.toMultiLangText(),
-                type = room.name.toRoomType(),
-                sort = room.sort,
-            )
-        },
+        keySelector = { roomResponse -> roomResponse.id },
+        valueTransform = { roomResponse -> roomResponse.toRoom() },
     )
 
     return this.projects

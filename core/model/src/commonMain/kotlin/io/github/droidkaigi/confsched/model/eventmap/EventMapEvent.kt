@@ -49,19 +49,11 @@ private fun RoomType.toRoom(): Room = Room(
 )
 
 private fun RoomType.toRoomName(): MultiLangText = when (this) {
-    RoomType.RoomF -> MultiLangText("Flamingo", "Flamingo")
-    RoomType.RoomG -> MultiLangText("Giraffe", "Giraffe")
-    RoomType.RoomH -> MultiLangText("Hedgehog", "Hedgehog")
-    RoomType.RoomI -> MultiLangText("Iguana", "Iguana")
-    RoomType.RoomJ -> MultiLangText("Jellyfish", "Jellyfish")
+    RoomType.RoomF -> MultiLangText("Meerkat", "Meerkat")
+    RoomType.RoomG -> MultiLangText("Ladybug", "Ladybug")
+    RoomType.RoomH -> MultiLangText("Koala", "Koala")
+    RoomType.RoomI -> MultiLangText("Jellyfish", "Jellyfish")
+    RoomType.RoomJ -> MultiLangText("Narwhal", "Narwhal")
+    // TODO: investigate what RoomIJ is later, replace these strings with proper names
     RoomType.RoomIJ -> MultiLangText("Iguana and Jellyfish", "Iguana and Jellyfish")
-}
-
-private fun RoomType.toRoomIcon(): RoomIcon = when (this) {
-    RoomType.RoomF -> RoomIcon.Rhombus
-    RoomType.RoomG -> RoomIcon.Circle
-    RoomType.RoomH -> RoomIcon.Diamond
-    RoomType.RoomI -> RoomIcon.Square
-    RoomType.RoomJ -> RoomIcon.Triangle
-    RoomType.RoomIJ -> RoomIcon.Square
 }

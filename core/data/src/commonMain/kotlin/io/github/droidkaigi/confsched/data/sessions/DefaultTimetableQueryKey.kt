@@ -4,13 +4,12 @@ import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import io.github.droidkaigi.confsched.data.DataScope
-import io.github.droidkaigi.confsched.data.core.LocaledResponse
 import io.github.droidkaigi.confsched.data.core.toMultiLangText
+import io.github.droidkaigi.confsched.data.core.toRoom
 import io.github.droidkaigi.confsched.data.sessions.response.SessionAssetResponse
 import io.github.droidkaigi.confsched.data.sessions.response.SessionsAllResponse
 import io.github.droidkaigi.confsched.model.core.MultiLangText
 import io.github.droidkaigi.confsched.model.core.Room
-import io.github.droidkaigi.confsched.model.core.RoomType
 import io.github.droidkaigi.confsched.model.data.TimetableQueryKey
 import io.github.droidkaigi.confsched.model.sessions.Timetable
 import io.github.droidkaigi.confsched.model.sessions.TimetableAsset
@@ -75,15 +74,8 @@ public fun SessionsAllResponse.toTimetable(): Timetable {
         }
     val roomIdToRoom: Map<Int, Room> = timetableContents.rooms
         .associateBy(
-            keySelector = { room -> room.id },
-            valueTransform = { room ->
-                Room(
-                    id = room.id,
-                    name = room.name.toMultiLangText(),
-                    type = room.name.toRoomType(),
-                    sort = room.sort,
-                )
-            },
+            keySelector = { roomResponse -> roomResponse.id },
+            valueTransform = { roomResponse -> roomResponse.toRoom() },
         )
 
     return Timetable(
@@ -161,14 +153,4 @@ private fun SessionAssetResponse.toTimetableAsset() = TimetableAsset(videoUrl, s
 internal fun String.toInstantAsJST(): Instant {
     val (date, _) = split("+")
     return LocalDateTime.parse(date).toInstant(TimeZone.of("UTC+9"))
-}
-
-internal fun LocaledResponse.toRoomType() = when (en.lowercase()) {
-    "flamingo" -> RoomType.RoomF
-    "giraffe" -> RoomType.RoomG
-    "hedgehog" -> RoomType.RoomH
-    "iguana" -> RoomType.RoomI
-    "jellyfish" -> RoomType.RoomJ
-    // Assume the room on the first day.
-    else -> RoomType.RoomIJ
 }

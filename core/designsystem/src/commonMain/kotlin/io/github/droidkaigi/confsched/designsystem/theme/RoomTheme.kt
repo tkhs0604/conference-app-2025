@@ -11,31 +11,31 @@ sealed interface RoomTheme {
     val containerColor: Color
     val dimColor: Color
 
-    data object Iguana : RoomTheme {
+    data object Jellyfish : RoomTheme {
         override val primaryColor = Color(0xFF45E761)
         override val containerColor = Color(0xFF45E761).copy(alpha = 0.1f)
         override val dimColor = Color(0xFF132417)
     }
 
-    data object Hedgehog : RoomTheme {
+    data object Koala : RoomTheme {
         override val primaryColor = Color(0xFFFF974B)
         override val containerColor = Color(0xFFFF974B).copy(alpha = 0.1f)
         override val dimColor = Color(0xFF251C15)
     }
 
-    data object Giraffe : RoomTheme {
+    data object Ladybug : RoomTheme {
         override val primaryColor = Color(0xFFDDD33C)
         override val containerColor = Color(0xFFDDD33C).copy(alpha = 0.1f)
         override val dimColor = Color(0xFF222213)
     }
 
-    data object Flamingo : RoomTheme {
+    data object Meerkat : RoomTheme {
         override val primaryColor = Color(0xFFFF53CF)
         override val containerColor = Color(0xFFFF53CF).copy(alpha = 0.1f)
         override val dimColor = Color(0xFF271A25)
     }
 
-    data object Jellyfish : RoomTheme {
+    data object Narwhal : RoomTheme {
         override val primaryColor = Color(0xFF44ADE7)
         override val containerColor = Color(0xFF44ADE7).copy(alpha = 0.1f)
         override val dimColor = Color(0xFF121E25)
