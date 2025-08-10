@@ -1,4 +1,4 @@
-package io.github.droidkaigi.confsched.droidkaigiui.session
+package io.github.droidkaigi.confsched.droidkaigiui.extension
 
 import io.github.droidkaigi.confsched.model.core.RoomIcon
 import io.github.droidkaigi.confsched.designsystem.theme.RoomTheme
