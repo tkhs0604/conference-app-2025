@@ -1,3 +1,4 @@
 <resources>
+    <string name="event_map">イベントマップ</string>
     <string name="read_more">詳しく見る</string>
 </resources>

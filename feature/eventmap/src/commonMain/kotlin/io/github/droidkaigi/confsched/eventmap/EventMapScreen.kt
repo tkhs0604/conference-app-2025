@@ -12,6 +12,7 @@ import io.github.droidkaigi.confsched.designsystem.util.plus
 import io.github.droidkaigi.confsched.droidkaigiui.component.AnimatedTextTopAppBar
 import io.github.droidkaigi.confsched.eventmap.component.EventMap
 import io.github.droidkaigi.confsched.model.eventmap.FloorLevel
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -25,7 +26,7 @@ fun EventMapScreen(
     Scaffold(
         topBar = {
             AnimatedTextTopAppBar(
-                title = "Event Map",
+                title = stringResource(EventmapRes.string.event_map),
                 scrollBehavior = scrollBehavior,
             )
         },
