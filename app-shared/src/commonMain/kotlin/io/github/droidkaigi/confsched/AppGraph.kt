@@ -1,5 +1,6 @@
 package io.github.droidkaigi.confsched
 
+import io.github.confsched.profile.ProfileScreenContext
 import io.github.droidkaigi.confsched.about.AboutScreenContext
 import io.github.droidkaigi.confsched.contributors.ContributorsScreenContext
 import io.github.droidkaigi.confsched.favorites.FavoritesScreenContext
@@ -15,4 +16,5 @@ interface AppGraph :
     ContributorsScreenContext.Factory,
     FavoritesScreenContext.Factory,
     AboutScreenContext.Factory,
-    StaffScreenContext.Factory
+    StaffScreenContext.Factory,
+    ProfileScreenContext.Factory

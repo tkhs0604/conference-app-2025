@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 import kotlin.reflect.KClass
 
 @Serializable
-data object ProfileCardTabRoute : MainTabRoute {
-    override val rootRouteClass: KClass<*> get() = ProfileCardTabRoute::class
+data object ProfileTabRoute : MainTabRoute {
+    override val rootRouteClass: KClass<*> get() = ProfileTabRoute::class
 }

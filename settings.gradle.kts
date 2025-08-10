@@ -44,5 +44,6 @@ include(
     ":feature:settings",
     ":feature:favorites",
     ":feature:staff",
+    ":feature:profile",
 )
 include(":tools:ksp-processor")

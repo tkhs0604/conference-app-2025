@@ -44,7 +44,7 @@ enum class MainScreenTab(
         iconOn = AppSharedRes.drawable.ic_about_fill,
         iconOff = AppSharedRes.drawable.ic_about_outline,
     ),
-    ProfileCard(
+    Profile(
         label = AppSharedRes.string.profile_card,
         iconOn = AppSharedRes.drawable.ic_profile_card_fill,
         iconOff = AppSharedRes.drawable.ic_profile_card_outline,
