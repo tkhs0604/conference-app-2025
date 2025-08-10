@@ -6,51 +6,41 @@ import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-sealed interface ProfileTheme {
-    val primaryColor: Color
-    val containerColor: Color
-    val dimColor: Color
-
-    data object Iguana : ProfileTheme {
-        override val primaryColor = Color(0xFF45E761)
-        override val containerColor = Color(0xFF45E761).copy(alpha = 0.1f)
-        override val dimColor = Color(0xFF132417)
-    }
-
-    data object Hedgehog : ProfileTheme {
-        override val primaryColor = Color(0xFFFF974B)
-        override val containerColor = Color(0xFFFF974B).copy(alpha = 0.1f)
-        override val dimColor = Color(0xFF251C15)
-    }
-
-    data object Giraffe : ProfileTheme {
-        override val primaryColor = Color(0xFFDDD33C)
-        override val containerColor = Color(0xFFDDD33C).copy(alpha = 0.1f)
-        override val dimColor = Color(0xFF222213)
-    }
-
-    data object Flamingo : ProfileTheme {
-        override val primaryColor = Color(0xFFFF53CF)
-        override val containerColor = Color(0xFFFF53CF).copy(alpha = 0.1f)
-        override val dimColor = Color(0xFF271A25)
-    }
-
-    data object Jellyfish : ProfileTheme {
-        override val primaryColor = Color(0xFF44ADE7)
-        override val containerColor = Color(0xFF44ADE7).copy(alpha = 0.1f)
-        override val dimColor = Color(0xFF121E25)
-    }
+enum class ProfileTheme(
+    val primaryColor: Color,
+    val containerColor: Color,
+    val dimColor: Color,
+) {
+    Iguana(
+        primaryColor = Color(0xFF45E761),
+        containerColor = Color(0xFF45E761),
+        dimColor = Color(0xFF132417),
+    ),
+    Hedgehog(
+        primaryColor = Color(0xFFFF974B),
+        containerColor = Color(0xFFFF974B),
+        dimColor = Color(0xFF251C15),
+    ),
+    Giraffe(
+        primaryColor = Color(0xFFDDD33C),
+        containerColor = Color(0xFFDDD33C),
+        dimColor = Color(0xFF222213)
+    ),
+    Flamingo(
+        primaryColor = Color(0xFFFF53CF),
+        containerColor = Color(0xFFFF53CF),
+        dimColor = Color(0xFF271A25)
+    ),
+    Jellyfish(
+        primaryColor = Color(0xFF44ADE7),
+        containerColor = Color(0xFF44ADE7),
+        dimColor = Color(0xFF121E25)
+    );
 
     companion object {
         fun fromName(name: String): ProfileTheme {
-            return when (name.lowercase()) {
-                "iguana" -> Iguana
-                "hedgehog" -> Hedgehog
-                "giraffe" -> Giraffe
-                "flamingo" -> Flamingo
-                "jellyfish" -> Jellyfish
-                else -> throw IllegalArgumentException("Unknown ProfileTheme: $name")
-            }
+            return entries.firstOrNull { it.name == name }
+                ?: error("Unknown ProfileTheme: $name")
         }
     }
 }
