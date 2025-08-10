@@ -148,7 +148,9 @@ public struct AboutScreen: View {
                     showSwitchToComposeMultiplatformAlert = true
                     presenter.switchToComposeMultiplatformTapped()
                 }
-                .alert(String(localized: "Switch UI", bundle: .module), isPresented: $showSwitchToComposeMultiplatformAlert) {
+                .alert(
+                    String(localized: "Switch UI", bundle: .module), isPresented: $showSwitchToComposeMultiplatformAlert
+                ) {
                     Button("Cancel", role: .cancel) {}
                     Button("Switch") {
                         onEnableComposeMultiplatform()

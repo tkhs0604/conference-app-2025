@@ -92,7 +92,9 @@ public struct HomeScreen: View {
                                 .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                                 .frame(width: 40, height: 40)
                                 .accessibilityLabel(
-                                    timetableMode == .list ? String(localized: "Switch to grid view", bundle: .module) : String(localized: "Switch to list view", bundle: .module))
+                                    timetableMode == .list
+                                        ? String(localized: "Switch to grid view", bundle: .module)
+                                        : String(localized: "Switch to list view", bundle: .module))
                         })
                 }
             }

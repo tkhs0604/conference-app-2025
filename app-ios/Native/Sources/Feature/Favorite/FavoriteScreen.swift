@@ -82,8 +82,7 @@ public struct FavoriteScreen: View {
                 )
 
             VStack(spacing: 8) {
-                Text("登録されたセッションが
-ありません", bundle: .module)
+                Text("登録されたセッションが\nありません", bundle: .module)
                     .font(Typography.titleLarge)
                     .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                     .multilineTextAlignment(.center)
