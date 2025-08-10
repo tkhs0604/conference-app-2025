@@ -2,6 +2,8 @@ package io.github.droidkaigi.confsched.favorites
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,7 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
-import io.github.droidkaigi.confsched.droidkaigiui.compositionlocal.LocalNavigationComponentPadding
+import io.github.droidkaigi.confsched.droidkaigiui.compositionlocal.safeDrawingWithBottomNavBar
+import io.github.droidkaigi.confsched.droidkaigiui.extension.excludeTop
 import io.github.droidkaigi.confsched.droidkaigiui.extension.plus
 import io.github.droidkaigi.confsched.droidkaigiui.session.TimetableList
 import io.github.droidkaigi.confsched.favorites.components.FavoriteFilters
@@ -67,6 +70,7 @@ fun FavoritesScreen(
                         modifier = Modifier.fillMaxSize()
                     )
                 }
+
                 is FavoritesScreenUiState.TimetableContentState.FavoriteList -> {
                     TimetableList(
                         timetableItemMap = uiState.timetableContentState.timetableItemMap,
@@ -74,7 +78,7 @@ fun FavoritesScreen(
                         onBookmarkClick = onBookmarkClick,
                         isBookmarked = { true },
                         isDateTagVisible = true,
-                        contentPadding = LocalNavigationComponentPadding.current + PaddingValues(horizontal = 16.dp),
+                        contentPadding = WindowInsets.safeDrawingWithBottomNavBar.excludeTop().asPaddingValues() + PaddingValues(horizontal = 16.dp),
                     )
                 }
             }

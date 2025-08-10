@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.rememberHazeState
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
-import io.github.droidkaigi.confsched.droidkaigiui.compositionlocal.LocalNavigationComponentPadding
+import io.github.droidkaigi.confsched.droidkaigiui.compositionlocal.LocalBottomNavigationBarsPadding
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -51,8 +51,8 @@ fun KaigiNavigationScaffold(
         },
         contentWindowInsets = WindowInsets(),
         modifier = modifier,
-    ) { navigationComponentPadding ->
-        CompositionLocalProvider(LocalNavigationComponentPadding provides navigationComponentPadding) {
+    ) { bottomNavigationBarsPadding ->
+        CompositionLocalProvider(LocalBottomNavigationBarsPadding provides bottomNavigationBarsPadding) {
             content()
         }
     }
