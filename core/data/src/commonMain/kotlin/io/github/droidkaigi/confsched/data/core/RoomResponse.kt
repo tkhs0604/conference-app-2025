@@ -1,6 +1,5 @@
-package io.github.droidkaigi.confsched.data.sessions.response
+package io.github.droidkaigi.confsched.data.core
 
-import io.github.droidkaigi.confsched.data.core.LocaledResponse
 import kotlinx.serialization.Serializable
 
 @Serializable

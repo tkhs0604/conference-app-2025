@@ -17,7 +17,7 @@ public data class SessionResponse(
     val roomId: Int,
     val sessionCategoryItemId: Int,
     val sessionType: String,
-    val message: SessionMessageResponse?,
+    val message: LocaledResponse?,
     val isPlenumSession: Boolean,
     val targetAudience: String,
     val interpretationTarget: Boolean,

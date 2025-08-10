@@ -5,10 +5,11 @@ import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.core.LocaledResponse
+import io.github.droidkaigi.confsched.data.core.toMultiLangText
 import io.github.droidkaigi.confsched.data.sessions.response.SessionAssetResponse
-import io.github.droidkaigi.confsched.data.sessions.response.SessionMessageResponse
 import io.github.droidkaigi.confsched.data.sessions.response.SessionsAllResponse
 import io.github.droidkaigi.confsched.model.core.MultiLangText
+import io.github.droidkaigi.confsched.model.core.Room
 import io.github.droidkaigi.confsched.model.core.RoomType
 import io.github.droidkaigi.confsched.model.data.TimetableQueryKey
 import io.github.droidkaigi.confsched.model.sessions.Timetable
@@ -17,7 +18,6 @@ import io.github.droidkaigi.confsched.model.sessions.TimetableCategory
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import io.github.droidkaigi.confsched.model.sessions.TimetableLanguage
-import io.github.droidkaigi.confsched.model.core.Room
 import io.github.droidkaigi.confsched.model.sessions.TimetableSessionType
 import io.github.droidkaigi.confsched.model.sessions.TimetableSpeaker
 import kotlinx.collections.immutable.toPersistentList
@@ -161,11 +161,6 @@ public fun SessionsAllResponse.toTimetable(): Timetable {
             .toPersistentList(),
     )
 }
-
-private fun LocaledResponse.toMultiLangText() =
-    MultiLangText(jaTitle = ja ?: "", enTitle = en ?: "")
-
-private fun SessionMessageResponse.toMultiLangText() = MultiLangText(jaTitle = ja, enTitle = en)
 
 private fun SessionAssetResponse.toTimetableAsset() = TimetableAsset(videoUrl, slideUrl)
 

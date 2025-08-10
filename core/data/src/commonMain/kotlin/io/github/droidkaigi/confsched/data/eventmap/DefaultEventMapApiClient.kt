@@ -6,8 +6,8 @@ import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
 import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.core.NetworkExceptionHandler
+import io.github.droidkaigi.confsched.data.core.toMultiLangText
 import io.github.droidkaigi.confsched.data.eventmap.response.EventMapResponse
-import io.github.droidkaigi.confsched.data.eventmap.response.MessageResponse
 import io.github.droidkaigi.confsched.model.core.MultiLangText
 import io.github.droidkaigi.confsched.model.core.RoomIcon
 import io.github.droidkaigi.confsched.model.eventmap.EventMapEvent
@@ -70,6 +70,3 @@ private fun String.toRoomIcon(): RoomIcon = when (this) {
     "Jellyfish" -> RoomIcon.Triangle
     else -> RoomIcon.None
 }
-
-private fun MessageResponse.toMultiLangText() =
-    if (ja != null && en != null) MultiLangText(jaTitle = ja, enTitle = en) else null
