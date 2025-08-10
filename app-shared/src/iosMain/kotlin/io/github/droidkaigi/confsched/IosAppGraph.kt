@@ -51,6 +51,11 @@ import io.github.droidkaigi.confsched.model.data.TimetableQueryKey
 import io.github.droidkaigi.confsched.model.eventmap.EventMapQueryKey
 import io.github.droidkaigi.confsched.model.sponsors.SponsorsQueryKey
 import io.github.droidkaigi.confsched.model.staff.StaffQueryKey
+import io.github.droidkaigi.confsched.repository.ContributorsRepository
+import io.github.droidkaigi.confsched.repository.EventMapRepository
+import io.github.droidkaigi.confsched.repository.SessionsRepository
+import io.github.droidkaigi.confsched.repository.SponsorsRepository
+import io.github.droidkaigi.confsched.repository.StaffRepository
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.darwin.Darwin
 import kotlinx.cinterop.BetaInteropApi

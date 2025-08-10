@@ -1,4 +1,4 @@
-package io.github.droidkaigi.confsched
+package io.github.droidkaigi.confsched.repository
 
 import app.cash.molecule.RecompositionMode
 import app.cash.molecule.moleculeFlow

@@ -1,4 +1,4 @@
-package io.github.droidkaigi.confsched
+package io.github.droidkaigi.confsched.repository
 
 import soil.query.core.DataModel
 import soil.query.core.Reply

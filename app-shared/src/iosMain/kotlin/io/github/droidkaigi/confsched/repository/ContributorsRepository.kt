@@ -1,10 +1,10 @@
-package io.github.droidkaigi.confsched
+package io.github.droidkaigi.confsched.repository
 
 import app.cash.molecule.RecompositionMode
 import app.cash.molecule.moleculeFlow
 import dev.zacsweers.metro.Inject
-import io.github.droidkaigi.confsched.model.staff.Staff
-import io.github.droidkaigi.confsched.model.staff.StaffQueryKey
+import io.github.droidkaigi.confsched.model.contributors.Contributor
+import io.github.droidkaigi.confsched.model.contributors.ContributorsQueryKey
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.FlowPreview
@@ -16,15 +16,15 @@ import soil.query.annotation.ExperimentalSoilQueryApi
 import soil.query.compose.rememberQuery
 
 @Inject
-class StaffRepository(
+class ContributorsRepository(
     private val swrClient: SwrClientPlus,
-    private val staffQueryKey: StaffQueryKey,
+    private val contributorsQueryKey: ContributorsQueryKey,
 ) {
     @OptIn(ExperimentalSoilQueryApi::class, FlowPreview::class)
-    fun staffFlow(): Flow<PersistentList<Staff>> = moleculeFlow(RecompositionMode.Immediate) {
+    fun contributorsFlow(): Flow<PersistentList<Contributor>> = moleculeFlow(RecompositionMode.Immediate) {
         soilDataBoundary(
             state = rememberQuery(
-                key = staffQueryKey,
+                key = contributorsQueryKey,
                 client = swrClient,
             )
         )
