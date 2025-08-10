@@ -1,4 +1,4 @@
-package io.github.droidkaigi.confsched.data.sessions.response
+package io.github.droidkaigi.confsched.data.core
 
 import kotlinx.serialization.Serializable
 

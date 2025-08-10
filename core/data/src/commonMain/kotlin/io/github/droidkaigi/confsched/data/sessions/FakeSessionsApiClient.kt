@@ -6,7 +6,7 @@ import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.sessions.DefaultSessionsApiClient.Companion.filterConferenceDaySessions
 import io.github.droidkaigi.confsched.data.sessions.response.CategoryItemResponse
 import io.github.droidkaigi.confsched.data.sessions.response.CategoryResponse
-import io.github.droidkaigi.confsched.data.sessions.response.LocaledResponse
+import io.github.droidkaigi.confsched.data.core.LocaledResponse
 import io.github.droidkaigi.confsched.data.sessions.response.RoomResponse
 import io.github.droidkaigi.confsched.data.sessions.response.SessionAssetResponse
 import io.github.droidkaigi.confsched.data.sessions.response.SessionMessageResponse

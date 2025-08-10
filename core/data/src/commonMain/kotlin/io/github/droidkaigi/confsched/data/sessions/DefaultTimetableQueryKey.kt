@@ -4,7 +4,7 @@ import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
 import dev.zacsweers.metro.binding
 import io.github.droidkaigi.confsched.data.DataScope
-import io.github.droidkaigi.confsched.data.sessions.response.LocaledResponse
+import io.github.droidkaigi.confsched.data.core.LocaledResponse
 import io.github.droidkaigi.confsched.data.sessions.response.SessionAssetResponse
 import io.github.droidkaigi.confsched.data.sessions.response.SessionMessageResponse
 import io.github.droidkaigi.confsched.data.sessions.response.SessionsAllResponse
