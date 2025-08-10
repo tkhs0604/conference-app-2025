@@ -4,8 +4,8 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -147,9 +147,9 @@ fun TimetableScreen(
                             timetableItemMap = timetableListUiState.timetableItemMap,
                             onTimetableItemClick = onTimetableItemClick,
                             onBookmarkClick = { id -> onBookmarkClick(id.value) },
-                            isBookmarked =  { id -> timetableListUiState.timetable.bookmarks.contains(id) },
+                            isBookmarked = { id -> timetableListUiState.timetable.bookmarks.contains(id) },
                             lazyListState = lazyListState,
-                            contentPadding = LocalNavigationComponentPadding.current + WindowInsets.navigationBars.add(WindowInsets(left = 16.dp, right = 16.dp)).asPaddingValues(),
+                            contentPadding = LocalNavigationComponentPadding.current + WindowInsets.navigationBars.asPaddingValues() + PaddingValues(horizontal = 16.dp),
                             isDateTagVisible = false,
                         )
                     }
