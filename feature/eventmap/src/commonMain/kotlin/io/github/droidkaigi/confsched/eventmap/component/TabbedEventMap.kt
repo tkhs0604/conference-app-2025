@@ -8,8 +8,6 @@ import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,7 +43,7 @@ fun TabbedEventMap(
                 }
             },
         ),
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.Start,
     ) {
         Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -57,7 +55,6 @@ fun TabbedEventMap(
                 )
             }
         }
-        Spacer(modifier = Modifier.height(24.dp))
         Crossfade(targetState = selectedFloor) { floor ->
             val mapRes = when (floor) {
                 FloorLevel.Basement -> EventmapRes.drawable.event_map_b1f
