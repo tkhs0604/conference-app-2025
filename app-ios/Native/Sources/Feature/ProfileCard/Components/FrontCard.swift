@@ -4,22 +4,24 @@ import Theme
 struct FrontCard: View {
     let userRole: String
     let userName: String
+    let cardType: ProfileCardType
 
     var body: some View {
-        ZStack {
-            Image("dark_background", bundle: .module)
+        let lightContentColor = Color(uiColor: UIColor(red: 52.0 / 255, green: 39.0 / 255, blue: 94.0 / 255, alpha: 1.0))
+        ZStack(alignment: .top) {
+            Image("\(cardType.rawValue)_background", bundle: .module)
                 .resizable()
                 .scaledToFill()
             VStack(alignment: .center, spacing: 20) {
-                Image("card_title", bundle: .module)
+                Image("\(cardType.rawValue)_card_title", bundle: .module)
                 VStack(alignment: .center, spacing: 12) {
                     avatarImage
                     VStack(alignment: .center, spacing: 0) {
                         Text(userRole)
-                            .foregroundStyle(AssetColors.onSurface.swiftUIColor)
+                            .foregroundStyle(cardType == .dark ? AssetColors.onSurface.swiftUIColor : lightContentColor)
                             .typographyStyle(.bodyMedium)
                         Text(userName)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(cardType == .dark ? .white : lightContentColor)
                             .typographyStyle(.headlineSmall)
                     }
                 }
@@ -27,10 +29,9 @@ struct FrontCard: View {
             }
             .padding(.horizontal, 30)
             .padding(.vertical, 40)
-            VStack {
-                Spacer()
-                Image("dark_wave", bundle: .module)
-            }
+            Image("\(cardType.rawValue)_front_wave", bundle: .module)
+                .resizable()
+                .frame(width: 300, height: 380)
         }
         .frame(width: 300, height: 380)
         .cornerRadius(12)

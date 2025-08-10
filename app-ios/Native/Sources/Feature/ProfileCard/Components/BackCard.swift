@@ -2,14 +2,20 @@ import SwiftUI
 import Theme
 
 struct BackCard: View {
+    let cardType: ProfileCardType
+    
     var body: some View {
         ZStack {
-            Color(uiColor: UIColor(red: 40.0 / 255.0, green: 15.0 / 255.0, blue: 131.0 / 255.0, alpha: 1.0))
-            Image("back_base", bundle: .module)
+            if cardType == .dark {
+                Color(uiColor: UIColor(red: 40.0 / 255.0, green: 15.0 / 255.0, blue: 131.0 / 255.0, alpha: 1.0))
+            } else {
+                Color(uiColor: UIColor(red: 242.0 / 255.0, green: 244.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0))
+            }
+            Image("\(cardType.rawValue)_base_sticker", bundle: .module)
                 .resizable()
                 .scaledToFill()
             VStack(alignment: .center, spacing: 20) {
-                Image("card_title", bundle: .module)
+                Image("\(cardType.rawValue)_card_title", bundle: .module)
                 // TODO: Replace with actual QR code generation
                 QrCodeView(data: "sample")
                     .frame(width: 160, height: 160)
@@ -17,7 +23,7 @@ struct BackCard: View {
             }
             .padding(.horizontal, 30)
             .padding(.vertical, 40)
-            Image("back_front", bundle: .module)
+            Image("\(cardType.rawValue)_top_sticker", bundle: .module)
                 .resizable()
                 .scaledToFill()
         }
