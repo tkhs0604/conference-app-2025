@@ -27,7 +27,7 @@ import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
 import io.github.droidkaigi.confsched.designsystem.theme.LocalRoomTheme
 import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
 import io.github.droidkaigi.confsched.designsystem.theme.RoomTheme
-import io.github.droidkaigi.confsched.droidkaigiui.toResDrawable
+import io.github.droidkaigi.confsched.droidkaigiui.extension.toResDrawable
 import io.github.droidkaigi.confsched.eventmap.EventmapRes
 import io.github.droidkaigi.confsched.eventmap.read_more
 import io.github.droidkaigi.confsched.model.core.RoomIcon
