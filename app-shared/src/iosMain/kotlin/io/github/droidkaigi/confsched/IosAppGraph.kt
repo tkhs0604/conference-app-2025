@@ -27,6 +27,9 @@ import io.github.droidkaigi.confsched.data.contributors.DefaultContributorsQuery
 import io.github.droidkaigi.confsched.data.core.DataStorePathProducer
 import io.github.droidkaigi.confsched.data.core.defaultJson
 import io.github.droidkaigi.confsched.data.core.defaultKtorConfig
+import io.github.droidkaigi.confsched.data.eventmap.DefaultEventMapApiClient
+import io.github.droidkaigi.confsched.data.eventmap.DefaultEventMapQueryKey
+import io.github.droidkaigi.confsched.data.eventmap.EventMapApiClient
 import io.github.droidkaigi.confsched.data.sessions.DefaultSessionsApiClient
 import io.github.droidkaigi.confsched.data.sessions.DefaultTimetableItemQueryKey
 import io.github.droidkaigi.confsched.data.sessions.DefaultTimetableQueryKey
@@ -45,6 +48,7 @@ import io.github.droidkaigi.confsched.model.data.FavoriteTimetableIdsSubscriptio
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableItemIdMutationKey
 import io.github.droidkaigi.confsched.model.data.TimetableItemQueryKey
 import io.github.droidkaigi.confsched.model.data.TimetableQueryKey
+import io.github.droidkaigi.confsched.model.eventmap.EventMapQueryKey
 import io.github.droidkaigi.confsched.model.sponsors.SponsorsQueryKey
 import io.github.droidkaigi.confsched.model.staff.StaffQueryKey
 import io.ktor.client.HttpClient
@@ -85,6 +89,7 @@ interface IosAppGraph : AppGraph {
     val contributorsRepository: ContributorsRepository
     val sponsorsRepository: SponsorsRepository
     val staffRepository: StaffRepository
+    val eventMapRepository: EventMapRepository
 
     @Named("apiBaseUrl")
     @Provides
@@ -124,6 +129,12 @@ interface IosAppGraph : AppGraph {
 
     @Binds
     val DefaultLicensesQueryKey.bind: LicensesQueryKey
+
+    @Binds
+    val DefaultEventMapApiClient.bind: EventMapApiClient
+
+    @Binds
+    val DefaultEventMapQueryKey.bind: EventMapQueryKey
 
     @Provides
     fun provideJson(): Json {
