@@ -83,6 +83,7 @@ fun ProfileEditScreen(
             form.Name()
             form.Occupation()
             form.Link()
+            // TODO: implement Image Field
             form.Theme()
             Button(
                 onClick = { form.handleSubmit() },
@@ -215,6 +216,7 @@ private fun ProfileThemeImage(
     val selectedBorderColor = MaterialTheme.colorScheme.surfaceTint
     val painter = rememberVectorPainter(Icons.Default.Check)
 
+    // TODO: replace Image
     Text(
         text = theme.name,
         color = Color.Black,
