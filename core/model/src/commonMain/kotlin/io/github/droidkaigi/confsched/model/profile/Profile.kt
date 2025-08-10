@@ -8,4 +8,15 @@ data class Profile(
     val occupation: String,
     val link: String,
     val theme: String,
-)
+) {
+    override fun toString(): String {
+        return """
+            Profile(
+                name='$name',
+                occupation='$occupation',
+                link='$link',
+                theme='$theme'
+            )
+        """.trimIndent()
+    }
+}

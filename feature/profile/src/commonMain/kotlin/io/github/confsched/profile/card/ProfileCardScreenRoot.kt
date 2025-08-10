@@ -13,13 +13,13 @@ fun ProfileCardScreenRoot(
 ) {
     val eventFlow = rememberEventFlow<ProfileCardScreenEvent>()
 
-    val uiState = profileCardScreenPresenter(
+    val profile = profileCardScreenPresenter(
         eventFlow = eventFlow,
         profile = profile,
     )
 
     ProfileCardScreen(
-        uiState = uiState,
+        profile = profile,
         onEditClick = onEditClick,
     )
 }
