@@ -7,7 +7,6 @@ data class Profile(
     val name: String,
     val occupation: String,
     val link: String,
-    val theme: String,
 ) {
     override fun toString(): String {
         return """
@@ -15,7 +14,6 @@ data class Profile(
                 name='$name',
                 occupation='$occupation',
                 link='$link',
-                theme='$theme'
             )
         """.trimIndent()
     }

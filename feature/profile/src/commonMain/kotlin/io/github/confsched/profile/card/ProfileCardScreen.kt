@@ -56,7 +56,6 @@ private fun ProfileCardScreenPreview() {
                 name = "John Doe",
                 occupation = "Software Engineer",
                 link = "https://example.com",
-                theme = "Iguana"
             ),
             onEditClick = {},
         )

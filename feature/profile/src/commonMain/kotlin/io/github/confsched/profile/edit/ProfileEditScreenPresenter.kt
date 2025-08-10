@@ -28,7 +28,6 @@ fun profileEditScreenPresenter(
                 name = "",
                 occupation = "",
                 link = "",
-                theme = "Iguana",
             ),
             meta = formMeta,
         )
