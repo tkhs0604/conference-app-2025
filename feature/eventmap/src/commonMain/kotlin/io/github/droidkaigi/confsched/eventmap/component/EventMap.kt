@@ -13,7 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.eventmap.EventMapUiState
+import io.github.droidkaigi.confsched.eventmap.EventmapRes
+import io.github.droidkaigi.confsched.eventmap.event_map
+import io.github.droidkaigi.confsched.eventmap.event_map_description
 import io.github.droidkaigi.confsched.model.eventmap.FloorLevel
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun EventMap(
@@ -28,9 +32,8 @@ fun EventMap(
         modifier = modifier,
     ) {
         item {
-            // TODO: extract to string resource, and localize
             Text(
-                text = "DroidKaigiでは、セッション以外にも参加者が楽しめるイベントを開催。コミュニケーションや技術交流を通じてカンファレンスを満喫しましょう！",
+                text = stringResource(EventmapRes.string.event_map_description),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
