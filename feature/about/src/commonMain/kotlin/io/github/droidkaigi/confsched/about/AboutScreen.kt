@@ -1,5 +1,6 @@
 package io.github.droidkaigi.confsched.about
 
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -12,6 +13,8 @@ import io.github.droidkaigi.confsched.about.section.AboutFooter
 import io.github.droidkaigi.confsched.about.section.aboutCredits
 import io.github.droidkaigi.confsched.about.section.aboutOthers
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.compositionlocal.LocalNavigationComponentPadding
+import io.github.droidkaigi.confsched.droidkaigiui.extension.plus
 import io.github.droidkaigi.confsched.model.about.AboutItem
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -31,10 +34,11 @@ fun AboutScreen(
                 }
             )
         },
-        modifier = modifier
+        contentWindowInsets = WindowInsets(),
+        modifier = modifier,
     ) { contentPadding ->
         LazyColumn(
-            contentPadding = contentPadding,
+            contentPadding = contentPadding + LocalNavigationComponentPadding.current,
         ) {
             item {
                 AboutDroidKaigiHeader(
