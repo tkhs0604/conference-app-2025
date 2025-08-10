@@ -64,6 +64,7 @@ public struct AboutScreen: View {
                 }
 
                 Divider()
+                    .background(AssetColors.outlineVariant.swiftUIColor)
 
                 AboutButton(
                     title: "Staffs",
@@ -74,6 +75,7 @@ public struct AboutScreen: View {
                 }
 
                 Divider()
+                    .background(AssetColors.outlineVariant.swiftUIColor)
 
                 AboutButton(
                     title: "Sponsors",
@@ -82,6 +84,9 @@ public struct AboutScreen: View {
                     presenter.sponsorsTapped()
                     onNavigate(.sponsors)
                 }
+
+                Divider()
+                    .background(AssetColors.outlineVariant.swiftUIColor)
             }
         }
     }
@@ -105,6 +110,7 @@ public struct AboutScreen: View {
                 }
 
                 Divider()
+                    .background(AssetColors.outlineVariant.swiftUIColor)
 
                 AboutButton(
                     title: "Licenses",
@@ -115,6 +121,7 @@ public struct AboutScreen: View {
                 }
 
                 Divider()
+                    .background(AssetColors.outlineVariant.swiftUIColor)
 
                 AboutButton(
                     title: "Privacy Policy",
@@ -125,6 +132,7 @@ public struct AboutScreen: View {
                 }
 
                 Divider()
+                    .background(AssetColors.outlineVariant.swiftUIColor)
 
                 AboutButton(
                     title: "Settings",
@@ -135,6 +143,7 @@ public struct AboutScreen: View {
                 }
 
                 Divider()
+                    .background(AssetColors.outlineVariant.swiftUIColor)
 
                 AboutButton(
                     title: "Switch to Compose Multiplatform",
@@ -152,6 +161,9 @@ public struct AboutScreen: View {
                 } message: {
                     Text("Switch UI from SwiftUI to Compose Multiplatform. Are you sure you want to do this?")
                 }
+
+                Divider()
+                    .background(AssetColors.outlineVariant.swiftUIColor)
             }
         }
     }
@@ -220,10 +232,6 @@ struct AboutButton: View {
                     .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
 
                 Spacer()
-
-                Image(systemName: "chevron.right")
-                    .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
-                    .font(.caption)
             }
             .padding(.vertical, 16)
             .padding(.horizontal, 12)
