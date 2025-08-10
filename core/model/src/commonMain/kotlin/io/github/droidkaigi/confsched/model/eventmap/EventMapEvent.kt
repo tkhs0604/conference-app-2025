@@ -2,7 +2,6 @@ package io.github.droidkaigi.confsched.model.eventmap
 
 import io.github.droidkaigi.confsched.model.core.MultiLangText
 import io.github.droidkaigi.confsched.model.core.Room
-import io.github.droidkaigi.confsched.model.core.RoomIcon
 import io.github.droidkaigi.confsched.model.core.RoomType
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
@@ -54,6 +53,5 @@ private fun RoomType.toRoomName(): MultiLangText = when (this) {
     RoomType.RoomH -> MultiLangText("Koala", "Koala")
     RoomType.RoomI -> MultiLangText("Jellyfish", "Jellyfish")
     RoomType.RoomJ -> MultiLangText("Narwhal", "Narwhal")
-    // TODO: investigate what RoomIJ is later, replace these strings with proper names
-    RoomType.RoomIJ -> MultiLangText("Iguana and Jellyfish", "Iguana and Jellyfish")
+    RoomType.RoomIJ -> MultiLangText("Jellyfish and Narwhal", "Jellyfish and Narwhal")
 }
