@@ -8,8 +8,9 @@ import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.core.NetworkExceptionHandler
 import io.github.droidkaigi.confsched.data.core.toMultiLangText
 import io.github.droidkaigi.confsched.data.eventmap.response.EventMapResponse
+import io.github.droidkaigi.confsched.data.sessions.toRoomType
 import io.github.droidkaigi.confsched.model.core.MultiLangText
-import io.github.droidkaigi.confsched.model.core.RoomIcon
+import io.github.droidkaigi.confsched.model.core.Room
 import io.github.droidkaigi.confsched.model.eventmap.EventMapEvent
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
@@ -35,21 +36,27 @@ public class DefaultEventMapApiClient(
 }
 
 public fun EventMapResponse.toEventMapList(): PersistentList<EventMapEvent> {
-    val roomIdToNameMap = this.rooms.associateBy({ it.id }, { it.name.ja to it.name.en })
+    val roomIdToRoom: Map<Int, Room> = this.rooms.associateBy(
+        keySelector = { room -> room.id },
+        valueTransform = { room ->
+            Room(
+                id = room.id,
+                name = room.name.toMultiLangText(),
+                type = room.name.toRoomType(),
+                sort = room.sort,
+            )
+        },
+    )
 
     return this.projects
         .mapNotNull { project ->
-            roomIdToNameMap[project.roomId]?.let { roomName ->
+            roomIdToRoom[project.roomId]?.let { room ->
                 EventMapEvent(
                     name = MultiLangText(
                         jaTitle = project.title.ja,
                         enTitle = project.title.en,
                     ),
-                    roomName = MultiLangText(
-                        jaTitle = roomName.first,
-                        enTitle = roomName.second,
-                    ),
-                    roomIcon = roomName.second.toRoomIcon(),
+                    room = room,
                     description = MultiLangText(
                         jaTitle = project.i18nDesc.ja,
                         enTitle = project.i18nDesc.en,
@@ -60,13 +67,4 @@ public fun EventMapResponse.toEventMapList(): PersistentList<EventMapEvent> {
             }
         }
         .toPersistentList()
-}
-
-private fun String.toRoomIcon(): RoomIcon = when (this) {
-    "Iguana" -> RoomIcon.Square
-    "Hedgehog" -> RoomIcon.Diamond
-    "Giraffe" -> RoomIcon.Circle
-    "Flamingo" -> RoomIcon.Rhombus
-    "Jellyfish" -> RoomIcon.Triangle
-    else -> RoomIcon.None
 }

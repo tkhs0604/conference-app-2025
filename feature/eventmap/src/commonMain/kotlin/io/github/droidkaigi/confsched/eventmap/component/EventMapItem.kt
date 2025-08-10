@@ -26,13 +26,13 @@ import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
 import io.github.droidkaigi.confsched.designsystem.theme.LocalRoomTheme
 import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
-import io.github.droidkaigi.confsched.designsystem.theme.RoomTheme
-import io.github.droidkaigi.confsched.droidkaigiui.extension.toResDrawable
+import io.github.droidkaigi.confsched.droidkaigiui.extension.icon
+import io.github.droidkaigi.confsched.droidkaigiui.extension.roomTheme
 import io.github.droidkaigi.confsched.eventmap.EventmapRes
 import io.github.droidkaigi.confsched.eventmap.read_more
-import io.github.droidkaigi.confsched.model.core.RoomIcon
 import io.github.droidkaigi.confsched.model.eventmap.EventMapEvent
 import io.github.droidkaigi.confsched.model.eventmap.fakes
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -43,8 +43,7 @@ fun EventMapItem(
     onClickReadMore: (url: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    // TODO: Use RoomTheme from the eventMapEvent
-    ProvideRoomTheme(RoomTheme.Iguana) {
+    ProvideRoomTheme(eventMapEvent.room.roomTheme) {
         Column(
             modifier = modifier,
             verticalArrangement = Arrangement.Top,
@@ -55,8 +54,8 @@ fun EventMapItem(
                 horizontalArrangement = Arrangement.Start,
             ) {
                 ToolTip(
-                    text = eventMapEvent.roomName.currentLangTitle,
-                    roomIcon = eventMapEvent.roomIcon,
+                    text = eventMapEvent.room.name.currentLangTitle,
+                    roomIcon = eventMapEvent.room.icon,
                     color = LocalRoomTheme.current.primaryColor,
                     backgroundColor = LocalRoomTheme.current.containerColor,
                 )
@@ -114,7 +113,7 @@ fun EventMapItemPreview() {
 @Composable
 private fun ToolTip(
     text: String,
-    roomIcon: RoomIcon,
+    roomIcon: DrawableResource?,
     color: Color = Color(0xFFC5C7C4),
     backgroundColor: Color = Color.Transparent,
 ) {
@@ -126,7 +125,7 @@ private fun ToolTip(
             .border(1.dp, color, RoundedCornerShape(4.dp))
             .padding(vertical = 4.5.dp, horizontal = 8.dp),
     ) {
-        roomIcon.toResDrawable()?.let {
+        roomIcon?.let {
             Icon(
                 painter = painterResource(it),
                 contentDescription = null,

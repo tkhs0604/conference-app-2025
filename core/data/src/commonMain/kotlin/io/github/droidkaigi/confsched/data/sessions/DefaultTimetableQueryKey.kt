@@ -169,7 +169,7 @@ internal fun String.toInstantAsJST(): Instant {
     return LocalDateTime.parse(date).toInstant(TimeZone.of("UTC+9"))
 }
 
-private fun LocaledResponse.toRoomType() = when (en?.lowercase()) {
+internal fun LocaledResponse.toRoomType() = when (en.lowercase()) {
     "flamingo" -> RoomType.RoomF
     "giraffe" -> RoomType.RoomG
     "hedgehog" -> RoomType.RoomH
