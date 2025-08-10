@@ -103,10 +103,7 @@ public fun SessionsAllResponse.toTimetable(): Timetable {
                         isInterpretationTarget = apiSession.interpretationTarget,
                     ),
                     asset = apiSession.asset.toTimetableAsset(),
-                    description = if (
-                        apiSession.i18nDesc?.ja == null &&
-                        apiSession.i18nDesc?.en == null
-                    ) {
+                    description = if (apiSession.i18nDesc == null) {
                         MultiLangText(
                             jaTitle = apiSession.description ?: "",
                             enTitle = apiSession.description ?: "",
@@ -139,10 +136,7 @@ public fun SessionsAllResponse.toTimetable(): Timetable {
                         .map { speakerIdToSpeaker[it]!! }
                         .toPersistentList(),
                     levels = apiSession.levels.toPersistentList(),
-                    description = if (
-                        apiSession.i18nDesc?.ja == null &&
-                        apiSession.i18nDesc?.en == null
-                    ) {
+                    description = if (apiSession.i18nDesc == null) {
                         MultiLangText(
                             jaTitle = apiSession.description ?: "",
                             enTitle = apiSession.description ?: "",
