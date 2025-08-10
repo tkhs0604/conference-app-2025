@@ -17,7 +17,7 @@ import io.github.droidkaigi.confsched.model.sessions.TimetableCategory
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import io.github.droidkaigi.confsched.model.sessions.TimetableLanguage
-import io.github.droidkaigi.confsched.model.sessions.TimetableRoom
+import io.github.droidkaigi.confsched.model.core.Room
 import io.github.droidkaigi.confsched.model.sessions.TimetableSessionType
 import io.github.droidkaigi.confsched.model.sessions.TimetableSpeaker
 import kotlinx.collections.immutable.toPersistentList
@@ -73,11 +73,11 @@ public fun SessionsAllResponse.toTimetable(): Timetable {
                 )
             }.first()
         }
-    val roomIdToRoom: Map<Int, TimetableRoom> = timetableContents.rooms
+    val roomIdToRoom: Map<Int, Room> = timetableContents.rooms
         .associateBy(
             keySelector = { room -> room.id },
             valueTransform = { room ->
-                TimetableRoom(
+                Room(
                     id = room.id,
                     name = room.name.toMultiLangText(),
                     type = room.name.toRoomType(),

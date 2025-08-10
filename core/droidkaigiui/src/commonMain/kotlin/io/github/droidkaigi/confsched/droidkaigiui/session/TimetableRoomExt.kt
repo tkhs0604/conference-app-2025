@@ -4,10 +4,10 @@ import io.github.droidkaigi.confsched.model.core.RoomIcon
 import io.github.droidkaigi.confsched.designsystem.theme.RoomTheme
 import io.github.droidkaigi.confsched.droidkaigiui.toResDrawable
 import io.github.droidkaigi.confsched.model.core.RoomType
-import io.github.droidkaigi.confsched.model.sessions.TimetableRoom
+import io.github.droidkaigi.confsched.model.core.Room
 import org.jetbrains.compose.resources.DrawableResource
 
-val TimetableRoom.icon: DrawableResource?
+val Room.icon: DrawableResource?
     get() = when (type) {
         RoomType.RoomF -> RoomIcon.Rhombus
         RoomType.RoomG -> RoomIcon.Circle
@@ -17,7 +17,7 @@ val TimetableRoom.icon: DrawableResource?
         RoomType.RoomIJ -> RoomIcon.None
     }.toResDrawable()
 
-val TimetableRoom.roomTheme: RoomTheme
+val Room.roomTheme: RoomTheme
     get() = when (type) {
         RoomType.RoomF -> RoomTheme.Flamingo
         RoomType.RoomG -> RoomTheme.Giraffe
