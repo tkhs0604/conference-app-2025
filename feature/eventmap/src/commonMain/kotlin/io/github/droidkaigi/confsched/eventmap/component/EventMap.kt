@@ -20,9 +20,11 @@ fun EventMap(
     onSelectFloor: (FloorLevel) -> Unit,
     onClickReadMore: (url: String) -> Unit,
     contentPadding: PaddingValues,
+    modifier: Modifier = Modifier,
 ) {
     LazyColumn(
         contentPadding = contentPadding,
+        modifier = modifier,
     ) {
         item {
             // TODO: extract to string resource, and localize

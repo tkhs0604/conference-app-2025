@@ -3,11 +3,13 @@ package io.github.droidkaigi.confsched.eventmap
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.designsystem.util.plus
+import io.github.droidkaigi.confsched.droidkaigiui.component.AnimatedTextTopAppBar
 import io.github.droidkaigi.confsched.eventmap.component.EventMap
 import io.github.droidkaigi.confsched.model.eventmap.FloorLevel
 
@@ -18,16 +20,13 @@ fun EventMapScreen(
     onSelectFloor: (FloorLevel) -> Unit,
     onClickReadMore: (url: String) -> Unit,
 ) {
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+
     Scaffold(
         topBar = {
-            // TODO: replace with AnimatedTopAppBar
-            TopAppBar(
-                title = {
-                    // TODO: extract to string resource
-                    Text(
-                        text = "Event Map"
-                    )
-                }
+            AnimatedTextTopAppBar(
+                title = "Event Map",
+                scrollBehavior = scrollBehavior,
             )
         },
     ) { innerPadding ->
@@ -40,6 +39,7 @@ fun EventMapScreen(
                 start = 16.dp,
                 end = 16.dp,
             ),
+            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
         )
     }
 }
