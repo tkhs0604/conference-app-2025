@@ -10,8 +10,8 @@ extension RoomType {
 
 extension MultiLangText {
     var currentLangTitle: String {
-        // TODO: Use actual locale logic
-        enTitle
+        let isJapanese = Locale.current.language.languageCode == .japanese
+        return isJapanese ? jaTitle : enTitle
     }
 }
 

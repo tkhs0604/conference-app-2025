@@ -210,8 +210,36 @@ extension Model.TimetableItemWithFavorite {
         } else if let special = shared.timetableItem as? shared.TimetableItem.Special {
             timetableItem = Model.TimetableItemSpecial(from: special)
         } else {
-            // Fallback - should not happen if KMP model is correct
-            fatalError("Unknown TimetableItem type")
+            // Fallback - log error and create a placeholder special item
+            // Log warning - Unknown TimetableItem type encountered, creating placeholder item
+            #if DEBUG
+            print("Warning: Unknown TimetableItem type encountered. Creating placeholder item.")
+            #endif
+            timetableItem = Model.TimetableItemSpecial(
+                id: Model.TimetableItemId(value: "unknown-\(UUID().uuidString)"),
+                title: Model.MultiLangText(jaTitle: "不明なアイテム", enTitle: "Unknown Item"),
+                startsAt: Date(),
+                endsAt: Date().addingTimeInterval(3600),
+                category: Model.TimetableCategory(
+                    id: 0,
+                    title: Model.MultiLangText(jaTitle: "その他", enTitle: "Other")
+                ),
+                sessionType: .other,
+                room: Model.Room(
+                    id: 0,
+                    name: Model.MultiLangText(jaTitle: "未定", enTitle: "TBD"),
+                    type: .roomIJ,
+                    sort: 999
+                ),
+                targetAudience: "All",
+                language: Model.TimetableLanguage(langOfSpeaker: "EN", isInterpretationTarget: false),
+                asset: Model.TimetableAsset(videoUrl: nil, slideUrl: nil),
+                levels: [],
+                speakers: [],
+                description: Model.MultiLangText(jaTitle: "詳細不明", enTitle: "Details unknown"),
+                message: nil,
+                day: .conferenceDay1
+            )
         }
 
         self.init(
@@ -231,7 +259,35 @@ extension Model.Timetable {
             } else if let special = item as? shared.TimetableItem.Special {
                 return Model.TimetableItemSpecial(from: special)
             } else {
-                fatalError("Unknown TimetableItem type")
+                // Fallback - log error and create a placeholder special item
+                #if DEBUG
+                print("Warning: Unknown TimetableItem type encountered in Timetable. Creating placeholder item.")
+                #endif
+                return Model.TimetableItemSpecial(
+                    id: Model.TimetableItemId(value: "unknown-\(UUID().uuidString)"),
+                    title: Model.MultiLangText(jaTitle: "不明なアイテム", enTitle: "Unknown Item"),
+                    startsAt: Date(),
+                    endsAt: Date().addingTimeInterval(3600),
+                    category: Model.TimetableCategory(
+                        id: 0,
+                        title: Model.MultiLangText(jaTitle: "その他", enTitle: "Other")
+                    ),
+                    sessionType: .other,
+                    room: Model.Room(
+                        id: 0,
+                        name: Model.MultiLangText(jaTitle: "未定", enTitle: "TBD"),
+                        type: .roomIJ,
+                        sort: 999
+                    ),
+                    targetAudience: "All",
+                    language: Model.TimetableLanguage(langOfSpeaker: "EN", isInterpretationTarget: false),
+                    asset: Model.TimetableAsset(videoUrl: nil, slideUrl: nil),
+                    levels: [],
+                    speakers: [],
+                    description: Model.MultiLangText(jaTitle: "詳細不明", enTitle: "Details unknown"),
+                    message: nil,
+                    day: .conferenceDay1
+                )
             }
         }
 
