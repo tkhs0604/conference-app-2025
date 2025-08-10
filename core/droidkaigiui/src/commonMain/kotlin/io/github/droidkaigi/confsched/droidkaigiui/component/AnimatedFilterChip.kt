@@ -20,8 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
 
 @Composable
 fun AnimatedFilterChip(
@@ -50,18 +48,24 @@ fun AnimatedFilterChip(
     )
 }
 
-private class AnimatedFilterChipPreviewParameterProvider : PreviewParameterProvider<Boolean> {
-    override val values: Sequence<Boolean> = sequenceOf(true, false)
+@Preview
+@Composable
+private fun AnimatedFilterChipPreview_Selected() {
+    KaigiPreviewContainer {
+        AnimatedFilterChip(
+            isSelected = true,
+            text = "text",
+            onClick = {},
+        )
+    }
 }
 
 @Preview
 @Composable
-private fun AnimatedFilterChipPreview(
-    @PreviewParameter(AnimatedFilterChipPreviewParameterProvider::class) isSelected: Boolean
-) {
+private fun AnimatedFilterChipPreview_NotSelected() {
     KaigiPreviewContainer {
         AnimatedFilterChip(
-            isSelected = isSelected,
+            isSelected = false,
             text = "text",
             onClick = {},
         )
