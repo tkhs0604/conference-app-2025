@@ -18,6 +18,7 @@ import io.github.droidkaigi.confsched.naventry.eventMapEntry
 import io.github.droidkaigi.confsched.naventry.favoritesEntry
 import io.github.droidkaigi.confsched.naventry.profileCardNavEntry
 import io.github.droidkaigi.confsched.naventry.sessionEntries
+import io.github.droidkaigi.confsched.naventry.staffEntry
 import io.github.droidkaigi.confsched.navigation.rememberNavBackStack
 import io.github.droidkaigi.confsched.navigation.sceneStrategy
 import io.github.droidkaigi.confsched.navkey.AboutNavKey
@@ -26,6 +27,7 @@ import io.github.droidkaigi.confsched.navkey.EventMapNavKey
 import io.github.droidkaigi.confsched.navkey.FavoritesNavKey
 import io.github.droidkaigi.confsched.navkey.ProfileCardNavKey
 import io.github.droidkaigi.confsched.navkey.SearchNavKey
+import io.github.droidkaigi.confsched.navkey.StaffNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableItemDetailNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableNavKey
 
@@ -82,6 +84,10 @@ actual fun KaigiAppUi() {
                     onBackClick = { backStack.removeLastOrNull() },
                     onContributorClick = externalNavController::navigate,
                 )
+                staffEntry(
+                    onBackClick = { backStack.removeLastOrNull() },
+                    onStaffItemClick = externalNavController::navigate,
+                )
                 favoritesEntry(
                     onTimetableItemClick = {
                         if (backStack.lastOrNull() is TimetableItemDetailNavKey) {
@@ -106,7 +112,7 @@ actual fun KaigiAppUi() {
                             }
 
                             AboutItem.Contributors -> backStack.add(ContributorsNavKey)
-                            AboutItem.Staff -> TODO()
+                            AboutItem.Staff -> backStack.add(StaffNavKey)
                             AboutItem.Sponsors -> TODO()
                             AboutItem.CodeOfConduct -> {
                                 externalNavController.navigate(
