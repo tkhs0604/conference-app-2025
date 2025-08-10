@@ -9,10 +9,14 @@ import io.github.droidkaigi.confsched.eventmap.rememberEventMapScreenContextReta
 import io.github.droidkaigi.confsched.navkey.EventMapNavKey
 
 context(appGraph: AppGraph)
-fun EntryProviderBuilder<NavKey>.eventMapEntry() {
+fun EntryProviderBuilder<NavKey>.eventMapEntry(
+    onClickReadMore: (url: String) -> Unit,
+) {
     entry<EventMapNavKey> {
         with(appGraph.rememberEventMapScreenContextRetained()) {
-            EventMapScreenRoot()
+            EventMapScreenRoot(
+                onClickReadMore = onClickReadMore,
+            )
         }
     }
 }

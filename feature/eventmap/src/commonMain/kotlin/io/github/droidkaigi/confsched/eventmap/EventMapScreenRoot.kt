@@ -7,7 +7,9 @@ import soil.query.compose.rememberQuery
 
 context(screenContext: EventMapScreenContext)
 @Composable
-fun EventMapScreenRoot() {
+fun EventMapScreenRoot(
+    onClickReadMore: (url: String) -> Unit,
+) {
     SoilDataBoundary(
         state = rememberQuery(screenContext.eventMapQueryKey),
     ) { events ->
@@ -16,7 +18,7 @@ fun EventMapScreenRoot() {
         EventMapScreen(
             uiState = uiState,
             onSelectFloor = { eventFlow.tryEmit(EventMapScreenEvent.SelectFloor(it)) },
-            onClickReadMore = { url -> TODO() }
+            onClickReadMore = onClickReadMore,
         )
     }
 }
