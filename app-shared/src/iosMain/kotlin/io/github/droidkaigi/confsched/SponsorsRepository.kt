@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.filterNotNull
 import soil.query.SwrClientPlus
 import soil.query.annotation.ExperimentalSoilQueryApi
-import soil.query.compose.QuerySuccessObject
 import soil.query.compose.rememberQuery
 
 @Inject
@@ -23,16 +22,12 @@ class SponsorsRepository(
 ) {
     @OptIn(ExperimentalSoilQueryApi::class, FlowPreview::class)
     fun sponsorsFlow(): Flow<PersistentList<Sponsor>> = moleculeFlow(RecompositionMode.Immediate) {
-        val sponsorsQuery = rememberQuery(
-            key = sponsorsQueryKey,
-            client = swrClient,
+        soilDataBoundary(
+            state = rememberQuery(
+                key = sponsorsQueryKey,
+                client = swrClient,
+            )
         )
-
-        if (sponsorsQuery is QuerySuccessObject<PersistentList<Sponsor>>) {
-            sponsorsQuery.data
-        } else {
-            null
-        }
     }
         .filterNotNull()
         // Errors thrown inside flow can't be caught on iOS side, so we catch it here.

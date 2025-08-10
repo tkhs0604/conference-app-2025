@@ -6,16 +6,12 @@ import dev.zacsweers.metro.Inject
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.model.data.TimetableQueryKey
 import io.github.droidkaigi.confsched.model.sessions.Timetable
-import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
-import kotlinx.collections.immutable.PersistentSet
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.filterNotNull
 import soil.query.SwrClientPlus
 import soil.query.annotation.ExperimentalSoilQueryApi
-import soil.query.compose.QuerySuccessObject
-import soil.query.compose.SubscriptionSuccessObject
 import soil.query.compose.rememberQuery
 import soil.query.compose.rememberSubscription
 
@@ -27,25 +23,11 @@ class SessionsRepository(
 ) {
     @OptIn(ExperimentalSoilQueryApi::class, FlowPreview::class)
     fun timetableFlow(): Flow<Timetable> = moleculeFlow(RecompositionMode.Immediate) {
-        val timetableQuery = rememberQuery(
-            key = timetableQueryKey,
-            client = swrClient,
-        )
-        val favoriteTimetableIdsSubscription = rememberSubscription(
-            key = favoriteTimetableIdsSubscriptionKey,
-            client = swrClient,
-        )
-
-        if (
-            timetableQuery is QuerySuccessObject<Timetable> &&
-            favoriteTimetableIdsSubscription is SubscriptionSuccessObject<PersistentSet<TimetableItemId>>
-        ) {
-            val timetable = timetableQuery.data
-            val favoriteTimetableIds = favoriteTimetableIdsSubscription.data
-
+        soilDataBoundary(
+            state1 = rememberQuery(key = timetableQueryKey, client = swrClient),
+            state2 = rememberSubscription(key = favoriteTimetableIdsSubscriptionKey, client = swrClient),
+        ) { timetable, favoriteTimetableIds ->
             timetable.copy(bookmarks = favoriteTimetableIds)
-        } else {
-            null
         }
     }
         .filterNotNull()
