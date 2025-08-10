@@ -35,6 +35,7 @@ import androidx.compose.ui.graphics.vector.VectorPainter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.designsystem.theme.ProfileTheme
+import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.model.profile.Profile
 import io.github.droidkaigi.confsched.profile.ProfileRes
 import io.github.droidkaigi.confsched.profile.enter_validate_format
@@ -44,11 +45,13 @@ import io.github.droidkaigi.confsched.profile.occupation
 import io.github.droidkaigi.confsched.profile.profile_card_title
 import io.github.droidkaigi.confsched.profile.url_is_invalid
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import soil.form.FieldValidator
 import soil.form.compose.Field
 import soil.form.compose.Form
 import soil.form.compose.FormField
 import soil.form.compose.hasError
+import soil.form.compose.rememberForm
 import soil.form.rule.match
 import soil.form.rule.notBlank
 
@@ -258,4 +261,21 @@ private fun Modifier.selectedBorder(
     }
 } else {
     this
+}
+
+@Preview
+@Composable
+private fun ProfileEditScreenPreview() {
+    val form = rememberForm(
+        initialValue = Profile(
+            name = "John Doe",
+            occupation = "Software Engineer",
+            link = "https://example.com",
+            theme = ProfileTheme.Iguana.name,
+        ),
+        onSubmit = {}
+    )
+    KaigiPreviewContainer {
+        ProfileEditScreen(form = form)
+    }
 }
