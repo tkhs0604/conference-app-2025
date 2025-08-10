@@ -1,6 +1,7 @@
 package io.github.droidkaigi.confsched.favorites
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -10,7 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.compositionlocal.LocalNavigationComponentPadding
+import io.github.droidkaigi.confsched.droidkaigiui.extension.plus
 import io.github.droidkaigi.confsched.droidkaigiui.session.TimetableList
 import io.github.droidkaigi.confsched.favorites.components.FavoriteFilters
 import io.github.droidkaigi.confsched.favorites.section.FavoriteEmpty
@@ -70,6 +74,7 @@ fun FavoritesScreen(
                         onBookmarkClick = onBookmarkClick,
                         isBookmarked = { true },
                         isDateTagVisible = true,
+                        contentPadding = LocalNavigationComponentPadding.current + PaddingValues(horizontal = 16.dp),
                     )
                 }
             }
