@@ -31,6 +31,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.compositionlocal.LocalNavigationComponentPadding
+import io.github.droidkaigi.confsched.droidkaigiui.extension.plus
 import io.github.droidkaigi.confsched.droidkaigiui.layout.CollapsingHeaderLayout
 import io.github.droidkaigi.confsched.droidkaigiui.layout.rememberCollapsingHeaderEnterAlwaysState
 import io.github.droidkaigi.confsched.droidkaigiui.session.TimetableList
@@ -81,6 +83,7 @@ fun TimetableScreen(
             )
         },
         containerColor = Color.Transparent,
+        contentWindowInsets = WindowInsets(),
         modifier = modifier.fillMaxSize(),
     ) { paddingValues ->
         TimetableBackground()
@@ -134,6 +137,7 @@ fun TimetableScreen(
                             timetable = requireNotNull(uiState.timetable.timetableGridUiState[uiState.timetable.selectedDay]).timetable,
                             timeLine = null, // TODO
                             selectedDay = uiState.timetable.selectedDay,
+                            contentPadding = LocalNavigationComponentPadding.current,
                         )
                     }
 
@@ -145,7 +149,7 @@ fun TimetableScreen(
                             onBookmarkClick = { id -> onBookmarkClick(id.value) },
                             isBookmarked =  { id -> timetableListUiState.timetable.bookmarks.contains(id) },
                             lazyListState = lazyListState,
-                            contentPadding = WindowInsets.navigationBars.add(WindowInsets(left = 16.dp, right = 16.dp)).asPaddingValues(),
+                            contentPadding = LocalNavigationComponentPadding.current + WindowInsets.navigationBars.add(WindowInsets(left = 16.dp, right = 16.dp)).asPaddingValues(),
                             isDateTagVisible = false,
                         )
                     }
