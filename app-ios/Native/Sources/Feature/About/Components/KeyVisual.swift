@@ -83,4 +83,3 @@ struct KeyVisual: View {
     KeyVisual()
         .background(AssetColors.surface.swiftUIColor)
 }
-
