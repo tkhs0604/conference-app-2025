@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.designsystem.util.plus
 import io.github.droidkaigi.confsched.droidkaigiui.component.AnimatedTextTopAppBar
 import io.github.droidkaigi.confsched.droidkaigiui.compositionlocal.safeDrawingWithBottomNavBar
+import io.github.droidkaigi.confsched.droidkaigiui.extension.excludeTop
 import io.github.droidkaigi.confsched.eventmap.component.EventMap
 import io.github.droidkaigi.confsched.model.eventmap.FloorLevel
 import org.jetbrains.compose.resources.stringResource
@@ -40,7 +41,7 @@ fun EventMapScreen(
             onSelectFloor = onSelectFloor,
             onClickReadMore = onClickReadMore,
             contentPadding = innerPadding +
-                    WindowInsets.safeDrawingWithBottomNavBar.asPaddingValues() +
+                    WindowInsets.safeDrawingWithBottomNavBar.excludeTop().asPaddingValues() +
                     PaddingValues(
                         top = 10.dp,
                         start = 16.dp,
