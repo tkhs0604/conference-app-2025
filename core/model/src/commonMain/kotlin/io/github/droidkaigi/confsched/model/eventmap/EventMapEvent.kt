@@ -25,7 +25,7 @@ fun EventMapEvent.Companion.fakes(): PersistentList<EventMapEvent> = RoomType.en
             "Let's gather for lunch and chat about various topics. Seats are limited, so please come soon after receiving your lunch box.",
         ),
         moreDetailsUrl = if (it.ordinal % 2 == 0) {
-            "https://2024.droidkaigi.jp/"
+            "https://2025.droidkaigi.jp/"
         } else {
             null
         },
