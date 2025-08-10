@@ -9,8 +9,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
@@ -25,11 +27,13 @@ import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
 import io.github.droidkaigi.confsched.designsystem.theme.LocalRoomTheme
 import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
 import io.github.droidkaigi.confsched.designsystem.theme.RoomTheme
+import io.github.droidkaigi.confsched.droidkaigiui.toResDrawable
 import io.github.droidkaigi.confsched.eventmap.EventmapRes
 import io.github.droidkaigi.confsched.eventmap.read_more
+import io.github.droidkaigi.confsched.model.core.RoomIcon
 import io.github.droidkaigi.confsched.model.eventmap.EventMapEvent
-import io.github.droidkaigi.confsched.model.eventmap.RoomIcon
 import io.github.droidkaigi.confsched.model.eventmap.fakes
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -122,16 +126,15 @@ private fun ToolTip(
             .border(1.dp, color, RoundedCornerShape(4.dp))
             .padding(vertical = 4.5.dp, horizontal = 8.dp),
     ) {
-        // TODO: Resolve RoomIcon from the eventMapEvent
-//        roomIcon.toResDrawable()?.let {
-//            Icon(
-//                painter = painterResource(it),
-//                contentDescription = null,
-//                tint = color,
-//                modifier = Modifier.size(12.dp),
-//            )
-//            Spacer(Modifier.width(3.dp))
-//        }
+        roomIcon.toResDrawable()?.let {
+            Icon(
+                painter = painterResource(it),
+                contentDescription = null,
+                tint = color,
+                modifier = Modifier.size(12.dp),
+            )
+            Spacer(Modifier.width(3.dp))
+        }
         Text(
             text = text,
             style = MaterialTheme.typography.labelMedium,

@@ -1,6 +1,7 @@
 package io.github.droidkaigi.confsched.model.eventmap
 
 import io.github.droidkaigi.confsched.model.core.MultiLangText
+import io.github.droidkaigi.confsched.model.core.RoomIcon
 import io.github.droidkaigi.confsched.model.core.RoomType
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList

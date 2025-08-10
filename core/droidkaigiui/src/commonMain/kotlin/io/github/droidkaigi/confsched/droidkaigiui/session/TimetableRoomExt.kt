@@ -1,8 +1,8 @@
 package io.github.droidkaigi.confsched.droidkaigiui.session
 
-import io.github.droidkaigi.confsched.designsystem.RoomIcon
+import io.github.droidkaigi.confsched.model.core.RoomIcon
 import io.github.droidkaigi.confsched.designsystem.theme.RoomTheme
-import io.github.droidkaigi.confsched.designsystem.toResDrawable
+import io.github.droidkaigi.confsched.droidkaigiui.toResDrawable
 import io.github.droidkaigi.confsched.model.core.RoomType
 import io.github.droidkaigi.confsched.model.sessions.TimetableRoom
 import org.jetbrains.compose.resources.DrawableResource

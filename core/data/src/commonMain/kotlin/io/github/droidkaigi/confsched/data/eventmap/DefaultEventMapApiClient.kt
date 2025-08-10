@@ -9,8 +9,8 @@ import io.github.droidkaigi.confsched.data.core.NetworkExceptionHandler
 import io.github.droidkaigi.confsched.data.eventmap.response.EventMapResponse
 import io.github.droidkaigi.confsched.data.eventmap.response.MessageResponse
 import io.github.droidkaigi.confsched.model.core.MultiLangText
+import io.github.droidkaigi.confsched.model.core.RoomIcon
 import io.github.droidkaigi.confsched.model.eventmap.EventMapEvent
-import io.github.droidkaigi.confsched.model.eventmap.RoomIcon
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 

@@ -1,4 +1,4 @@
-package io.github.droidkaigi.confsched.model.eventmap
+package io.github.droidkaigi.confsched.model.core
 
 enum class RoomIcon {
     Square,
