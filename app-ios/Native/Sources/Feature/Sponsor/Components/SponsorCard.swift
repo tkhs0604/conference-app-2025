@@ -14,6 +14,10 @@ struct SponsorCard: View {
             return 80
         case .supporters:
             return 80
+        case .silver:
+            return 80
+        case .bronze:
+            return 80
         }
     }
 
@@ -50,7 +54,7 @@ struct SponsorSection: View {
         switch category.tier {
         case .platinum:
             return [GridItem(.flexible())]
-        case .gold:
+        case .gold, .silver, .bronze:
             return [
                 GridItem(.flexible(), spacing: 12),
                 GridItem(.flexible(), spacing: 12),
