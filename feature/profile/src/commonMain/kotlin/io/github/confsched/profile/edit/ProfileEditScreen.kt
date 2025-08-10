@@ -1,8 +1,5 @@
 package io.github.confsched.profile.edit
 
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.rememberScrollableState
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -54,12 +51,7 @@ fun ProfileEditScreen(
     ) { contentPadding ->
         Column(
             verticalArrangement = Arrangement.spacedBy(12.dp),
-            modifier = Modifier
-                .padding(contentPadding)
-                .scrollable(
-                    state = rememberScrollableState { delta -> delta },
-                    orientation = Orientation.Horizontal,
-                )
+            modifier = Modifier.padding(contentPadding)
         ) {
             form.Name()
             form.Occupation()
