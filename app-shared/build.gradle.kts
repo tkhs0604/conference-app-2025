@@ -28,6 +28,7 @@ kotlin {
             implementation(projects.core.model)
             implementation(projects.core.designsystem)
             implementation(projects.feature.sessions)
+            implementation(projects.feature.eventmap)
             implementation(projects.feature.about)
             implementation(projects.feature.sponsors)
             implementation(projects.feature.settings)
