@@ -23,7 +23,10 @@ import kotlinx.serialization.json.Json
 
 @SingleIn(DataScope::class)
 @Inject
-public class UserDataStore(@param:UserDataStoreQualifier private val dataStore: DataStore<Preferences>) {
+public class UserDataStore(
+    @param:UserDataStoreQualifier private val dataStore: DataStore<Preferences>,
+    private val json: Json,
+) {
     public fun getStream(): Flow<PersistentSet<TimetableItemId>> {
         return dataStore.data
             .catch {
@@ -55,13 +58,13 @@ public class UserDataStore(@param:UserDataStoreQualifier private val dataStore: 
     public fun getProfileOrNull(): Flow<Profile?> {
         return dataStore.data.map {
             val profile = it[PROFILE_KEY] ?: return@map null
-            Json.decodeFromString(profile)
+            json.decodeFromString(profile)
         }
     }
 
     public suspend fun saveProfile(profile: Profile) {
         dataStore.edit { preferences ->
-            preferences[PROFILE_KEY] = Json.encodeToString(profile)
+            preferences[PROFILE_KEY] = json.encodeToString(Profile.serializer(), profile)
         }
     }
 
