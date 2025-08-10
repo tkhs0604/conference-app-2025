@@ -36,6 +36,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.model.contributors.Contributor
+import io.github.droidkaigi.confsched.model.contributors.fakes
+import io.github.droidkaigi.confsched.model.sponsors.Plan
+import io.github.droidkaigi.confsched.model.sponsors.Sponsor
+import io.github.droidkaigi.confsched.model.sponsors.SponsorList
+import io.github.droidkaigi.confsched.model.sponsors.fakes
+import kotlinx.collections.immutable.PersistentList
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -43,13 +50,17 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SponsorsScreen(
-    sponsors: SponsorList,
+    sponsors: PersistentList<Sponsor>,
     onSponsorsItemClick: (url: String) -> Unit,
     onBackClick: () -> Unit,
     contentPadding: PaddingValues = PaddingValues(),
-    modifier: Modifier,
+    //modifier: Modifier,
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val sponsorList = SponsorList(
+        platinumSponsors = sponsors.filter{ it.plan == Plan.PLATINUM },
+        goldSponsors = sponsors.filter{ it.plan == Plan.GOLD },
+        supporters = sponsors.filter{ it.plan == Plan.SUPPORTER })
 
     Scaffold(
         topBar = {
@@ -57,8 +68,8 @@ fun SponsorsScreen(
                 title = {Text(stringResource(SponsorsRes.string.sponsors_title))},
                 scrollBehavior = scrollBehavior,
             )
-        },
-        modifier = modifier,
+        }
+        //modifier = modifier,
     ) { innerPadding ->
         Column(modifier=Modifier.padding(innerPadding)) {
             //Note: For the time being I don't see a purpose to creating a control that is
@@ -69,23 +80,22 @@ fun SponsorsScreen(
                 columns = GridCells.Fixed(6),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
-                modifier = modifier
-                    .let {
-                        if (scrollBehavior != null) {
-                            it.nestedScroll(scrollBehavior.nestedScrollConnection)
-                        } else {
-                            it
-                        }
-                    },
+//                    .let {
+//                        if (scrollBehavior != null) {
+//                            it.nestedScroll(scrollBehavior.nestedScrollConnection)
+//                        } else {
+//                            it
+//                        }
+//                    }
                 contentPadding = PaddingValues(
                     start = 16.dp,
                     end = 16.dp,
                     bottom = 48.dp,
-                ),
+                )
             ) {
                 sponsorsByPlanSection(
                     headerStringResource = SponsorsRes.string.platinum_sponsors_title,
-                    sponsors = sponsors.platinumSponsors,
+                    sponsors = sponsorList.platinumSponsors,
                     onSponsorsItemClick = onSponsorsItemClick,
                     contentPadding = contentPadding,
                     sponsorItemSpan = { GridItemSpan(maxLineSpan) },
@@ -94,7 +104,7 @@ fun SponsorsScreen(
 
                 sponsorsByPlanSection(
                     headerStringResource = SponsorsRes.string.gold_sponsors_title,
-                    sponsors = sponsors.goldSponsors,
+                    sponsors = sponsorList.goldSponsors,
                     onSponsorsItemClick = onSponsorsItemClick,
                     contentPadding = contentPadding,
                     sponsorItemSpan = { GridItemSpan(3) },
@@ -103,7 +113,7 @@ fun SponsorsScreen(
 
                 sponsorsByPlanSection(
                     headerStringResource = SponsorsRes.string.supporters_title,
-                    sponsors = sponsors.supporters,
+                    sponsors = sponsorList.supporters,
                     onSponsorsItemClick = onSponsorsItemClick,
                     contentPadding = contentPadding,
                     sponsorItemSpan = { GridItemSpan(2) },
@@ -190,15 +200,10 @@ fun SponsorItem(
 fun SponsorScreenPreview() {
     KaigiPreviewContainer {
         SponsorsScreen(
-            sponsors = SponsorList(
-                platinumSponsors = Sponsor.fakes().filter{ it.plan == Plan.PLATINUM },
-                goldSponsors = Sponsor.fakes().filter{ it.plan == Plan.GOLD },
-                supporters = Sponsor.fakes().filter{ it.plan == Plan.SUPPORTER },
-            ), {
-
-            },
-            onBackClick = {}, //Unused in preview
-            modifier = Modifier,
+            sponsors = Sponsor.fakes(),
+            onSponsorsItemClick = {},
+            onBackClick = {},
+            contentPadding = PaddingValues(0.dp),
         )
     }
 }

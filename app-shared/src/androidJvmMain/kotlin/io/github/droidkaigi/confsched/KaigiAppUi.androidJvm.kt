@@ -26,6 +26,7 @@ import io.github.droidkaigi.confsched.navkey.EventMapNavKey
 import io.github.droidkaigi.confsched.navkey.FavoritesNavKey
 import io.github.droidkaigi.confsched.navkey.ProfileCardNavKey
 import io.github.droidkaigi.confsched.navkey.SearchNavKey
+import io.github.droidkaigi.confsched.navkey.SponsorsNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableItemDetailNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableNavKey
 
@@ -107,7 +108,7 @@ actual fun KaigiAppUi() {
 
                             AboutItem.Contributors -> backStack.add(ContributorsNavKey)
                             AboutItem.Staff -> TODO()
-                            AboutItem.Sponsors -> TODO()
+                            AboutItem.Sponsors -> backStack.add(SponsorsNavKey)
                             AboutItem.CodeOfConduct -> {
                                 externalNavController.navigate(
                                     url = "$portalBaseUrl/about/code-of-conduct",
