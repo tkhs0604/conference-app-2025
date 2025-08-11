@@ -11,7 +11,7 @@ enum ProfileCardType: String {
 public struct ProfileCardScreen: View {
     @State private var presenter = ProfileCardPresenter()
     @State private var isFront: Bool = true
-    @State private var rotation: (angle: Angle, axis: (x: CGFloat, y: CGFloat, z: CGFloat)) = (.degrees(0), (0, 0, 1))
+    @State private var rotation: (angle: Angle, axis: (x: CGFloat, y: CGFloat, z: CGFloat)) = (.degrees(0), (0, 1, 0))
     @State private var cardType: ProfileCardType = .dark
 
     public init() {}
