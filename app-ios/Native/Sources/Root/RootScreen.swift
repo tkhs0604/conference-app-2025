@@ -63,6 +63,8 @@ public struct RootScreen: View {
         }
         .environment(\.colorScheme, .dark)
         .onAppear {
+            // Register custom fonts from Theme bundle so Font.custom can resolve them.
+            ThemeFonts.registerAll()
             presenter.prepareWindow()
         }
     }
