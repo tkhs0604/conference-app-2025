@@ -19,7 +19,7 @@ fun ProfileEditScreenRoot(
         profile = profile,
     )
 
-    SafeLaunchedEffect(uiState) {
+    SafeLaunchedEffect(uiState.created) {
         if (uiState.created) {
             onProfileCreate()
         }
