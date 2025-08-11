@@ -69,12 +69,13 @@ float3 generateKiraRGB(float3 colorNoiseRGB, float3 normal) {
 
 [[ stitchable ]] half4 kiraEffect(float2 position, SwiftUI::Layer layer, float4 bounds, float3 normal, texture2d<half> monoTexture) {
     float2 uv = (position - .5 * bounds.zw) / bounds.w * float2(1.0, -1.0) + float2(0.0, 1.0);
-    float2 UV = position / bounds.zw * float2(1.0, -1.0) + float2(0.0, 1.0);
     
     float2 pos = float2(uv * 6.0);
     float valueNoise = generateValueNoise(pos);
     float3 colorNoiseHSV = float3(valueNoise, 1.0, 1.0);
-    float3 kiraNoiseRGB = generateKiraRGB(hsv2rgb(colorNoiseHSV), normal) * monoTexture.rgb;
+    constexpr sampler imageSampler(address::clamp_to_edge,
+                                   filter::linear);
+    float3 kiraNoiseRGB = generateKiraRGB(hsv2rgb(colorNoiseHSV), normal) * float3(monoTexture.sample(imageSampler, position).rgb);
     
-    return half4(kiraNoiseRGB + layer.sample(position).rgb, 1.0);
+    return half4(half3(kiraNoiseRGB) + layer.sample(position).rgb, 1.0);
 }
