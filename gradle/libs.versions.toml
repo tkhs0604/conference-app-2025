@@ -100,6 +100,7 @@ kotlinxDatetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.r
 soilQueryCore = { module = "com.soil-kt.soil:query-core", version.ref = "soil" }
 soilQueryCompose = { module = "com.soil-kt.soil:query-compose", version.ref = "soil" }
 soilReacty = { module = "com.soil-kt.soil:reacty", version.ref = "soil" }
+soilForm = { module = "com.soil-kt.soil:form", version.ref = "soil" }
 
 # compiler
 kspSymbolProcessingApi = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }

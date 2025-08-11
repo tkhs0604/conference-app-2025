@@ -35,6 +35,7 @@ kotlin {
             implementation(projects.feature.staff)
             implementation(projects.feature.contributors)
             implementation(projects.feature.favorites)
+            implementation(projects.feature.profile)
 
             implementation(libs.kotlinxSerializationJson)
             implementation(libs.rin)
