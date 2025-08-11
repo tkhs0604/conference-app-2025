@@ -75,13 +75,6 @@ fun SponsorsScreen(
                 columns = GridCells.Fixed(6),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
-//                    .let {
-//                        if (scrollBehavior != null) {
-//                            it.nestedScroll(scrollBehavior.nestedScrollConnection)
-//                        } else {
-//                            it
-//                        }
-//                    }
                 contentPadding = PaddingValues(
                     start = 16.dp,
                     end = 16.dp,
