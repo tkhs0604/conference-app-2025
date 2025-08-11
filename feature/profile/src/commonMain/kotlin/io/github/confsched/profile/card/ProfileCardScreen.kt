@@ -54,6 +54,8 @@ private fun ProfileCardScreenPreview() {
                 name = "John Doe",
                 occupation = "Software Engineer",
                 link = "https://example.com",
+                imagePath = "https://example.com/image.png",
+                image = ByteArray(0),
             ),
             onEditClick = {},
         )
