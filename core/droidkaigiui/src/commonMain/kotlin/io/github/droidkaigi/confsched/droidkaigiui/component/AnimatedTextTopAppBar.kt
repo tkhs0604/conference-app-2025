@@ -18,6 +18,9 @@ import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,8 +42,11 @@ fun AnimatedTextTopAppBar(
     textColor: Color = MaterialTheme.colorScheme.onSurface,
     scrollBehavior: TopAppBarScrollBehavior? = null,
 ) {
-    val scrollFraction = scrollBehavior?.state?.overlappedFraction ?: 0f
-    val transitionFraction = scrollFraction.coerceIn(0f, 1f)
+    val transitionFraction by remember(scrollBehavior) {
+        derivedStateOf {
+            scrollBehavior?.state?.overlappedFraction?.coerceIn(0f, 1f) ?: 0f
+        }
+    }
 
     TopAppBar(
         title = {
