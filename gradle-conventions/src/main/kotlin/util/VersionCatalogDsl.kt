@@ -12,3 +12,7 @@ internal val Project.libs: VersionCatalog get() = extensions.getByType<VersionCa
 internal fun VersionCatalog.library(name: String): Provider<MinimalExternalModuleDependency> {
     return findLibrary(name).get()
 }
+
+internal fun VersionCatalog.version(name: String): String {
+    return findVersion(name).get().requiredVersion
+}
