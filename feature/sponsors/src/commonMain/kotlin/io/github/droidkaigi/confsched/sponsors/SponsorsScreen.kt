@@ -54,7 +54,6 @@ fun SponsorsScreen(
     onSponsorsItemClick: (url: String) -> Unit,
     onBackClick: () -> Unit,
     contentPadding: PaddingValues = PaddingValues(),
-    //modifier: Modifier,
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     val sponsorList = SponsorList(
@@ -69,12 +68,8 @@ fun SponsorsScreen(
                 scrollBehavior = scrollBehavior,
             )
         }
-        //modifier = modifier,
     ) { innerPadding ->
         Column(modifier=Modifier.padding(innerPadding)) {
-            //Note: For the time being I don't see a purpose to creating a control that is
-            //  just a single text field that is repeated three times.
-
 
             LazyVerticalGrid(
                 columns = GridCells.Fixed(6),
