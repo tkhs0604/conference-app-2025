@@ -19,12 +19,11 @@ public struct ContributorScreen: View {
                             HStack {
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text("Total")
-                                        .font(.subheadline)
+                                        .font(.custom(AssetFonts.Chango.regular, size: 15))
                                         .foregroundColor(AssetColors.onSurface.swiftUIColor)
 
                                     Text("\(presenter.contributors.count) persons")
-                                        .font(.largeTitle)
-                                        .fontWeight(.bold)
+                                        .font(.custom(AssetFonts.Chango.regular, size: 34))
                                         .foregroundColor(AssetColors.onSurface.swiftUIColor)
                                 }
                                 Spacer()
