@@ -14,9 +14,8 @@ plugins {
     id("droidkaigi.primitive.kmp.compose.resources")
     id("droidkaigi.primitive.buildkonfig")
     id("org.jetbrains.kotlin.plugin.serialization")
+    id("droidkaigi.primitive.aboutlibraries")
 }
-
-android.namespace = "io.github.droidkaigi.confsched"
 
 compose.resources.nameOfResClass = "AppSharedRes"
 
@@ -35,6 +34,7 @@ kotlin {
             implementation(projects.feature.staff)
             implementation(projects.feature.contributors)
             implementation(projects.feature.favorites)
+            implementation(projects.feature.profile)
 
             implementation(libs.kotlinxSerializationJson)
             implementation(libs.rin)
@@ -141,4 +141,12 @@ kotlin {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+}
+
+// generate aboutlibraries.json for iOS
+tasks.named("prepareComposeResourcesTaskForIosMain").get().dependsOn("exportLibraryDefinitions")
+tasks.named("copyNonXmlValueResourcesForIosMain").get().dependsOn("exportLibraryDefinitions")
+aboutLibraries.export {
+    outputFile = file("src/iosMain/composeResources/files/aboutlibraries.json")
+    exportVariant = "metadataIosMain"
 }

@@ -1,11 +1,14 @@
 package io.github.droidkaigi.confsched
 
+import io.github.confsched.profile.ProfileScreenContext
 import io.github.droidkaigi.confsched.about.AboutScreenContext
+import io.github.droidkaigi.confsched.about.LicensesScreenContext
 import io.github.droidkaigi.confsched.contributors.ContributorsScreenContext
 import io.github.droidkaigi.confsched.favorites.FavoritesScreenContext
 import io.github.droidkaigi.confsched.sessions.SearchScreenContext
 import io.github.droidkaigi.confsched.sessions.TimetableItemDetailScreenContext
 import io.github.droidkaigi.confsched.sessions.TimetableScreenContext
+import io.github.droidkaigi.confsched.staff.StaffScreenContext
 
 interface AppGraph :
     TimetableScreenContext.Factory,
@@ -13,4 +16,7 @@ interface AppGraph :
     SearchScreenContext.Factory,
     ContributorsScreenContext.Factory,
     FavoritesScreenContext.Factory,
-    AboutScreenContext.Factory
+    AboutScreenContext.Factory,
+    StaffScreenContext.Factory,
+    ProfileScreenContext.Factory,
+    LicensesScreenContext.Factory

@@ -13,10 +13,12 @@ import dev.chrisbanes.haze.hazeSource
 import dev.chrisbanes.haze.rememberHazeState
 import io.github.droidkaigi.confsched.component.KaigiNavigationScaffold
 import io.github.droidkaigi.confsched.component.MainScreenTab
+import io.github.droidkaigi.confsched.model.about.AboutItem
 import io.github.droidkaigi.confsched.navigation.component.NavHostWithSharedAxisX
 import io.github.droidkaigi.confsched.navigation.extension.navigateToAboutTab
 import io.github.droidkaigi.confsched.navigation.extension.navigateToEventMapTab
 import io.github.droidkaigi.confsched.navigation.extension.navigateToFavoritesTab
+import io.github.droidkaigi.confsched.navigation.extension.navigateToLicenses
 import io.github.droidkaigi.confsched.navigation.extension.navigateToProfileCardTab
 import io.github.droidkaigi.confsched.navigation.extension.navigateToSearch
 import io.github.droidkaigi.confsched.navigation.extension.navigateToTimetableItemDetail
@@ -24,12 +26,12 @@ import io.github.droidkaigi.confsched.navigation.extension.navigateToTimetableTa
 import io.github.droidkaigi.confsched.navigation.graph.aboutTabNavGraph
 import io.github.droidkaigi.confsched.navigation.graph.eventMapTabNavGraph
 import io.github.droidkaigi.confsched.navigation.graph.favoritesTabNavGraph
-import io.github.droidkaigi.confsched.navigation.graph.profileCardTabNavGraph
+import io.github.droidkaigi.confsched.navigation.graph.profileTabNavGraph
 import io.github.droidkaigi.confsched.navigation.graph.timetableTabNavGraph
 import io.github.droidkaigi.confsched.navigation.route.AboutTabRoute
 import io.github.droidkaigi.confsched.navigation.route.EventMapTabRoute
 import io.github.droidkaigi.confsched.navigation.route.FavoritesTabRoute
-import io.github.droidkaigi.confsched.navigation.route.ProfileCardTabRoute
+import io.github.droidkaigi.confsched.navigation.route.ProfileTabRoute
 import io.github.droidkaigi.confsched.navigation.route.TimetableTabRoute
 
 context(appGraph: AppGraph)
@@ -43,14 +45,14 @@ actual fun KaigiAppUi() {
     val currentTab by remember {
         derivedStateOf {
             navBackStackEntry?.destination?.let { destination ->
-                val mainTabRoutes = listOf(TimetableTabRoute, EventMapTabRoute, FavoritesTabRoute, AboutTabRoute, ProfileCardTabRoute)
+                val mainTabRoutes = listOf(TimetableTabRoute, EventMapTabRoute, FavoritesTabRoute, AboutTabRoute, ProfileTabRoute)
                 val matchedMainTabRoute = mainTabRoutes.firstOrNull { mainTabRoute -> destination.hasRoute(mainTabRoute.rootRouteClass) } ?: return@derivedStateOf null
                 when (matchedMainTabRoute) {
                     TimetableTabRoute -> MainScreenTab.Timetable
                     EventMapTabRoute -> MainScreenTab.EventMap
                     FavoritesTabRoute -> MainScreenTab.Favorite
                     AboutTabRoute -> MainScreenTab.About
-                    ProfileCardTabRoute -> MainScreenTab.ProfileCard
+                    ProfileTabRoute -> MainScreenTab.Profile
                 }
             }
         }
@@ -65,7 +67,7 @@ actual fun KaigiAppUi() {
                 MainScreenTab.EventMap -> navController.navigateToEventMapTab()
                 MainScreenTab.Favorite -> navController.navigateToFavoritesTab()
                 MainScreenTab.About -> navController.navigateToAboutTab()
-                MainScreenTab.ProfileCard -> navController.navigateToProfileCardTab()
+                MainScreenTab.Profile -> navController.navigateToProfileCardTab()
             }
         },
     ) {
@@ -94,10 +96,23 @@ actual fun KaigiAppUi() {
             )
             aboutTabNavGraph(
                 onAboutItemClick = {
-                    // TODO
-                }
+                    when (it) {
+                        AboutItem.Map -> TODO()
+                        AboutItem.Contributors -> TODO()
+                        AboutItem.Staff -> TODO()
+                        AboutItem.Sponsors -> TODO()
+                        AboutItem.CodeOfConduct -> TODO()
+                        AboutItem.License -> navController.navigateToLicenses()
+                        AboutItem.PrivacyPolicy -> TODO()
+                        AboutItem.Settings -> TODO()
+                        AboutItem.Youtube -> TODO()
+                        AboutItem.X -> TODO()
+                        AboutItem.Medium -> TODO()
+                    }
+                },
+                onBackClick = navController::popBackStack,
             )
-            profileCardTabNavGraph()
+            profileTabNavGraph()
         }
     }
 }

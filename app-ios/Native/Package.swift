@@ -27,11 +27,14 @@ let package = Package(
                 .target(name: "Extension"),
                 .target(name: "Theme"),
                 .product(name: "Model", package: "Core"),
-            ],
+            ]
         ),
         .testTarget(
             name: "ComponentTests",
             dependencies: ["Component"]
+        ),
+        .target(
+            name: "DependencyExtra",
         ),
 
         .target(
@@ -123,6 +126,7 @@ let package = Package(
                 .target(name: "Component"),
                 .target(name: "Extension"),
                 .target(name: "Theme"),
+                .target(name: "DependencyExtra"),
             ],
             path: "Sources/Feature/EventMap",
         ),

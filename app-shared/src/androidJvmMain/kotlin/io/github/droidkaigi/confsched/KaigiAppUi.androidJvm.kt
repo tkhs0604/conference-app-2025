@@ -12,20 +12,23 @@ import io.github.droidkaigi.confsched.component.NavDisplayWithSharedAxisX
 import io.github.droidkaigi.confsched.model.about.AboutItem
 import io.github.droidkaigi.confsched.model.core.Lang
 import io.github.droidkaigi.confsched.model.core.defaultLang
-import io.github.droidkaigi.confsched.naventry.aboutEntry
+import io.github.droidkaigi.confsched.naventry.aboutEntries
 import io.github.droidkaigi.confsched.naventry.contributorsEntry
 import io.github.droidkaigi.confsched.naventry.eventMapEntry
 import io.github.droidkaigi.confsched.naventry.favoritesEntry
-import io.github.droidkaigi.confsched.naventry.profileCardNavEntry
+import io.github.droidkaigi.confsched.naventry.profileNavEntry
 import io.github.droidkaigi.confsched.naventry.sessionEntries
+import io.github.droidkaigi.confsched.naventry.staffEntry
 import io.github.droidkaigi.confsched.navigation.rememberNavBackStack
 import io.github.droidkaigi.confsched.navigation.sceneStrategy
 import io.github.droidkaigi.confsched.navkey.AboutNavKey
 import io.github.droidkaigi.confsched.navkey.ContributorsNavKey
 import io.github.droidkaigi.confsched.navkey.EventMapNavKey
 import io.github.droidkaigi.confsched.navkey.FavoritesNavKey
-import io.github.droidkaigi.confsched.navkey.ProfileCardNavKey
+import io.github.droidkaigi.confsched.navkey.ProfileNavKey
+import io.github.droidkaigi.confsched.navkey.LicensesNavKey
 import io.github.droidkaigi.confsched.navkey.SearchNavKey
+import io.github.droidkaigi.confsched.navkey.StaffNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableItemDetailNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableNavKey
 
@@ -43,7 +46,7 @@ actual fun KaigiAppUi() {
                 is EventMapNavKey -> MainScreenTab.EventMap
                 is FavoritesNavKey -> MainScreenTab.Favorite
                 is AboutNavKey -> MainScreenTab.About
-                is ProfileCardNavKey -> MainScreenTab.ProfileCard
+                is ProfileNavKey -> MainScreenTab.Profile
                 else -> null
             }
         },
@@ -53,7 +56,7 @@ actual fun KaigiAppUi() {
                 MainScreenTab.EventMap -> EventMapNavKey
                 MainScreenTab.Favorite -> FavoritesNavKey
                 MainScreenTab.About -> AboutNavKey
-                MainScreenTab.ProfileCard -> ProfileCardNavKey
+                MainScreenTab.Profile -> ProfileNavKey
             }
             backStack.clear()
             backStack.add(navKey)
@@ -82,6 +85,10 @@ actual fun KaigiAppUi() {
                     onBackClick = { backStack.removeLastOrNull() },
                     onContributorClick = externalNavController::navigate,
                 )
+                staffEntry(
+                    onBackClick = { backStack.removeLastOrNull() },
+                    onStaffItemClick = externalNavController::navigate,
+                )
                 favoritesEntry(
                     onTimetableItemClick = {
                         if (backStack.lastOrNull() is TimetableItemDetailNavKey) {
@@ -91,7 +98,7 @@ actual fun KaigiAppUi() {
                     }
                 )
                 eventMapEntry()
-                aboutEntry(
+                aboutEntries(
                     onAboutItemClick = { item ->
                         val portalBaseUrl = if (defaultLang() == Lang.JAPANESE) {
                             "https://portal.droidkaigi.jp"
@@ -106,7 +113,7 @@ actual fun KaigiAppUi() {
                             }
 
                             AboutItem.Contributors -> backStack.add(ContributorsNavKey)
-                            AboutItem.Staff -> TODO()
+                            AboutItem.Staff -> backStack.add(StaffNavKey)
                             AboutItem.Sponsors -> TODO()
                             AboutItem.CodeOfConduct -> {
                                 externalNavController.navigate(
@@ -114,7 +121,8 @@ actual fun KaigiAppUi() {
                                 )
                             }
 
-                            AboutItem.License -> TODO()
+                            AboutItem.License -> backStack.add(LicensesNavKey)
+
                             AboutItem.PrivacyPolicy -> {
                                 externalNavController.navigate(
                                     url = "$portalBaseUrl/about/privacy",
@@ -140,9 +148,10 @@ actual fun KaigiAppUi() {
                                 )
                             }
                         }
-                    }
+                    },
+                    onBackClick = { backStack.removeLastOrNull() },
                 )
-                profileCardNavEntry()
+                profileNavEntry()
             },
             modifier = Modifier
                 .fillMaxSize()

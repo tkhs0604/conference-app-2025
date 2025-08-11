@@ -19,6 +19,7 @@ import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.DataStoreDependencyProviders
 import io.github.droidkaigi.confsched.data.SessionCacheDataStoreQualifier
 import io.github.droidkaigi.confsched.data.UserDataStoreQualifier
+import io.github.droidkaigi.confsched.data.about.DefaultLicensesQueryKey
 import io.github.droidkaigi.confsched.data.annotations.IoDispatcher
 import io.github.droidkaigi.confsched.data.contributors.ContributorsApiClient
 import io.github.droidkaigi.confsched.data.contributors.DefaultContributorsApiClient
@@ -38,6 +39,7 @@ import io.github.droidkaigi.confsched.data.staff.DefaultStaffQueryKey
 import io.github.droidkaigi.confsched.data.staff.StaffApiClient
 import io.github.droidkaigi.confsched.data.user.DefaultFavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.data.user.DefaultFavoriteTimetableItemIdMutationKey
+import io.github.droidkaigi.confsched.model.about.LicensesQueryKey
 import io.github.droidkaigi.confsched.model.contributors.ContributorsQueryKey
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableItemIdMutationKey
@@ -119,6 +121,9 @@ interface IosAppGraph : AppGraph {
 
     @Binds
     val DefaultStaffQueryKey.bind: StaffQueryKey
+
+    @Binds
+    val DefaultLicensesQueryKey.bind: LicensesQueryKey
 
     @Provides
     fun provideJson(): Json {

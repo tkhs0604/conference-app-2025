@@ -6,67 +6,31 @@ import Presentation
 @MainActor
 @Observable
 final class EventMapPresenter {
-    var selectedFloorMap: FloorMap = .b1f
-    var events: [Event] = []
+    let eventMap = EventMapProvider()
+    var selectedFloorMap: FloorMap = .first
 
     init() {}
 
-    func loadInitial() {
-        // TODO: Load actual event data
-        events = Event.mocks
+    func loadInitial() async {
+        await eventMap.fetchEvents()
     }
 
     func selectFloorMap(_ floorMap: FloorMap) {
         selectedFloorMap = floorMap
     }
-
-    func moreDetailButtonTapped(_ url: URL) {
-        // print("More detail tapped: \(url)")
-        // TODO: Open in Safari
-    }
 }
 
 // Mock models - TODO: Replace with actual models from shared module
 enum FloorMap: String, CaseIterable {
-    case b1f = "B1F"
     case first = "1F"
+    case b1f = "B1F"
 
     var image: String {
         switch self {
         case .b1f:
-            // TODO: Replace with actual B1F map image
-            return "map"
+            return "img_floorMap_light_B1F"
         case .first:
-            // TODO: Replace with actual 1F map image
-            return "map.fill"
+            return "img_floorMap_light_1F"
         }
     }
-}
-
-struct Event: Identifiable, Hashable {
-    let id: String
-    let title: String
-    let description: String
-    let moreDetailUrl: URL?
-
-    static let mocks: [Event] = [
-        Event(
-            id: "1",
-            title: "Welcome Talk",
-            description: "Opening ceremony and keynote presentation",
-            moreDetailUrl: URL(string: "https://droidkaigi.jp/2025/welcome-talk")
-        ),
-        Event(
-            id: "2",
-            title: "Party",
-            description: "Networking party with food and drinks",
-            moreDetailUrl: URL(string: "https://droidkaigi.jp/2025/party")
-        ),
-        Event(
-            id: "3",
-            title: "Ask the Speaker",
-            description: "Q&A session with conference speakers",
-            moreDetailUrl: URL(string: "https://droidkaigi.jp/2025/ask-speaker")
-        ),
-    ]
 }
