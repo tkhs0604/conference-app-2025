@@ -52,6 +52,12 @@ public struct TypographyStyle: Sendable {
     public let font: SwiftUI.Font
     public let lineHeight: CGFloat
     public let letterSpacing: CGFloat
+    
+    public init(font: SwiftUI.Font, lineHeight: CGFloat, letterSpacing: CGFloat) {
+        self.font = font
+        self.lineHeight = lineHeight
+        self.letterSpacing = letterSpacing
+    }
 
     // MARK: - Display Styles
     public static let displayLarge = TypographyStyle(
