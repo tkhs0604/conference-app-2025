@@ -64,6 +64,7 @@ public struct RootScreen: View {
         .environment(\.colorScheme, .dark)
         .onAppear {
             presenter.prepareWindow()
+            UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont(name: changoFontName, size: 28) ?? .systemFont(ofSize: 28)]
         }
     }
 

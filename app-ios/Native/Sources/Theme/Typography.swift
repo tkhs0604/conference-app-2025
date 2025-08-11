@@ -1,5 +1,7 @@
 import SwiftUI
 
+public let changoFontName: String = "Chango-Regular"
+
 public enum Typography {
     // MARK: - Display
     public static let displayLarge = Font.system(size: 57, weight: .regular)
@@ -145,6 +147,15 @@ public struct TypographyStyle: Sendable {
         lineHeight: 16,
         letterSpacing: 0.4
     )
+    
+    // MARK: - Custom Fonts
+    public static func chango(size: CGFloat, lineHeight: CGFloat? = nil) -> TypographyStyle {
+        TypographyStyle(
+            font: .custom(changoFontName, size: size),
+            lineHeight: lineHeight ?? size,
+            letterSpacing: 0
+        )
+    }
 }
 
 // MARK: - View Modifier for Typography Style
@@ -162,5 +173,16 @@ public struct TypographyModifier: ViewModifier {
 extension View {
     public func typographyStyle(_ style: TypographyStyle) -> some View {
         self.modifier(TypographyModifier(style: style))
+    }
+}
+
+public struct Fonts {
+    public static func register() {
+        guard let fontURL = Bundle.module.url(forResource: changoFontName, withExtension: "ttf") else {
+            return
+        }
+        
+        var error: Unmanaged<CFError>?
+        CTFontManagerRegisterFontsForURL(fontURL as CFURL, .process, &error)
     }
 }

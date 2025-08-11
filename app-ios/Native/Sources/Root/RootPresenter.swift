@@ -1,9 +1,12 @@
 import Dependencies
 import Model
 import shared
+import Theme
 
 struct RootPresenter {
-    func prepareWindow() {
+    @MainActor func prepareWindow() {
+        Fonts.register()
+        
         prepareDependencies {
             KMPDependencies.prepareKMPDependencies(&$0)
         }

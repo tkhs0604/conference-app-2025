@@ -22,7 +22,9 @@ struct FrontCard: View {
                             .typographyStyle(.bodyMedium)
                         Text(userName)
                             .foregroundStyle(cardType == .dark ? .white : lightContentColor)
-                            .typographyStyle(.headlineSmall)
+                            .typographyStyle(.chango(size: 24, lineHeight: 32))
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: 252)
                     }
                 }
                 Spacer()
