@@ -9,3 +9,13 @@ xcassets:
     params:
       enumName: AssetColors
       publicAccess: true
+
+fonts:
+  inputs: Fonts
+  outputs:
+    templateName: swift5
+    output: AssetFonts.generated.swift
+    params:
+      enumName: AssetFonts
+      publicAccess: true
+      bundle: Bundle.module

@@ -4,4 +4,4 @@ import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 
 @Serializable
-data object ProfileCardNavKey : NavKey
+data object ProfileNavKey : NavKey

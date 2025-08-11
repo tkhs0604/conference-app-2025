@@ -92,8 +92,65 @@ The iOS app follows a clean architecture with clear separation between layers:
 - Room management
 - Home screen with conference information
 
+## Code Quality Tools
+
+### SwiftLint
+- Integrated as SPM build plugin - runs automatically during build
+- Configuration: `.swiftlint.yml`
+- Manual run: `make lint` or `swiftlint lint --config .swiftlint.yml`
+- Auto-fix: `make lint-fix` or `swiftlint lint --config .swiftlint.yml --fix`
+
+### swift-format
+- Integrated as SPM dependency
+- Configuration: `.swift-format`
+- Format code: `make format`
+- Check format: `make format-check`
+
+### Pre-commit Hooks
+Install git hooks: `./Scripts/install-hooks.sh`
+- Automatically runs SwiftLint and swift-format checks on staged files
+
+### Makefile Commands
+- `make help` - Show all available commands
+- `make setup` - Initial project setup
+- `make build` - Build all packages
+- `make test` - Run all tests
+- `make lint` - Run SwiftLint
+- `make lint-fix` - Run SwiftLint with auto-correction
+- `make format` - Format code with swift-format
+- `make format-check` - Check code formatting
+- `make pre-commit` - Run all checks before committing
+- `make clean` - Clean build artifacts
+
 ## Development Notes
 - The project is part of a larger multi-platform repository
 - Android app documentation in root README.md shows architectural decisions that may influence iOS development
-- No linting tools currently configured for iOS
+- **Linting and formatting tools are now configured:**
+  - SwiftLint runs automatically during builds via SPM plugin
+  - swift-format available for consistent code formatting
+  - Pre-commit hooks ensure code quality before commits
 - Uses modern Swift 6 features including strict concurrency checking
+
+## Important Build and Debug Notes
+### Build Issues
+- **Swift Dependencies Macro Error**: The project may encounter macro validation errors with swift-dependencies package when building. This is a known issue with the package itself, not your code changes.
+  - Try using `-skipMacroValidation` flag when building via xcodebuild
+  - The app binary installed on simulator may still work despite build errors
+
+### Debugging
+- **Use Mobile MCP for debugging**: When testing UI changes and functionality on iOS simulators, use Mobile MCP tools instead of relying solely on build success
+  - `mobile_launch_app`, `mobile_take_screenshot`, `mobile_list_elements_on_screen` etc.
+  - This allows verification of UI changes even when build has macro-related errors
+
+### Code Quality Checks
+- **Always run lint/format/test before completing work**:
+  - `make lint` - Check for linting issues
+  - `make lint-fix` - Auto-fix linting issues
+  - `make format` - Format code with swift-format
+  - `make test` - Run all tests
+  - Ensure all checks pass and fixes are applied before considering work complete
+
+### KMP Integration
+- **Sponsor data integration**: Currently using mock data in `SponsorUseCaseImpl` as KMP doesn't have sponsorsRepository yet
+  - When KMP adds sponsor repository, update `SponsorUseCaseImpl.load()` to use actual data
+  - Follow the pattern used in `TimetableUseCaseImpl` for reference

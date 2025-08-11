@@ -1,15 +1,17 @@
 package io.github.droidkaigi.confsched.data.sponsors.response
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class SponsorsResponse(
-    val status: String,
-    val sponsor: List<SponsorResponse>,
+internal data class SponsorsResponse(
+    //val status: String,
+    @SerialName("sponsor")
+    val sponsors: List<SponsorResponse> = emptyList(),
 )
 
 @Serializable
-public data class SponsorResponse(
+internal data class SponsorResponse(
     val sponsorName: String,
     val sponsorLogo: String,
     val plan: String,

@@ -3,9 +3,9 @@ import Theme
 
 public struct SponsorScreen: View {
     @State private var presenter = SponsorPresenter()
-    
+
     public init() {}
-    
+
     public var body: some View {
         Group {
             if presenter.isLoading {
@@ -20,16 +20,16 @@ public struct SponsorScreen: View {
                             }
                         }
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 24)
-                    .padding(.bottom, 80) // Tab bar padding
+                    .padding(.top, 24)
+                    .padding(.bottom, 80)
                 }
             }
         }
-        .background(Color.primary.opacity(0.02))
-        .navigationTitle("Sponsors")
+        // TODO: Use AssetColors.Background when available
+        .background(AssetColors.background.swiftUIColor)  // #111418
+        .navigationTitle("スポンサー")
         #if os(iOS)
-        .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.large)
         #endif
         .task {
             await presenter.loadSponsors()

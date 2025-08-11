@@ -1,11 +1,10 @@
 import Dependencies
-import Testing
-import Model
 import Foundation
+import Model
+import Testing
 @testable import UseCase
 
 struct TimetableUseCaseTests {
-    
     @Test("Should successfully load timetable with items and bookmarks")
     func testLoadTimetableReturnsExpectedItemsAndBookmarks() async throws {
         // Arrange
@@ -48,7 +47,7 @@ struct TimetableUseCaseTests {
             for await timetable in useCase.load() {
                 timetables.append(timetable)
             }
-            return timetables.first!
+            return timetables.first ?? Timetable(timetableItems: [], bookmarks: Set())
         }
         
         // Assert
@@ -80,7 +79,7 @@ struct TimetableUseCaseTests {
             for await timetable in useCase.load() {
                 timetables.append(timetable)
             }
-            return timetables.first!
+            return timetables.first ?? Timetable(timetableItems: [], bookmarks: Set())
         }
         
         // Assert
@@ -125,6 +124,7 @@ struct TimetableUseCaseTests {
     }
     
     @Test("Should correctly load timetable containing both session and special items")
+    // swiftlint:disable:next function_body_length
     func testLoadTimetableWithMixedSessionAndSpecialItems() async throws {
         // Arrange
         let mixedItems: [any TimetableItem] = [
@@ -183,7 +183,7 @@ struct TimetableUseCaseTests {
             for await timetable in useCase.load() {
                 timetables.append(timetable)
             }
-            return timetables.first!
+            return timetables.first ?? Timetable(timetableItems: [], bookmarks: Set())
         }
         
         // Assert
@@ -221,7 +221,7 @@ struct TimetableUseCaseTests {
             for await timetable in useCase.load() {
                 timetables.append(timetable)
             }
-            return timetables.first!
+            return timetables.first ?? Timetable(timetableItems: [], bookmarks: Set())
         }
         
         // Assert
@@ -258,7 +258,7 @@ struct TimetableUseCaseTests {
             for await timetable in useCase.load() {
                 timetables.append(timetable)
             }
-            return timetables.first!
+            return timetables.first ?? Timetable(timetableItems: [], bookmarks: Set())
         }
         
         // Assert

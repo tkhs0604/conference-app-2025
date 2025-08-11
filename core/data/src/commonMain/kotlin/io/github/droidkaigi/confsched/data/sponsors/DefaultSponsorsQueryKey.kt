@@ -3,8 +3,6 @@ package io.github.droidkaigi.confsched.data.sponsors
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
 import io.github.droidkaigi.confsched.data.DataScope
-import io.github.droidkaigi.confsched.data.contributors.ContributorsApiClient
-import io.github.droidkaigi.confsched.model.contributors.ContributorsQueryKey
 import io.github.droidkaigi.confsched.model.sponsors.SponsorsQueryKey
 import soil.query.QueryId
 import soil.query.buildQueryKey

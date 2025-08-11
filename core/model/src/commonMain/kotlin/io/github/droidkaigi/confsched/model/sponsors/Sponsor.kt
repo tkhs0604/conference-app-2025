@@ -1,64 +1,54 @@
 package io.github.droidkaigi.confsched.model.sponsors
 
 import kotlinx.collections.immutable.PersistentList
-import kotlinx.collections.immutable.toPersistentList
+import kotlinx.collections.immutable.persistentListOf
 
-data class Sponsor (
+data class Sponsor(
     val name: String,
     val logo: String,
-    val plan: Plan,
+    val plan: SponsorPlan,
     val link: String,
 ) {
-    public companion object
+    companion object
 }
 
-public enum class Plan {
-    PLATINUM,
-    GOLD,
-    SUPPORTER,
-    ;
-
-    public val isSupporter: Boolean
-        get() = this == SUPPORTER
-    public val isPlatinum: Boolean
-        get() = this == PLATINUM
-    public val isGold: Boolean
-        get() = this == GOLD
-
-    public companion object {
-        public fun ofOrNull(plan: String): Plan? {
-            return entries.firstOrNull { it.name == plan }
-        }
-    }
-}
-
-data class SponsorList (
+data class SponsorList(
     val platinumSponsors: List<Sponsor>,
     val goldSponsors: List<Sponsor>,
     val supporters: List<Sponsor>
 )
 
-public fun Sponsor.Companion.fakes(): PersistentList<Sponsor> = (
-        List(3) {
-            Sponsor(
-                name = "DroidKaigi PLATINUM Section $it",
-                logo = "https://placehold.jp/150x150.png",
-                plan = Plan.PLATINUM,
-                link = "https://developer.android.com/",
-            )
-        } + List(5) {
-            Sponsor(
-                name = "DroidKaigi GOLD Section $it",
-                logo = "https://placehold.jp/150x150.png",
-                plan = Plan.GOLD,
-                link = "https://developer.android.com/",
-            )
-        } + List(12) {
-            Sponsor(
-                name = "DroidKaigi Supporter Section $it",
-                logo = "https://placehold.jp/150x150.png",
-                plan = Plan.SUPPORTER,
-                link = "https://developer.android.com/",
-            )
+enum class SponsorPlan {
+    PLATINUM,
+    GOLD,
+    SUPPORTER;
+
+    companion object {
+        fun ofOrNull(plan: String): SponsorPlan? {
+            return entries.firstOrNull { it.name == plan }
         }
-        ).toPersistentList()
+    }
+}
+
+fun Sponsor.Companion.fakes(): PersistentList<Sponsor> {
+    return persistentListOf(
+        Sponsor(
+            name = "DroidKaigi PLATINUM",
+            logo = "https://placehold.jp/150x150.png",
+            plan = SponsorPlan.PLATINUM,
+            link = "https://developer.android.com/",
+        ),
+        Sponsor(
+            name = "DroidKaigi GOLD",
+            logo = "https://placehold.jp/150x150.png",
+            plan = SponsorPlan.GOLD,
+            link = "https://developer.android.com/",
+        ),
+        Sponsor(
+            name = "DroidKaigi Supporter",
+            logo = "https://placehold.jp/150x150.png",
+            plan = SponsorPlan.SUPPORTER,
+            link = "https://developer.android.com/",
+        )
+    )
+}

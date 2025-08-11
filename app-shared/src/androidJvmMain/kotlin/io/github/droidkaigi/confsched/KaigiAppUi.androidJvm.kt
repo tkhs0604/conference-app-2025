@@ -16,18 +16,20 @@ import io.github.droidkaigi.confsched.naventry.aboutEntry
 import io.github.droidkaigi.confsched.naventry.contributorsEntry
 import io.github.droidkaigi.confsched.naventry.eventMapEntry
 import io.github.droidkaigi.confsched.naventry.favoritesEntry
-import io.github.droidkaigi.confsched.naventry.profileCardNavEntry
+import io.github.droidkaigi.confsched.naventry.profileNavEntry
 import io.github.droidkaigi.confsched.naventry.sessionEntries
 import io.github.droidkaigi.confsched.naventry.sponsorsEntry
+import io.github.droidkaigi.confsched.naventry.staffEntry
 import io.github.droidkaigi.confsched.navigation.rememberNavBackStack
 import io.github.droidkaigi.confsched.navigation.sceneStrategy
 import io.github.droidkaigi.confsched.navkey.AboutNavKey
 import io.github.droidkaigi.confsched.navkey.ContributorsNavKey
 import io.github.droidkaigi.confsched.navkey.EventMapNavKey
 import io.github.droidkaigi.confsched.navkey.FavoritesNavKey
-import io.github.droidkaigi.confsched.navkey.ProfileCardNavKey
+import io.github.droidkaigi.confsched.navkey.ProfileNavKey
 import io.github.droidkaigi.confsched.navkey.SearchNavKey
 import io.github.droidkaigi.confsched.navkey.SponsorsNavKey
+import io.github.droidkaigi.confsched.navkey.StaffNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableItemDetailNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableNavKey
 
@@ -45,7 +47,7 @@ actual fun KaigiAppUi() {
                 is EventMapNavKey -> MainScreenTab.EventMap
                 is FavoritesNavKey -> MainScreenTab.Favorite
                 is AboutNavKey -> MainScreenTab.About
-                is ProfileCardNavKey -> MainScreenTab.ProfileCard
+                is ProfileNavKey -> MainScreenTab.Profile
                 else -> null
             }
         },
@@ -55,7 +57,7 @@ actual fun KaigiAppUi() {
                 MainScreenTab.EventMap -> EventMapNavKey
                 MainScreenTab.Favorite -> FavoritesNavKey
                 MainScreenTab.About -> AboutNavKey
-                MainScreenTab.ProfileCard -> ProfileCardNavKey
+                MainScreenTab.Profile -> ProfileNavKey
             }
             backStack.clear()
             backStack.add(navKey)
@@ -86,7 +88,11 @@ actual fun KaigiAppUi() {
                 )
                 sponsorsEntry(
                     onBackClick = { backStack.removeLastOrNull() },
-                    onSponsorClick = externalNavController::navigate
+                    onSponsorClick = externalNavController::navigate,
+                )
+                staffEntry(
+                    onBackClick = { backStack.removeLastOrNull() },
+                    onStaffItemClick = externalNavController::navigate,
                 )
                 favoritesEntry(
                     onTimetableItemClick = {
@@ -112,8 +118,8 @@ actual fun KaigiAppUi() {
                             }
 
                             AboutItem.Contributors -> backStack.add(ContributorsNavKey)
-                            AboutItem.Staff -> TODO()
                             AboutItem.Sponsors -> backStack.add(SponsorsNavKey)
+                            AboutItem.Staff -> backStack.add(StaffNavKey)
                             AboutItem.CodeOfConduct -> {
                                 externalNavController.navigate(
                                     url = "$portalBaseUrl/about/code-of-conduct",
@@ -148,7 +154,7 @@ actual fun KaigiAppUi() {
                         }
                     }
                 )
-                profileCardNavEntry()
+                profileNavEntry()
             },
             modifier = Modifier
                 .fillMaxSize()

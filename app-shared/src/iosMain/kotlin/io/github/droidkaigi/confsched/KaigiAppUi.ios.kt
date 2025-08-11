@@ -24,12 +24,12 @@ import io.github.droidkaigi.confsched.navigation.extension.navigateToTimetableTa
 import io.github.droidkaigi.confsched.navigation.graph.aboutTabNavGraph
 import io.github.droidkaigi.confsched.navigation.graph.eventMapTabNavGraph
 import io.github.droidkaigi.confsched.navigation.graph.favoritesTabNavGraph
-import io.github.droidkaigi.confsched.navigation.graph.profileCardTabNavGraph
+import io.github.droidkaigi.confsched.navigation.graph.profileTabNavGraph
 import io.github.droidkaigi.confsched.navigation.graph.timetableTabNavGraph
 import io.github.droidkaigi.confsched.navigation.route.AboutTabRoute
 import io.github.droidkaigi.confsched.navigation.route.EventMapTabRoute
 import io.github.droidkaigi.confsched.navigation.route.FavoritesTabRoute
-import io.github.droidkaigi.confsched.navigation.route.ProfileCardTabRoute
+import io.github.droidkaigi.confsched.navigation.route.ProfileTabRoute
 import io.github.droidkaigi.confsched.navigation.route.TimetableTabRoute
 
 context(appGraph: AppGraph)
@@ -43,14 +43,14 @@ actual fun KaigiAppUi() {
     val currentTab by remember {
         derivedStateOf {
             navBackStackEntry?.destination?.let { destination ->
-                val mainTabRoutes = listOf(TimetableTabRoute, EventMapTabRoute, FavoritesTabRoute, AboutTabRoute, ProfileCardTabRoute)
+                val mainTabRoutes = listOf(TimetableTabRoute, EventMapTabRoute, FavoritesTabRoute, AboutTabRoute, ProfileTabRoute)
                 val matchedMainTabRoute = mainTabRoutes.firstOrNull { mainTabRoute -> destination.hasRoute(mainTabRoute.rootRouteClass) } ?: return@derivedStateOf null
                 when (matchedMainTabRoute) {
                     TimetableTabRoute -> MainScreenTab.Timetable
                     EventMapTabRoute -> MainScreenTab.EventMap
                     FavoritesTabRoute -> MainScreenTab.Favorite
                     AboutTabRoute -> MainScreenTab.About
-                    ProfileCardTabRoute -> MainScreenTab.ProfileCard
+                    ProfileTabRoute -> MainScreenTab.Profile
                 }
             }
         }
@@ -65,7 +65,7 @@ actual fun KaigiAppUi() {
                 MainScreenTab.EventMap -> navController.navigateToEventMapTab()
                 MainScreenTab.Favorite -> navController.navigateToFavoritesTab()
                 MainScreenTab.About -> navController.navigateToAboutTab()
-                MainScreenTab.ProfileCard -> navController.navigateToProfileCardTab()
+                MainScreenTab.Profile -> navController.navigateToProfileCardTab()
             }
         },
     ) {
@@ -97,7 +97,7 @@ actual fun KaigiAppUi() {
                     // TODO
                 }
             )
-            profileCardTabNavGraph()
+            profileTabNavGraph()
         }
     }
 }

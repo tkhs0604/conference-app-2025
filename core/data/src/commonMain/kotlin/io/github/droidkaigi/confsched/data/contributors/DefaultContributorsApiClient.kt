@@ -4,7 +4,6 @@ import de.jensklingenberg.ktorfit.Ktorfit
 import de.jensklingenberg.ktorfit.http.GET
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
-import dev.zacsweers.metro.binding
 import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.contributors.response.ContributorsResponse
 import io.github.droidkaigi.confsched.data.core.NetworkExceptionHandler
@@ -17,7 +16,7 @@ internal interface ContributorApi {
     suspend fun getContributors(): ContributorsResponse
 }
 
-@ContributesBinding(DataScope::class, binding<ContributorsApiClient>())
+@ContributesBinding(DataScope::class)
 @Inject
 public class DefaultContributorsApiClient(
     private val networkService: NetworkExceptionHandler,

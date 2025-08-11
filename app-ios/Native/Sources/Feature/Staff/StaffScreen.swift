@@ -3,34 +3,35 @@ import Theme
 
 public struct StaffScreen: View {
     @State private var presenter = StaffPresenter()
-    
+
     public init() {}
-    
+
     public var body: some View {
         Group {
             if presenter.isLoading {
                 ProgressView()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(AssetColors.surface.swiftUIColor)
             } else {
                 ScrollView {
                     LazyVStack(spacing: 0) {
                         ForEach(presenter.staffList) { staff in
-                            VStack(spacing: 0) {
+                            Button(action: {
+                                presenter.staffTapped(staff)
+                            }) {
                                 StaffLabel(staff: staff)
-                                
-                                Divider()
-                                    .background(Color.gray.opacity(0.3))
                             }
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
-                    .padding(.bottom, 80) // Tab bar padding
+                    .padding(.bottom, 80)
                 }
+                .background(AssetColors.surface.swiftUIColor)
             }
         }
-        .background(Color.primary.opacity(0.02))
-        .navigationTitle("Staff")
+        .navigationTitle("スタッフ")
         #if os(iOS)
-        .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.large)
         #endif
         .task {
             await presenter.loadStaff()

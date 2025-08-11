@@ -38,7 +38,7 @@ import coil3.compose.AsyncImage
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.model.contributors.Contributor
 import io.github.droidkaigi.confsched.model.contributors.fakes
-import io.github.droidkaigi.confsched.model.sponsors.Plan
+import io.github.droidkaigi.confsched.model.sponsors.SponsorPlan
 import io.github.droidkaigi.confsched.model.sponsors.Sponsor
 import io.github.droidkaigi.confsched.model.sponsors.SponsorList
 import io.github.droidkaigi.confsched.model.sponsors.fakes
@@ -57,9 +57,10 @@ fun SponsorsScreen(
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     val sponsorList = SponsorList(
-        platinumSponsors = sponsors.filter{ it.plan == Plan.PLATINUM },
-        goldSponsors = sponsors.filter{ it.plan == Plan.GOLD },
-        supporters = sponsors.filter{ it.plan == Plan.SUPPORTER })
+        platinumSponsors = sponsors.filter{ it.plan == SponsorPlan.PLATINUM },
+        goldSponsors = sponsors.filter{ it.plan == SponsorPlan.GOLD },
+        supporters = sponsors.filter{ it.plan == SponsorPlan.SUPPORTER }
+    )
 
     Scaffold(
         topBar = {
