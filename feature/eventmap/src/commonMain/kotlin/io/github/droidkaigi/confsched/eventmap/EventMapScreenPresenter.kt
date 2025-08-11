@@ -21,7 +21,7 @@ fun eventMapScreenPresenter(
     var selectedFloor by rememberSaveable { mutableStateOf(FloorLevel.Ground) }
 
     EventEffect(eventFlow) { event ->
-        when(event) {
+        when (event) {
             is EventMapScreenEvent.SelectFloor -> selectedFloor = event.floor
         }
     }
