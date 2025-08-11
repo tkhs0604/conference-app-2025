@@ -19,7 +19,7 @@ float generateValueNoise(float2 st) {
     float2 i = floor(st);
     float2 f = fract(st);
     
-    float a = generateRandomFloat(a);
+    float a = generateRandomFloat(i);
     float b = generateRandomFloat(i + float2(1.0, 0.0));
     float c = generateRandomFloat(i + float2(0.0, 1.0));
     float d = generateRandomFloat(i + float2(1.0, 1.0));
@@ -32,7 +32,7 @@ float generateValueNoise(float2 st) {
 float3 hsv2rgb(float3 hsv) {
     float4 K = float4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
     float3 p = abs(fract(hsv.xxx + K.xyz) * 6.0 - K.www);
-    return hsv.z * (K.xxx, clamp(p - K.xxx, 0.0, 1.0), hsv.y);
+    return hsv.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), hsv.y);
 }
 
 float3 rgb2hsv(float3 rgb) {
@@ -68,14 +68,16 @@ float3 generateKiraRGB(float3 colorNoiseRGB, float3 normal) {
 }
 
 [[ stitchable ]] half4 kiraEffect(float2 position, SwiftUI::Layer layer, float4 bounds, float3 normal, texture2d<half> monoTexture) {
-    float2 uv = (position - .5 * bounds.zw) / bounds.w * float2(1.0, -1.0) + float2(0.0, 1.0);
+    float2 fragCoord = float2(position.x, bounds.z - position.y);
+    float2 uv = float2(fragCoord.x / bounds.z,
+                      fragCoord.y / bounds.w);
     
     float2 pos = float2(uv * 6.0);
     float valueNoise = generateValueNoise(pos);
     float3 colorNoiseHSV = float3(valueNoise, 1.0, 1.0);
+    float3 colorNoiseRGB = hsv2rgb(colorNoiseHSV);
     constexpr sampler imageSampler(address::clamp_to_edge,
                                    filter::linear);
-    float3 kiraNoiseRGB = generateKiraRGB(hsv2rgb(colorNoiseHSV), normal) * float3(monoTexture.sample(imageSampler, position).rgb);
-    
+    float3 kiraNoiseRGB = generateKiraRGB(colorNoiseRGB, normal) * float3(monoTexture.sample(imageSampler, uv).rgb);
     return half4(half3(kiraNoiseRGB) + layer.sample(position).rgb, 1.0);
 }

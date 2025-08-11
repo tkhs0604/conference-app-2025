@@ -5,6 +5,9 @@ struct FrontCard: View {
     let userRole: String
     let userName: String
     let cardType: ProfileCardType
+    let angle: (CGFloat, CGFloat, CGFloat)
+    
+    let shaderFunction = ShaderFunction(library: .bundle(.module), name: "kiraEffect")
 
     var body: some View {
         let lightContentColor = Color(
@@ -13,6 +16,11 @@ struct FrontCard: View {
             Image("\(cardType.rawValue)_background", bundle: .module)
                 .resizable()
                 .scaledToFill()
+                .kiraEffect(
+                    function: shaderFunction,
+                    normal: (Double(angle.0), Double(angle.1), Double(angle.2)),
+                    monochromeImage: Image("front_effect", bundle: .module)
+                )
             VStack(alignment: .center, spacing: 20) {
                 Image("\(cardType.rawValue)_card_title", bundle: .module)
                 VStack(alignment: .center, spacing: 12) {

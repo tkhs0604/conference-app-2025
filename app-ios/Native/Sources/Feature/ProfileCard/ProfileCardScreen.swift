@@ -11,7 +11,7 @@ enum ProfileCardType: String {
 public struct ProfileCardScreen: View {
     @State private var presenter = ProfileCardPresenter()
     @State private var isFront: Bool = true
-    @State private var animatedDegree: Angle = .zero
+    @State private var rotation: (angle: Angle, axis: (x: CGFloat, y: CGFloat, z: CGFloat)) = (.degrees(0), (0, 0, 1))
     @State private var cardType: ProfileCardType = .dark
 
     public init() {}
@@ -38,11 +38,27 @@ public struct ProfileCardScreen: View {
         }
         .onAppear {
             withAnimation(.bouncy) {
-                animatedDegree = .degrees(30)
+                rotation = (.degrees(30), (0, 1, 0))
             } completion: {
-                animatedDegree = .zero
+                rotation = (.degrees(0), (0, 1, 0))
             }
         }
+    }
+    
+    private var drag: some Gesture {
+        DragGesture()
+            .onChanged { value in
+                let dx = value.translation.width
+                let dy = value.translation.height
+                let angle = Double(sqrt(dx*dx + dy*dy) / 4)
+                let axis: (x: CGFloat, y: CGFloat, z: CGFloat) = (x: dy, y: -dx, z: 1)
+                rotation = (angle: Angle(degrees: angle), axis: axis)
+            }
+            .onEnded { _ in
+                withAnimation {
+                    rotation = (.degrees(0), (0, 1, 0))
+                }
+            }
     }
 
     private var profileCard: some View {
@@ -51,7 +67,8 @@ public struct ProfileCardScreen: View {
                 FrontCard(
                     userRole: presenter.userRole,
                     userName: presenter.userName,
-                    cardType: cardType
+                    cardType: cardType,
+                    angle: rotation.axis,
                 )
             } else {
                 BackCard(
@@ -62,12 +79,13 @@ public struct ProfileCardScreen: View {
         }
         .padding(.horizontal, 56)
         .padding(.vertical, 32)
-        .onTapGesture {
+        .onTapGesture(count: 2) {
             withAnimation {
                 isFront.toggle()
             }
         }
-        .rotation3DEffect(isFront ? animatedDegree : .degrees(180), axis: (x: 0, y: 1, z: 0))
+        .rotation3DEffect(isFront ? rotation.angle : .degrees(180), axis: rotation.axis)
+        .gesture(drag)
     }
 
     private var actionButtons: some View {
