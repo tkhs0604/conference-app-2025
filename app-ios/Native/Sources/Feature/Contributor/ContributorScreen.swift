@@ -22,10 +22,17 @@ public struct ContributorScreen: View {
                                         .font(.subheadline)
                                         .foregroundColor(AssetColors.onSurface.swiftUIColor)
 
-                                    Text("\(presenter.contributors.count) persons")
-                                        .font(.largeTitle)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(AssetColors.onSurface.swiftUIColor)
+                                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                                        Text("\(presenter.contributors.count)")
+                                            .font(.custom(AssetFonts.Chango.regular, size: 32))
+                                            .foregroundColor(AssetColors.onSurface.swiftUIColor)
+                                            .lineLimit(1)
+
+                                        Text("persons")
+                                            .font(.custom(AssetFonts.Chango.regular, size: 24))
+                                            .foregroundColor(AssetColors.onSurface.swiftUIColor)
+                                            .lineLimit(1)
+                                    }
                                 }
                                 Spacer()
                             }

@@ -2,52 +2,52 @@ import SwiftUI
 
 public enum Typography {
     // MARK: - Display
-    public static let displayLarge = Font.system(size: 57, weight: .regular)
+    public static let displayLarge: SwiftUI.Font = .system(size: 57, weight: .regular)
         .leading(.tight)
 
-    public static let displayMedium = Font.system(size: 45, weight: .regular)
+    public static let displayMedium: SwiftUI.Font = .system(size: 45, weight: .regular)
 
-    public static let displaySmall = Font.system(size: 36, weight: .regular)
+    public static let displaySmall: SwiftUI.Font = .system(size: 36, weight: .regular)
 
     // MARK: - Headline
-    public static let headlineLarge = Font.system(size: 32, weight: .regular)
+    public static let headlineLarge: SwiftUI.Font = .system(size: 32, weight: .regular)
 
-    public static let headlineMedium = Font.system(size: 28, weight: .regular)
+    public static let headlineMedium: SwiftUI.Font = .system(size: 28, weight: .regular)
 
-    public static let headlineSmall = Font.system(size: 24, weight: .regular)
+    public static let headlineSmall: SwiftUI.Font = .system(size: 24, weight: .regular)
 
     // MARK: - Title
-    public static let titleLarge = Font.system(size: 22, weight: .regular)
+    public static let titleLarge: SwiftUI.Font = .system(size: 22, weight: .regular)
 
-    public static let titleMedium = Font.system(size: 16, weight: .regular)
+    public static let titleMedium: SwiftUI.Font = .system(size: 16, weight: .regular)
 
-    public static let titleSmall = Font.system(size: 14, weight: .regular)
+    public static let titleSmall: SwiftUI.Font = .system(size: 14, weight: .regular)
 
     // MARK: - Label
-    public static let labelLarge = Font.system(size: 14, weight: .medium)
+    public static let labelLarge: SwiftUI.Font = .system(size: 14, weight: .medium)
 
-    public static let labelMedium = Font.system(size: 12, weight: .medium)
+    public static let labelMedium: SwiftUI.Font = .system(size: 12, weight: .medium)
 
-    public static let labelSmall = Font.system(size: 11, weight: .medium)
+    public static let labelSmall: SwiftUI.Font = .system(size: 11, weight: .medium)
 
     // MARK: - Body
-    public static let bodyLarge = Font.system(size: 16, weight: .regular)
+    public static let bodyLarge: SwiftUI.Font = .system(size: 16, weight: .regular)
 
-    public static let bodyMedium = Font.system(size: 14, weight: .regular)
+    public static let bodyMedium: SwiftUI.Font = .system(size: 14, weight: .regular)
 
-    public static let bodySmall = Font.system(size: 12, weight: .regular)
+    public static let bodySmall: SwiftUI.Font = .system(size: 12, weight: .regular)
 }
 
 // MARK: - View Extension for Typography
 extension View {
-    public func typography(_ style: Font) -> some View {
+    public func typography(_ style: SwiftUI.Font) -> some View {
         self.font(style)
     }
 }
 
 // MARK: - Text Style Definitions with Line Height
 public struct TypographyStyle: Sendable {
-    public let font: Font
+    public let font: SwiftUI.Font
     public let lineHeight: CGFloat
     public let letterSpacing: CGFloat
 
