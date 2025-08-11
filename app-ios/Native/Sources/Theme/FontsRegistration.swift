@@ -26,7 +26,9 @@ public enum ThemeFonts {
         let exts = ["ttf", "otf"]
         for ext in exts {
             if let urls = Bundle.module.urls(forResourcesWithExtension: ext, subdirectory: nil) {
-                for url in urls { _ = registerFont(at: url) }
+                for url in urls {
+                    _ = registerFont(at: url)
+                }
             }
         }
         #endif
@@ -43,4 +45,3 @@ public enum ThemeFonts {
         #endif
     }
 }
-

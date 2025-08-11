@@ -6,8 +6,8 @@
 //
 
 import Root
-import Theme
 import SwiftUI
+import Theme
 
 @main
 struct DroidKaigi2025App: App {
