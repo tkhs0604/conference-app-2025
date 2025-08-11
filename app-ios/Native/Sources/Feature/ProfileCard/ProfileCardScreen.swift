@@ -57,7 +57,7 @@ public struct ProfileCardScreen: View {
                 BackCard(
                     cardType: cardType
                 )
-                    .rotation3DEffect(Angle(degrees: 180), axis: (x: 0, y: 1, z: 0))
+                .rotation3DEffect(Angle(degrees: 180), axis: (x: 0, y: 1, z: 0))
             }
         }
         .padding(.horizontal, 56)

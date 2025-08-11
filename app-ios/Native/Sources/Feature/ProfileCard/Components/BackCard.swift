@@ -3,7 +3,7 @@ import Theme
 
 struct BackCard: View {
     let cardType: ProfileCardType
-    
+
     var body: some View {
         ZStack {
             if cardType == .dark {

@@ -7,7 +7,8 @@ struct FrontCard: View {
     let cardType: ProfileCardType
 
     var body: some View {
-        let lightContentColor = Color(uiColor: UIColor(red: 52.0 / 255, green: 39.0 / 255, blue: 94.0 / 255, alpha: 1.0))
+        let lightContentColor = Color(
+            uiColor: UIColor(red: 52.0 / 255, green: 39.0 / 255, blue: 94.0 / 255, alpha: 1.0))
         ZStack(alignment: .top) {
             Image("\(cardType.rawValue)_background", bundle: .module)
                 .resizable()
@@ -22,7 +23,11 @@ struct FrontCard: View {
                             .typographyStyle(.bodyMedium)
                         Text(userName)
                             .foregroundStyle(cardType == .dark ? .white : lightContentColor)
-                            .typographyStyle(.init(font: .custom(AssetFonts.Chango.regular, size: 24), lineHeight: 32, letterSpacing: 0))
+                            .typographyStyle(
+                                .init(
+                                    font: .custom(AssetFonts.Chango.regular, size: 24), lineHeight: 32, letterSpacing: 0
+                                )
+                            )
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: 252)
                     }
