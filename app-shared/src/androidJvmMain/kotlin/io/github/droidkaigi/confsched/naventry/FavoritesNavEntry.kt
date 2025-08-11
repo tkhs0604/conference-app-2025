@@ -14,7 +14,7 @@ fun EntryProviderBuilder<NavKey>.favoritesEntry(
     onTimetableItemClick: (TimetableItemId) -> Unit,
 ) {
     entry<FavoritesNavKey> {
-        with(appGraph.rememberFavoritesScreenContextRetained()) {
+        with(rememberFavoritesScreenContextRetained()) {
             FavoritesScreenRoot(
                 onTimetableItemClick = onTimetableItemClick,
             )

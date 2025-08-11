@@ -46,7 +46,7 @@ fun EntryProviderBuilder<NavKey>.timetableEntry(
     onTimetableItemClick: (TimetableItemId) -> Unit,
 ) {
     entry<TimetableNavKey>(metadata = listDetailSceneStrategyListPaneMetaData()) {
-        with(appGraph.rememberTimetableScreenContextRetained()) {
+        with(rememberTimetableScreenContextRetained()) {
             TimetableScreenRoot(
                 onSearchClick = onSearchClick,
                 onTimetableItemClick = onTimetableItemClick,
@@ -63,7 +63,7 @@ fun EntryProviderBuilder<NavKey>.timetableItemDetailEntry(
     onLinkClick: (String) -> Unit,
 ) {
     entry<TimetableItemDetailNavKey>(metadata = listDetailSceneStrategyDetailPaneMetaData()) {
-        with(appGraph.rememberTimetableItemDetailScreenContextRetained(it.id)) {
+        with(rememberTimetableItemDetailScreenContextRetained(it.id)) {
             TimetableItemDetailScreenRoot(
                 onBackClick = onBackClick,
                 onAddCalendarClick = onAddCalendarClick,
@@ -77,7 +77,7 @@ fun EntryProviderBuilder<NavKey>.timetableItemDetailEntry(
 context(appGraph: AppGraph)
 fun EntryProviderBuilder<NavKey>.searchEntry() {
     entry<SearchNavKey> {
-        with(appGraph.rememberSearchScreenContextRetained()) {
+        with(rememberSearchScreenContextRetained()) {
             SearchScreenRoot()
         }
     }

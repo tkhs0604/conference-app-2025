@@ -11,7 +11,7 @@ import io.github.droidkaigi.confsched.navkey.ProfileNavKey
 context(appGraph: AppGraph)
 fun EntryProviderBuilder<NavKey>.profileNavEntry() {
     entry<ProfileNavKey> {
-        with(appGraph.rememberProfileScreenContextRetained()) {
+        with(rememberProfileScreenContextRetained()) {
             ProfileScreenRoot()
         }
     }

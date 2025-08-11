@@ -31,7 +31,7 @@ fun NavGraphBuilder.aboutNavGraph(
     onAboutItemClick: (AboutItem) -> Unit,
 ) {
     composable<AboutRoute> {
-        with(appGraph.rememberAboutScreenContextRetained()) {
+        with(rememberAboutScreenContextRetained()) {
             AboutScreenRoot(
                 onAboutItemClick = onAboutItemClick,
             )
@@ -44,7 +44,7 @@ fun NavGraphBuilder.licensesNavGraph(
     onBackClick: () -> Unit,
 ) {
     composable<LicensesRoute> {
-        with(appGraph.rememberLicensesScreenContextRetained()) {
+        with(rememberLicensesScreenContextRetained()) {
             LicensesScreenRoot(
                 onBackClick = onBackClick,
             )
