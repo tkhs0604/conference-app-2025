@@ -18,6 +18,7 @@ import io.github.droidkaigi.confsched.naventry.eventMapEntry
 import io.github.droidkaigi.confsched.naventry.favoritesEntry
 import io.github.droidkaigi.confsched.naventry.profileCardNavEntry
 import io.github.droidkaigi.confsched.naventry.sessionEntries
+import io.github.droidkaigi.confsched.naventry.sponsorsEntry
 import io.github.droidkaigi.confsched.navigation.rememberNavBackStack
 import io.github.droidkaigi.confsched.navigation.sceneStrategy
 import io.github.droidkaigi.confsched.navkey.AboutNavKey
@@ -82,6 +83,10 @@ actual fun KaigiAppUi() {
                 contributorsEntry(
                     onBackClick = { backStack.removeLastOrNull() },
                     onContributorClick = externalNavController::navigate,
+                )
+                sponsorsEntry(
+                    onBackClick = { backStack.removeLastOrNull() },
+                    onSponsorClick = externalNavController::navigate
                 )
                 favoritesEntry(
                     onTimetableItemClick = {
