@@ -5,7 +5,7 @@ struct FrontCard: View {
     let userRole: String
     let userName: String
     let cardType: ProfileCardType
-    let angle: (CGFloat, CGFloat, CGFloat)
+    let angle: (Double, Double, Double)
     
     let shaderFunction = ShaderFunction(library: .bundle(.module), name: "kiraEffect")
 
@@ -18,7 +18,7 @@ struct FrontCard: View {
                 .scaledToFill()
                 .kiraEffect(
                     function: shaderFunction,
-                    normal: (Double(angle.0), Double(angle.1), Double(angle.2)),
+                    normal: angle,
                     monochromeImage: Image("front_effect", bundle: .module)
                 )
             VStack(alignment: .center, spacing: 20) {

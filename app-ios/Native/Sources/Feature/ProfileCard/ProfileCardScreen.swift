@@ -11,7 +11,7 @@ enum ProfileCardType: String {
 public struct ProfileCardScreen: View {
     @State private var presenter = ProfileCardPresenter()
     @State private var isFront: Bool = true
-    @State private var rotation: (angle: Angle, axis: (x: CGFloat, y: CGFloat, z: CGFloat)) = (.degrees(0), (0, 1, 0))
+    @State private var rotation: CardRotation = .init(angle: .degrees(0), axis: (0, 1, 0))
     @State private var cardType: ProfileCardType = .dark
 
     public init() {}
@@ -38,9 +38,9 @@ public struct ProfileCardScreen: View {
         }
         .onAppear {
             withAnimation(.bouncy) {
-                rotation = (.degrees(30), (0, 1, 0))
+                rotation = .init(angle: .degrees(30), axis: (0, 1, 0))
             } completion: {
-                rotation = (.degrees(0), (0, 1, 0))
+                rotation = .init(angle: .degrees(0), axis: (0, 1, 0))
             }
         }
     }
@@ -51,12 +51,12 @@ public struct ProfileCardScreen: View {
                 let dx = value.translation.width
                 let dy = value.translation.height
                 let angle = Double(sqrt(dx*dx + dy*dy) / 4)
-                let axis: (x: CGFloat, y: CGFloat, z: CGFloat) = (x: dy, y: -dx, z: 1)
-                rotation = (angle: Angle(degrees: angle), axis: axis)
+                let axis: (x: CGFloat, y: CGFloat, z: CGFloat) = (x: dy, y: -dx, z: 0)
+                rotation = .init(angle: Angle(degrees: angle), axis: axis)
             }
             .onEnded { _ in
                 withAnimation {
-                    rotation = (.degrees(0), (0, 1, 0))
+                    rotation = .init(angle: .degrees(0), axis: (0, 1, 0))
                 }
             }
     }
@@ -68,7 +68,7 @@ public struct ProfileCardScreen: View {
                     userRole: presenter.userRole,
                     userName: presenter.userName,
                     cardType: cardType,
-                    angle: rotation.axis,
+                    angle: rotation.normal,
                 )
             } else {
                 BackCard(
