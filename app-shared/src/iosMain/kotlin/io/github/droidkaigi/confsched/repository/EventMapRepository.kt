@@ -1,10 +1,10 @@
-package io.github.droidkaigi.confsched
+package io.github.droidkaigi.confsched.repository
 
 import app.cash.molecule.RecompositionMode
 import app.cash.molecule.moleculeFlow
 import dev.zacsweers.metro.Inject
-import io.github.droidkaigi.confsched.model.sponsors.Sponsor
-import io.github.droidkaigi.confsched.model.sponsors.SponsorsQueryKey
+import io.github.droidkaigi.confsched.model.eventmap.EventMapEvent
+import io.github.droidkaigi.confsched.model.eventmap.EventMapQueryKey
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.FlowPreview
@@ -13,26 +13,21 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.filterNotNull
 import soil.query.SwrClientPlus
 import soil.query.annotation.ExperimentalSoilQueryApi
-import soil.query.compose.QuerySuccessObject
 import soil.query.compose.rememberQuery
 
 @Inject
-class SponsorsRepository(
+class EventMapRepository(
     private val swrClient: SwrClientPlus,
-    private val sponsorsQueryKey: SponsorsQueryKey,
+    private val eventMapQueryKey: EventMapQueryKey,
 ) {
     @OptIn(ExperimentalSoilQueryApi::class, FlowPreview::class)
-    fun sponsorsFlow(): Flow<PersistentList<Sponsor>> = moleculeFlow(RecompositionMode.Immediate) {
-        val sponsorsQuery = rememberQuery(
-            key = sponsorsQueryKey,
-            client = swrClient,
+    fun eventMapEventsFlow(): Flow<PersistentList<EventMapEvent>> = moleculeFlow(RecompositionMode.Immediate) {
+        soilDataBoundary(
+            state = rememberQuery(
+                key = eventMapQueryKey,
+                client = swrClient,
+            )
         )
-
-        if (sponsorsQuery is QuerySuccessObject<PersistentList<Sponsor>>) {
-            sponsorsQuery.data
-        } else {
-            null
-        }
     }
         .filterNotNull()
         // Errors thrown inside flow can't be caught on iOS side, so we catch it here.
