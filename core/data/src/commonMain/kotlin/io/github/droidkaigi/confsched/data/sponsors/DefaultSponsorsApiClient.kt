@@ -14,7 +14,7 @@ import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 
 internal interface SponsorApi {
-    @GET("/events/droidkaigi2025/sponsors")
+    @GET("/events/droidkaigi2025/sponsor")
     suspend fun getSponsors(): SponsorsResponse
 }
 
@@ -34,10 +34,10 @@ public class DefaultSponsorsApiClient(
 }
 
 private fun SponsorsResponse.toSponsorList(): PersistentList<Sponsor> {
-    return sponsors.map {
+    return sponsor.map {
         Sponsor(
-            name = it.name,
-            logo = it.logo,
+            name = it.sponsorName,
+            logo = it.sponsorLogo,
             plan = Plan.valueOf(it.plan),
             link = it.link,
         )
