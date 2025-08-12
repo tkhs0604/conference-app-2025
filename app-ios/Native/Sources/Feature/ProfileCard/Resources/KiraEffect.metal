@@ -2,6 +2,9 @@
 #include <SwiftUI/SwiftUI_Metal.h>
 using namespace metal;
 
+#define ANGLE_STRENGTH 10.0
+#define NOISE_SCALE 6.0
+
 // NOTE: https://zenn.dev/ikeh1024/articles/cc51846dfad295#modとfmodの差異
 template<typename Tx, typename Ty>
 inline Tx mod(Tx x, Ty y)
@@ -53,14 +56,14 @@ float getViewAngle(float3 normal) {
 }
 
 float3 generateAngleRGB(float strength, float3 normal) {
-    float pi = 3.141592653589793;
+    float pi = M_PI_F;
     float angle = mod(getViewAngle(normal) * strength, pi) / pi;
     float3 colorHSV = float3(angle, 1.0, 1.0);
     return hsv2rgb(colorHSV);
 }
 
 float3 generateKiraRGB(float3 colorNoiseRGB, float3 normal) {
-    float3 angleColorRGB = generateAngleRGB(10.0, normal);
+    float3 angleColorRGB = generateAngleRGB(ANGLE_STRENGTH, normal);
     float colorDiff = distance(colorNoiseRGB, angleColorRGB);
     float3 kiraNoiseHSV = rgb2hsv(colorNoiseRGB);
     kiraNoiseHSV.z = max(1.0 - colorDiff, 0.0);
@@ -71,13 +74,14 @@ float3 generateKiraRGB(float3 colorNoiseRGB, float3 normal) {
     float2 fragCoord = float2(position.x, bounds.z - position.y);
     float2 uv = float2(fragCoord.x / bounds.z,
                       fragCoord.y / bounds.w);
+    float2 UV = float2(position.x / bounds.z, position.y / bounds.w);
     
-    float2 pos = float2(uv * 6.0);
+    float2 pos = float2(uv * NOISE_SCALE);
     float valueNoise = generateValueNoise(pos);
     float3 colorNoiseHSV = float3(valueNoise, 1.0, 1.0);
     float3 colorNoiseRGB = hsv2rgb(colorNoiseHSV);
     constexpr sampler imageSampler(address::clamp_to_edge,
                                    filter::nearest);
-    float3 kiraNoiseRGB = generateKiraRGB(colorNoiseRGB, normal) * float3(monoTexture.sample(imageSampler, float2(position.x / bounds.z, position.y / bounds.w)).rgb);
+    float3 kiraNoiseRGB = generateKiraRGB(colorNoiseRGB, normal) * float3(monoTexture.sample(imageSampler, UV).rgb);
     return half4(half3(kiraNoiseRGB) + layer.sample(position).rgb, layer.sample(position).a);
 }
