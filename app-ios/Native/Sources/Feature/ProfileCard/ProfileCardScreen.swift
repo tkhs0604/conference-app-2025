@@ -43,13 +43,13 @@ public struct ProfileCardScreen: View {
                     userRole: presenter.userRole,
                     userName: presenter.userName,
                     cardType: cardType,
-                    normal: (Double(normal.x), Double(normal.y), Double(normal.z)),
+                    normal: (normal.x, normal.y, normal.z),
                 )
             },
             back: { normal in
                 BackCard(
                     cardType: cardType,
-                    normal: (Double(normal.x), Double(normal.y), Double(normal.z)),
+                    normal: (normal.x, normal.y, normal.z),
                 )
             }
         )

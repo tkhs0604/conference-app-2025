@@ -3,7 +3,7 @@ import Theme
 
 struct BackCard: View {
     let cardType: ProfileCardType
-    let normal: (Double, Double, Double)
+    let normal: (Float, Float, Float)
 
     let shaderFunction = ShaderFunction(library: .bundle(.module), name: "kiraEffect")
 
