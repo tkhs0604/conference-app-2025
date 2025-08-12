@@ -97,7 +97,9 @@ actual fun KaigiAppUi() {
                         backStack.add(TimetableItemDetailNavKey(it))
                     }
                 )
-                eventMapEntry()
+                eventMapEntry(
+                    onClickReadMore = externalNavController::navigate,
+                )
                 aboutEntries(
                     onAboutItemClick = { item ->
                         val portalBaseUrl = if (defaultLang() == Lang.JAPANESE) {

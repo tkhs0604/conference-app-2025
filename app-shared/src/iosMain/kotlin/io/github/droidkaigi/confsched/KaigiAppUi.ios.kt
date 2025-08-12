@@ -86,7 +86,9 @@ actual fun KaigiAppUi() {
                 onShareClick = externalNavController::onShareClick,
                 onAddCalendarClick = externalNavController::navigateToCalendarRegistration,
             )
-            eventMapTabNavGraph()
+            eventMapTabNavGraph(
+                onClickReadMore = externalNavController::navigate,
+            )
             favoritesTabNavGraph(
                 onBackClick = { navController.popBackStack() },
                 onLinkClick = externalNavController::navigate,
