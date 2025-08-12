@@ -8,6 +8,11 @@ fun WindowInsets.excludeTop(): WindowInsets {
     return this.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom)
 }
 
+/**
+ * `WindowInsets()` works in IDE and compiles on Android,
+ * but fails to compile on the JVM target due to overload resolution ambiguity.
+ * This defines an explicit empty WindowInsets as a workaround.
+ */
 val WindowInsets.Companion.Empty: WindowInsets
     get() = WindowInsets(
         left = 0,
