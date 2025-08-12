@@ -137,7 +137,7 @@ navigationeventDesktop = { group = "androidx.navigationevent", name = "navigatio
 
 # coil
 coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
-coilNetwork = { module = "io.coil-kt.coil3:coil-network-ktor2", version.ref = "coil" }
+coilNetwork = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
 coilTest = { module = "io.coil-kt.coil3:coil-test", version.ref = "coil" }
 
 haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
