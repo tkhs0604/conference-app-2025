@@ -23,6 +23,7 @@ configure<RoborazziExtension> {
             // To avoid this, we explicitly set the SDK version to 35.
             // See https://github.com/coil-kt/coil/issues/3049 for details.
             "sdk" to "[35]",
+            "qualifiers" to "RobolectricDeviceQualifiers.Pixel4a",
         )
     }
 }
