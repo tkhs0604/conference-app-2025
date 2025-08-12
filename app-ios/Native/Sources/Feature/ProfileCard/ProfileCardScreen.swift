@@ -37,19 +37,22 @@ public struct ProfileCardScreen: View {
     }
 
     private var profileCard: some View {
-        TiltFlipCard(front: { normal in
-            FrontCard(
-                userRole: presenter.userRole,
-                userName: presenter.userName,
-                cardType: cardType,
-                normal: (Double(normal.x), Double(normal.y), Double(normal.z)),
-            )
-        }, back: { normal in
-            BackCard(
-                cardType: cardType,
-                normal: (Double(normal.x), Double(normal.y), Double(normal.z)),
-            )
-        })
+        TiltFlipCard(
+            front: { normal in
+                FrontCard(
+                    userRole: presenter.userRole,
+                    userName: presenter.userName,
+                    cardType: cardType,
+                    normal: (Double(normal.x), Double(normal.y), Double(normal.z)),
+                )
+            },
+            back: { normal in
+                BackCard(
+                    cardType: cardType,
+                    normal: (Double(normal.x), Double(normal.y), Double(normal.z)),
+                )
+            }
+        )
         .padding(.horizontal, 56)
         .padding(.vertical, 32)
     }

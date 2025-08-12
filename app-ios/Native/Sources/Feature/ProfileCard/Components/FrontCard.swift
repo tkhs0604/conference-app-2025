@@ -6,7 +6,7 @@ struct FrontCard: View {
     let userName: String
     let cardType: ProfileCardType
     let normal: (Double, Double, Double)
-    
+
     let shaderFunction = ShaderFunction(library: .bundle(.module), name: "kiraEffect")
 
     var body: some View {
