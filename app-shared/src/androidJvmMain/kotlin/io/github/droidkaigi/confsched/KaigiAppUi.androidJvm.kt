@@ -12,7 +12,7 @@ import io.github.droidkaigi.confsched.component.NavDisplayWithSharedAxisX
 import io.github.droidkaigi.confsched.model.about.AboutItem
 import io.github.droidkaigi.confsched.model.core.Lang
 import io.github.droidkaigi.confsched.model.core.defaultLang
-import io.github.droidkaigi.confsched.naventry.aboutEntry
+import io.github.droidkaigi.confsched.naventry.aboutEntries
 import io.github.droidkaigi.confsched.naventry.contributorsEntry
 import io.github.droidkaigi.confsched.naventry.eventMapEntry
 import io.github.droidkaigi.confsched.naventry.favoritesEntry
@@ -27,6 +27,7 @@ import io.github.droidkaigi.confsched.navkey.ContributorsNavKey
 import io.github.droidkaigi.confsched.navkey.EventMapNavKey
 import io.github.droidkaigi.confsched.navkey.FavoritesNavKey
 import io.github.droidkaigi.confsched.navkey.ProfileNavKey
+import io.github.droidkaigi.confsched.navkey.LicensesNavKey
 import io.github.droidkaigi.confsched.navkey.SearchNavKey
 import io.github.droidkaigi.confsched.navkey.SponsorsNavKey
 import io.github.droidkaigi.confsched.navkey.StaffNavKey
@@ -102,8 +103,10 @@ actual fun KaigiAppUi() {
                         backStack.add(TimetableItemDetailNavKey(it))
                     }
                 )
-                eventMapEntry()
-                aboutEntry(
+                eventMapEntry(
+                    onClickReadMore = externalNavController::navigate,
+                )
+                aboutEntries(
                     onAboutItemClick = { item ->
                         val portalBaseUrl = if (defaultLang() == Lang.JAPANESE) {
                             "https://portal.droidkaigi.jp"
@@ -126,7 +129,8 @@ actual fun KaigiAppUi() {
                                 )
                             }
 
-                            AboutItem.License -> TODO()
+                            AboutItem.License -> backStack.add(LicensesNavKey)
+
                             AboutItem.PrivacyPolicy -> {
                                 externalNavController.navigate(
                                     url = "$portalBaseUrl/about/privacy",
@@ -152,7 +156,8 @@ actual fun KaigiAppUi() {
                                 )
                             }
                         }
-                    }
+                    },
+                    onBackClick = { backStack.removeLastOrNull() },
                 )
                 profileNavEntry()
             },
