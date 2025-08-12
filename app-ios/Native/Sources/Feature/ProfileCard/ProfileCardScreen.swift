@@ -10,8 +10,6 @@ enum ProfileCardType: String {
 
 public struct ProfileCardScreen: View {
     @State private var presenter = ProfileCardPresenter()
-    @State private var isFront: Bool = true
-    @State private var rotation: CardRotation = .init(angle: .degrees(0), axis: (0, 1, 0))
     @State private var cardType: ProfileCardType = .dark
 
     public init() {}
@@ -36,56 +34,24 @@ public struct ProfileCardScreen: View {
             .padding(.vertical, 20)
             .padding(.bottom, 80)  // Tab bar padding
         }
-        .onAppear {
-            withAnimation(.bouncy) {
-                rotation = .init(angle: .degrees(30), axis: (0, 1, 0))
-            } completion: {
-                rotation = .init(angle: .degrees(0), axis: (0, 1, 0))
-            }
-        }
-    }
-    
-    private var drag: some Gesture {
-        DragGesture()
-            .onChanged { value in
-                let dx = value.translation.width
-                let dy = value.translation.height
-                let angle = Double(sqrt(dx*dx + dy*dy) / 4)
-                let axis: (x: CGFloat, y: CGFloat, z: CGFloat) = (x: dy, y: -dx, z: 0)
-                rotation = .init(angle: Angle(degrees: angle), axis: axis)
-            }
-            .onEnded { _ in
-                withAnimation {
-                    rotation = .init(angle: .degrees(0), axis: (0, 1, 0))
-                }
-            }
     }
 
     private var profileCard: some View {
-        ZStack {
-            if isFront {
-                FrontCard(
-                    userRole: presenter.userRole,
-                    userName: presenter.userName,
-                    cardType: cardType,
-                    angle: rotation.normal,
-                )
-            } else {
-                BackCard(
-                    cardType: cardType
-                )
-                .rotation3DEffect(Angle(degrees: 180), axis: (x: 0, y: 1, z: 0))
-            }
-        }
+        TiltFlipCard(front: { normal in
+            FrontCard(
+                userRole: presenter.userRole,
+                userName: presenter.userName,
+                cardType: cardType,
+                normal: (Double(normal.x), Double(normal.y), Double(normal.z)),
+            )
+        }, back: { normal in
+            BackCard(
+                cardType: cardType,
+                normal: (Double(normal.x), Double(normal.y), Double(normal.z)),
+            )
+        })
         .padding(.horizontal, 56)
         .padding(.vertical, 32)
-        .onTapGesture(count: 2) {
-            withAnimation {
-                isFront.toggle()
-            }
-        }
-        .rotation3DEffect(isFront ? rotation.angle : .degrees(180), axis: rotation.axis)
-        .gesture(drag)
     }
 
     private var actionButtons: some View {

@@ -3,6 +3,9 @@ import Theme
 
 struct BackCard: View {
     let cardType: ProfileCardType
+    let normal: (Double, Double, Double)
+    
+    let shaderFunction = ShaderFunction(library: .bundle(.module), name: "kiraEffect")
 
     var body: some View {
         ZStack {
@@ -29,6 +32,11 @@ struct BackCard: View {
         }
         .frame(width: 300, height: 380)
         .cornerRadius(12)
+        .kiraEffect(
+            function: shaderFunction,
+            normal: normal,
+            monochromeImage: Image("back_effect", bundle: .module)
+        )
         // Figma shadow: may be replaced by Metal shader
         .shadow(color: .black.opacity(0.12), radius: 10, x: 3, y: 3)
         .shadow(color: .black.opacity(0.11), radius: 17, x: 11, y: 14)

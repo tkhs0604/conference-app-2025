@@ -77,7 +77,7 @@ float3 generateKiraRGB(float3 colorNoiseRGB, float3 normal) {
     float3 colorNoiseHSV = float3(valueNoise, 1.0, 1.0);
     float3 colorNoiseRGB = hsv2rgb(colorNoiseHSV);
     constexpr sampler imageSampler(address::clamp_to_edge,
-                                   filter::linear);
-    float3 kiraNoiseRGB = generateKiraRGB(colorNoiseRGB, normal) * float3(monoTexture.sample(imageSampler, uv).rgb);
-    return half4(half3(kiraNoiseRGB) + layer.sample(position).rgb, 1.0);
+                                   filter::nearest);
+    float3 kiraNoiseRGB = generateKiraRGB(colorNoiseRGB, normal) * float3(monoTexture.sample(imageSampler, float2(position.x / bounds.z, position.y / bounds.w)).rgb);
+    return half4(half3(kiraNoiseRGB) + layer.sample(position).rgb, layer.sample(position).a);
 }
