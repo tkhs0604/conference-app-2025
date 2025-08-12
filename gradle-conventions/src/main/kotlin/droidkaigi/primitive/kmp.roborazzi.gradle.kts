@@ -17,6 +17,13 @@ configure<RoborazziExtension> {
         packages = listOf(getDefaultPackageName(project.name))
         includePrivatePreviews = true
         testerQualifiedClassName = "io.github.droidkaigi.confsched.testing.previewtester.DroidKaigiKmpPreviewTester"
+        robolectricConfig = mapOf(
+            // Roborazzi 1.46.1 uses SDK 33 by default, which causes compatibility issues with coil-ktor3
+            // resulting in a JNI ClassNotFoundException on CI.
+            // To avoid this, we explicitly set the SDK version to 35.
+            // See https://github.com/coil-kt/coil/issues/3049 for details.
+            "sdk" to "[35]",
+        )
     }
 }
 
