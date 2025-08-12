@@ -47,9 +47,6 @@ public struct HomeScreen: View {
                         rooms: presenter.timetable.rooms,
                         onItemTap: { item in
                             onNavigate(.timetableDetail(item))
-                        },
-                        isFavorite: { itemId in
-                            presenter.timetable.isFavorite(itemId)
                         }
                     )
                 }
