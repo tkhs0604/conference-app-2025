@@ -109,11 +109,11 @@ private enum PreviewData {
         message: nil,
         day: .conferenceDay1
     )
-    
+
     private static func createDate(hour: Int, minute: Int) -> Date {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone(identifier: "Asia/Tokyo") ?? TimeZone.current
-        
+
         var components = DateComponents()
         components.year = 2025
         components.month = 9
@@ -121,7 +121,7 @@ private enum PreviewData {
         components.hour = hour
         components.minute = minute
         components.second = 0
-        
+
         return calendar.date(from: components) ?? Date()
     }
 }
