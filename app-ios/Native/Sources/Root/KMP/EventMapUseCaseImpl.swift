@@ -6,7 +6,7 @@ import shared
 struct EventMapUseCaseImpl {
     func load() async throws(LoadEventError) -> [Model.EventMapEvent] {
         // TODO: implement actual kmp connection
-        return await EventMapEvent.mockEvents
+        await EventMapEvent.mockEvents
     }
 }
 

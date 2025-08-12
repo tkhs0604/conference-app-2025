@@ -210,11 +210,7 @@ extension Model.TimetableItemWithFavorite {
         } else if let special = shared.timetableItem as? shared.TimetableItem.Special {
             timetableItem = Model.TimetableItemSpecial(from: special)
         } else {
-            // Fallback - log error and create a placeholder special item
-            // Log warning - Unknown TimetableItem type encountered, creating placeholder item
-            #if DEBUG
-            print("Warning: Unknown TimetableItem type encountered. Creating placeholder item.")
-            #endif
+            // Fallback - create a placeholder special item for unknown types
             timetableItem = Model.TimetableItemSpecial(
                 id: Model.TimetableItemId(value: "unknown-\(UUID().uuidString)"),
                 title: Model.MultiLangText(jaTitle: "不明なアイテム", enTitle: "Unknown Item"),
@@ -259,10 +255,7 @@ extension Model.Timetable {
             } else if let special = item as? shared.TimetableItem.Special {
                 return Model.TimetableItemSpecial(from: special)
             } else {
-                // Fallback - log error and create a placeholder special item
-                #if DEBUG
-                print("Warning: Unknown TimetableItem type encountered in Timetable. Creating placeholder item.")
-                #endif
+                // Fallback - create a placeholder special item for unknown types
                 return Model.TimetableItemSpecial(
                     id: Model.TimetableItemId(value: "unknown-\(UUID().uuidString)"),
                     title: Model.MultiLangText(jaTitle: "不明なアイテム", enTitle: "Unknown Item"),
