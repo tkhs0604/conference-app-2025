@@ -2,10 +2,17 @@ import Component
 import SwiftUI
 import Theme
 
+// TODO: fix actual model
+enum ProfileCardType: String {
+    case dark
+    case light
+}
+
 public struct ProfileCardScreen: View {
     @State private var presenter = ProfileCardPresenter()
     @State private var isFront: Bool = true
     @State private var animatedDegree: Angle = .zero
+    @State private var cardType: ProfileCardType = .dark
 
     public init() {}
 
@@ -41,10 +48,16 @@ public struct ProfileCardScreen: View {
     private var profileCard: some View {
         ZStack {
             if isFront {
-                FrontCard(userRole: presenter.userRole, userName: presenter.userName)
+                FrontCard(
+                    userRole: presenter.userRole,
+                    userName: presenter.userName,
+                    cardType: cardType
+                )
             } else {
-                BackCard()
-                    .rotation3DEffect(Angle(degrees: 180), axis: (x: 0, y: 1, z: 0))
+                BackCard(
+                    cardType: cardType
+                )
+                .rotation3DEffect(Angle(degrees: 180), axis: (x: 0, y: 1, z: 0))
             }
         }
         .padding(.horizontal, 56)
@@ -79,6 +92,11 @@ public struct ProfileCardScreen: View {
     private var editButton: some View {
         Button {
             presenter.editProfile()
+            if cardType == .dark {
+                cardType = .light
+            } else {
+                cardType = .dark
+            }
         } label: {
             Text("Edit Profile")
                 .frame(maxWidth: .infinity)
