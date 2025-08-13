@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_card_title">Profile Card</string>
+    <string name="profile_card_edit_description">Let's create a profile card to introduce yourself at events or on social media!</string>
+    <string name="link_example_text">（ex.X、Instagram...）</string>
+    <string name="select_theme">Select Theme</string>
+    <string name="create_card">Create Card</string>
+    <string name="nickname">Nickname</string>
+    <string name="occupation">Occupation</string>
+    <string name="link">Link</string>
+    <string name="image">Image</string>
+    <string name="add_image">Add Image</string>
+    <string name="delete">Delete</string>
+    <string name="enter_validate_format">Please enter a %1$s</string>
+    <string name="add_validate_format">Please add %1$s</string>
+    <string name="url_is_invalid">The URL format is incorrect</string>
+    <string name="flip">Flip</string>
+    <string name="qrcode">QR code</string>
+    <string name="share">Share</string>
+    <string name="edit">Edit</string>
+    <string name="share_description">Check out my DroidKaigi Profile Card! Let's connect at the event. #DroidKaigi</string>
+</resources>
+

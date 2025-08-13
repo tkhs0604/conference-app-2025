@@ -40,9 +40,11 @@ include(
     ":feature:sessions",
     ":feature:contributors",
     ":feature:sponsors",
+    ":feature:eventmap",
     ":feature:about",
     ":feature:settings",
     ":feature:favorites",
     ":feature:staff",
+    ":feature:profile",
 )
 include(":tools:ksp-processor")
