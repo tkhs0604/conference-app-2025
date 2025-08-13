@@ -65,7 +65,7 @@ extension Model.RoomType {
 // MARK: - Room Converters
 
 extension Model.Room {
-    init(from shared: shared.Room) {
+    init(from shared: shared.TimetableRoom) {
         self.init(
             id: shared.id,
             name: Model.MultiLangText(from: shared.name),
