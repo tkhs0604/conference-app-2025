@@ -12,7 +12,7 @@ public struct EventMapUseCase: Sendable {
 }
 
 public enum EventMapUseCaseKey: TestDependencyKey {
-    public static let testValue: EventMapUseCase = EventMapUseCase()
+    public static let testValue = EventMapUseCase()
 }
 
 extension DependencyValues {

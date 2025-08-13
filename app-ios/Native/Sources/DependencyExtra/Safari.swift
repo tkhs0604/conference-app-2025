@@ -72,7 +72,7 @@ import Dependencies
     extension UIApplication {
         @available(iOS 15.0, *)
         var firstKeyWindow: UIWindow? {
-            return UIApplication.shared.connectedScenes
+            UIApplication.shared.connectedScenes
                 .compactMap { $0 as? UIWindowScene }
                 .filter { $0.activationState == .foregroundActive }
                 .first?
