@@ -30,6 +30,8 @@ import io.github.droidkaigi.confsched.data.core.defaultKtorConfig
 import io.github.droidkaigi.confsched.data.eventmap.DefaultEventMapApiClient
 import io.github.droidkaigi.confsched.data.eventmap.DefaultEventMapQueryKey
 import io.github.droidkaigi.confsched.data.eventmap.EventMapApiClient
+import io.github.droidkaigi.confsched.data.profile.DefaultProfileMutationKey
+import io.github.droidkaigi.confsched.data.profile.DefaultProfileSubscriptionKey
 import io.github.droidkaigi.confsched.data.sessions.DefaultSessionsApiClient
 import io.github.droidkaigi.confsched.data.sessions.DefaultTimetableItemQueryKey
 import io.github.droidkaigi.confsched.data.sessions.DefaultTimetableQueryKey
@@ -49,6 +51,8 @@ import io.github.droidkaigi.confsched.model.data.FavoriteTimetableItemIdMutation
 import io.github.droidkaigi.confsched.model.data.TimetableItemQueryKey
 import io.github.droidkaigi.confsched.model.data.TimetableQueryKey
 import io.github.droidkaigi.confsched.model.eventmap.EventMapQueryKey
+import io.github.droidkaigi.confsched.model.profile.ProfileMutationKey
+import io.github.droidkaigi.confsched.model.profile.ProfileSubscriptionKey
 import io.github.droidkaigi.confsched.model.sponsors.SponsorsQueryKey
 import io.github.droidkaigi.confsched.model.staff.StaffQueryKey
 import io.github.droidkaigi.confsched.repository.ContributorsRepository
@@ -140,6 +144,12 @@ interface IosAppGraph : AppGraph {
 
     @Binds
     val DefaultEventMapQueryKey.bind: EventMapQueryKey
+
+    @Binds
+    val DefaultProfileSubscriptionKey.bind: ProfileSubscriptionKey
+
+    @Binds
+    val DefaultProfileMutationKey.bind: ProfileMutationKey
 
     @Provides
     fun provideJson(): Json {
