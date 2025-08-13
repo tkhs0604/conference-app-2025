@@ -24,7 +24,7 @@ public struct TimetableDetailScreen: View {
                     }
 
                     if let session = presenter.timetableItem.timetableItem as? TimetableItemSession,
-                       let message = session.message
+                        let message = session.message
                     {
                         SessionCancellationBanner(message: message.currentLangTitle)
                             .padding(.horizontal, 16)
@@ -84,14 +84,14 @@ public struct TimetableDetailScreen: View {
                     actionMessage: "一覧を見る",
                     action: presenter.navigateToFavorite
                 )
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            withAnimation {
-                                presenter.showToast = false
-                            }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        withAnimation {
+                            presenter.showToast = false
                         }
                     }
+                }
             }
         }
         .animation(.easeInOut, value: presenter.showToast)
@@ -168,7 +168,9 @@ public struct TimetableDetailScreen: View {
                 )
             }
             .padding(16)
-            .background(presenter.timetableItem.timetableItem.room.roomTheme.containerColor, in: RoundedRectangle(cornerRadius: 8))
+            .background(
+                presenter.timetableItem.timetableItem.room.roomTheme.containerColor,
+                in: RoundedRectangle(cornerRadius: 8))
 
             if let session = presenter.timetableItem.timetableItem as? TimetableItemSession {
                 SessionDescriptionView(
@@ -237,7 +239,7 @@ struct ToastView: View {
         .padding(.vertical, 14)
         .padding(.horizontal, 16)
         .background(AssetColors.inverseSurface.swiftUIColor, in: RoundedRectangle(cornerRadius: 4))
-        .padding(.bottom, 100) // Tab bar padding
+        .padding(.bottom, 100)  // Tab bar padding
     }
 }
 

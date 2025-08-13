@@ -19,7 +19,7 @@ extension Room {
         case .roomI:
             return AssetColors.jellyfish.swiftUIColor
         case .roomJ:
-            return Color.red // TODO: Add narwhal color
+            return Color.red  // TODO: Add narwhal color
         case .roomIJ:
             return AssetColors.jellyfish.swiftUIColor
         }

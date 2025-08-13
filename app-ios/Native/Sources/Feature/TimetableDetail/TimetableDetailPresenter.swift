@@ -87,7 +87,7 @@ final class TimetableDetailPresenter {
         else { return nil }
         return url
     }
-    
+
     func navigateToFavorite() {
         // TODO: Add logic to navigate to favorite screen
     }
