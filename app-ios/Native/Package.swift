@@ -27,11 +27,14 @@ let package = Package(
                 .target(name: "Extension"),
                 .target(name: "Theme"),
                 .product(name: "Model", package: "Core"),
-            ],
+            ]
         ),
         .testTarget(
             name: "ComponentTests",
             dependencies: ["Component"]
+        ),
+        .target(
+            name: "DependencyExtra",
         ),
 
         .target(
@@ -101,6 +104,9 @@ let package = Package(
                 .target(name: "Theme"),
             ],
             path: "Sources/Feature/About",
+            resources: [
+                .process("Resources")
+            ],
         ),
         
         .target(
@@ -113,6 +119,9 @@ let package = Package(
                 .target(name: "Theme"),
             ],
             path: "Sources/Feature/Contributor",
+            resources: [
+                .process("Resources")
+            ],
         ),
         
         .target(
@@ -123,6 +132,7 @@ let package = Package(
                 .target(name: "Component"),
                 .target(name: "Extension"),
                 .target(name: "Theme"),
+                .target(name: "DependencyExtra"),
             ],
             path: "Sources/Feature/EventMap",
         ),
@@ -137,6 +147,9 @@ let package = Package(
                 .target(name: "Theme"),
             ],
             path: "Sources/Feature/Favorite",
+            resources: [
+                .process("Resources")
+            ],
         ),
         
         .target(
@@ -149,6 +162,9 @@ let package = Package(
                 .target(name: "Theme"),
             ],
             path: "Sources/Feature/Search",
+            resources: [
+                .process("Resources")
+            ],
         ),
         
         .target(
@@ -173,6 +189,9 @@ let package = Package(
                 .target(name: "Theme"),
             ],
             path: "Sources/Feature/Staff",
+            resources: [
+                .process("Resources")
+            ],
         ),
         
         .target(

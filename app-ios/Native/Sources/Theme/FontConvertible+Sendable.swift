@@ -1,0 +1,1 @@
+extension FontConvertible: @unchecked Sendable {}
