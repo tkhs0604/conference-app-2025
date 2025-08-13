@@ -10,8 +10,6 @@ enum ProfileCardType: String {
 
 public struct ProfileCardScreen: View {
     @State private var presenter = ProfileCardPresenter()
-    @State private var isFront: Bool = true
-    @State private var animatedDegree: Angle = .zero
     @State private var cardType: ProfileCardType = .dark
 
     public init() {}
@@ -36,38 +34,27 @@ public struct ProfileCardScreen: View {
             .padding(.vertical, 20)
             .padding(.bottom, 80)  // Tab bar padding
         }
-        .onAppear {
-            withAnimation(.bouncy) {
-                animatedDegree = .degrees(30)
-            } completion: {
-                animatedDegree = .zero
-            }
-        }
     }
 
     private var profileCard: some View {
-        ZStack {
-            if isFront {
+        TiltFlipCard(
+            front: { normal in
                 FrontCard(
                     userRole: presenter.userRole,
                     userName: presenter.userName,
-                    cardType: cardType
+                    cardType: cardType,
+                    normal: (normal.x, normal.y, normal.z),
                 )
-            } else {
+            },
+            back: { normal in
                 BackCard(
-                    cardType: cardType
+                    cardType: cardType,
+                    normal: (normal.x, normal.y, normal.z),
                 )
-                .rotation3DEffect(Angle(degrees: 180), axis: (x: 0, y: 1, z: 0))
             }
-        }
+        )
         .padding(.horizontal, 56)
         .padding(.vertical, 32)
-        .onTapGesture {
-            withAnimation {
-                isFront.toggle()
-            }
-        }
-        .rotation3DEffect(isFront ? animatedDegree : .degrees(180), axis: (x: 0, y: 1, z: 0))
     }
 
     private var actionButtons: some View {
