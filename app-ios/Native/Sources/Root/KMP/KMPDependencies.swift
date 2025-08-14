@@ -4,7 +4,8 @@ enum KMPDependencies {
     static func prepareKMPDependencies(_ dependencyValues: inout DependencyValues) {
         let timetableUseCaseImpl = TimetableUseCaseImpl()
         dependencyValues.timetableUseCase = .init(
-            load: timetableUseCaseImpl.load
+            load: timetableUseCaseImpl.load,
+            toggleFavorite: timetableUseCaseImpl.toggleFavorite
         )
 
         let sponsorUseCaseImpl = SponsorUseCaseImpl()

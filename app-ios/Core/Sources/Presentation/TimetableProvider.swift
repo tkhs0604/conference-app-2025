@@ -19,7 +19,7 @@ public enum TimetableMode {
 @Observable
 public final class TimetableProvider {
     @ObservationIgnored
-    @Dependency(\.timetableUseCase) private var timeteableUseCase
+    @Dependency(\.timetableUseCase) private var timetableUseCase
 
     @ObservationIgnored
     private var fetchTask: Task<Void, Never>?
@@ -53,7 +53,7 @@ public final class TimetableProvider {
         }
 
         self.fetchTask = Task {
-            for await timetable in timeteableUseCase.load() {
+            for await timetable in timetableUseCase.load() {
                 self.timetable = timetable
 
                 for day in DroidKaigi2024Day.allCases {
@@ -65,8 +65,11 @@ public final class TimetableProvider {
         }
     }
 
+    @MainActor
     public func toggleFavorite(_ item: TimetableItemWithFavorite) {
-        // TODO: Implement
+        Task {
+            await timetableUseCase.toggleFavorite(itemId: item.id)
+        }
     }
 
     private func sortListIntoTimeGroups(timetableItems: [TimetableItemWithFavorite]) -> [TimetableTimeGroupItems] {

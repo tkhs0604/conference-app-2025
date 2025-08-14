@@ -6,6 +6,7 @@ import Theme
 public struct TimetableDetailScreen: View {
     @State private var presenter: TimetableDetailPresenter
     @State private var showingURL: URL?
+    @State private var isShowFabMenu = false
     @Environment(\.dismiss) private var dismiss
 
     public init(timetableItem: TimetableItemWithFavorite) {
@@ -14,7 +15,7 @@ public struct TimetableDetailScreen: View {
 
     public var body: some View {
         GeometryReader { proxy in
-            VStack(spacing: 0) {
+            ZStack {
                 ScrollView {
                     VStack(spacing: 0) {
                         presenter.timetableItem.timetableItem.room.roomTheme.containerColor
@@ -22,21 +23,24 @@ public struct TimetableDetailScreen: View {
                         headLine
                             .padding(.bottom, 24)
                     }
+
+                    if let session = presenter.timetableItem.timetableItem as? TimetableItemSession,
+                        let message = session.message
+                    {
+                        SessionCancellationBanner(message: message.currentLangTitle)
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 20)
+                    }
                     detail
                         .padding(.horizontal, 16)
                     targetAudience
                         .padding(16)
-                    if presenter.timetableItem.timetableItem.asset.videoUrl != nil
-                        || presenter.timetableItem.timetableItem.asset.slideUrl != nil
-                    {
-                        archive
-                            .padding(16)
-                    }
                 }
 
-                footer
+                fabMenu
             }
-            .background(Color.white)
+            .padding(.bottom, 80)  // Tab bar padding
+            .background(AssetColors.background.swiftUIColor)
             .frame(maxWidth: .infinity)
             .ignoresSafeArea(edges: [.top])
         }
@@ -53,66 +57,25 @@ public struct TimetableDetailScreen: View {
             }
         }
         .overlay(alignment: .bottom) {
-            if presenter.showToast {
-                ToastView(message: presenter.toastMessage)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            withAnimation {
-                                presenter.showToast = false
-                            }
+            if let toast = presenter.toast {
+                ToastView(
+                    message: toast.message,
+                    action: toast.action
+                )
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        withAnimation {
+                            presenter.toast = nil
                         }
                     }
-            }
-        }
-        .animation(.easeInOut, value: presenter.showToast)
-    }
-
-    @MainActor var footer: some View {
-        HStack(spacing: 28) {
-            if let url = presenter.shareSession() {
-                ShareLink(item: url) {
-                    Image(systemName: "square.and.arrow.up")
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                        .foregroundColor(.primary)
-                        .accessibilityLabel("Share session")
                 }
             }
-            Button {
-                presenter.addToCalendar()
-            } label: {
-                Image(systemName: "calendar.badge.plus")
-                    .resizable()
-                    .frame(width: 24, height: 24)
-                    .foregroundColor(.primary)
-                    .accessibilityLabel("Add to calendar")
-            }
-            Spacer()
-            Button {
-                presenter.toggleFavorite()
-            } label: {
-                Group {
-                    if presenter.isFavorite {
-                        Image(systemName: "heart.fill")
-                    } else {
-                        Image(systemName: "heart")
-                    }
-                }
-                .accessibilityLabel(presenter.isFavorite ? "Remove from favorites" : "Add to favorites")
-                .frame(width: 56, height: 56)
-                .background(Color.gray.opacity(0.15))
-                .clipShape(RoundedRectangle(cornerRadius: 16))
-            }
-            .sensoryFeedback(.impact, trigger: presenter.isFavorite) { _, newValue in newValue }
         }
-        .frame(height: 80)
-        .frame(maxWidth: .infinity)
-        .padding(.horizontal, 16)
-        .background(Color.gray.opacity(0.1))
+        .animation(.easeInOut, value: presenter.toast != nil)
     }
 
-    @MainActor var headLine: some View {
+    var headLine: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 4) {
                 RoomTag(room: presenter.timetableItem.timetableItem.room)
@@ -122,8 +85,8 @@ public struct TimetableDetailScreen: View {
             .padding(.bottom, 8)
 
             Text(presenter.timetableItem.timetableItem.title.currentLangTitle)
-                .font(.system(size: 20, weight: .semibold))
-                .foregroundStyle(.secondary)
+                .font(Typography.headlineSmall)
+                .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                 .padding(.bottom, 20)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -134,11 +97,11 @@ public struct TimetableDetailScreen: View {
 
                     VStack(alignment: .leading, spacing: 8) {
                         Text(speaker.name)
-                            .font(.system(size: 16))
-                            .foregroundStyle(.primary)
+                            .font(Typography.bodyLarge)
+                            .foregroundStyle(AssetColors.onSurface.swiftUIColor)
                         Text(speaker.tagLine)
-                            .font(.system(size: 12))
-                            .foregroundStyle(.primary)
+                            .font(Typography.bodySmall)
+                            .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
                     }
 
                     Spacer()
@@ -150,116 +113,205 @@ public struct TimetableDetailScreen: View {
         .background(presenter.timetableItem.timetableItem.room.roomTheme.containerColor)
     }
 
-    @MainActor var detail: some View {
+    var detail: some View {
         VStack(alignment: .leading, spacing: 20) {
             VStack(spacing: 16) {
                 InformationRow(
-                    icon: Image(systemName: "clock"),
+                    icon: Image("ic_schedule", bundle: .module),
                     title: "日時",
                     titleColor: presenter.timetableItem.timetableItem.room.roomTheme.primaryColor,
-                    content: formattedDateTimeString
+                    content: formattedDateTimeString,
+                    isStrikethrough: presenter.isCancelledSession
                 )
                 InformationRow(
-                    icon: Image(systemName: "location"),
+                    icon: Image("ic_location_on", bundle: .module),
                     title: "場所",
                     titleColor: presenter.timetableItem.timetableItem.room.roomTheme.primaryColor,
-                    content: presenter.timetableItem.timetableItem.room.name.currentLangTitle
+                    content: presenter.timetableItem.timetableItem.room.displayNameWithFloor,
+                    isStrikethrough: presenter.isCancelledSession
                 )
                 InformationRow(
-                    icon: Image(systemName: "globe"),
+                    icon: Image("ic_language", bundle: .module),
                     title: "対応言語",
                     titleColor: presenter.timetableItem.timetableItem.room.roomTheme.primaryColor,
-                    content: getSupportedLangString()
+                    content: getSupportedLangString(),
+                    isStrikethrough: presenter.isCancelledSession
                 )
                 InformationRow(
-                    icon: Image(systemName: "tag"),
+                    icon: Image("ic_category", bundle: .module),
                     title: "カテゴリ",
                     titleColor: presenter.timetableItem.timetableItem.room.roomTheme.primaryColor,
-                    content: presenter.timetableItem.timetableItem.category.title.currentLangTitle
+                    content: presenter.timetableItem.timetableItem.category.title.currentLangTitle,
+                    isStrikethrough: presenter.isCancelledSession
                 )
             }
             .padding(16)
-            .overlay(
-                presenter.timetableItem.timetableItem.room.roomTheme.primaryColor,
-                in: RoundedRectangle(cornerRadius: 4)
-                    .stroke(style: .init(lineWidth: 1, dash: [2, 2]))
-            )
+            .background(
+                presenter.timetableItem.timetableItem.room.roomTheme.containerColor,
+                in: RoundedRectangle(cornerRadius: 8))
 
             if let session = presenter.timetableItem.timetableItem as? TimetableItemSession {
                 SessionDescriptionView(
                     content: session.description.currentLangTitle,
-                    themeColor: session.room.roomTheme.primaryColor
+                    primaryColor: session.room.roomTheme.primaryColor,
+                    containerColor: session.room.roomTheme.containerColor
                 )
                 .padding(.bottom, 24)
             }
         }
     }
 
-    @MainActor var targetAudience: some View {
+    var targetAudience: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("想定参加者")
-                .font(.system(size: 22, weight: .bold))
+            Text("対象者")
+                .font(Typography.titleLarge)
                 .foregroundStyle(presenter.timetableItem.timetableItem.room.roomTheme.primaryColor)
 
             Text(presenter.timetableItem.timetableItem.targetAudience)
-                .font(.system(size: 16))
-                .foregroundStyle(.secondary)
+                .font(Typography.bodyLarge)
+                .foregroundStyle(AssetColors.onSurface.swiftUIColor)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    @MainActor var archive: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("アーカイブ")
-                .font(.system(size: 22, weight: .bold))
-                .foregroundStyle(presenter.timetableItem.timetableItem.room.roomTheme.primaryColor)
-
+    var fabMenu: some View {
+        VStack {
+            Spacer()
             HStack {
-                if let slideUrlString = presenter.timetableItem.timetableItem.asset.slideUrl,
-                    let slideUrl = URL(string: slideUrlString)
-                {
-                    Button {
-                        showingURL = slideUrl
-                    } label: {
-                        VStack {
-                            Label(
-                                title: {
-                                    Text("スライド")
-                                        .font(.system(size: 14, weight: .medium))
-                                        .foregroundStyle(Color.white)
-                                },
-                                icon: { Image(systemName: "doc") }
-                            )
+                Spacer()
+                VStack(alignment: .trailing, spacing: 4) {
+                    if isShowFabMenu {
+                        Button {
+                            presenter.toggleFavorite()
+                            isShowFabMenu = false
+                        } label: {
+                            HStack(spacing: 8) {
+                                if presenter.isFavorite {
+                                    Image(systemName: "heart.fill")
+                                } else {
+                                    Image(systemName: "heart")
+                                }
+
+                                Text(presenter.isFavorite ? "ブックマークを解除" : "ブックマークに登録")
+                                    .font(Typography.titleMedium)
+                            }
+                            .foregroundStyle(AssetColors.tertiaryContainer.swiftUIColor)
+                            .padding(.horizontal, 24)
+                            .padding(.vertical, 16)
+                            .background(
+                                AssetColors.onTertiaryContainer.swiftUIColor, in: RoundedRectangle(cornerRadius: 28))
                         }
-                        .frame(height: 40)
-                        .frame(maxWidth: .infinity)
-                        .background(presenter.timetableItem.timetableItem.room.roomTheme.primaryColor)
-                        .clipShape(Capsule())
+
+                        Button {
+                            presenter.addToCalendar()
+                            isShowFabMenu = false
+                        } label: {
+                            HStack(spacing: 8) {
+                                Image(.icTimetable)
+
+                                Text("カレンダーに登録")
+                                    .font(Typography.titleMedium)
+                            }
+                            .foregroundStyle(AssetColors.tertiaryContainer.swiftUIColor)
+                            .padding(.horizontal, 24)
+                            .padding(.vertical, 16)
+                            .background(
+                                AssetColors.onTertiaryContainer.swiftUIColor, in: RoundedRectangle(cornerRadius: 28))
+                        }
+
+                        if let shareLink = presenter.shareSession() {
+                            ShareLink(item: shareLink) {
+                                HStack(spacing: 8) {
+                                    Image(.icShare)
+
+                                    Text("リンクをシェア")
+                                        .font(Typography.titleMedium)
+                                }
+                                .foregroundStyle(AssetColors.tertiaryContainer.swiftUIColor)
+                                .padding(.horizontal, 24)
+                                .padding(.vertical, 16)
+                                .background(
+                                    AssetColors.onTertiaryContainer.swiftUIColor, in: RoundedRectangle(cornerRadius: 28)
+                                )
+                            }
+                        }
+
+                        if let slideUrlString = presenter.timetableItem.timetableItem.asset.slideUrl,
+                            let slideUrl = URL(string: slideUrlString)
+                        {
+                            Button {
+                                showingURL = slideUrl
+                                isShowFabMenu = false
+                            } label: {
+                                HStack(spacing: 8) {
+                                    Image(.icDocument)
+
+                                    Text("発表スライドを開く")
+                                        .font(Typography.titleMedium)
+                                }
+                                .foregroundStyle(AssetColors.tertiaryContainer.swiftUIColor)
+                                .padding(.horizontal, 24)
+                                .padding(.vertical, 16)
+                                .background(
+                                    AssetColors.onTertiaryContainer.swiftUIColor, in: RoundedRectangle(cornerRadius: 28)
+                                )
+                            }
+                        }
+
+                        if let videoUrlString = presenter.timetableItem.timetableItem.asset.videoUrl,
+                            let videoUrl = URL(string: videoUrlString)
+                        {
+                            Button {
+                                showingURL = videoUrl
+                                isShowFabMenu = false
+                            } label: {
+                                HStack(spacing: 8) {
+                                    Image(.icVideo)
+
+                                    Text("動画を見る")
+                                        .font(Typography.titleMedium)
+                                }
+                                .foregroundStyle(AssetColors.tertiaryContainer.swiftUIColor)
+                                .padding(.horizontal, 24)
+                                .padding(.vertical, 16)
+                                .background(
+                                    AssetColors.onTertiaryContainer.swiftUIColor, in: RoundedRectangle(cornerRadius: 28)
+                                )
+                            }
+                        }
                     }
-                }
-                if let videoUrlString = presenter.timetableItem.timetableItem.asset.videoUrl,
-                    let videoUrl = URL(string: videoUrlString)
-                {
+
                     Button {
-                        showingURL = videoUrl
+                        isShowFabMenu.toggle()
                     } label: {
-                        VStack {
-                            Label(
-                                title: {
-                                    Text("録画")
-                                        .font(.system(size: 14, weight: .medium))
-                                        .foregroundStyle(Color.white)
-                                },
-                                icon: { Image(systemName: "play") }
-                            )
+                        Group {
+                            if isShowFabMenu {
+                                Image(systemName: "xmark")
+                            } else {
+                                if presenter.isFavorite {
+                                    Image(systemName: "heart.fill")
+                                } else {
+                                    Image(systemName: "heart")
+                                }
+                            }
                         }
-                        .frame(height: 40)
-                        .frame(maxWidth: .infinity)
-                        .background(presenter.timetableItem.timetableItem.room.roomTheme.primaryColor)
-                        .clipShape(Capsule())
+                        .foregroundStyle(AssetColors.onTertiaryContainer.swiftUIColor)
+                        .accessibilityLabel(presenter.isFavorite ? "Remove from favorites" : "Add to favorites")
+                        .frame(width: 56, height: 56)
+                        .background {
+                            Group {
+                                if isShowFabMenu {
+                                    Circle()
+                                } else {
+                                    RoundedRectangle(cornerRadius: 16)
+                                }
+                            }
+                            .foregroundStyle(AssetColors.tertiaryContainer.swiftUIColor)
+                        }
                     }
                 }
             }
+            .padding(.horizontal, 16)
         }
     }
 
@@ -283,21 +335,6 @@ public struct TimetableDetailScreen: View {
     }
 }
 
-struct ToastView: View {
-    let message: String
-
-    var body: some View {
-        Text(message)
-            .font(.system(size: 14))
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
-            .background(Color.black)
-            .foregroundColor(.white)
-            .cornerRadius(20)
-            .padding(.bottom, 100)
-    }
-}
-
 #Preview {
     TimetableDetailScreen(
         timetableItem: TimetableItemWithFavorite(
@@ -308,13 +345,20 @@ struct ToastView: View {
                 endsAt: Date().addingTimeInterval(3_600),
                 category: TimetableCategory(id: 1, title: MultiLangText(jaTitle: "開発", enTitle: "Development")),
                 sessionType: .regular,
-                room: Room(id: 1, name: MultiLangText(jaTitle: "ルームA", enTitle: "Room A"), type: .roomF, sort: 1),
+                room: Room(
+                    id: 1,
+                    name: MultiLangText(jaTitle: "Arctic Fox", enTitle: "Arctic Fox"),
+                    type: .roomF,
+                    sort: 1
+                ),
                 targetAudience: "初心者向け",
                 language: TimetableLanguage(langOfSpeaker: "JA", isInterpretationTarget: false),
-                asset: TimetableAsset(videoUrl: nil, slideUrl: nil),
+                asset: TimetableAsset(
+                    videoUrl: "https://2025.droidkaigi.jp/", slideUrl: "https://2025.droidkaigi.jp/en/"),
                 levels: ["初級"],
                 speakers: [],
-                description: MultiLangText(jaTitle: "セッションの説明", enTitle: "Session description")
+                description: MultiLangText(jaTitle: "セッションの説明", enTitle: "Session description"),
+                message: MultiLangText(jaTitle: "このセッションは中止になりました", enTitle: "This session has been cancelled")
             ),
             isFavorited: false
         )

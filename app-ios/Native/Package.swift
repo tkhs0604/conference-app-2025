@@ -35,12 +35,16 @@ let package = Package(
         ),
         .target(
             name: "DependencyExtra",
+            dependencies: [
+                .product(name: "Dependencies", package: "swift-dependencies")
+            ]
         ),
 
         .target(
             name: "Extension",
             dependencies: [
                 .product(name: "Model", package: "Core"),
+                .target(name: "Theme"),
             ],
         ),
 
@@ -104,6 +108,9 @@ let package = Package(
                 .target(name: "Theme"),
             ],
             path: "Sources/Feature/About",
+            resources: [
+                .process("Resources")
+            ],
         ),
         
         .target(
@@ -116,6 +123,9 @@ let package = Package(
                 .target(name: "Theme"),
             ],
             path: "Sources/Feature/Contributor",
+            resources: [
+                .process("Resources")
+            ],
         ),
         
         .target(
@@ -141,6 +151,9 @@ let package = Package(
                 .target(name: "Theme"),
             ],
             path: "Sources/Feature/Favorite",
+            resources: [
+                .process("Resources")
+            ],
         ),
         
         .target(
@@ -153,6 +166,9 @@ let package = Package(
                 .target(name: "Theme"),
             ],
             path: "Sources/Feature/Search",
+            resources: [
+                .process("Resources")
+            ],
         ),
         
         .target(
@@ -177,6 +193,9 @@ let package = Package(
                 .target(name: "Theme"),
             ],
             path: "Sources/Feature/Staff",
+            resources: [
+                .process("Resources")
+            ],
         ),
         
         .target(

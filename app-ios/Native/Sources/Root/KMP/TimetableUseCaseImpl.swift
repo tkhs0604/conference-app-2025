@@ -11,4 +11,13 @@ struct TimetableUseCaseImpl {
             .init(from: $0)
         }
     }
+
+    func toggleFavorite(_ itemId: Model.TimetableItemId) async {
+        do {
+            try await KMPDependencyProvider.shared.appGraph.sessionsRepository
+                .toggleFavorite(timetableItemId: .init(value: itemId.value))
+        } catch {
+            print("Failed to toggle favorite: \(error)")
+        }
+    }
 }
