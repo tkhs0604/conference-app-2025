@@ -24,8 +24,7 @@ struct EventItem: View {
             if let message = event.message {
                 Text(message)
                     .font(Typography.bodyMedium)
-                    // FIXME: Failed to add color and run swiftgen
-                    //                    .foregroundColor(AssetColors.tertiayFixedDim.swiftUIColor)
+                    .foregroundColor(AssetColors.tertiayFixedDim.swiftUIColor)
                     .fixedSize(horizontal: false, vertical: true)
             }
 
