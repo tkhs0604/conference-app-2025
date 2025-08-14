@@ -7,6 +7,7 @@ import Theme
 public struct FavoriteScreen: View {
     @State private var presenter = FavoritePresenter()
     @State private var selectedDate: DateFilter = .all
+    @State private var uiMode: UiMode = .swiftui
     let onNavigate: (FavoriteNavigationDestination) -> Void
 
     public init(onNavigate: @escaping (FavoriteNavigationDestination) -> Void = { _ in }) {
@@ -17,6 +18,12 @@ public struct FavoriteScreen: View {
         case all = "すべて"
         case day1 = "9/12"
         case day2 = "9/13"
+    }
+    
+    enum UiMode: String, CaseIterable {
+        case swiftui = "Swift UI"
+        case cmp = "CMP"
+        case kmpPresenter = "KMP Presenter"
     }
 
     public var body: some View {
@@ -60,6 +67,9 @@ public struct FavoriteScreen: View {
         }
         .background(AssetColors.background.swiftUIColor)
         .navigationTitle(String(localized: "お気に入り", bundle: .module))
+        .toolbar {
+            uiModeView
+        }
         #if os(iOS)
             .navigationBarTitleDisplayMode(.large)
         #endif
@@ -141,6 +151,20 @@ public struct FavoriteScreen: View {
                 .buttonStyle(PlainButtonStyle())
             }
             Spacer()
+        }
+    }
+
+    @ViewBuilder
+    private var uiModeView: some View {
+        Picker("UI Mode", selection: $uiMode) {
+            ForEach(UiMode.allCases, id: \.self) { UiMode in
+                Text(UiMode.rawValue)
+                    .lineLimit(1)
+            }
+        }
+        .pickerStyle(.menu)
+        .onChange(of: uiMode) { newUiMode in
+            print("selected: \(newUiMode)")
         }
     }
 
