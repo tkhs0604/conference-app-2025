@@ -1,4 +1,4 @@
-package io.github.droidkaigi.confsched.droidkaigiui.component
+package io.github.droidkaigi.confsched.droidkaigiui.architecture
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,18 +7,20 @@ import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import io.github.droidkaigi.confsched.context.ScreenContext
+import androidx.compose.ui.platform.testTag
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+const val DefaultSuspenseFallbackContentTestTag = "DefaultSuspenseFallbackContentTestTag"
+
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-context(_: ScreenContext)
-fun DefaultSuspenseFallbackContent(
-    modifier: Modifier = Modifier,
-) {
+context(_: SoilSuspenseContext)
+fun DefaultSuspenseFallbackContent(modifier: Modifier = Modifier) {
     Box(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .testTag(DefaultSuspenseFallbackContentTestTag),
         contentAlignment = Alignment.Center,
     ) {
         CircularWavyProgressIndicator()
