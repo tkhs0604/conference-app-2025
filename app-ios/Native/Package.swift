@@ -35,12 +35,16 @@ let package = Package(
         ),
         .target(
             name: "DependencyExtra",
+            dependencies: [
+                .product(name: "Dependencies", package: "swift-dependencies")
+            ]
         ),
 
         .target(
             name: "Extension",
             dependencies: [
                 .product(name: "Model", package: "Core"),
+                .target(name: "Theme"),
             ],
         ),
 
