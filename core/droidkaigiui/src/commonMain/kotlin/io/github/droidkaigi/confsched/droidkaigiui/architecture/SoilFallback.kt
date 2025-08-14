@@ -30,7 +30,7 @@ object SoilFallbackDefaults {
         windowInsets = windowInsets,
     )
 
-    fun simple(): SoilFallback = Simple
+    fun default(): SoilFallback = Default
 
     fun custom(
         suspenseFallback: @Composable context(SoilSuspenseContext) BoxScope.() -> Unit,
@@ -41,7 +41,7 @@ object SoilFallbackDefaults {
     )
 }
 
-private object Simple : SoilFallback {
+private object Default : SoilFallback {
     override val suspenseFallback: @Composable context(SoilSuspenseContext) BoxScope.() -> Unit
         get() = { DefaultSuspenseFallbackContent() }
     override val errorFallback: @Composable context(SoilErrorContext) BoxScope.() -> Unit

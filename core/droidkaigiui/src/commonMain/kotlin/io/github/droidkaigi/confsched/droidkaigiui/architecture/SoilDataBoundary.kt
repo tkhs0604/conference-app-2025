@@ -18,7 +18,7 @@ context(_: ScreenContext)
 fun <T> SoilDataBoundary(
     state: DataModel<T>,
     modifier: Modifier = Modifier,
-    fallback: SoilFallback = SoilFallbackDefaults.simple(),
+    fallback: SoilFallback = SoilFallbackDefaults.default(),
     content: @Composable (T) -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -44,7 +44,7 @@ fun <T1, T2> SoilDataBoundary(
     state1: DataModel<T1>,
     state2: DataModel<T2>,
     modifier: Modifier = Modifier,
-    fallback: SoilFallback = SoilFallbackDefaults.simple(),
+    fallback: SoilFallback = SoilFallbackDefaults.default(),
     content: @Composable (T1, T2) -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -76,7 +76,7 @@ fun <T1, T2, T3> SoilDataBoundary(
     state2: DataModel<T2>,
     state3: DataModel<T3>,
     modifier: Modifier = Modifier,
-    fallback: SoilFallback = SoilFallbackDefaults.simple(),
+    fallback: SoilFallback = SoilFallbackDefaults.default(),
     content: @Composable (T1, T2, T3) -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
