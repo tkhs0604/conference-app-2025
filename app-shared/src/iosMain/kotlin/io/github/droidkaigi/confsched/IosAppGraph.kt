@@ -94,6 +94,7 @@ import soil.query.annotation.InternalSoilQueryApi
     isExtendable = true,
 )
 interface IosAppGraph : AppGraph {
+    val swrClientPlus: SwrClientPlus
     val sessionsRepository: SessionsRepository
     val contributorsRepository: ContributorsRepository
     val sponsorsRepository: SponsorsRepository
