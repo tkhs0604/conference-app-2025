@@ -34,7 +34,6 @@ fun ContributorsScreen(
                 title = stringResource(ContributorsRes.string.contributor_title),
                 onBackClick = onBackClick,
                 scrollBehavior = scrollBehavior,
-                navIconContentDescription = "Back",
             )
         },
         modifier = modifier,

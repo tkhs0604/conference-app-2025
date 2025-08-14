@@ -11,7 +11,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.union
 import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -39,7 +43,7 @@ import androidx.compose.ui.unit.sp
 fun AnimatedTextTopAppBar(
     title: String,
     modifier: Modifier = Modifier,
-    navigationIcon: @Composable () -> Unit = {},
+    onBackClick: (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {},
     windowInsets: WindowInsets = AnimatedTextTopAppBarDefaults.windowInsets(),
     colors: TopAppBarColors = TopAppBarDefaults.topAppBarColors().copy(
@@ -98,12 +102,18 @@ fun AnimatedTextTopAppBar(
         },
         modifier = modifier,
         navigationIcon = {
-            Box(
-                modifier = Modifier.onSizeChanged {
-                    navigationIconWidthDp = with(density) { it.width / density }
+            onBackClick?.let {
+                IconButton(
+                    onClick = it,
+                    modifier = Modifier.onSizeChanged {
+                        navigationIconWidthDp = with(density) { it.width / density }
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "Back",
+                    )
                 }
-            ) {
-                navigationIcon()
             }
         },
         actions = actions,
