@@ -5,7 +5,8 @@ enum KMPDependencies {
         let timetableUseCaseImpl = TimetableUseCaseImpl()
         let eventMapUseCaseImpl = EventMapUseCaseImpl()
         dependencyValues.timetableUseCase = .init(
-            load: timetableUseCaseImpl.load
+            load: timetableUseCaseImpl.load,
+            toggleFavorite: timetableUseCaseImpl.toggleFavorite
         )
 
         let sponsorUseCaseImpl = SponsorUseCaseImpl()

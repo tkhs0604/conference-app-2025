@@ -65,8 +65,11 @@ public final class TimetableProvider {
         }
     }
 
+    @MainActor
     public func toggleFavorite(_ item: TimetableItemWithFavorite) {
-        // TODO: Implement
+        Task {
+            await timeteableUseCase.toggleFavorite(itemId: item.id)
+        }
     }
 
     private func sortListIntoTimeGroups(timetableItems: [TimetableItemWithFavorite]) -> [TimetableTimeGroupItems] {

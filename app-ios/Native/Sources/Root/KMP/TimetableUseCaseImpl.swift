@@ -11,4 +11,9 @@ struct TimetableUseCaseImpl {
             .init(from: $0)
         }
     }
+
+    func toggleFavorite(_ itemId: Model.TimetableItemId) async {
+        try! await KMPDependencyProvider.shared.appGraph.sessionsRepository
+            .toggleFavorite(timetableItemId: .init(value: itemId.value))
+    }
 }
