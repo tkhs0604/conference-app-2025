@@ -3,9 +3,11 @@
 package io.github.droidkaigi.confsched.droidkaigiui.architecture
 
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import io.github.droidkaigi.confsched.droidkaigiui.compositionlocal.safeDrawingWithBottomNavBar
 
 sealed interface SoilFallback {
     val suspenseFallback: @Composable context(SoilSuspenseContext) BoxScope.() -> Unit
@@ -15,14 +17,19 @@ sealed interface SoilFallback {
 object SoilFallbackDefaults {
     fun empty(): SoilFallback = Empty
 
+    @Composable
     fun appBar(
         title: String,
         onBackClick: (() -> Unit)? = null,
         appBarSize: AppBarSize = AppBarSize.Default,
+        // Allowing WindowInsets to be overridden to prevent layout jump/glitches
+        // when navigating between screens with and without a bottom navigation bar.
+        windowInsets: WindowInsets = WindowInsets.safeDrawingWithBottomNavBar,
     ): SoilFallback = AppBar(
         title = title,
         onBackClick = onBackClick,
         size = appBarSize,
+        windowInsets = windowInsets,
     )
 
     fun simple(): SoilFallback = Simple
@@ -50,14 +57,16 @@ private object Simple : SoilFallback {
 
 private class AppBar(
     val title: String,
-    val onBackClick: (() -> Unit)? = null,
-    val size: AppBarSize = AppBarSize.Default,
+    val onBackClick: (() -> Unit)?,
+    val size: AppBarSize,
+    val windowInsets: WindowInsets,
 ) : SoilFallback {
     override val suspenseFallback: @Composable context(SoilSuspenseContext) BoxScope.() -> Unit = {
         AppBarFallbackScaffold(
             title = title,
             onBackClick = onBackClick,
             appBarSize = size,
+            windowInsets = windowInsets,
         ) { innerPadding ->
             DefaultSuspenseFallbackContent(
                 modifier = Modifier.padding(innerPadding)
@@ -70,6 +79,7 @@ private class AppBar(
             title = title,
             onBackClick = onBackClick,
             appBarSize = size,
+            windowInsets = windowInsets,
         ) { innerPadding ->
             DefaultErrorFallbackContent(
                 modifier = Modifier.padding(innerPadding),

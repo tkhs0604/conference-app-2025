@@ -26,7 +26,8 @@ context(_: SoilFallbackContext)
 fun AppBarFallbackScaffold(
     title: String,
     onBackClick: (() -> Unit)? = null,
-    appBarSize: AppBarSize,
+    appBarSize: AppBarSize = AppBarSize.Default,
+    windowInsets: WindowInsets = WindowInsets.safeDrawingWithBottomNavBar,
     content: @Composable (innerPadding: PaddingValues) -> Unit,
 ) {
     Scaffold(
@@ -57,7 +58,7 @@ fun AppBarFallbackScaffold(
                 }
             }
         },
-        contentWindowInsets = WindowInsets.safeDrawingWithBottomNavBar,
+        contentWindowInsets = windowInsets,
         content = content,
     )
 }

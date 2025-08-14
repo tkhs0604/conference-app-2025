@@ -1,5 +1,7 @@
 package io.github.droidkaigi.confsched.contributors
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.runtime.Composable
 import io.github.droidkaigi.confsched.droidkaigiui.architecture.AppBarSize
 import io.github.droidkaigi.confsched.droidkaigiui.architecture.SoilDataBoundary
@@ -19,6 +21,7 @@ fun ContributorsScreenRoot(
             title = stringResource(ContributorsRes.string.contributor_title),
             onBackClick = onBackClick,
             appBarSize = AppBarSize.Medium,
+            windowInsets = WindowInsets.safeDrawing,
         ),
     ) {
         ContributorsScreen(
