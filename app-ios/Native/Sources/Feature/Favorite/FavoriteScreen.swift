@@ -22,7 +22,7 @@ public struct FavoriteScreen: View {
 
             Group {
                 if filteredItems.isEmpty {
-                    emptyView
+                    EmptyFavoritesView()
                 } else {
                     ScrollView {
                         LazyVStack(spacing: 0) {
@@ -62,35 +62,7 @@ public struct FavoriteScreen: View {
         }
     }
 
-    @ViewBuilder
-    private var emptyView: some View {
-        VStack(spacing: 24) {
-            Image(systemName: "heart.fill")
-                .resizable()
-                .frame(width: 36, height: 36)
-                .foregroundStyle(AssetColors.primaryFixed.swiftUIColor)
-                .padding(24)
-                .background(
-                    RoundedRectangle(cornerRadius: 24)
-                        .fill(AssetColors.onPrimary.swiftUIColor)
-                )
-
-            VStack(spacing: 8) {
-                Text("登録されたセッションが\nありません", bundle: .module)
-                    .font(Typography.titleLarge)
-                    .foregroundStyle(AssetColors.onSurface.swiftUIColor)
-                    .multilineTextAlignment(.center)
-
-                Text("気になるセッションをお気に入り登録しましょう", bundle: .module)
-                    .font(Typography.bodyMedium)
-                    .foregroundStyle(AssetColors.onSurfaceVariant.swiftUIColor)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 40)
-            }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-
+    
     private var filteredItems: [TimetableTimeGroupItems] {
         switch selectedDate {
         case .all:
