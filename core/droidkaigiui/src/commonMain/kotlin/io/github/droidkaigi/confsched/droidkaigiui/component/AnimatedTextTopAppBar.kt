@@ -106,7 +106,7 @@ fun AnimatedTextTopAppBar(
                 IconButton(
                     onClick = it,
                     modifier = Modifier.onSizeChanged {
-                        navigationIconWidthDp = with(density) { it.width / density }
+                        navigationIconWidthDp = it.width / density
                     }
                 ) {
                     Icon(
