@@ -4,4 +4,4 @@
 build
 local.properties
 .idea
-**/bin/
+bin
