@@ -16,5 +16,10 @@ enum KMPDependencies {
         dependencyValues.eventMapUseCase = .init(
             load: eventMapUseCaseImpl.load
         )
+        dependencyValues.kmpAppGraphUseCase = .init(
+            appGraph: {
+                KMPDependencyProvider.shared.appGraph
+            }
+        )
     }
 }
