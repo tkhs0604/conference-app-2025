@@ -39,6 +39,7 @@ class SessionsRepository(
             emit(Timetable())
         }
 
+    @Throws(Throwable::class)
     suspend fun toggleFavorite(timetableItemId: TimetableItemId) {
         userDataStore.toggleFavorite(timetableItemId)
     }
