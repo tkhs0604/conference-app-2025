@@ -20,36 +20,14 @@ public struct FavoriteScreen: View {
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
 
-            Group {
-                if filteredItems.isEmpty {
-                    EmptyFavoritesView()
-                } else {
-                    ScrollView {
-                        LazyVStack(spacing: 0) {
-                            ForEach(filteredItems.indices, id: \.self) { index in
-                                let timeGroup = filteredItems[index]
-
-                                TimeGroupList(
-                                    timeGroup: timeGroup,
-                                    onItemTap: { item in
-                                        onNavigate(.timetableDetail(item))
-                                    },
-                                    onFavoriteTap: { item, _ in
-                                        presenter.toggleFavorite(item)
-                                    }
-                                )
-
-                                if index < filteredItems.count - 1 {
-                                    DashedDivider()
-                                        .padding(.vertical, 16)
-                                        .padding(.horizontal, 16)
-                                }
-                            }
-                        }
-                        .padding(.vertical, 20)
-                        .padding(.bottom, 80)  // Tab bar padding
-                    }
-                }
+            if filteredItems.isEmpty {
+                EmptyFavoritesView()
+            } else {
+                FavoriteItemList(
+                    items: filteredItems,
+                    onItemTap: { item in onNavigate(.timetableDetail(item)) },
+                    onToggleFavorite: { item in presenter.toggleFavorite(item) },
+                )
             }
         }
         .background(AssetColors.background.swiftUIColor)
@@ -57,12 +35,11 @@ public struct FavoriteScreen: View {
         #if os(iOS)
             .navigationBarTitleDisplayMode(.large)
         #endif
-        .onAppear {
-            presenter.loadInitial()
-        }
+            .onAppear {
+                presenter.loadInitial()
+            }
     }
 
-    
     private var filteredItems: [TimetableTimeGroupItems] {
         switch selectedDate {
         case .all:
