@@ -117,28 +117,28 @@ public struct TimetableDetailScreen: View {
         VStack(alignment: .leading, spacing: 20) {
             VStack(spacing: 16) {
                 InformationRow(
-                    icon: Image("ic_schedule", bundle: .module),
+                    icon: AssetImages.icSchedule.swiftUIImage,
                     title: "日時",
                     titleColor: presenter.timetableItem.timetableItem.room.roomTheme.primaryColor,
                     content: formattedDateTimeString,
                     isStrikethrough: presenter.isCancelledSession
                 )
                 InformationRow(
-                    icon: Image("ic_location_on", bundle: .module),
+                    icon: AssetImages.icLocationOn.swiftUIImage,
                     title: "場所",
                     titleColor: presenter.timetableItem.timetableItem.room.roomTheme.primaryColor,
                     content: presenter.timetableItem.timetableItem.room.displayNameWithFloor,
                     isStrikethrough: presenter.isCancelledSession
                 )
                 InformationRow(
-                    icon: Image("ic_language", bundle: .module),
+                    icon: AssetImages.icLanguage.swiftUIImage,
                     title: "対応言語",
                     titleColor: presenter.timetableItem.timetableItem.room.roomTheme.primaryColor,
                     content: getSupportedLangString(),
                     isStrikethrough: presenter.isCancelledSession
                 )
                 InformationRow(
-                    icon: Image("ic_category", bundle: .module),
+                    icon: AssetImages.icCategory.swiftUIImage,
                     title: "カテゴリ",
                     titleColor: presenter.timetableItem.timetableItem.room.roomTheme.primaryColor,
                     content: presenter.timetableItem.timetableItem.category.title.currentLangTitle,
@@ -187,9 +187,9 @@ public struct TimetableDetailScreen: View {
                         } label: {
                             HStack(spacing: 8) {
                                 if presenter.isFavorite {
-                                    Image(systemName: "heart.fill")
+                                    AssetImages.icFavFill.swiftUIImage
                                 } else {
-                                    Image(systemName: "heart")
+                                    AssetImages.icFav.swiftUIImage
                                 }
 
                                 Text(presenter.isFavorite ? "ブックマークを解除" : "ブックマークに登録")
@@ -207,7 +207,7 @@ public struct TimetableDetailScreen: View {
                             isShowFabMenu = false
                         } label: {
                             HStack(spacing: 8) {
-                                Image(.icTimetable)
+                                AssetImages.icTimetable.swiftUIImage
 
                                 Text("カレンダーに登録")
                                     .font(Typography.titleMedium)
@@ -222,7 +222,7 @@ public struct TimetableDetailScreen: View {
                         if let shareLink = presenter.shareSession() {
                             ShareLink(item: shareLink) {
                                 HStack(spacing: 8) {
-                                    Image(.icShare)
+                                    AssetImages.icShare.swiftUIImage
 
                                     Text("リンクをシェア")
                                         .font(Typography.titleMedium)
@@ -244,7 +244,7 @@ public struct TimetableDetailScreen: View {
                                 isShowFabMenu = false
                             } label: {
                                 HStack(spacing: 8) {
-                                    Image(.icDocument)
+                                    AssetImages.icDescription.swiftUIImage
 
                                     Text("発表スライドを開く")
                                         .font(Typography.titleMedium)
@@ -266,7 +266,7 @@ public struct TimetableDetailScreen: View {
                                 isShowFabMenu = false
                             } label: {
                                 HStack(spacing: 8) {
-                                    Image(.icVideo)
+                                    AssetImages.icPlayCircle.swiftUIImage
 
                                     Text("動画を見る")
                                         .font(Typography.titleMedium)
@@ -289,9 +289,9 @@ public struct TimetableDetailScreen: View {
                                 Image(systemName: "xmark")
                             } else {
                                 if presenter.isFavorite {
-                                    Image(systemName: "heart.fill")
+                                    AssetImages.icFavFill.swiftUIImage
                                 } else {
-                                    Image(systemName: "heart")
+                                    AssetImages.icFav.swiftUIImage
                                 }
                             }
                         }
