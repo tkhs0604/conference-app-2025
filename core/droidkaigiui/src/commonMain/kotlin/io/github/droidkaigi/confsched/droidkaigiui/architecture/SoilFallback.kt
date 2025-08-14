@@ -15,8 +15,6 @@ sealed interface SoilFallback {
 }
 
 object SoilFallbackDefaults {
-    fun empty(): SoilFallback = Empty
-
     @Composable
     fun appBar(
         title: String,
@@ -41,11 +39,6 @@ object SoilFallbackDefaults {
         suspenseFallback = suspenseFallback,
         errorFallback = errorFallback,
     )
-}
-
-private object Empty : SoilFallback {
-    override val suspenseFallback: @Composable context(SoilSuspenseContext) BoxScope.() -> Unit = {}
-    override val errorFallback: @Composable context(SoilErrorContext) BoxScope.() -> Unit = {}
 }
 
 private object Simple : SoilFallback {
