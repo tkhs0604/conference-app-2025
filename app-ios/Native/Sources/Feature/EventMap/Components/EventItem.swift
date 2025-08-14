@@ -24,7 +24,7 @@ struct EventItem: View {
             if let message = event.message {
                 Text(message)
                     .font(Typography.bodyMedium)
-                    .foregroundColor(AssetColors.tertiayFixedDim.swiftUIColor)
+                    .foregroundColor(AssetColors.tertiaryFixedDim.swiftUIColor)
                     .fixedSize(horizontal: false, vertical: true)
             }
 
