@@ -7,6 +7,11 @@ import Presentation
 @MainActor
 @Observable
 final class TimetableDetailPresenter {
+    struct Toast {
+        var message: String
+        var action: (title: String, handler: () -> Void)? = nil
+    }
+
     let timetableItem: TimetableItemWithFavorite
     private let timetableProvider = TimetableProvider()
     private let eventStore: EKEventStore
@@ -15,8 +20,7 @@ final class TimetableDetailPresenter {
         timetableItem.isFavorited
     }
 
-    var showToast = false
-    var toastMessage = ""
+    var toast: Toast?
 
     init(timetableItem: TimetableItemWithFavorite) {
         self.timetableItem = timetableItem
@@ -26,8 +30,7 @@ final class TimetableDetailPresenter {
     func toggleFavorite() {
         timetableProvider.toggleFavorite(timetableItem)
         if !timetableItem.isFavorited {
-            showToast = true
-            toastMessage = "ブックマークに追加しました"
+            toast = Toast(message: "ブックマークに追加されました", action: ("一覧を見る", navigateToFavorite))
         }
     }
 
@@ -42,16 +45,14 @@ final class TimetableDetailPresenter {
                     if granted {
                         self.createCalendarEvent()
                     } else {
-                        self.showToast = true
-                        self.toastMessage = "カレンダーへのアクセスが許可されていません"
+                        self.toast = Toast(message: "カレンダーへのアクセスが許可されていません")
                     }
                 }
             }
         case .fullAccess, .writeOnly:
             createCalendarEvent()
         case .restricted, .denied:
-            showToast = true
-            toastMessage = "カレンダーへのアクセスが許可されていません"
+            self.toast = Toast(message: "カレンダーへのアクセスが許可されていません")
         @unknown default:
             break
         }
@@ -74,11 +75,9 @@ final class TimetableDetailPresenter {
 
         do {
             try eventStore.save(event, span: .thisEvent)
-            showToast = true
-            toastMessage = "カレンダーに追加しました"
+            toast = Toast(message: "カレンダーに追加しました")
         } catch {
-            showToast = true
-            toastMessage = "カレンダーの追加に失敗しました"
+            toast = Toast(message: "カレンダーの追加に失敗しました")
         }
     }
 
@@ -88,7 +87,7 @@ final class TimetableDetailPresenter {
         return url
     }
 
-    func navigateToFavorite() {
+    private func navigateToFavorite() {
         // TODO: Add logic to navigate to favorite screen
     }
 
