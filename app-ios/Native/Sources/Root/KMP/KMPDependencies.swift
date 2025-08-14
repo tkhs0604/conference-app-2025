@@ -12,7 +12,7 @@ enum KMPDependencies {
         dependencyValues.sponsorUseCase = .init(
             load: sponsorUseCaseImpl.load
         )
-        
+
         let eventMapUseCaseImpl = EventMapUseCaseImpl()
         dependencyValues.eventMapUseCase = .init(
             load: eventMapUseCaseImpl.load
