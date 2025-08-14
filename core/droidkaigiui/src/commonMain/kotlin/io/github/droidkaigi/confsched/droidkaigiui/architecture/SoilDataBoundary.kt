@@ -1,22 +1,13 @@
-package io.github.droidkaigi.confsched.droidkaigiui
+package io.github.droidkaigi.confsched.droidkaigiui.architecture
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.material3.CircularWavyProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import io.github.droidkaigi.confsched.context.ScreenContext
-import io.github.droidkaigi.confsched.droidkaigiui.component.DefaultErrorFallbackContent
 import kotlinx.coroutines.launch
 import soil.plant.compose.reacty.Await
 import soil.plant.compose.reacty.ErrorBoundary
-import soil.plant.compose.reacty.ErrorBoundaryContext
 import soil.plant.compose.reacty.Suspense
 import soil.query.compose.QueryObject
 import soil.query.compose.SubscriptionObject
@@ -27,16 +18,13 @@ context(_: ScreenContext)
 fun <T> SoilDataBoundary(
     state: DataModel<T>,
     modifier: Modifier = Modifier,
-    errorFallback: @Composable BoxScope.(ErrorBoundaryContext) -> Unit = {
-        DefaultErrorFallbackContent(errorBoundaryContext = it)
-    },
-    suspenseFallback: @Composable BoxScope.() -> Unit = DefaultSuspenseFallback,
+    fallback: SoilFallback = SoilFallbackDefaults.default(),
     content: @Composable (T) -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
 
     ErrorBoundary(
-        fallback = errorFallback,
+        fallback = fallback.errorFallback,
         onReset = {
             coroutineScope.launch {
                 state.performResetIfNeeded()
@@ -44,7 +32,7 @@ fun <T> SoilDataBoundary(
         },
         modifier = modifier,
     ) {
-        Suspense(fallback = suspenseFallback) {
+        Suspense(fallback = fallback.suspenseFallback) {
             Await(state = state, content = content)
         }
     }
@@ -56,16 +44,13 @@ fun <T1, T2> SoilDataBoundary(
     state1: DataModel<T1>,
     state2: DataModel<T2>,
     modifier: Modifier = Modifier,
-    errorFallback: @Composable BoxScope.(ErrorBoundaryContext) -> Unit = {
-        DefaultErrorFallbackContent(errorBoundaryContext = it)
-    },
-    suspenseFallback: @Composable BoxScope.() -> Unit = DefaultSuspenseFallback,
+    fallback: SoilFallback = SoilFallbackDefaults.default(),
     content: @Composable (T1, T2) -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
 
     ErrorBoundary(
-        fallback = errorFallback,
+        fallback = fallback.errorFallback,
         onReset = {
             coroutineScope.launch {
                 state1.performResetIfNeeded()
@@ -74,7 +59,7 @@ fun <T1, T2> SoilDataBoundary(
         },
         modifier = modifier,
     ) {
-        Suspense(fallback = suspenseFallback) {
+        Suspense(fallback = fallback.suspenseFallback) {
             Await(
                 state1 = state1,
                 state2 = state2,
@@ -91,16 +76,13 @@ fun <T1, T2, T3> SoilDataBoundary(
     state2: DataModel<T2>,
     state3: DataModel<T3>,
     modifier: Modifier = Modifier,
-    errorFallback: @Composable BoxScope.(ErrorBoundaryContext) -> Unit = {
-        DefaultErrorFallbackContent(errorBoundaryContext = it)
-    },
-    suspenseFallback: @Composable BoxScope.() -> Unit = DefaultSuspenseFallback,
+    fallback: SoilFallback = SoilFallbackDefaults.default(),
     content: @Composable (T1, T2, T3) -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
 
     ErrorBoundary(
-        fallback = errorFallback,
+        fallback = fallback.errorFallback,
         onReset = {
             coroutineScope.launch {
                 state1.performResetIfNeeded()
@@ -110,7 +92,7 @@ fun <T1, T2, T3> SoilDataBoundary(
         },
         modifier = modifier,
     ) {
-        Suspense(fallback = suspenseFallback) {
+        Suspense(fallback = fallback.suspenseFallback) {
             Await(
                 state1 = state1,
                 state2 = state2,
@@ -121,19 +103,38 @@ fun <T1, T2, T3> SoilDataBoundary(
     }
 }
 
-const val DefaultSuspenseFallbackTestTag = "DefaultSuspenseFallbackTestTag"
+@Composable
+private fun ErrorBoundary(
+    modifier: Modifier = Modifier,
+    fallback: @Composable context(SoilErrorContext) BoxScope.() -> Unit,
+    onReset: (() -> Unit)? = null,
+    content: @Composable () -> Unit,
+) {
+    ErrorBoundary(
+        fallback = {
+            with(DefaultSoilErrorContext(it)) {
+                fallback()
+            }
+        },
+        onReset = onReset,
+        modifier = modifier,
+        content = content,
+    )
+}
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
-private val DefaultSuspenseFallback: @Composable BoxScope.() -> Unit = {
-    Box(
-        modifier = Modifier
-            .testTag(DefaultSuspenseFallbackTestTag)
-            .safeDrawingPadding()
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center,
-    ) {
-        CircularWavyProgressIndicator()
-    }
+@Composable
+private fun Suspense(
+    fallback: @Composable context(SoilSuspenseContext) BoxScope.() -> Unit,
+    content: @Composable () -> Unit,
+) {
+    Suspense(
+        fallback = {
+            with(DefaultSoilSuspenseContext()) {
+                fallback()
+            }
+        },
+        content = content,
+    )
 }
 
 private suspend fun <T> DataModel<T>.performResetIfNeeded() {

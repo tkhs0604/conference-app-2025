@@ -1,4 +1,4 @@
-package io.github.droidkaigi.confsched.droidkaigiui.component
+package io.github.droidkaigi.confsched.droidkaigiui.architecture
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -13,7 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
-import io.github.droidkaigi.confsched.context.ScreenContext
 import io.github.droidkaigi.confsched.droidkaigiui.DroidkaigiuiRes
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.error_mascot
@@ -22,19 +21,19 @@ import io.github.droidkaigi.confsched.droidkaigiui.retry
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import soil.plant.compose.reacty.ErrorBoundaryContext
 
+
+const val DefaultErrorFallbackContentTestTag = "DefaultErrorFallbackContentTestTag"
 const val DefaultErrorFallbackContentRetryTestTag = "DefaultErrorFallbackContentRetry"
 
-context(_: ScreenContext)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DefaultErrorFallbackContent(
-    errorBoundaryContext: ErrorBoundaryContext,
-    modifier: Modifier = Modifier,
-) {
+context(errorContext: SoilErrorContext)
+fun DefaultErrorFallbackContent(modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .testTag(DefaultErrorFallbackContentTestTag),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(35.dp, Alignment.CenterVertically),
     ) {
@@ -48,7 +47,7 @@ fun DefaultErrorFallbackContent(
             color = MaterialTheme.colorScheme.onSurface,
         )
         Button(
-            onClick = { errorBoundaryContext.reset?.invoke() },
+            onClick = { errorContext.errorBoundaryContext.reset?.invoke() },
             modifier = Modifier.testTag(DefaultErrorFallbackContentRetryTestTag),
         ) {
             Text(
@@ -64,11 +63,6 @@ fun DefaultErrorFallbackContent(
 @Composable
 private fun DefaultErrorFallbackContentPreview() {
     KaigiPreviewContainer {
-        DefaultErrorFallbackContent(
-            errorBoundaryContext = ErrorBoundaryContext(
-                err = Throwable("An error occurred"),
-                reset = {},
-            ),
-        )
+        DefaultErrorFallbackContent()
     }
 }

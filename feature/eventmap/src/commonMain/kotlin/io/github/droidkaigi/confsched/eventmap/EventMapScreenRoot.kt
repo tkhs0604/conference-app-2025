@@ -2,7 +2,9 @@ package io.github.droidkaigi.confsched.eventmap
 
 import androidx.compose.runtime.Composable
 import io.github.droidkaigi.confsched.common.compose.rememberEventFlow
-import io.github.droidkaigi.confsched.droidkaigiui.SoilDataBoundary
+import io.github.droidkaigi.confsched.droidkaigiui.architecture.SoilDataBoundary
+import io.github.droidkaigi.confsched.droidkaigiui.architecture.SoilFallbackDefaults
+import org.jetbrains.compose.resources.stringResource
 import soil.query.compose.rememberQuery
 
 context(screenContext: EventMapScreenContext)
@@ -12,6 +14,9 @@ fun EventMapScreenRoot(
 ) {
     SoilDataBoundary(
         state = rememberQuery(screenContext.eventMapQueryKey),
+        fallback = SoilFallbackDefaults.appBar(
+            title = stringResource(EventmapRes.string.event_map),
+        ),
     ) { events ->
         val eventFlow = rememberEventFlow<EventMapScreenEvent>()
         val uiState = eventMapScreenPresenter(events = events, eventFlow = eventFlow)
