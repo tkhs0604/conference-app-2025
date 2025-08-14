@@ -7,7 +7,7 @@ import UseCase
 public final class EventMapProvider {
     @ObservationIgnored
     @Dependency(\.eventMapUseCase) private var eventMapUseCase
-    
+
     @ObservationIgnored
     private var fetchEvents: Task<Void, Never>?
 
@@ -19,7 +19,7 @@ public final class EventMapProvider {
     @MainActor
     public func subscribeEventMapEventsIfNeeded() {
         guard fetchEvents == nil else { return }
-        
+
         self.fetchEvents = Task {
             for await events in eventMapUseCase.load() {
                 self.events = events
