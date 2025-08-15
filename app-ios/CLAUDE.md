@@ -134,7 +134,9 @@ Install git hooks: `./Scripts/install-hooks.sh`
 ## Important Build and Debug Notes
 ### Build Issues
 - **Swift Dependencies Macro Error**: The project may encounter macro validation errors with swift-dependencies package when building. This is a known issue with the package itself, not your code changes.
-  - Try using `-skipMacroValidation` flag when building via xcodebuild
+  - Error: "cannot load module 'SwiftDiagnostics' built with SDK 'macosx15.5' when using SDK 'iphonesimulator18.5'"
+  - **Workaround**: Open the project in Xcode and build from there, which handles the macro plugin correctly
+  - Alternative: Build the app without the DependenciesMacrosPlugin target by commenting it out temporarily
   - The app binary installed on simulator may still work despite build errors
 
 ### Debugging

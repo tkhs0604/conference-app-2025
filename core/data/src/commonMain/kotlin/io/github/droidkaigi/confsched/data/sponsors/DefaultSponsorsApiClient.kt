@@ -34,11 +34,14 @@ public class DefaultSponsorsApiClient(
 }
 
 private fun SponsorsResponse.toSponsorList(): PersistentList<Sponsor> {
-    return sponsors.map { it.toSponsor() }.toPersistentList()
+    return sponsors.mapIndexed { index, sponsor -> 
+        sponsor.toSponsor(index)
+    }.toPersistentList()
 }
 
-private fun SponsorResponse.toSponsor(): Sponsor {
+private fun SponsorResponse.toSponsor(index: Int): Sponsor {
     return Sponsor(
+        id = "sponsor_$index",
         name = sponsorName,
         logo = sponsorLogo,
         plan = SponsorPlan.ofOrNull(plan) ?: SponsorPlan.SUPPORTER,

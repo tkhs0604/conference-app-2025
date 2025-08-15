@@ -56,11 +56,13 @@ struct KeyVisual: View {
                         .font(.system(size: 14, weight: .regular))
                         .lineSpacing(-6)
 
-                    Link(destination: URL(string: "https://goo.gl/maps/vv9sE19JvRjYKtSP9")!) {
-                        Text("Check Map")
-                            .typographyStyle(.titleSmall)
-                            .foregroundStyle(AssetColors.jellyfish.swiftUIColor)
-                            .underline()
+                    if let mapURL = URL(string: "https://goo.gl/maps/vv9sE19JvRjYKtSP9") {
+                        Link(destination: mapURL) {
+                            Text("Check Map")
+                                .typographyStyle(.titleSmall)
+                                .foregroundStyle(AssetColors.jellyfish.swiftUIColor)
+                                .underline()
+                        }
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

@@ -16,9 +16,9 @@ public struct StaffScreen: View {
                 ScrollView {
                     LazyVStack(spacing: 0) {
                         ForEach(presenter.staffList) { staff in
-                            Button(action: {
+                            Button {
                                 presenter.staffTapped(staff)
-                            }) {
+                            } label: {
                                 StaffLabel(staff: staff)
                             }
                             .buttonStyle(PlainButtonStyle())

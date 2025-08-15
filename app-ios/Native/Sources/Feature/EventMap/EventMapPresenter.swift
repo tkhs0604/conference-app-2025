@@ -11,8 +11,8 @@ final class EventMapPresenter {
 
     init() {}
 
-    func loadInitial() async {
-        await eventMap.fetchEvents()
+    func loadInitial() {
+        eventMap.subscribeEventMapEventsIfNeeded()
     }
 
     func selectFloorMap(_ floorMap: FloorMap) {

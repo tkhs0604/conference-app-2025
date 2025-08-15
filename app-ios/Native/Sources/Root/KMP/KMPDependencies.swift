@@ -3,7 +3,6 @@ import Dependencies
 enum KMPDependencies {
     static func prepareKMPDependencies(_ dependencyValues: inout DependencyValues) {
         let timetableUseCaseImpl = TimetableUseCaseImpl()
-        let eventMapUseCaseImpl = EventMapUseCaseImpl()
         dependencyValues.timetableUseCase = .init(
             load: timetableUseCaseImpl.load,
             toggleFavorite: timetableUseCaseImpl.toggleFavorite
@@ -13,6 +12,23 @@ enum KMPDependencies {
         dependencyValues.sponsorUseCase = .init(
             load: sponsorUseCaseImpl.load
         )
+
+        let sponsorsUseCaseImpl = SponsorsUseCaseImpl()
+        dependencyValues.sponsorsUseCase = .init(
+            load: sponsorsUseCaseImpl.load
+        )
+
+        let staffUseCaseImpl = StaffUseCaseImpl()
+        dependencyValues.staffUseCase = .init(
+            load: staffUseCaseImpl.load
+        )
+
+        let contributorsUseCaseImpl = ContributorsUseCaseImpl()
+        dependencyValues.contributorsUseCase = .init(
+            load: contributorsUseCaseImpl.load
+        )
+
+        let eventMapUseCaseImpl = EventMapUseCaseImpl()
         dependencyValues.eventMapUseCase = .init(
             load: eventMapUseCaseImpl.load
         )

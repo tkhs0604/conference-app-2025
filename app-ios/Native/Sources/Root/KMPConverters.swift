@@ -308,6 +308,92 @@ extension Model.Filters {
     }
 }
 
+// MARK: - Sponsor Converters
+
+extension Model.Sponsor {
+    init(from shared: shared.Sponsor) {
+        // Use FileManager URL as a safe fallback
+        let fallbackURL = URL(fileURLWithPath: "/")
+        let logoURL = URL(string: shared.logo) ?? fallbackURL
+        let websiteURL = URL(string: shared.link) ?? fallbackURL
+
+        self.init(
+            id: shared.id,
+            name: shared.name,
+            logoUrl: logoURL,
+            websiteUrl: websiteURL,
+            plan: Model.SponsorPlan(from: shared.plan)
+        )
+    }
+}
+
+extension Model.SponsorPlan {
+    init(from shared: shared.SponsorPlan) {
+        switch shared {
+        case .platinum:
+            self = .platinum
+        case .gold:
+            self = .gold
+        case .silver:
+            self = .silver
+        case .bronze:
+            self = .bronze
+        case .supporter:
+            self = .supporter
+        }
+    }
+}
+
+// MARK: - Staff Converters
+
+extension Model.Staff {
+    init(from shared: shared.Staff) {
+        // Use FileManager URL as a safe fallback
+        let fallbackURL = URL(fileURLWithPath: "/")
+        let iconURL = URL(string: shared.icon) ?? fallbackURL
+
+        self.init(
+            id: shared.id,
+            name: shared.name,
+            iconUrl: iconURL,
+            profileUrl: shared.profileUrl.flatMap { URL(string: $0) },
+            role: nil  // KMP Staff doesn't have role field
+        )
+    }
+}
+
+// MARK: - Contributor Converters
+
+extension Model.Contributor {
+    init(from shared: shared.Contributor) {
+        // Use FileManager URL as a safe fallback
+        let fallbackURL = URL(fileURLWithPath: "/")
+        let profileURL = shared.profileUrl.flatMap { URL(string: $0) }
+        let iconURL = URL(string: shared.iconUrl) ?? fallbackURL
+
+        self.init(
+            id: String(shared.id),
+            name: shared.username,
+            url: profileURL ?? fallbackURL,
+            iconUrl: iconURL
+        )
+    }
+}
+
+// MARK: - EventMapEvent Converters
+
+extension Model.EventMapEvent {
+    init(from shared: shared.EventMapEvent) {
+        self.init(
+            name: .init(from: shared.name),
+            description: .init(from: shared.description_),
+            room: .init(from: shared.room),
+            moreDetailUrl: shared.moreDetailsUrl.flatMap { URL(string: $0) },
+            message: shared.message.map { .init(from: $0) }
+        )
+    }
+}
+
 // MARK: - Helper Extensions
 
 extension shared.KotlinInstant {

@@ -11,18 +11,18 @@ struct EventItem: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 12) {
                 RoomTag(room: event.room)
-                Text(event.title)
+                Text(event.name.currentLangTitle)
                     .font(Typography.titleMedium)
                     .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
             }
 
-            Text(event.description)
+            Text(event.description.currentLangTitle)
                 .font(Typography.bodyLarge)
                 .foregroundColor(AssetColors.onSurfaceVariant.swiftUIColor)
                 .fixedSize(horizontal: false, vertical: true)
 
             if let message = event.message {
-                Text(message)
+                Text(message.currentLangTitle)
                     .font(Typography.bodyMedium)
                     .foregroundColor(AssetColors.tertiaryFixedDim.swiftUIColor)
                     .fixedSize(horizontal: false, vertical: true)
