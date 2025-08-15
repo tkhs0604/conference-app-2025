@@ -1,7 +1,7 @@
 import FavoriteFeature
 import Model
-import shared
 import Observation
+import shared
 
 @MainActor
 @Observable
