@@ -42,7 +42,6 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun AnimatedMediumTopAppBar(
     title: String,
     onBackClick: () -> Unit,
-    navIconContentDescription: String?,
     modifier: Modifier = Modifier,
     actions: @Composable RowScope.() -> Unit = {},
     windowInsets: WindowInsets = AnimatedMediumTopAppBarDefaults.windowInsets(),
@@ -105,7 +104,7 @@ fun AnimatedMediumTopAppBar(
             ) {
                 Icon(
                     imageVector = Filled.ArrowBack,
-                    contentDescription = navIconContentDescription,
+                    contentDescription = "Back",
                 )
             }
         },
@@ -131,7 +130,6 @@ private fun AnimatedMediumTopAppBarPreview() {
         AnimatedMediumTopAppBar(
             title = "Title",
             onBackClick = {},
-            navIconContentDescription = "Back",
         )
     }
 }

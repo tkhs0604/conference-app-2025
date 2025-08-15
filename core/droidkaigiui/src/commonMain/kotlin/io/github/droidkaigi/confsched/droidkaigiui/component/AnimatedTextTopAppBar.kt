@@ -7,10 +7,15 @@ import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.union
 import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -20,12 +25,17 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,7 +43,7 @@ import androidx.compose.ui.unit.sp
 fun AnimatedTextTopAppBar(
     title: String,
     modifier: Modifier = Modifier,
-    navigationIcon: @Composable () -> Unit = {},
+    onBackClick: (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {},
     windowInsets: WindowInsets = AnimatedTextTopAppBarDefaults.windowInsets(),
     colors: TopAppBarColors = TopAppBarDefaults.topAppBarColors().copy(
@@ -47,6 +57,8 @@ fun AnimatedTextTopAppBar(
             scrollBehavior?.state?.overlappedFraction?.coerceIn(0f, 1f) ?: 0f
         }
     }
+    val density = LocalDensity.current.density
+    var navigationIconWidthDp by remember { mutableStateOf(0f) }
 
     TopAppBar(
         title = {
@@ -74,6 +86,9 @@ fun AnimatedTextTopAppBar(
                     ),
                     color = textColor,
                     modifier = Modifier
+                        // Ensures the title appears centered when a navigation icon is present.
+                        // Note: The width of actions is currently not considered.
+                        .padding(end = navigationIconWidthDp.dp)
                         .fillMaxWidth()
                         .align(Alignment.Center)
                         .graphicsLayer {
@@ -86,7 +101,21 @@ fun AnimatedTextTopAppBar(
             }
         },
         modifier = modifier,
-        navigationIcon = navigationIcon,
+        navigationIcon = {
+            onBackClick?.let {
+                IconButton(
+                    onClick = it,
+                    modifier = Modifier.onSizeChanged {
+                        navigationIconWidthDp = it.width / density
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "Back",
+                    )
+                }
+            }
+        },
         actions = actions,
         windowInsets = windowInsets,
         colors = colors,
