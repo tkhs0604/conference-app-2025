@@ -1,10 +1,7 @@
-import Dependencies
 import FavoriteFeature
 import Model
-import SwiftUI
-import Theme
-import UseCase
 import shared
+import Observation
 
 @MainActor
 @Observable
