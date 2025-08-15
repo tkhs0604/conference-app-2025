@@ -11,6 +11,7 @@ import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import soil.query.SwrClientPlus
 import soil.query.annotation.ExperimentalSoilQueryApi
@@ -34,6 +35,7 @@ class SessionsRepository(
         }
     }
         .filterNotNull()
+        .distinctUntilChanged()
         .catch {
             // Errors thrown inside flow can't be caught on iOS side, so we catch it here.
             emit(Timetable())

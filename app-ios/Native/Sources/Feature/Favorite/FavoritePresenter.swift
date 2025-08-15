@@ -5,7 +5,7 @@ import Presentation
 
 @MainActor
 @Observable
-final class FavoritePresenter {
+final class FavoritePresenter: @preconcurrency FavoritePresenterProtocol {
     let timetable = TimetableProvider()
 
     var favoriteTimetableItems: [TimetableTimeGroupItems] {
@@ -16,6 +16,8 @@ final class FavoritePresenter {
 
         return sortListIntoTimeGroups(timetableItems: favoriteItems)
     }
+
+    var dateFilter: FavoriteDateFilter = .all
 
     init() {}
 
