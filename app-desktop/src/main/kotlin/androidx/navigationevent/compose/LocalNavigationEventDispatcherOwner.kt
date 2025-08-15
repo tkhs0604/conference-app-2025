@@ -13,6 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/*
+ * Modifications (c) 2025 DroidKaigi Contributors
+ * Reason: Required to compile successfully
+ * Changes:
+ *   - Remove unnecessary `findViewTreeNavigationEventDispatcherOwner` expect function.
+ *   - Minor code formatting changes.
+ */
 
 package androidx.navigationevent.compose
 
@@ -35,9 +42,7 @@ public object LocalNavigationEventDispatcherOwner {
      */
     public val current: NavigationEventDispatcherOwner?
         @Composable
-        get() =
-            LocalNavigationEventDispatcherOwner.current
-                ?: findViewTreeNavigationEventDispatcherOwner()
+        get() = LocalNavigationEventDispatcherOwner.current
 
     /**
      * Associates a [LocalNavigationEventDispatcherOwner] key to a value in a call to
@@ -49,6 +54,3 @@ public object LocalNavigationEventDispatcherOwner {
         return LocalNavigationEventDispatcherOwner.provides(navigationEventDispatcherOwner)
     }
 }
-
-@Composable
-internal expect fun findViewTreeNavigationEventDispatcherOwner(): NavigationEventDispatcherOwner?
