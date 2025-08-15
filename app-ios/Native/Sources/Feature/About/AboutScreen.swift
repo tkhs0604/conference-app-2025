@@ -214,7 +214,7 @@ struct AboutButton: View {
     let systemName: String?
     let image: Image?
     let action: () -> Void
-    
+
     init(title: String, systemName: String? = nil, image: Image? = nil, action: @escaping () -> Void) {
         self.title = title
         self.systemName = systemName
