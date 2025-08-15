@@ -6,7 +6,7 @@ import Presentation
 import UseCase
 
 #if os(iOS)
-import UIKit
+    import UIKit
 #endif
 
 @MainActor
@@ -14,17 +14,17 @@ import UIKit
 final class StaffPresenter {
     @ObservationIgnored
     @Dependency(\.staffUseCase) private var staffUseCase
-    
+
     var staffList: [Model.Staff] = []
     var isLoading = false
-    
+
     private var staffTask: Task<Void, Never>?
 
     init() {}
 
     func loadStaff() async {
         isLoading = true
-        
+
         staffTask?.cancel()
         staffTask = Task {
             for await staffList in staffUseCase.load() {
@@ -39,11 +39,11 @@ final class StaffPresenter {
         // Open GitHub profile if available
         if let profileUrl = staff.profileUrl {
             #if os(iOS)
-            UIApplication.shared.open(profileUrl)
+                UIApplication.shared.open(profileUrl)
             #endif
         }
     }
-    
+
     func cleanup() {
         staffTask?.cancel()
         staffTask = nil

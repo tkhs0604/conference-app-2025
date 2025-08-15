@@ -27,7 +27,7 @@ enum KMPDependencies {
         dependencyValues.contributorsUseCase = .init(
             load: contributorsUseCaseImpl.load
         )
-        
+
         dependencyValues.eventMapUseCase = .init(
             load: eventMapUseCaseImpl.load
         )
