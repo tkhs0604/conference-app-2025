@@ -110,35 +110,25 @@ public struct RootScreen: View {
                 switch favoriteScreenUiMode {
                 case .swiftui:
                     FavoriteScreen(onNavigate: handleFavoriteNavigation)
-                        .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
-                            switch destination {
-                            case .timetableDetail(let item):
-                                TimetableDetailScreen(timetableItem: item)
-                            }
-                        }
                 case .kmpPresenter:
                     FavoriteScreen(
                         presenter: KMPFavoriteScreenPresenter(),
                         onNavigate: handleFavoriteNavigation,
                     )
-                        .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
-                            switch destination {
-                            case .timetableDetail(let item):
-                                TimetableDetailScreen(timetableItem: item)
-                            }
-                        }
                 case .cmp:
-                    KMPFavoritesScreenViewControllerWrapper(
-                        onTimetableItemClick: { _ in
-                            // TODO:
-                        }
-                    )
+                    KMPFavoritesScreenViewControllerWrapper(onNavigate: handleFavoriteNavigation)
                     .ignoresSafeArea(.all)
                 }
 
                 HStack {
                     Spacer()
                     FavoriteScreenUiModePicker(uiMode: $favoriteScreenUiMode)
+                }
+            }
+            .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
+                switch destination {
+                case .timetableDetail(let item):
+                    TimetableDetailScreen(timetableItem: item)
                 }
             }
         }

@@ -1,22 +1,33 @@
 package io.github.droidkaigi.confsched
 
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.window.ComposeUIViewController
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
 import io.github.droidkaigi.confsched.favorites.FavoritesScreenRoot
 import io.github.droidkaigi.confsched.favorites.rememberFavoritesScreenContextRetained
-import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
+import io.github.droidkaigi.confsched.model.sessions.Timetable
+import io.github.droidkaigi.confsched.model.sessions.TimetableItemWithFavorite
 import platform.UIKit.UIViewController
 import soil.query.compose.SwrClientProvider
 
 @Suppress("UNUSED")
 fun kmpFavoritesScreenViewController(
     appGraph: IosAppGraph,
-    onTimetableItemClick: (TimetableItemId) -> Unit,
+    onTimetableItemClick: (TimetableItemWithFavorite) -> Unit,
 ): UIViewController = ComposeUIViewController {
+    val timetableItems by appGraph.sessionsRepository.timetableFlow().collectAsStateWithLifecycle(Timetable())
     KaigiTheme {
         SwrClientProvider(appGraph.swrClientPlus) {
             with(appGraph.rememberFavoritesScreenContextRetained()) {
-                FavoritesScreenRoot(onTimetableItemClick = onTimetableItemClick)
+                FavoritesScreenRoot(
+                    onTimetableItemClick = { timetableItemId ->
+                        // iOS navigation requires the full timetable item data
+                        timetableItems.contents
+                            .firstOrNull { it.timetableItem.id == timetableItemId }
+                            ?.let(onTimetableItemClick)
+                    }
+                )
             }
         }
     }

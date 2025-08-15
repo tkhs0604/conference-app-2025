@@ -2,16 +2,19 @@ import Dependencies
 import shared
 import SwiftUI
 import UseCase
+import Model
+import FavoriteFeature
 
 @MainActor
 struct KMPFavoritesScreenViewControllerWrapper: UIViewControllerRepresentable {
-    let onTimetableItemClick: (TimetableItemId) -> Void
+    let onNavigate: (FavoriteNavigationDestination) -> Void
 
     func makeUIViewController(context: Context) -> UIViewController {
         shared.KmpFavoritesScreenViewControllerKt.kmpFavoritesScreenViewController(
             appGraph: KMPDependencyProvider.shared.appGraph,
-            onTimetableItemClick: { itemId in
-                onTimetableItemClick(itemId)
+            onTimetableItemClick: { item in
+                let iosTimetableItemWithFavorite = Model.TimetableItemWithFavorite(from: item)
+                onNavigate(.timetableDetail(iosTimetableItemWithFavorite))
             },
         )
     }
