@@ -6,7 +6,7 @@ import Theme
 
 public struct FavoriteScreen: View {
     @State private var presenter: FavoritePresenterProtocol
-    @State private var selectedDate: DateFilterView.DateFilter = .all
+    @State private var selectedDate: FavoriteDateFilter = .all
 
     let onNavigate: (FavoriteNavigationDestination) -> Void
 

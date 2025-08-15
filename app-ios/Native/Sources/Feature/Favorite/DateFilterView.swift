@@ -1,22 +1,18 @@
 import SwiftUI
 import Theme
+import Model
 
 struct DateFilterView : View {
-    enum DateFilter: String, CaseIterable {
-        case all = "すべて"
-        case day1 = "9/12"
-        case day2 = "9/13"
-    }
     
-    @Binding private var selectedDate: DateFilterView.DateFilter
+    @Binding private var selectedDate: FavoriteDateFilter
     
-    init(selectedDate: Binding<DateFilter>) {
+    init(selectedDate: Binding<FavoriteDateFilter>) {
         self._selectedDate = selectedDate
     }
     
     var body: some View {
         HStack(spacing: 8) {
-            ForEach(DateFilter.allCases, id: \.self) { filter in
+            ForEach(FavoriteDateFilter.allCases, id: \.self) { filter in
                 Button(
                     action: {
                         selectedDate = filter
