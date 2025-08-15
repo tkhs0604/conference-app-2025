@@ -5,6 +5,7 @@ import Model
 @DependencyClient
 public struct TimetableUseCase: Sendable {
     public var load: @Sendable () -> any AsyncSequence<Model.Timetable, Never> = { AsyncStream.never }
+    public var toggleFavorite: @Sendable (_ itemId: Model.TimetableItemId) async -> Void = { _ in }
 }
 
 public enum TimetableUseCaseKey: TestDependencyKey {

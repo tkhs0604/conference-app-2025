@@ -34,7 +34,6 @@ fun StaffScreen(
                 title = stringResource(StaffRes.string.staff_title),
                 onBackClick = onBackClick,
                 scrollBehavior = scrollBehavior,
-                navIconContentDescription = "Back",
             )
         },
         modifier = modifier

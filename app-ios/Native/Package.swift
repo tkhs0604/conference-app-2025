@@ -33,14 +33,22 @@ let package = Package(
             name: "ComponentTests",
             dependencies: ["Component"]
         ),
+        .testTarget(
+            name: "FeatureTests",
+            dependencies: ["AboutFeature"]
+        ),
         .target(
             name: "DependencyExtra",
+            dependencies: [
+                .product(name: "Dependencies", package: "swift-dependencies")
+            ]
         ),
 
         .target(
             name: "Extension",
             dependencies: [
                 .product(name: "Model", package: "Core"),
+                .target(name: "Theme"),
             ],
         ),
 

@@ -43,6 +43,7 @@ public struct RootScreen: View {
     @State private var aboutNavigationPath = NavigationPath()
     @State private var favoriteNavigationPath = NavigationPath()
     @State private var composeMultiplatformEnabled = false
+    @State private var favoriteScreenUiMode: FavoriteScreenUiModePicker.UiMode = .swiftui
     private let presenter = RootPresenter()
 
     public init() {
@@ -105,13 +106,31 @@ public struct RootScreen: View {
 
     private var favoriteTab: some View {
         NavigationStack(path: $favoriteNavigationPath) {
-            FavoriteScreen(onNavigate: handleFavoriteNavigation)
-                .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
-                    switch destination {
-                    case .timetableDetail(let item):
-                        TimetableDetailScreen(timetableItem: item)
-                    }
+            ZStack(alignment: .top) {
+                switch favoriteScreenUiMode {
+                case .swiftui:
+                    FavoriteScreen(onNavigate: handleFavoriteNavigation)
+                case .kmpPresenter:
+                    FavoriteScreen(
+                        presenter: KMPFavoriteScreenPresenter(),
+                        onNavigate: handleFavoriteNavigation,
+                    )
+                case .cmp:
+                    KMPFavoritesScreenViewControllerWrapper(onNavigate: handleFavoriteNavigation)
+                        .ignoresSafeArea(.all)
                 }
+
+                HStack {
+                    Spacer()
+                    FavoriteScreenUiModePicker(uiMode: $favoriteScreenUiMode)
+                }
+            }
+            .navigationDestination(for: FavoriteNavigationDestination.self) { destination in
+                switch destination {
+                case .timetableDetail(let item):
+                    TimetableDetailScreen(timetableItem: item)
+                }
+            }
         }
     }
 

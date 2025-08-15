@@ -1,5 +1,6 @@
 package io.github.droidkaigi.confsched.favorites
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
@@ -8,13 +9,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.component.AnimatedTextTopAppBar
 import io.github.droidkaigi.confsched.droidkaigiui.compositionlocal.safeDrawingWithBottomNavBar
 import io.github.droidkaigi.confsched.droidkaigiui.extension.excludeTop
 import io.github.droidkaigi.confsched.droidkaigiui.extension.plus
@@ -41,19 +47,24 @@ fun FavoritesScreen(
     onDay1FilterChipClick: () -> Unit,
     onDay2FilterChipClick: () -> Unit,
 ) {
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+    val transitionFraction by remember(scrollBehavior) {
+        derivedStateOf {
+            scrollBehavior.state.overlappedFraction.coerceIn(0f, 1f)
+        }
+    }
+
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(stringResource(FavoritesRes.string.favorite))
-                }
+            AnimatedTextTopAppBar(
+                title = stringResource(FavoritesRes.string.favorite),
+                scrollBehavior = scrollBehavior,
             )
         },
         modifier = modifier
     ) { innerPadding ->
         Column(
-            modifier = Modifier
-                .padding(innerPadding)
+            modifier = Modifier.padding(innerPadding)
         ) {
             FavoriteFilters(
                 allFilterSelected = uiState.filterState.allFilterSelected,
@@ -62,7 +73,9 @@ fun FavoritesScreen(
                 onAllFilterChipClick = onAllFilterChipClick,
                 onDay1FilterChipClick = onDay1FilterChipClick,
                 onDay2FilterChipClick = onDay2FilterChipClick,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colorScheme.surfaceContainer.copy(alpha = transitionFraction)),
             )
             when (uiState.timetableContentState) {
                 FavoritesScreenUiState.TimetableContentState.Empty -> {
@@ -78,7 +91,8 @@ fun FavoritesScreen(
                         onBookmarkClick = onBookmarkClick,
                         isBookmarked = { true },
                         isDateTagVisible = true,
-                        contentPadding = WindowInsets.safeDrawingWithBottomNavBar.excludeTop().asPaddingValues() + PaddingValues(horizontal = 16.dp),
+                        contentPadding = WindowInsets.safeDrawingWithBottomNavBar.excludeTop().asPaddingValues() + PaddingValues(16.dp),
+                        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
                     )
                 }
             }

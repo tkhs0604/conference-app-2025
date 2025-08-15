@@ -65,7 +65,7 @@ extension Model.RoomType {
 // MARK: - Room Converters
 
 extension Model.Room {
-    init(from shared: shared.TimetableRoom) {
+    init(from shared: shared.Room) {
         self.init(
             id: shared.id,
             name: Model.MultiLangText(from: shared.name),
@@ -376,6 +376,20 @@ extension Model.Contributor {
             name: shared.username,
             url: profileURL ?? fallbackURL,
             iconUrl: iconURL
+        )
+    }
+}
+
+// MARK: - EventMapEvent Converters
+
+extension Model.EventMapEvent {
+    init(from shared: shared.EventMapEvent) {
+        self.init(
+            name: .init(from: shared.name),
+            description: .init(from: shared.description_),
+            room: .init(from: shared.room),
+            moreDetailUrl: shared.moreDetailsUrl.flatMap { URL(string: $0) },
+            message: shared.message.map { .init(from: $0) }
         )
     }
 }
