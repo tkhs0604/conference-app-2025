@@ -1,4 +1,5 @@
 import SwiftUI
+import Theme
 
 struct FavoriteScreenUiModePicker: View {
     @Binding private var uiMode: UiMode
@@ -19,5 +20,6 @@ struct FavoriteScreenUiModePicker: View {
                 Text(uiMode.rawValue)
             }
         }
+        .tint(AssetColors.primary100.swiftUIColor)
     }
 }
