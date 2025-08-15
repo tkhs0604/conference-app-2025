@@ -71,7 +71,7 @@ public struct FavoriteScreen: View {
     @ViewBuilder
     private var emptyView: some View {
         VStack(spacing: 24) {
-            Image(systemName: "heart.fill")
+            AssetImages.icFavFill.swiftUIImage
                 .resizable()
                 .frame(width: 36, height: 36)
                 .foregroundStyle(AssetColors.primaryFixed.swiftUIColor)
