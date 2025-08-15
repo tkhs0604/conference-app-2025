@@ -4,7 +4,7 @@ import Theme
 struct EmptyFavoritesView: View {
     var body: some View {
         VStack(spacing: 24) {
-            Image(systemName: "heart.fill")
+            AssetImages.icFavFill.swiftUIImage
                 .resizable()
                 .frame(width: 36, height: 36)
                 .foregroundStyle(AssetColors.primaryFixed.swiftUIColor)
