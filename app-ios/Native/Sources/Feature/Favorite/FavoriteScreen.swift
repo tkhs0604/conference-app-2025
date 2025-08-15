@@ -6,7 +6,6 @@ import Theme
 
 public struct FavoriteScreen: View {
     @State private var presenter: FavoritePresenterProtocol
-    @State private var selectedDate: FavoriteDateFilter = .all
 
     let onNavigate: (FavoriteNavigationDestination) -> Void
 
@@ -21,7 +20,7 @@ public struct FavoriteScreen: View {
     public var body: some View {
         VStack(spacing: 0) {
             // Date filter chips
-            DateFilterView(selectedDate: $selectedDate)
+            DateFilterView(selectedDate: $presenter.dateFilter)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
 
@@ -46,7 +45,7 @@ public struct FavoriteScreen: View {
     }
 
     private var filteredItems: [TimetableTimeGroupItems] {
-        switch selectedDate {
+        switch presenter.dateFilter {
         case .all:
             return presenter.favoriteTimetableItems
         case .day1:

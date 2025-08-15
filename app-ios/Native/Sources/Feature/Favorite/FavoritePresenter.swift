@@ -16,6 +16,8 @@ final class FavoritePresenter : @preconcurrency FavoritePresenterProtocol {
 
         return sortListIntoTimeGroups(timetableItems: favoriteItems)
     }
+    
+    var dateFilter: FavoriteDateFilter = .all
 
     init() {}
 
