@@ -5,11 +5,16 @@ import SwiftUI
 import Theme
 
 public struct FavoriteScreen: View {
-    @State private var presenter = FavoritePresenter()
+    @State private var presenter: FavoritePresenterProtocol
     @State private var selectedDate: DateFilterView.DateFilter = .all
+
     let onNavigate: (FavoriteNavigationDestination) -> Void
 
-    public init(onNavigate: @escaping (FavoriteNavigationDestination) -> Void = { _ in }) {
+    public init(
+        presenter: FavoritePresenterProtocol? = nil,
+        onNavigate: @escaping (FavoriteNavigationDestination) -> Void = { _ in },
+    ) {
+        self.presenter = presenter ?? FavoritePresenter()
         self.onNavigate = onNavigate
     }
 
@@ -33,11 +38,11 @@ public struct FavoriteScreen: View {
         .background(AssetColors.background.swiftUIColor)
         .navigationTitle(String(localized: "お気に入り", bundle: .module))
         #if os(iOS)
-            .navigationBarTitleDisplayMode(.large)
+        .navigationBarTitleDisplayMode(.large)
         #endif
-            .onAppear {
-                presenter.loadInitial()
-            }
+        .onAppear {
+            presenter.loadInitial()
+        }
     }
 
     private var filteredItems: [TimetableTimeGroupItems] {
