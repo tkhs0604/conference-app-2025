@@ -86,7 +86,7 @@ private fun <T1, T2, RESULT> soilDataBoundary(
 @Composable
 @OptIn(InternalComposeApi::class)
 @Suppress("ComposeCompositionLocalUsage")
-fun <T> compositionLocalProviderWithReturnValue(
+private fun <T> compositionLocalProviderWithReturnValue(
     vararg value: ProvidedValue<*>,
     content: @Composable () -> T,
 ): T {
@@ -97,7 +97,7 @@ fun <T> compositionLocalProviderWithReturnValue(
 }
 
 @Composable
-fun <T> swrClientProviderWithReturnValue(
+private fun <T> swrClientProviderWithReturnValue(
     client: SwrClientPlus,
     content: @Composable () -> T,
 ): T {
