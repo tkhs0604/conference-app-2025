@@ -1,19 +1,20 @@
 import Dependencies
 import FavoriteFeature
-import shared
+import Model
 import SwiftUI
 import Theme
 import UseCase
-import Model
+import shared
 
 @MainActor
 @Observable
-final class KMPFavoriteScreenPresenter : @preconcurrency FavoritePresenterProtocol {
-    
+final class KMPFavoriteScreenPresenter: @preconcurrency FavoritePresenterProtocol {
+
     @ObservationIgnored
     private var fetchTask: Task<Void, Never>?
     @ObservationIgnored
-    private let events: SkieSwiftMutableSharedFlow<any shared.FavoritesFavoritesScreenEvent> = favoritesScreenEventFlow()
+    private let events: SkieSwiftMutableSharedFlow<any shared.FavoritesFavoritesScreenEvent> =
+        favoritesScreenEventFlow()
 
     var favoriteTimetableItems: [TimetableTimeGroupItems] = .init()
     var dateFilter: Model.FavoriteDateFilter = .all
@@ -22,13 +23,13 @@ final class KMPFavoriteScreenPresenter : @preconcurrency FavoritePresenterProtoc
         guard fetchTask == nil else {
             return
         }
-        
+
         self.fetchTask = Task {
             let uiStateStateFlow = favoritesScreenPresenterStateFlow(
                 iosAppGraph: KMPDependencyProvider.shared.appGraph,
                 eventFlow: SkieSwiftMutableSharedFlow(events)
             )
-            
+
             for await state in uiStateStateFlow {
                 switch onEnum(of: state.timetableContentState) {
                 case .empty: favoriteTimetableItems = []
@@ -38,19 +39,23 @@ final class KMPFavoriteScreenPresenter : @preconcurrency FavoritePresenterProtoc
             }
         }
     }
-    
+
     func toggleFavorite(_ item: Model.TimetableItemWithFavorite) {
-        _ = events.tryEmit(value: FavoritesFavoritesScreenEventBookmark(id: shared.TimetableItemId(value: item.id.value)))
+        _ = events.tryEmit(
+            value: FavoritesFavoritesScreenEventBookmark(id: shared.TimetableItemId(value: item.id.value)))
     }
-    
-    private func mapDateFilter(_ filterState: shared.FavoritesFavoritesScreenUiState.FilterState) -> FavoriteDateFilter {
+
+    private func mapDateFilter(_ filterState: shared.FavoritesFavoritesScreenUiState.FilterState) -> FavoriteDateFilter
+    {
         if filterState.allFilterSelected { return .all }
         if filterState.isDay1FilterSelected { return .day1 }
         if filterState.isDay2FilterSelected { return .day2 }
         return .all
     }
-    
-    private func mapTimetableTimeGroupItems(_ list: shared.FavoritesFavoritesScreenUiStateTimetableContentStateFavoriteList) -> [TimetableTimeGroupItems] {
+
+    private func mapTimetableTimeGroupItems(
+        _ list: shared.FavoritesFavoritesScreenUiStateTimetableContentStateFavoriteList
+    ) -> [TimetableTimeGroupItems] {
         return list.timetableItemMap.map { key, value in
             .init(
                 startsTimeString: key.startTimeString,
@@ -64,7 +69,7 @@ final class KMPFavoriteScreenPresenter : @preconcurrency FavoritePresenterProtoc
             )
         }
     }
-    
+
     private func mapTimetableItem(_ item: shared.TimetableItem) -> any Model.TimetableItem {
         switch onEnum(of: item) {
         case .session(let sessionItem):

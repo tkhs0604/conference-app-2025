@@ -37,7 +37,7 @@ public struct FavoriteScreen: View {
         .background(AssetColors.background.swiftUIColor)
         .navigationTitle(String(localized: "お気に入り", bundle: .module))
         #if os(iOS)
-        .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.large)
         #endif
         .onAppear {
             presenter.loadInitial()

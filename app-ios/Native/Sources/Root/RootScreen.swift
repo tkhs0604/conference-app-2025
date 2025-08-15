@@ -117,7 +117,7 @@ public struct RootScreen: View {
                     )
                 case .cmp:
                     KMPFavoritesScreenViewControllerWrapper(onNavigate: handleFavoriteNavigation)
-                    .ignoresSafeArea(.all)
+                        .ignoresSafeArea(.all)
                 }
 
                 HStack {

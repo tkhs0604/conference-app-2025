@@ -1,9 +1,9 @@
 import Dependencies
-import shared
+import FavoriteFeature
+import Model
 import SwiftUI
 import UseCase
-import Model
-import FavoriteFeature
+import shared
 
 @MainActor
 struct KMPFavoritesScreenViewControllerWrapper: UIViewControllerRepresentable {

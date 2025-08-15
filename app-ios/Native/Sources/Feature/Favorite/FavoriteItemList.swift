@@ -8,7 +8,10 @@ struct FavoriteItemList: View {
     private let onItemTap: (TimetableItemWithFavorite) -> Void
     private let onToggleFavorite: (TimetableItemWithFavorite) -> Void
 
-    init(items: [TimetableTimeGroupItems], onItemTap: @escaping (TimetableItemWithFavorite) -> Void, onToggleFavorite: @escaping (TimetableItemWithFavorite) -> Void) {
+    init(
+        items: [TimetableTimeGroupItems], onItemTap: @escaping (TimetableItemWithFavorite) -> Void,
+        onToggleFavorite: @escaping (TimetableItemWithFavorite) -> Void
+    ) {
         self.items = items
         self.onItemTap = onItemTap
         self.onToggleFavorite = onToggleFavorite
@@ -36,7 +39,7 @@ struct FavoriteItemList: View {
                 }
             }
             .padding(.vertical, 20)
-            .padding(.bottom, 80) // Tab bar padding
+            .padding(.bottom, 80)  // Tab bar padding
         }
     }
 }

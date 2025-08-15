@@ -1,15 +1,15 @@
+import Model
 import SwiftUI
 import Theme
-import Model
 
-struct DateFilterView : View {
-    
+struct DateFilterView: View {
+
     @Binding private var selectedDate: FavoriteDateFilter
-    
+
     init(selectedDate: Binding<FavoriteDateFilter>) {
         self._selectedDate = selectedDate
     }
-    
+
     var body: some View {
         HStack(spacing: 8) {
             ForEach(FavoriteDateFilter.allCases, id: \.self) { filter in
@@ -30,20 +30,20 @@ struct DateFilterView : View {
                         .padding(.vertical, 6)
                         .background(
                             selectedDate == filter
-                            ? AssetColors.secondaryContainer.swiftUIColor
-                            : Color.clear
+                                ? AssetColors.secondaryContainer.swiftUIColor
+                                : Color.clear
                         )
                         .foregroundStyle(
                             selectedDate == filter
-                            ? AssetColors.onSecondaryContainer.swiftUIColor
-                            : AssetColors.onSurfaceVariant.swiftUIColor
+                                ? AssetColors.onSecondaryContainer.swiftUIColor
+                                : AssetColors.onSurfaceVariant.swiftUIColor
                         )
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(
                                     selectedDate == filter
-                                    ? Color.clear
-                                    : AssetColors.outline.swiftUIColor,
+                                        ? Color.clear
+                                        : AssetColors.outline.swiftUIColor,
                                     lineWidth: 1
                                 )
                         )
