@@ -8,7 +8,6 @@ import androidx.compose.runtime.InternalComposeApi
 import androidx.compose.runtime.ProvidedValue
 import androidx.compose.runtime.currentComposer
 import androidx.compose.runtime.remember
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import app.cash.molecule.RecompositionMode
@@ -45,7 +44,7 @@ fun favoritesScreenPresenterStateFlow(
     return moleculeFlow(RecompositionMode.Immediate) {
         compositionLocalProviderWithReturnValue(
             LocalLifecycleOwner provides iosLifecycleOwner,
-            LocalViewModelStoreOwner provides iosLifecycleOwner as ViewModelStoreOwner,
+            LocalViewModelStoreOwner provides iosLifecycleOwner,
         ) {
             swrClientProviderWithReturnValue(iosAppGraph.swrClientPlus) {
                 with(iosAppGraph.rememberFavoritesScreenContextRetained()) {
