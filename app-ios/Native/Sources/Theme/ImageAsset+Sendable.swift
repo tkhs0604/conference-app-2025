@@ -1,0 +1,1 @@
+extension ImageAsset: @unchecked Sendable {}

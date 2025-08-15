@@ -67,27 +67,31 @@ public struct HomeScreen: View {
         .navigationTitle(String(localized: "Timetable", bundle: .module))
         .navigationBarTitleDisplayMode(.automatic)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                HStack {
+            ToolbarItem(placement: .topBarTrailing) {
+                HStack(spacing: 0) {
                     Button(
                         action: {
                             onNavigate(.search)
                         },
                         label: {
-                            Image(systemName: "magnifyingglass")
+                            AssetImages.icSearch.swiftUIImage
+                                .resizable()
                                 .foregroundStyle(AssetColors.onSurface.swiftUIColor)
-                                .frame(width: 40, height: 40)
+                                .frame(width: 24, height: 24)
+                                .padding(8)
                                 .accessibilityLabel(String(localized: "Search sessions", bundle: .module))
                         })
-
                     Button(
                         action: {
                             timetableMode = timetableMode == .list ? .grid : .list
                         },
                         label: {
-                            Image(systemName: timetableMode == .list ? "square.grid.2x2" : "list.bullet")
+                            (timetableMode == .list ? AssetImages.icGridView : AssetImages.icViewTimeline)
+                                .swiftUIImage
+                                .resizable()
                                 .foregroundStyle(AssetColors.onSurface.swiftUIColor)
-                                .frame(width: 40, height: 40)
+                                .frame(width: 24, height: 24)
+                                .padding(8)
                                 .accessibilityLabel(
                                     timetableMode == .list
                                         ? String(localized: "Switch to grid view", bundle: .module)

@@ -20,18 +20,18 @@ private enum TabType: CaseIterable, Hashable {
     case info
     case profileCard
 
-    func tabImageName(_ selectedTab: TabType) -> String {
+    func tabImage(_ selectedTab: TabType) -> ImageAsset {
         switch self {
         case .timetable:
-            return selectedTab == self ? "ic_timetable.fill" : "ic_timetable"
+            return selectedTab == self ? AssetImages.icTimetableFill : AssetImages.icTimetable
         case .map:
-            return selectedTab == self ? "ic_map.fill" : "ic_map"
+            return selectedTab == self ? AssetImages.icMapFill : AssetImages.icMap
         case .favorite:
-            return selectedTab == self ? "ic_fav.fill" : "ic_fav"
+            return selectedTab == self ? AssetImages.icFavFill : AssetImages.icFav
         case .info:
-            return selectedTab == self ? "ic_info.fill" : "ic_info"
+            return selectedTab == self ? AssetImages.icInfoFill : AssetImages.icInfo
         case .profileCard:
-            return selectedTab == self ? "ic_profileCard.fill" : "ic_profileCard"
+            return selectedTab == self ? AssetImages.icProfileCardFill : AssetImages.icProfileCard
         }
     }
 }
@@ -213,7 +213,7 @@ public struct RootScreen: View {
                     Button {
                         selectedTab = item
                     } label: {
-                        Image(item.tabImageName(selectedTab))
+                        item.tabImage(selectedTab).swiftUIImage
                             .renderingMode(.template)
                             .tint(
                                 isSelected
