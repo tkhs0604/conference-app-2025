@@ -4,4 +4,3 @@ import kotlinx.collections.immutable.PersistentList
 import soil.query.QueryKey
 
 typealias StaffQueryKey = QueryKey<PersistentList<Staff>>
-
