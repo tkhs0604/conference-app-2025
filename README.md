@@ -4,6 +4,14 @@
 This conference is designed for Android developers to enhance knowledge sharing and communication.
 It will take place over 3 days, from 10 to 12 September 2025.
 
+## Features
+
+The DroidKaigi 2025 official app offers a variety of features to enhance your conference experience:
+
+- **Timetable**: View the schedule and bookmark your favorite sessions.
+- **Profile cards**: Create and share your profile with other attendees.
+- **Contributors**: Discover the contributors behind the app. ...and more!
+
 ## Contributing
 
 We welcome contributions!
