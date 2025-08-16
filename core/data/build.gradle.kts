@@ -2,6 +2,7 @@ plugins {
     id("droidkaigi.primitive.kmp")
     id("droidkaigi.primitive.kmp.ios")
     id("droidkaigi.primitive.metro")
+    id("droidkaigi.primitive.spotless")
     alias(libs.plugins.kotlinxSerialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.ktorfit)

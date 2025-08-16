@@ -15,6 +15,7 @@ plugins {
     id("droidkaigi.primitive.buildkonfig")
     id("org.jetbrains.kotlin.plugin.serialization")
     id("droidkaigi.primitive.aboutlibraries")
+    id("droidkaigi.primitive.spotless")
 }
 
 compose.resources.nameOfResClass = "AppSharedRes"
