@@ -27,7 +27,9 @@ struct FrontCard: View {
                     avatarImage
                     VStack(alignment: .center, spacing: 0) {
                         Text(userRole)
-                            .foregroundStyle(cardType == .night ? AssetColors.onSurface.swiftUIColor : lightContentColor)
+                            .foregroundStyle(
+                                cardType == .night ? AssetColors.onSurface.swiftUIColor : lightContentColor
+                            )
                             .typographyStyle(.bodyMedium)
                         Text(userName)
                             .foregroundStyle(cardType == .night ? .white : lightContentColor)

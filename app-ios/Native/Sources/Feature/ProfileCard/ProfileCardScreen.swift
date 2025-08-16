@@ -69,7 +69,7 @@ public struct ProfileCardScreen: View {
                     .resizable()
                     .frame(width: 18, height: 18)
                 Text(String(localized: "Share", bundle: .module))
-                    
+
             }
             .frame(maxWidth: .infinity)
         }
