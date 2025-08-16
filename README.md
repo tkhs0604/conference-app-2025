@@ -26,6 +26,12 @@ For Japanese speakers, a Japanese version is available:
 コントリビューションの詳細な手順については [CONTRIBUTING.ja.md](CONTRIBUTING.ja.md) をご覧ください。
 初めての方でもわかりやすいステップバイステップのガイドを用意しています。
 
+
+## Design
+
+You can check out the UI design on Figma:
+[DroidKaigi 2025 App UI](https://www.figma.com/design/1YjyMBNVLEGcHP4W7UNzDE/DroidKaigi-2025-App-UI)
+
 ## Development
 
 ### Overview of the architecture
