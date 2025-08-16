@@ -1,5 +1,7 @@
 # DroidKaigi 2025 official app
 
+![image](assets/readme_header.png)
+
 [DroidKaigi](https://2025.droidkaigi.jp) marks its 11th edition this year!
 This conference is designed for Android developers to enhance knowledge sharing and communication.
 It will take place over 3 days, from 10 to 12 September 2025.
