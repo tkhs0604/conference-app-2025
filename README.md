@@ -1,5 +1,19 @@
 # DroidKaigi 2025 official app
 
+## Contributing
+
+We welcome contributions!
+
+For a step-by-step guide on how to contribute, see
+[CONTRIBUTING.md](CONTRIBUTING.md). It walks you through everything from
+setting up your environment to submitting a pull request.
+
+For Japanese speakers, a Japanese version is available:
+[CONTRIBUTING.ja.md](CONTRIBUTING.ja.md).
+
+コントリビューションの詳細な手順については [CONTRIBUTING.ja.md](CONTRIBUTING.ja.md) をご覧ください。
+初めての方でもわかりやすいステップバイステップのガイドを用意しています。
+
 ## Development
 
 ### Overview of the architecture
