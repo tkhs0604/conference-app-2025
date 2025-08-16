@@ -25,8 +25,7 @@ class TimetableScreenRobot(
     timetableServerRobot: DefaultTimetableServerRobot,
     captureScreenRobot: DefaultCaptureScreenRobot,
     waitRobot: DefaultWaitRobot,
-) :
-    TimetableServerRobot by timetableServerRobot,
+) : TimetableServerRobot by timetableServerRobot,
     CaptureScreenRobot by captureScreenRobot,
     WaitRobot by waitRobot {
 

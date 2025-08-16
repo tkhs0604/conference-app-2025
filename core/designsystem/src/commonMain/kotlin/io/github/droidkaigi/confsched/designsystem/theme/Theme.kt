@@ -360,5 +360,7 @@ fun KaigiTheme(
 }
 
 enum class ColorContrast {
-    Default, Medium, High
+    Default,
+    Medium,
+    High,
 }

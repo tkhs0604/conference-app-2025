@@ -32,7 +32,7 @@ fun ProfileCardScreen(
         modifier = modifier,
     ) { contentPadding ->
         Column(
-            modifier = Modifier.padding(contentPadding)
+            modifier = Modifier.padding(contentPadding),
         ) {
             Text("Profile Card Screen")
             Text("$profile")

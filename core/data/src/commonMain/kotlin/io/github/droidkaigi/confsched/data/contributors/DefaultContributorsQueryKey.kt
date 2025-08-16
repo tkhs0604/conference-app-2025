@@ -13,5 +13,5 @@ public class DefaultContributorsQueryKey(
     private val contributorsApiClient: ContributorsApiClient,
 ) : ContributorsQueryKey by buildQueryKey(
     id = QueryId("contributors"),
-    fetch = { contributorsApiClient.contributors() }
+    fetch = { contributorsApiClient.contributors() },
 )

@@ -23,6 +23,6 @@ val WindowInsets.Companion.safeDrawingWithBottomNavBar: WindowInsets
     @Composable
     get() = WindowInsets.safeDrawing.union(
         WindowInsets(
-            bottom = LocalBottomNavigationBarsPadding.current.calculateBottomPadding()
-        )
+            bottom = LocalBottomNavigationBarsPadding.current.calculateBottomPadding(),
+        ),
     )

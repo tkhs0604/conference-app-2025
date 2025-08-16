@@ -62,7 +62,7 @@ private class AppBar(
             windowInsets = windowInsets,
         ) { innerPadding ->
             DefaultSuspenseFallbackContent(
-                modifier = Modifier.padding(innerPadding)
+                modifier = Modifier.padding(innerPadding),
             )
         }
     }

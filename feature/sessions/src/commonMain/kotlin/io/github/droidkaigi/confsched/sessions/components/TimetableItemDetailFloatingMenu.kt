@@ -89,23 +89,23 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
             ToggleFloatingActionButton(
                 checked = expanded,
                 onCheckedChange = onExpandedChange,
-                containerColor = { _ -> roomTheme.primaryColor },  // TODO: use room containerColor
+                containerColor = { _ -> roomTheme.primaryColor }, // TODO: use room containerColor
             ) {
                 if (expanded) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = null
+                        contentDescription = null,
                     )
                 } else {
                     Icon(
                         imageVector = if (isBookmarked) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
-                        contentDescription = null
+                        contentDescription = null,
                     )
                 }
             }
         },
         modifier = modifier,
-        horizontalAlignment = Alignment.End
+        horizontalAlignment = Alignment.End,
     ) {
         FloatingActionButtonMenuItem(
             onClick = {
@@ -118,13 +118,13 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
                         stringResource(SessionsRes.string.remove_from_bookmark)
                     } else {
                         stringResource(SessionsRes.string.add_to_bookmark)
-                    }
+                    },
                 )
             },
             icon = {
                 Icon(
                     if (isBookmarked) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
-                    contentDescription = null
+                    contentDescription = null,
                 )
             },
             containerColor = menuItemContainerColor,

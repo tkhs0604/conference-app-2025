@@ -12,8 +12,8 @@ import io.github.droidkaigi.confsched.model.eventmap.EventMapEvent
 import io.github.droidkaigi.confsched.model.eventmap.FloorLevel
 import kotlinx.collections.immutable.PersistentList
 
-context(_: EventMapScreenContext)
 @Composable
+context(_: EventMapScreenContext)
 fun eventMapScreenPresenter(
     events: PersistentList<EventMapEvent>,
     eventFlow: EventFlow<EventMapScreenEvent>,

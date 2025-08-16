@@ -38,7 +38,7 @@ class DroidKaigiKmpPreviewTester : ComposePreviewTester<ComposePreviewTester.Tes
             .map {
                 ComposePreviewTester.TestParameter.JUnit4TestParameter(
                     composeTestRuleFactory = (options.testLifecycleOptions as ComposePreviewTester.Options.JUnit4TestLifecycleOptions).composeRuleFactory,
-                    preview = it
+                    preview = it,
                 )
             }
     }
@@ -56,9 +56,9 @@ class DroidKaigiKmpPreviewTester : ComposePreviewTester<ComposePreviewTester.Tes
                             super.starting(description)
                             registerRoborazziActivityToRobolectricIfNeeded()
                         }
-                    }
+                    },
                 ).around(composeTestRule)
-            }
-        )
+            },
+        ),
     )
 }

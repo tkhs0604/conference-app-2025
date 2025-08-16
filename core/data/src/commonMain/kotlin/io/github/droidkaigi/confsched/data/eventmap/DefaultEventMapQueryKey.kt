@@ -13,5 +13,5 @@ public class DefaultEventMapQueryKey(
     private val eventMapApiClient: EventMapApiClient,
 ) : EventMapQueryKey by buildQueryKey(
     id = QueryId("event_map"),
-    fetch = { eventMapApiClient.eventMapEvents() }
+    fetch = { eventMapApiClient.eventMapEvents() },
 )

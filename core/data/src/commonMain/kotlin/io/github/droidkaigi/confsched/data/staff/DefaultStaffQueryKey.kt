@@ -13,5 +13,5 @@ public class DefaultStaffQueryKey(
     private val staffApiClient: StaffApiClient,
 ) : StaffQueryKey by buildQueryKey(
     id = QueryId("staff"),
-    fetch = { staffApiClient.staff() }
+    fetch = { staffApiClient.staff() },
 )

@@ -29,8 +29,8 @@ import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.extension.roomTheme
 import io.github.droidkaigi.confsched.model.core.MultiLangText
-import io.github.droidkaigi.confsched.model.core.RoomType
 import io.github.droidkaigi.confsched.model.core.Room
+import io.github.droidkaigi.confsched.model.core.RoomType
 import io.github.droidkaigi.confsched.sessions.TimetableScrollState
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -311,7 +311,7 @@ private fun TimetableGridRoomsPreview() {
             ),
             type = RoomType.RoomH,
             sort = 3,
-        )
+        ),
     )
     KaigiPreviewContainer {
         TimetableGridRooms(

@@ -25,7 +25,7 @@ fun EntryProviderBuilder<NavKey>.aboutEntries(
 
 context(appGraph: AppGraph)
 fun EntryProviderBuilder<NavKey>.aboutEntry(
-    onAboutItemClick: (AboutItem) -> Unit
+    onAboutItemClick: (AboutItem) -> Unit,
 ) {
     entry<AboutNavKey>(
         metadata = listDetailSceneStrategyListPaneMetaData(),

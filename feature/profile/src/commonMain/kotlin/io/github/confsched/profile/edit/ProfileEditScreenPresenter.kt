@@ -16,8 +16,8 @@ import soil.form.compose.rememberForm
 import soil.form.compose.rememberFormMetaState
 import soil.query.compose.rememberMutation
 
-context(screenContext: ProfileScreenContext)
 @Composable
+context(screenContext: ProfileScreenContext)
 fun profileEditScreenPresenter(
     eventFlow: EventFlow<ProfileEditScreenEvent>,
     profile: Profile?,
@@ -36,7 +36,7 @@ fun profileEditScreenPresenter(
     }
     val form = rememberForm(
         state = formState,
-        onSubmit = { eventFlow.tryEmit(ProfileEditScreenEvent.Create(it)) }
+        onSubmit = { eventFlow.tryEmit(ProfileEditScreenEvent.Create(it)) },
     )
     var created by rememberRetained { mutableStateOf(false) }
 

@@ -7,8 +7,8 @@ import io.github.droidkaigi.confsched.droidkaigiui.architecture.SoilFallbackDefa
 import org.jetbrains.compose.resources.stringResource
 import soil.query.compose.rememberQuery
 
-context(screenContext: EventMapScreenContext)
 @Composable
+context(screenContext: EventMapScreenContext)
 fun EventMapScreenRoot(
     onClickReadMore: (url: String) -> Unit,
 ) {

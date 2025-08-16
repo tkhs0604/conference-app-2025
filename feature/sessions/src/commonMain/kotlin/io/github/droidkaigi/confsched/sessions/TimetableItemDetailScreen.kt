@@ -30,7 +30,7 @@ fun TimetableItemDetailScreen(
     onShareClick: (TimetableItem) -> Unit,
     onLanguageSelect: (Lang) -> Unit,
     onLinkClick: (url: String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     ProvideRoomTheme(uiState.timetableItem.room.roomTheme) {
         Scaffold(
@@ -48,15 +48,15 @@ fun TimetableItemDetailScreen(
                     onAddCalendarClick = { onAddCalendarClick(uiState.timetableItem) },
                     onShareClick = { onShareClick(uiState.timetableItem) },
                     onViewSlideClick = onLinkClick,
-                    onWatchVideoClick = onLinkClick
+                    onWatchVideoClick = onLinkClick,
                 )
             },
-            modifier = modifier
+            modifier = modifier,
         ) { innerPadding ->
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding)
+                    .padding(innerPadding),
             ) {
                 item {
                     TimetableItemDetailHeadline(
@@ -79,7 +79,7 @@ fun TimetableItemDetailScreen(
                                 top = 24.dp,
                                 end = 8.dp,
                                 bottom = 4.dp,
-                            )
+                            ),
                         )
                     }
                 }
@@ -92,7 +92,7 @@ fun TimetableItemDetailScreen(
                             end = 8.dp,
                             top = 16.dp,
                             bottom = 8.dp,
-                        )
+                        ),
                     )
                 }
 

@@ -19,7 +19,7 @@ fun main() = application {
         state = rememberWindowState(
             width = 1200.dp,
             height = 800.dp,
-        )
+        ),
     ) {
         // workaround for java.lang.NullPointerException at androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner.getCurrent
         CompositionLocalProvider(LocalNavigationEventDispatcherOwner provides FakeNavigationEventDispatcherOwner()) {

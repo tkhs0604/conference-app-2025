@@ -27,7 +27,7 @@ class SponsorsRepository(
             state = rememberQuery(
                 key = sponsorsQueryKey,
                 client = swrClient,
-            )
+            ),
         )
     }
         .filterNotNull()

@@ -15,7 +15,7 @@ interface TestCoroutineDependenciesProviders {
     @IoDispatcher
     @Provides
     fun provideIoDispatcher(
-        testDispatcher: TestDispatcher
+        testDispatcher: TestDispatcher,
     ): CoroutineDispatcher = testDispatcher
 
     @SingleIn(DataScope::class)

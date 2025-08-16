@@ -21,7 +21,7 @@ interface TimetableItemDetailScreenContext : ScreenContext {
     @ContributesGraphExtension.Factory(AppScope::class)
     fun interface Factory {
         fun createTimetableDetailScreenContext(
-            @Provides timetableItemId: TimetableItemId
+            @Provides timetableItemId: TimetableItemId,
         ): TimetableItemDetailScreenContext
     }
 }

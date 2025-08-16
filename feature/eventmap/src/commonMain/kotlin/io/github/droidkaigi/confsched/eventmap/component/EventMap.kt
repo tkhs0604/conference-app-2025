@@ -51,7 +51,7 @@ fun EventMap(
                 modifier = Modifier.padding(
                     top = 16.dp,
                     bottom = 24.dp,
-                )
+                ),
             )
             if (index != uiState.events.lastIndex) {
                 HorizontalDivider()

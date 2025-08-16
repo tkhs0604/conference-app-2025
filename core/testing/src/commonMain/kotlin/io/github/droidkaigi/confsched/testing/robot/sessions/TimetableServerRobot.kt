@@ -29,7 +29,7 @@ class DefaultTimetableServerRobot(
                 TimetableServerRobot.ServerStatus.OperationalOnlyVideoAssetAvailable -> FakeSessionsApiClient.Status.OperationalOnlyVideoAssetAvailable
                 TimetableServerRobot.ServerStatus.OperationalMessageExists -> FakeSessionsApiClient.Status.OperationalMessageExists
                 TimetableServerRobot.ServerStatus.Error -> FakeSessionsApiClient.Status.Error
-            }
+            },
         )
     }
 }

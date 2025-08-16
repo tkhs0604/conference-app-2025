@@ -13,8 +13,9 @@ import soil.query.buildMutationKey
 @ContributesBinding(DataScope::class, binding<FavoriteTimetableItemIdMutationKey>())
 @Inject
 public class DefaultFavoriteTimetableItemIdMutationKey(
-    private val userDataStore: UserDataStore
-) : FavoriteTimetableItemIdMutationKey, MutationKey<Unit, TimetableItemId> by buildMutationKey(
-    id = MutationId("favorite_timetable_item_id_mutation_key"),
-    mutate = { userDataStore.toggleFavorite(it) }
-)
+    private val userDataStore: UserDataStore,
+) : FavoriteTimetableItemIdMutationKey,
+    MutationKey<Unit, TimetableItemId> by buildMutationKey(
+        id = MutationId("favorite_timetable_item_id_mutation_key"),
+        mutate = { userDataStore.toggleFavorite(it) },
+    )

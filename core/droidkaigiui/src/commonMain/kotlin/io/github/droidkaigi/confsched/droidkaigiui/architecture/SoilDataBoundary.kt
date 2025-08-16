@@ -13,8 +13,8 @@ import soil.query.compose.QueryObject
 import soil.query.compose.SubscriptionObject
 import soil.query.core.DataModel
 
-context(_: ScreenContext)
 @Composable
+context(_: ScreenContext)
 fun <T> SoilDataBoundary(
     state: DataModel<T>,
     modifier: Modifier = Modifier,
@@ -38,8 +38,8 @@ fun <T> SoilDataBoundary(
     }
 }
 
-context(_: ScreenContext)
 @Composable
+context(_: ScreenContext)
 fun <T1, T2> SoilDataBoundary(
     state1: DataModel<T1>,
     state2: DataModel<T2>,
@@ -63,14 +63,14 @@ fun <T1, T2> SoilDataBoundary(
             Await(
                 state1 = state1,
                 state2 = state2,
-                content = content
+                content = content,
             )
         }
     }
 }
 
-context(_: ScreenContext)
 @Composable
+context(_: ScreenContext)
 fun <T1, T2, T3> SoilDataBoundary(
     state1: DataModel<T1>,
     state2: DataModel<T2>,
@@ -97,7 +97,7 @@ fun <T1, T2, T3> SoilDataBoundary(
                 state1 = state1,
                 state2 = state2,
                 state3 = state3,
-                content = content
+                content = content,
             )
         }
     }

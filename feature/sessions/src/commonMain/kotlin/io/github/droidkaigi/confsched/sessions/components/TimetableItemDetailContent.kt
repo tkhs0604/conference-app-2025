@@ -86,7 +86,7 @@ private fun DescriptionSection(
             OutlinedButton(
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = LocalRoomTheme.current.dimColor
+                    containerColor = LocalRoomTheme.current.dimColor,
                 ),
                 border = null,
                 onClick = { isExpand = true },
@@ -109,7 +109,7 @@ private fun TargetAudienceSection(
 ) {
     Column(
         modifier = modifier
-            .padding(8.dp)
+            .padding(8.dp),
     ) {
         Text(
             text = stringResource(SessionsRes.string.target_audience),
@@ -124,7 +124,6 @@ private fun TargetAudienceSection(
         Spacer(Modifier.height(8.dp))
     }
 }
-
 
 @Composable
 @Preview

@@ -41,13 +41,13 @@ fun EventMapScreen(
             onSelectFloor = onSelectFloor,
             onClickReadMore = onClickReadMore,
             contentPadding = innerPadding +
-                    WindowInsets.safeDrawingWithBottomNavBar.excludeTop().asPaddingValues() +
-                    PaddingValues(
-                        top = 10.dp,
-                        start = 16.dp,
-                        end = 16.dp
-                    ),
-            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
+                WindowInsets.safeDrawingWithBottomNavBar.excludeTop().asPaddingValues() +
+                PaddingValues(
+                    top = 10.dp,
+                    start = 16.dp,
+                    end = 16.dp,
+                ),
+            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         )
     }
 }

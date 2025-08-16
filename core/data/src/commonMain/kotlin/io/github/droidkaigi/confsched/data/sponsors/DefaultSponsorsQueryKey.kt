@@ -13,5 +13,5 @@ public class DefaultSponsorsQueryKey(
     private val sponsorsApiClient: SponsorsApiClient,
 ) : SponsorsQueryKey by buildQueryKey(
     id = QueryId("sponsors"),
-    fetch = { sponsorsApiClient.sponsors() }
+    fetch = { sponsorsApiClient.sponsors() },
 )

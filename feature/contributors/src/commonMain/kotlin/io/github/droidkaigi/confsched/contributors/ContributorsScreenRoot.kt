@@ -9,8 +9,8 @@ import io.github.droidkaigi.confsched.droidkaigiui.architecture.SoilFallbackDefa
 import org.jetbrains.compose.resources.stringResource
 import soil.query.compose.rememberQuery
 
-context(screenContext: ContributorsScreenContext)
 @Composable
+context(screenContext: ContributorsScreenContext)
 fun ContributorsScreenRoot(
     onBackClick: () -> Unit,
     onContributorClick: (String) -> Unit,

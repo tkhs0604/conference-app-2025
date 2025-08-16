@@ -14,5 +14,5 @@ public class DefaultFavoriteTimetableIdsSubscriptionKey(
     private val userDataStore: UserDataStore,
 ) : FavoriteTimetableIdsSubscriptionKey by buildSubscriptionKey(
     id = SubscriptionId("favorites"),
-    subscribe = { userDataStore.getStream() }
+    subscribe = { userDataStore.getStream() },
 )

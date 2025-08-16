@@ -23,13 +23,15 @@
 
 package io.github.droidkaigi.confsched.interop
 
+import androidx.lifecycle.Lifecycle.State
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
-import androidx.lifecycle.Lifecycle.State
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 
-class IOSLifecycleOwner : LifecycleOwner, ViewModelStoreOwner {
+class IOSLifecycleOwner :
+    LifecycleOwner,
+    ViewModelStoreOwner {
     override val lifecycle = LifecycleRegistry(this)
     override val viewModelStore = ViewModelStore()
 

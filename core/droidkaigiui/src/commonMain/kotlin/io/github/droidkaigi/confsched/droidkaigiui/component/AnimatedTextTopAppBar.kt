@@ -107,7 +107,7 @@ fun AnimatedTextTopAppBar(
                     onClick = it,
                     modifier = Modifier.onSizeChanged {
                         navigationIconWidthDp = it.width / density
-                    }
+                    },
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,

@@ -8,11 +8,11 @@ import kotlinx.collections.immutable.PersistentMap
 
 data class FavoritesScreenUiState(
     val filterState: FilterState,
-    val timetableContentState: TimetableContentState
+    val timetableContentState: TimetableContentState,
 ) {
     data class FilterState(
         val currentDayFilter: PersistentList<DroidKaigi2025Day>,
-        val allFilterSelected: Boolean
+        val allFilterSelected: Boolean,
     ) {
         val isDay1FilterSelected: Boolean
             get() = allFilterSelected.not() && currentDayFilter.contains(DroidKaigi2025Day.ConferenceDay1)
@@ -21,7 +21,7 @@ data class FavoritesScreenUiState(
     }
 
     sealed interface TimetableContentState {
-        data object Empty: TimetableContentState
+        data object Empty : TimetableContentState
 
         data class FavoriteList(
             val timetableItemMap: PersistentMap<TimeSlot, List<TimetableItem>>,

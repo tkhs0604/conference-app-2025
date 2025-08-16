@@ -89,7 +89,7 @@ fun TimetableList(
                         endTimeText = timeSlot.endTimeString,
                         modifier = Modifier
                             .onSizeChanged { timetableTimeSlotHeight = it.height }
-                            .graphicsLayer { translationY = timetableTimeSlotOffsetY.toFloat() }
+                            .graphicsLayer { translationY = timetableTimeSlotOffsetY.toFloat() },
                     )
                     Column(
                         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -109,7 +109,7 @@ fun TimetableList(
                                         onTimetableItemClick = { onTimetableItemClick(item.id) },
                                         modifier = Modifier
                                             .weight(1f)
-                                            .fillMaxHeight()
+                                            .fillMaxHeight(),
                                     )
                                 }
                                 if (windowedItems.size < columnCount) {
@@ -138,7 +138,7 @@ private fun TimetableListPreview() {
     data class PreviewTimeSlot(
         override val startTimeString: String,
         override val endTimeString: String,
-        override val key: String
+        override val key: String,
     ) : TimeSlotItem
 
     KaigiPreviewContainer {
@@ -147,12 +147,12 @@ private fun TimetableListPreview() {
                 PreviewTimeSlot(
                     startTimeString = "11:20",
                     endTimeString = "12:00",
-                    key = "11:20-12:00"
+                    key = "11:20-12:00",
                 ) to List(2) { TimetableItem.Session.fake() },
                 PreviewTimeSlot(
                     startTimeString = "12:00",
                     endTimeString = "13:00",
-                    key = "12:00-13:00"
+                    key = "12:00-13:00",
                 ) to List(2) { TimetableItem.Session.fake() },
             ),
             onTimetableItemClick = {},

@@ -32,7 +32,7 @@ fun kmpFavoritesScreenViewController(
                             timetableItems.contents
                                 .firstOrNull { it.timetableItem.id == timetableItemId }
                                 ?.let(onTimetableItemClick)
-                        }
+                        },
                     )
                 }
             }

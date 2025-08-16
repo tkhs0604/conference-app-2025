@@ -14,5 +14,5 @@ public class DefaultProfileSubscriptionKey(
     private val dataStore: UserDataStore,
 ) : ProfileSubscriptionKey by buildSubscriptionKey(
     id = SubscriptionId("profile"),
-    subscribe = { dataStore.getProfileOrNull() }
+    subscribe = { dataStore.getProfileOrNull() },
 )

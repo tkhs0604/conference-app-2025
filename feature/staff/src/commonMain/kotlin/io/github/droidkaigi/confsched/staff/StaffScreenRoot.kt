@@ -9,8 +9,8 @@ import io.github.droidkaigi.confsched.droidkaigiui.architecture.SoilFallbackDefa
 import org.jetbrains.compose.resources.stringResource
 import soil.query.compose.rememberQuery
 
-context(screenContext: StaffScreenContext)
 @Composable
+context(screenContext: StaffScreenContext)
 fun StaffScreenRoot(
     onStaffItemClick: (url: String) -> Unit,
     onBackClick: () -> Unit,

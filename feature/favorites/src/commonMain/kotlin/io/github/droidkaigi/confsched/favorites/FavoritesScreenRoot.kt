@@ -9,8 +9,8 @@ import org.jetbrains.compose.resources.stringResource
 import soil.query.compose.rememberQuery
 import soil.query.compose.rememberSubscription
 
-context(screenContext: FavoritesScreenContext)
 @Composable
+context(screenContext: FavoritesScreenContext)
 fun FavoritesScreenRoot(
     onTimetableItemClick: (TimetableItemId) -> Unit,
 ) {

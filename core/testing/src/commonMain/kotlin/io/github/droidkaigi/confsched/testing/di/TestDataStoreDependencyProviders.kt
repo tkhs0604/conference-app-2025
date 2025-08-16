@@ -39,6 +39,6 @@ interface TestDataStoreDependencyProviders {
 private class InMemoryDataStore<T>(initialValue: T) : DataStore<T> {
     override val data = MutableStateFlow(initialValue)
     override suspend fun updateData(
-        transform: suspend (t: T) -> T
+        transform: suspend (t: T) -> T,
     ): T = data.updateAndGet { transform(it) }
 }

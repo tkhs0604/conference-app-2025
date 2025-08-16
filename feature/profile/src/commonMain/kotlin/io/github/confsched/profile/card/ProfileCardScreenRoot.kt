@@ -5,8 +5,8 @@ import io.github.confsched.profile.ProfileScreenContext
 import io.github.droidkaigi.confsched.common.compose.rememberEventFlow
 import io.github.droidkaigi.confsched.model.profile.Profile
 
-context(screenContext: ProfileScreenContext)
 @Composable
+context(screenContext: ProfileScreenContext)
 fun ProfileCardScreenRoot(
     profile: Profile,
     onEditClick: () -> Unit,

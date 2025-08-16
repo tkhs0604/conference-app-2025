@@ -49,7 +49,7 @@ fun AboutScreen(
                 AboutDroidKaigiHeader(
                     onViewMapClick = {
                         onAboutItemClick(AboutItem.Map)
-                    }
+                    },
                 )
             }
             aboutCredits(
