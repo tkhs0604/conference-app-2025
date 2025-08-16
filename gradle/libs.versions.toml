@@ -38,7 +38,6 @@ roborazzi = "1.46.1"
 composablePreviewScanner = "0.6.1"
 junit = "4.13.2"
 
-detekt = "1.23.8"
 twitterComposeRule = "0.0.26"
 spotless = "7.2.1"
 ktlint = "1.7.1"
@@ -69,7 +68,6 @@ kotlinxSerializationGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-seria
 androidKotlinMultiplatformLibrary = { module = "com.android.kotlin.multiplatform.library:com.android.kotlin.multiplatform.library.gradle.plugin", version.ref = "androidGradlePlugin" }
 composeCompilerGradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 metroGradlePlugin = { module = "dev.zacsweers.metro:dev.zacsweers.metro.gradle.plugin", version.ref = "metro" }
-detektGradlePlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 roborazziGradlePlugin = { module = "io.github.takahirom.roborazzi:roborazzi-gradle-plugin", version.ref = "roborazzi" }
 buildkonfigGradlePlugin = { module = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin", version.ref = "buildkonfig" }
 skieGradlePlugin = { module = "co.touchlab.skie:co.touchlab.skie.gradle.plugin", version.ref = "skie" }
@@ -135,8 +133,6 @@ lifecycleViewmodelNavigation3 = { module = "androidx.lifecycle:lifecycle-viewmod
 
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 
-detektFormatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
-twitterComposeRule = { module = "com.twitter.compose.rules:detekt", version.ref = "twitterComposeRule" }
 navigationeventDesktop = { group = "androidx.navigationevent", name = "navigationevent-desktop", version.ref = "navigationeventDesktop" }
 
 # coil
@@ -169,7 +165,6 @@ ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "jetbrainsCompose" }
 metro = { id = "dev.zacsweers.metro", version.ref = "metro" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload" }
 aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibraries" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
@@ -184,7 +179,6 @@ plugins = [
     "composeCompilerGradlePlugin",
     "androidGradlePlugin",
     "metroGradlePlugin",
-    "detektGradlePlugin",
     "roborazziGradlePlugin",
     "buildkonfigGradlePlugin",
     "skieGradlePlugin",
