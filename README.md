@@ -1,6 +1,6 @@
-# DroidKaigi 2025 official app
-
 ![image](assets/readme_header.png)
+
+# DroidKaigi 2025 official app
 
 [DroidKaigi](https://2025.droidkaigi.jp) marks its 11th edition this year!
 This conference is designed for Android developers to enhance knowledge sharing and communication.
