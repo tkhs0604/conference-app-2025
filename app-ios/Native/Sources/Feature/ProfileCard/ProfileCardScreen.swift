@@ -2,15 +2,9 @@ import Component
 import SwiftUI
 import Theme
 
-// TODO: fix actual model
-enum ProfileCardType: String {
-    case dark
-    case light
-}
-
 public struct ProfileCardScreen: View {
     @State private var presenter = ProfileCardPresenter()
-    @State private var cardType: ProfileCardType = .dark
+    @State private var cardType: ProfileCardType = .night
 
     public init() {}
 
@@ -79,10 +73,10 @@ public struct ProfileCardScreen: View {
     private var editButton: some View {
         Button {
             presenter.editProfile()
-            if cardType == .dark {
-                cardType = .light
+            if cardType == .night {
+                cardType = .day
             } else {
-                cardType = .dark
+                cardType = .night
             }
         } label: {
             Text("Edit Profile")
