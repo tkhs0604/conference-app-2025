@@ -28,6 +28,10 @@ For Japanese speakers, a Japanese version is available:
 コントリビューションの詳細な手順については [CONTRIBUTING.ja.md](CONTRIBUTING.ja.md) をご覧ください。
 初めての方でもわかりやすいステップバイステップのガイドを用意しています。
 
+## Requirements
+
+Stable Android Studio Narwhal or higher. You can download it from
+[this page](https://developer.android.com/studio).
 
 ## Design
 
