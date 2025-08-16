@@ -51,14 +51,20 @@ experience further by introducing the following concepts:
 - Structuring the codebase with context parameters to provide clearer semantic meaning to Composable
   functions.
 
+Here's a big picture of this year's architecture:
+
 ![](assets/architecture.png)
 
 The following sections describe how this architecture works in practice.
 
 ### Dependency Injection via ScreenContext
 
-The entry point of each screen starts with a `ScreenContext`. It provides all the dependencies
-required for the screen. Dependency injection is safely performed at compile-time by Metro.
+Unlike last year, we no longer rely on `CompositionLocal` to provide dependencies.  
+Instead, we use [Metro](https://github.com/ZacSweers/metro) to resolve each screen's dependencies
+at compile time and provide them via a single `ScreenContext`.
+
+This approach clarifies which dependencies are required for a screen and helps prevent potential
+runtime errors caused by missing dependencies.
 
 ```kotlin
 context(screenContext: TimetableScreenContext)
@@ -78,10 +84,14 @@ interface TimetableScreenContext : ScreenContext {
 }
 ```
 
+More importantly, we provide the ScreenContext as a context parameter to give Composable functions
+additional semantic context. This allows us to restrict the usage of certain functions to their
+specific screen scope—for example, the SoilDataBoundary described in the following section.
+
 ### Data Boundary with Soil
 
-In the root of the screen, we can use `SoilDataBoundary` to separate the data fetching logic from
-the UI logic. Within its trailing content lambda, we can safely assume that all the data is
+At the root of the screen, we can use `SoilDataBoundary` to separate data fetching logic from
+UI logic. Within its trailing content lambda, we can safely assume that all data is
 available and ready to be used in the UI.
 
 ```kotlin
@@ -89,9 +99,9 @@ context(screenContext: TimetableScreenContext)
 @Composable
 fun TimetableScreenRoot(...) {
     SoilDataBoundary(
-        state1 = rememberSubscription(screenContext.timetableSubscriptionKey),
+        state1 = rememberQuery(screenContext.timetableQueryKey),
         state2 = rememberSubscription(screenContext.favoriteTimetableIdsSubscriptionKey),
-        errorFallback = { ... }
+        fallback = ...,
     ) { timetable, favoriteTimetableItemIds ->
         // All data required to render the screen is guaranteed to be available here.
     }
@@ -113,10 +123,36 @@ fun <T1, T2> SoilDataBoundary(
 }
 ```
 
+The `QueryKey` and `SubscriptionKey` provided by Soil are responsible for fetching
+the server or database state, and runtime caching is handled by Soil’s `SwrClient`.
+Therefore, we no longer need repository implementations to manually manage data fetching and caching.
+
+```kotlin
+typealias TimetableQueryKey = QueryKey<Timetable>
+
+@ContributesBinding(DataScope::class)
+@Inject
+public class DefaultTimetableQueryKey(
+    private val sessionsApiClient: SessionsApiClient,
+    private val dataStore: SessionCacheDataStore,
+) : TimetableQueryKey by buildQueryKey(
+    id = QueryId("timetable"),
+    fetch = {
+        val response = sessionsApiClient.sessionsAllResponse()
+        dataStore.save(response)
+        response.toTimetable()
+    },
+) {
+    override fun onPreloadData(): QueryPreloadData<Timetable>? {
+        return { dataStore.getCache()?.toTimetable() }
+    }
+}
+```
+
 ### Composing the Presenters
 
-The next step is to present the data in the UI. Presenters are responsible for handling the UI
-events and building the UI state. Like last year, we designed them as composable functions.
+The next step is to present the data in the UI. Presenters are responsible for handling UI
+events and constructing the UI state. As with last year, we designed them as composable functions.
 
 ```kotlin
 context(screenContext: TimetableScreenContext)
