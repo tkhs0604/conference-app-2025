@@ -64,8 +64,14 @@ public struct ProfileCardScreen: View {
         Button {
             presenter.shareProfileCard()
         } label: {
-            Label("Share Profile Card", systemImage: "square.and.arrow.up")
-                .frame(maxWidth: .infinity)
+            HStack {
+                AssetImages.icShare.swiftUIImage
+                    .resizable()
+                    .frame(width: 18, height: 18)
+                Text(String(localized: "Share", bundle: .module))
+                    
+            }
+            .frame(maxWidth: .infinity)
         }
         .filledButtonStyle()
     }
@@ -79,7 +85,7 @@ public struct ProfileCardScreen: View {
                 cardType = .night
             }
         } label: {
-            Text("Edit Profile")
+            Text(String(localized: "Edit", bundle: .module))
                 .frame(maxWidth: .infinity)
         }
         .textButtonStyle()

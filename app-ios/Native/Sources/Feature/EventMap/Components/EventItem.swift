@@ -32,7 +32,7 @@ struct EventItem: View {
                 Button(action: {
                     onMoreDetailTapped(url)
                 }) {
-                    Text("詳しく見る")
+                    Text(String(localized: "MoreDetail", bundle: .module))
                         .font(Typography.labelLarge)
                         .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
                 }
