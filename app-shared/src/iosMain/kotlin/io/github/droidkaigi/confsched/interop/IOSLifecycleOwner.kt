@@ -19,6 +19,7 @@
  * Changes:
  *   - Change the package to io.github.droidkaigi.confsched.interop to avoid symbol conflicts.
  *   - Remove the internal modifier to allow usage from other package scopes.
+ *   - Minor code format adjustments.
  */
 
 package io.github.droidkaigi.confsched.interop
