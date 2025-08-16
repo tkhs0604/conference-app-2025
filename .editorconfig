@@ -8,6 +8,7 @@ max_line_length = off
 ktlint_code_style = intellij_idea
 ktlint_function_naming_ignore_when_annotated_with = Composable
 ktlint_standard_property-naming = disabled
+ktlint_standard_function-expression-body = disabled
 indent_size = 4
 indent_style = space
 tab_width = 4
