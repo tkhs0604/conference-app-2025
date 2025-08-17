@@ -186,7 +186,7 @@ private fun Form<Profile>.Image() {
                     onClear = {
                         image = null
                         field.onValueChange("")
-                    }
+                    },
                 )
                 if (field.hasError) {
                     Text(
@@ -196,7 +196,7 @@ private fun Form<Profile>.Image() {
                     )
                 }
             }
-        }
+        },
     )
 
     // FIXME: Replace the ByteArray version once the following bug is fixed.
@@ -262,7 +262,7 @@ private fun FormField<String>.InputField(
         isError = hasError,
         maxLines = 1,
         keyboardOptions = KeyboardOptions(
-            imeAction = ImeAction.Next
+            imeAction = ImeAction.Next,
         ),
         supportingText = {
             if (hasError) {
@@ -291,7 +291,7 @@ private fun ImagePicker(
     if (image != null) {
         Box(
             modifier = Modifier
-                .size(120.dp)
+                .size(120.dp),
         ) {
             AsyncImage(
                 model = image,
@@ -299,7 +299,7 @@ private fun ImagePicker(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .align(Alignment.BottomStart)
-                    .clip(RoundedCornerShape(2.dp))
+                    .clip(RoundedCornerShape(2.dp)),
             )
             IconButton(
                 onClick = onClear,
@@ -310,13 +310,13 @@ private fun ImagePicker(
                     .align(Alignment.TopEnd)
                     .size(40.dp)
                     .padding(8.dp)
-                    .offset(x = 16.dp, y = (-16).dp)
+                    .offset(x = 16.dp, y = (-16).dp),
             ) {
                 Icon(
                     imageVector = Icons.Default.Close,
                     contentDescription = null,
                     modifier = Modifier
-                        .padding(4.dp)
+                        .padding(4.dp),
                 )
             }
         }
@@ -336,7 +336,7 @@ private fun ProfileEditScreenPreview() {
             occupation = "Software Engineer",
             link = "https://example.com",
             imagePath = "https://example.com/image.jpg",
-            image = ByteArray(0)
+            image = ByteArray(0),
         ),
         onSubmit = {},
     )
@@ -352,8 +352,7 @@ private fun ImagePickerPreview() {
         ImagePicker(
             image = PlatformFile(""),
             onImageChange = {},
-            onClear = {}
+            onClear = {},
         )
     }
 }
-

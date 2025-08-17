@@ -45,7 +45,7 @@ fun ProfileCardScreen(
                 model = PlatformFile(profile.imagePath),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.size(120.dp)
+                modifier = Modifier.size(120.dp),
             )
             Button(
                 onClick = onEditClick,
