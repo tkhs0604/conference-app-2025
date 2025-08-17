@@ -1,7 +1,7 @@
 swiftlint:
   description: A tool to enforce Swift style and conventions
   homepage: https://github.com/realm/SwiftLint
-  version: 0.57.0
+  version: 0.59.1
   url: https://github.com/realm/SwiftLint/releases/download/${VERSION}/portable_swiftlint.zip
   binaries:
     - swiftlint
