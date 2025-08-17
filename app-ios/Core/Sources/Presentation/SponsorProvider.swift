@@ -15,7 +15,6 @@ public final class SponsorProvider {
     
     public func loadSponsorCategories() async {
         for await sponsorsList in sponsorsUseCase.load() {
-
             // Group sponsors by their plan
             let groupedSponsors = Dictionary(grouping: sponsorsList) { $0.plan }
 
