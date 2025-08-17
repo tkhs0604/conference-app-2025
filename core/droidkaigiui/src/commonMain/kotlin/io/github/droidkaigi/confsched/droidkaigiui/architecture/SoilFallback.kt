@@ -56,7 +56,7 @@ private class AppBar(
     val onBackClick: (() -> Unit)?,
     val size: AppBarSize,
     val windowInsets: WindowInsets,
-    val contentBackground: (@Composable (innerPadding: PaddingValues) -> Unit)?
+    val contentBackground: (@Composable (innerPadding: PaddingValues) -> Unit)?,
 ) : SoilFallback {
     override val suspenseFallback: @Composable context(SoilSuspenseContext) BoxScope.() -> Unit = {
         AppBarFallbackScaffold(

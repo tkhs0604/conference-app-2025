@@ -22,7 +22,7 @@ fun TimetableScreenRoot(
             title = stringResource(SessionsRes.string.timetable),
             contentBackground = {
                 TimetableBackground()
-            }
+            },
         ),
     ) { timetable, favoriteTimetableItemIds ->
         val eventFlow = rememberEventFlow<TimetableScreenEvent>()
