@@ -339,7 +339,7 @@ fun EntryProviderBuilder<NavKey>.timetableEntry(
     onTimetableItemClick: (TimetableItemId) -> Unit,
 ) {
     entry<TimetableNavKey>(metadata = /* passing additional metadata to customize the scene */) {
-        with(appGraph.rememberTimetableScreenContextRetained()) {
+        with(rememberTimetableScreenContextRetained()) {
             TimetableScreenRoot(
                 onSearchClick = onSearchClick,
                 onTimetableItemClick = onTimetableItemClick,
