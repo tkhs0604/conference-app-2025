@@ -11,10 +11,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.droidkaigiui.DroidkaigiuiRes
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.background
 import io.github.droidkaigi.confsched.droidkaigiui.error_mascot
 import io.github.droidkaigi.confsched.droidkaigiui.error_occurred
 import io.github.droidkaigi.confsched.droidkaigiui.retry
@@ -32,6 +35,11 @@ fun DefaultErrorFallbackContent(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
+            .paint(
+                painter = painterResource(DroidkaigiuiRes.drawable.background),
+                contentScale = ContentScale.Crop,
+                alignment = Alignment.Center,
+            )
             .testTag(DefaultErrorFallbackContentTestTag),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(35.dp, Alignment.CenterVertically),
