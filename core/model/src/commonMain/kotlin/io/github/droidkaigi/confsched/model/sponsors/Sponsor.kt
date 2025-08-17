@@ -13,6 +13,12 @@ data class Sponsor(
     companion object
 }
 
+data class SponsorList(
+    val platinumSponsors: List<Sponsor>,
+    val goldSponsors: List<Sponsor>,
+    val supporters: List<Sponsor>,
+)
+
 enum class SponsorPlan {
     PLATINUM,
     GOLD,

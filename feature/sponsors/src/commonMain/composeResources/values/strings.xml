@@ -1,0 +1,8 @@
+<resources>
+    <string name="sponsors_title">Sponsor</string>
+    <string name="platinum_sponsors_title">Platinum Sponsors</string>
+    <string name="gold_sponsors_title">Gold Sponsors</string>
+    <string name="supporters_title">Supporters</string>
+    <string name="content_description_back">Back</string>
+    <string name="content_description_sponsor_logo_format">%1$s sponsor logo</string>
+</resources>

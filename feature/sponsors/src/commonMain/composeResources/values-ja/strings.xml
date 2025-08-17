@@ -1,0 +1,8 @@
+<resources>
+    <string name="sponsors_title">スポンサー</string>
+    <string name="platinum_sponsors_title">プラチナ スポンサー</string>
+    <string name="gold_sponsors_title">ゴールド スポンサー</string>
+    <string name="supporters_title">サポーター</string>
+    <string name="content_description_back">戻る</string>
+    <string name="content_description_sponsor_logo_format">%1$s スポンサー ロゴ</string>
+</resources>

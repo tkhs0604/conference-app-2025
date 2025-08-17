@@ -18,6 +18,7 @@ import io.github.droidkaigi.confsched.naventry.eventMapEntry
 import io.github.droidkaigi.confsched.naventry.favoritesEntry
 import io.github.droidkaigi.confsched.naventry.profileNavEntry
 import io.github.droidkaigi.confsched.naventry.sessionEntries
+import io.github.droidkaigi.confsched.naventry.sponsorsEntry
 import io.github.droidkaigi.confsched.naventry.staffEntry
 import io.github.droidkaigi.confsched.navigation.rememberNavBackStack
 import io.github.droidkaigi.confsched.navigation.sceneStrategy
@@ -28,6 +29,7 @@ import io.github.droidkaigi.confsched.navkey.FavoritesNavKey
 import io.github.droidkaigi.confsched.navkey.LicensesNavKey
 import io.github.droidkaigi.confsched.navkey.ProfileNavKey
 import io.github.droidkaigi.confsched.navkey.SearchNavKey
+import io.github.droidkaigi.confsched.navkey.SponsorsNavKey
 import io.github.droidkaigi.confsched.navkey.StaffNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableItemDetailNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableNavKey
@@ -85,6 +87,10 @@ actual fun KaigiAppUi() {
                     onBackClick = { backStack.removeLastOrNull() },
                     onContributorClick = externalNavController::navigate,
                 )
+                sponsorsEntry(
+                    onBackClick = { backStack.removeLastOrNull() },
+                    onSponsorClick = externalNavController::navigate,
+                )
                 staffEntry(
                     onBackClick = { backStack.removeLastOrNull() },
                     onStaffItemClick = externalNavController::navigate,
@@ -115,8 +121,8 @@ actual fun KaigiAppUi() {
                             }
 
                             AboutItem.Contributors -> backStack.add(ContributorsNavKey)
+                            AboutItem.Sponsors -> backStack.add(SponsorsNavKey)
                             AboutItem.Staff -> backStack.add(StaffNavKey)
-                            AboutItem.Sponsors -> TODO()
                             AboutItem.CodeOfConduct -> {
                                 externalNavController.navigate(
                                     url = "$portalBaseUrl/about/code-of-conduct",

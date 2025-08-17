@@ -1,10 +1,12 @@
 package io.github.droidkaigi.confsched.data.sponsors
 
+import dev.zacsweers.metro.Inject
 import io.github.droidkaigi.confsched.model.sponsors.Sponsor
 import io.github.droidkaigi.confsched.model.sponsors.fakes
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.io.IOException
 
+@Inject
 public class FakeSponsorsApiClient : SponsorsApiClient {
     public sealed class Status : SponsorsApiClient {
         public data object Operational : Status() {
