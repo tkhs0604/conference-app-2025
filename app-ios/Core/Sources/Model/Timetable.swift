@@ -11,7 +11,7 @@ public struct Timetable: Sendable {
 }
 
 public struct Filters: Equatable, Sendable {
-    public let days: [DroidKaigi2024Day]
+    public let days: [DroidKaigi2025Day]
     public let categories: [TimetableCategory]
     public let sessionTypes: [TimetableSessionType]
     public let languages: [Lang]
@@ -19,7 +19,7 @@ public struct Filters: Equatable, Sendable {
     public let searchWord: String
 
     public init(
-        days: [DroidKaigi2024Day] = [],
+        days: [DroidKaigi2025Day] = [],
         categories: [TimetableCategory] = [],
         sessionTypes: [TimetableSessionType] = [],
         languages: [Lang] = [],

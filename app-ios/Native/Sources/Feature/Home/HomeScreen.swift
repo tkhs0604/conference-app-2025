@@ -129,7 +129,7 @@ public struct HomeScreen: View {
 }
 
 extension DayTab {
-    fileprivate var model: DroidKaigi2024Day {
+    fileprivate var model: DroidKaigi2025Day {
         switch self {
         case .day1:
             .conferenceDay1

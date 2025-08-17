@@ -139,9 +139,9 @@ extension Model.TimetableSessionType {
     }
 }
 
-// MARK: - DroidKaigi2024Day Converters
+// MARK: - DroidKaigi2025Day Converters
 
-extension Model.DroidKaigi2024Day {
+extension Model.DroidKaigi2025Day {
     init?(from shared: shared.DroidKaigi2025Day) {
         switch shared {
         case .workday:
@@ -173,7 +173,7 @@ extension Model.TimetableItemSession {
             speakers: shared.speakers.map { Model.Speaker(from: $0) },
             description: Model.MultiLangText(from: shared.description_),
             message: shared.message.map { Model.MultiLangText(from: $0) },
-            day: shared.day.flatMap { Model.DroidKaigi2024Day(from: $0) }
+            day: shared.day.flatMap { Model.DroidKaigi2025Day(from: $0) }
         )
     }
 }
@@ -195,7 +195,7 @@ extension Model.TimetableItemSpecial {
             speakers: shared.speakers.map { Model.Speaker(from: $0) },
             description: Model.MultiLangText(from: shared.description_),
             message: shared.message.map { Model.MultiLangText(from: $0) },
-            day: shared.day.flatMap { Model.DroidKaigi2024Day(from: $0) }
+            day: shared.day.flatMap { Model.DroidKaigi2025Day(from: $0) }
         )
     }
 }
@@ -298,7 +298,7 @@ extension Model.Timetable {
 extension Model.Filters {
     init(from shared: shared.Filters) {
         self.init(
-            days: shared.days.compactMap { Model.DroidKaigi2024Day(from: $0) },
+            days: shared.days.compactMap { Model.DroidKaigi2025Day(from: $0) },
             categories: shared.categories.map { Model.TimetableCategory(from: $0) },
             sessionTypes: shared.sessionTypes.compactMap { Model.TimetableSessionType(from: $0) },
             languages: shared.languages.map { Model.Lang(from: $0) },

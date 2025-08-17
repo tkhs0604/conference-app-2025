@@ -25,7 +25,7 @@ public final class TimetableProvider {
     private var fetchTask: Task<Void, Never>?
 
     public var timetable: Timetable?
-    public var dayTimetable: [DroidKaigi2024Day: [TimetableTimeGroupItems]] = [:]
+    public var dayTimetable: [DroidKaigi2025Day: [TimetableTimeGroupItems]] = [:]
 
     // Extract unique rooms from timetable items
     public var rooms: [Room] {
@@ -56,9 +56,9 @@ public final class TimetableProvider {
             for await timetable in timetableUseCase.load() {
                 self.timetable = timetable
 
-                for day in DroidKaigi2024Day.allCases {
+                for day in DroidKaigi2025Day.allCases {
                     dayTimetable[day] = sortListIntoTimeGroups(
-                        timetableItems: timetable.dayTimetable(droidKaigi2024Day: day).contents
+                        timetableItems: timetable.dayTimetable(droidKaigi2025Day: day).contents
                     )
                 }
             }

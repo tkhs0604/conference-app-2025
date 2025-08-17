@@ -9,7 +9,7 @@ final class SearchPresenter {
     let timetable = TimetableProvider()
 
     var searchWord: String = ""
-    var selectedDay: DroidKaigi2024Day?
+    var selectedDay: DroidKaigi2025Day?
     var selectedCategory: TimetableCategory?
     var selectedSessionType: TimetableSessionType?
     var selectedLanguage: TimetableLanguage?

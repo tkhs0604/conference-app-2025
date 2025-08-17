@@ -62,28 +62,28 @@ extension Model.Room {
     }
 }
 
-extension Model.DroidKaigi2024Day {
+extension Model.DroidKaigi2025Day {
     public var start: Date {
         switch self {
         case .workday:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 11).date ?? Date()
+            return DateComponents(calendar: .current, year: 2025, month: 9, day: 10).date ?? Date()
         case .conferenceDay1:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 12).date ?? Date()
+            return DateComponents(calendar: .current, year: 2025, month: 9, day: 11).date ?? Date()
         case .conferenceDay2:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 13).date ?? Date()
+            return DateComponents(calendar: .current, year: 2025, month: 9, day: 12).date ?? Date()
         }
     }
 
     public var end: Date {
         switch self {
         case .workday:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 11, hour: 23, minute: 59, second: 59)
+            return DateComponents(calendar: .current, year: 2025, month: 9, day: 10, hour: 23, minute: 59, second: 59)
                 .date ?? Date()
         case .conferenceDay1:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 12, hour: 23, minute: 59, second: 59)
+            return DateComponents(calendar: .current, year: 2025, month: 9, day: 11, hour: 23, minute: 59, second: 59)
                 .date ?? Date()
         case .conferenceDay2:
-            return DateComponents(calendar: .current, year: 2024, month: 9, day: 13, hour: 23, minute: 59, second: 59)
+            return DateComponents(calendar: .current, year: 2025, month: 9, day: 12, hour: 23, minute: 59, second: 59)
                 .date ?? Date()
         }
     }
@@ -109,7 +109,7 @@ extension Model.DroidKaigi2024Day {
         }
     }
 
-    public static func initialSelectedTabDay(clock: Date = Date()) -> Model.DroidKaigi2024Day {
+    public static func initialSelectedTabDay(clock: Date = Date()) -> Model.DroidKaigi2025Day {
         let visibleDays = Self.visibleDays()
 
         for day in visibleDays {
@@ -121,8 +121,8 @@ extension Model.DroidKaigi2024Day {
         return visibleDays.first ?? .conferenceDay1
     }
 
-    public static func ofOrNull(time: Date) -> Model.DroidKaigi2024Day? {
-        for day in Model.DroidKaigi2024Day.allCases {
+    public static func ofOrNull(time: Date) -> Model.DroidKaigi2025Day? {
+        for day in Model.DroidKaigi2025Day.allCases {
             if time >= day.start && time <= day.end {
                 return day
             }
@@ -130,7 +130,7 @@ extension Model.DroidKaigi2024Day {
         return nil
     }
 
-    public static func visibleDays() -> [Model.DroidKaigi2024Day] {
+    public static func visibleDays() -> [Model.DroidKaigi2025Day] {
         [.conferenceDay1, .conferenceDay2]
     }
 }
@@ -177,7 +177,7 @@ extension Model.TimetableItem {
     }
 
     public var url: String {
-        "https://2024.droidkaigi.jp/timetable/\(id.value)"
+        "https://2025.droidkaigi.jp/timetable/\(id.value)"
     }
 
     public func getSupportedLangString(isJapaneseLocale: Bool) -> String {
@@ -201,8 +201,8 @@ extension Model.Timetable {
         }
     }
 
-    public func dayTimetable(droidKaigi2024Day: Model.DroidKaigi2024Day) -> Model.Timetable {
-        let filteredItems = timetableItems.filter { $0.day == droidKaigi2024Day }
+    public func dayTimetable(droidKaigi2025Day: Model.DroidKaigi2025Day) -> Model.Timetable {
+        let filteredItems = timetableItems.filter { $0.day == droidKaigi2025Day }
         return Model.Timetable(timetableItems: filteredItems, bookmarks: bookmarks)
     }
 }

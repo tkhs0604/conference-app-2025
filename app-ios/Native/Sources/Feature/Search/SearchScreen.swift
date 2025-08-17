@@ -236,7 +236,7 @@ public struct SearchScreen: View {
 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 8) {
-                        SearchFilterChip<DroidKaigi2024Day>(
+                        SearchFilterChip<DroidKaigi2025Day>(
                             title: "All",
                             isSelected: presenter.selectedDay == nil,
                             onTap: {
@@ -244,8 +244,8 @@ public struct SearchScreen: View {
                             }
                         )
 
-                        ForEach([DroidKaigi2024Day.conferenceDay1, .conferenceDay2], id: \.self) { day in
-                            SearchFilterChip<DroidKaigi2024Day>(
+                        ForEach([DroidKaigi2025Day.conferenceDay1, .conferenceDay2], id: \.self) { day in
+                            SearchFilterChip<DroidKaigi2025Day>(
                                 title: day == .conferenceDay1 ? "Day 1" : "Day 2",
                                 isSelected: presenter.selectedDay == day,
                                 onTap: {
