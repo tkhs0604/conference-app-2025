@@ -31,7 +31,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import io.github.confsched.profile.saveablePath
+import io.github.confsched.profile.persistPermission
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.component.AnimatedTextTopAppBar
 import io.github.droidkaigi.confsched.model.profile.Profile
@@ -45,6 +45,7 @@ import io.github.droidkaigi.confsched.profile.occupation
 import io.github.droidkaigi.confsched.profile.profile_card_title
 import io.github.droidkaigi.confsched.profile.url_is_invalid
 import io.github.vinceglb.filekit.PlatformFile
+import io.github.vinceglb.filekit.absolutePath
 import io.github.vinceglb.filekit.dialogs.FileKitType
 import io.github.vinceglb.filekit.dialogs.compose.rememberFilePickerLauncher
 import io.github.vinceglb.filekit.exists
@@ -179,7 +180,8 @@ private fun Form<Profile>.Image() {
                     image = image,
                     onImageChange = { file ->
                         image = file
-                        field.onValueChange(file.saveablePath())
+                        file.persistPermission()
+                        field.onValueChange(file.absolutePath())
                     },
                     onClear = {
                         image = null
@@ -198,7 +200,7 @@ private fun Form<Profile>.Image() {
     )
 
     // FIXME: Replace the ByteArray version once the following bug is fixed.
-    //   java.lang.IllegalArgumentException: Invalid URI: content://com.android.providers.media.documents/document/image
+    //   https://github.com/vinceglb/FileKit/issues/346
     // var image: PlatformFile? by remember {
     //     val file = if (value.image.isNotEmpty()) {
     //         PlatformFile.fromBookmarkData(value.image)
