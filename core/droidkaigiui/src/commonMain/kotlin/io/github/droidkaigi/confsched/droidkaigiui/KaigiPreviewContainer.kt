@@ -20,10 +20,9 @@ import soil.plant.compose.reacty.ErrorBoundaryContext
 @Composable
 fun KaigiPreviewContainer(
     modifier: Modifier = Modifier,
-    darkTheme: Boolean = false,
     content: @Composable context(PreviewContext) () -> Unit,
 ) {
-    KaigiTheme(darkTheme = darkTheme) {
+    KaigiTheme {
         Surface(modifier = modifier) {
             val previewHandler = AsyncImagePreviewHandler {
                 ColorImage(Color.Red.toArgb())
