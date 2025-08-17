@@ -27,7 +27,7 @@ class StaffRepository(
             state = rememberQuery(
                 key = staffQueryKey,
                 client = swrClient,
-            )
+            ),
         )
     }
         .filterNotNull()

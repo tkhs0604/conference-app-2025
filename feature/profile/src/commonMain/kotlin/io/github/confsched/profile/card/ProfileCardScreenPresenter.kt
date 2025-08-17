@@ -7,8 +7,8 @@ import io.github.droidkaigi.confsched.common.compose.EventFlow
 import io.github.droidkaigi.confsched.common.compose.providePresenterDefaults
 import io.github.droidkaigi.confsched.model.profile.Profile
 
-context(screenContext: ProfileScreenContext)
 @Composable
+context(screenContext: ProfileScreenContext)
 fun profileCardScreenPresenter(
     eventFlow: EventFlow<ProfileCardScreenEvent>,
     profile: Profile,

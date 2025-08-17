@@ -11,7 +11,7 @@ import io.github.droidkaigi.confsched.navkey.FavoritesNavKey
 
 context(appGraph: AppGraph)
 fun EntryProviderBuilder<NavKey>.favoritesEntry(
-    onTimetableItemClick: (TimetableItemId) -> Unit
+    onTimetableItemClick: (TimetableItemId) -> Unit,
 ) {
     entry<FavoritesNavKey> {
         with(appGraph.rememberFavoritesScreenContextRetained()) {

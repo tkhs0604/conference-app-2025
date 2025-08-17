@@ -18,7 +18,8 @@ enum class SponsorPlan {
     GOLD,
     SILVER,
     BRONZE,
-    SUPPORTER;
+    SUPPORTER,
+    ;
 
     companion object {
         fun ofOrNull(plan: String): SponsorPlan? {
@@ -63,6 +64,6 @@ fun Sponsor.Companion.fakes(): PersistentList<Sponsor> {
             logo = "https://placehold.jp/150x150.png",
             plan = SponsorPlan.SUPPORTER,
             link = "https://developer.android.com/",
-        )
+        ),
     )
 }

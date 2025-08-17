@@ -16,7 +16,7 @@ import kotlinx.coroutines.CoroutineDispatcher
         DefaultSessionsApiClient::class,
         DefaultContributorsApiClient::class,
         CoroutineDispatcher::class,
-    ]
+    ],
 )
 internal interface JvmTestAppGraph : TestAppGraph
 

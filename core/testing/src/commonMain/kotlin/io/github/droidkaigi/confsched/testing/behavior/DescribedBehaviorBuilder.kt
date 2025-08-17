@@ -34,7 +34,9 @@ suspend fun <T> DescribedBehavior<T>.execute(robot: T) {
 
 sealed class TestNode<T> {
     data class Describe<T>(val description: String, val children: List<TestNode<T>>) : TestNode<T>()
-    data class Run<T>(val action: suspend context(ComposeUiTest) T.() -> Unit) : TestNode<T>()
+    data class Run<T>(
+        val action: suspend context(ComposeUiTest) T.() -> Unit,
+    ) : TestNode<T>()
     data class ItShould<T>(
         val description: String,
         val action: suspend context(ComposeUiTest, TestCaseDescriptionProvider) T.() -> Unit,

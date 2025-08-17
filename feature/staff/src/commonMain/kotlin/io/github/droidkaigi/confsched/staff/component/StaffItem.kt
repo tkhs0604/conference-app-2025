@@ -46,7 +46,7 @@ fun StaffItem(
         Image(
             painter = previewOverridePainter(
                 previewPainter = { rememberVectorPainter(image = Icons.Default.Person) },
-                painter = { rememberAsyncImagePainter(staff.icon) }
+                painter = { rememberAsyncImagePainter(staff.icon) },
             ),
             contentDescription = staff.name,
             modifier = Modifier
@@ -56,7 +56,7 @@ fun StaffItem(
                     width = 1.dp,
                     color = MaterialTheme.colorScheme.outline,
                     shape = staffIconShape,
-                )
+                ),
         )
         Text(
             text = staff.name,

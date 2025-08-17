@@ -11,8 +11,8 @@ import soil.query.buildMutationKey
 @ContributesBinding(DataScope::class)
 @Inject
 public class DefaultProfileMutationKey(
-    private val dataStore: UserDataStore
+    private val dataStore: UserDataStore,
 ) : ProfileMutationKey by buildMutationKey(
     id = MutationId("profile_mutation_key"),
-    mutate = { dataStore.saveProfile(it) }
+    mutate = { dataStore.saveProfile(it) },
 )

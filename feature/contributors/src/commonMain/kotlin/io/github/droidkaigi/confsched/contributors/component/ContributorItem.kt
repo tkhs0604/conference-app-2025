@@ -49,7 +49,7 @@ fun ContributorItem(
         Image(
             painter = previewOverridePainter(
                 previewPainter = { rememberVectorPainter(image = Icons.Default.Person) },
-                painter = { rememberAsyncImagePainter(contributor.iconUrl) }
+                painter = { rememberAsyncImagePainter(contributor.iconUrl) },
             ),
             contentDescription = contributor.username,
             modifier = Modifier

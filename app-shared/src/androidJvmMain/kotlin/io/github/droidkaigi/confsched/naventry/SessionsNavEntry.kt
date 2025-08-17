@@ -4,10 +4,10 @@ import androidx.navigation3.runtime.EntryProviderBuilder
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entry
 import io.github.droidkaigi.confsched.AppGraph
-import io.github.droidkaigi.confsched.navigation.listDetailSceneStrategyDetailPaneMetaData
-import io.github.droidkaigi.confsched.navigation.listDetailSceneStrategyListPaneMetaData
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
+import io.github.droidkaigi.confsched.navigation.listDetailSceneStrategyDetailPaneMetaData
+import io.github.droidkaigi.confsched.navigation.listDetailSceneStrategyListPaneMetaData
 import io.github.droidkaigi.confsched.navkey.SearchNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableItemDetailNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableNavKey
@@ -25,17 +25,17 @@ fun EntryProviderBuilder<NavKey>.sessionEntries(
     onShareClick: (TimetableItem) -> Unit,
     onLinkClick: (String) -> Unit,
     onSearchClick: () -> Unit,
-    onTimetableItemClick: (TimetableItemId) -> Unit
+    onTimetableItemClick: (TimetableItemId) -> Unit,
 ) {
     timetableEntry(
         onSearchClick = onSearchClick,
-        onTimetableItemClick = onTimetableItemClick
+        onTimetableItemClick = onTimetableItemClick,
     )
     timetableItemDetailEntry(
         onBackClick = onBackClick,
         onAddCalendarClick = onAddCalendarClick,
         onShareClick = onShareClick,
-        onLinkClick = onLinkClick
+        onLinkClick = onLinkClick,
     )
     searchEntry()
 }
@@ -43,7 +43,7 @@ fun EntryProviderBuilder<NavKey>.sessionEntries(
 context(appGraph: AppGraph)
 fun EntryProviderBuilder<NavKey>.timetableEntry(
     onSearchClick: () -> Unit,
-    onTimetableItemClick: (TimetableItemId) -> Unit
+    onTimetableItemClick: (TimetableItemId) -> Unit,
 ) {
     entry<TimetableNavKey>(metadata = listDetailSceneStrategyListPaneMetaData()) {
         with(appGraph.rememberTimetableScreenContextRetained()) {
@@ -60,7 +60,7 @@ fun EntryProviderBuilder<NavKey>.timetableItemDetailEntry(
     onBackClick: () -> Unit,
     onAddCalendarClick: (TimetableItem) -> Unit,
     onShareClick: (TimetableItem) -> Unit,
-    onLinkClick: (String) -> Unit
+    onLinkClick: (String) -> Unit,
 ) {
     entry<TimetableItemDetailNavKey>(metadata = listDetailSceneStrategyDetailPaneMetaData()) {
         with(appGraph.rememberTimetableItemDetailScreenContextRetained(it.id)) {
@@ -68,7 +68,7 @@ fun EntryProviderBuilder<NavKey>.timetableItemDetailEntry(
                 onBackClick = onBackClick,
                 onAddCalendarClick = onAddCalendarClick,
                 onShareClick = onShareClick,
-                onLinkClick = onLinkClick
+                onLinkClick = onLinkClick,
             )
         }
     }

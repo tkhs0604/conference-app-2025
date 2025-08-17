@@ -49,11 +49,11 @@ fun SafeLaunchedEffect(key: Any?, block: suspend CoroutineScope.() -> Unit) {
     }
 }
 
-//@Composable
-//fun <T : R, R> Flow<T>.safeCollectAsRetainedState(
+// @Composable
+// fun <T : R, R> Flow<T>.safeCollectAsRetainedState(
 //    initial: R,
 //    context: CoroutineContext = EmptyCoroutineContext,
-//): State<R> {
+// ): State<R> {
 //    val composeEffectErrorHandler = LocalComposeEffectErrorHandler.current
 //    // See collectAsState
 //    return produceRetainedState(initial, this, context) {
@@ -71,12 +71,12 @@ fun SafeLaunchedEffect(key: Any?, block: suspend CoroutineScope.() -> Unit) {
 //            composeEffectErrorHandler.emit(e)
 //        }
 //    }
-//}
+// }
 //
-//@Suppress("StateFlowValueCalledInComposition")
-//@Composable
-//fun <T : R, R> StateFlow<T>.safeCollectAsRetainedState(
+// @Suppress("StateFlowValueCalledInComposition")
+// @Composable
+// fun <T : R, R> StateFlow<T>.safeCollectAsRetainedState(
 //    context: CoroutineContext = EmptyCoroutineContext,
-//): State<R> {
+// ): State<R> {
 //    return safeCollectAsRetainedState(value, context)
-//}
+// }

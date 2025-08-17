@@ -49,7 +49,7 @@ public object LocalNavigationEventDispatcherOwner {
      * [CompositionLocalProvider].
      */
     public infix fun provides(
-        navigationEventDispatcherOwner: NavigationEventDispatcherOwner
+        navigationEventDispatcherOwner: NavigationEventDispatcherOwner,
     ): ProvidedValue<NavigationEventDispatcherOwner?> {
         return LocalNavigationEventDispatcherOwner.provides(navigationEventDispatcherOwner)
     }

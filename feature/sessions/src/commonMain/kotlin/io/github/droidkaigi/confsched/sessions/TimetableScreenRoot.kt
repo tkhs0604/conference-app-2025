@@ -9,8 +9,8 @@ import org.jetbrains.compose.resources.stringResource
 import soil.query.compose.rememberQuery
 import soil.query.compose.rememberSubscription
 
-context(screenContext: TimetableScreenContext)
 @Composable
+context(screenContext: TimetableScreenContext)
 fun TimetableScreenRoot(
     onSearchClick: () -> Unit,
     onTimetableItemClick: (TimetableItemId) -> Unit,
@@ -19,7 +19,7 @@ fun TimetableScreenRoot(
         state1 = rememberQuery(screenContext.timetableQueryKey),
         state2 = rememberSubscription(screenContext.favoriteTimetableIdsSubscriptionKey),
         fallback = SoilFallbackDefaults.appBar(
-            title = stringResource(SessionsRes.string.timetable)
+            title = stringResource(SessionsRes.string.timetable),
         ),
     ) { timetable, favoriteTimetableItemIds ->
         val eventFlow = rememberEventFlow<TimetableScreenEvent>()

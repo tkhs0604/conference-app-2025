@@ -141,7 +141,7 @@ public fun SessionsAllResponse.Companion.messageExistsFake(): SessionsAllRespons
         message = LocaledResponse(
             ja = "このセッションは中止になりました",
             en = "This session has been canceled.",
-        )
+        ),
     ),
 )
 
@@ -248,17 +248,17 @@ private fun SessionResponse.Companion.fakes(
 
                 val description = if (index % 2 == 0) {
                     "これはディスクリプションです。\nこれはディスクリプションです。\n" +
-                            "これはディスクリプションです。\nこれはディスクリプションです。\n" +
-                            "これはディスクリプションです。\nこれはディスクリプションです。\n" +
-                            "これはディスクリプションです。\nこれはディスクリプションです。\n"
+                        "これはディスクリプションです。\nこれはディスクリプションです。\n" +
+                        "これはディスクリプションです。\nこれはディスクリプションです。\n" +
+                        "これはディスクリプションです。\nこれはディスクリプションです。\n"
                 } else {
                     "これはディスクリプションです。"
                 }
 
                 val englishDescription = if (index % 2 == 0) {
                     "This is a description\nThis is a description\nThis is a description\n" +
-                            "This is a description\nThis is a description\nThis is a description\n" +
-                            "This is a description\nThis is a description\n"
+                        "This is a description\nThis is a description\nThis is a description\n" +
+                        "This is a description\nThis is a description\n"
                 } else {
                     "This is a description."
                 }

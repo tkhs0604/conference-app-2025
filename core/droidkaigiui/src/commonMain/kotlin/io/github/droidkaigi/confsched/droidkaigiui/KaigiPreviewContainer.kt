@@ -37,7 +37,10 @@ fun KaigiPreviewContainer(
     }
 }
 
-interface PreviewContext : ScreenContext, SoilSuspenseContext, SoilErrorContext
+interface PreviewContext :
+    ScreenContext,
+    SoilSuspenseContext,
+    SoilErrorContext
 
 private class FakePreviewContext : PreviewContext {
     override val errorBoundaryContext: ErrorBoundaryContext = ErrorBoundaryContext(

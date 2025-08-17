@@ -16,7 +16,7 @@ fun <T> soilDataBoundary(
 fun <T1, T2, RESULT> soilDataBoundary(
     state1: DataModel<T1>,
     state2: DataModel<T2>,
-    transform: (T1, T2) -> RESULT
+    transform: (T1, T2) -> RESULT,
 ): RESULT? {
     val combinedReply = Reply.combine(
         state1.reply,
@@ -33,7 +33,7 @@ fun <T1, T2, T3, RESULT> soilDataBoundary(
     state1: DataModel<T1>,
     state2: DataModel<T2>,
     state3: DataModel<T3>,
-    transform: (T1, T2, T3) -> RESULT
+    transform: (T1, T2, T3) -> RESULT,
 ): RESULT? {
     val combinedReply = Reply.combine(
         state1.reply,

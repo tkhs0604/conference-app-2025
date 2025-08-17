@@ -50,12 +50,12 @@ fun favoritesScreenPresenterStateFlow(
                 with(iosAppGraph.rememberFavoritesScreenContextRetained()) {
                     soilDataBoundary(
                         rememberQuery(timetableQueryKey),
-                        rememberSubscription(favoriteTimetableIdsSubscriptionKey)
+                        rememberSubscription(favoriteTimetableIdsSubscriptionKey),
                     ) { timetable, favoriteTimetableItemIds ->
                         favoritesScreenPresenter(
                             // To avoid infinite recomposition issues, we use remember to keep the event flow stable.
                             eventFlow = remember { eventFlow },
-                            timetable = timetable.copy(bookmarks = favoriteTimetableItemIds)
+                            timetable = timetable.copy(bookmarks = favoriteTimetableItemIds),
                         )
                     }
                 }
@@ -112,7 +112,7 @@ private fun <T> swrClientProviderWithReturnValue(
         LocalSwrClient provides client,
         LocalQueryClient provides client,
         LocalMutationClient provides client,
-        LocalSubscriptionClient provides client
+        LocalSubscriptionClient provides client,
     ) {
         content()
     }

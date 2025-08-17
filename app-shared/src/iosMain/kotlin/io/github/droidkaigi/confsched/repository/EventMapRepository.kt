@@ -27,7 +27,7 @@ class EventMapRepository(
             state = rememberQuery(
                 key = eventMapQueryKey,
                 client = swrClient,
-            )
+            ),
         )
     }
         .filterNotNull()

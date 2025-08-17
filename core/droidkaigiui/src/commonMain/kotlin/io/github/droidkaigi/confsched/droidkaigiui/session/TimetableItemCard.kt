@@ -42,9 +42,9 @@ import io.github.droidkaigi.confsched.droidkaigiui.DroidkaigiuiRes
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.bookmarked
 import io.github.droidkaigi.confsched.droidkaigiui.extension.icon
+import io.github.droidkaigi.confsched.droidkaigiui.extension.roomTheme
 import io.github.droidkaigi.confsched.droidkaigiui.not_bookmarked
 import io.github.droidkaigi.confsched.droidkaigiui.rememberAsyncImagePainter
-import io.github.droidkaigi.confsched.droidkaigiui.extension.roomTheme
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.TimetableSpeaker
 import io.github.droidkaigi.confsched.model.sessions.fake
@@ -75,13 +75,13 @@ fun TimetableItemCard(
                     top = TimetableItemCardDefaults.tagRowTopPadding,
                     bottom = TimetableItemCardDefaults.contentPadding,
                     start = TimetableItemCardDefaults.contentPadding,
-                )
+                ),
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier
                     .weight(1f)
-                    .padding(top = TimetableItemCardDefaults.rippleTopPadding)
+                    .padding(top = TimetableItemCardDefaults.rippleTopPadding),
             ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -120,7 +120,7 @@ fun TimetableItemCard(
                             imageVector = Icons.Filled.Info,
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.error,
-                            modifier = Modifier.size(TimetableItemCardDefaults.errorIconSize)
+                            modifier = Modifier.size(TimetableItemCardDefaults.errorIconSize),
                         )
                         Text(
                             text = errorMessage.currentLangTitle,

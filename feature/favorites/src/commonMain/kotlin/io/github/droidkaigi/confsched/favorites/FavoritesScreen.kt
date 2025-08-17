@@ -61,10 +61,10 @@ fun FavoritesScreen(
                 scrollBehavior = scrollBehavior,
             )
         },
-        modifier = modifier
+        modifier = modifier,
     ) { innerPadding ->
         Column(
-            modifier = Modifier.padding(innerPadding)
+            modifier = Modifier.padding(innerPadding),
         ) {
             FavoriteFilters(
                 allFilterSelected = uiState.filterState.allFilterSelected,
@@ -80,7 +80,7 @@ fun FavoritesScreen(
             when (uiState.timetableContentState) {
                 FavoritesScreenUiState.TimetableContentState.Empty -> {
                     FavoriteEmpty(
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize(),
                     )
                 }
 
@@ -108,7 +108,7 @@ private fun FavoritesScreenPreview() {
             uiState = FavoritesScreenUiState(
                 filterState = FavoritesScreenUiState.FilterState(
                     allFilterSelected = false,
-                    currentDayFilter = persistentListOf(DroidKaigi2025Day.ConferenceDay1, DroidKaigi2025Day.ConferenceDay2)
+                    currentDayFilter = persistentListOf(DroidKaigi2025Day.ConferenceDay1, DroidKaigi2025Day.ConferenceDay2),
                 ),
                 timetableContentState = FavoritesScreenUiState.TimetableContentState.FavoriteList(
                     timetableItemMap = persistentMapOf(
@@ -118,9 +118,9 @@ private fun FavoritesScreenPreview() {
                             endTimeString = "11:00",
                         ) to listOf(
                             TimetableItem.Session.fake(),
-                        )
-                    )
-                )
+                        ),
+                    ),
+                ),
             ),
             onTimetableItemClick = {},
             onBookmarkClick = {},

@@ -27,7 +27,7 @@ class ContributorsRepository(
             state = rememberQuery(
                 key = contributorsQueryKey,
                 client = swrClient,
-            )
+            ),
         )
     }
         .filterNotNull()

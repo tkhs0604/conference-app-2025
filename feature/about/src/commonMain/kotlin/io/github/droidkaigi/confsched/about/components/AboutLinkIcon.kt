@@ -44,7 +44,7 @@ fun AboutLinkIcon(
     IconButton(
         onClick = onClick,
         interactionSource = interactionSource,
-        modifier = modifier
+        modifier = modifier,
     ) {
         Image(
             painter = painter,

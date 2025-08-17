@@ -12,8 +12,8 @@ import org.jetbrains.compose.resources.stringResource
 import soil.query.compose.rememberQuery
 
 @OptIn(ExperimentalResourceApi::class)
-context(screenContext: LicensesScreenContext)
 @Composable
+context(screenContext: LicensesScreenContext)
 fun LicensesScreenRoot(
     onBackClick: () -> Unit,
 ) {

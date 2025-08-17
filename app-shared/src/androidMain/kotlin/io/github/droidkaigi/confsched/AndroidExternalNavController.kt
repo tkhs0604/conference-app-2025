@@ -67,9 +67,9 @@ class AndroidExternalNavController(
 
     override fun onShareClick(timetableItem: TimetableItem) {
         val text = "[${timetableItem.room.name.currentLangTitle}] ${timetableItem.formattedMonthAndDayString} " +
-                "${timetableItem.startsTimeString} - ${timetableItem.endsTimeString}\n" +
-                "${timetableItem.title.currentLangTitle}\n" +
-                timetableItem.url
+            "${timetableItem.startsTimeString} - ${timetableItem.endsTimeString}\n" +
+            "${timetableItem.title.currentLangTitle}\n" +
+            timetableItem.url
         try {
             ShareCompat.IntentBuilder(context)
                 .setText(text)

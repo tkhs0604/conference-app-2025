@@ -32,9 +32,9 @@ import io.github.droidkaigi.confsched.designsystem.theme.LocalRoomTheme
 import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.droidkaigiui.component.TimetableItemTag
-import io.github.droidkaigi.confsched.droidkaigiui.rememberAsyncImagePainter
 import io.github.droidkaigi.confsched.droidkaigiui.extension.icon
 import io.github.droidkaigi.confsched.droidkaigiui.extension.roomTheme
+import io.github.droidkaigi.confsched.droidkaigiui.rememberAsyncImagePainter
 import io.github.droidkaigi.confsched.model.core.Lang
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.fake
@@ -164,8 +164,9 @@ private fun LanguageSwitcher(
                         when (lang) {
                             Lang.JAPANESE -> SessionsRes.string.japanese
                             Lang.ENGLISH,
-                            Lang.MIXED -> SessionsRes.string.english
-                        }
+                            Lang.MIXED,
+                            -> SessionsRes.string.english
+                        },
                     ),
                     color = contentColor,
                     style = MaterialTheme.typography.labelMedium,

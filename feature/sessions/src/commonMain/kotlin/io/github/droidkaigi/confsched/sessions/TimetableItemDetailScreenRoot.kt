@@ -8,8 +8,8 @@ import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import soil.query.compose.rememberQuery
 import soil.query.compose.rememberSubscription
 
-context(screenContext: TimetableItemDetailScreenContext)
 @Composable
+context(screenContext: TimetableItemDetailScreenContext)
 fun TimetableItemDetailScreenRoot(
     onBackClick: () -> Unit,
     onAddCalendarClick: (TimetableItem) -> Unit,
@@ -22,7 +22,7 @@ fun TimetableItemDetailScreenRoot(
         fallback = SoilFallbackDefaults.appBar(
             title = "", // empty title, showing only back navigation
             onBackClick = onBackClick,
-        )
+        ),
     ) { timetableItem, favoriteTimetableItemIds ->
         val eventFlow = rememberEventFlow<TimetableItemDetailScreenEvent>()
 

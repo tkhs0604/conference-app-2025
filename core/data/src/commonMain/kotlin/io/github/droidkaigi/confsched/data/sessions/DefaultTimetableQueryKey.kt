@@ -2,7 +2,6 @@ package io.github.droidkaigi.confsched.data.sessions
 
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
-import dev.zacsweers.metro.binding
 import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.core.toMultiLangText
 import io.github.droidkaigi.confsched.data.core.toRoom
@@ -28,7 +27,7 @@ import soil.query.QueryPreloadData
 import soil.query.buildQueryKey
 import kotlin.time.Instant
 
-@ContributesBinding(DataScope::class, binding = binding<TimetableQueryKey>())
+@ContributesBinding(DataScope::class)
 @Inject
 public class DefaultTimetableQueryKey(
     private val sessionsApiClient: SessionsApiClient,

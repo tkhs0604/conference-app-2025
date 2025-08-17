@@ -13,8 +13,7 @@ public sealed class AppError : RuntimeException {
     }
 
     public sealed class ExternalIntegrationError(cause: Throwable?) : AppError(cause = cause) {
-        public class NoCalendarIntegrationFoundException(cause: Throwable?) :
-            ExternalIntegrationError(cause)
+        public class NoCalendarIntegrationFoundException(cause: Throwable?) : ExternalIntegrationError(cause)
     }
 
     public class UnknownException(cause: Throwable?) : AppError(cause = cause)

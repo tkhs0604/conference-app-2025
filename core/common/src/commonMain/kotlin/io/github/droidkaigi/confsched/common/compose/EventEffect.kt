@@ -19,8 +19,8 @@ fun <T> rememberEventFlow(): EventFlow<T> {
     }
 }
 
-context(_: PresenterContext)
 @Composable
+context(_: PresenterContext)
 fun <EVENT> EventEffect(
     eventFlow: EventFlow<EVENT>,
     block: suspend context (DataMutationContext) CoroutineScope.(event: EVENT) -> Unit,

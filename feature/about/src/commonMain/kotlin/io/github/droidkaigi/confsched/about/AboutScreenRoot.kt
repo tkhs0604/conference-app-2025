@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import io.github.droidkaigi.confsched.common.compose.rememberEventFlow
 import io.github.droidkaigi.confsched.model.about.AboutItem
 
-context(screenContext: AboutScreenContext)
 @Composable
+context(screenContext: AboutScreenContext)
 fun AboutScreenRoot(
     onAboutItemClick: (AboutItem) -> Unit,
 ) {

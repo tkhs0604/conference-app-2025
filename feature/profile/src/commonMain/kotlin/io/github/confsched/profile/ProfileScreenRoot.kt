@@ -14,8 +14,8 @@ import io.github.droidkaigi.confsched.profile.profile_card_title
 import org.jetbrains.compose.resources.stringResource
 import soil.query.compose.rememberSubscription
 
-context(screenContext: ProfileScreenContext)
 @Composable
+context(screenContext: ProfileScreenContext)
 fun ProfileScreenRoot() {
     SoilDataBoundary(
         state = rememberSubscription(screenContext.profileSubscriptionKey),
@@ -33,7 +33,7 @@ fun ProfileScreenRoot() {
             else -> {
                 ProfileEditScreenRoot(
                     profile = profile,
-                    onProfileCreate = { isEditMode = false }
+                    onProfileCreate = { isEditMode = false },
                 )
             }
         }
