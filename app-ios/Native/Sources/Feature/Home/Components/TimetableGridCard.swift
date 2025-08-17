@@ -15,7 +15,7 @@ struct TimetableGridCard: View {
             onTap(timetableItem)
         } label: {
             VStack(alignment: .leading, spacing: 4) {
-                Text("10:00 ~ 11:00")
+                Text("\(timetableItem.startsTimeString) ~ \(timetableItem.endsTimeString)")
                     .font(Typography.labelLarge)
                     .foregroundStyle(timetableItem.room.color)
                     .multilineTextAlignment(.leading)
@@ -56,11 +56,72 @@ struct TimetableGridCard: View {
     }
 }
 
-// TODO: Add preview with proper test data
-// #Preview {
-//    TimetableGridCard(
-//        timetableItem: ...,
-//        cellCount: 1,
-//        onTap: { _ in }
-//    )
-// }
+#Preview {
+    TimetableGridCard(
+        timetableItem: PreviewData.timetableItemSession,
+        cellCount: 1,
+        onTap: { _ in }
+    )
+}
+
+#Preview("Multiple Cells") {
+    TimetableGridCard(
+        timetableItem: PreviewData.timetableItemSession,
+        cellCount: 2,
+        onTap: { _ in }
+    )
+}
+
+private enum PreviewData {
+    static let timetableItemSession = TimetableItemSession(
+        id: TimetableItemId(value: "preview-1"),
+        title: MultiLangText(jaTitle: "SwiftUIの最新機能", enTitle: "Latest SwiftUI Features"),
+        startsAt: createDate(hour: 10, minute: 0),
+        endsAt: createDate(hour: 11, minute: 0),
+        category: TimetableCategory(
+            id: 1,
+            title: MultiLangText(jaTitle: "開発", enTitle: "Development")
+        ),
+        sessionType: .regular,
+        room: Room(
+            id: 1,
+            name: MultiLangText(jaTitle: "ルームF", enTitle: "Room F"),
+            type: .roomF,
+            sort: 1
+        ),
+        targetAudience: "All levels",
+        language: TimetableLanguage(langOfSpeaker: "JA", isInterpretationTarget: true),
+        asset: TimetableAsset(videoUrl: nil, slideUrl: nil),
+        levels: ["Intermediate"],
+        speakers: [
+            Speaker(
+                id: "speaker-1",
+                name: "Preview Speaker",
+                iconUrl: "https://example.com/icon.png",
+                bio: "Speaker bio",
+                tagLine: "iOS Developer"
+            )
+        ],
+        description: MultiLangText(
+            jaTitle: "SwiftUIの最新機能について学びます",
+            enTitle: "Learn about the latest SwiftUI features"
+        ),
+        message: nil,
+        day: .conferenceDay1
+    )
+
+    private static func createDate(hour: Int, minute: Int) -> Date {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "Asia/Tokyo") ?? TimeZone.current
+
+        var components = DateComponents()
+        components.year = 2025
+        components.month = 9
+        components.day = 12
+        components.hour = hour
+        components.minute = minute
+        components.second = 0
+
+        return calendar.date(from: components) ?? Date()
+    }
+}

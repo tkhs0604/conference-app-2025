@@ -1,0 +1,4 @@
+nestPath: ./.nest
+targets:
+  - reference: realm/SwiftLint
+    version: 0.59.1

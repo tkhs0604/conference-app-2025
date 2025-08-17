@@ -26,16 +26,16 @@ import io.github.droidkaigi.confsched.navkey.AboutNavKey
 import io.github.droidkaigi.confsched.navkey.ContributorsNavKey
 import io.github.droidkaigi.confsched.navkey.EventMapNavKey
 import io.github.droidkaigi.confsched.navkey.FavoritesNavKey
-import io.github.droidkaigi.confsched.navkey.ProfileNavKey
 import io.github.droidkaigi.confsched.navkey.LicensesNavKey
+import io.github.droidkaigi.confsched.navkey.ProfileNavKey
 import io.github.droidkaigi.confsched.navkey.SearchNavKey
 import io.github.droidkaigi.confsched.navkey.SponsorsNavKey
 import io.github.droidkaigi.confsched.navkey.StaffNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableItemDetailNavKey
 import io.github.droidkaigi.confsched.navkey.TimetableNavKey
 
-context(appGraph: AppGraph)
 @Composable
+context(appGraph: AppGraph)
 actual fun KaigiAppUi() {
     val backStack = rememberNavBackStack(TimetableNavKey)
     val externalNavController = rememberExternalNavController()
@@ -81,7 +81,7 @@ actual fun KaigiAppUi() {
                             backStack.removeLastOrNull()
                         }
                         backStack.add(TimetableItemDetailNavKey(it))
-                    }
+                    },
                 )
                 contributorsEntry(
                     onBackClick = { backStack.removeLastOrNull() },
@@ -101,7 +101,7 @@ actual fun KaigiAppUi() {
                             backStack.removeLastOrNull()
                         }
                         backStack.add(TimetableItemDetailNavKey(it))
-                    }
+                    },
                 )
                 eventMapEntry(
                     onClickReadMore = externalNavController::navigate,
@@ -163,7 +163,7 @@ actual fun KaigiAppUi() {
             },
             modifier = Modifier
                 .fillMaxSize()
-                .hazeSource(hazeState)
+                .hazeSource(hazeState),
         )
     }
 }

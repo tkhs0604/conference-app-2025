@@ -67,9 +67,9 @@ internal class IosExternalNavController : ExternalNavController {
     @OptIn(BetaInteropApi::class)
     override fun onShareClick(timetableItem: TimetableItem) {
         val text = "[${timetableItem.room.name.currentLangTitle}] ${timetableItem.formattedMonthAndDayString} " +
-                "${timetableItem.startsTimeString} - ${timetableItem.endsTimeString}\n" +
-                "${timetableItem.title.currentLangTitle}\n" +
-                timetableItem.url
+            "${timetableItem.startsTimeString} - ${timetableItem.endsTimeString}\n" +
+            "${timetableItem.title.currentLangTitle}\n" +
+            timetableItem.url
 
         val activityItems = listOf(NSString.create(text))
         val activityViewController = UIActivityViewController(

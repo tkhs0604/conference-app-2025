@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     id("droidkaigi.primitive.kmp")
     id("droidkaigi.primitive.kmp.ios")
+    id("droidkaigi.primitive.spotless")
     alias(libs.plugins.metro)
 }
 

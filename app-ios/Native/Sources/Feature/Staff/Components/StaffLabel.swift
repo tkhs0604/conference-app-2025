@@ -1,43 +1,28 @@
+import Model
 import SwiftUI
 import Theme
 
 struct StaffLabel: View {
-    let staff: Staff
+    let staff: Model.Staff
 
     var body: some View {
         HStack(spacing: 12) {
             // Avatar with circular shape and border
-            if let iconUrl = staff.iconUrl {
-                AsyncImage(url: iconUrl) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                } placeholder: {
-                    // Placeholder with background color from Figma
-                    Circle()
-                        .fill(AssetColors.onSurface.swiftUIColor)
-                }
-                .frame(width: 52, height: 52)
-                .clipShape(Circle())
-                .overlay(
-                    Circle()
-                        .stroke(AssetColors.outline.swiftUIColor, lineWidth: 1)
-                )
-            } else {
-                // Default avatar placeholder
+            AsyncImage(url: staff.iconUrl) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            } placeholder: {
+                // Placeholder with background color from Figma
                 Circle()
                     .fill(AssetColors.onSurface.swiftUIColor)
-                    .frame(width: 52, height: 52)
-                    .overlay(
-                        Image(systemName: "person.fill")
-                            .foregroundStyle(.white)
-                            .font(.system(size: 24))
-                    )
-                    .overlay(
-                        Circle()
-                            .stroke(AssetColors.outline.swiftUIColor, lineWidth: 1)
-                    )
             }
+            .frame(width: 52, height: 52)
+            .clipShape(Circle())
+            .overlay(
+                Circle()
+                    .stroke(AssetColors.outline.swiftUIColor, lineWidth: 1)
+            )
 
             VStack(alignment: .leading, spacing: 0) {
                 Text(staff.name)

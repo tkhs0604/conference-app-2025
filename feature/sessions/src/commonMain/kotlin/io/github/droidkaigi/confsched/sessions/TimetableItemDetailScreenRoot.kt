@@ -2,13 +2,14 @@ package io.github.droidkaigi.confsched.sessions
 
 import androidx.compose.runtime.Composable
 import io.github.droidkaigi.confsched.common.compose.rememberEventFlow
-import io.github.droidkaigi.confsched.droidkaigiui.SoilDataBoundary
+import io.github.droidkaigi.confsched.droidkaigiui.architecture.SoilDataBoundary
+import io.github.droidkaigi.confsched.droidkaigiui.architecture.SoilFallbackDefaults
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import soil.query.compose.rememberQuery
 import soil.query.compose.rememberSubscription
 
-context(screenContext: TimetableItemDetailScreenContext)
 @Composable
+context(screenContext: TimetableItemDetailScreenContext)
 fun TimetableItemDetailScreenRoot(
     onBackClick: () -> Unit,
     onAddCalendarClick: (TimetableItem) -> Unit,
@@ -18,12 +19,10 @@ fun TimetableItemDetailScreenRoot(
     SoilDataBoundary(
         state1 = rememberQuery(screenContext.timetableItemQueryKey),
         state2 = rememberSubscription(screenContext.favoriteTimetableIdsSubscriptionKey),
-        errorFallback = {
-            TimetableItemDetailScreenErrorFallback(
-                errorBoundaryContext = it,
-                onBackClick = onBackClick,
-            )
-        }
+        fallback = SoilFallbackDefaults.appBar(
+            title = "", // empty title, showing only back navigation
+            onBackClick = onBackClick,
+        ),
     ) { timetableItem, favoriteTimetableItemIds ->
         val eventFlow = rememberEventFlow<TimetableItemDetailScreenEvent>()
 

@@ -86,7 +86,7 @@ fun GlassLikeBottomNavigationBar(
                     listOf(
                         Color.White.copy(alpha = 0.8f),
                         Color.White.copy(alpha = 0.2f),
-                    )
+                    ),
                 ),
                 shape = CircleShape,
             )
@@ -97,18 +97,18 @@ fun GlassLikeBottomNavigationBar(
                         state = hazeState,
                         style = HazeDefaults.style(
                             backgroundColor = MaterialTheme.colorScheme.background,
-                        )
+                        ),
                     )
                 } else {
                     Modifier.background(MaterialTheme.colorScheme.background.copy(alpha = .95f))
-                }
+                },
             ),
         contentAlignment = Alignment.Center,
     ) {
         BottomNavigationBarItems(
             currentTab = currentTab,
             onTabSelected = onTabSelected,
-            modifier = Modifier.padding(navigationItemsContentPadding)
+            modifier = Modifier.padding(navigationItemsContentPadding),
         )
 
         SelectedTabCircleBlurredBackground(
@@ -134,7 +134,7 @@ private fun BottomNavigationBarItems(
     modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = modifier.selectableGroup()
+        modifier = modifier.selectableGroup(),
     ) {
         MainScreenTab.entries.forEach { tab ->
             val selected = currentTab == tab
@@ -185,14 +185,14 @@ private fun SelectedTabCircleBlurredBackground(
                     Modifier.blur(50.dp, BlurredEdgeTreatment.Unbounded)
                 } else {
                     Modifier
-                }
+                },
             ),
     ) {
         // draw background for current tab
         val tabWidth = size.width / MainScreenTab.entries.size
         val selectedTabCenter = Offset(
             x = (tabWidth * animatedSelectedTabIndex) + (tabWidth / 2),
-            y = size.height / 2
+            y = size.height / 2,
         )
         val radius = size.height / 2
 

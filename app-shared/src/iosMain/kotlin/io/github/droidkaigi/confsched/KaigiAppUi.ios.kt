@@ -34,8 +34,8 @@ import io.github.droidkaigi.confsched.navigation.route.FavoritesTabRoute
 import io.github.droidkaigi.confsched.navigation.route.ProfileTabRoute
 import io.github.droidkaigi.confsched.navigation.route.TimetableTabRoute
 
-context(appGraph: AppGraph)
 @Composable
+context(appGraph: AppGraph)
 actual fun KaigiAppUi() {
     val navController = rememberNavController()
     val externalNavController = rememberExternalNavController()

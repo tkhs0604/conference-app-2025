@@ -13,6 +13,6 @@ operator fun PaddingValues.plus(other: PaddingValues): PaddingValues {
         start = this.calculateStartPadding(layoutDirection) + other.calculateStartPadding(layoutDirection),
         top = this.calculateTopPadding() + other.calculateTopPadding(),
         end = this.calculateEndPadding(layoutDirection) + other.calculateEndPadding(layoutDirection),
-        bottom = this.calculateBottomPadding() + other.calculateBottomPadding()
+        bottom = this.calculateBottomPadding() + other.calculateBottomPadding(),
     )
 }

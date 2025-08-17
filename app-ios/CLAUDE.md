@@ -4,16 +4,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the iOS app for DroidKaigi 2025 conference, part of a multi-platform project that includes Android, iOS, and Desktop applications. The iOS app is built with modern Swift 6 and SwiftUI, using a clean modular architecture.
+This is the iOS app for DroidKaigi 2025 conference. For general project information, architecture diagrams, and getting started guide, see [README.md](./README.md).
 
 ## Build and Development Commands
 
+### Quick Setup
+```bash
+# Install nest (if not already installed)
+brew install mtj0928/tap/nest
+
+# Initial setup (installs SwiftLint via nest)
+make setup
+
+# Open in Xcode
+make xcode
+```
+
 ### Building the App
 ```bash
-# Build the main app
-xcodebuild build -project DroidKaigi2025.xcodeproj -scheme DroidKaigi2025 -configuration Debug
+# Build with Makefile (recommended)
+make build          # Build all packages with prebuilt SwiftSyntax
+make xcode-build    # Build with Xcode
 
-# Build for release
+# Or build directly with xcodebuild
+xcodebuild build -project DroidKaigi2025.xcodeproj -scheme DroidKaigi2025 -configuration Debug
 xcodebuild build -project DroidKaigi2025.xcodeproj -scheme DroidKaigi2025 -configuration Release
 
 # Build specific packages
@@ -23,10 +37,14 @@ cd Native && swift build
 
 ### Running Tests
 ```bash
-# Run component tests
-xcodebuild test -project DroidKaigi2025.xcodeproj -scheme ComponentTests -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
+# Run tests with Makefile (recommended)
+make test           # Run Core tests (Linux-compatible)
+make test-native    # Run Native module tests (macOS only)
+make test-all       # Run all tests (Core + Native, macOS only)
+make xcode-test     # Run tests with Xcode
 
-# Run use case tests
+# Or run directly with xcodebuild
+xcodebuild test -project DroidKaigi2025.xcodeproj -scheme ComponentTests -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
 xcodebuild test -project DroidKaigi2025.xcodeproj -scheme UseCaseTests -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
 
 # Run package tests
@@ -47,94 +65,81 @@ cd Core && swift test  # Works on Ubuntu/Linux environments
 
 ## Architecture
 
-The iOS app follows a clean architecture with clear separation between layers:
+See [README.md](./README.md#-architecture) for detailed architecture documentation with diagrams.
 
-### Package Structure
-- **Core Package** (`Core/`): Business logic separated from platform-specific code
-  - `Model/`: Data models and domain entities
-  - `Presentation/`: Presenters handling business logic
-  - `UseCase/`: Use cases for specific business operations
-  
-- **Native Package** (`Native/`): iOS-specific implementation
-  - `Component/`: Reusable UI components
-  - `Feature/`: Feature modules (Home, Timetable, etc.)
-  - `KMPFramework/`: Integration with Kotlin Multiplatform shared code
-  - `Root/`: Root navigation and app initialization
-  - `Theme/`: App theming and styling
+## Technical Requirements & Features
 
-### Key Architectural Patterns
-1. **Dependency Injection**: Uses Point-Free's swift-dependencies library
-2. **Presenter Pattern**: Each feature has a presenter handling business logic
-3. **SwiftUI**: Modern declarative UI with iOS 18+ features
-4. **Modular Design**: Features are isolated in separate modules
-5. **KMP Integration**: Shares business logic with Android via Kotlin Multiplatform
-
-### Testing Strategy
-- Uses Apple's new Swift Testing framework (not XCTest)
-- Test doubles via `withDependencies` for dependency injection
-- Separate test targets for different layers
-- **Cross-platform testing**: Core Package tests can run on Ubuntu/Linux environments, enabling CI/CD on non-macOS platforms
-
-## Technical Requirements
-- **Swift Version**: 6.1.2
-- **Minimum iOS**: 18.0
-- **Minimum macOS**: 15.0
-- **Swift Language Mode**: Swift 6 (strict concurrency)
-
-## Key Dependencies
-- swift-dependencies (1.9.2) - Dependency injection
-- KMP shared.xcframework - Shared Kotlin Multiplatform code
-
-## Current Features
-- Timetable display (list and grid views)
-- Favorites functionality
-- Speaker information
-- Room management
-- Home screen with conference information
+See [README.md](./README.md#-getting-started) for technical requirements, dependencies, and feature list.
 
 ## Code Quality Tools
 
-### SwiftLint
-- Integrated as SPM build plugin - runs automatically during build
-- Configuration: `.swiftlint.yml`
-- Manual run: `make lint` or `swiftlint lint --config .swiftlint.yml`
-- Auto-fix: `make lint-fix` or `swiftlint lint --config .swiftlint.yml --fix`
+### Linting & Formatting
+```bash
+# Linting (SwiftLint installed via nest)
+make lint          # Check for linting issues
+make lint-fix      # Auto-fix linting issues
 
-### swift-format
-- Integrated as SPM dependency
-- Configuration: `.swift-format`
-- Format code: `make format`
-- Check format: `make format-check`
+# Formatting (swift-format)
+make format        # Format code with swift-format
+make format-check  # Check formatting (fails on warnings)
 
-### Pre-commit Hooks
-Install git hooks: `./Scripts/install-hooks.sh`
-- Automatically runs SwiftLint and swift-format checks on staged files
+# Pre-commit checks
+make pre-commit    # Run all checks before committing
+```
 
-### Makefile Commands
-- `make help` - Show all available commands
-- `make setup` - Initial project setup
-- `make build` - Build all packages
-- `make test` - Run all tests
-- `make lint` - Run SwiftLint
-- `make lint-fix` - Run SwiftLint with auto-correction
-- `make format` - Format code with swift-format
-- `make format-check` - Check code formatting
-- `make pre-commit` - Run all checks before committing
-- `make clean` - Clean build artifacts
+### Xcode Integration
+For faster incremental builds, install the Xcode build phase script:
+1. Open Xcode project
+2. Add Run Script Phase with: `"${SRCROOT}/scripts/xcode-lint.sh"`
+3. This will only lint modified files during builds
 
-## Development Notes
+See [scripts/README.md](./scripts/README.md) for detailed setup.
+
+### All Available Makefile Commands
+```bash
+make help          # Show all available commands
+make setup         # Initial project setup (installs SwiftLint via nest)
+make build         # Build all packages with prebuilt SwiftSyntax
+make test          # Run Core tests (Linux-compatible)
+make test-native   # Run Native module tests (macOS only)
+make test-all      # Run all tests (Core + Native, macOS only)
+make lint          # Run SwiftLint
+make lint-fix      # Auto-fix linting issues
+make format        # Format code with swift-format
+make format-check  # Check code formatting (fails on warnings)
+make pre-commit    # Run all checks before committing
+make clean         # Clean build artifacts
+make reset         # Reset project (clean + resolve dependencies)
+make xcode         # Open project in Xcode
+make xcode-build   # Build with Xcode
+make xcode-test    # Run tests with Xcode
+make ci            # Run CI checks (lint + Core tests)
+```
+
+See [README.md](./README.md#-development) for more details.
+
+## Claude-Specific Development Notes
+
+### Important Context
 - The project is part of a larger multi-platform repository
 - Android app documentation in root README.md shows architectural decisions that may influence iOS development
-- **Linting and formatting tools are now configured:**
-  - SwiftLint runs automatically during builds via SPM plugin
-  - swift-format available for consistent code formatting
-  - Pre-commit hooks ensure code quality before commits
 - Uses modern Swift 6 features including strict concurrency checking
+- Linting and formatting tools are configured and should be used before completing work
 
 ## Important Build and Debug Notes
+
+### SwiftLint Setup
+- SwiftLint is installed via nest (dependency manager)
+- Configuration file: `nestfile.yml` defines the SwiftLint version
+- Linting configuration: `.swiftlint.yml`
+- Runs via `make lint` or automatically during Xcode builds with `scripts/xcode-lint.sh`
+- For CI environments, SwiftLint needs to be installed separately
+
 ### Build Issues
 - **Swift Dependencies Macro Error**: The project may encounter macro validation errors with swift-dependencies package when building. This is a known issue with the package itself, not your code changes.
-  - Try using `-skipMacroValidation` flag when building via xcodebuild
+  - Error: "cannot load module 'SwiftDiagnostics' built with SDK 'macosx15.5' when using SDK 'iphonesimulator18.5'"
+  - **Workaround**: Open the project in Xcode and build from there, which handles the macro plugin correctly
+  - Alternative: Build the app without the DependenciesMacrosPlugin target by commenting it out temporarily
   - The app binary installed on simulator may still work despite build errors
 
 ### Debugging

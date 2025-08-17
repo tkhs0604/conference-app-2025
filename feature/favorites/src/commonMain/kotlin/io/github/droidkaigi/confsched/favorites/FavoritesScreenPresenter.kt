@@ -18,8 +18,8 @@ import soil.query.compose.rememberMutation
 
 private const val MIN_FILTERS_TO_DESELECT = 2
 
-context(screenContext: FavoritesScreenContext)
 @Composable
+context(screenContext: FavoritesScreenContext)
 fun favoritesScreenPresenter(
     eventFlow: EventFlow<FavoritesScreenEvent>,
     timetable: Timetable,
@@ -41,7 +41,8 @@ fun favoritesScreenPresenter(
             }
 
             FavoritesScreenEvent.FilterDay1,
-            FavoritesScreenEvent.FilterDay2 -> {
+            FavoritesScreenEvent.FilterDay2,
+            -> {
                 allFilterSelected = false
 
                 val dayType = if (event is FavoritesScreenEvent.FilterDay1) {
@@ -63,7 +64,7 @@ fun favoritesScreenPresenter(
     favoritesScreenUiState(
         timetable = timetable,
         allFilterSelected = allFilterSelected,
-        selectedDayFilters = selectedDayFilters
+        selectedDayFilters = selectedDayFilters,
     )
 }
 
@@ -83,7 +84,9 @@ private fun favoritesScreenUiState(
             )
             .timetableItems.groupBy {
                 FavoritesScreenUiState.TimetableContentState.FavoriteList.TimeSlot(
-                    it.day, it.startsTimeString, it.endsTimeString
+                    it.day,
+                    it.startsTimeString,
+                    it.endsTimeString,
                 )
             }.mapValues { entry ->
                 entry.value.sortedWith(
@@ -95,7 +98,7 @@ private fun favoritesScreenUiState(
     return FavoritesScreenUiState(
         filterState = FavoritesScreenUiState.FilterState(
             currentDayFilter = selectedDayFilters.toPersistentList(),
-            allFilterSelected = allFilterSelected
+            allFilterSelected = allFilterSelected,
         ),
         timetableContentState = if (filteredSessions.isEmpty()) {
             FavoritesScreenUiState.TimetableContentState.Empty
@@ -103,6 +106,6 @@ private fun favoritesScreenUiState(
             FavoritesScreenUiState.TimetableContentState.FavoriteList(
                 timetableItemMap = filteredSessions,
             )
-        }
+        },
     )
 }

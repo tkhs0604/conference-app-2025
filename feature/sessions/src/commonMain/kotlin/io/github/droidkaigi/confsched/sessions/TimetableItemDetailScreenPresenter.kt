@@ -15,8 +15,8 @@ import io.github.takahirom.rin.rememberRetained
 import kotlinx.collections.immutable.PersistentSet
 import soil.query.compose.rememberMutation
 
-context(screenContext: TimetableItemDetailScreenContext)
 @Composable
+context(screenContext: TimetableItemDetailScreenContext)
 fun timetableItemDetailScreenPresenter(
     eventFlow: EventFlow<TimetableItemDetailScreenEvent>,
     timetableItem: TimetableItem,

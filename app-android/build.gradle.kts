@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlinxSerialization)
     id("droidkaigi.primitive.metro")
     id("droidkaigi.primitive.aboutlibraries")
+    id("droidkaigi.primitive.spotless")
 }
 
 android {

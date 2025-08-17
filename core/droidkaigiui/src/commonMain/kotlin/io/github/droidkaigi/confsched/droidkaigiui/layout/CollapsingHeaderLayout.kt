@@ -39,7 +39,7 @@ sealed class CollapsingHeaderState {
     var headerContentHeightPx by mutableFloatStateOf(0f)
         internal set
 
-    class EnterAlways internal constructor(): CollapsingHeaderState() {
+    class EnterAlways internal constructor() : CollapsingHeaderState() {
 
         override val nestedScrollConnection: NestedScrollConnection = object : NestedScrollConnection {
             override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
@@ -57,7 +57,6 @@ sealed class CollapsingHeaderState {
             }
         }
     }
-
 }
 
 @Composable

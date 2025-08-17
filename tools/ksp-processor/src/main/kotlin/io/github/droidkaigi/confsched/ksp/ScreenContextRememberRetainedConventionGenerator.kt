@@ -72,16 +72,16 @@ class ScreenContextRememberRetainedConventionGenerator(
                             factoryMethod.parameters.map { parameter ->
                                 ParameterSpec.builder(parameter.name!!.asString(), type = parameter.type.resolve().toClassName())
                                     .build()
-                            }
+                            },
                         )
                         .addCode(
                             """
                             return rememberRetained {
                                 ${factoryMethod.simpleName.asString()}(${factoryMethod.parameters.joinToString(", ") { it.name!!.asString() }}) 
                             }
-                            """.trimIndent()
+                            """.trimIndent(),
                         )
-                        .build()
+                        .build(),
                 )
                 .build()
 

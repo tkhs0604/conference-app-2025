@@ -35,7 +35,7 @@ public fun Throwable.toAppError(): AppError {
         is TimeoutCancellationException,
         is HttpRequestTimeoutException,
         is SocketTimeoutException,
-            -> {
+        -> {
             AppError.ApiException
                 .TimeoutException(this)
         }

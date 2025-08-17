@@ -26,6 +26,7 @@ struct InformationRow: View {
         HStack(spacing: 12) {
             HStack(spacing: 8) {
                 icon
+                    .resizable()
                     .renderingMode(.template)
                     .foregroundStyle(titleColor)
                     .frame(width: 16, height: 16)

@@ -14,7 +14,7 @@ public struct EventMapScreen: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 // Description
-                Text("DroidKaigiでは、セッション以外にも参加者が楽しめるイベントを開催。コミュニケーションや技術交流を通じてカンファレンスを満喫しましょう！")
+                Text(String(localized: "EventDescription", bundle: .module))
                     .font(Typography.bodyMedium)
                     .foregroundColor(AssetColors.onSurfaceVariant.swiftUIColor)
                     .padding(.horizontal, 16)
@@ -39,13 +39,13 @@ public struct EventMapScreen: View {
 
                 // Events section
                 VStack(alignment: .leading, spacing: 0) {
-                    ForEach(presenter.eventMap.events, id: \.id) { event in
+                    ForEach(presenter.eventMap.events, id: \.self) { event in
                         EventItem(event: event) { url in
                             Task {
                                 await safari(url)
                             }
                         }
-                        if event.id != presenter.eventMap.events.last?.id {
+                        if event.hashValue != presenter.eventMap.events.last?.hashValue {
                             Divider()
                                 .padding(.horizontal, 16)
                                 .foregroundStyle(AssetColors.outlineVariant.swiftUIColor)
@@ -56,12 +56,12 @@ public struct EventMapScreen: View {
             }
         }
         .background(AssetColors.background.swiftUIColor)
-        .navigationTitle("イベントマップ")
+        .navigationTitle(String(localized: "EventMap", bundle: .module))
         #if os(iOS)
             .navigationBarTitleDisplayMode(.large)
         #endif
-        .task {
-            await presenter.loadInitial()
+        .onAppear {
+            presenter.loadInitial()
             if selectedFloorMap == nil {
                 selectedFloorMap = .first
             }

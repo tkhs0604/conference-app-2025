@@ -299,7 +299,6 @@ private class HourItemLayout(
     }
 }
 
-
 @OptIn(ExperimentalFoundationApi::class)
 private fun itemProvider(
     itemCount: () -> Int,

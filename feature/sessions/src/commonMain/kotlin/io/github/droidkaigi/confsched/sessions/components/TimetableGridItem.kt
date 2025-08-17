@@ -31,13 +31,13 @@ import androidx.compose.ui.unit.sp
 import io.github.droidkaigi.confsched.designsystem.theme.LocalRoomTheme
 import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
-import io.github.droidkaigi.confsched.droidkaigiui.rememberAsyncImagePainter
 import io.github.droidkaigi.confsched.droidkaigiui.extension.icon
 import io.github.droidkaigi.confsched.droidkaigiui.extension.roomTheme
+import io.github.droidkaigi.confsched.droidkaigiui.rememberAsyncImagePainter
 import io.github.droidkaigi.confsched.model.core.MultiLangText
+import io.github.droidkaigi.confsched.model.core.Room
 import io.github.droidkaigi.confsched.model.core.RoomType
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
-import io.github.droidkaigi.confsched.model.core.Room
 import io.github.droidkaigi.confsched.model.sessions.TimetableSpeaker
 import io.github.droidkaigi.confsched.model.sessions.fake
 import kotlinx.collections.immutable.persistentListOf
@@ -45,7 +45,6 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.time.Duration.Companion.minutes
-
 
 @Composable
 fun TimetableGridItem(
@@ -66,10 +65,10 @@ fun TimetableGridItem(
                 .width(TimetableGridItemDefaults.width)
                 .height(height)
                 .border(1.dp, LocalRoomTheme.current.primaryColor, RoundedCornerShape(16.dp))
-                .padding(TimetableGridItemDefaults.contentPadding)
+                .padding(TimetableGridItemDefaults.contentPadding),
         ) {
             Column(
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
             ) {
                 TimetableSchedule(
                     schedule = timetableItem.formattedTimeString,
@@ -157,7 +156,6 @@ private fun TimetableSpeaker(
         )
     }
 }
-
 
 @Composable
 private fun TimetableTitle(

@@ -67,8 +67,8 @@ fun TimetableScreen(
     val completelyScrolledToTop by remember {
         derivedStateOf {
             lazyListState.firstVisibleItemIndex == 0 &&
-                    lazyListState.firstVisibleItemScrollOffset == 0 &&
-                    collapsingState.collapsingOffsetY == 0f
+                lazyListState.firstVisibleItemScrollOffset == 0 &&
+                collapsingState.collapsingOffsetY == 0f
         }
     }
 
@@ -119,7 +119,7 @@ fun TimetableScreen(
                                 selected = selectedDay == droidKaigi2025Day,
                                 modifier = Modifier
                                     .height(TimetableDefaults.dayTabHeight)
-                                    .width(TimetableDefaults.dayTabWidth)
+                                    .width(TimetableDefaults.dayTabWidth),
                             ) {
                                 Text(droidKaigi2025Day.monthAndDay())
                             }
@@ -127,11 +127,11 @@ fun TimetableScreen(
                     }
                 }
             },
-            modifier = Modifier.padding(paddingValues)
+            modifier = Modifier.padding(paddingValues),
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxSize().padding(it)
+                modifier = Modifier.fillMaxSize().padding(it),
             ) {
                 when (uiState.timetable) {
                     is TimetableUiState.Empty -> Text("Empty")

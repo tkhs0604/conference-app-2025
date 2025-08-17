@@ -16,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-
 @Composable
 private fun ColorBoxes() {
     Column {
@@ -116,7 +115,7 @@ private fun ColorBox(color: Color) {
     Box(
         modifier = Modifier
             .size(32.dp)
-            .background(color)
+            .background(color),
     )
 }
 
@@ -124,7 +123,7 @@ private fun ColorBox(color: Color) {
 @Composable
 private fun ColorPreview_Light() {
     KaigiTheme(
-        darkTheme = false
+        darkTheme = false,
     ) {
         Surface {
             ColorBoxes()
@@ -136,7 +135,7 @@ private fun ColorPreview_Light() {
 @Composable
 private fun ColorPreview_Dark() {
     KaigiTheme(
-        darkTheme = true
+        darkTheme = true,
     ) {
         Surface {
             ColorBoxes()

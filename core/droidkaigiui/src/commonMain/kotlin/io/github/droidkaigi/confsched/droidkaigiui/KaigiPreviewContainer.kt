@@ -12,12 +12,15 @@ import coil3.compose.AsyncImagePreviewHandler
 import coil3.compose.LocalAsyncImagePreviewHandler
 import io.github.droidkaigi.confsched.context.ScreenContext
 import io.github.droidkaigi.confsched.designsystem.theme.KaigiTheme
+import io.github.droidkaigi.confsched.droidkaigiui.architecture.SoilErrorContext
+import io.github.droidkaigi.confsched.droidkaigiui.architecture.SoilSuspenseContext
+import soil.plant.compose.reacty.ErrorBoundaryContext
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
 fun KaigiPreviewContainer(
     modifier: Modifier = Modifier,
-    content: @Composable context(ScreenContext) () -> Unit,
+    content: @Composable context(PreviewContext) () -> Unit,
 ) {
     KaigiTheme {
         Surface(modifier = modifier) {
@@ -26,7 +29,7 @@ fun KaigiPreviewContainer(
             }
 
             CompositionLocalProvider(LocalAsyncImagePreviewHandler provides previewHandler) {
-                with(FakeScreenContext()) {
+                with(FakePreviewContext()) {
                     content()
                 }
             }
@@ -34,4 +37,14 @@ fun KaigiPreviewContainer(
     }
 }
 
-private class FakeScreenContext : ScreenContext
+interface PreviewContext :
+    ScreenContext,
+    SoilSuspenseContext,
+    SoilErrorContext
+
+private class FakePreviewContext : PreviewContext {
+    override val errorBoundaryContext: ErrorBoundaryContext = ErrorBoundaryContext(
+        err = Throwable("Fake error for preview"),
+        reset = null,
+    )
+}

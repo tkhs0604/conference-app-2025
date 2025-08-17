@@ -9,6 +9,8 @@ public struct SponsorCategory: Identifiable, Sendable {
     public enum SponsorTier: Sendable {
         case platinum
         case gold
+        case silver
+        case bronze
         case supporters
     }
 
@@ -30,16 +32,27 @@ public struct Sponsor: Identifiable, Sendable {
     public let name: String
     public let logoUrl: URL
     public let websiteUrl: URL
+    public let plan: SponsorPlan
 
     public init(
         id: String,
         name: String,
         logoUrl: URL,
-        websiteUrl: URL
+        websiteUrl: URL,
+        plan: SponsorPlan
     ) {
         self.id = id
         self.name = name
         self.logoUrl = logoUrl
         self.websiteUrl = websiteUrl
+        self.plan = plan
     }
+}
+
+public enum SponsorPlan: String, Sendable {
+    case platinum = "PLATINUM"
+    case gold = "GOLD"
+    case silver = "SILVER"
+    case bronze = "BRONZE"
+    case supporter = "SUPPORTER"
 }

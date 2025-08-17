@@ -3,12 +3,15 @@ package io.github.droidkaigi.confsched.repository
 import app.cash.molecule.RecompositionMode
 import app.cash.molecule.moleculeFlow
 import dev.zacsweers.metro.Inject
+import io.github.droidkaigi.confsched.data.user.UserDataStore
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.model.data.TimetableQueryKey
 import io.github.droidkaigi.confsched.model.sessions.Timetable
+import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import soil.query.SwrClientPlus
 import soil.query.annotation.ExperimentalSoilQueryApi
@@ -20,6 +23,7 @@ class SessionsRepository(
     private val swrClient: SwrClientPlus,
     private val timetableQueryKey: TimetableQueryKey,
     private val favoriteTimetableIdsSubscriptionKey: FavoriteTimetableIdsSubscriptionKey,
+    private val userDataStore: UserDataStore,
 ) {
     @OptIn(ExperimentalSoilQueryApi::class, FlowPreview::class)
     fun timetableFlow(): Flow<Timetable> = moleculeFlow(RecompositionMode.Immediate) {
@@ -31,8 +35,14 @@ class SessionsRepository(
         }
     }
         .filterNotNull()
+        .distinctUntilChanged()
         .catch {
             // Errors thrown inside flow can't be caught on iOS side, so we catch it here.
             emit(Timetable())
         }
+
+    @Throws(Throwable::class)
+    suspend fun toggleFavorite(timetableItemId: TimetableItemId) {
+        userDataStore.toggleFavorite(timetableItemId)
+    }
 }

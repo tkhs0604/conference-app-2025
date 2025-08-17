@@ -5,6 +5,9 @@ struct FrontCard: View {
     let userRole: String
     let userName: String
     let cardType: ProfileCardType
+    let normal: (Float, Float, Float)
+
+    let shaderFunction = ShaderFunction(library: .bundle(.module), name: "kiraEffect")
 
     var body: some View {
         let lightContentColor = Color(
@@ -13,16 +16,23 @@ struct FrontCard: View {
             Image("\(cardType.rawValue)_background", bundle: .module)
                 .resizable()
                 .scaledToFill()
+                .kiraEffect(
+                    function: shaderFunction,
+                    normal: normal,
+                    monochromeImage: Image("front_effect", bundle: .module)
+                )
             VStack(alignment: .center, spacing: 20) {
                 Image("\(cardType.rawValue)_card_title", bundle: .module)
                 VStack(alignment: .center, spacing: 12) {
                     avatarImage
                     VStack(alignment: .center, spacing: 0) {
                         Text(userRole)
-                            .foregroundStyle(cardType == .dark ? AssetColors.onSurface.swiftUIColor : lightContentColor)
+                            .foregroundStyle(
+                                cardType == .night ? AssetColors.onSurface.swiftUIColor : lightContentColor
+                            )
                             .typographyStyle(.bodyMedium)
                         Text(userName)
-                            .foregroundStyle(cardType == .dark ? .white : lightContentColor)
+                            .foregroundStyle(cardType == .night ? .white : lightContentColor)
                             .typographyStyle(
                                 .init(
                                     font: .custom(AssetFonts.Chango.regular, size: 24), lineHeight: 32, letterSpacing: 0

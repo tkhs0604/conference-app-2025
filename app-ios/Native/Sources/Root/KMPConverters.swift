@@ -210,8 +210,32 @@ extension Model.TimetableItemWithFavorite {
         } else if let special = shared.timetableItem as? shared.TimetableItem.Special {
             timetableItem = Model.TimetableItemSpecial(from: special)
         } else {
-            // Fallback - should not happen if KMP model is correct
-            fatalError("Unknown TimetableItem type")
+            // Fallback - create a placeholder special item for unknown types
+            timetableItem = Model.TimetableItemSpecial(
+                id: Model.TimetableItemId(value: "unknown-\(UUID().uuidString)"),
+                title: Model.MultiLangText(jaTitle: "不明なアイテム", enTitle: "Unknown Item"),
+                startsAt: Date(),
+                endsAt: Date().addingTimeInterval(3600),
+                category: Model.TimetableCategory(
+                    id: 0,
+                    title: Model.MultiLangText(jaTitle: "その他", enTitle: "Other")
+                ),
+                sessionType: .other,
+                room: Model.Room(
+                    id: 0,
+                    name: Model.MultiLangText(jaTitle: "未定", enTitle: "TBD"),
+                    type: .roomIJ,
+                    sort: 999
+                ),
+                targetAudience: "All",
+                language: Model.TimetableLanguage(langOfSpeaker: "EN", isInterpretationTarget: false),
+                asset: Model.TimetableAsset(videoUrl: nil, slideUrl: nil),
+                levels: [],
+                speakers: [],
+                description: Model.MultiLangText(jaTitle: "詳細不明", enTitle: "Details unknown"),
+                message: nil,
+                day: .conferenceDay1
+            )
         }
 
         self.init(
@@ -231,7 +255,32 @@ extension Model.Timetable {
             } else if let special = item as? shared.TimetableItem.Special {
                 return Model.TimetableItemSpecial(from: special)
             } else {
-                fatalError("Unknown TimetableItem type")
+                // Fallback - create a placeholder special item for unknown types
+                return Model.TimetableItemSpecial(
+                    id: Model.TimetableItemId(value: "unknown-\(UUID().uuidString)"),
+                    title: Model.MultiLangText(jaTitle: "不明なアイテム", enTitle: "Unknown Item"),
+                    startsAt: Date(),
+                    endsAt: Date().addingTimeInterval(3600),
+                    category: Model.TimetableCategory(
+                        id: 0,
+                        title: Model.MultiLangText(jaTitle: "その他", enTitle: "Other")
+                    ),
+                    sessionType: .other,
+                    room: Model.Room(
+                        id: 0,
+                        name: Model.MultiLangText(jaTitle: "未定", enTitle: "TBD"),
+                        type: .roomIJ,
+                        sort: 999
+                    ),
+                    targetAudience: "All",
+                    language: Model.TimetableLanguage(langOfSpeaker: "EN", isInterpretationTarget: false),
+                    asset: Model.TimetableAsset(videoUrl: nil, slideUrl: nil),
+                    levels: [],
+                    speakers: [],
+                    description: Model.MultiLangText(jaTitle: "詳細不明", enTitle: "Details unknown"),
+                    message: nil,
+                    day: .conferenceDay1
+                )
             }
         }
 
@@ -255,6 +304,92 @@ extension Model.Filters {
             languages: shared.languages.map { Model.Lang(from: $0) },
             filterFavorite: shared.filterFavorite,
             searchWord: shared.searchWord
+        )
+    }
+}
+
+// MARK: - Sponsor Converters
+
+extension Model.Sponsor {
+    init(from shared: shared.Sponsor) {
+        // Use FileManager URL as a safe fallback
+        let fallbackURL = URL(fileURLWithPath: "/")
+        let logoURL = URL(string: shared.logo) ?? fallbackURL
+        let websiteURL = URL(string: shared.link) ?? fallbackURL
+
+        self.init(
+            id: shared.id,
+            name: shared.name,
+            logoUrl: logoURL,
+            websiteUrl: websiteURL,
+            plan: Model.SponsorPlan(from: shared.plan)
+        )
+    }
+}
+
+extension Model.SponsorPlan {
+    init(from shared: shared.SponsorPlan) {
+        switch shared {
+        case .platinum:
+            self = .platinum
+        case .gold:
+            self = .gold
+        case .silver:
+            self = .silver
+        case .bronze:
+            self = .bronze
+        case .supporter:
+            self = .supporter
+        }
+    }
+}
+
+// MARK: - Staff Converters
+
+extension Model.Staff {
+    init(from shared: shared.Staff) {
+        // Use FileManager URL as a safe fallback
+        let fallbackURL = URL(fileURLWithPath: "/")
+        let iconURL = URL(string: shared.icon) ?? fallbackURL
+
+        self.init(
+            id: shared.id,
+            name: shared.name,
+            iconUrl: iconURL,
+            profileUrl: shared.profileUrl.flatMap { URL(string: $0) },
+            role: nil  // KMP Staff doesn't have role field
+        )
+    }
+}
+
+// MARK: - Contributor Converters
+
+extension Model.Contributor {
+    init(from shared: shared.Contributor) {
+        // Use FileManager URL as a safe fallback
+        let fallbackURL = URL(fileURLWithPath: "/")
+        let profileURL = shared.profileUrl.flatMap { URL(string: $0) }
+        let iconURL = URL(string: shared.iconUrl) ?? fallbackURL
+
+        self.init(
+            id: String(shared.id),
+            name: shared.username,
+            url: profileURL ?? fallbackURL,
+            iconUrl: iconURL
+        )
+    }
+}
+
+// MARK: - EventMapEvent Converters
+
+extension Model.EventMapEvent {
+    init(from shared: shared.EventMapEvent) {
+        self.init(
+            name: .init(from: shared.name),
+            description: .init(from: shared.description_),
+            room: .init(from: shared.room),
+            moreDetailUrl: shared.moreDetailsUrl.flatMap { URL(string: $0) },
+            message: shared.message.map { .init(from: $0) }
         )
     }
 }

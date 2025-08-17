@@ -16,7 +16,7 @@ plugins {
     id("droidkaigi.primitive.kmp.compose.resources")
     id("droidkaigi.primitive.kmp.roborazzi")
     id("droidkaigi.primitive.metro")
-    id("droidkaigi.primitive.detekt")
+    id("droidkaigi.primitive.spotless")
     id("com.google.devtools.ksp")
 }
 

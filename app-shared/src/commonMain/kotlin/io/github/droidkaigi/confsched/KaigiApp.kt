@@ -9,9 +9,9 @@ import soil.query.SwrCacheScope
 import soil.query.annotation.ExperimentalSoilQueryApi
 import soil.query.compose.SwrClientProvider
 
-context(appGraph: AppGraph)
 @OptIn(ExperimentalMaterial3ExpressiveApi::class, ExperimentalSoilQueryApi::class)
 @Composable
+context(appGraph: AppGraph)
 fun KaigiApp() {
     SwrClientProvider(SwrCachePlus(SwrCacheScope())) {
         KaigiTheme {

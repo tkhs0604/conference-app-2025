@@ -2,13 +2,20 @@ input_dir: Resources/
 output_dir: ${DERIVED_SOURCES_DIR}/
 
 xcassets:
-  inputs: Colors.xcassets
-  outputs:
-    templateName: swift5
-    output: AssetColors.generated.swift
-    params:
-      enumName: AssetColors
-      publicAccess: true
+  - inputs: Colors.xcassets
+    outputs:
+      templateName: swift5
+      output: AssetColors.generated.swift
+      params:
+        enumName: AssetColors
+        publicAccess: true
+  - inputs: Images.xcassets
+    outputs:
+      templateName: swift5
+      output: AssetImages.generated.swift
+      params:
+        enumName: AssetImages
+        publicAccess: true    
 
 fonts:
   inputs: Fonts

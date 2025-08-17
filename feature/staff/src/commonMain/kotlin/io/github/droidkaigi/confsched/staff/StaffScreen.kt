@@ -34,10 +34,9 @@ fun StaffScreen(
                 title = stringResource(StaffRes.string.staff_title),
                 onBackClick = onBackClick,
                 scrollBehavior = scrollBehavior,
-                navIconContentDescription = "Back",
             )
         },
-        modifier = modifier
+        modifier = modifier,
     ) { contentPadding ->
         LazyColumn(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -45,12 +44,12 @@ fun StaffScreen(
         ) {
             items(
                 items = staff,
-                key = { it.id }
+                key = { it.id },
             ) { staff ->
                 StaffItem(
                     staff = staff,
                     onStaffItemClick = { staff.profileUrl?.let(onStaffItemClick) },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
         }

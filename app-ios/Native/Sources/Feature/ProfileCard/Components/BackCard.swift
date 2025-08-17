@@ -3,10 +3,13 @@ import Theme
 
 struct BackCard: View {
     let cardType: ProfileCardType
+    let normal: (Float, Float, Float)
+
+    let shaderFunction = ShaderFunction(library: .bundle(.module), name: "kiraEffect")
 
     var body: some View {
         ZStack {
-            if cardType == .dark {
+            if cardType == .night {
                 Color(uiColor: UIColor(red: 40.0 / 255.0, green: 15.0 / 255.0, blue: 131.0 / 255.0, alpha: 1.0))
             } else {
                 Color(uiColor: UIColor(red: 242.0 / 255.0, green: 244.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0))
@@ -29,6 +32,11 @@ struct BackCard: View {
         }
         .frame(width: 300, height: 380)
         .cornerRadius(12)
+        .kiraEffect(
+            function: shaderFunction,
+            normal: normal,
+            monochromeImage: Image("back_effect", bundle: .module)
+        )
         // Figma shadow: may be replaced by Metal shader
         .shadow(color: .black.opacity(0.12), radius: 10, x: 3, y: 3)
         .shadow(color: .black.opacity(0.11), radius: 17, x: 11, y: 14)

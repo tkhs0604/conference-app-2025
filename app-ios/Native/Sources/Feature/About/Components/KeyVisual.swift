@@ -23,7 +23,7 @@ struct KeyVisual: View {
             VStack(alignment: .leading, spacing: 12) {
                 // Date row
                 HStack(spacing: 8) {
-                    Image("ic_schedule", bundle: .module)
+                    AssetImages.icSchedule.swiftUIImage
                         .resizable()
                         .frame(width: 16, height: 16)
                         .foregroundStyle(AssetColors.onSurface.swiftUIColor)
@@ -41,7 +41,7 @@ struct KeyVisual: View {
 
                 // Location row
                 HStack(spacing: 8) {
-                    Image("ic_location_on", bundle: .module)
+                    AssetImages.icLocationOn.swiftUIImage
                         .resizable()
                         .frame(width: 16, height: 16)
                         .foregroundStyle(AssetColors.onSurface.swiftUIColor)
@@ -56,11 +56,13 @@ struct KeyVisual: View {
                         .font(.system(size: 14, weight: .regular))
                         .lineSpacing(-6)
 
-                    Link(destination: URL(string: "https://goo.gl/maps/vv9sE19JvRjYKtSP9")!) {
-                        Text("Check Map")
-                            .typographyStyle(.titleSmall)
-                            .foregroundStyle(AssetColors.jellyfish.swiftUIColor)
-                            .underline()
+                    if let mapURL = URL(string: "https://goo.gl/maps/vv9sE19JvRjYKtSP9") {
+                        Link(destination: mapURL) {
+                            Text("Check Map")
+                                .typographyStyle(.titleSmall)
+                                .foregroundStyle(AssetColors.jellyfish.swiftUIColor)
+                                .underline()
+                        }
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

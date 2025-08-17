@@ -2,17 +2,9 @@ import Component
 import SwiftUI
 import Theme
 
-// TODO: fix actual model
-enum ProfileCardType: String {
-    case dark
-    case light
-}
-
 public struct ProfileCardScreen: View {
     @State private var presenter = ProfileCardPresenter()
-    @State private var isFront: Bool = true
-    @State private var animatedDegree: Angle = .zero
-    @State private var cardType: ProfileCardType = .dark
+    @State private var cardType: ProfileCardType = .night
 
     public init() {}
 
@@ -36,38 +28,27 @@ public struct ProfileCardScreen: View {
             .padding(.vertical, 20)
             .padding(.bottom, 80)  // Tab bar padding
         }
-        .onAppear {
-            withAnimation(.bouncy) {
-                animatedDegree = .degrees(30)
-            } completion: {
-                animatedDegree = .zero
-            }
-        }
     }
 
     private var profileCard: some View {
-        ZStack {
-            if isFront {
+        TiltFlipCard(
+            front: { normal in
                 FrontCard(
                     userRole: presenter.userRole,
                     userName: presenter.userName,
-                    cardType: cardType
+                    cardType: cardType,
+                    normal: (normal.x, normal.y, normal.z),
                 )
-            } else {
+            },
+            back: { normal in
                 BackCard(
-                    cardType: cardType
+                    cardType: cardType,
+                    normal: (normal.x, normal.y, normal.z),
                 )
-                .rotation3DEffect(Angle(degrees: 180), axis: (x: 0, y: 1, z: 0))
             }
-        }
+        )
         .padding(.horizontal, 56)
         .padding(.vertical, 32)
-        .onTapGesture {
-            withAnimation {
-                isFront.toggle()
-            }
-        }
-        .rotation3DEffect(isFront ? animatedDegree : .degrees(180), axis: (x: 0, y: 1, z: 0))
     }
 
     private var actionButtons: some View {
@@ -83,8 +64,14 @@ public struct ProfileCardScreen: View {
         Button {
             presenter.shareProfileCard()
         } label: {
-            Label("Share Profile Card", systemImage: "square.and.arrow.up")
-                .frame(maxWidth: .infinity)
+            HStack {
+                AssetImages.icShare.swiftUIImage
+                    .resizable()
+                    .frame(width: 18, height: 18)
+                Text(String(localized: "Share", bundle: .module))
+
+            }
+            .frame(maxWidth: .infinity)
         }
         .filledButtonStyle()
     }
@@ -92,13 +79,13 @@ public struct ProfileCardScreen: View {
     private var editButton: some View {
         Button {
             presenter.editProfile()
-            if cardType == .dark {
-                cardType = .light
+            if cardType == .night {
+                cardType = .day
             } else {
-                cardType = .dark
+                cardType = .night
             }
         } label: {
-            Text("Edit Profile")
+            Text(String(localized: "Edit", bundle: .module))
                 .frame(maxWidth: .infinity)
         }
         .textButtonStyle()

@@ -12,9 +12,9 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
+import io.github.droidkaigi.confsched.model.core.Room
 import io.github.droidkaigi.confsched.model.sessions.Timetable
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
-import io.github.droidkaigi.confsched.model.core.Room
 import io.github.droidkaigi.confsched.sessions.TimetableScrollState
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.Instant
@@ -89,11 +89,11 @@ class TimetableGridState(
 
     override fun toString(): String {
         return "Screen(" +
-                "width=$width, " +
-                "height=$height, " +
-                "scroll=$scrollState, " +
-                "visibleItemLayouts=$visibleItemLayouts" +
-                ")"
+            "width=$width, " +
+            "height=$height, " +
+            "scroll=$scrollState, " +
+            "visibleItemLayouts=$visibleItemLayouts" +
+            ")"
     }
 
     suspend fun scroll(
@@ -266,7 +266,7 @@ data class TimetableItemLayout(
             left in screenLeft..screenRight || right in screenLeft..screenRight
         val yInside =
             top in screenTop..screenBottom || bottom in screenTop..screenBottom ||
-                    (top <= screenTop && screenBottom <= bottom)
+                (top <= screenTop && screenBottom <= bottom)
         return xInside && yInside
     }
 }

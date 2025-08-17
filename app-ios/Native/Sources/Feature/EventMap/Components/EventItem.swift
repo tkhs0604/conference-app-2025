@@ -11,21 +11,20 @@ struct EventItem: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 12) {
                 RoomTag(room: event.room)
-                Text(event.title)
+                Text(event.name.currentLangTitle)
                     .font(Typography.titleMedium)
                     .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
             }
 
-            Text(event.description)
+            Text(event.description.currentLangTitle)
                 .font(Typography.bodyLarge)
                 .foregroundColor(AssetColors.onSurfaceVariant.swiftUIColor)
                 .fixedSize(horizontal: false, vertical: true)
 
             if let message = event.message {
-                Text(message)
+                Text(message.currentLangTitle)
                     .font(Typography.bodyMedium)
-                    // FIXME: Failed to add color and run swiftgen
-                    //                    .foregroundColor(AssetColors.tertiayFixedDim.swiftUIColor)
+                    .foregroundColor(AssetColors.tertiaryFixedDim.swiftUIColor)
                     .fixedSize(horizontal: false, vertical: true)
             }
 
@@ -33,7 +32,7 @@ struct EventItem: View {
                 Button(action: {
                     onMoreDetailTapped(url)
                 }) {
-                    Text("詳しく見る")
+                    Text(String(localized: "MoreDetail", bundle: .module))
                         .font(Typography.labelLarge)
                         .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
                 }

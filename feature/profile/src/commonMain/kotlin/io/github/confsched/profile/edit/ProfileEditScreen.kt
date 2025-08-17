@@ -9,11 +9,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.component.AnimatedTextTopAppBar
 import io.github.droidkaigi.confsched.model.profile.Profile
 import io.github.droidkaigi.confsched.profile.ProfileRes
 import io.github.droidkaigi.confsched.profile.enter_validate_format
@@ -41,17 +41,15 @@ fun ProfileEditScreen(
 ) {
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(stringResource(ProfileRes.string.profile_card_title))
-                }
+            AnimatedTextTopAppBar(
+                title = stringResource(ProfileRes.string.profile_card_title),
             )
         },
-        modifier = modifier
+        modifier = modifier,
     ) { contentPadding ->
         Column(
             verticalArrangement = Arrangement.spacedBy(12.dp),
-            modifier = Modifier.padding(contentPadding)
+            modifier = Modifier.padding(contentPadding),
         ) {
             form.Name()
             form.Occupation()
@@ -84,7 +82,7 @@ private fun Form<Profile>.Name() {
             field.InputField {
                 Text("Name")
             }
-        }
+        },
     )
 }
 
@@ -104,7 +102,7 @@ private fun Form<Profile>.Occupation() {
             field.InputField {
                 Text("Occupation")
             }
-        }
+        },
     )
 }
 
@@ -129,7 +127,7 @@ private fun Form<Profile>.Link() {
             field.InputField {
                 Text("Link")
             }
-        }
+        },
     )
 }
 
@@ -146,13 +144,12 @@ private fun FormField<String>.InputField(
             if (hasError) {
                 Text(
                     text = error.messages.first(),
-                    color = MaterialTheme.colorScheme.error
+                    color = MaterialTheme.colorScheme.error,
                 )
             }
-        }
+        },
     )
 }
-
 
 @Preview
 @Composable
@@ -163,7 +160,7 @@ private fun ProfileEditScreenPreview() {
             occupation = "Software Engineer",
             link = "https://example.com",
         ),
-        onSubmit = {}
+        onSubmit = {},
     )
     KaigiPreviewContainer {
         ProfileEditScreen(form = form)

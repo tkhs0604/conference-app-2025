@@ -11,7 +11,6 @@ plugins {
     alias(libs.plugins.jetbrainsCompose) apply false
     alias(libs.plugins.composeCompiler) apply false
     alias(libs.plugins.roborazzi) apply false
-    alias(libs.plugins.detekt) apply false
     alias(libs.plugins.composeHotReload) apply false
     alias(libs.plugins.aboutLibraries) apply false
 }

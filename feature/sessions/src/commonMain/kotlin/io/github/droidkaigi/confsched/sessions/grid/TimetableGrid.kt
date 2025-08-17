@@ -71,7 +71,6 @@ import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.time.ExperimentalTime
 
-
 @Composable
 fun TimetableGrid(
     timetable: Timetable,
@@ -121,7 +120,7 @@ fun TimetableGrid(
                 items(timetable.timetableItems) { timetableItem ->
                     TimetableGridItem(
                         timetableItem = timetableItem,
-                        onTimetableItemClick = {}
+                        onTimetableItemClick = {},
                     )
                 }
             }
@@ -303,7 +302,7 @@ private fun TimetableGrid(
                         true
                     },
                 )
-            }
+            },
     ) { constraint ->
         data class ItemData(val placeable: Placeable, val timetableItem: TimetableItemLayout)
         if (timetableGridState.width != constraint.maxWidth ||

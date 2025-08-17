@@ -57,7 +57,7 @@ public struct AboutScreen: View {
             VStack(spacing: 0) {
                 AboutButton(
                     title: String(localized: "Contributors", bundle: .module),
-                    imageName: "ic_diversity"
+                    image: AssetImages.icDiversity1.swiftUIImage
                 ) {
                     presenter.contributorsTapped()
                     onNavigate(.contributors)
@@ -68,7 +68,7 @@ public struct AboutScreen: View {
 
                 AboutButton(
                     title: String(localized: "Staffs", bundle: .module),
-                    imageName: "ic_sentiment_very_satisfied"
+                    image: AssetImages.icSentimentVerySatisfied.swiftUIImage
                 ) {
                     presenter.staffsTapped()
                     onNavigate(.staff)
@@ -79,7 +79,7 @@ public struct AboutScreen: View {
 
                 AboutButton(
                     title: String(localized: "Sponsors", bundle: .module),
-                    imageName: "ic_apartment"
+                    image: AssetImages.icApartment.swiftUIImage
                 ) {
                     presenter.sponsorsTapped()
                     onNavigate(.sponsors)
@@ -103,7 +103,7 @@ public struct AboutScreen: View {
             VStack(spacing: 0) {
                 AboutButton(
                     title: String(localized: "Code of Conduct", bundle: .module),
-                    imageName: "ic_gavel"
+                    image: AssetImages.icGavel.swiftUIImage
                 ) {
                     presenter.codeOfConductTapped()
                     onNavigate(.codeOfConduct)
@@ -114,7 +114,7 @@ public struct AboutScreen: View {
 
                 AboutButton(
                     title: String(localized: "Licenses", bundle: .module),
-                    imageName: "ic_file_copy"
+                    image: AssetImages.icFileCopy.swiftUIImage
                 ) {
                     presenter.licensesTapped()
                     onNavigate(.licenses)
@@ -125,7 +125,7 @@ public struct AboutScreen: View {
 
                 AboutButton(
                     title: String(localized: "Privacy Policy", bundle: .module),
-                    imageName: "ic_privacy_tip"
+                    image: AssetImages.icPrivacyTip.swiftUIImage
                 ) {
                     presenter.privacyPolicyTapped()
                     onNavigate(.privacyPolicy)
@@ -136,7 +136,7 @@ public struct AboutScreen: View {
 
                 AboutButton(
                     title: String(localized: "Settings", bundle: .module),
-                    imageName: "ic_settings"
+                    image: AssetImages.icSettings.swiftUIImage
                 ) {
                     presenter.settingsTapped()
                     onNavigate(.settings)
@@ -147,8 +147,7 @@ public struct AboutScreen: View {
 
                 AboutButton(
                     title: String(localized: "Switch to Compose Multiplatform", bundle: .module),
-                    imageName: "switch.2",
-                    isSystemImage: true
+                    systemName: "switch.2",
                 ) {
                     showSwitchToComposeMultiplatformAlert = true
                     presenter.switchToComposeMultiplatformTapped()
@@ -212,22 +211,30 @@ public struct AboutScreen: View {
 
 struct AboutButton: View {
     let title: String
-    let imageName: String
-    var isSystemImage: Bool = false
+    let systemName: String?
+    let image: Image?
     let action: () -> Void
+
+    init(title: String, systemName: String? = nil, image: Image? = nil, action: @escaping () -> Void) {
+        self.title = title
+        self.systemName = systemName
+        self.image = image
+        self.action = action
+    }
 
     var body: some View {
         Button(action: action) {
             HStack(spacing: 12) {
-                if isSystemImage {
-                    Image(systemName: imageName)
+                if let systemName {
+                    Image(systemName: systemName)
                         .frame(width: 24, height: 24)
                         .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
-                } else {
-                    Image(imageName, bundle: .module)
+                } else if let image {
+                    image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 24, height: 24)
+                        .foregroundColor(AssetColors.primaryFixed.swiftUIColor)
                 }
 
                 Text(title)

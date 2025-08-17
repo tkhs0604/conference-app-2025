@@ -19,7 +19,7 @@ import soil.query.compose.SwrClientProvider
 @Composable
 fun TestDefaultsProvider(
     testDispatcher: TestDispatcher,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     KaigiTheme {
         Surface {

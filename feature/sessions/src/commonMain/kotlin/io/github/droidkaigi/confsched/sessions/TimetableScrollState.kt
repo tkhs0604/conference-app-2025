@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun rememberTimetableScrollState(): TimetableScrollState = rememberSaveable(
-    saver = TimetableScrollState.Saver
+    saver = TimetableScrollState.Saver,
 ) {
     TimetableScrollState()
 }

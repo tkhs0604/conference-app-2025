@@ -67,7 +67,8 @@ public struct TimetableCard: View {
             let location = dragLocation
             onTapFavorite(timetableItem, location)
         } label: {
-            Image(systemName: isFavorite ? "heart.fill" : "heart")
+            (isFavorite ? AssetImages.icFavFill.swiftUIImage : AssetImages.icFav.swiftUIImage)
+                .resizable()
                 .foregroundStyle(
                     isFavorite
                         ? AssetColors.primaryFixed.swiftUIColor
