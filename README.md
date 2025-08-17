@@ -58,7 +58,13 @@ Here's a big picture of this year's architecture:
 
 The following sections describe how this architecture works in practice.
 
-### Dependency Injection via ScreenContext
+### Understanding the Screen Structure
+
+First of all, let's take a look into the screen structure of the app.
+
+![](assets/readme/architecture-screen.png)
+
+#### Dependency Injection via ScreenContext
 
 The entry point of each screen is Composable function named `XXXScreenRoot`.
 This function receives a corresponding `ScreenContext` as a context parameter, which provides
@@ -93,7 +99,7 @@ More importantly, we provide the ScreenContext as a context parameter to give Co
 additional semantic context. This allows us to restrict the usage of certain functions to their
 specific screen scope—for example, the SoilDataBoundary described in the following section.
 
-### Data Boundary with Soil
+#### Data Boundary with Soil
 
 At the root of the screen, we can use `SoilDataBoundary` to separate data fetching logic from
 UI logic. Within its trailing content lambda, we can safely assume that all data is
@@ -154,7 +160,7 @@ public class DefaultTimetableQueryKey(
 }
 ```
 
-### Composing the Presenters
+#### Composing the Presenters
 
 The next step is to present the data in the UI. Presenters are responsible for handling UI
 events and constructing the UI state. As with last year, we designed them as composable functions.
