@@ -20,6 +20,9 @@ fun TimetableScreenRoot(
         state2 = rememberSubscription(screenContext.favoriteTimetableIdsSubscriptionKey),
         fallback = SoilFallbackDefaults.appBar(
             title = stringResource(SessionsRes.string.timetable),
+            contentBackground = {
+                TimetableBackground()
+            }
         ),
     ) { timetable, favoriteTimetableItemIds ->
         val eventFlow = rememberEventFlow<TimetableScreenEvent>()
