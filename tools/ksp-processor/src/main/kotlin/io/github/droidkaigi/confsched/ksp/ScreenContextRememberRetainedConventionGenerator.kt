@@ -66,7 +66,7 @@ class ScreenContextRememberRetainedConventionGenerator(
                 .addFunction(
                     FunSpec.builder("remember${screenContextName}Retained")
                         .addAnnotation(ClassName.bestGuess(COMPOSABLE_ANNOTATION_FQ_NAME))
-                        .receiver(factoryClass.toClassName())
+                        .contextParameter(name = "factory", type = factoryClass.toClassName())
                         .returns(screenContextClass.toClassName())
                         .addParameters(
                             factoryMethod.parameters.map { parameter ->
@@ -77,7 +77,7 @@ class ScreenContextRememberRetainedConventionGenerator(
                         .addCode(
                             """
                             return rememberRetained {
-                                ${factoryMethod.simpleName.asString()}(${factoryMethod.parameters.joinToString(", ") { it.name!!.asString() }}) 
+                                factory.${factoryMethod.simpleName.asString()}(${factoryMethod.parameters.joinToString(", ") { it.name!!.asString() }}) 
                             }
                             """.trimIndent(),
                         )

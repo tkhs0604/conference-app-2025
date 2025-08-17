@@ -30,7 +30,7 @@ fun EntryProviderBuilder<NavKey>.aboutEntry(
     entry<AboutNavKey>(
         metadata = listDetailSceneStrategyListPaneMetaData(),
     ) {
-        with(appGraph.rememberAboutScreenContextRetained()) {
+        with(rememberAboutScreenContextRetained()) {
             AboutScreenRoot(
                 onAboutItemClick = onAboutItemClick,
             )
@@ -43,7 +43,7 @@ fun EntryProviderBuilder<NavKey>.licensesEntry(
     onBackClick: () -> Unit,
 ) {
     entry<LicensesNavKey> {
-        with(appGraph.rememberLicensesScreenContextRetained()) {
+        with(rememberLicensesScreenContextRetained()) {
             LicensesScreenRoot(
                 onBackClick = onBackClick,
             )
