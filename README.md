@@ -212,9 +212,8 @@ Last year, we introduced a Behavior-Driven Development (BDD) style for our UI te
 where scenarios are expressed with `describe` blocks and expected outcomes with `itShould`.
 This approach made our tests more expressive and easier to extend.
 
-This year, we are taking it a step further by sharing UI tests across Android, JVM, and iOS,
-leveraging Kotlin Multiplatform’s expect/actual mechanism to define common test APIs,
-which allows the same test definitions to run on all platforms.
+This year, we extend this approach by sharing UI tests across Android, JVM, and iOS 
+using Kotlin Multiplatform’s expect/actual mechanism, allowing the same tests to run on all platforms.
 
 ```kotlin
 expect abstract class Runner
@@ -235,8 +234,7 @@ class TimetableScreenTest {
 }
 ```
 
-The test case definitions follow the BDD style, where scenarios are expressed with `describe`,
-setup steps with `doIt`, and expected outcomes with `itShould`.
+Test cases follow the BDD style: scenarios with `describe`, setup with `doIt`, and expectations with `itShould`.
 
 ```kotlin
 // This test runs on Android, JVM, and iOS platforms!
@@ -275,9 +273,46 @@ class TimetableScreenTest {
 }
 ```
 
+Robots handle UI interactions and verifications, and can be extended easily for new scenarios.
+
+```kotlin
+@Inject
+class TimetableScreenRobot(
+    private val screenContext: TimetableScreenContext,
+    private val testDispatcher: TestDispatcher,
+    timetableServerRobot: DefaultTimetableServerRobot,
+    captureScreenRobot: DefaultCaptureScreenRobot,
+    waitRobot: DefaultWaitRobot,
+) : TimetableServerRobot by timetableServerRobot,
+    CaptureScreenRobot by captureScreenRobot,
+    WaitRobot by waitRobot {
+
+    context(composeUiTest: ComposeUiTest)
+    fun setupTimetableScreenContent() {
+        composeUiTest.setContent {
+            with(screenContext) {
+                TestDefaultsProvider(testDispatcher) {
+                    TimetableScreenRoot(
+                        onSearchClick = {},
+                        onTimetableItemClick = {},
+                    )
+                }
+            }
+        }
+    }
+
+    context(composeUiTest: ComposeUiTest)
+    fun checkLoadingIndicatorDisplayed() {
+        composeUiTest.onNodeWithTag(DefaultSuspenseFallbackContentTestTag).assertExists()
+    }
+    
+    ...
+}
+```
+
 Metro allows us to replace dependencies with test-specific implementations,
-creating a dedicated test dependency graph with minimal effort.
-This ensures tests are isolated from the production environment and run consistently across all platforms.
+creating a test dependency graph that ensures isolation from production 
+and consistent cross-platform execution.
 
 ```kotlin
 // android
