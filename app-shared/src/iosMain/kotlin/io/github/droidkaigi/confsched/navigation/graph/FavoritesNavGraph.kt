@@ -37,7 +37,7 @@ private fun NavGraphBuilder.favoritesNavGraph(
     onTimetableItemClick: (TimetableItemId) -> Unit,
 ) {
     composable<Favorites> {
-        with(appGraph.rememberFavoritesScreenContextRetained()) {
+        with(rememberFavoritesScreenContextRetained()) {
             FavoritesScreenRoot(
                 onTimetableItemClick = onTimetableItemClick,
             )

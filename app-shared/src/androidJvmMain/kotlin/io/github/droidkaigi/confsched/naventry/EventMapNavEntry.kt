@@ -13,7 +13,7 @@ fun EntryProviderBuilder<NavKey>.eventMapEntry(
     onClickReadMore: (url: String) -> Unit,
 ) {
     entry<EventMapNavKey> {
-        with(appGraph.rememberEventMapScreenContextRetained()) {
+        with(rememberEventMapScreenContextRetained()) {
             EventMapScreenRoot(
                 onClickReadMore = onClickReadMore,
             )

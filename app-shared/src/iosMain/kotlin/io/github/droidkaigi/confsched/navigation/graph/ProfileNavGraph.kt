@@ -10,7 +10,7 @@ import io.github.droidkaigi.confsched.navigation.route.ProfileTabRoute
 context(appGraph: AppGraph)
 fun NavGraphBuilder.profileTabNavGraph() {
     composable<ProfileTabRoute> {
-        with(appGraph.rememberProfileScreenContextRetained()) {
+        with(rememberProfileScreenContextRetained()) {
             ProfileScreenRoot()
         }
     }

@@ -12,7 +12,7 @@ fun NavGraphBuilder.eventMapTabNavGraph(
     onClickReadMore: (url: String) -> Unit,
 ) {
     composable<EventMapTabRoute> {
-        with(appGraph.rememberEventMapScreenContextRetained()) {
+        with(rememberEventMapScreenContextRetained()) {
             EventMapScreenRoot(
                 onClickReadMore = onClickReadMore,
             )

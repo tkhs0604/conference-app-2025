@@ -17,7 +17,7 @@ fun EntryProviderBuilder<NavKey>.contributorsEntry(
     entry<ContributorsNavKey>(
         metadata = listDetailSceneStrategyDetailPaneMetaData(),
     ) {
-        with(appGraph.rememberContributorsScreenContextRetained()) {
+        with(rememberContributorsScreenContextRetained()) {
             ContributorsScreenRoot(
                 onBackClick = onBackClick,
                 onContributorClick = onContributorClick,

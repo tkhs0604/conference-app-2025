@@ -50,7 +50,7 @@ private fun NavGraphBuilder.timetableNavGraph(
     onTimetableItemClick: (TimetableItemId) -> Unit,
 ) {
     composable<TimetableRoute> {
-        with(appGraph.rememberTimetableScreenContextRetained()) {
+        with(rememberTimetableScreenContextRetained()) {
             TimetableScreenRoot(
                 onSearchClick = onSearchClick,
                 onTimetableItemClick = onTimetableItemClick,
@@ -69,7 +69,7 @@ fun NavGraphBuilder.timetableItemDetailNavGraph(
     composable<TimetableItemDetailRoute> {
         val timetableItemId =
             TimetableItemId(it.toRoute<TimetableItemDetailRoute>().id)
-        with(appGraph.rememberTimetableItemDetailScreenContextRetained(timetableItemId)) {
+        with(rememberTimetableItemDetailScreenContextRetained(timetableItemId)) {
             TimetableItemDetailScreenRoot(
                 onBackClick = onBackClick,
                 onLinkClick = onLinkClick,
@@ -83,7 +83,7 @@ fun NavGraphBuilder.timetableItemDetailNavGraph(
 context(appGraph: AppGraph)
 private fun NavGraphBuilder.searchNavGraph() {
     composable<SearchRoute> {
-        with(appGraph.rememberSearchScreenContextRetained()) {
+        with(rememberSearchScreenContextRetained()) {
             SearchScreenRoot()
         }
     }

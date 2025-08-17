@@ -17,7 +17,7 @@ fun EntryProviderBuilder<NavKey>.staffEntry(
     entry<StaffNavKey>(
         metadata = listDetailSceneStrategyDetailPaneMetaData(),
     ) {
-        with(appGraph.rememberStaffScreenContextRetained()) {
+        with(rememberStaffScreenContextRetained()) {
             StaffScreenRoot(
                 onBackClick = onBackClick,
                 onStaffItemClick = onStaffItemClick,
