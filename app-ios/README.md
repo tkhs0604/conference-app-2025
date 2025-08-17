@@ -152,7 +152,7 @@ cd conference-app-2025/app-ios
 ```bash
 make setup
 ```
-Note: This installs SwiftLint via Swift Package Plugin. The `nestfile.yml` configuration is no longer needed.
+Note: This installs SwiftLint via nest. Make sure nest is installed first (`brew install mtj0928/tap/nest`).
 
 3. Open the project:
 ```bash
@@ -202,7 +202,7 @@ For more testing commands, see [CLAUDE.md](./CLAUDE.md#running-tests).
 ### Code Quality Tools
 
 #### SwiftLint
-- Runs automatically during build via Swift Package Plugin
+- Installed via nest (dependency manager)
 - Configuration: `.swiftlint.yml`
 - Manual check: `make lint`
 - Auto-fix: `make lint-fix`
@@ -300,7 +300,7 @@ graph LR
 
 ### Implementation Notes
 - **Sponsor Data**: Currently using mock data in `SponsorUseCaseImpl` as KMP doesn't have sponsorsRepository yet. When available, it will follow the same pattern as `TimetableUseCaseImpl`.
-- **SwiftLint**: Now runs via Swift Package Plugin, removing the need for separate installation
+- **SwiftLint**: Installed separately via nest for better control and CI compatibility
 - **Build Performance**: Use `scripts/xcode-lint.sh` for incremental linting during development
 
 ## 📦 Project Structure

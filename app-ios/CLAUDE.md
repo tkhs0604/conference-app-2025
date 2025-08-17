@@ -10,7 +10,10 @@ This is the iOS app for DroidKaigi 2025 conference. For general project informat
 
 ### Quick Setup
 ```bash
-# Initial setup (installs dependencies via Swift Package Plugin)
+# Install nest (if not already installed)
+brew install mtj0928/tap/nest
+
+# Initial setup (installs SwiftLint via nest)
 make setup
 
 # Open in Xcode
@@ -72,7 +75,7 @@ See [README.md](./README.md#-getting-started) for technical requirements, depend
 
 ### Linting & Formatting
 ```bash
-# Linting (SwiftLint via Swift Package Plugin)
+# Linting (SwiftLint installed via nest)
 make lint          # Check for linting issues
 make lint-fix      # Auto-fix linting issues
 
@@ -95,7 +98,7 @@ See [scripts/README.md](./scripts/README.md) for detailed setup.
 ### All Available Makefile Commands
 ```bash
 make help          # Show all available commands
-make setup         # Initial project setup (installs dependencies)
+make setup         # Initial project setup (installs SwiftLint via nest)
 make build         # Build all packages with prebuilt SwiftSyntax
 make test          # Run Core tests (Linux-compatible)
 make test-native   # Run Native module tests (macOS only)
@@ -126,10 +129,11 @@ See [README.md](./README.md#-development) for more details.
 ## Important Build and Debug Notes
 
 ### SwiftLint Setup
-- SwiftLint is now installed via Swift Package Plugin (no need for separate installation)
-- The `nestfile.yml` configuration is no longer needed
-- Runs automatically during Xcode builds
-- For CI environments, use `make ci-lint` which uses the Swift Package Plugin
+- SwiftLint is installed via nest (dependency manager)
+- Configuration file: `nestfile.yml` defines the SwiftLint version
+- Linting configuration: `.swiftlint.yml`
+- Runs via `make lint` or automatically during Xcode builds with `scripts/xcode-lint.sh`
+- For CI environments, SwiftLint needs to be installed separately
 
 ### Build Issues
 - **Swift Dependencies Macro Error**: The project may encounter macro validation errors with swift-dependencies package when building. This is a known issue with the package itself, not your code changes.
