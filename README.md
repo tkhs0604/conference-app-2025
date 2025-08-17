@@ -220,6 +220,7 @@ fun timetableScreenPresenter(
 
 ### Understanding App Entry Point
 
+Next, let's look at the app entry point and how we set up the app.
 The `KaigiApp` composable serves as the app’s entry point, setting up navigation and providing necessary dependencies.
 
 ```kotlin
