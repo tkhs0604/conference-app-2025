@@ -39,6 +39,7 @@ fun DefaultErrorFallbackContent(modifier: Modifier = Modifier) {
                 painter = painterResource(DroidkaigiuiRes.drawable.background),
                 contentScale = ContentScale.Crop,
                 alignment = Alignment.Center,
+                alpha = 0.18f
             )
             .testTag(DefaultErrorFallbackContentTestTag),
         horizontalAlignment = Alignment.CenterHorizontally,
