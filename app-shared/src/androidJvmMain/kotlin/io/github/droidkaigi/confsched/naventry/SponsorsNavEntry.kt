@@ -18,7 +18,7 @@ fun EntryProviderBuilder<NavKey>.sponsorsEntry(
     entry<SponsorsNavKey>(
         metadata = listDetailSceneStrategyDetailPaneMetaData(),
     ) {
-        with(appGraph.rememberSponsorsScreenContextRetained()) {
+        with(rememberSponsorsScreenContextRetained()) {
             SponsorScreenRoot(
                 onBackClick = onBackClick,
                 onSponsorClick = onSponsorClick,

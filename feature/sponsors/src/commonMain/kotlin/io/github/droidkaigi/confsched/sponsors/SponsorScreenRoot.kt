@@ -1,7 +1,7 @@
 package io.github.droidkaigi.confsched.sponsors
 
 import androidx.compose.runtime.Composable
-import io.github.droidkaigi.confsched.droidkaigiui.SoilDataBoundary
+import io.github.droidkaigi.confsched.droidkaigiui.architecture.SoilDataBoundary
 import soil.query.compose.rememberQuery
 
 context(screenContext: SponsorsScreenContext)
