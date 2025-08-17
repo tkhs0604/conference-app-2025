@@ -9,7 +9,7 @@ struct BackCard: View {
 
     var body: some View {
         ZStack {
-            if cardType == .dark {
+            if cardType == .night {
                 Color(uiColor: UIColor(red: 40.0 / 255.0, green: 15.0 / 255.0, blue: 131.0 / 255.0, alpha: 1.0))
             } else {
                 Color(uiColor: UIColor(red: 242.0 / 255.0, green: 244.0 / 255.0, blue: 251.0 / 255.0, alpha: 1.0))

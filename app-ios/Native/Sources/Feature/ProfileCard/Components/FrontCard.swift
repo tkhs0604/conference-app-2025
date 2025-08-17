@@ -27,10 +27,12 @@ struct FrontCard: View {
                     avatarImage
                     VStack(alignment: .center, spacing: 0) {
                         Text(userRole)
-                            .foregroundStyle(cardType == .dark ? AssetColors.onSurface.swiftUIColor : lightContentColor)
+                            .foregroundStyle(
+                                cardType == .night ? AssetColors.onSurface.swiftUIColor : lightContentColor
+                            )
                             .typographyStyle(.bodyMedium)
                         Text(userName)
-                            .foregroundStyle(cardType == .dark ? .white : lightContentColor)
+                            .foregroundStyle(cardType == .night ? .white : lightContentColor)
                             .typographyStyle(
                                 .init(
                                     font: .custom(AssetFonts.Chango.regular, size: 24), lineHeight: 32, letterSpacing: 0
