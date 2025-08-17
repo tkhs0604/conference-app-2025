@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.composeHotReload)
     id("droidkaigi.primitive.metro")
     id("droidkaigi.primitive.aboutlibraries")
+    id("droidkaigi.primitive.spotless")
 }
 
 val aboutLibrariesTargetDir = "${layout.buildDirectory.get().asFile.path}/generated/aboutlibraries"
