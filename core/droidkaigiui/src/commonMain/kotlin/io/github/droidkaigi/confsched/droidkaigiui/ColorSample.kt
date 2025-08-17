@@ -4,8 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -121,22 +119,8 @@ private fun ColorBox(color: Color) {
 
 @Preview
 @Composable
-private fun ColorPreview_Light() {
-    KaigiTheme(
-        darkTheme = false,
-    ) {
-        Surface {
-            ColorBoxes()
-        }
-    }
-}
-
-@Preview
-@Composable
 private fun ColorPreview_Dark() {
-    KaigiTheme(
-        darkTheme = true,
-    ) {
+    KaigiTheme {
         Surface {
             ColorBoxes()
         }
