@@ -12,7 +12,7 @@ import UseCase
 @MainActor
 @Observable
 final class SponsorPresenter {
-    private let sponsorProvider = Presentation.SponsorProvider()
+    let sponsorProvider = Presentation.SponsorProvider()
 
     init() {}
 
