@@ -9,12 +9,12 @@ We welcome your contributions!
 First, download the repository locally and try out the app. This will help you understand how the app works and its features.
 Click the `Fork` button at the top right of the repository. This will create a copy of the repository in your account.
 
-![image](https://github.com/user-attachments/assets/39aa034e-052f-4084-b864-a3214841752c)
+![image](assets/contributing/how-to-fork-repository.png)
 
 Then, run the following command:
 
 ```bash
-git clone https://github.com/[your-account]/conference-app-2024
+git clone https://github.com/[your-account]/conference-app-2025
 ```
 
 This will download the repository to your PC.
@@ -31,7 +31,7 @@ Build and run the `app-android` module. Click the run button in Android Studio.
 
 ### 3. Find a Task
 
-We use GitHub Issues for task management. Please look for an Issue you'd like to contribute to. [Issues labeled `contributions welcome` or `easy`](https://github.com/DroidKaigi/conference-app-2024/issues?q=is%3Aissue+is%3Aopen+label%3A%22difficulty%3Aeasy+%F0%9F%8C%B1%22+label%3A%22contributions+welcome%22+) are recommended for first-time contributors.
+We use GitHub Issues for task management. Please look for an Issue you'd like to contribute to. [Issues labeled `contributions welcome` or `easy`](https://github.com/DroidKaigi/conference-app-2025/issues?q=is%3Aissue+is%3Aopen+label%3A%22difficulty%3Aeasy+%F0%9F%8C%B1%22+label%3A%22contributions+welcome%22+) are recommended for first-time contributors.
 
 Pull Requests without an Issue are also welcome. In that case, please include details such as the reason, cause, and solution in your Pull Request.
 
@@ -56,7 +56,7 @@ The command for code formatting is as follows. You can run it by opening this do
 ### 6. Create a Pull Request
 
 Once you've completed your changes, please create a pull request.
-Commit and push your git changes, then create a pull request from the GitHub UI (https://github.com/[your-account]/conference-app-2024).
+Commit and push your git changes, then create a pull request from the GitHub UI (https://github.com/[your-account]/conference-app-2025).
 
 We use English for Issues, comments, and reviews.
 
