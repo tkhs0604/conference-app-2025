@@ -202,12 +202,13 @@ fun timetableScreenPresenter(
     eventFlow: EventFlow<TimetableScreenEvent>,
     timetable: Timetable,
 ): TimetableScreenUiState = providePresenterDefaults {
-    val bookmarkMutation = rememberMutation(screenContext.favoriteTimetableItemIdMutationKey)
+    // We can retrieve the necessary dependencies via the screenContext inside the presenter, too.
+    val favoriteTimetableItemIdMutation = rememberMutation(screenContext.favoriteTimetableItemIdMutationKey)
 
     EventEffect(eventFlow) { event ->
         when (event) {
             is TimetableScreenEvent.Bookmark -> {
-                bookmarkMutation.mutate(event.timetableItemId)
+                favoriteTimetableItemIdMutation.mutate(TimetableItemId(event.sessionId))
             }
             // Handle other events...
         }
