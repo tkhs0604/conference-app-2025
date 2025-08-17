@@ -13,7 +13,7 @@ import UseCase
 @Observable
 final class StaffPresenter {
     private let staffProvider = Presentation.StaffProvider()
-    
+
     var staffList: [Model.Staff] = []
     var isLoading = false
 

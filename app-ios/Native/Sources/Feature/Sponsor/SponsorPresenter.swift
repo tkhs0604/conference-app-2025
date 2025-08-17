@@ -13,7 +13,7 @@ import UseCase
 @Observable
 final class SponsorPresenter {
     private let sponsorProvider = Presentation.SponsorProvider()
-    
+
     init() {}
 
     func loadSponsors() async {

@@ -12,7 +12,7 @@ public final class SponsorProvider {
     public var sponsors: [SponsorCategory] = []
 
     public init() {}
-    
+
     public func loadSponsorCategories() async {
         for await sponsorsList in sponsorsUseCase.load() {
             // Group sponsors by their plan
