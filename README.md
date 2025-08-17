@@ -50,6 +50,7 @@ experience further by introducing the following concepts:
 - Compile-time-safe dependency injection with [Metro](https://github.com/ZacSweers/metro)
 - Structuring the codebase with context parameters to provide clearer semantic meaning to Composable
   functions.
+- Introducing KSP to generate short-hand functions for better readability and maintainability.
 
 Here's a big picture of this year's architecture:
 
@@ -59,7 +60,11 @@ The following sections describe how this architecture works in practice.
 
 ### Dependency Injection via ScreenContext
 
-Unlike last year, we no longer rely on `CompositionLocal` to provide dependencies.  
+The entry point of each screen is Composable function named `XXXScreenRoot`.
+This function receives a corresponding `ScreenContext` as a context parameter, which provides
+the necessary dependencies for the screen.
+
+Unlike last year, we no longer rely on composition locals to provide dependencies.  
 Instead, we use [Metro](https://github.com/ZacSweers/metro) to resolve each screen's dependencies
 at compile time and provide them via a single `ScreenContext`.
 
@@ -125,7 +130,7 @@ fun <T1, T2> SoilDataBoundary(
 
 The `QueryKey` and `SubscriptionKey` provided by Soil are responsible for fetching
 the server or database state, and runtime caching is handled by Soil’s `SwrClient`.
-Therefore, we no longer need repository implementations to manually manage data fetching and caching.
+Therefore, we no longer implement repositories to manually manage data fetching and caching.
 
 ```kotlin
 typealias TimetableQueryKey = QueryKey<Timetable>
@@ -181,7 +186,7 @@ fun timetableScreenPresenter(
 }
 ```
 
-Presenters receive `eventFlow`, then handle the UI events inside `EventEffect` and mutate the UI
+Presenters receive `eventFlow`, then handle the UI events inside `EventEffect` and update the UI
 state or database state.
 
 ```kotlin
@@ -224,7 +229,7 @@ fun KaigiApp() {
 }
 ```
 
-`appGraph` is a platform-specific dependency graph. 
+`appGraph` is a platform-specific dependency graph.
 It is supplied via a context parameter from each platform’s entry point.
 
 ```kotlin
@@ -316,7 +321,7 @@ fun EntryProviderBuilder<NavKey>.timetableEntry(
     onSearchClick: () -> Unit,
     onTimetableItemClick: (TimetableItemId) -> Unit,
 ) {
-    entry<TimetableNavKey>(...) {
+    entry<TimetableNavKey>(metadata = /* passing additional metadata to customize the scene */) {
         with(appGraph.rememberTimetableScreenContextRetained()) {
             TimetableScreenRoot(
                 onSearchClick = onSearchClick,
@@ -367,7 +372,7 @@ Last year, we introduced a Behavior-Driven Development (BDD) style for our UI te
 where scenarios are expressed with `describe` blocks and expected outcomes with `itShould`.
 This approach made our tests more expressive and easier to extend.
 
-This year, we extend this approach by sharing UI tests across Android, JVM, and iOS 
+This year, we extend this approach by sharing UI tests across Android, JVM, and iOS
 using Kotlin Multiplatform’s expect/actual mechanism, allowing the same tests to run on all platforms.
 
 ```kotlin
@@ -466,7 +471,7 @@ class TimetableScreenRobot(
 ```
 
 Metro allows us to replace dependencies with test-specific implementations,
-creating a test dependency graph that ensures isolation from production 
+creating a test dependency graph that ensures isolation from production
 and consistent cross-platform execution.
 
 ```kotlin
