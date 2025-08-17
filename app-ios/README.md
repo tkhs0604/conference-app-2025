@@ -261,8 +261,8 @@ graph TD
     A --> C[Color Scheme]
     A --> D[Components]
     
-    C --> E[Light Theme]
-    C --> F[Dark Theme]
+    C --> E[Semantic Colors]
+    C --> F[Theme Colors]
     
     D --> G[Atomic Components]
     D --> H[Feature Components]

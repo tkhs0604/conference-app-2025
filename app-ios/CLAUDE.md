@@ -8,12 +8,23 @@ This is the iOS app for DroidKaigi 2025 conference. For general project informat
 
 ## Build and Development Commands
 
+### Quick Setup
+```bash
+# Initial setup (installs dependencies via Swift Package Plugin)
+make setup
+
+# Open in Xcode
+make xcode
+```
+
 ### Building the App
 ```bash
-# Build the main app
-xcodebuild build -project DroidKaigi2025.xcodeproj -scheme DroidKaigi2025 -configuration Debug
+# Build with Makefile (recommended)
+make build          # Build all packages with prebuilt SwiftSyntax
+make xcode-build    # Build with Xcode
 
-# Build for release
+# Or build directly with xcodebuild
+xcodebuild build -project DroidKaigi2025.xcodeproj -scheme DroidKaigi2025 -configuration Debug
 xcodebuild build -project DroidKaigi2025.xcodeproj -scheme DroidKaigi2025 -configuration Release
 
 # Build specific packages
@@ -23,10 +34,14 @@ cd Native && swift build
 
 ### Running Tests
 ```bash
-# Run component tests
-xcodebuild test -project DroidKaigi2025.xcodeproj -scheme ComponentTests -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
+# Run tests with Makefile (recommended)
+make test           # Run Core tests (Linux-compatible)
+make test-native    # Run Native module tests (macOS only)
+make test-all       # Run all tests (Core + Native, macOS only)
+make xcode-test     # Run tests with Xcode
 
-# Run use case tests
+# Or run directly with xcodebuild
+xcodebuild test -project DroidKaigi2025.xcodeproj -scheme ComponentTests -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
 xcodebuild test -project DroidKaigi2025.xcodeproj -scheme UseCaseTests -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
 
 # Run package tests
@@ -55,7 +70,50 @@ See [README.md](./README.md#-getting-started) for technical requirements, depend
 
 ## Code Quality Tools
 
-See [README.md](./README.md#-development) for code quality tools, linting, formatting, and Makefile commands.
+### Linting & Formatting
+```bash
+# Linting (SwiftLint via Swift Package Plugin)
+make lint          # Check for linting issues
+make lint-fix      # Auto-fix linting issues
+
+# Formatting (swift-format)
+make format        # Format code with swift-format
+make format-check  # Check formatting (fails on warnings)
+
+# Pre-commit checks
+make pre-commit    # Run all checks before committing
+```
+
+### Xcode Integration
+For faster incremental builds, install the Xcode build phase script:
+1. Open Xcode project
+2. Add Run Script Phase with: `"${SRCROOT}/scripts/xcode-lint.sh"`
+3. This will only lint modified files during builds
+
+See [scripts/README.md](./scripts/README.md) for detailed setup.
+
+### All Available Makefile Commands
+```bash
+make help          # Show all available commands
+make setup         # Initial project setup (installs dependencies)
+make build         # Build all packages with prebuilt SwiftSyntax
+make test          # Run Core tests (Linux-compatible)
+make test-native   # Run Native module tests (macOS only)
+make test-all      # Run all tests (Core + Native, macOS only)
+make lint          # Run SwiftLint
+make lint-fix      # Auto-fix linting issues
+make format        # Format code with swift-format
+make format-check  # Check code formatting (fails on warnings)
+make pre-commit    # Run all checks before committing
+make clean         # Clean build artifacts
+make reset         # Reset project (clean + resolve dependencies)
+make xcode         # Open project in Xcode
+make xcode-build   # Build with Xcode
+make xcode-test    # Run tests with Xcode
+make ci            # Run CI checks (lint + Core tests)
+```
+
+See [README.md](./README.md#-development) for more details.
 
 ## Claude-Specific Development Notes
 
@@ -66,6 +124,13 @@ See [README.md](./README.md#-development) for code quality tools, linting, forma
 - Linting and formatting tools are configured and should be used before completing work
 
 ## Important Build and Debug Notes
+
+### SwiftLint Setup
+- SwiftLint is now installed via Swift Package Plugin (no need for separate installation)
+- The `nestfile.yml` configuration is no longer needed
+- Runs automatically during Xcode builds
+- For CI environments, use `make ci-lint` which uses the Swift Package Plugin
+
 ### Build Issues
 - **Swift Dependencies Macro Error**: The project may encounter macro validation errors with swift-dependencies package when building. This is a known issue with the package itself, not your code changes.
   - Error: "cannot load module 'SwiftDiagnostics' built with SDK 'macosx15.5' when using SDK 'iphonesimulator18.5'"
