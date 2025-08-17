@@ -156,7 +156,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd $SOURCE_ROOT/../\n# ./gradlew app-shared:assembleSharedDebugXCFramework -Papp.ios.shared.arch=arm64\n";
+			shellScript = "cd $SOURCE_ROOT/../\n./gradlew app-shared:assembleSharedDebugXCFramework -Papp.ios.shared.arch=arm64\n";
 		};
 		BF770BC72E450F9D0000E5E2 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
