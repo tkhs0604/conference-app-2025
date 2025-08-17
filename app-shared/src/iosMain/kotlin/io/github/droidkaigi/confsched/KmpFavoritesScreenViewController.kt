@@ -25,15 +25,17 @@ fun kmpFavoritesScreenViewController(
         SwrClientProvider(appGraph.swrClientPlus) {
             // Add a constant bottom padding (112.dp) to avoid overlapping with the bottom navigation bar on iOS (value from Figma design).
             CompositionLocalProvider(LocalBottomNavigationBarsPadding provides PaddingValues(bottom = 112.dp)) {
-                with(appGraph.rememberFavoritesScreenContextRetained()) {
-                    FavoritesScreenRoot(
-                        onTimetableItemClick = { timetableItemId ->
-                            // iOS navigation requires the full timetable item data
-                            timetableItems.contents
-                                .firstOrNull { it.timetableItem.id == timetableItemId }
-                                ?.let(onTimetableItemClick)
-                        },
-                    )
+                with(appGraph) {
+                    with(rememberFavoritesScreenContextRetained()) {
+                        FavoritesScreenRoot(
+                            onTimetableItemClick = { timetableItemId ->
+                                // iOS navigation requires the full timetable item data
+                                timetableItems.contents
+                                    .firstOrNull { it.timetableItem.id == timetableItemId }
+                                    ?.let(onTimetableItemClick)
+                            },
+                        )
+                    }
                 }
             }
         }

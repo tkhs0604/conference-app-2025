@@ -47,16 +47,18 @@ fun favoritesScreenPresenterStateFlow(
             LocalViewModelStoreOwner provides iosLifecycleOwner,
         ) {
             swrClientProviderWithReturnValue(iosAppGraph.swrClientPlus) {
-                with(iosAppGraph.rememberFavoritesScreenContextRetained()) {
-                    soilDataBoundary(
-                        rememberQuery(timetableQueryKey),
-                        rememberSubscription(favoriteTimetableIdsSubscriptionKey),
-                    ) { timetable, favoriteTimetableItemIds ->
-                        favoritesScreenPresenter(
-                            // To avoid infinite recomposition issues, we use remember to keep the event flow stable.
-                            eventFlow = remember { eventFlow },
-                            timetable = timetable.copy(bookmarks = favoriteTimetableItemIds),
-                        )
+                with(iosAppGraph) {
+                    with(rememberFavoritesScreenContextRetained()) {
+                        soilDataBoundary(
+                            rememberQuery(timetableQueryKey),
+                            rememberSubscription(favoriteTimetableIdsSubscriptionKey),
+                        ) { timetable, favoriteTimetableItemIds ->
+                            favoritesScreenPresenter(
+                                // To avoid infinite recomposition issues, we use remember to keep the event flow stable.
+                                eventFlow = remember { eventFlow },
+                                timetable = timetable.copy(bookmarks = favoriteTimetableItemIds),
+                            )
+                        }
                     }
                 }
             }
