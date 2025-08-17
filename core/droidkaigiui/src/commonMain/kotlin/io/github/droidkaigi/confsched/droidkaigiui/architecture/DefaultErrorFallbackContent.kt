@@ -66,10 +66,19 @@ fun DefaultErrorFallbackContent(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview
+// FIXME Make images change according to light and dark modes.
+@Preview(name = "Light")
 @Composable
-private fun DefaultErrorFallbackContentPreview() {
-    KaigiPreviewContainer {
+private fun DefaultErrorFallbackContentLightPreview() {
+    KaigiPreviewContainer(darkTheme = false) {
+        DefaultErrorFallbackContent()
+    }
+}
+
+@Preview(name = "Dark")
+@Composable
+private fun DefaultErrorFallbackContentDarkPreview() {
+    KaigiPreviewContainer(darkTheme = true) {
         DefaultErrorFallbackContent()
     }
 }
