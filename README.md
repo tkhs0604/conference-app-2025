@@ -496,3 +496,19 @@ expect fun createTestAppGraph(): TestAppGraph
 
 fun createTimetableScreenTestGraph(): TimetableScreenTestGraph = createTestAppGraph()
 ```
+
+### Kotlin Multiplatform Integration on iOS
+
+This year, we integrated Kotlin Multiplatform (KMP) into the iOS app in the following ways:
+
+1. **Repository access on each screen**  
+   Repository classes are exposed to iOS. [Molecule](https://github.com/cashapp/molecule) converts the Compose state provided by Soil into Flows, enabling SwiftUI views to reactively observe changes.
+
+2. **Full Compose Multiplatform (CMP) integration**  
+   The entire `KaigiApp` runs on iOS using a `ComposeUIViewController`, enabling reuse of Composable UI code across platforms.
+
+3. **Screen-level KMP Presenter integration (FavoriteScreen)**  
+   The KMP presenter's UI state is mapped into SwiftUI views on the FavoriteScreen, allowing the UI to remain native SwiftUI while reusing shared business logic.
+
+4. **Screen-level CMP integration (FavoriteScreen)**  
+   FavoriteScreen uses Compose Multiplatform UI, allowing partial adoption of CMP on iOS and enabling incremental migration.
