@@ -67,6 +67,7 @@ fun TimetableItemCard(
         Row(
             verticalAlignment = Alignment.Top,
             modifier = modifier
+                .clip(RoundedCornerShape(16.dp))
                 .clickable { onTimetableItemClick() }
                 .background(Color.Transparent)
                 .fillMaxWidth()
