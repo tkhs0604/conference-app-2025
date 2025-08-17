@@ -26,7 +26,7 @@ struct TimetableProviderTest {
         try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
         #expect(provider.timetable != nil)
-        #expect(provider.dayTimetable.count == DroidKaigi2024Day.allCases.count)
+        #expect(provider.dayTimetable.count == DroidKaigi2025Day.allCases.count)
     }
     
     @MainActor
@@ -50,9 +50,9 @@ struct TimetableProviderTest {
         
         #expect(provider.timetable != nil)
         #expect(provider.timetable?.timetableItems.isEmpty == true)
-        #expect(provider.dayTimetable.count == DroidKaigi2024Day.allCases.count)
+        #expect(provider.dayTimetable.count == DroidKaigi2025Day.allCases.count)
         
-        for day in DroidKaigi2024Day.allCases {
+        for day in DroidKaigi2025Day.allCases {
             let dayItems = provider.dayTimetable[day]
             #expect(dayItems != nil)
             #expect(dayItems?.isEmpty == true)
@@ -78,7 +78,7 @@ struct TimetableProviderTest {
         // Give some time for the async task to process
         try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
-        for day in DroidKaigi2024Day.allCases {
+        for day in DroidKaigi2025Day.allCases {
             if let groups = provider.dayTimetable[day], !groups.isEmpty {
                 for group in groups {
                     guard let firstItem = group.items.first else { continue }
@@ -132,10 +132,10 @@ struct TimetableProviderTest {
         // The provider should handle empty data gracefully
         #expect(provider.timetable != nil)
         #expect(provider.timetable?.timetableItems.isEmpty == true)
-        #expect(provider.dayTimetable.count == DroidKaigi2024Day.allCases.count)
+        #expect(provider.dayTimetable.count == DroidKaigi2025Day.allCases.count)
         
         // All day timetables should be empty
-        for day in DroidKaigi2024Day.allCases {
+        for day in DroidKaigi2025Day.allCases {
             #expect(provider.dayTimetable[day]?.isEmpty == true)
         }
     }
@@ -211,7 +211,7 @@ struct TimetableProviderTest {
         // Wait for async operation to complete
         try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
-        let day1Groups = provider.dayTimetable[DroidKaigi2024Day.conferenceDay1] ?? []
+        let day1Groups = provider.dayTimetable[DroidKaigi2025Day.conferenceDay1] ?? []
         
         #expect(day1Groups.count == 3)
         
@@ -253,7 +253,7 @@ struct TimetableProviderTest {
         // Wait for async operation to complete
         try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
         
-        let day1Groups = provider.dayTimetable[DroidKaigi2024Day.conferenceDay1] ?? []
+        let day1Groups = provider.dayTimetable[DroidKaigi2025Day.conferenceDay1] ?? []
         
         #expect(day1Groups.count == 1)
         #expect(day1Groups.first?.items.count == 3)
@@ -328,7 +328,7 @@ enum TestData {
     
     static func createTimetableItemSession(
         id: String = "1",
-        day: DroidKaigi2024Day = .conferenceDay1,
+        day: DroidKaigi2025Day = .conferenceDay1,
         startsAt: Date = Date(),
         endsAt: Date = Date().addingTimeInterval(3_600),
         room: RoomType = .roomF
@@ -354,7 +354,7 @@ enum TestData {
     
     static func createTimetableItemSpecial(
         id: String = "special-1",
-        day: DroidKaigi2024Day = .conferenceDay1,
+        day: DroidKaigi2025Day = .conferenceDay1,
         startsAt: Date = Date(),
         endsAt: Date = Date().addingTimeInterval(3_600),
         sessionType: TimetableSessionType = .lunch

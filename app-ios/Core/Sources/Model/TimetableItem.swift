@@ -13,7 +13,7 @@ public protocol TimetableItem: Identifiable, Equatable, Sendable {
     var asset: TimetableAsset { get }
     var levels: [String] { get }
     var speakers: [Speaker] { get }
-    var day: DroidKaigi2024Day? { get }
+    var day: DroidKaigi2025Day? { get }
 }
 
 public struct TimetableItemSession: TimetableItem {
@@ -31,7 +31,7 @@ public struct TimetableItemSession: TimetableItem {
     public let speakers: [Speaker]
     public let description: MultiLangText
     public let message: MultiLangText?
-    public let day: DroidKaigi2024Day?
+    public let day: DroidKaigi2025Day?
 
     public init(
         id: TimetableItemId,
@@ -48,7 +48,7 @@ public struct TimetableItemSession: TimetableItem {
         speakers: [Speaker],
         description: MultiLangText,
         message: MultiLangText? = nil,
-        day: DroidKaigi2024Day? = nil
+        day: DroidKaigi2025Day? = nil
     ) {
         self.id = id
         self.title = title
@@ -83,7 +83,7 @@ public struct TimetableItemSpecial: TimetableItem {
     public let speakers: [Speaker]
     public let description: MultiLangText
     public let message: MultiLangText?
-    public let day: DroidKaigi2024Day?
+    public let day: DroidKaigi2025Day?
 
     public init(
         id: TimetableItemId,
@@ -100,7 +100,7 @@ public struct TimetableItemSpecial: TimetableItem {
         speakers: [Speaker],
         description: MultiLangText,
         message: MultiLangText? = nil,
-        day: DroidKaigi2024Day? = nil
+        day: DroidKaigi2025Day? = nil
     ) {
         self.id = id
         self.title = title
