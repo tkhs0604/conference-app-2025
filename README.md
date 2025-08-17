@@ -205,3 +205,104 @@ fun timetableScreenPresenter(
     return TimetableScreenUiState(...)
 }
 ```
+
+### Multiplatform UI Testing
+
+Last year, we introduced a Behavior-Driven Development (BDD) style for our UI tests,
+where scenarios are expressed with `describe` blocks and expected outcomes with `itShould`.
+This approach made our tests more expressive and easier to extend.
+
+This year, we are taking it a step further by sharing UI tests across Android, JVM, and iOS,
+leveraging Kotlin Multiplatform’s expect/actual mechanism to define common test APIs,
+which allows the same test definitions to run on all platforms.
+
+```kotlin
+expect abstract class Runner
+
+expect class UiTestRunner : Runner
+
+expect annotation class RunWith(val value: KClass<out Runner>)
+
+expect annotation class ComposeTest()
+
+// This test runs on Android, JVM, and iOS platforms!
+@RunWith(UiTestRunner::class)
+class TimetableScreenTest {
+    @ComposeTest
+    fun runTest() {
+        // Test implementation goes here
+    }
+}
+```
+
+The test case definitions follow the BDD style, where scenarios are expressed with `describe`,
+setup steps with `doIt`, and expected outcomes with `itShould`.
+
+```kotlin
+// This test runs on Android, JVM, and iOS platforms!
+@RunWith(UiTestRunner::class)
+class TimetableScreenTest {
+    // A test-specific dependency graph
+    val testAppGraph = createTimetableScreenTestGraph()
+    
+    @ComposeTest
+    fun runTest() {
+        describedBehaviors.forEach { behavior ->
+            val robot = testAppGraph.timetableScreenRobotProvider()
+            runComposeUiTest {
+                behavior.execute(robot)
+            }
+        }
+    }
+
+    val describedBehaviors = describeBehaviors<TimetableScreenRobot>("TimetableScreen") {
+        describe("when server is operational") {
+            doIt {
+                setupTimetableServer(ServerStatus.Operational)
+                setupTimetableScreenContent()
+            }
+            itShould("show loading indicator") {
+                captureScreenWithChecks {
+                    checkLoadingIndicatorDisplayed()
+                }
+            }
+            // ...
+        }
+        describe("when server is error") {
+            // ...
+        }
+    }
+}
+```
+
+Metro allows us to replace dependencies with test-specific implementations,
+creating a dedicated test dependency graph with minimal effort.
+This ensures tests are isolated from the production environment and run consistently across all platforms.
+
+```kotlin
+// android
+@DependencyGraph(
+    scope = AppScope::class,
+    additionalScopes = [DataScope::class],
+    isExtendable = true,
+    // Exclude production implementations for testing
+    excludes = [
+        DefaultSessionsApiClient::class,
+        CoroutineDispatcher::class,
+        ...,
+    ],
+)
+internal interface AndroidTestAppGraph : TestAppGraph { ... }
+
+// common
+internal interface TestAppGraph : TimetableScreenTestGraph, ... {
+    @Binds
+    val FakeSessionsApiClient.binds: SessionsApiClient
+    
+    ...
+}
+
+expect fun createTestAppGraph(): TestAppGraph
+
+fun createTimetableScreenTestGraph(): TimetableScreenTestGraph = createTestAppGraph()
+```
