@@ -12,18 +12,12 @@ import UseCase
 @MainActor
 @Observable
 final class SponsorPresenter {
-    @ObservationIgnored
-    @Dependency(\.sponsorUseCase) private var sponsorUseCase
-
-    var sponsors: [Model.SponsorCategory] = []
-    var isLoading = false
+    let sponsorProvider = Presentation.SponsorProvider()
 
     init() {}
 
     func loadSponsors() async {
-        isLoading = true
-        sponsors = await sponsorUseCase.load()
-        isLoading = false
+        await sponsorProvider.loadSponsorCategories()
     }
 
     func sponsorTapped(_ sponsor: Model.Sponsor) {

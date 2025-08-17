@@ -12,8 +12,7 @@ import UseCase
 @MainActor
 @Observable
 final class StaffPresenter {
-    @ObservationIgnored
-    @Dependency(\.staffUseCase) private var staffUseCase
+    private let staffProvider = Presentation.StaffProvider()
 
     var staffList: [Model.Staff] = []
     var isLoading = false
@@ -27,7 +26,7 @@ final class StaffPresenter {
 
         staffTask?.cancel()
         staffTask = Task {
-            for await staffList in staffUseCase.load() {
+            for await staffList in staffProvider.loadStaff() {
                 guard !Task.isCancelled else { break }
                 self.staffList = staffList
                 self.isLoading = false
