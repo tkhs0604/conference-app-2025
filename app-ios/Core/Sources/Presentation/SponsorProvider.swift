@@ -1,6 +1,7 @@
 import Dependencies
 import Foundation
 import Model
+import Observation
 import UseCase
 
 @Observable
