@@ -14,6 +14,8 @@ The DroidKaigi 2025 official app offers a variety of features to enhance your co
 - **Profile cards**: Create and share your profile with other attendees.
 - **Contributors**: Discover the contributors behind the app. ...and more!
 
+<img width="300" src="assets/readme/sample-app-screenshot.png"/>
+
 ## Contributing
 
 We welcome contributions!
