@@ -8,11 +8,6 @@ enum KMPDependencies {
             toggleFavorite: timetableUseCaseImpl.toggleFavorite
         )
 
-        let sponsorUseCaseImpl = SponsorUseCaseImpl()
-        dependencyValues.sponsorUseCase = .init(
-            load: sponsorUseCaseImpl.load
-        )
-
         let sponsorsUseCaseImpl = SponsorsUseCaseImpl()
         dependencyValues.sponsorsUseCase = .init(
             load: sponsorsUseCaseImpl.load

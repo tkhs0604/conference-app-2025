@@ -8,7 +8,8 @@ struct StaffUseCaseImpl {
             .staffFlow()
 
         return flow.map { staffList in
-            staffList.map { Model.Staff(from: $0) }
+            print("KMP returned \(staffList.count) staff members")
+            return staffList.map { Model.Staff(from: $0) }
         }
     }
 }
