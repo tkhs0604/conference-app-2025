@@ -50,7 +50,7 @@
               <y:Fill color="#FF9900" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="311.2001037597656" x="1.612309508614544" xml:space="preserve" y="12.983915064320968">KMPKaigiAppViewControllerWrapper<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="177.1239400368828" y="34.7559966760183">
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="177.1239400368829" y="34.7559966760183">
                 <y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -69,7 +69,7 @@
               <y:Fill color="#FF9900" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="119.19998931884766" x="59.48736672907353" xml:space="preserve" y="12.983915064320968">Swift UI App<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.6852425095915" y="34.7559966760183">
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.6852425095916" y="34.7559966760183">
                 <y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -146,14 +146,14 @@
         <y:ProxyAutoBoundsNode>
           <y:Realizers active="0">
             <y:GroupNode>
-              <y:Geometry height="810.0099641359343" width="860.914248397765" x="197.24505988906066" y="455.49517294483417"/>
+              <y:Geometry height="790.1004144106007" width="791.681816563861" x="185.89544440970735" y="321.11271966001556"/>
               <y:Fill color="#F5F5F5" transparent="false"/>
               <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-              <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="860.914248397765" x="0.0" xml:space="preserve" y="0.0">feature/sessions</y:NodeLabel>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="791.681816563861" x="0.0" xml:space="preserve" y="0.0">feature/sessions</y:NodeLabel>
               <y:Shape type="roundrectangle"/>
               <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
               <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
-              <y:BorderInsets bottom="0" bottomF="0.0" left="36" leftF="36.23962560201875" right="46" rightF="46.20162685719583" top="0" topF="0.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="13" leftF="13.208820625310523" right="0" rightF="0.0" top="3" topF="3.3204141270245486"/>
             </y:GroupNode>
             <y:GroupNode>
               <y:Geometry height="50.0" width="50.0" x="0.0" y="60.0"/>
@@ -175,14 +175,14 @@
             <y:ProxyAutoBoundsNode>
               <y:Realizers active="0">
                 <y:GroupNode>
-                  <y:Geometry height="419.9813896897913" width="465.29827316155604" x="248.4846854910794" y="585.3805421488889"/>
+                  <y:Geometry height="419.9813896897913" width="465.29827316155604" x="214.10426503501787" y="530.5104259270599"/>
                   <y:Fill color="#F5F5F5" transparent="false"/>
                   <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
                   <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="465.29827316155604" x="0.0" xml:space="preserve" y="0.0">Screen Level</y:NodeLabel>
                   <y:Shape type="roundrectangle"/>
                   <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
                   <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
-                  <y:BorderInsets bottom="6" bottomF="5.831062840107052" left="49" leftF="49.24169155706079" right="49" rightF="49.28088759614013" top="0" topF="0.0"/>
+                  <y:BorderInsets bottom="6" bottomF="5.831062840107052" left="49" leftF="49.241691557060676" right="49" rightF="49.28088759614013" top="0" topF="0.0"/>
                 </y:GroupNode>
                 <y:GroupNode>
                   <y:Geometry height="50.0" width="50.0" x="784.0814271313088" y="341.97579853164615"/>
@@ -201,7 +201,7 @@
             <node id="n1::n0::n0">
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="51.08782906052676" width="336.7364979692752" x="312.7263770481402" y="933.4430399380465"/>
+                  <y:Geometry height="51.08782906052676" width="336.7364979692752" x="278.34595659207866" y="878.5729237162175"/>
                   <y:Fill color="#FF9900" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
                   <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="46.23999786376953" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="148.0" x="94.3682489846376" xml:space="preserve" y="2.423915598378585">@Composable
@@ -221,7 +221,7 @@ TimetableScreen<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelMod
             <node id="n1::n0::n1">
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="51.08782906052676" width="336.7364979692753" x="312.7655730872198" y="837.4475895630145"/>
+                  <y:Geometry height="51.08782906052676" width="336.7364979692753" x="278.34595659207855" y="797.4850946556908"/>
                   <y:Fill color="#FF7837" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
                   <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="46.23999786376953" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="234.40005493164062" x="51.16822151881735" xml:space="preserve" y="2.423915598378585">@Composable
@@ -241,7 +241,7 @@ timetableScreenPresenter<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y
             <node id="n1::n0::n2">
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="20.807869383873083" width="336.7364979692753" x="312.76557308722" y="626.3366061599553"/>
+                  <y:Geometry height="20.807869383873083" width="336.7364979692753" x="278.38515263115846" y="571.4664899381263"/>
                   <y:Fill color="#FF9900" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
                   <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="301.60009765625" x="17.56820015651266" xml:space="preserve" y="-2.156064774005813">context(TimetableScreenContext)<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -260,7 +260,7 @@ timetableScreenPresenter<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y
             <node id="n1::n0::n3">
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="51.08782906052676" width="336.7364979692753" x="312.76557308722" y="748.9059498452352"/>
+                  <y:Geometry height="51.08782906052676" width="336.7364979692753" x="278.38515263115846" y="694.0358336234062"/>
                   <y:Fill color="#FF9900" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
                   <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="46.23999786376953" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="157.60000610351562" x="89.56824593287985" xml:space="preserve" y="2.423915598378585">@Composable
@@ -280,7 +280,7 @@ SoilDataBoundary<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelMo
             <node id="n1::n0::n4">
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="45.68069340398142" width="336.7364979692753" x="312.76557308722" y="647.1444755438283"/>
+                  <y:Geometry height="45.68069340398142" width="336.7364979692753" x="278.38515263115846" y="592.2743593219993"/>
                   <y:Fill color="#FF9900" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
                   <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="46.23999786376953" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="186.4000244140625" x="75.16823677760641" xml:space="preserve" y="-0.27965222989405447">@Composable
@@ -300,7 +300,7 @@ TimetableScreenRoot<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:Labe
             <node id="n1::n0::n5">
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="30.0" width="40.81427131309056" x="408.3195507587668" y="895.9892292807939"/>
+                  <y:Geometry height="30.0" width="40.81427131309056" x="373.9391303027053" y="848.5729237162175"/>
                   <y:Fill hasColor="false" transparent="false"/>
                   <y:BorderStyle hasColor="false" raised="false" type="line" width="1.0"/>
                   <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="54.400001525878906" x="-6.792865106394174" xml:space="preserve" y="5.079999923706055">UiState<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -319,7 +319,7 @@ TimetableScreenRoot<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:Labe
             <node id="n1::n0::n6">
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="30.0" width="40.81427131309056" x="513.0554299936982" y="895.9892292807939"/>
+                  <y:Geometry height="30.0" width="40.81427131309056" x="470.6750095376367" y="848.5729237162175"/>
                   <y:Fill hasColor="false" transparent="false"/>
                   <y:BorderStyle hasColor="false" raised="false" type="line" width="1.0"/>
                   <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.0" x="0.40713565654527883" xml:space="preserve" y="5.079999923706055">Event<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -338,8 +338,27 @@ TimetableScreenRoot<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:Labe
             <node id="n1::n0::n7">
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="20.807869383873083" width="336.7364979692753" x="312.76557308722" y="728.2672995639367"/>
+                  <y:Geometry height="20.807869383873083" width="336.7364979692753" x="278.38515263115846" y="673.3971833421077"/>
                   <y:Fill color="#FF9900" transparent="false"/>
+                  <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
+                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="215.20004272460938" x="60.76822762233297" xml:space="preserve" y="-2.156064774005813">context(ScreenContext)<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="189.8346869729407" y="11.785163149543564">
+                    <y:LabelModel>
+                      <y:SmartNodeLabelModel distance="4.0"/>
+                    </y:LabelModel>
+                    <y:ModelParameter>
+                      <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.5" nodeRatioX="0.06968783642349385" nodeRatioY="0.2586150632883971" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+                    </y:ModelParameter>
+                  </y:NodeLabel>
+                  <y:Shape type="roundrectangle"/>
+                </y:ShapeNode>
+              </data>
+            </node>
+            <node id="n1::n0::n8">
+              <data key="d6">
+                <y:ShapeNode>
+                  <y:Geometry height="20.807869383873083" width="336.7364979692753" x="278.38515263115846" y="776.6772252718177"/>
+                  <y:Fill color="#FF7837" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
                   <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="215.20004272460938" x="60.76822762233297" xml:space="preserve" y="-2.156064774005813">context(ScreenContext)<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
                   <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="189.8346869729407" y="11.785163149543564">
@@ -359,7 +378,7 @@ TimetableScreenRoot<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:Labe
         <node id="n1::n1">
           <data key="d6">
             <y:ShapeNode>
-              <y:Geometry height="51.08782906052676" width="403.22950978214305" x="279.51906718078595" y="494.2951721818947"/>
+              <y:Geometry height="51.08782906052676" width="403.22950978214305" x="245.13864672472442" y="449.4225968665332"/>
               <y:Fill color="#FF9900" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="46.23999786376953" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="368.8001403808594" x="17.21468470064184" xml:space="preserve" y="2.423915598378585">@ContributesGraphExtension
@@ -382,14 +401,14 @@ TimetableScreenContext : ScreenContext<y:LabelModel><y:SmartNodeLabelModel dista
             <y:ProxyAutoBoundsNode>
               <y:Realizers active="0">
                 <y:GroupNode>
-                  <y:Geometry height="104.88782829758725" width="268.1747227769947" x="347.04646068336024" y="1023.0457061621371"/>
+                  <y:Geometry height="108.88782829758725" width="210.84562873544195" x="214.10426503501787" y="987.325305773029"/>
                   <y:Fill color="#F5F5F5" transparent="false"/>
                   <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                  <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="268.1747227769947" x="0.0" xml:space="preserve" y="0.0">Section Level</y:NodeLabel>
+                  <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="210.84562873544195" x="0.0" xml:space="preserve" y="0.0">Section Level</y:NodeLabel>
                   <y:Shape type="roundrectangle"/>
                   <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
                   <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
-                  <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="1.1368683772161603E-13" top="0" topF="0.0"/>
+                  <y:BorderInsets bottom="4" bottomF="4.0" left="1" leftF="0.809637736369325" right="0" rightF="0.0" top="0" topF="0.0"/>
                 </y:GroupNode>
                 <y:GroupNode>
                   <y:Geometry height="50.0" width="50.0" x="821.0585527070172" y="829.160086216454"/>
@@ -408,12 +427,12 @@ TimetableScreenContext : ScreenContext<y:LabelModel><y:SmartNodeLabelModel dista
             <node id="n1::n2::n0">
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="51.0878290605267" width="238.1747227769946" x="362.04646068336024" y="1061.8457053991976"/>
+                  <y:Geometry height="51.0878290605267" width="180.03599099907262" x="229.9139027713872" y="1026.1253050100895"/>
                   <y:Fill color="#FF9900" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="46.23999786376953" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="128.79998779296875" x="54.687367492012925" xml:space="preserve" y="2.4239155983784713">@Composable
+                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="46.23999786376953" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="128.79998779296875" x="25.618001603051937" xml:space="preserve" y="2.4239155983786986">@Composable
 TimetableList<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.6852425095915" y="34.755996676018185">
+                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="100.5643141906213" y="34.75599667601841">
                     <y:LabelModel>
                       <y:SmartNodeLabelModel distance="4.0"/>
                     </y:LabelModel>
@@ -433,14 +452,14 @@ TimetableList<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel
             <y:ProxyAutoBoundsNode>
               <y:Realizers active="0">
                 <y:GroupNode>
-                  <y:Geometry height="104.88782829758725" width="268.1747227769945" x="347.04646068336046" y="1145.6173087831812"/>
+                  <y:Geometry height="108.88782829758725" width="223.17472277699477" x="456.22781541957914" y="987.325305773029"/>
                   <y:Fill color="#F5F5F5" transparent="false"/>
                   <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                  <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="268.1747227769945" x="0.0" xml:space="preserve" y="0.0">Component Level</y:NodeLabel>
+                  <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="223.17472277699477" x="0.0" xml:space="preserve" y="0.0">Component Level</y:NodeLabel>
                   <y:Shape type="roundrectangle"/>
                   <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
                   <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
-                  <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+                  <y:BorderInsets bottom="4" bottomF="4.0" left="0" leftF="0.0" right="13" rightF="13.138731777922203" top="0" topF="0.0"/>
                 </y:GroupNode>
                 <y:GroupNode>
                   <y:Geometry height="50.0" width="50.0" x="818.7195802807105" y="1139.1061027365488"/>
@@ -459,12 +478,12 @@ TimetableList<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel
             <node id="n1::n3::n0">
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="51.08782906052676" width="238.17472277699449" x="362.04646068336046" y="1184.4173080202418"/>
+                  <y:Geometry height="51.08782906052676" width="180.03599099907262" x="471.22781541957914" y="1026.1253050100895"/>
                   <y:Fill color="#FF9900" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="46.23999786376953" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="128.79998779296875" x="54.68736749201287" xml:space="preserve" y="2.4239155983786986">@Composable
+                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="46.23999786376953" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="128.79998779296875" x="25.61800160305188" xml:space="preserve" y="2.4239155983786986">@Composable
 TimetableItem<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.68524250959143" y="34.75599667601841">
+                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="100.56431419062119" y="34.75599667601841">
                     <y:LabelModel>
                       <y:SmartNodeLabelModel distance="4.0"/>
                     </y:LabelModel>
@@ -484,7 +503,7 @@ TimetableItem<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel
             <y:ProxyAutoBoundsNode>
               <y:Realizers active="0">
                 <y:GroupNode>
-                  <y:Geometry height="99.48069264104197" width="268.1747227769945" x="728.7829586526354" y="608.3444763067678"/>
+                  <y:Geometry height="99.48069264104208" width="268.1747227769945" x="694.4025381965739" y="553.4743600849387"/>
                   <y:Fill color="#F5F5F5" transparent="false"/>
                   <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
                   <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="268.1747227769945" x="0.0" xml:space="preserve" y="0.0">commonTest</y:NodeLabel>
@@ -510,7 +529,7 @@ TimetableItem<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel
             <node id="n1::n4::n0">
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="45.68069340398148" width="238.17472277699443" x="743.7829586526354" y="647.1444755438283"/>
+                  <y:Geometry height="45.68069340398148" width="238.17472277699443" x="709.4025381965739" y="592.2743593219992"/>
                   <y:Fill color="#808080" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
                   <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="186.4000244140625" x="25.887349181465993" xml:space="preserve" y="10.280347236048328">TimetableScreenTest<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -528,6 +547,26 @@ TimetableItem<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel
             </node>
           </graph>
         </node>
+        <node id="n1::n5">
+          <data key="d6">
+            <y:ShapeNode>
+              <y:Geometry height="65.5656214869228" width="409.02080960571175" x="242.24299681294008" y="363.23313302410065"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="46.23999786376953" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="388.0001525878906" x="10.510328508910561" xml:space="preserve" y="9.66281181157666">rememberTimetableScreenContextRetained()
+(Generated by KSP)<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="231.01418007646373" y="45.73906809384505">
+                <y:LabelModel>
+                  <y:SmartNodeLabelModel distance="4.0"/>
+                </y:LabelModel>
+                <y:ModelParameter>
+                  <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.5" nodeRatioX="0.06968783642349385" nodeRatioY="0.2586150632883971" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+                </y:ModelParameter>
+              </y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+            </y:ShapeNode>
+          </data>
+        </node>
       </graph>
     </node>
     <node id="n2" yfiles.foldertype="group">
@@ -536,10 +575,10 @@ TimetableItem<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel
         <y:ProxyAutoBoundsNode>
           <y:Realizers active="0">
             <y:GroupNode>
-              <y:Geometry height="697.0737574445047" width="897.9896332014614" x="102.6845650422002" y="-250.59432326741637"/>
+              <y:Geometry height="556.7070429274319" width="887.8756451892095" x="112.79855305445207" y="-250.59432326741637"/>
               <y:Fill color="#F5F5F5" transparent="false"/>
               <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-              <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="897.9896332014614" x="0.0" xml:space="preserve" y="0.0">app-shared</y:NodeLabel>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="887.8756451892095" x="0.0" xml:space="preserve" y="0.0">app-shared</y:NodeLabel>
               <y:Shape type="roundrectangle"/>
               <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
               <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
@@ -561,15 +600,14 @@ TimetableItem<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel
       <graph edgedefault="directed" id="n2:">
         <node id="n2::n0" yfiles.foldertype="group">
           <data key="d4" xml:space="preserve"/>
-          <data key="d5"/>
           <data key="d6">
             <y:ProxyAutoBoundsNode>
               <y:Realizers active="0">
                 <y:GroupNode>
-                  <y:Geometry height="643.2737582074442" width="867.1896332014614" x="118.48456504220019" y="-211.79432403035582"/>
+                  <y:Geometry height="350.4982899501503" width="765.3983333778928" x="220.27586486576888" y="-211.79432403035582"/>
                   <y:Fill color="#F5F5F5" transparent="false"/>
                   <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                  <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="867.1896332014614" x="0.0" xml:space="preserve" y="0.0">common</y:NodeLabel>
+                  <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="765.3983333778928" x="0.0" xml:space="preserve" y="0.0">common</y:NodeLabel>
                   <y:Shape type="roundrectangle"/>
                   <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
                   <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
@@ -688,29 +726,8 @@ AppGraph by Metro<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelM
                 </y:ShapeNode>
               </data>
             </node>
-            <node id="n2::n0::n5">
-              <data key="d6">
-                <y:ShapeNode>
-                  <y:Geometry height="65.5656214869228" width="505.02080960571175" x="228.6234172690016" y="342.63311928618407"/>
-                  <y:Fill color="#FF9900" transparent="false"/>
-                  <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="46.23999786376953" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="474.40020751953125" x="15.310301043090249" xml:space="preserve" y="9.66281181157666">appGraph.rememberTimetableScreenContextRetained()
-(Generated by KSP)<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="285.70421237311916" y="45.73906809384505">
-                    <y:LabelModel>
-                      <y:SmartNodeLabelModel distance="4.0"/>
-                    </y:LabelModel>
-                    <y:ModelParameter>
-                      <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.5" nodeRatioX="0.06968783642349385" nodeRatioY="0.2586150632883971" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
-                    </y:ModelParameter>
-                  </y:NodeLabel>
-                  <y:Shape type="roundrectangle"/>
-                </y:ShapeNode>
-              </data>
-            </node>
-            <node id="n2::n0::n6" yfiles.foldertype="group">
+            <node id="n2::n0::n5" yfiles.foldertype="group">
               <data key="d4" xml:space="preserve"/>
-              <data key="d5"/>
               <data key="d6">
                 <y:ProxyAutoBoundsNode>
                   <y:Realizers active="0">
@@ -737,8 +754,8 @@ AppGraph by Metro<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelM
                   </y:Realizers>
                 </y:ProxyAutoBoundsNode>
               </data>
-              <graph edgedefault="directed" id="n2::n0::n6:">
-                <node id="n2::n0::n6::n0">
+              <graph edgedefault="directed" id="n2::n0::n5:">
+                <node id="n2::n0::n5::n0">
                   <data key="d6">
                     <y:ShapeNode>
                       <y:Geometry height="45.68069340398148" width="299.64422687471335" x="656.0299713689483" y="-65.15392085428113"/>
@@ -757,7 +774,7 @@ AppGraph by Metro<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelM
                     </y:ShapeNode>
                   </data>
                 </node>
-                <node id="n2::n0::n6::n1">
+                <node id="n2::n0::n5::n1">
                   <data key="d6">
                     <y:ShapeNode>
                       <y:Geometry height="45.68069340398148" width="136.61222277699437" x="819.0619754666673" y="-1.6049942921500246"/>
@@ -776,7 +793,7 @@ AppGraph by Metro<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelM
                     </y:ShapeNode>
                   </data>
                 </node>
-                <node id="n2::n0::n6::n2">
+                <node id="n2::n0::n5::n2">
                   <data key="d6">
                     <y:ShapeNode>
                       <y:Geometry height="45.68069340398148" width="154.01253053342737" x="650.9354680750139" y="-1.6049942921500246"/>
@@ -795,7 +812,7 @@ AppGraph by Metro<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelM
                     </y:ShapeNode>
                   </data>
                 </node>
-                <node id="n2::n0::n6::n3">
+                <node id="n2::n0::n5::n3">
                   <data key="d6">
                     <y:ShapeNode>
                       <y:Geometry height="45.68069340398148" width="304.73873016864775" x="650.9354680750139" y="54.742579111831446"/>
@@ -820,7 +837,6 @@ AppGraph by Metro<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelM
         </node>
         <node id="n2::n1" yfiles.foldertype="group">
           <data key="d4" xml:space="preserve"/>
-          <data key="d5"/>
           <data key="d6">
             <y:ProxyAutoBoundsNode>
               <y:Realizers active="0">
@@ -893,8 +909,8 @@ NavDisplay by Nav3<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:Label
                   <y:Geometry height="45.68069340398148" width="94.64218299191685" x="250.36482294699096" y="230.43202625603396"/>
                   <y:Fill color="#FF9900" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="80.79999542236328" x="6.921093784776758" xml:space="preserve" y="10.280347236048328">NavEntry<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="51.91650046306148" y="30.654062117719263">
+                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="80.79999542236328" x="6.921093784776815" xml:space="preserve" y="10.280347236048328">NavEntry<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="51.91650046306154" y="30.654062117719263">
                     <y:LabelModel>
                       <y:SmartNodeLabelModel distance="4.0"/>
                     </y:LabelModel>
@@ -929,7 +945,6 @@ NavDisplay by Nav3<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:Label
         </node>
         <node id="n2::n2" yfiles.foldertype="group">
           <data key="d4" xml:space="preserve"/>
-          <data key="d5"/>
           <data key="d6">
             <y:ProxyAutoBoundsNode>
               <y:Realizers active="0">
@@ -1002,8 +1017,8 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
                   <y:Geometry height="45.68069340398148" width="94.64218299191685" x="603.5395457239856" y="230.432026256034"/>
                   <y:Fill color="#FF9900" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="80.79999542236328" x="6.921093784776758" xml:space="preserve" y="10.280347236048328">NavGraph<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="51.916500463061425" y="30.654062117719263">
+                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="80.79999542236328" x="6.921093784776758" xml:space="preserve" y="10.280347236048357">NavGraph<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="51.916500463061425" y="30.654062117719292">
                     <y:LabelModel>
                       <y:SmartNodeLabelModel distance="4.0"/>
                     </y:LabelModel>
@@ -1021,8 +1036,8 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
                   <y:Geometry height="45.68069340398148" width="94.64218299191685" x="710.3058156165245" y="230.432026256034"/>
                   <y:Fill color="#FF9900" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="80.79999542236328" x="6.921093784776758" xml:space="preserve" y="10.280347236048328">NavGraph<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="51.916500463061425" y="30.654062117719263">
+                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="80.79999542236328" x="6.921093784776758" xml:space="preserve" y="10.280347236048357">NavGraph<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+                  <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="51.916500463061425" y="30.654062117719292">
                     <y:LabelModel>
                       <y:SmartNodeLabelModel distance="4.0"/>
                     </y:LabelModel>
@@ -1044,20 +1059,20 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
         <y:ProxyAutoBoundsNode>
           <y:Realizers active="0">
             <y:GroupNode>
-              <y:Geometry height="179.39770626704444" width="348.8244455539889" x="1025.3167547918774" y="454.28964222393734"/>
+              <y:Geometry height="167.20741481184677" width="338.1747227769947" x="985.5776256144629" y="536.7902028823228"/>
               <y:Fill color="#F5F5F5" transparent="false"/>
               <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-              <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="348.8244455539889" x="0.0" xml:space="preserve" y="0.0">core/model</y:NodeLabel>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="338.1747227769947" x="0.0" xml:space="preserve" y="0.0">core/data</y:NodeLabel>
               <y:Shape type="roundrectangle"/>
               <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
               <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
-              <y:BorderInsets bottom="4" bottomF="4.236320222020822" left="10" leftF="10.000000000000455" right="1" rightF="0.6497227769937126" top="0" topF="0.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
             </y:GroupNode>
             <y:GroupNode>
               <y:Geometry height="50.0" width="50.0" x="0.0" y="60.0"/>
               <y:Fill color="#F5F5F5" transparent="false"/>
               <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="21.666015625" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="63.75830078125" x="-6.879150390625" xml:space="preserve" y="0.0">Folder 6</y:NodeLabel>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="21.666015625" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="63.75830078125" x="-6.879150390625" xml:space="preserve" y="0.0">Folder 7</y:NodeLabel>
               <y:Shape type="roundrectangle"/>
               <y:State closed="true" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
               <y:Insets bottom="5" bottomF="5.0" left="5" leftF="5.0" right="5" rightF="5.0" top="5" topF="5.0"/>
@@ -1070,10 +1085,10 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
         <node id="n3::n0">
           <data key="d6">
             <y:ShapeNode>
-              <y:Geometry height="45.68069340398148" width="308.1747227769946" x="1050.3167547918779" y="568.7703348649794"/>
-              <y:Fill color="#3366FF" transparent="false"/>
+              <y:Geometry height="45.68069340398148" width="308.17472277699466" x="1000.5776256144629" y="575.5902021193833"/>
+              <y:Fill color="#008080" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="234.40005493164062" x="36.887333922677044" xml:space="preserve" y="10.280347236048328">TimetableSubscriptionKey<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="301.60009765625" x="3.2873125603723565" xml:space="preserve" y="10.280347236048328">DefaultTimetableSubscriptionKey<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="173.5633910592362" y="30.654062117719263">
                 <y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
@@ -1089,11 +1104,11 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
         <node id="n3::n1">
           <data key="d6">
             <y:ShapeNode>
-              <y:Geometry height="45.68069340398148" width="142.21222277699428" x="1050.3167547918779" y="493.0896414609979"/>
-              <y:Fill color="#3366FF" transparent="false"/>
+              <y:Geometry height="37.72672217080486" width="152.6957351403757" x="1000.5776256144629" y="651.2708955233647"/>
+              <y:Fill color="#008080" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="90.39999389648438" x="25.906114440254896" xml:space="preserve" y="10.280347236048328">Timetable<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="79.0165735068017" y="30.654062117719263">
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="32.80000114440918" x="59.94786699798328" xml:space="preserve" y="6.30336161946002">API<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="84.98890298321544" y="24.62005972726888">
                 <y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -1108,11 +1123,11 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
         <node id="n3::n2">
           <data key="d6">
             <y:ShapeNode>
-              <y:Geometry height="45.68069340398148" width="142.21222277699428" x="1216.2792547918784" y="493.0896414609979"/>
-              <y:Fill color="#3366FF" transparent="false"/>
+              <y:Geometry height="37.72672217080486" width="136.61222277699443" x="1172.1401256144632" y="651.2708955233647"/>
+              <y:Fill color="#008080" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="71.19999694824219" x="35.50611291437599" xml:space="preserve" y="10.280347236048328">Session<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="79.0165735068017" y="30.654062117719263">
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="119.19998931884766" x="8.706116729073301" xml:space="preserve" y="6.30336161946002">DB/DataStore<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="75.82632162283016" y="24.62005972726888">
                 <y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -1132,102 +1147,14 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
         <y:ProxyAutoBoundsNode>
           <y:Realizers active="0">
             <y:GroupNode>
-              <y:Geometry height="177.6980107404454" width="348.17472277699517" x="1025.3167547918774" y="656.4683618452896"/>
+              <y:Geometry height="321.49277978752616" width="516.6103163765745" x="694.4025381965737" y="711.7885990843087"/>
               <y:Fill color="#F5F5F5" transparent="false"/>
               <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-              <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="348.17472277699517" x="0.0" xml:space="preserve" y="0.0">core/data</y:NodeLabel>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="516.6103163765745" x="0.0" xml:space="preserve" y="0.0">core/testing</y:NodeLabel>
               <y:Shape type="roundrectangle"/>
               <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
               <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
-              <y:BorderInsets bottom="8" bottomF="8.266506148742792" left="10" leftF="10.000000000000455" right="0" rightF="0.0" top="2" topF="2.224089779855831"/>
-            </y:GroupNode>
-            <y:GroupNode>
-              <y:Geometry height="50.0" width="50.0" x="0.0" y="60.0"/>
-              <y:Fill color="#F5F5F5" transparent="false"/>
-              <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="21.666015625" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="63.75830078125" x="-6.879150390625" xml:space="preserve" y="0.0">Folder 7</y:NodeLabel>
-              <y:Shape type="roundrectangle"/>
-              <y:State closed="true" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
-              <y:Insets bottom="5" bottomF="5.0" left="5" leftF="5.0" right="5" rightF="5.0" top="5" topF="5.0"/>
-              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
-            </y:GroupNode>
-          </y:Realizers>
-        </y:ProxyAutoBoundsNode>
-      </data>
-      <graph edgedefault="directed" id="n4:">
-        <node id="n4::n0">
-          <data key="d6">
-            <y:ShapeNode>
-              <y:Geometry height="45.68069340398148" width="308.17472277699466" x="1050.3167547918779" y="697.4924508622059"/>
-              <y:Fill color="#008080" transparent="false"/>
-              <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="301.60009765625" x="3.2873125603723565" xml:space="preserve" y="10.280347236048328">DefaultTimetableSubscriptionKey<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="173.5633910592362" y="30.654062117719263">
-                <y:LabelModel>
-                  <y:SmartNodeLabelModel distance="4.0"/>
-                </y:LabelModel>
-                <y:ModelParameter>
-                  <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.5" nodeRatioX="0.06968783642349385" nodeRatioY="0.2586150632883971" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
-                </y:ModelParameter>
-              </y:NodeLabel>
-              <y:Shape type="roundrectangle"/>
-            </y:ShapeNode>
-          </data>
-        </node>
-        <node id="n4::n1">
-          <data key="d6">
-            <y:ShapeNode>
-              <y:Geometry height="37.72672217080486" width="152.6957351403757" x="1050.3167547918779" y="773.1731442661874"/>
-              <y:Fill color="#008080" transparent="false"/>
-              <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="32.80000114440918" x="59.94786699798328" xml:space="preserve" y="6.30336161946002">API<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="84.98890298321544" y="24.62005972726888">
-                <y:LabelModel>
-                  <y:SmartNodeLabelModel distance="4.0"/>
-                </y:LabelModel>
-                <y:ModelParameter>
-                  <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.5" nodeRatioX="0.06968783642349385" nodeRatioY="0.2586150632883971" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
-                </y:ModelParameter>
-              </y:NodeLabel>
-              <y:Shape type="roundrectangle"/>
-            </y:ShapeNode>
-          </data>
-        </node>
-        <node id="n4::n2">
-          <data key="d6">
-            <y:ShapeNode>
-              <y:Geometry height="37.72672217080486" width="136.61222277699443" x="1221.879254791878" y="773.1731442661874"/>
-              <y:Fill color="#008080" transparent="false"/>
-              <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="119.19998931884766" x="8.706116729073301" xml:space="preserve" y="6.30336161946002">DB/DataStore<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="75.82632162283016" y="24.62005972726888">
-                <y:LabelModel>
-                  <y:SmartNodeLabelModel distance="4.0"/>
-                </y:LabelModel>
-                <y:ModelParameter>
-                  <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.5" nodeRatioX="0.06968783642349385" nodeRatioY="0.2586150632883971" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
-                </y:ModelParameter>
-              </y:NodeLabel>
-              <y:Shape type="roundrectangle"/>
-            </y:ShapeNode>
-          </data>
-        </node>
-      </graph>
-    </node>
-    <node id="n5" yfiles.foldertype="group">
-      <data key="d4" xml:space="preserve"/>
-      <data key="d6">
-        <y:ProxyAutoBoundsNode>
-          <y:Realizers active="0">
-            <y:GroupNode>
-              <y:Geometry height="321.49277978752605" width="535.7618074102352" x="728.7829586526352" y="855.6504903544461"/>
-              <y:Fill color="#F5F5F5" transparent="false"/>
-              <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-              <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="535.7618074102352" x="0.0" xml:space="preserve" y="0.0">core/testing</y:NodeLabel>
-              <y:Shape type="roundrectangle"/>
-              <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
-              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
-              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="4" rightF="3.7927823123075086" top="0" topF="0.40764720412971656"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.40764720412971656"/>
             </y:GroupNode>
             <y:GroupNode>
               <y:Geometry height="50.0" width="50.0" x="0.0" y="60.0"/>
@@ -1242,15 +1169,15 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
           </y:Realizers>
         </y:ProxyAutoBoundsNode>
       </data>
-      <graph edgedefault="directed" id="n5:">
-        <node id="n5::n0">
+      <graph edgedefault="directed" id="n4:">
+        <node id="n4::n0">
           <data key="d6">
             <y:ShapeNode>
-              <y:Geometry height="45.68069340398148" width="238.17472277699443" x="1007.5772609735684" y="991.5341041315471"/>
+              <y:Geometry height="45.68069340398148" width="238.17472277699443" x="957.8381317961537" y="847.6722128614097"/>
               <y:Fill color="#808080" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="128.79998779296875" x="54.68736749201287" xml:space="preserve" y="10.280347236048328">FakeApiClient<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.68524250959126" y="30.654062117719278">
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="128.79998779296875" x="54.687367492012754" xml:space="preserve" y="10.280347236048328">FakeApiClient<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.68524250959126" y="30.65406211771915">
                 <y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -1262,14 +1189,14 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
             </y:ShapeNode>
           </data>
         </node>
-        <node id="n5::n1">
+        <node id="n4::n1">
           <data key="d6">
             <y:ShapeNode>
-              <y:Geometry height="45.68069340398148" width="238.17472277699443" x="743.7829586526354" y="894.8581367956364"/>
+              <y:Geometry height="45.68069340398148" width="238.17472277699443" x="709.4025381965739" y="750.9962455254989"/>
               <y:Fill color="#808080" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="119.19998931884766" x="59.487366729073415" xml:space="preserve" y="10.280347236048328">TestAppGraph<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.68524250959126" y="30.654062117719278">
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.68524250959138" y="30.654062117719263">
                 <y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -1281,14 +1208,14 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
             </y:ShapeNode>
           </data>
         </node>
-        <node id="n5::n2">
+        <node id="n4::n2">
           <data key="d6">
             <y:ShapeNode>
-              <y:Geometry height="45.68069340398148" width="238.17472277699443" x="743.7829586526352" y="991.5341041315471"/>
+              <y:Geometry height="45.68069340398148" width="238.17472277699443" x="709.4025381965737" y="847.6722128614097"/>
               <y:Fill color="#808080" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="196.00003051757812" x="21.08734612970818" xml:space="preserve" y="10.280347236048328">TimetableScreenRobot<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.68524250959126" y="30.654062117719278">
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.68524250959138" y="30.65406211771915">
                 <y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -1300,10 +1227,10 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
             </y:ShapeNode>
           </data>
         </node>
-        <node id="n5::n3">
+        <node id="n4::n3">
           <data key="d6">
             <y:ShapeNode>
-              <y:Geometry height="45.68069340398148" width="238.17472277699443" x="743.7829586526352" y="1085.506503639185"/>
+              <y:Geometry height="45.68069340398148" width="238.17472277699443" x="709.4025381965737" y="941.6446123690474"/>
               <y:Fill color="#808080" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="176.80001831054688" x="30.687352233223805" xml:space="preserve" y="10.280347236048328">CaptureScreenRobot<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -1319,14 +1246,14 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
             </y:ShapeNode>
           </data>
         </node>
-        <node id="n5::n4">
+        <node id="n4::n4">
           <data key="d6">
             <y:ShapeNode>
-              <y:Geometry height="45.68069340398148" width="237.03509081493115" x="1008.1470769545999" y="1085.5065036391848"/>
+              <y:Geometry height="45.68069340398148" width="237.03509081493115" x="958.4079477771852" y="941.6446123690474"/>
               <y:Fill color="#808080" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="196.00003051757812" x="20.51753014867643" xml:space="preserve" y="10.280347236048442">TimetableServerRobot<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.0360080428045" y="30.654062117719263">
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="196.00003051757812" x="20.517530148676542" xml:space="preserve" y="10.280347236048328">TimetableServerRobot<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.0360080428045" y="30.65406211771915">
                 <y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -1338,11 +1265,10 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
             </y:ShapeNode>
           </data>
         </node>
-        <node id="n5::n5">
-          <data key="d5"/>
+        <node id="n4::n5">
           <data key="d6">
             <y:GenericNode configuration="BevelNode2">
-              <y:Geometry height="1.0" width="226.3917309226416" x="747.1795972641376" y="1144.754531052216"/>
+              <y:Geometry height="1.0" width="226.3917309226416" x="712.799176808076" y="1000.8926397820786"/>
               <y:Fill hasColor="false" transparent="false"/>
               <y:BorderStyle hasColor="false" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="227.19993591308594" x="4.000000000000114" xml:space="preserve" y="-2.4512610628316907">Screenshot testing by Roborazzi<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.4788371199528697" labelRatioY="0.0" nodeRatioX="0.5" nodeRatioY="6.968739013462255" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -1351,13 +1277,13 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
         </node>
       </graph>
     </node>
-    <node id="n6" yfiles.foldertype="group">
+    <node id="n5" yfiles.foldertype="group">
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:ProxyAutoBoundsNode>
           <y:Realizers active="0">
             <y:GroupNode>
-              <y:Geometry height="105.13782829758725" width="323.9374762723784" x="-141.69241638331772" y="455.24517294483417"/>
+              <y:Geometry height="105.1378282975873" width="323.9374762723784" x="-125.63787878129898" y="410.3725976294727"/>
               <y:Fill color="#F5F5F5" transparent="false"/>
               <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
               <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="323.9374762723784" x="0.0" xml:space="preserve" y="0.0">tools/ksp-processor</y:NodeLabel>
@@ -1379,11 +1305,11 @@ NavHost by navigation-compose<y:LabelModel><y:SmartNodeLabelModel distance="4.0"
           </y:Realizers>
         </y:ProxyAutoBoundsNode>
       </data>
-      <graph edgedefault="directed" id="n6:">
-        <node id="n6::n0">
+      <graph edgedefault="directed" id="n5:">
+        <node id="n5::n0">
           <data key="d6">
             <y:ShapeNode>
-              <y:Geometry height="51.08782906052676" width="293.9374762723784" x="-126.69241638331772" y="494.2951721818947"/>
+              <y:Geometry height="51.08782906052676" width="293.9374762723784" x="-110.63787878129898" y="449.42259686653324"/>
               <y:Fill color="#FF9900" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="46.23999786376953" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="263.2000732421875" x="15.368701515095438" xml:space="preserve" y="2.423915598378585">ScreenContextRemember
@@ -1402,7 +1328,7 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
         </node>
       </graph>
     </node>
-    <node id="n7" yfiles.foldertype="group">
+    <node id="n6" yfiles.foldertype="group">
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:ProxyAutoBoundsNode>
@@ -1430,15 +1356,15 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
           </y:Realizers>
         </y:ProxyAutoBoundsNode>
       </data>
-      <graph edgedefault="directed" id="n7:">
-        <node id="n7::n0">
+      <graph edgedefault="directed" id="n6:">
+        <node id="n6::n0">
           <data key="d6">
             <y:ShapeNode>
               <y:Geometry height="51.08782906052676" width="238.1747227769946" x="128.4176767031129" y="-428.81381507346913"/>
               <y:Fill color="#FF9900" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="186.4000244140625" x="25.88734918146605" xml:space="preserve" y="12.983915064320968">App : Application()<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.6852425095915" y="34.7559966760183">
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="186.4000244140625" x="25.88734918146605" xml:space="preserve" y="12.983915064321025">App : Application()<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.68524250959152" y="34.755996676018356">
                 <y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -1450,14 +1376,14 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
             </y:ShapeNode>
           </data>
         </node>
-        <node id="n7::n1">
+        <node id="n6::n1">
           <data key="d6">
             <y:ShapeNode>
               <y:Geometry height="51.08782906052676" width="238.1747227769946" x="128.4176767031129" y="-331.68215232794313"/>
               <y:Fill color="#FF9900" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="119.19998931884766" x="59.48736672907347" xml:space="preserve" y="12.983915064320968">MainActivity<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.6852425095915" y="34.7559966760183">
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="119.19998931884766" x="59.48736672907347" xml:space="preserve" y="12.983915064321025">MainActivity<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="133.68524250959152" y="34.755996676018356">
                 <y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -1471,7 +1397,7 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
         </node>
       </graph>
     </node>
-    <node id="n8" yfiles.foldertype="group">
+    <node id="n7" yfiles.foldertype="group">
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:ProxyAutoBoundsNode>
@@ -1499,15 +1425,84 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
           </y:Realizers>
         </y:ProxyAutoBoundsNode>
       </data>
-      <graph edgedefault="directed" id="n8:">
-        <node id="n8::n0">
+      <graph edgedefault="directed" id="n7:">
+        <node id="n7::n0">
           <data key="d6">
             <y:ShapeNode>
               <y:Geometry height="52.21018238003859" width="218.0966041962498" x="411.5923994801075" y="-429.374991733225"/>
               <y:Fill color="#FF9900" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
               <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="109.59999084472656" x="54.24830667576168" xml:space="preserve" y="13.545091724076883">application<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="122.24698257587261" y="35.607430810531696">
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="122.24698257587272" y="35.607430810531696">
+                <y:LabelModel>
+                  <y:SmartNodeLabelModel distance="4.0"/>
+                </y:LabelModel>
+                <y:ModelParameter>
+                  <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.5" nodeRatioX="0.06968783642349385" nodeRatioY="0.2586150632883971" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+                </y:ModelParameter>
+              </y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+            </y:ShapeNode>
+          </data>
+        </node>
+        <node id="n7::n1">
+          <data key="d6">
+            <y:ShapeNode>
+              <y:Geometry height="52.21018238003859" width="218.0966041962498" x="411.5923994801075" y="-332.80450564745496"/>
+              <y:Fill color="#FF9900" transparent="false"/>
+              <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="61.599998474121094" x="78.24830286106442" xml:space="preserve" y="13.54509172407694">Window<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="122.24698257587272" y="35.60743081053175">
+                <y:LabelModel>
+                  <y:SmartNodeLabelModel distance="4.0"/>
+                </y:LabelModel>
+                <y:ModelParameter>
+                  <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.5" nodeRatioX="0.06968783642349385" nodeRatioY="0.2586150632883971" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+                </y:ModelParameter>
+              </y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+            </y:ShapeNode>
+          </data>
+        </node>
+      </graph>
+    </node>
+    <node id="n8" yfiles.foldertype="group">
+      <data key="d4" xml:space="preserve"/>
+      <data key="d6">
+        <y:ProxyAutoBoundsNode>
+          <y:Realizers active="0">
+            <y:GroupNode>
+              <y:Geometry height="172.7251164508267" width="338.1747227769947" x="985.5776256144632" y="344.3180618699814"/>
+              <y:Fill color="#F5F5F5" transparent="false"/>
+              <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
+              <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="JetBrains Mono" fontSize="15" fontStyle="plain" hasLineColor="false" height="23.799999237060547" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="338.1747227769947" x="0.0" xml:space="preserve" y="0.0">core/model</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+              <y:BorderInsets bottom="4" bottomF="4.236320222020822" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+            <y:GroupNode>
+              <y:Geometry height="50.0" width="50.0" x="0.0" y="60.0"/>
+              <y:Fill color="#F5F5F5" transparent="false"/>
+              <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="21.666015625" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="63.75830078125" x="-6.879150390625" xml:space="preserve" y="0.0">Folder 6</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="true" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
+              <y:Insets bottom="5" bottomF="5.0" left="5" leftF="5.0" right="5" rightF="5.0" top="5" topF="5.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+            </y:GroupNode>
+          </y:Realizers>
+        </y:ProxyAutoBoundsNode>
+      </data>
+      <graph edgedefault="directed" id="n8:">
+        <node id="n8::n0">
+          <data key="d6">
+            <y:ShapeNode>
+              <y:Geometry height="45.68069340398148" width="308.1747227769946" x="1000.5776256144632" y="452.1261646948058"/>
+              <y:Fill color="#3366FF" transparent="false"/>
+              <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="234.40005493164062" x="36.887333922677044" xml:space="preserve" y="10.280347236048328">TimetableSubscriptionKey<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="173.5633910592362" y="30.654062117719263">
                 <y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -1522,11 +1517,30 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
         <node id="n8::n1">
           <data key="d6">
             <y:ShapeNode>
-              <y:Geometry height="52.21018238003859" width="218.0966041962498" x="411.5923994801075" y="-332.80450564745496"/>
-              <y:Fill color="#FF9900" transparent="false"/>
+              <y:Geometry height="45.68069340398148" width="142.21222277699428" x="1000.5776256144632" y="383.11806110704197"/>
+              <y:Fill color="#3366FF" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="61.599998474121094" x="78.2483028610643" xml:space="preserve" y="13.545091724076883">Window<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="122.24698257587261" y="35.607430810531696">
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="90.39999389648438" x="25.906114440254896" xml:space="preserve" y="10.280347236048328">Timetable<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="79.0165735068017" y="30.654062117719263">
+                <y:LabelModel>
+                  <y:SmartNodeLabelModel distance="4.0"/>
+                </y:LabelModel>
+                <y:ModelParameter>
+                  <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.5" nodeRatioX="0.06968783642349385" nodeRatioY="0.2586150632883971" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+                </y:ModelParameter>
+              </y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+            </y:ShapeNode>
+          </data>
+        </node>
+        <node id="n8::n2">
+          <data key="d6">
+            <y:ShapeNode>
+              <y:Geometry height="45.68069340398148" width="142.21222277699428" x="1166.5401256144635" y="383.11806110704197"/>
+              <y:Fill color="#3366FF" transparent="false"/>
+              <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="JetBrains Mono" fontSize="16" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="25.119998931884766" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#FFFFFF" verticalTextPosition="bottom" visible="true" width="71.19999694824219" x="35.50611291437599" xml:space="preserve" y="10.280347236048328">Session<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="79.0165735068017" y="30.654062117719263">
                 <y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
@@ -1560,53 +1574,29 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n1::n0::e2" source="n1::n0::n3" target="n1::n0::n1">
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="111.99998474121094" x="14.015496870982247" xml:space="preserve" y="8.15310158487091">Server/DB State<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="14.015494379202885" distanceToCenter="false" position="left" ratio="0.41503450393095875" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
     <edge id="n1::e0" source="n1::n1" target="n1::n0::n2">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="2.281158442859775E-13" sy="3.4032220007005662" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="205.59994506835938" x="11.661678620842167" xml:space="preserve" y="11.81654309398391">Provides screen dependencies<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="114.46164866324229" distanceToCenter="true" position="left" ratio="0.13334500729000182" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="205.59994506835938" x="11.661690293686888" xml:space="preserve" y="4.980030419247441">Provides screen dependencies<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="114.46164866324229" distanceToCenter="true" position="left" ratio="0.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e0" source="n1::n1" target="n3::n0">
+    <edge id="e0" source="n1::n1" target="n8::n0">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="-111.6245584650701" ty="-0.2697801161394864">
-            <y:Point x="1003.4" y="519.8390867121581"/>
-            <y:Point x="1003.4" y="591.3409014508306"/>
-          </y:Path>
+          <y:Path sx="0.0" sy="0.0" tx="-111.6245584650701" ty="-0.2697801161394864"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="76.0" x="129.21773460327233" xml:space="preserve" y="-27.5361014922604">Depends on<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="7.696076723705564" distanceToCenter="false" position="left" ratio="0.4474043467164045" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="76.0" x="126.2848897920594" xml:space="preserve" y="-26.747888779876575">Depends on<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="6.816368145420103" distanceToCenter="false" position="left" ratio="0.4555027321839717" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n1::e1" source="n1::n2::n0" target="n1::n0::n0">
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="-12.0" sy="0.0" tx="-11.96080396092026" ty="25.53623889106518"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="standard" target="none"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="n4::e0" source="n4::n0" target="n4::n1">
+    <edge id="n3::e0" source="n3::n0" target="n3::n1">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1616,7 +1606,7 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n4::e1" source="n4::n0" target="n4::n2">
+    <edge id="n3::e1" source="n3::n0" target="n3::n2">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1626,40 +1616,40 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n1::n0::e3" source="n1::n0::n4" target="n1::n0::n7">
+    <edge id="n1::n0::e2" source="n1::n0::n4" target="n1::n0::n7">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="227.19993591308594" x="6.232301700733615" xml:space="preserve" y="6.982632324110568">QueryKey, SubscriptionKey(Soil)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="119.83226716549706" distanceToCenter="true" position="left" ratio="0.35376991747485187" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="227.19993591308594" x="6.232313373578336" xml:space="preserve" y="6.982633289781575">QueryKey, SubscriptionKey(Soil)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="119.83226716549706" distanceToCenter="true" position="left" ratio="0.35376991747485187" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n1::e2" source="n1::n4::n0" target="n1::n0::n4">
+    <edge id="n1::e1" source="n1::n4::n0" target="n1::n0::n4">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="2.2737367544323206E-13" sy="-5.684341886080802E-14" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="54.400001525878906" x="-89.30859788881719" xml:space="preserve" y="-39.91998007656866">UI Test<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="30.0" distanceToCenter="true" position="right" ratio="1.0" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="54.400001525878906" x="-89.30858621597247" xml:space="preserve" y="-39.91997911089777">UI Test<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="30.0" distanceToCenter="true" position="right" ratio="1.0" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e1" source="n6::n0" target="n1::n1">
+    <edge id="e1" source="n5::n0" target="n1::n1">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="146.99350048345886" sy="0.0" tx="-201.61781761777502" ty="0.0"/>
-          <y:LineStyle color="#000000" type="dashed_dotted" width="1.0"/>
+          <y:LineStyle color="#000000" type="dashed" width="1.0"/>
           <y:Arrows source="standard" target="none"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.0" x="42.64513384604561" xml:space="preserve" y="13.484640653669771">Input<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="23.404665345930642" distanceToCenter="true" position="right" ratio="0.6049055900242755" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.0" x="16.81429064562286" xml:space="preserve" y="13.484654449636423">Input<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="23.404665345930642" distanceToCenter="true" position="right" ratio="1.0" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n7::e0" source="n7::n0" target="n7::n1">
+    <edge id="n6::e0" source="n6::n0" target="n6::n1">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1669,7 +1659,7 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n5::e0" source="n5::n2" target="n5::n1">
+    <edge id="n4::e0" source="n4::n2" target="n4::n1">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1720,7 +1710,6 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
       </data>
     </edge>
     <edge id="n2::n2::e0" source="n2::n2::n0" target="n2::n2::n2">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1731,7 +1720,6 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
       </data>
     </edge>
     <edge id="n2::n2::e1" source="n2::n2::n0" target="n2::n2::n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1742,7 +1730,6 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
       </data>
     </edge>
     <edge id="n2::n2::e2" source="n2::n2::n0" target="n2::n2::n3">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1753,7 +1740,6 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
       </data>
     </edge>
     <edge id="n2::e0" source="n2::n0::n2" target="n2::n1::n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1764,7 +1750,6 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
       </data>
     </edge>
     <edge id="n2::e1" source="n2::n0::n2" target="n2::n2::n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1774,8 +1759,7 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e2" source="n7::n1" target="n2::n0::n4">
-      <data key="d9"/>
+    <edge id="e2" source="n6::n1" target="n2::n0::n4">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1794,8 +1778,7 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n2::n0::e1" source="n2::n0::n6::n0" target="n2::n0::n0">
-      <data key="d9"/>
+    <edge id="n2::n0::e1" source="n2::n0::n5::n0" target="n2::n0::n0">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1805,8 +1788,7 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n2::e2" source="n2::n1::n2" target="n2::n0::n5">
-      <data key="d9"/>
+    <edge id="e3" source="n2::n1::n2" target="n1::n5">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1816,8 +1798,7 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n2::e3" source="n2::n2::n2" target="n2::n0::n5">
-      <data key="d9"/>
+    <edge id="e4" source="n2::n2::n2" target="n1::n5">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1827,8 +1808,7 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e3" source="n2::n0::n5" target="n1::n1">
-      <data key="d9"/>
+    <edge id="n1::e2" source="n1::n5" target="n1::n1">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1838,22 +1818,20 @@ RetainedConventionGenerator<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e4" source="n6::n0" target="n2::n0::n5">
-      <data key="d9"/>
+    <edge id="e5" source="n5::n0" target="n1::n5">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="21.892975432040373" y="375.41593002964544"/>
+          <y:Path sx="37.616653679168905" sy="2.881313676949958" tx="0.0" ty="0.0">
+            <y:Point x="73.94751303405911" y="396.015943767562"/>
           </y:Path>
           <y:LineStyle color="#000000" type="dashed" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="61.60000228881836" x="-85.65135194097678" xml:space="preserve" y="-90.23246093874081">Generate<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="55.746864610694345" distanceToCenter="true" position="left" ratio="0.6254513849528684" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="61.60000228881836" x="4.798912538641545" xml:space="preserve" y="-85.00122034514652">Generate<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="21.658748509070854" distanceToCenter="true" position="left" ratio="0.2686801821978097" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e5" source="n0::n0" target="n2::n0::n6::n0">
-      <data key="d9"/>
+    <edge id="e6" source="n0::n0" target="n2::n0::n5::n0">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-26.049280258549743" sy="25.574296038946045" tx="0.0" ty="0.0"/>
@@ -1865,79 +1843,29 @@ integration<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defa
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e6" source="n5::n0" target="n4::n1">
-      <data key="d9"/>
+    <edge id="e7" source="n4::n0" target="n3::n1">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="76.0" x="21.59994951050203" xml:space="preserve" y="-95.45202602249333">Implements<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="59.59999999999913" distanceToCenter="true" position="right" ratio="0.468168544910982" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="76.0" x="21.59995607527503" xml:space="preserve" y="-85.15077918510246">Implements<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="59.59999999999913" distanceToCenter="true" position="right" ratio="0.468168544910982" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e7" source="n5::n1" target="n1::n4::n0">
-      <data key="d9"/>
+    <edge id="e8" source="n4::n1" target="n1::n4::n0">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="176.79995727539062" x="-88.39995888953138" xml:space="preserve" y="-137.33409092757984">Inject test dependencies<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="30.0" distanceToCenter="true" position="center" ratio="0.6532428174801335" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="176.79995727539062" x="-88.4000082518429" xml:space="preserve" y="-79.20690937166455">Inject test dependencies<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="30.0" distanceToCenter="true" position="center" ratio="0.6532428174801335" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n5::e1" source="n5::n4" target="n5::n2">
-      <data key="d9"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="n5::e2" source="n5::n0" target="n5::n4">
-      <data key="d9"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="47.20000076293945" x="6.399949129033303" xml:space="preserve" y="14.261329222000313">Inject<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="30.0" distanceToCenter="true" position="left" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="n5::e3" source="n5::n3" target="n5::n2">
-      <data key="d9"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="47.20000076293945" x="23.701523366694005" xml:space="preserve" y="-34.625629676437256">Inject<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="47.30150400000002" distanceToCenter="true" position="right" ratio="0.5284140665036833" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e8" source="n4::n0" target="n3::n0">
-      <data key="d9"/>
-      <data key="d10">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="76.0" x="18.39994137568783" xml:space="preserve" y="-64.38581428172427">Implements<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="56.40000000000009" distanceToCenter="true" position="right" ratio="0.7434456128791338" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="n8::e0" source="n8::n0" target="n8::n1">
-      <data key="d9"/>
+    <edge id="n4::e1" source="n4::n4" target="n4::n2">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1947,8 +1875,40 @@ integration<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defa
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e9" source="n8::n1" target="n2::n0::n4">
-      <data key="d9"/>
+    <edge id="n4::e2" source="n4::n0" target="n4::n4">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="47.20000076293945" x="6.399955693806078" xml:space="preserve" y="14.261376428425365">Inject<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="30.0" distanceToCenter="true" position="left" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n4::e3" source="n4::n3" target="n4::n2">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="47.20000076293945" x="23.70147400438259" xml:space="preserve" y="-34.625643505168455">Inject<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="47.30150400000002" distanceToCenter="true" position="right" ratio="0.5284140665036833" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e9" source="n3::n0" target="n8::n0">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="76.0" x="18.399947940460606" xml:space="preserve" y="-60.505676561912196">Implements<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="56.40000000000009" distanceToCenter="true" position="right" ratio="0.7434456128791338" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n7::e0" source="n7::n0" target="n7::n1">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1958,19 +1918,17 @@ integration<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defa
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n1::e3" source="n1::n0::n0" target="n1::n2::n0">
-      <data key="d9"/>
+    <edge id="e10" source="n7::n1" target="n2::n0::n4">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="10.0" sy="0.0" tx="10.0" ty="0.0"/>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="standard" target="none"/>
+          <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
     <edge id="n0::e0" source="n0::n1" target="n0::n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1981,7 +1939,6 @@ integration<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defa
       </data>
     </edge>
     <edge id="n0::e1" source="n0::n1" target="n0::n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1991,22 +1948,20 @@ integration<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defa
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n1::e4" source="n1::n2::n0" target="n1::n3::n0">
-      <data key="d9"/>
+    <edge id="n1::e3" source="n1::n2::n0" target="n1::n3::n0">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="-10.0" sy="0.0" tx="-10.0" ty="0.0"/>
+          <y:Path sx="0.0" sy="10.0" tx="0.0" ty="10.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="n1::e5" source="n1::n3::n0" target="n1::n2::n0">
-      <data key="d9"/>
+    <edge id="n1::e4" source="n1::n3::n0" target="n1::n2::n0">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="10.0" sy="0.0" tx="10.0" ty="0.0"/>
+          <y:Path sx="0.0" sy="-10.0" tx="0.0" ty="-10.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
@@ -2014,7 +1969,6 @@ integration<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defa
       </data>
     </edge>
     <edge id="n0::e2" source="n0::n4" target="n0::n2">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -2025,7 +1979,6 @@ integration<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defa
       </data>
     </edge>
     <edge id="n0::e3" source="n0::n4" target="n0::n3">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -2035,8 +1988,7 @@ integration<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defa
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e10" source="n2::n0::n6::n1" target="n0::n3">
-      <data key="d9"/>
+    <edge id="e11" source="n2::n0::n5::n1" target="n0::n3">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="-39.51208626406515" ty="19.760776323550715">
@@ -2049,8 +2001,7 @@ integration<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defa
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e11" source="n2::n0::n6::n2" target="n0::n2">
-      <data key="d9"/>
+    <edge id="e12" source="n2::n0::n5::n2" target="n0::n2">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-0.7807733417275813" sy="-6.216152409840703" tx="0.0" ty="0.0">
@@ -2065,8 +2016,7 @@ via SKIE and Molecule<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="f
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e12" source="n2::n0::n6::n3" target="n0::n3">
-      <data key="d9"/>
+    <edge id="e13" source="n2::n0::n5::n3" target="n0::n3">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -2079,13 +2029,46 @@ via SKIE and Molecule<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="f
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e13" source="n0::n0" target="n2::n0::n4">
+    <edge id="e14" source="n0::n0" target="n2::n0::n4">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n1::e5" source="n1::n0::n0" target="n1::n2::n0">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="-15.0" sy="0.0" tx="-15.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n1::e6" source="n1::n2::n0" target="n1::n0::n0">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="15.0" sy="0.0" tx="15.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="n1::n0::e3" source="n1::n0::n3" target="n1::n0::n8">
       <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="JetBrains Mono" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.84000015258789" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="111.99998474121094" x="12.701186039624247" xml:space="preserve" y="5.000188562839185">Server/DB State<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="12.701171874999995" distanceToCenter="false" position="left" ratio="0.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
