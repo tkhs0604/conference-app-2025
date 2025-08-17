@@ -206,6 +206,75 @@ fun timetableScreenPresenter(
 }
 ```
 
+### Understanding App Entry Point
+
+The `KaigiApp` composable serves as the app’s entry point, setting up navigation and providing necessary dependencies.
+
+```kotlin
+@Composable
+context(appGraph: AppGraph)
+fun KaigiApp() {
+    SwrClientProvider(SwrCachePlus(SwrCacheScope())) {
+        KaigiTheme {
+            Surface {
+                KaigiAppUi()
+            }
+        }
+    }
+}
+```
+
+`appGraph` is a platform-specific dependency graph. 
+It is supplied via a context parameter from each platform’s entry point.
+
+```kotlin
+// android
+class App : Application() {
+    val appGraph: AppGraph by lazy {
+        createGraphFactory<AndroidAppGraph.Factory>()
+            .createAndroidAppGraph(applicationContext = this, ...)
+    }
+}
+
+val Context.appGraph: AppGraph get() = (applicationContext as App).appGraph
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        ...
+        // We pass appGraph to KaigiApp using the context receiver, 
+        // so all Composables inside can access dependencies.
+        with(appGraph) {
+            setContent {
+                KaigiApp()
+            }
+        }
+    }
+}
+
+// jvm
+fun main() = application {
+    val graphFactory = createGraphFactory<JvmAppGraph.Factory>()
+    val graph: JvmAppGraph = graphFactory.createJvmAppGraph(...)
+
+    Window(...) {
+        // On JVM, we create the `JvmAppGraph` and provide it to `KaigiApp` via a context receiver,
+        // similar to Android.
+        with(graph) {
+            KaigiApp()
+        }
+    }
+}
+
+// ios
+fun kaigiAppViewController(appGraph: AppGraph): UIViewController = ComposeUIViewController {
+    // On iOS, the appGraph instance is managed by the Swift side.
+    // Since iOS cannot use context receivers directly, we wrap KaigiApp in a function that accepts appGraph as a parameter.
+    with(appGraph) {
+        KaigiApp()
+    }
+}
+```
+
 ### Multiplatform UI Testing
 
 Last year, we introduced a Behavior-Driven Development (BDD) style for our UI tests,
