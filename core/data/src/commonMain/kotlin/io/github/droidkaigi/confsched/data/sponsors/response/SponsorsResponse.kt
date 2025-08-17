@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class SponsorsResponse(
-    //val status: String,
+    // val status: String,
     @SerialName("sponsor")
     val sponsors: List<SponsorResponse> = emptyList(),
 )

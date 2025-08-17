@@ -38,9 +38,9 @@ import coil3.compose.AsyncImage
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.model.contributors.Contributor
 import io.github.droidkaigi.confsched.model.contributors.fakes
-import io.github.droidkaigi.confsched.model.sponsors.SponsorPlan
 import io.github.droidkaigi.confsched.model.sponsors.Sponsor
 import io.github.droidkaigi.confsched.model.sponsors.SponsorList
+import io.github.droidkaigi.confsched.model.sponsors.SponsorPlan
 import io.github.droidkaigi.confsched.model.sponsors.fakes
 import kotlinx.collections.immutable.PersistentList
 import org.jetbrains.compose.resources.StringResource
@@ -57,21 +57,20 @@ fun SponsorsScreen(
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     val sponsorList = SponsorList(
-        platinumSponsors = sponsors.filter{ it.plan == SponsorPlan.PLATINUM },
-        goldSponsors = sponsors.filter{ it.plan == SponsorPlan.GOLD },
-        supporters = sponsors.filter{ it.plan == SponsorPlan.SUPPORTER }
+        platinumSponsors = sponsors.filter { it.plan == SponsorPlan.PLATINUM },
+        goldSponsors = sponsors.filter { it.plan == SponsorPlan.GOLD },
+        supporters = sponsors.filter { it.plan == SponsorPlan.SUPPORTER },
     )
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {Text(stringResource(SponsorsRes.string.sponsors_title))},
+                title = { Text(stringResource(SponsorsRes.string.sponsors_title)) },
                 scrollBehavior = scrollBehavior,
             )
-        }
+        },
     ) { innerPadding ->
-        Column(modifier=Modifier.padding(innerPadding)) {
-
+        Column(modifier = Modifier.padding(innerPadding)) {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(6),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -80,7 +79,7 @@ fun SponsorsScreen(
                     start = 16.dp,
                     end = 16.dp,
                     bottom = 48.dp,
-                )
+                ),
             ) {
                 sponsorsByPlanSection(
                     headerStringResource = SponsorsRes.string.platinum_sponsors_title,
@@ -109,7 +108,6 @@ fun SponsorsScreen(
                     sponsorItemHeight = 77.dp,
                     isLastSection = true,
                 )
-
             }
         }
     }
@@ -126,15 +124,15 @@ private fun LazyGridScope.sponsorsByPlanSection(
 ) {
     item(span = { GridItemSpan(maxLineSpan) }) {
         val headerText = stringResource(headerStringResource)
-            Text(
-                text = headerText,
-                color = Color.Black, // FIXME: use theme color
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.padding(vertical = 6.dp),
-            )
+        Text(
+            text = headerText,
+            color = Color.Black, // FIXME: use theme color
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(vertical = 6.dp),
+        )
     }
 
-    if(sponsors.size>0) {
+    if (sponsors.size > 0) {
         items(
             items = sponsors,
             span = { sponsorItemSpan() },
@@ -179,7 +177,7 @@ fun SponsorItem(
                 .padding(
                     horizontal = 12.dp,
                     vertical = 6.dp,
-                )
+                ),
         )
     }
 }

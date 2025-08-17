@@ -6,8 +6,8 @@ import io.github.droidkaigi.confsched.common.scope.SponsorsScope
 import io.github.droidkaigi.confsched.context.ScreenContext
 import io.github.droidkaigi.confsched.model.sponsors.SponsorsQueryKey
 
-@ContributesGraphExtension(scope= SponsorsScope::class)
-interface SponsorsScreenContext: ScreenContext {
+@ContributesGraphExtension(scope = SponsorsScope::class)
+interface SponsorsScreenContext : ScreenContext {
     val sponsorsQueryKey: SponsorsQueryKey
 
     @ContributesGraphExtension.Factory(AppScope::class)

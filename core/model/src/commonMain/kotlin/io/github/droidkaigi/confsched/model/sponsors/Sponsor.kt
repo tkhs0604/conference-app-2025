@@ -16,7 +16,7 @@ data class Sponsor(
 data class SponsorList(
     val platinumSponsors: List<Sponsor>,
     val goldSponsors: List<Sponsor>,
-    val supporters: List<Sponsor>
+    val supporters: List<Sponsor>,
 )
 
 enum class SponsorPlan {

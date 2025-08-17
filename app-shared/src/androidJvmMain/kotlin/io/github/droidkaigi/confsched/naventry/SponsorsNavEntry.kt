@@ -9,7 +9,6 @@ import io.github.droidkaigi.confsched.navkey.SponsorsNavKey
 import io.github.droidkaigi.confsched.sponsors.SponsorScreenRoot
 import io.github.droidkaigi.confsched.sponsors.rememberSponsorsScreenContextRetained
 
-
 context(appGraph: AppGraph)
 fun EntryProviderBuilder<NavKey>.sponsorsEntry(
     onBackClick: () -> Unit,

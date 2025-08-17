@@ -4,7 +4,6 @@ import de.jensklingenberg.ktorfit.Ktorfit
 import de.jensklingenberg.ktorfit.http.GET
 import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
-
 import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.core.NetworkExceptionHandler
 import io.github.droidkaigi.confsched.data.sponsors.response.SponsorResponse

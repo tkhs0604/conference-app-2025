@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import io.github.droidkaigi.confsched.droidkaigiui.architecture.SoilDataBoundary
 import soil.query.compose.rememberQuery
 
-context(screenContext: SponsorsScreenContext)
 @Composable
+context(screenContext: SponsorsScreenContext)
 fun SponsorScreenRoot(
     onBackClick: () -> Unit,
     onSponsorClick: (String) -> Unit,
@@ -20,5 +20,3 @@ fun SponsorScreenRoot(
         )
     }
 }
-
-
