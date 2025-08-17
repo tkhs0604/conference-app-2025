@@ -148,10 +148,11 @@ git clone https://github.com/DroidKaigi/conference-app-2025.git
 cd conference-app-2025/app-ios
 ```
 
-2. Install git hooks for code quality:
+2. Setup the project:
 ```bash
-./Scripts/install-hooks.sh
+make setup
 ```
+Note: This installs SwiftLint via Swift Package Plugin. The `nestfile.yml` configuration is no longer needed.
 
 3. Open the project:
 ```bash
@@ -201,35 +202,44 @@ For more testing commands, see [CLAUDE.md](./CLAUDE.md#running-tests).
 ### Code Quality Tools
 
 #### SwiftLint
-- Runs automatically during build via SPM plugin
+- Runs automatically during build via Swift Package Plugin
 - Configuration: `.swiftlint.yml`
 - Manual check: `make lint`
 - Auto-fix: `make lint-fix`
+- Xcode integration: `scripts/xcode-lint.sh` for incremental linting of modified files only
 
 #### swift-format
 - Configuration: `.swift-format`
 - Format code: `make format`
 - Check format: `make format-check`
 
-#### Pre-commit Hooks
-Automatically ensures code quality before commits:
+#### Xcode Build Phase Scripts
+For faster incremental builds, the project includes:
 ```bash
-./Scripts/install-hooks.sh
+scripts/xcode-lint.sh  # Lints only modified files during builds
 ```
+See [scripts/README.md](./scripts/README.md) for setup instructions.
 
 ### Makefile Commands
 
 ```bash
 make help          # Show all available commands
-make setup         # Initial project setup
-make build         # Build all packages
-make test          # Run all tests
+make setup         # Initial project setup (installs dependencies)
+make build         # Build all packages with prebuilt SwiftSyntax
+make test          # Run Core tests (Linux-compatible)
+make test-native   # Run Native module tests (macOS only)
+make test-all      # Run all tests (Core + Native, macOS only)
 make lint          # Run SwiftLint
 make lint-fix      # Auto-fix linting issues
-make format        # Format code
-make format-check  # Check code formatting
-make pre-commit    # Run all checks
+make format        # Format code with swift-format
+make format-check  # Check code formatting (fails on warnings)
+make pre-commit    # Run all checks before committing
 make clean         # Clean build artifacts
+make reset         # Reset project (clean + resolve dependencies)
+make xcode         # Open project in Xcode
+make xcode-build   # Build with Xcode
+make xcode-test    # Run tests with Xcode
+make ci            # Run CI checks (lint + Core tests)
 ```
 
 ### Available Schemes
@@ -288,8 +298,10 @@ graph LR
 - Favorites synchronization
 - Conference metadata
 
-### Note on Sponsor Data
-Currently using mock data in `SponsorUseCaseImpl` as KMP doesn't have sponsorsRepository yet. When available, it will follow the same pattern as `TimetableUseCaseImpl`.
+### Implementation Notes
+- **Sponsor Data**: Currently using mock data in `SponsorUseCaseImpl` as KMP doesn't have sponsorsRepository yet. When available, it will follow the same pattern as `TimetableUseCaseImpl`.
+- **SwiftLint**: Now runs via Swift Package Plugin, removing the need for separate installation
+- **Build Performance**: Use `scripts/xcode-lint.sh` for incremental linting during development
 
 ## 📦 Project Structure
 
