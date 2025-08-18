@@ -3,6 +3,7 @@
 package io.github.droidkaigi.confsched.droidkaigiui.architecture
 
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -23,11 +24,13 @@ object SoilFallbackDefaults {
         // Allowing WindowInsets to be overridden to prevent layout jump/glitches
         // when navigating between screens with and without a bottom navigation bar.
         windowInsets: WindowInsets = WindowInsets.safeDrawingWithBottomNavBar,
+        contentBackground: (@Composable (innerPadding: PaddingValues) -> Unit)? = null,
     ): SoilFallback = AppBar(
         title = title,
         onBackClick = onBackClick,
         size = appBarSize,
         windowInsets = windowInsets,
+        contentBackground = contentBackground,
     )
 
     fun default(): SoilFallback = Default
@@ -53,6 +56,7 @@ private class AppBar(
     val onBackClick: (() -> Unit)?,
     val size: AppBarSize,
     val windowInsets: WindowInsets,
+    val contentBackground: (@Composable (innerPadding: PaddingValues) -> Unit)?,
 ) : SoilFallback {
     override val suspenseFallback: @Composable context(SoilSuspenseContext) BoxScope.() -> Unit = {
         AppBarFallbackScaffold(
@@ -61,6 +65,7 @@ private class AppBar(
             appBarSize = size,
             windowInsets = windowInsets,
         ) { innerPadding ->
+            contentBackground?.invoke(innerPadding)
             DefaultSuspenseFallbackContent(
                 modifier = Modifier.padding(innerPadding),
             )
@@ -74,6 +79,7 @@ private class AppBar(
             appBarSize = size,
             windowInsets = windowInsets,
         ) { innerPadding ->
+            contentBackground?.invoke(innerPadding)
             DefaultErrorFallbackContent(
                 modifier = Modifier.padding(innerPadding),
             )
