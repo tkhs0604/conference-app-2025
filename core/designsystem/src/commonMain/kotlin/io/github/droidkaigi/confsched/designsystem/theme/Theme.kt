@@ -356,6 +356,7 @@ fun KaigiTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         content = content,
+        typography = AppTypography(),
     )
 }
 
