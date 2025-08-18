@@ -25,19 +25,19 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun SearchNotFoundContent(
     searchQuery: String = "",
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
             .padding(horizontal = 32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Image(
             painter = painterResource(SessionsRes.drawable.notfound_sticker),
             contentDescription = null,
-            modifier = Modifier.size(200.dp)
+            modifier = Modifier.size(200.dp),
         )
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -46,18 +46,18 @@ fun SearchNotFoundContent(
             Text(
                 text = stringResource(
                     SessionsRes.string.empty_search_result,
-                    searchQuery
+                    searchQuery,
                 ),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         } else {
             Text(
                 text = stringResource(SessionsRes.string.empty_search_result_no_input),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
 

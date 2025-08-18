@@ -31,5 +31,4 @@ fun SearchScreenRoot(
             onEvent = { eventFlow.tryEmit(it) },
         )
     }
-
 }

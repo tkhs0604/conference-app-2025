@@ -24,28 +24,28 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import io.github.droidkaigi.confsched.sessions.SearchScreenEvent
+import io.github.droidkaigi.confsched.sessions.SearchScreenUiState
 import io.github.droidkaigi.confsched.sessions.SessionsRes
 import io.github.droidkaigi.confsched.sessions.filter_chip_category
 import io.github.droidkaigi.confsched.sessions.filter_chip_day
 import io.github.droidkaigi.confsched.sessions.filter_chip_session_type
 import io.github.droidkaigi.confsched.sessions.filter_chip_supported_language
-import io.github.droidkaigi.confsched.sessions.SearchScreenEvent
-import io.github.droidkaigi.confsched.sessions.SearchScreenUiState
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun SearchFilterRow(
     filters: SearchScreenUiState.Filters,
     onFilterToggle: (SearchScreenEvent.Filter) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val scrollState = rememberScrollState()
-    
+
     Row(
         modifier = modifier
             .horizontalScroll(scrollState)
             .padding(horizontal = 16.dp, vertical = 8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         // Day filter dropdown
         if (filters.availableDays.isNotEmpty()) {
@@ -59,7 +59,7 @@ fun SearchFilterRow(
                         onFilterToggle(SearchScreenEvent.Filter.Day(day))
                     }
                 },
-                modifier = Modifier
+                modifier = Modifier,
             )
         }
 
@@ -75,7 +75,7 @@ fun SearchFilterRow(
                         onFilterToggle(SearchScreenEvent.Filter.Category(category))
                     }
                 },
-                modifier = Modifier
+                modifier = Modifier,
             )
         }
 
@@ -91,7 +91,7 @@ fun SearchFilterRow(
                         onFilterToggle(SearchScreenEvent.Filter.SessionType(sessionType))
                     }
                 },
-                modifier = Modifier
+                modifier = Modifier,
             )
         }
 
@@ -107,7 +107,7 @@ fun SearchFilterRow(
                         onFilterToggle(SearchScreenEvent.Filter.Language(language))
                     }
                 },
-                modifier = Modifier
+                modifier = Modifier,
             )
         }
     }
@@ -120,10 +120,10 @@ private fun <T> FilterDropdown(
     items: List<T>,
     itemLabel: (T?) -> String,
     onItemSelected: (T?) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var expanded by remember { mutableStateOf(false) }
-    
+
     Box(modifier = modifier) {
         FilterChip(
             selected = selectedItem != null,
@@ -131,12 +131,12 @@ private fun <T> FilterDropdown(
             label = {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
                 ) {
-                    if (selectedItem != null){
+                    if (selectedItem != null) {
                         Icon(
                             imageVector = Icons.Default.Check,
-                            contentDescription = null
+                            contentDescription = null,
                         )
                     }
                     Text(
@@ -146,23 +146,23 @@ private fun <T> FilterDropdown(
                             label
                         },
                         style = MaterialTheme.typography.labelLarge,
-                        maxLines = 1
+                        maxLines = 1,
                     )
                     Icon(
                         imageVector = Icons.Default.ArrowDropDown,
-                        contentDescription = null
+                        contentDescription = null,
                     )
                 }
             },
             colors = FilterChipDefaults.filterChipColors(
                 selectedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-                selectedLabelColor = MaterialTheme.colorScheme.onSecondaryContainer
-            )
+                selectedLabelColor = MaterialTheme.colorScheme.onSecondaryContainer,
+            ),
         )
-        
+
         DropdownMenu(
             expanded = expanded,
-            onDismissRequest = { expanded = false }
+            onDismissRequest = { expanded = false },
         ) {
             items.forEach { item ->
                 DropdownMenuItem(
@@ -170,7 +170,7 @@ private fun <T> FilterDropdown(
                     onClick = {
                         onItemSelected(item)
                         expanded = false
-                    }
+                    },
                 )
             }
         }

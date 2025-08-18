@@ -15,7 +15,7 @@ data class SearchScreenUiState(
     val groupedSessions: PersistentMap<TimeSlot, List<TimetableItem>> = persistentMapOf(),
     val availableFilters: Filters = Filters.EMPTY,
     val isLoading: Boolean = false,
-    val hasSearchCriteria: Boolean = false
+    val hasSearchCriteria: Boolean = false,
 ) {
     data class TimeSlot(
         val startTime: LocalTime,
@@ -38,7 +38,7 @@ data class SearchScreenUiState(
         val availableDays: List<DroidKaigi2025Day> = emptyList(),
         val availableCategories: List<TimetableCategory> = emptyList(),
         val availableSessionTypes: List<TimetableSessionType> = emptyList(),
-        val availableLanguages: List<Lang> = emptyList()
+        val availableLanguages: List<Lang> = emptyList(),
     ) {
         companion object {
             val EMPTY = Filters()

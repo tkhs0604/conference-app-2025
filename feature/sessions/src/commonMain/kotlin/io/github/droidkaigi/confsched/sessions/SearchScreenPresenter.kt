@@ -60,10 +60,10 @@ fun searchScreenPresenter(
         }
     }
 
-    val hasSearchCriteria = searchQuery.isNotEmpty() || 
-        selectedDay != null || 
-        selectedCategory != null || 
-        selectedSessionType != null || 
+    val hasSearchCriteria = searchQuery.isNotEmpty() ||
+        selectedDay != null ||
+        selectedCategory != null ||
+        selectedSessionType != null ||
         selectedLanguage != null
 
     val filteredTimetable = if (hasSearchCriteria) {
@@ -74,7 +74,7 @@ fun searchScreenPresenter(
                 categories = selectedCategory?.let { listOf(it) } ?: emptyList(),
                 sessionTypes = selectedSessionType?.let { listOf(it) } ?: emptyList(),
                 languages = selectedLanguage?.let { listOf(it) } ?: emptyList(),
-            )
+            ),
         )
     } else {
         timetable.copy(timetableItems = persistentListOf())
@@ -89,7 +89,7 @@ fun searchScreenPresenter(
         }
         .mapValues { entries ->
             entries.value.sortedWith(
-                compareBy({ it.day?.name.orEmpty() }, { it.startsTimeString })
+                compareBy({ it.day?.name.orEmpty() }, { it.startsTimeString }),
             )
         }
         .toPersistentMap()
@@ -105,7 +105,7 @@ fun searchScreenPresenter(
             availableDays = DroidKaigi2025Day.visibleDays(),
             availableCategories = timetable.timetableItems.mapNotNull { it.category }.distinct(),
             availableSessionTypes = timetable.timetableItems.map { it.sessionType }.distinct(),
-            availableLanguages = listOf(Lang.JAPANESE, Lang.ENGLISH)
+            availableLanguages = listOf(Lang.JAPANESE, Lang.ENGLISH),
         ),
         hasSearchCriteria = hasSearchCriteria,
     )

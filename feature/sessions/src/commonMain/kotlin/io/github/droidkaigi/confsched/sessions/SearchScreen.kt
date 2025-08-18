@@ -6,8 +6,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import io.github.droidkaigi.confsched.droidkaigiui.session.TimetableList
+import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import io.github.droidkaigi.confsched.sessions.components.SearchFilterRow
 import io.github.droidkaigi.confsched.sessions.components.SearchNotFoundContent
 import io.github.droidkaigi.confsched.sessions.components.SearchTopBar
@@ -18,7 +18,7 @@ fun SearchScreen(
     onBackClick: () -> Unit,
     onTimetableItemClick: (TimetableItemId) -> Unit,
     onEvent: (SearchScreenEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Scaffold(
         topBar = {
@@ -28,12 +28,12 @@ fun SearchScreen(
                 onBackClick = onBackClick,
             )
         },
-        modifier = modifier
+        modifier = modifier,
     ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
+                .padding(paddingValues),
         ) {
             SearchFilterRow(
                 filters = uiState.availableFilters,
@@ -46,7 +46,7 @@ fun SearchScreen(
                 !uiState.hasSearchCriteria -> {}
                 uiState.groupedSessions.isEmpty() -> {
                     SearchNotFoundContent(
-                        searchQuery = uiState.searchQuery
+                        searchQuery = uiState.searchQuery,
                     )
                 }
                 else -> {
