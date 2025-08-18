@@ -15,7 +15,7 @@ import org.jetbrains.compose.resources.Font
 @Composable
 fun AppTypography(): Typography {
     val changoFontFamily = FontFamily(
-        Font(DesignsystemRes.font.Chango_Regular, FontWeight.Normal)
+        Font(DesignsystemRes.font.Chango_Regular, FontWeight.Normal),
     )
 
     val robotoRegularFontFamily = FontFamily(
@@ -131,6 +131,6 @@ fun AppTypography(): Typography {
             fontSize = 12.sp,
             lineHeight = 16.sp,
             letterSpacing = 0.4.sp,
-        )
+        ),
     )
 }
