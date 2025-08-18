@@ -41,14 +41,12 @@ fun TimetableItemTag(
     tagColor: Color,
     icon: DrawableResource?,
     modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = PaddingValues(),
 ) {
     TimetableItemTag(
         tagText = tagText,
         contentColor = tagColor,
         borderColor = tagColor,
         icon = icon,
-        contentPadding = contentPadding,
         modifier = modifier,
     )
 }
@@ -60,7 +58,7 @@ fun TimetableItemTag(
     borderColor: Color,
     modifier: Modifier = Modifier,
     icon: DrawableResource? = null,
-    contentPadding: PaddingValues = PaddingValues(),
+    contentPadding: PaddingValues = PaddingValues(horizontal = 6.dp, vertical = 4.dp),
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -98,7 +96,6 @@ fun TimeTableItemTagPreview() {
             tagText = "tag",
             tagColor = MaterialTheme.colorScheme.outline,
             icon = RoomIcon.Diamond.toResDrawable(),
-            contentPadding = PaddingValues(vertical = 2.dp, horizontal = 6.dp),
         )
     }
 }
