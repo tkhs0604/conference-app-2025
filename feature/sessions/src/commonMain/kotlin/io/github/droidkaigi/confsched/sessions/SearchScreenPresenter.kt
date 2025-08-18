@@ -49,7 +49,7 @@ fun searchScreenPresenter(
                 }
             }
             is SearchScreenEvent.Bookmark -> {
-                // TODO: Implement bookmark mutation
+                // TODO: Implement bookmark mutation issue#188
             }
             SearchScreenEvent.ClearFilters -> {
                 selectedDay = null
