@@ -81,7 +81,7 @@ fun SearchFilterRow(
                 label = stringResource(SessionsRes.string.filter_chip_session_type),
                 selectedItem = filters.selectedSessionType,
                 items = filters.availableSessionTypes,
-                itemLabel = { it.label.currentLangTitle},
+                itemLabel = { it.label.currentLangTitle },
                 onItemSelected = { sessionType ->
                     onFilterToggle(SearchScreenEvent.Filter.SessionType(sessionType))
                 },
