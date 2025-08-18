@@ -14,7 +14,6 @@ data class SearchScreenUiState(
     val searchQuery: String = "",
     val groupedSessions: PersistentMap<TimeSlot, List<TimetableItem>> = persistentMapOf(),
     val availableFilters: Filters = Filters.EMPTY,
-    val isLoading: Boolean = false,
     val hasSearchCriteria: Boolean = false,
 ) {
     data class TimeSlot(

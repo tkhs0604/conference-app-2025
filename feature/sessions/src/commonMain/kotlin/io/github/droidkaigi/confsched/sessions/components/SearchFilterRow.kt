@@ -53,11 +53,9 @@ fun SearchFilterRow(
                 label = stringResource(SessionsRes.string.filter_chip_day),
                 selectedItem = filters.selectedDay,
                 items = filters.availableDays,
-                itemLabel = { it?.monthAndDay() ?: "All" },
+                itemLabel = { it.monthAndDay() },
                 onItemSelected = { day ->
-                    if (day != null) {
-                        onFilterToggle(SearchScreenEvent.Filter.Day(day))
-                    }
+                    onFilterToggle(SearchScreenEvent.Filter.Day(day))
                 },
                 modifier = Modifier,
             )
@@ -69,11 +67,9 @@ fun SearchFilterRow(
                 label = stringResource(SessionsRes.string.filter_chip_category),
                 selectedItem = filters.selectedCategory,
                 items = filters.availableCategories,
-                itemLabel = { it?.title?.currentLangTitle ?: "All" },
+                itemLabel = { it.title.currentLangTitle },
                 onItemSelected = { category ->
-                    if (category != null) {
-                        onFilterToggle(SearchScreenEvent.Filter.Category(category))
-                    }
+                    onFilterToggle(SearchScreenEvent.Filter.Category(category))
                 },
                 modifier = Modifier,
             )
@@ -85,11 +81,9 @@ fun SearchFilterRow(
                 label = stringResource(SessionsRes.string.filter_chip_session_type),
                 selectedItem = filters.selectedSessionType,
                 items = filters.availableSessionTypes,
-                itemLabel = { it?.label?.currentLangTitle ?: "All" },
+                itemLabel = { it.label.currentLangTitle},
                 onItemSelected = { sessionType ->
-                    if (sessionType != null) {
-                        onFilterToggle(SearchScreenEvent.Filter.SessionType(sessionType))
-                    }
+                    onFilterToggle(SearchScreenEvent.Filter.SessionType(sessionType))
                 },
                 modifier = Modifier,
             )
@@ -101,11 +95,9 @@ fun SearchFilterRow(
                 label = stringResource(SessionsRes.string.filter_chip_supported_language),
                 selectedItem = filters.selectedLanguage,
                 items = filters.availableLanguages,
-                itemLabel = { it?.name ?: "All" },
+                itemLabel = { it.name },
                 onItemSelected = { language ->
-                    if (language != null) {
-                        onFilterToggle(SearchScreenEvent.Filter.Language(language))
-                    }
+                    onFilterToggle(SearchScreenEvent.Filter.Language(language))
                 },
                 modifier = Modifier,
             )
@@ -118,8 +110,8 @@ private fun <T> FilterDropdown(
     label: String,
     selectedItem: T?,
     items: List<T>,
-    itemLabel: (T?) -> String,
-    onItemSelected: (T?) -> Unit,
+    itemLabel: (T) -> String,
+    onItemSelected: (T) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var expanded by remember { mutableStateOf(false) }
