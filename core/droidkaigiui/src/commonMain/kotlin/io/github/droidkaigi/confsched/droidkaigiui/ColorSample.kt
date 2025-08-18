@@ -119,22 +119,8 @@ private fun ColorBox(color: Color) {
 
 @Preview
 @Composable
-private fun ColorPreview_Light() {
-    KaigiTheme(
-        darkTheme = false,
-    ) {
-        Surface {
-            ColorBoxes()
-        }
-    }
-}
-
-@Preview
-@Composable
 private fun ColorPreview_Dark() {
-    KaigiTheme(
-        darkTheme = true,
-    ) {
+    KaigiTheme {
         Surface {
             ColorBoxes()
         }
