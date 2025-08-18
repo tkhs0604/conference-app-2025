@@ -52,6 +52,7 @@ import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
 import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
 import io.github.droidkaigi.confsched.model.sessions.Timetable
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
+import io.github.droidkaigi.confsched.model.sessions.TimetableItemId
 import io.github.droidkaigi.confsched.model.sessions.fake
 import io.github.droidkaigi.confsched.sessions.ScrolledToCurrentTimeState
 import io.github.droidkaigi.confsched.sessions.TimetableScrollState
@@ -76,6 +77,7 @@ fun TimetableGrid(
     timetable: Timetable,
     timeLine: TimeLine?,
     selectedDay: DroidKaigi2025Day,
+    onTimetableItemClick: (TimetableItemId) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(),
     scrolledToCurrentTimeState: ScrolledToCurrentTimeState = remember { ScrolledToCurrentTimeState() },
@@ -120,7 +122,7 @@ fun TimetableGrid(
                 items(timetable.timetableItems) { timetableItem ->
                     TimetableGridItem(
                         timetableItem = timetableItem,
-                        onTimetableItemClick = {},
+                        onTimetableItemClick = { onTimetableItemClick(it.id) },
                     )
                 }
             }
@@ -438,6 +440,7 @@ private fun TimetableGridPreview() {
                 timetable = timetable,
                 timeLine = TimeLine.now(LocalClock.current),
                 selectedDay = DroidKaigi2025Day.ConferenceDay1,
+                onTimetableItemClick = {},
             )
         }
     }
