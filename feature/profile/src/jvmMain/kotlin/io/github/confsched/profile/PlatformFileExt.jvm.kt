@@ -3,5 +3,5 @@ package io.github.confsched.profile
 import io.github.vinceglb.filekit.PlatformFile
 
 actual fun PlatformFile.persistPermission() {
-    TODO("Not yet implemented")
+    // this feature is expected to be used only in apps targeting Android
 }
