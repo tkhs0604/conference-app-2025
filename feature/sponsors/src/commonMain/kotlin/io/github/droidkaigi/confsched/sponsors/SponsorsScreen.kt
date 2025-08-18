@@ -21,15 +21,16 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
+import io.github.droidkaigi.confsched.droidkaigiui.component.AnimatedMediumTopAppBar
 import io.github.droidkaigi.confsched.model.sponsors.Sponsor
 import io.github.droidkaigi.confsched.model.sponsors.SponsorList
 import io.github.droidkaigi.confsched.model.sponsors.SponsorPlan
@@ -56,8 +57,9 @@ fun SponsorsScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(stringResource(SponsorsRes.string.sponsors_title)) },
+            AnimatedMediumTopAppBar(
+                title = stringResource(SponsorsRes.string.sponsors_title),
+                onBackClick = onBackClick,
                 scrollBehavior = scrollBehavior,
             )
         },
@@ -72,6 +74,7 @@ fun SponsorsScreen(
                     end = 16.dp,
                     bottom = 48.dp,
                 ),
+                modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             ) {
                 sponsorsByPlanSection(
                     headerStringResource = SponsorsRes.string.platinum_sponsors_title,
