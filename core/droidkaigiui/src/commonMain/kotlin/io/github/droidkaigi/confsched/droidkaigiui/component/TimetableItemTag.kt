@@ -40,8 +40,8 @@ fun TimetableItemTag(
     tagText: String,
     tagColor: Color,
     icon: DrawableResource?,
-    contentPadding: PaddingValues,
     modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(),
 ) {
     TimetableItemTag(
         tagText = tagText,
