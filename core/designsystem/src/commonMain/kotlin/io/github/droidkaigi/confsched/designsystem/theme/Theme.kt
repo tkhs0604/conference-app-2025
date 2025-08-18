@@ -1,6 +1,5 @@
 package io.github.droidkaigi.confsched.designsystem.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -340,17 +339,13 @@ data class FixedAccentColors(
 @Composable
 fun KaigiTheme(
     colorContrast: ColorContrast = ColorContrast.Default,
-    darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
-    val colorScheme = when {
-        darkTheme && colorContrast == ColorContrast.Default -> darkScheme
-        darkTheme && colorContrast == ColorContrast.Medium -> mediumContrastDarkColorScheme
-        darkTheme && colorContrast == ColorContrast.High -> highContrastDarkColorScheme
-        !darkTheme && colorContrast == ColorContrast.Default -> lightScheme
-        !darkTheme && colorContrast == ColorContrast.Medium -> mediumContrastLightColorScheme
-        !darkTheme && colorContrast == ColorContrast.High -> highContrastLightColorScheme
-        else -> darkScheme
+    // currently, we do not support light theme
+    val colorScheme = when (colorContrast) {
+        ColorContrast.Default -> darkScheme
+        ColorContrast.Medium -> mediumContrastDarkColorScheme
+        ColorContrast.High -> highContrastDarkColorScheme
     }
 
     MaterialTheme(

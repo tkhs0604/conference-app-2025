@@ -136,6 +136,7 @@ fun TimetableScreen(
                         TimetableGrid(
                             timetable = requireNotNull(uiState.timetable.timetableGridUiState[uiState.timetable.selectedDay]).timetable,
                             timeLine = null, // TODO
+                            onTimetableItemClick = onTimetableItemClick,
                             selectedDay = uiState.timetable.selectedDay,
                             contentPadding = WindowInsets.safeDrawingWithBottomNavBar.excludeTop().asPaddingValues(),
                         )

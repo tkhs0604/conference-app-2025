@@ -40,6 +40,8 @@ Stable Android Studio Narwhal or higher. You can download it from
 You can check out the UI design on Figma:
 [DroidKaigi 2025 App UI](https://www.figma.com/design/1YjyMBNVLEGcHP4W7UNzDE/DroidKaigi-2025-App-UI)
 
+Designer: [@chihokotaro](https://x.com/chihokotaro)
+
 ## Development
 
 ### Overview of the architecture
