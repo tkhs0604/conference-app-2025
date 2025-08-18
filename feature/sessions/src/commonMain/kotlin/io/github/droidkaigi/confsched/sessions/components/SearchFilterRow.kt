@@ -24,39 +24,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.github.droidkaigi.confsched.model.core.DroidKaigi2025Day
-import io.github.droidkaigi.confsched.model.core.Lang
-import io.github.droidkaigi.confsched.model.sessions.TimetableCategory
-import io.github.droidkaigi.confsched.model.sessions.TimetableSessionType
 import io.github.droidkaigi.confsched.sessions.SessionsRes
 import io.github.droidkaigi.confsched.sessions.filter_chip_category
 import io.github.droidkaigi.confsched.sessions.filter_chip_day
 import io.github.droidkaigi.confsched.sessions.filter_chip_session_type
 import io.github.droidkaigi.confsched.sessions.filter_chip_supported_language
+import io.github.droidkaigi.confsched.sessions.SearchScreenEvent
+import io.github.droidkaigi.confsched.sessions.SearchScreenUiState
 import org.jetbrains.compose.resources.stringResource
-
-data class SearchFilters(
-    val selectedDay: DroidKaigi2025Day? = null,
-    val selectedCategory: TimetableCategory? = null,
-    val selectedSessionType: TimetableSessionType? = null,
-    val selectedLanguage: Lang? = null,
-    val availableDays: List<DroidKaigi2025Day> = emptyList(),
-    val availableCategories: List<TimetableCategory> = emptyList(),
-    val availableSessionTypes: List<TimetableSessionType> = emptyList(),
-    val availableLanguages: List<Lang> = emptyList()
-)
-
-sealed class SearchFilter {
-    data class Day(val day: DroidKaigi2025Day) : SearchFilter()
-    data class Category(val category: TimetableCategory) : SearchFilter()
-    data class SessionType(val sessionType: TimetableSessionType) : SearchFilter()
-    data class Language(val language: Lang) : SearchFilter()
-}
 
 @Composable
 fun SearchFilterRow(
-    filters: SearchFilters,
-    onFilterToggle: (SearchFilter) -> Unit,
+    filters: SearchScreenUiState.Filters,
+    onFilterToggle: (SearchScreenEvent.Filter) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val scrollState = rememberScrollState()
@@ -76,7 +56,7 @@ fun SearchFilterRow(
                 itemLabel = { it?.monthAndDay() ?: "All" },
                 onItemSelected = { day ->
                     if (day != null) {
-                        onFilterToggle(SearchFilter.Day(day))
+                        onFilterToggle(SearchScreenEvent.Filter.Day(day))
                     }
                 },
                 modifier = Modifier
@@ -92,7 +72,7 @@ fun SearchFilterRow(
                 itemLabel = { it?.title?.currentLangTitle ?: "All" },
                 onItemSelected = { category ->
                     if (category != null) {
-                        onFilterToggle(SearchFilter.Category(category))
+                        onFilterToggle(SearchScreenEvent.Filter.Category(category))
                     }
                 },
                 modifier = Modifier
@@ -108,7 +88,7 @@ fun SearchFilterRow(
                 itemLabel = { it?.label?.currentLangTitle ?: "All" },
                 onItemSelected = { sessionType ->
                     if (sessionType != null) {
-                        onFilterToggle(SearchFilter.SessionType(sessionType))
+                        onFilterToggle(SearchScreenEvent.Filter.SessionType(sessionType))
                     }
                 },
                 modifier = Modifier
@@ -124,7 +104,7 @@ fun SearchFilterRow(
                 itemLabel = { it?.name ?: "All" },
                 onItemSelected = { language ->
                     if (language != null) {
-                        onFilterToggle(SearchFilter.Language(language))
+                        onFilterToggle(SearchScreenEvent.Filter.Language(language))
                     }
                 },
                 modifier = Modifier

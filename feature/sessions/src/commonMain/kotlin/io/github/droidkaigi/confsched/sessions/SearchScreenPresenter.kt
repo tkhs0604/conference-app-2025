@@ -13,23 +13,9 @@ import io.github.droidkaigi.confsched.model.core.Lang
 import io.github.droidkaigi.confsched.model.sessions.Timetable
 import io.github.droidkaigi.confsched.model.sessions.TimetableCategory
 import io.github.droidkaigi.confsched.model.sessions.TimetableSessionType
-import io.github.droidkaigi.confsched.sessions.components.SearchFilter
-import io.github.droidkaigi.confsched.sessions.components.SearchFilters
 import io.github.takahirom.rin.rememberRetained
 import kotlinx.collections.immutable.persistentListOf
-import kotlinx.collections.immutable.toPersistentList
 import kotlinx.collections.immutable.toPersistentMap
-import kotlinx.datetime.LocalTime
-import io.github.droidkaigi.confsched.droidkaigiui.session.TimeSlotItem
-
-data class SearchTimeSlot(
-    val startTime: LocalTime,
-    val endTime: LocalTime,
-    override val startTimeString: String,
-    override val endTimeString: String,
-) : TimeSlotItem {
-    override val key: String = "$startTimeString-$endTimeString"
-}
 
 @Composable
 context(screenContext: SearchScreenContext)
@@ -48,16 +34,16 @@ fun searchScreenPresenter(
             is SearchScreenEvent.Search -> searchQuery = event.query
             is SearchScreenEvent.ToggleFilter -> {
                 when (val filter = event.filter) {
-                    is SearchFilter.Day -> {
+                    is SearchScreenEvent.Filter.Day -> {
                         selectedDay = if (selectedDay == filter.day) null else filter.day
                     }
-                    is SearchFilter.Category -> {
+                    is SearchScreenEvent.Filter.Category -> {
                         selectedCategory = if (selectedCategory == filter.category) null else filter.category
                     }
-                    is SearchFilter.SessionType -> {
+                    is SearchScreenEvent.Filter.SessionType -> {
                         selectedSessionType = if (selectedSessionType == filter.sessionType) null else filter.sessionType
                     }
-                    is SearchFilter.Language -> {
+                    is SearchScreenEvent.Filter.Language -> {
                         selectedLanguage = if (selectedLanguage == filter.language) null else filter.language
                     }
                 }
@@ -96,11 +82,9 @@ fun searchScreenPresenter(
 
     val groupedSessions = filteredTimetable.timetableItems
         .groupBy { session ->
-            SearchTimeSlot(
+            SearchScreenUiState.TimeSlot(
                 startTime = session.startsLocalTime,
                 endTime = session.endsLocalTime,
-                startTimeString = session.startsTimeString,
-                endTimeString = session.endsTimeString
             )
         }
         .mapValues { entries ->
@@ -112,9 +96,8 @@ fun searchScreenPresenter(
 
     SearchScreenUiState(
         searchQuery = searchQuery,
-        filteredSessions = filteredTimetable.timetableItems.toPersistentList(),
         groupedSessions = groupedSessions,
-        availableFilters = SearchFilters(
+        availableFilters = SearchScreenUiState.Filters(
             selectedDay = selectedDay,
             selectedCategory = selectedCategory,
             selectedSessionType = selectedSessionType,
@@ -124,7 +107,6 @@ fun searchScreenPresenter(
             availableSessionTypes = timetable.timetableItems.map { it.sessionType }.distinct(),
             availableLanguages = listOf(Lang.JAPANESE, Lang.ENGLISH)
         ),
-        isNotFound = hasSearchCriteria && filteredTimetable.timetableItems.isEmpty(),
         hasSearchCriteria = hasSearchCriteria,
     )
 }

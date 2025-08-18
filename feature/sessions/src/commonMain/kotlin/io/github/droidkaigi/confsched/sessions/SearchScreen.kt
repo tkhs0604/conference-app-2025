@@ -43,13 +43,13 @@ fun SearchScreen(
             )
 
             when {
-                uiState.showInitialState -> {}
-                uiState.showEmptyState -> {
+                !uiState.hasSearchCriteria -> {}
+                uiState.groupedSessions.isEmpty() -> {
                     SearchNotFoundContent(
                         searchQuery = uiState.searchQuery
                     )
                 }
-                uiState.hasSearchCriteria -> {
+                else -> {
                     TimetableList(
                         timetableItemMap = uiState.groupedSessions,
                         onTimetableItemClick = onTimetableItemClick,
