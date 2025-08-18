@@ -10,7 +10,6 @@ import io.github.droidkaigi.confsched.designsystem.Chango_Regular
 import io.github.droidkaigi.confsched.designsystem.DesignsystemRes
 import org.jetbrains.compose.resources.Font
 
-
 @Composable
 fun AppTypography(): Typography {
     val changoFontFamily = FontFamily(
