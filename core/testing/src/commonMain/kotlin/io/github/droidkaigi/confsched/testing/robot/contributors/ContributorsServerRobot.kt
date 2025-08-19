@@ -2,7 +2,6 @@ package io.github.droidkaigi.confsched.testing.robot.contributors
 
 import dev.zacsweers.metro.Inject
 import io.github.droidkaigi.confsched.data.contributors.FakeContributorsApiClient
-import io.github.droidkaigi.confsched.testing.robot.sessions.TimetableServerRobot.ServerStatus
 
 interface ContributorsServerRobot {
     enum class ServerStatus {
