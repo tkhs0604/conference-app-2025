@@ -60,7 +60,8 @@ fun TimetableGridItem(
         (TimetableGridItemDefaults.unitOfHeight * scaleState.verticalScale) * timetableItem.minutes
     }
     val isShowingAllContent by remember(scaledHeight) {
-        derivedStateOf { // maxLine is 3
+        derivedStateOf {
+            // maxLine is 3
             scaledHeight > (TimetableGridItemDefaults.titleLineHeight + TimetableGridItemDefaults.contentPadding) * 3
         }
     }
@@ -76,8 +77,11 @@ fun TimetableGridItem(
                 .border(1.dp, LocalRoomTheme.current.primaryColor, RoundedCornerShape(16.dp))
                 .padding(
                     horizontal = TimetableGridItemDefaults.contentPadding,
-                    vertical = if (isShowingAllContent) TimetableGridItemDefaults.contentPadding
-                    else TimetableGridItemDefaults.contentPadding / 2
+                    vertical = if (isShowingAllContent) {
+                        TimetableGridItemDefaults.contentPadding
+                    } else {
+                        TimetableGridItemDefaults.contentPadding / 2
+                    },
                 ),
         ) {
             Column(
@@ -263,7 +267,7 @@ private fun TimetableGridItemPreview_WelcomeTalk() {
 
 @Preview
 @Composable
-private fun TimetableGridItemPreview_LongTitme() { // TODO: Fix typo
+private fun TimetableGridItemPreview_LongTitle() {
     KaigiPreviewContainer {
         TimetableGridItem(
             timetableItem = TimetableItem.Session.fake().copy(
