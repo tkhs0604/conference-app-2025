@@ -10,8 +10,8 @@ import io.github.droidkaigi.confsched.data.contributors.DefaultContributorsApiCl
 import io.github.droidkaigi.confsched.data.core.DataStorePathProducer
 import io.github.droidkaigi.confsched.data.core.defaultJson
 import io.github.droidkaigi.confsched.data.sessions.DefaultSessionsApiClient
-import io.github.droidkaigi.confsched.data.staff.DefaultStaffApiClient
 import io.github.droidkaigi.confsched.data.sessions.DefaultTimetableQueryKey
+import io.github.droidkaigi.confsched.data.staff.DefaultStaffApiClient
 import io.github.droidkaigi.confsched.data.staff.DefaultStaffQueryKey
 import io.github.droidkaigi.confsched.data.user.DefaultFavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.data.user.DefaultFavoriteTimetableItemIdMutationKey

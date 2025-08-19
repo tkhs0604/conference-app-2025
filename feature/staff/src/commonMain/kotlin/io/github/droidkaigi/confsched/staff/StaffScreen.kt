@@ -62,7 +62,6 @@ fun StaffScreen(
             }
         }
     }
-
 }
 
 @Preview

@@ -44,7 +44,7 @@ class StaffScreenTest {
                     }
                     itShould("show first and second staffs") {
                         captureScreenWithChecks {
-                        checkShowFirstAndSecondStaffs()
+                            checkShowFirstAndSecondStaffs()
                         }
                     }
 
@@ -60,7 +60,6 @@ class StaffScreenTest {
                     }
                 }
             }
-
         }
         describe("when server is error") {
             doIt {
