@@ -21,6 +21,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,6 +42,7 @@ import io.github.droidkaigi.confsched.model.core.RoomType
 import io.github.droidkaigi.confsched.model.sessions.TimetableItem
 import io.github.droidkaigi.confsched.model.sessions.TimetableSpeaker
 import io.github.droidkaigi.confsched.model.sessions.fake
+import io.github.droidkaigi.confsched.sessions.TimetableScaleState
 import kotlinx.collections.immutable.persistentListOf
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.vectorResource
@@ -50,10 +53,16 @@ import kotlin.time.Duration.Companion.minutes
 fun TimetableGridItem(
     timetableItem: TimetableItem,
     onTimetableItemClick: (timetableItem: TimetableItem) -> Unit,
+    scaleState: TimetableScaleState = remember { TimetableScaleState() },
     modifier: Modifier = Modifier,
 ) {
-    val height = remember(timetableItem) {
-        TimetableGridItemDefaults.unitOfHeight * (timetableItem.minutes)
+    val scaledHeight = remember(timetableItem, scaleState.verticalScale) {
+        (TimetableGridItemDefaults.unitOfHeight * scaleState.verticalScale) * timetableItem.minutes
+    }
+    val isShowingAllContent by remember(scaledHeight) {
+        derivedStateOf { // maxLine is 3
+            scaledHeight > (TimetableGridItemDefaults.titleLineHeight + TimetableGridItemDefaults.contentPadding) * 3
+        }
     }
 
     ProvideRoomTheme(timetableItem.room.roomTheme) {
@@ -63,39 +72,48 @@ fun TimetableGridItem(
                 .clickable { onTimetableItemClick(timetableItem) }
                 .background(LocalRoomTheme.current.containerColor)
                 .width(TimetableGridItemDefaults.width)
-                .height(height)
+                .height(scaledHeight)
                 .border(1.dp, LocalRoomTheme.current.primaryColor, RoundedCornerShape(16.dp))
-                .padding(TimetableGridItemDefaults.contentPadding),
+                .padding(
+                    horizontal = TimetableGridItemDefaults.contentPadding,
+                    vertical = if (isShowingAllContent) TimetableGridItemDefaults.contentPadding
+                    else TimetableGridItemDefaults.contentPadding / 2
+                ),
         ) {
             Column(
                 modifier = Modifier.weight(1f),
             ) {
-                TimetableSchedule(
-                    schedule = timetableItem.formattedTimeString,
-                    icon = timetableItem.room.icon,
-                )
+                if (isShowingAllContent) {
+                    TimetableSchedule(
+                        schedule = timetableItem.formattedTimeString,
+                        icon = timetableItem.room.icon,
+                    )
+                }
                 //  Trim spacing to prevent the title from overflowing if minutes is < 30min
                 if (timetableItem.minutes > 30) {
                     Spacer(modifier = Modifier.height(TimetableGridItemDefaults.scheduleToTitleSpace))
                 }
                 TimetableTitle(timetableItem.title.currentLangTitle)
             }
-            timetableItem.speakers.firstOrNull()?.let { speaker ->
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    TimetableSpeaker(
-                        speaker = speaker,
-                        modifier = Modifier.weight(1f),
-                    )
-                    if (timetableItem.message != null) {
-                        Icon(
-                            imageVector = Icons.Default.Error,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.error,
-                            modifier = Modifier
-                                .size(TimetableGridItemDefaults.errorSize),
+            if (isShowingAllContent) {
+                timetableItem.speakers.firstOrNull()?.let { speaker ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        TimetableSpeaker(
+                            scale = scaleState.verticalScale,
+                            speaker = speaker,
+                            modifier = Modifier.weight(1f),
                         )
+                        if (timetableItem.message != null) {
+                            Icon(
+                                imageVector = Icons.Default.Error,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.error,
+                                modifier = Modifier
+                                    .size(TimetableGridItemDefaults.errorSize),
+                            )
+                        }
                     }
                 }
             }
@@ -129,16 +147,18 @@ private fun TimetableSchedule(
 
 @Composable
 private fun TimetableSpeaker(
+    scale: Float,
     speaker: TimetableSpeaker,
     modifier: Modifier = Modifier,
 ) {
     val painter = rememberAsyncImagePainter(speaker.iconUrl)
-    Row(modifier) {
+    val size = (TimetableGridItemDefaults.speakerHeight * scale).coerceAtLeast(16.dp)
+    Row(modifier.height(size)) {
         Image(
             painter = painter,
             contentDescription = null,
             modifier = Modifier
-                .size(32.dp)
+                .size(size)
                 .clip(CircleShape)
                 .border(
                     width = 1.dp,
@@ -184,9 +204,11 @@ private object TimetableGridItemDefaults {
     val contentPadding = 12.dp
     val scheduleToTitleSpace = 6.dp
     val scheduleHeight = 16.dp
+    val speakerHeight = 32.dp
     val errorSize = 16.dp
     val minTitleFontSize = 10.sp
     val maxTitleFontSize = 14.sp
+    val titleLineHeight = 20.dp
 }
 
 @Preview
@@ -241,7 +263,7 @@ private fun TimetableGridItemPreview_WelcomeTalk() {
 
 @Preview
 @Composable
-private fun TimetableGridItemPreview_LongTitme() {
+private fun TimetableGridItemPreview_LongTitme() { // TODO: Fix typo
     KaigiPreviewContainer {
         TimetableGridItem(
             timetableItem = TimetableItem.Session.fake().copy(
