@@ -127,7 +127,6 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
         FloatingActionButtonMenuItem(
             onClick = {
                 onBookmarkClick(!isBookmarked)
-//                fabBookmarkFlag = true
                 onExpandedChange(false)
             },
             text = {
