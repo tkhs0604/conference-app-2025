@@ -77,12 +77,19 @@ fun TimetableGridItem(
                 .border(1.dp, LocalRoomTheme.current.primaryColor, RoundedCornerShape(16.dp))
                 .padding(
                     horizontal = TimetableGridItemDefaults.contentPadding,
-                    vertical = if (isShowingAllContent) {
-                        TimetableGridItemDefaults.contentPadding
-                    } else {
-                        TimetableGridItemDefaults.contentPadding / 2
-                    },
-                ),
+                    vertical =
+                        when {
+                            isShowingAllContent -> {
+                                TimetableGridItemDefaults.contentPadding
+                            }
+
+                            (timetableItem.minutes < 30) && (scaledHeight < TimetableGridItemDefaults.titleLineHeight + TimetableGridItemDefaults.contentPadding) -> 0.dp
+
+                            else -> {
+                                TimetableGridItemDefaults.contentPadding / 2
+                            }
+                        },
+                )
         ) {
             Column(
                 modifier = Modifier.weight(1f),
