@@ -91,7 +91,7 @@ class StaffScreenRobot(
 
             composeUiTest
                 .onNode(
-                    matcher = hasTestTag(StaffItemImageTestTag.plus(staff.name)),
+                    matcher = hasTestTag(StaffItemImageTestTag.plus(staff.id)),
                     useUnmergedTree = true,
                 )
                 .assertExists()
@@ -100,7 +100,7 @@ class StaffScreenRobot(
 
             composeUiTest
                 .onNode(
-                    matcher = hasTestTag(StaffItemUserNameTextTestTag.plus(staff.name)),
+                    matcher = hasTestTag(StaffItemUserNameTextTestTag.plus(staff.id)),
                     useUnmergedTree = true,
                 )
                 .assertExists()

@@ -61,14 +61,14 @@ fun StaffItem(
                     color = MaterialTheme.colorScheme.outline,
                     shape = staffIconShape,
                 )
-                .testTag(StaffItemImageTestTag.plus(staff.name)),
+                .testTag(StaffItemImageTestTag.plus(staff.id)),
         )
         Text(
             text = staff.name,
             style = MaterialTheme.typography.bodyLarge,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.testTag(StaffItemUserNameTextTestTag.plus(staff.name)),
+            modifier = Modifier.testTag(StaffItemUserNameTextTestTag.plus(staff.id)),
         )
     }
 }
