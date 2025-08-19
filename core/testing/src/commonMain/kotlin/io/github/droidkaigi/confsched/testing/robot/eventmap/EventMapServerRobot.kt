@@ -17,7 +17,7 @@ class DefaultEventMapServerRobot(
     private val fakeEventMapApiClient: FakeEventMapApiClient,
 ) : EventMapServerRobot {
     override fun setupEventMapServer(
-        serverStatus: EventMapServerRobot.ServerStatus
+        serverStatus: EventMapServerRobot.ServerStatus,
     ) {
         fakeEventMapApiClient.setup(
             when (serverStatus) {
