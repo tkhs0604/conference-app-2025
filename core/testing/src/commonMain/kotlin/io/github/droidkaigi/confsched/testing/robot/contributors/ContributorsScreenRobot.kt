@@ -5,7 +5,6 @@ import androidx.compose.ui.test.assertContentDescriptionEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.hasTestTag
-import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.performScrollToIndex
 import dev.zacsweers.metro.Inject
@@ -134,14 +133,5 @@ class ContributorsScreenRobot(
                 useUnmergedTree = true,
             )
             .assertDoesNotExist()
-    }
-
-    context(composeUiTest: ComposeUiTest)
-    fun checkErrorSnackbarDisplayed() {
-        composeUiTest
-            .onNode(
-                hasText("Fake IO Exception"),
-                useUnmergedTree = true,
-            ).assertIsDisplayed()
     }
 }
