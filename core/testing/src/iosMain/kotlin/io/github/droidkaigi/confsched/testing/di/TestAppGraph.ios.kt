@@ -7,12 +7,14 @@ import dev.zacsweers.metro.Provides
 import dev.zacsweers.metro.createGraph
 import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.contributors.DefaultContributorsApiClient
+import io.github.droidkaigi.confsched.data.contributors.DefaultContributorsQueryKey
 import io.github.droidkaigi.confsched.data.core.DataStorePathProducer
 import io.github.droidkaigi.confsched.data.core.defaultJson
 import io.github.droidkaigi.confsched.data.sessions.DefaultSessionsApiClient
 import io.github.droidkaigi.confsched.data.sessions.DefaultTimetableQueryKey
 import io.github.droidkaigi.confsched.data.user.DefaultFavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.data.user.DefaultFavoriteTimetableItemIdMutationKey
+import io.github.droidkaigi.confsched.model.contributors.ContributorsQueryKey
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableItemIdMutationKey
 import io.github.droidkaigi.confsched.model.data.TimetableQueryKey
@@ -43,6 +45,9 @@ internal interface IosTestAppGraph : TestAppGraph {
 
     @Binds
     val DefaultFavoriteTimetableItemIdMutationKey.bind: FavoriteTimetableItemIdMutationKey
+
+    @Binds
+    val DefaultContributorsQueryKey.bind: ContributorsQueryKey
 
     @Provides
     fun provideJson(): Json {
