@@ -66,19 +66,19 @@ private struct ColorWithDim: View {
     Grid {
         GridRow {
             ColorPreview(
-                color: .clear,
+                color: AssetColors.primary.swiftUIColor,
                 colorName: "Primary"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.secondary.swiftUIColor,
                 colorName: "Secondary"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.tertiary.swiftUIColor,
                 colorName: "Tertiary"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.error.swiftUIColor,
                 colorName: "Error"
             )
         }
@@ -139,51 +139,51 @@ private struct ColorWithDim: View {
         GridRow {
             ColorWithDim(
                 color: AssetColors.primaryFixed.swiftUIColor,
-                dim: .clear,
+                dim: AssetColors.primaryFixedDim.swiftUIColor,
                 colorName: "Primary Fixed"
             )
             ColorWithDim(
-                color: .clear,
-                dim: .clear,
+                color: AssetColors.secondaryFixed.swiftUIColor,
+                dim: AssetColors.secondaryFixedDim.swiftUIColor,
                 colorName: "Secondary Fixed"
             )
             ColorWithDim(
-                color: .clear,
+                color: AssetColors.tertiaryFixed.swiftUIColor,
                 dim: AssetColors.tertiaryFixedDim.swiftUIColor,
                 colorName: "Primary Fixed"
             )
         }
         GridRow {
             ColorPreview(
-                color: .clear,
+                color: AssetColors.onPrimaryFixed.swiftUIColor,
                 colorName: "On Primary Fixed"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.onSecondaryFixed.swiftUIColor,
                 colorName: "On Secondary Fixed"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.onTertiaryFixed.swiftUIColor,
                 colorName: "On Tertiary Fixed"
             )
         }
         GridRow {
             ColorPreview(
-                color: .clear,
+                color: AssetColors.onPrimaryFixedVariant.swiftUIColor,
                 colorName: "On Primary Fixed V"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.onSecondaryFixedVariant.swiftUIColor,
                 colorName: "On Secondary Fixed V"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.onTertiaryFixedVariant.swiftUIColor,
                 colorName: "On Tertiary Fixed V"
             )
         }
         GridRow {
             ColorPreview(
-                color: .clear,
+                color: AssetColors.surfaceDim.swiftUIColor,
                 colorName: "Surface Dim"
             )
             ColorPreview(
@@ -195,13 +195,17 @@ private struct ColorWithDim: View {
                 colorName: "Surface V"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.surfaceBright.swiftUIColor,
                 colorName: "Surface Bright"
+            )
+            ColorPreview(
+                color: AssetColors.surfaceTint.swiftUIColor,
+                colorName: "Surface Tint"
             )
         }
         GridRow {
             ColorPreview(
-                color: .clear,
+                color: AssetColors.surfaceContainerLowest.swiftUIColor,
                 colorName: "SC Lowest"
             )
             ColorPreview(
@@ -209,15 +213,15 @@ private struct ColorWithDim: View {
                 colorName: "SC Low"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.surfaceContainer.swiftUIColor,
                 colorName: "Surface Container"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.surfaceContainerHigh.swiftUIColor,
                 colorName: "SC High"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.surfaceContainerHighest.swiftUIColor,
                 colorName: "SC Highest"
             )
         }
@@ -257,17 +261,17 @@ private struct ColorWithDim: View {
                 colorName: "Scrim"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.shadow.swiftUIColor,
                 colorName: "Shadow"
             )
         }
         GridRow {
             ColorPreview(
-                color: .clear,
+                color: AssetColors.iguana.swiftUIColor,
                 colorName: "Iguana"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.hedgehog.swiftUIColor,
                 colorName: "Hedgehog"
             )
             ColorPreview(
@@ -285,45 +289,45 @@ private struct ColorWithDim: View {
         }
         GridRow {
             ColorPreview(
-                color: .clear,
+                color: AssetColors.iguanaContainer.swiftUIColor,
                 colorName: "Iguana Container"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.hedgehogContainer.swiftUIColor,
                 colorName: "Hedgehog Container"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.giraffeContainer.swiftUIColor,
                 colorName: "Giraffe Container"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.flamingoContainer.swiftUIColor,
                 colorName: "Flamingo Container"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.jellyfishContainer.swiftUIColor,
                 colorName: "Jellyfish Container"
             )
         }
         GridRow {
             ColorPreview(
-                color: .clear,
+                color: AssetColors.iguanaDim.swiftUIColor,
                 colorName: "Iguana Dim"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.hedgehogDim.swiftUIColor,
                 colorName: "Hedgehog Dim"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.giraffeDim.swiftUIColor,
                 colorName: "Giraffe Dim"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.flamingoDim.swiftUIColor,
                 colorName: "Flamingo Dim"
             )
             ColorPreview(
-                color: .clear,
+                color: AssetColors.jellyfishDim.swiftUIColor,
                 colorName: "Jellyfish Dim"
             )
         }
