@@ -3,7 +3,7 @@ import SwiftUI
 private struct ColorPreview: View {
     var color: Color
     var colorName: String
-    
+
     var body: some View {
         VStack {
             Circle()
@@ -28,7 +28,7 @@ private struct ColorWithDim: View {
     var color: Color
     var dim: Color
     var colorName: String
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -49,11 +49,12 @@ private struct ColorWithDim: View {
                     .frame(width: 30, height: 30)
                     .overlay {
                         Circle()
-                            .stroke(style: StrokeStyle(
-                                lineWidth: 1,
-                                dash: dim == .clear ? [1, 2] : []
+                            .stroke(
+                                style: StrokeStyle(
+                                    lineWidth: 1,
+                                    dash: dim == .clear ? [1, 2] : []
+                                )
                             )
-                        )
                     }
             }
             Text(colorName)
