@@ -22,7 +22,7 @@ fun eventMapScreenPresenter(
 ) = providePresenterDefaults {
     val floorSaver: Saver<MutableState<FloorLevel>, String> = Saver(
         save = { it.value.name },
-        restore = { mutableStateOf(FloorLevel.valueOf(it)) }
+        restore = { mutableStateOf(FloorLevel.valueOf(it)) },
     )
     var selectedFloor by rememberSaveable(saver = floorSaver) { mutableStateOf(FloorLevel.Ground) }
 

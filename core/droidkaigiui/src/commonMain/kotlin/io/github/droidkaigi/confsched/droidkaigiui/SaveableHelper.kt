@@ -23,7 +23,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 fun rememberBooleanSaveable(initial: Boolean = false): MutableState<Boolean> {
     val saver: Saver<MutableState<Boolean>, Boolean> = Saver(
         save = { it.value },
-        restore = { mutableStateOf(it) }
+        restore = { mutableStateOf(it) },
     )
     return rememberSaveable(saver = saver) { mutableStateOf(initial) }
 }
@@ -32,7 +32,7 @@ fun rememberBooleanSaveable(initial: Boolean = false): MutableState<Boolean> {
 fun rememberIntSaveable(initial: Int = 0): MutableState<Int> {
     val saver: Saver<MutableState<Int>, Int> = Saver(
         save = { it.value },
-        restore = { mutableStateOf(it) }
+        restore = { mutableStateOf(it) },
     )
     return rememberSaveable(saver = saver) { mutableStateOf(initial) }
 }
