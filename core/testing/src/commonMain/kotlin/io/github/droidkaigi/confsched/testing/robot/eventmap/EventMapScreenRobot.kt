@@ -4,6 +4,7 @@ import androidx.compose.ui.test.ComposeUiTest
 import androidx.compose.ui.test.assertContentDescriptionEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasTestTag
+import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
@@ -95,7 +96,7 @@ class EventMapScreenRobot(
         roomType: RoomType,
     ) {
         composeUiTest
-            .onNode(hasTestTag(EventMapLazyColumnTestTag))
+            .onNodeWithTag(EventMapLazyColumnTestTag)
             .performScrollToNode(hasTestTag(EventMapItemTestTag.plus(roomType.name)))
         waitFor5Seconds()
     }
@@ -115,7 +116,7 @@ class EventMapScreenRobot(
         floorLevel: FloorLevel,
     ) {
         composeUiTest
-            .onNode(hasTestTag(EventMapTabTestTagPrefix.plus(floorLevel.floorName)))
+            .onNodeWithTag(EventMapTabTestTagPrefix.plus(floorLevel.floorName))
             .performClick()
         waitUntilIdle()
     }
@@ -164,7 +165,7 @@ class EventMapScreenRobot(
         roomType: RoomType,
     ) {
         composeUiTest
-            .onAllNodes(hasTestTag(EventMapItemTestTag.plus(roomType.name)))
+            .onAllNodesWithTag(EventMapItemTestTag.plus(roomType.name))
             .onFirst()
             .assertExists()
     }
@@ -184,7 +185,7 @@ class EventMapScreenRobot(
         floorLevel: FloorLevel,
     ) {
         composeUiTest
-            .onNode(hasTestTag(EventMapTabImageTestTag))
+            .onNodeWithTag(EventMapTabImageTestTag)
             .assertContentDescriptionEquals("Map of ${floorLevel.floorName}")
     }
 
