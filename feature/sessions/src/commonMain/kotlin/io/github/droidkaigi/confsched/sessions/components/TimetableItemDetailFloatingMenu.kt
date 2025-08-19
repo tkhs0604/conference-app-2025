@@ -15,12 +15,16 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.ToggleFloatingActionButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.dp
 import io.github.droidkaigi.confsched.designsystem.theme.LocalRoomTheme
 import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
@@ -50,13 +54,16 @@ fun TimetableItemDetailFloatingActionButtonMenu(
     modifier: Modifier = Modifier,
 ) {
     var expanded by remember { mutableStateOf(false) }
+    var fabBookmarkFlag by remember { mutableStateOf(false) }
 
     TimetableItemDetailFloatingActionButtonMenu(
         expanded = expanded,
         isBookmarked = isBookmarked,
+        fabBookmarkFlag = fabBookmarkFlag,
         slideUrl = slideUrl,
         videoUrl = videoUrl,
         onExpandedChange = { expanded = it },
+        onFabBookmarkFlagChange = { fabBookmarkFlag = it },
         onBookmarkClick = onBookmarkClick,
         onAddCalendarClick = onAddCalendarClick,
         onShareClick = onShareClick,
@@ -71,16 +78,24 @@ fun TimetableItemDetailFloatingActionButtonMenu(
 private fun TimetableItemDetailFloatingActionButtonMenu(
     expanded: Boolean,
     isBookmarked: Boolean,
+    fabBookmarkFlag: Boolean,
     slideUrl: String?,
     videoUrl: String?,
     onExpandedChange: (Boolean) -> Unit,
     onBookmarkClick: (isBookmarked: Boolean) -> Unit,
+    onFabBookmarkFlagChange: (Boolean) -> Unit,
     onAddCalendarClick: () -> Unit,
     onShareClick: () -> Unit,
     onViewSlideClick: (url: String) -> Unit,
     onWatchVideoClick: (url: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    var height by remember { mutableStateOf(0.dp) }
+    val density = LocalDensity.current
+    LaunchedEffect(height) {
+        onFabBookmarkFlagChange(isBookmarked)
+    }
+
     val roomTheme = LocalRoomTheme.current
     val menuItemContainerColor = roomTheme.primaryColor // TODO: use room containerColor
     FloatingActionButtonMenu(
@@ -104,17 +119,20 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
                 }
             }
         },
-        modifier = modifier,
+        modifier = modifier.onGloballyPositioned { layoutCoordinates ->
+            height = with(density) { layoutCoordinates.size.height.toDp() }
+        },
         horizontalAlignment = Alignment.End,
     ) {
         FloatingActionButtonMenuItem(
             onClick = {
                 onBookmarkClick(!isBookmarked)
+//                fabBookmarkFlag = true
                 onExpandedChange(false)
             },
             text = {
                 Text(
-                    if (isBookmarked) {
+                    if (fabBookmarkFlag) {
                         stringResource(SessionsRes.string.remove_from_bookmark)
                     } else {
                         stringResource(SessionsRes.string.add_to_bookmark)
@@ -123,7 +141,7 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
             },
             icon = {
                 Icon(
-                    if (isBookmarked) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
+                    if (fabBookmarkFlag) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
                     contentDescription = null,
                 )
             },
@@ -181,8 +199,10 @@ private fun TimetableItemDetailFloatingMenuPreview() {
             TimetableItemDetailFloatingActionButtonMenu(
                 expanded = false,
                 isBookmarked = false,
+                fabBookmarkFlag = false,
                 onExpandedChange = {},
                 onBookmarkClick = {},
+                onFabBookmarkFlagChange = {},
                 onAddCalendarClick = {},
                 onShareClick = {},
                 slideUrl = session.asset.slideUrl,
@@ -203,8 +223,10 @@ private fun TimetableItemDetailFloatingMenuExpandedPreview() {
             TimetableItemDetailFloatingActionButtonMenu(
                 expanded = true,
                 isBookmarked = false,
+                fabBookmarkFlag = false,
                 onExpandedChange = {},
                 onBookmarkClick = {},
+                onFabBookmarkFlagChange = {},
                 onAddCalendarClick = {},
                 onShareClick = {},
                 slideUrl = session.asset.slideUrl,
