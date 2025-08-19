@@ -105,43 +105,41 @@ class EventMapScreenTest {
                 )
             }
         }
-        // FIXME In the test code, DefaultErrorFallbackContent is not displayed even when an error occurs, so this test cannot pass as is.
-        // FIXME In another test, DefaultErrorFallbackContent is displayed when an error occurs, and the test passes, so I believe the cause lies somewhere in the EventMap test code.
-//        describe("when server is error") {
-//            doIt {
-//                setupEventMapServer(ServerStatus.Error)
-//            }
-//            describe("when launch") {
-//                doIt {
-//                    setupEventMapScreenContent()
-//                }
-//                describe("after loading") {
-//                    doIt {
-//                        waitFor5Seconds()
-//                    }
-//                    itShould("show error message") {
-//                        captureScreenWithChecks {
-//                            checkErrorFallbackDisplayed()
-//                        }
-//                    }
-//                    describe("click retry after server gets operational") {
-//                        doIt {
-//                            setupEventMapServer(ServerStatus.Operational)
-//                            clickRetryButton()
-//                        }
-//                        describe("after waiting for 5 seconds") {
-//                            doIt {
-//                                waitFor5Seconds()
-//                            }
-//                            itShould("show event map") {
-//                                captureScreenWithChecks {
-//                                    checkEventMapDescriptionDisplayed()
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        describe("when server is error") {
+            doIt {
+                setupEventMapServer(ServerStatus.Error)
+            }
+            describe("when launch") {
+                doIt {
+                    setupEventMapScreenContent()
+                }
+                describe("after loading") {
+                    doIt {
+                        waitFor5Seconds()
+                    }
+                    itShould("show error message") {
+                        captureScreenWithChecks {
+                            checkErrorFallbackDisplayed()
+                        }
+                    }
+                    describe("click retry after server gets operational") {
+                        doIt {
+                            setupEventMapServer(ServerStatus.Operational)
+                            clickRetryButton()
+                        }
+                        describe("after waiting for 5 seconds") {
+                            doIt {
+                                waitFor5Seconds()
+                            }
+                            itShould("show event map") {
+                                captureScreenWithChecks {
+                                    checkEventMapDescriptionDisplayed()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
