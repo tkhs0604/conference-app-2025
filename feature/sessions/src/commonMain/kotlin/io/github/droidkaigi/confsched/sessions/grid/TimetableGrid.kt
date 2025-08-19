@@ -124,7 +124,6 @@ fun TimetableGrid(
                     TimetableGridItem(
                         timetableItem = timetableItem,
                         onTimetableItemClick = { onTimetableItemClick(it.id) },
-//                        gridItemHeightPx = itemHeightPx
                         scaleState = timetableState.scaleState,
                     )
                 }
