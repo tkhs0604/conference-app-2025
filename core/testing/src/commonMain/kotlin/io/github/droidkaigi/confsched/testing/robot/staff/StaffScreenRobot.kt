@@ -4,7 +4,6 @@ import androidx.compose.ui.test.ComposeUiTest
 import androidx.compose.ui.test.assertContentDescriptionEquals
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
-import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToIndex
@@ -67,7 +66,7 @@ class StaffScreenRobot(
     context(composeUiTest: ComposeUiTest)
     fun scrollToIndex10() {
         composeUiTest
-            .onNode(hasTestTag(StaffScreenLazyColumnTestTag))
+            .onNodeWithTag(StaffScreenLazyColumnTestTag)
             .performScrollToIndex(10)
     }
 
@@ -85,13 +84,13 @@ class StaffScreenRobot(
         val staffList = Staff.fakes().subList(fromTo.first, fromTo.last)
         staffList.forEach { staff ->
             composeUiTest
-                .onNode(hasTestTag(StaffItemTestTagPrefix.plus(staff.id)))
+                .onNodeWithTag(StaffItemTestTagPrefix.plus(staff.id))
                 .assertExists()
                 .assertIsDisplayed()
 
             composeUiTest
-                .onNode(
-                    matcher = hasTestTag(StaffItemImageTestTag.plus(staff.id)),
+                .onNodeWithTag(
+                    testTag = StaffItemImageTestTag.plus(staff.id),
                     useUnmergedTree = true,
                 )
                 .assertExists()
@@ -99,8 +98,8 @@ class StaffScreenRobot(
                 .assertContentDescriptionEquals(staff.name)
 
             composeUiTest
-                .onNode(
-                    matcher = hasTestTag(StaffItemUserNameTextTestTag.plus(staff.id)),
+                .onNodeWithTag(
+                    testTag = StaffItemUserNameTextTestTag.plus(staff.id),
                     useUnmergedTree = true,
                 )
                 .assertExists()

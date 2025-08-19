@@ -34,7 +34,6 @@ fun SemanticsNodeInteractionCollection.assertCountAtLeast(
     if (matchedNodes.size < minimumExpectedSize) {
         throw AssertionError(
             buildErrorMessageForMinimumCountMismatch(
-                errorMessage = errorOnFail,
                 foundNodes = matchedNodes,
                 minimumExpectedCount = minimumExpectedSize,
             ),
@@ -44,12 +43,11 @@ fun SemanticsNodeInteractionCollection.assertCountAtLeast(
 }
 
 private fun buildErrorMessageForMinimumCountMismatch(
-    errorMessage: String,
     foundNodes: List<SemanticsNode>,
     minimumExpectedCount: Int,
 ): String {
     return buildString {
-        appendLine(errorMessage)
+        appendLine("Failed to assert minimum count of nodes.")
         appendLine("Expected at least: $minimumExpectedCount")
         appendLine("Found: ${foundNodes.size}")
         appendLine("Matched nodes:")
