@@ -331,6 +331,16 @@ private struct ColorWithDim: View {
                 colorName: "Jellyfish Dim"
             )
         }
+        GridRow {
+            ColorPreview(
+                color: AssetColors.background.swiftUIColor,
+                colorName: "Background"
+            )
+            ColorPreview(
+                color: AssetColors.onBackground.swiftUIColor,
+                colorName: "On Background"
+            )
+        }
     }
     .padding()
     .background(Color(uiColor: UIColor.systemGroupedBackground))
