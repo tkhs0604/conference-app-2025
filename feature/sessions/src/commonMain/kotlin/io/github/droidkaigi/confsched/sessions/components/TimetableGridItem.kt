@@ -78,18 +78,18 @@ fun TimetableGridItem(
                 .padding(
                     horizontal = TimetableGridItemDefaults.contentPadding,
                     vertical =
-                        when {
-                            isShowingAllContent -> {
-                                TimetableGridItemDefaults.contentPadding
-                            }
+                    when {
+                        isShowingAllContent -> {
+                            TimetableGridItemDefaults.contentPadding
+                        }
 
-                            (timetableItem.minutes < 30) && (scaledHeight < TimetableGridItemDefaults.titleLineHeight + TimetableGridItemDefaults.contentPadding) -> 0.dp
+                        (timetableItem.minutes < 30) && (scaledHeight < TimetableGridItemDefaults.titleLineHeight + TimetableGridItemDefaults.contentPadding) -> 0.dp
 
-                            else -> {
-                                TimetableGridItemDefaults.contentPadding / 2
-                            }
-                        },
-                )
+                        else -> {
+                            TimetableGridItemDefaults.contentPadding / 2
+                        }
+                    },
+                ),
         ) {
             Column(
                 modifier = Modifier.weight(1f),
