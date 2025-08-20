@@ -17,6 +17,7 @@ import io.github.droidkaigi.confsched.model.buildconfig.BuildConfigProvider
 internal interface TestAppGraph :
     TimetableScreenTestGraph,
     AboutScreenTestGraph,
+    ContributorsScreenTestGraph,
     EventMapScreenTestGraph,
     StaffScreenTestGraph {
 
