@@ -97,7 +97,6 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
         childMenuIsBookmarked = latestIsBookmarked
     }
 
-
     val roomTheme = LocalRoomTheme.current
     val menuItemContainerColor = roomTheme.primaryColor // TODO: use room containerColor
     FloatingActionButtonMenu(
