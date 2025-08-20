@@ -11,7 +11,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(scrim = TRANSPARENT),
-            navigationBarStyle = SystemBarStyle.dark(scrim = TRANSPARENT)
+            navigationBarStyle = SystemBarStyle.dark(scrim = TRANSPARENT),
         )
         super.onCreate(savedInstanceState)
 
