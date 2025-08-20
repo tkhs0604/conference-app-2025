@@ -56,22 +56,21 @@ class ContributorsScreenTest {
                     }
                 }
             }
-
-            describe("when server is down") {
+        }
+        describe("when server is down") {
+            doIt {
+                setupContributorServer(ContributorsServerRobot.ServerStatus.Error)
+            }
+            describe("when launch") {
                 doIt {
-                    setupContributorServer(ContributorsServerRobot.ServerStatus.Error)
+                    setupContributorsScreenContent()
                 }
-                describe("when launch") {
-                    doIt {
-                        setupContributorsScreenContent()
-                    }
-                    itShould("does not show contributors") {
-                        captureScreenWithChecks(
-                            checks = {
-                                checkDoesNotFirstContributorItemDisplayed()
-                            },
-                        )
-                    }
+                itShould("does not show contributors") {
+                    captureScreenWithChecks(
+                        checks = {
+                            checkDoesNotFirstContributorItemDisplayed()
+                        },
+                    )
                 }
             }
         }
