@@ -22,8 +22,8 @@ import io.github.droidkaigi.confsched.testing.robot.core.CaptureScreenRobot
 import io.github.droidkaigi.confsched.testing.robot.core.DefaultCaptureScreenRobot
 import io.github.droidkaigi.confsched.testing.robot.core.DefaultWaitRobot
 import io.github.droidkaigi.confsched.testing.robot.core.WaitRobot
-import io.github.droidkaigi.confsched.testing.utils.assertCountAtLeast
-import io.github.droidkaigi.confsched.testing.utils.hasTestTag
+import io.github.droidkaigi.confsched.testing.util.assertCountAtLeast
+import io.github.droidkaigi.confsched.testing.util.hasTestTag
 import kotlinx.coroutines.test.TestDispatcher
 
 @Inject
