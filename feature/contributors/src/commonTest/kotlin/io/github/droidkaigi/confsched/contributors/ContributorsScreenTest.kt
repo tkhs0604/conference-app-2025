@@ -65,7 +65,7 @@ class ContributorsScreenTest {
                     doIt {
                         setupContributorsScreenContent()
                     }
-                    itShould("does not show contributor and show snackbar") {
+                    itShould("does not show contributors") {
                         captureScreenWithChecks(
                             checks = {
                                 checkDoesNotFirstContributorItemDisplayed()
