@@ -6,6 +6,8 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.isDisplayed
+import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performScrollToIndex
 import dev.zacsweers.metro.Inject
 import io.github.droidkaigi.confsched.contributors.ContributorsItemTestTagPrefix
@@ -24,6 +26,7 @@ import io.github.droidkaigi.confsched.testing.robot.core.DefaultWaitRobot
 import io.github.droidkaigi.confsched.testing.robot.core.WaitRobot
 import io.github.droidkaigi.confsched.testing.util.assertCountAtLeast
 import io.github.droidkaigi.confsched.testing.util.hasTestTag
+import io.github.droidkaigi.confsched.testing.util.onAllNodesWithTag
 import kotlinx.coroutines.test.TestDispatcher
 
 @Inject
@@ -54,7 +57,7 @@ class ContributorsScreenRobot(
     context(composeUiTest: ComposeUiTest)
     fun scrollToIndex10() {
         composeUiTest
-            .onNode(hasTestTag(ContributorsTestTag))
+            .onNodeWithTag(ContributorsTestTag)
             .performScrollToIndex(10)
     }
 
@@ -72,13 +75,13 @@ class ContributorsScreenRobot(
         val contributorsList = Contributor.fakes().subList(fromTo.first, fromTo.last)
         contributorsList.forEach { contributor ->
             composeUiTest
-                .onNode(hasTestTag(ContributorsItemTestTagPrefix.plus(contributor.id)))
+                .onNodeWithTag(ContributorsItemTestTagPrefix.plus(contributor.id))
                 .assertExists()
                 .assertIsDisplayed()
 
             composeUiTest
-                .onNode(
-                    matcher = hasTestTag(ContributorsItemImageTestTagPrefix.plus(contributor.username)),
+                .onNodeWithTag(
+                    ContributorsItemImageTestTagPrefix.plus(contributor.username),
                     useUnmergedTree = true,
                 )
                 .assertExists()
@@ -86,8 +89,8 @@ class ContributorsScreenRobot(
                 .assertContentDescriptionEquals(contributor.username)
 
             composeUiTest
-                .onNode(
-                    matcher = hasTestTag(ContributorsUserNameTextTestTagPrefix.plus(contributor.username)),
+                .onNodeWithTag(
+                    ContributorsUserNameTextTestTagPrefix.plus(contributor.username),
                     useUnmergedTree = true,
                 )
                 .assertExists()
@@ -100,7 +103,7 @@ class ContributorsScreenRobot(
     fun checkContributorItemsDisplayed() {
         // Check there are two contributors
         composeUiTest
-            .onAllNodes(hasTestTag(ContributorsItemTestTagPrefix, substring = true))
+            .onAllNodesWithTag(ContributorsItemTestTagPrefix, substring = true)
             .assertCountAtLeast(2)
     }
 
@@ -108,7 +111,7 @@ class ContributorsScreenRobot(
     fun checkContributorTotalCountDisplayed() {
         // Check contributors total count is being displayed
         composeUiTest
-            .onNode(hasTestTag(ContributorsTotalCountTestTag))
+            .onNodeWithTag(ContributorsTotalCountTestTag)
             .assertExists()
             .isDisplayed()
     }
@@ -117,19 +120,19 @@ class ContributorsScreenRobot(
     fun checkDoesNotFirstContributorItemDisplayed() {
         val contributor = Contributor.fakes().first()
         composeUiTest
-            .onNode(hasTestTag(ContributorsItemTestTagPrefix.plus(contributor.id)))
+            .onNodeWithTag(ContributorsItemTestTagPrefix.plus(contributor.id))
             .assertDoesNotExist()
 
         composeUiTest
-            .onNode(
-                matcher = hasTestTag(ContributorsItemImageTestTagPrefix.plus(contributor.username)),
+            .onNodeWithTag(
+                ContributorsItemImageTestTagPrefix.plus(contributor.username),
                 useUnmergedTree = true,
             )
             .assertDoesNotExist()
 
         composeUiTest
-            .onNode(
-                matcher = hasTestTag(ContributorsUserNameTextTestTagPrefix.plus(contributor.username)),
+            .onNodeWithTag(
+                ContributorsUserNameTextTestTagPrefix.plus(contributor.username),
                 useUnmergedTree = true,
             )
             .assertDoesNotExist()
