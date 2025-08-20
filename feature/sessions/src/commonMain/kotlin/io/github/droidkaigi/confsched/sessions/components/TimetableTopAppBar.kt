@@ -19,8 +19,8 @@ import io.github.droidkaigi.confsched.sessions.ic_view_timeline
 import io.github.droidkaigi.confsched.sessions.search
 import io.github.droidkaigi.confsched.sessions.timeline_view
 import io.github.droidkaigi.confsched.sessions.timetable
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,7 +50,7 @@ fun TimetableTopAppBar(
                     TimetableUiType.Grid -> SessionsRes.string.timeline_view
                 }
                 Icon(
-                    painter = painterResource(iconRes),
+                    imageVector = vectorResource(iconRes),
                     contentDescription = stringResource(descriptionRes),
                 )
             }
