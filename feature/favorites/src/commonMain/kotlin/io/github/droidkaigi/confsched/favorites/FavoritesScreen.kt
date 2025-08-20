@@ -80,7 +80,9 @@ fun FavoritesScreen(
             when (uiState.timetableContentState) {
                 FavoritesScreenUiState.TimetableContentState.Empty -> {
                     FavoriteEmpty(
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(WindowInsets.safeDrawingWithBottomNavBar.asPaddingValues()),
                     )
                 }
 
