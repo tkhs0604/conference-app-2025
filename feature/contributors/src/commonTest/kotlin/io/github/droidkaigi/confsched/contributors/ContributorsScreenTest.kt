@@ -29,10 +29,11 @@ class ContributorsScreenTest {
         describe("when server is operational") {
             doIt {
                 setupContributorServer(ContributorsServerRobot.ServerStatus.Operational)
+                setupContributorsScreenContent()
             }
-            describe("when launch") {
+            describe("after loading") {
                 doIt {
-                    setupContributorsScreenContent()
+                    waitFor5Seconds()
                 }
                 itShould("show first and second contributors") {
                     captureScreenWithChecks {
@@ -60,10 +61,11 @@ class ContributorsScreenTest {
         describe("when server is down") {
             doIt {
                 setupContributorServer(ContributorsServerRobot.ServerStatus.Error)
+                setupContributorsScreenContent()
             }
-            describe("when launch") {
+            describe("after loading") {
                 doIt {
-                    setupContributorsScreenContent()
+                    waitFor5Seconds()
                 }
                 itShould("does not show contributors") {
                     captureScreenWithChecks(
