@@ -17,8 +17,10 @@ import androidx.compose.material3.ToggleFloatingActionButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,6 +38,7 @@ import io.github.droidkaigi.confsched.sessions.remove_from_bookmark
 import io.github.droidkaigi.confsched.sessions.share_link
 import io.github.droidkaigi.confsched.sessions.slide
 import io.github.droidkaigi.confsched.sessions.video
+import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -83,14 +86,17 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
     onWatchVideoClick: (url: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    var height by remember { mutableStateOf(0) }
-    var fabBookmarkFlag by remember { mutableStateOf(false) }
+    var height by remember { mutableIntStateOf(0) }
+    var childMenuIsBookmarked by remember { mutableStateOf(isBookmarked) } // local copy to update after transition
+    val latestIsBookmarked by rememberUpdatedState(isBookmarked) // to ensure the latest value is used in recomposition
 
     // Recompose child menu items only after the view size has settled.
     // Recomposing them during the transition may cause a brief flicker that makes the menu look flaky.
     LaunchedEffect(height) {
-        fabBookmarkFlag = isBookmarked
+        delay(100) // small debounce delay to wait until transition stabilizes
+        childMenuIsBookmarked = latestIsBookmarked
     }
+
 
     val roomTheme = LocalRoomTheme.current
     val menuItemContainerColor = roomTheme.primaryColor // TODO: use room containerColor
@@ -127,7 +133,7 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
             },
             text = {
                 Text(
-                    if (fabBookmarkFlag) {
+                    if (childMenuIsBookmarked) {
                         stringResource(SessionsRes.string.remove_from_bookmark)
                     } else {
                         stringResource(SessionsRes.string.add_to_bookmark)
@@ -136,7 +142,7 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
             },
             icon = {
                 Icon(
-                    if (fabBookmarkFlag) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
+                    if (childMenuIsBookmarked) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
                     contentDescription = null,
                 )
             },
