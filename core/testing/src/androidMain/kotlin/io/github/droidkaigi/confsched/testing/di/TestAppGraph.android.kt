@@ -11,12 +11,10 @@ import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.about.FakeBuildConfigProvider
 import io.github.droidkaigi.confsched.data.about.FakeLicensesJsonReader
 import io.github.droidkaigi.confsched.data.contributors.DefaultContributorsApiClient
-import io.github.droidkaigi.confsched.data.contributors.FakeContributorsApiClient
 import io.github.droidkaigi.confsched.data.eventmap.DefaultEventMapApiClient
 import io.github.droidkaigi.confsched.data.sessions.DefaultSessionsApiClient
 import io.github.droidkaigi.confsched.data.staff.DefaultStaffApiClient
 import kotlinx.coroutines.CoroutineDispatcher
-import javax.inject.Singleton
 
 @DependencyGraph(
     scope = AppScope::class,
