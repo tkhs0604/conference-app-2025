@@ -53,6 +53,7 @@ internal interface AndroidTestAppGraph : TestAppGraph {
 
 internal actual fun createTestAppGraph(): TestAppGraph {
     return createGraph<AndroidTestAppGraph>().also {
+        // Ensure context is initialized before Compose UI tests
         it.context
     }
 }
