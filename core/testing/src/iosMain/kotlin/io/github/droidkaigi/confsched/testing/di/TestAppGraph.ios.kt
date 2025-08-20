@@ -11,11 +11,14 @@ import io.github.droidkaigi.confsched.data.core.DataStorePathProducer
 import io.github.droidkaigi.confsched.data.core.defaultJson
 import io.github.droidkaigi.confsched.data.sessions.DefaultSessionsApiClient
 import io.github.droidkaigi.confsched.data.sessions.DefaultTimetableQueryKey
+import io.github.droidkaigi.confsched.data.staff.DefaultStaffApiClient
+import io.github.droidkaigi.confsched.data.staff.DefaultStaffQueryKey
 import io.github.droidkaigi.confsched.data.user.DefaultFavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.data.user.DefaultFavoriteTimetableItemIdMutationKey
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableIdsSubscriptionKey
 import io.github.droidkaigi.confsched.model.data.FavoriteTimetableItemIdMutationKey
 import io.github.droidkaigi.confsched.model.data.TimetableQueryKey
+import io.github.droidkaigi.confsched.model.staff.StaffQueryKey
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.serialization.json.Json
@@ -31,12 +34,16 @@ import platform.Foundation.NSUserDomainMask
     excludes = [
         DefaultSessionsApiClient::class,
         DefaultContributorsApiClient::class,
+        DefaultStaffApiClient::class,
         CoroutineDispatcher::class,
     ],
 )
 internal interface IosTestAppGraph : TestAppGraph {
     @Binds
     val DefaultTimetableQueryKey.bind: TimetableQueryKey
+
+    @Binds
+    val DefaultStaffQueryKey.bind: StaffQueryKey
 
     @Binds
     val DefaultFavoriteTimetableIdsSubscriptionKey.bind: FavoriteTimetableIdsSubscriptionKey
