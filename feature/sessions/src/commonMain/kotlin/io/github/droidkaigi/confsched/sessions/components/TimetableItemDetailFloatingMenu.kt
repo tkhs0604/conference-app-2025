@@ -22,9 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.layout.onSizeChanged
 import io.github.droidkaigi.confsched.designsystem.theme.LocalRoomTheme
 import io.github.droidkaigi.confsched.designsystem.theme.ProvideRoomTheme
 import io.github.droidkaigi.confsched.droidkaigiui.KaigiPreviewContainer
@@ -54,16 +52,13 @@ fun TimetableItemDetailFloatingActionButtonMenu(
     modifier: Modifier = Modifier,
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var fabBookmarkFlag by remember { mutableStateOf(false) }
 
     TimetableItemDetailFloatingActionButtonMenu(
         expanded = expanded,
         isBookmarked = isBookmarked,
-        fabBookmarkFlag = fabBookmarkFlag,
         slideUrl = slideUrl,
         videoUrl = videoUrl,
         onExpandedChange = { expanded = it },
-        onFabBookmarkFlagChange = { fabBookmarkFlag = it },
         onBookmarkClick = onBookmarkClick,
         onAddCalendarClick = onAddCalendarClick,
         onShareClick = onShareClick,
@@ -78,22 +73,23 @@ fun TimetableItemDetailFloatingActionButtonMenu(
 private fun TimetableItemDetailFloatingActionButtonMenu(
     expanded: Boolean,
     isBookmarked: Boolean,
-    fabBookmarkFlag: Boolean,
     slideUrl: String?,
     videoUrl: String?,
     onExpandedChange: (Boolean) -> Unit,
     onBookmarkClick: (isBookmarked: Boolean) -> Unit,
-    onFabBookmarkFlagChange: (Boolean) -> Unit,
     onAddCalendarClick: () -> Unit,
     onShareClick: () -> Unit,
     onViewSlideClick: (url: String) -> Unit,
     onWatchVideoClick: (url: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    var height by remember { mutableStateOf(0.dp) }
-    val density = LocalDensity.current
+    var height by remember { mutableStateOf(0) }
+    var fabBookmarkFlag by remember { mutableStateOf(false) }
+    
+    // Recompose child menu items only after the view size has settled.
+    // Recomposing them during the transition may cause a brief flicker that makes the menu look flaky.
     LaunchedEffect(height) {
-        onFabBookmarkFlagChange(isBookmarked)
+        fabBookmarkFlag = isBookmarked
     }
 
     val roomTheme = LocalRoomTheme.current
@@ -119,8 +115,8 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
                 }
             }
         },
-        modifier = modifier.onGloballyPositioned { layoutCoordinates ->
-            height = with(density) { layoutCoordinates.size.height.toDp() }
+        modifier = modifier.onSizeChanged { size ->
+            height = size.height
         },
         horizontalAlignment = Alignment.End,
     ) {
@@ -198,10 +194,8 @@ private fun TimetableItemDetailFloatingMenuPreview() {
             TimetableItemDetailFloatingActionButtonMenu(
                 expanded = false,
                 isBookmarked = false,
-                fabBookmarkFlag = false,
                 onExpandedChange = {},
                 onBookmarkClick = {},
-                onFabBookmarkFlagChange = {},
                 onAddCalendarClick = {},
                 onShareClick = {},
                 slideUrl = session.asset.slideUrl,
@@ -222,10 +216,8 @@ private fun TimetableItemDetailFloatingMenuExpandedPreview() {
             TimetableItemDetailFloatingActionButtonMenu(
                 expanded = true,
                 isBookmarked = false,
-                fabBookmarkFlag = false,
                 onExpandedChange = {},
                 onBookmarkClick = {},
-                onFabBookmarkFlagChange = {},
                 onAddCalendarClick = {},
                 onShareClick = {},
                 slideUrl = session.asset.slideUrl,
