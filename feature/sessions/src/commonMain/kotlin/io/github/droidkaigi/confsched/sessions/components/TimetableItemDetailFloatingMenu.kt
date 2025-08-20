@@ -85,7 +85,7 @@ private fun TimetableItemDetailFloatingActionButtonMenu(
 ) {
     var height by remember { mutableStateOf(0) }
     var fabBookmarkFlag by remember { mutableStateOf(false) }
-    
+
     // Recompose child menu items only after the view size has settled.
     // Recomposing them during the transition may cause a brief flicker that makes the menu look flaky.
     LaunchedEffect(height) {
