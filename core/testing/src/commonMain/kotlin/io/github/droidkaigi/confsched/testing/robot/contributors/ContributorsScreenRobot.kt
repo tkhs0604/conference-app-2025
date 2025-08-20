@@ -49,6 +49,7 @@ class ContributorsScreenRobot(
                 }
             }
         }
+        waitUntilIdle()
     }
 
     context(composeUiTest: ComposeUiTest)
