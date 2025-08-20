@@ -42,12 +42,12 @@ fun TimetableTopAppBar(
             }
             IconButton(onClick = onUiTypeChangeClick) {
                 val iconRes = when (timetableUiType) {
-                    TimetableUiType.List -> SessionsRes.drawable.ic_view_timeline
-                    TimetableUiType.Grid -> SessionsRes.drawable.ic_view_grid
+                    TimetableUiType.List -> SessionsRes.drawable.ic_view_grid
+                    TimetableUiType.Grid -> SessionsRes.drawable.ic_view_timeline
                 }
                 val descriptionRes = when (timetableUiType) {
-                    TimetableUiType.List -> SessionsRes.string.timeline_view
-                    TimetableUiType.Grid -> SessionsRes.string.grid_view
+                    TimetableUiType.List -> SessionsRes.string.grid_view
+                    TimetableUiType.Grid -> SessionsRes.string.timeline_view
                 }
                 Icon(
                     painter = painterResource(iconRes),
