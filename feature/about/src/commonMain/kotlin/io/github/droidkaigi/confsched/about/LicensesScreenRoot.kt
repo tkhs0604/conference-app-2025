@@ -25,7 +25,7 @@ fun LicensesScreenRoot(
             windowInsets = WindowInsets.safeDrawing,
         ),
     ) { licensesJson ->
-        val libraries by rememberLibraries(licensesJson)
+        val libraries by rememberLibraries { licensesJson }
         LicensesScreen(
             libraries = libraries,
             onBackClick = onBackClick,
