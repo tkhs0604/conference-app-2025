@@ -5,15 +5,18 @@ import androidx.test.core.app.ApplicationProvider
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.DependencyGraph
 import dev.zacsweers.metro.Provides
+import dev.zacsweers.metro.SingleIn
 import dev.zacsweers.metro.createGraph
 import io.github.droidkaigi.confsched.data.DataScope
 import io.github.droidkaigi.confsched.data.about.FakeBuildConfigProvider
 import io.github.droidkaigi.confsched.data.about.FakeLicensesJsonReader
 import io.github.droidkaigi.confsched.data.contributors.DefaultContributorsApiClient
+import io.github.droidkaigi.confsched.data.contributors.FakeContributorsApiClient
 import io.github.droidkaigi.confsched.data.eventmap.DefaultEventMapApiClient
 import io.github.droidkaigi.confsched.data.sessions.DefaultSessionsApiClient
 import io.github.droidkaigi.confsched.data.staff.DefaultStaffApiClient
 import kotlinx.coroutines.CoroutineDispatcher
+import javax.inject.Singleton
 
 @DependencyGraph(
     scope = AppScope::class,
@@ -28,6 +31,9 @@ import kotlinx.coroutines.CoroutineDispatcher
     ],
 )
 internal interface AndroidTestAppGraph : TestAppGraph {
+    val context: Context
+
+    @SingleIn(AppScope::class)
     @Provides
     fun provideContext(): Context {
         val testContext = ApplicationProvider.getApplicationContext<Context>()
@@ -48,5 +54,7 @@ internal interface AndroidTestAppGraph : TestAppGraph {
 }
 
 internal actual fun createTestAppGraph(): TestAppGraph {
-    return createGraph<AndroidTestAppGraph>()
+    return createGraph<AndroidTestAppGraph>().also {
+        it.context
+    }
 }
