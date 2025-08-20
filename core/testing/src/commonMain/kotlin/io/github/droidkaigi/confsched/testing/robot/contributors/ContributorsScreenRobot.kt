@@ -17,6 +17,7 @@ import io.github.droidkaigi.confsched.contributors.ContributorsTestTag
 import io.github.droidkaigi.confsched.contributors.ContributorsTotalCountTestTag
 import io.github.droidkaigi.confsched.contributors.component.ContributorsItemImageTestTagPrefix
 import io.github.droidkaigi.confsched.contributors.component.ContributorsUserNameTextTestTagPrefix
+import io.github.droidkaigi.confsched.droidkaigiui.architecture.DefaultSuspenseFallbackContentTestTag
 import io.github.droidkaigi.confsched.model.contributors.Contributor
 import io.github.droidkaigi.confsched.model.contributors.fakes
 import io.github.droidkaigi.confsched.testing.compose.TestDefaultsProvider
@@ -52,6 +53,11 @@ class ContributorsScreenRobot(
                 }
             }
         }
+    }
+
+    context(composeUiTest: ComposeUiTest)
+    fun checkLoadingIndicatorDisplayed() {
+        composeUiTest.onNodeWithTag(DefaultSuspenseFallbackContentTestTag).assertExists()
     }
 
     context(composeUiTest: ComposeUiTest)

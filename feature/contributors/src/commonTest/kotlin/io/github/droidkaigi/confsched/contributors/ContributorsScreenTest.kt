@@ -31,6 +31,11 @@ class ContributorsScreenTest {
                 setupContributorServer(ContributorsServerRobot.ServerStatus.Operational)
                 setupContributorsScreenContent()
             }
+            itShould("show loading indicator") {
+                captureScreenWithChecks {
+                    checkLoadingIndicatorDisplayed()
+                }
+            }
             describe("after loading") {
                 doIt {
                     waitFor5Seconds()
@@ -62,6 +67,11 @@ class ContributorsScreenTest {
             doIt {
                 setupContributorServer(ContributorsServerRobot.ServerStatus.Error)
                 setupContributorsScreenContent()
+            }
+            itShould("show loading indicator") {
+                captureScreenWithChecks {
+                    checkLoadingIndicatorDisplayed()
+                }
             }
             describe("after loading") {
                 doIt {
